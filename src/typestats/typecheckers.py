@@ -1,5 +1,6 @@
 import abc
 import configparser
+import json
 import os
 import tomllib
 from pathlib import Path
@@ -12,7 +13,7 @@ if TYPE_CHECKING:
 
     from _typeshed import Incomplete, StrPath  # noqa: PLC2701
 
-__all__ = ("mypy_config",)
+__all__ = ("mypy_config", "pyright_config")
 
 
 type _AsyncParser = Callable[[anyio.Path], Awaitable[dict[str, Incomplete] | None]]
@@ -162,3 +163,48 @@ async def mypy_config(project_dir: StrPath, /) -> dict[str, Incomplete] | None:
     See https://mypy.readthedocs.io/en/stable/config_file.html
     """
     return await _mypy.find(project_dir)
+
+
+class PyrightConfig(TypecheckerConfig):
+    """
+    Discover and parse Pyright configuration.
+
+    See https://microsoft.github.io/pyright/#/configuration
+    """
+
+    @property
+    @override
+    def _project_config_files(self) -> Sequence[tuple[str, _AsyncParser]]:
+        return (
+            ("pyrightconfig.json", self._parse_json),
+            ("pyproject.toml", self._parse_pyproject),
+        )
+
+    @staticmethod
+    async def _parse_json(path: anyio.Path, /) -> dict[str, Incomplete] | None:
+        """Parse a ``pyrightconfig.json`` file."""
+        text = await path.read_text()
+        parsed = json.loads(text)
+        return dict(parsed) if isinstance(parsed, dict) else None
+
+    @staticmethod
+    async def _parse_pyproject(path: anyio.Path, /) -> dict[str, Incomplete] | None:
+        """Parse Pyright config from ``[tool.pyright]``."""
+        if (tool := await _parse_pyproject_tool(path)) is None:
+            return None
+        if not isinstance(pyright := tool.get("pyright"), dict):
+            return None
+        return dict(pyright)
+
+
+_pyright = PyrightConfig()
+
+
+async def pyright_config(project_dir: StrPath, /) -> dict[str, Incomplete] | None:
+    """
+    Returns the Pyright config for the given project directory, or ``None``
+    if no config is found.
+
+    See https://microsoft.github.io/pyright/#/configuration
+    """
+    return await _pyright.find(project_dir)
