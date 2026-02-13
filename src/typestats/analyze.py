@@ -69,89 +69,156 @@ def _parse_version_tuple(node: cst.BaseExpression) -> tuple[int, ...] | None:
     return tuple(parts)
 
 
-def _is_version_info(node: cst.BaseExpression) -> bool:
-    """Check if *node* represents ``sys.version_info`` (optionally sliced)."""
-    if isinstance(node, cst.Attribute):
-        return (
-            isinstance(node.value, cst.Name)
-            and node.value.value == "sys"
-            and isinstance(node.attr, cst.Name)
-            and node.attr.value == "version_info"
-        )
-    if isinstance(node, cst.Subscript) and isinstance(node.value, cst.Attribute):
-        return (
-            isinstance(node.value.value, cst.Name)
-            and node.value.value.value == "sys"
-            and isinstance(node.value.attr, cst.Name)
-            and node.value.attr.value == "version_info"
-        )
-    return False
-
-
-def _eval_version_guard(  # noqa: C901, PLR0911, PLR0912
-    test: cst.BaseExpression,
-) -> bool | None:
-    """Evaluate a ``sys.version_info`` comparison against the target version.
-
-    Returns ``True``/``False`` if this is a version guard, ``None`` otherwise.
-    """
-    if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
-        return None
-
-    cmp = test.comparisons[0]
-    left = test.left
-    right = cmp.comparator
-    op = cmp.operator
-
-    if _is_version_info(left):
-        version_tuple = _parse_version_tuple(right)
-        swapped = False
-    elif _is_version_info(right):
-        version_tuple = _parse_version_tuple(left)
-        swapped = True
-    else:
-        return None
-
-    if version_tuple is None:
-        return None
-
-    target = _TARGET_VERSION[: len(version_tuple)]
-
-    match op:
-        case cst.GreaterThanEqual() if not swapped:
-            return target >= version_tuple
-        case cst.GreaterThanEqual() if swapped:
-            return version_tuple >= target
-        case cst.LessThan() if not swapped:
-            return target < version_tuple
-        case cst.LessThan() if swapped:
-            return version_tuple < target
-        case cst.GreaterThan() if not swapped:
-            return target > version_tuple
-        case cst.GreaterThan() if swapped:
-            return version_tuple > target
-        case cst.LessThanEqual() if not swapped:
-            return target <= version_tuple
-        case cst.LessThanEqual() if swapped:
-            return version_tuple <= target
-        case cst.Equal():
-            return target == version_tuple
-        case cst.NotEqual():
-            return target != version_tuple
-        case _:
-            return None
+def _pad_versions(
+    a: tuple[int, ...],
+    b: tuple[int, ...],
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    """Zero-pad two version tuples to equal length for correct comparison."""
+    max_len = max(len(a), len(b))
+    return (
+        a + (0,) * (max_len - len(a)),
+        b + (0,) * (max_len - len(b)),
+    )
 
 
 class _VersionGuardTransformer(cst.CSTTransformer):
-    """Remove version-guarded branches that don't match the target Python version."""
+    """Remove version-guarded branches that don't match the target Python version.
+
+    Tracks ``import sys`` / ``import sys as X`` / ``from sys import version_info``
+    so that version guards using aliases are recognised.
+    Only ``>=`` and ``<`` comparisons are supported (the only operators recommended
+    by the typing spec and enforced by ruff).
+    """
 
     def __init__(self) -> None:
         super().__init__()
         self._elif_ids: set[int] = set()
+        # names that refer to the ``sys`` module (e.g. ``{"sys", "_sys"}``)
+        self._sys_aliases: set[str] = {"sys"}
+        # names that directly refer to ``sys.version_info``
+        self._version_info_names: set[str] = set()
+
+    # ------------------------------------------------------------------
+    # Import tracking
+    # ------------------------------------------------------------------
+
+    @override
+    def visit_Import(self, node: cst.Import) -> bool:
+        if isinstance(node.names, cst.ImportStar):
+            return True
+        for alias in node.names:
+            dotted = alias.name
+            full = get_full_name_for_node(dotted)
+            if full == "sys":
+                local = (
+                    alias.asname.name.value
+                    if alias.asname and isinstance(alias.asname.name, cst.Name)
+                    else "sys"
+                )
+                self._sys_aliases.add(local)
+        return True
+
+    @override
+    def visit_ImportFrom(self, node: cst.ImportFrom) -> bool:
+        module_name = get_full_name_for_node(node.module) if node.module else None
+        if module_name != "sys" or isinstance(node.names, cst.ImportStar):
+            return True
+        for alias in node.names:
+            if isinstance(alias.name, cst.Name) and alias.name.value == "version_info":
+                local = (
+                    alias.asname.name.value
+                    if alias.asname and isinstance(alias.asname.name, cst.Name)
+                    else "version_info"
+                )
+                self._version_info_names.add(local)
+        return True
+
+    # ------------------------------------------------------------------
+    # Version-info detection
+    # ------------------------------------------------------------------
+
+    def _is_version_info(self, node: cst.BaseExpression) -> bool:
+        """Check if *node* represents ``sys.version_info`` (optionally sliced)."""
+        inner = node.value if isinstance(node, cst.Subscript) else node
+
+        # ``sys.version_info`` or ``_sys.version_info``
+        if (
+            isinstance(inner, cst.Attribute)
+            and isinstance(inner.value, cst.Name)
+            and inner.value.value in self._sys_aliases
+            and inner.attr.value == "version_info"
+        ):
+            return True
+
+        # bare ``version_info`` from ``from sys import version_info``
+        return isinstance(inner, cst.Name) and inner.value in self._version_info_names
+
+    # ------------------------------------------------------------------
+    # Version-guard evaluation
+    # ------------------------------------------------------------------
+
+    def _eval_version_guard(self, test: cst.BaseExpression) -> bool | None:
+        """Evaluate a ``sys.version_info`` comparison against the target version.
+
+        Only ``>=`` and ``<`` are supported.  Returns ``True``/``False`` when the
+        comparison can be resolved, ``None`` otherwise.
+        """
+        parsed = self._parse_version_comparison(test)
+        if parsed is None:
+            return None
+
+        op, version_tuple = parsed
+        target, version = _pad_versions(_TARGET_VERSION, version_tuple)
+
+        if isinstance(op, cst.GreaterThanEqual):
+            return target >= version
+        if isinstance(op, cst.LessThan):
+            return target < version
+        return None
+
+    def _parse_version_comparison(
+        self,
+        test: cst.BaseExpression,
+    ) -> tuple[cst.BaseCompOp, tuple[int, ...]] | None:
+        """Extract operator and version tuple from a version-info comparison.
+
+        Normalises so that ``version_info`` is always on the left.  For example,
+        ``(3, 11) < sys.version_info`` is returned as ``(>=, (3, 11))``.
+        """
+        if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
+            return None
+
+        cmp = test.comparisons[0]
+        left = test.left
+        right = cmp.comparator
+        op = cmp.operator
+
+        if self._is_version_info(left):
+            version_tuple = _parse_version_tuple(right)
+        elif self._is_version_info(right):
+            version_tuple = _parse_version_tuple(left)
+            # Swap the operator direction.
+            match op:
+                case cst.GreaterThanEqual():
+                    op = cst.LessThan()
+                case cst.LessThan():
+                    op = cst.GreaterThanEqual()
+                case _:
+                    return None
+        else:
+            return None
+
+        if version_tuple is None:
+            return None
+
+        return op, version_tuple
+
+    # ------------------------------------------------------------------
+    # If-statement transformation
+    # ------------------------------------------------------------------
 
     @override
     def visit_If(self, node: cst.If) -> bool:
-        # Mark elif children so leave_If skips them (handled by parent).
         if isinstance(node.orelse, cst.If):
             self._elif_ids.add(id(node.orelse))
         return True
@@ -167,32 +234,40 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         | cst.FlattenSentinel[cst.BaseStatement]
         | cst.RemovalSentinel
     ):
-        # elif nodes are resolved by the parent If's leave_If.
         if id(original_node) in self._elif_ids:
             self._elif_ids.discard(id(original_node))
             return updated_node
 
         return self._resolve_chain(updated_node)
 
+    @staticmethod
+    def _flatten_body(
+        body: cst.BaseSuite,
+    ) -> cst.FlattenSentinel[cst.BaseStatement]:
+        if isinstance(body, cst.IndentedBlock):
+            return cst.FlattenSentinel(list(body.body))
+
+        # SimpleStatementSuite (e.g. ``if ...: pass``)
+        assert isinstance(body, cst.SimpleStatementSuite)
+        line = cst.SimpleStatementLine(body=list(body.body))
+        return cst.FlattenSentinel([line])
+
     def _resolve_chain(
         self,
         node: cst.If,
     ) -> cst.If | cst.FlattenSentinel[cst.BaseStatement] | cst.RemovalSentinel:
-        result = _eval_version_guard(node.test)
+        result = self._eval_version_guard(node.test)
         if result is None:
             return node
 
         if result:
-            stmts = list[cst.BaseStatement](node.body.body)  # pyrefly: ignore
-            return cst.FlattenSentinel(stmts)
+            return self._flatten_body(node.body)
 
         if node.orelse is None:
             return cst.RemovalSentinel.REMOVE
 
         if isinstance(node.orelse, cst.Else):
-            else_body = node.orelse.body.body
-            stmts = list[cst.BaseStatement](else_body)  # pyrefly: ignore
-            return cst.FlattenSentinel(stmts)
+            return self._flatten_body(node.orelse.body)
 
         # elif chain: recurse into the next branch.
         return self._resolve_chain(node.orelse)

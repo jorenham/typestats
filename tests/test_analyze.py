@@ -1114,21 +1114,6 @@ class TestVersionGuards:
         aliases = {a.name for a in module.type_aliases}
         assert "Alias" in aliases
 
-    def test_swapped_comparison_gte(self) -> None:
-        """Version tuple on the left: (3, 11) <= sys.version_info."""
-        src = textwrap.dedent("""
-        import sys
-
-        if (3, 11) <= sys.version_info:
-            from typing import Self
-        else:
-            from typing_extensions import Self
-        """)
-        module = collect_symbols(src)
-        imports = dict(module.imports)
-        assert "Self" in imports
-        assert imports["Self"] == "typing.Self"
-
     def test_elif_chain_imports(self) -> None:
         """Version elif chain should pick the matching branch."""
         src = textwrap.dedent("""
@@ -1146,58 +1131,94 @@ class TestVersionGuards:
         assert "TypeIs" in imports
         assert imports["TypeIs"] == "typing.TypeIs"
 
-    def test_gt_operator(self) -> None:
-        """sys.version_info > (3, 11) should be True for target (3, 14)."""
+    def test_from_sys_import_version_info(self) -> None:
+        """Handle ``from sys import version_info``."""
+        src = textwrap.dedent("""
+        from sys import version_info
+
+        if version_info >= (3, 11):
+            from typing import Self
+        else:
+            from typing_extensions import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_import_sys_as_alias(self) -> None:
+        """Handle ``import sys as _sys``."""
+        src = textwrap.dedent("""
+        import sys as _sys
+
+        if _sys.version_info >= (3, 12):
+            type Alias = int
+        else:
+            from typing import TypeAlias
+            Alias: TypeAlias = int
+        """)
+        module = collect_symbols(src)
+        aliases = {a.name for a in module.type_aliases}
+        assert "Alias" in aliases
+
+    def test_version_triple(self) -> None:
+        """Support version triples like ``(3, 14, 2)``."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 14, 2):
+            new_thing: int = 1
+        else:
+            old_thing: str = "fallback"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        # (3, 14, 0) < (3, 14, 2), so the else branch should be taken
+        assert "new_thing" not in symbols
+        assert "old_thing" in symbols
+
+    def test_version_single(self) -> None:
+        """Support single-element tuples like ``(3,)``."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (4,):
+            future_thing: int = 1
+        else:
+            current_thing: str = "now"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "future_thing" not in symbols
+        assert "current_thing" in symbols
+
+    def test_unsupported_operator_ignored(self) -> None:
+        """Operators other than ``>=`` and ``<`` are left as-is."""
         src = textwrap.dedent("""
         import sys
 
         if sys.version_info > (3, 11):
             x: int = 1
         else:
-            x: str = "old"
+            y: str = "hello"
         """)
         module = collect_symbols(src)
-        symbols = {s.name: str(s.type_) for s in module.symbols}
-        assert symbols["x"] == "int"
+        symbols = {s.name for s in module.symbols}
+        # both branches kept since > is not evaluated
+        assert "x" in symbols
+        assert "y" in symbols
 
-    def test_lte_operator(self) -> None:
-        """sys.version_info <= (3, 11) should be False for target (3, 14)."""
+    def test_version_info_sliced(self) -> None:
+        """Handle ``sys.version_info[:2]`` in comparisons."""
         src = textwrap.dedent("""
         import sys
 
-        if sys.version_info <= (3, 11):
-            x: str = "old"
+        if sys.version_info[:2] >= (3, 11):
+            from typing import Self
         else:
-            x: int = 1
+            from typing_extensions import Self
         """)
         module = collect_symbols(src)
-        symbols = {s.name: str(s.type_) for s in module.symbols}
-        assert symbols["x"] == "int"
-
-    def test_eq_operator(self) -> None:
-        """sys.version_info == (3, 14) should be True for target (3, 14)."""
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info == (3, 14):
-            x: int = 1
-        else:
-            x: str = "other"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name: str(s.type_) for s in module.symbols}
-        assert symbols["x"] == "int"
-
-    def test_ne_operator(self) -> None:
-        """sys.version_info != (3, 11) should be True for target (3, 14)."""
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info != (3, 11):
-            x: int = 1
-        else:
-            x: str = "old"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name: str(s.type_) for s in module.symbols}
-        assert symbols["x"] == "int"
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
