@@ -1042,3 +1042,162 @@ class TestAnnotationCounts:
     def test_class_with_any_member(self) -> None:
         cls = Class("Foo", members=(ANY,))
         assert annotation_counts(cls) == (1, 1)
+
+
+class TestVersionGuards:
+    def test_matching_branch_gte(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 11):
+            from typing import Self
+        else:
+            from typing_extensions import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_non_matching_branch_lt(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 11):
+            from typing_extensions import Self
+        else:
+            from typing import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_non_version_if_unchanged(self) -> None:
+        src = textwrap.dedent("""
+        import os
+
+        if os.name == "nt":
+            x: int = 1
+        else:
+            x: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+
+    def test_no_else_branch_removed(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 10):
+            old_thing: int = 1
+
+        new_thing: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "old_thing" not in symbols
+        assert "new_thing" in symbols
+
+    def test_matching_branch_collected(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 12):
+            type Alias = int
+        else:
+            from typing import TypeAlias
+            Alias: TypeAlias = int
+        """)
+        module = collect_symbols(src)
+        aliases = {a.name for a in module.type_aliases}
+        assert "Alias" in aliases
+
+    def test_swapped_comparison_gte(self) -> None:
+        """Version tuple on the left: (3, 11) <= sys.version_info."""
+        src = textwrap.dedent("""
+        import sys
+
+        if (3, 11) <= sys.version_info:
+            from typing import Self
+        else:
+            from typing_extensions import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_elif_chain_imports(self) -> None:
+        """Version elif chain should pick the matching branch."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 13):
+            from typing import TypeIs
+        elif sys.version_info >= (3, 10):
+            from typing_extensions import TypeIs
+        else:
+            from typing_extensions import TypeIs as TypeIs
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "TypeIs" in imports
+        assert imports["TypeIs"] == "typing.TypeIs"
+
+    def test_gt_operator(self) -> None:
+        """sys.version_info > (3, 11) should be True for target (3, 14)."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info > (3, 11):
+            x: int = 1
+        else:
+            x: str = "old"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: str(s.type_) for s in module.symbols}
+        assert symbols["x"] == "int"
+
+    def test_lte_operator(self) -> None:
+        """sys.version_info <= (3, 11) should be False for target (3, 14)."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info <= (3, 11):
+            x: str = "old"
+        else:
+            x: int = 1
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: str(s.type_) for s in module.symbols}
+        assert symbols["x"] == "int"
+
+    def test_eq_operator(self) -> None:
+        """sys.version_info == (3, 14) should be True for target (3, 14)."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info == (3, 14):
+            x: int = 1
+        else:
+            x: str = "other"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: str(s.type_) for s in module.symbols}
+        assert symbols["x"] == "int"
+
+    def test_ne_operator(self) -> None:
+        """sys.version_info != (3, 11) should be True for target (3, 14)."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info != (3, 11):
+            x: int = 1
+        else:
+            x: str = "old"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: str(s.type_) for s in module.symbols}
+        assert symbols["x"] == "int"

@@ -48,7 +48,154 @@ _SPECIAL_TYPEFORMS: Final[frozenset[str]] = frozenset({
     "TypeVarTuple",
 })
 
+_TARGET_VERSION: Final = (3, 14)
+
 type TypeForm = _TypeMarker | Expr | Function | Class
+
+
+def _parse_version_tuple(node: cst.BaseExpression) -> tuple[int, ...] | None:
+    """Extract a version tuple like ``(3, 11)`` from a CST tuple literal."""
+    if not isinstance(node, cst.Tuple):
+        return None
+    parts: list[int] = []
+    for element in node.elements:
+        if not isinstance(element, cst.Element):
+            return None
+        val = element.value
+        if isinstance(val, cst.Integer):
+            parts.append(int(val.value))
+        else:
+            return None
+    return tuple(parts)
+
+
+def _is_version_info(node: cst.BaseExpression) -> bool:
+    """Check if *node* represents ``sys.version_info`` (optionally sliced)."""
+    if isinstance(node, cst.Attribute):
+        return (
+            isinstance(node.value, cst.Name)
+            and node.value.value == "sys"
+            and isinstance(node.attr, cst.Name)
+            and node.attr.value == "version_info"
+        )
+    if isinstance(node, cst.Subscript) and isinstance(node.value, cst.Attribute):
+        return (
+            isinstance(node.value.value, cst.Name)
+            and node.value.value.value == "sys"
+            and isinstance(node.value.attr, cst.Name)
+            and node.value.attr.value == "version_info"
+        )
+    return False
+
+
+def _eval_version_guard(  # noqa: C901, PLR0911, PLR0912
+    test: cst.BaseExpression,
+) -> bool | None:
+    """Evaluate a ``sys.version_info`` comparison against the target version.
+
+    Returns ``True``/``False`` if this is a version guard, ``None`` otherwise.
+    """
+    if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
+        return None
+
+    cmp = test.comparisons[0]
+    left = test.left
+    right = cmp.comparator
+    op = cmp.operator
+
+    if _is_version_info(left):
+        version_tuple = _parse_version_tuple(right)
+        swapped = False
+    elif _is_version_info(right):
+        version_tuple = _parse_version_tuple(left)
+        swapped = True
+    else:
+        return None
+
+    if version_tuple is None:
+        return None
+
+    target = _TARGET_VERSION[: len(version_tuple)]
+
+    match op:
+        case cst.GreaterThanEqual() if not swapped:
+            return target >= version_tuple
+        case cst.GreaterThanEqual() if swapped:
+            return version_tuple >= target
+        case cst.LessThan() if not swapped:
+            return target < version_tuple
+        case cst.LessThan() if swapped:
+            return version_tuple < target
+        case cst.GreaterThan() if not swapped:
+            return target > version_tuple
+        case cst.GreaterThan() if swapped:
+            return version_tuple > target
+        case cst.LessThanEqual() if not swapped:
+            return target <= version_tuple
+        case cst.LessThanEqual() if swapped:
+            return version_tuple <= target
+        case cst.Equal():
+            return target == version_tuple
+        case cst.NotEqual():
+            return target != version_tuple
+        case _:
+            return None
+
+
+class _VersionGuardTransformer(cst.CSTTransformer):
+    """Remove version-guarded branches that don't match the target Python version."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self._elif_ids: set[int] = set()
+
+    @override
+    def visit_If(self, node: cst.If) -> bool:
+        # Mark elif children so leave_If skips them (handled by parent).
+        if isinstance(node.orelse, cst.If):
+            self._elif_ids.add(id(node.orelse))
+        return True
+
+    @override
+    def leave_If(
+        self,
+        original_node: cst.If,
+        updated_node: cst.If,
+    ) -> (
+        cst.If
+        | cst.BaseStatement
+        | cst.FlattenSentinel[cst.BaseStatement]
+        | cst.RemovalSentinel
+    ):
+        # elif nodes are resolved by the parent If's leave_If.
+        if id(original_node) in self._elif_ids:
+            self._elif_ids.discard(id(original_node))
+            return updated_node
+
+        return self._resolve_chain(updated_node)
+
+    def _resolve_chain(
+        self,
+        node: cst.If,
+    ) -> cst.If | cst.FlattenSentinel[cst.BaseStatement] | cst.RemovalSentinel:
+        result = _eval_version_guard(node.test)
+        if result is None:
+            return node
+
+        if result:
+            stmts = list[cst.BaseStatement](node.body.body)  # pyrefly: ignore
+            return cst.FlattenSentinel(stmts)
+
+        if node.orelse is None:
+            return cst.RemovalSentinel.REMOVE
+
+        if isinstance(node.orelse, cst.Else):
+            else_body = node.orelse.body.body
+            stmts = list[cst.BaseStatement](else_body)  # pyrefly: ignore
+            return cst.FlattenSentinel(stmts)
+
+        # elif chain: recurse into the next branch.
+        return self._resolve_chain(node.orelse)
 
 
 class ParamKind(StrEnum):
@@ -833,6 +980,7 @@ def collect_symbols(
     package_name: str | None = None,
 ) -> ModuleSymbols:
     module = cst.parse_module(source)
+    module = module.visit(_VersionGuardTransformer())
     wrapper = MetadataWrapper(module, unsafe_skip_copy=True)
 
     # Phase 1: Collect imports, exports, and type-ignore comments.
