@@ -203,7 +203,7 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         body: cst.BaseSuite,
     ) -> cst.FlattenSentinel[cst.BaseStatement]:
         if isinstance(body, cst.IndentedBlock):
-            return cst.FlattenSentinel(list(body.body))
+            return cst.FlattenSentinel(body.body)
 
         # SimpleStatementSuite (e.g. ``if ...: pass``)
         assert isinstance(body, cst.SimpleStatementSuite)
