@@ -1208,17 +1208,17 @@ class TestVersionGuards:
         assert "x" in symbols
         assert "y" in symbols
 
-    def test_version_info_sliced(self) -> None:
-        """Handle ``sys.version_info[:2]`` in comparisons."""
+    def test_version_info_sliced_not_evaluated(self) -> None:
+        """Subscripted ``sys.version_info[:2]`` is not evaluated (both kept)."""
         src = textwrap.dedent("""
         import sys
 
         if sys.version_info[:2] >= (3, 11):
-            from typing import Self
+            x: int = 1
         else:
-            from typing_extensions import Self
+            y: str = "hello"
         """)
         module = collect_symbols(src)
-        imports = dict(module.imports)
-        assert "Self" in imports
-        assert imports["Self"] == "typing.Self"
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+        assert "y" in symbols

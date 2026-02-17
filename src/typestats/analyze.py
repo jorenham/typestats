@@ -1,3 +1,4 @@
+import logging
 import re
 import sys
 from collections import defaultdict, deque
@@ -52,6 +53,8 @@ _SPECIAL_TYPEFORMS: Final[frozenset[str]] = frozenset({
 
 _TARGET_VERSION: Final = Version(f"{sys.version_info.major}.{sys.version_info.minor}")
 
+_log: Final = logging.getLogger(__name__)
+
 type TypeForm = _TypeMarker | Expr | Function | Class
 
 
@@ -92,9 +95,14 @@ class _VersionGuardTransformer(cst.CSTTransformer):
     # ------------------------------------------------------------------
 
     def _is_version_info(self, node: cst.BaseExpression) -> bool:
-        """Check if *node* represents ``sys.version_info`` (optionally sliced)."""
-        inner = node.value if isinstance(node, cst.Subscript) else node
-        names = self.get_metadata(QualifiedNameProvider, inner, default=set())
+        """Check if *node* represents ``sys.version_info``."""
+        if isinstance(node, cst.Subscript):
+            inner = node.value
+            names = self.get_metadata(QualifiedNameProvider, inner, default=set())
+            if "sys.version_info" in names:
+                _log.warning("subscripted sys.version_info is not supported")
+            return False
+        names = self.get_metadata(QualifiedNameProvider, node, default=set())
         return "sys.version_info" in names
 
     # ------------------------------------------------------------------
@@ -117,44 +125,26 @@ class _VersionGuardTransformer(cst.CSTTransformer):
             return version <= _TARGET_VERSION
         if isinstance(op, cst.LessThan):
             return version > _TARGET_VERSION
+        _log.warning("unsupported version_info operator: %s", type(op).__name__)
         return None
 
     def _parse_version_comparison(
         self,
         test: cst.BaseExpression,
     ) -> tuple[cst.BaseCompOp, Version] | None:
-        """Extract operator and version tuple from a version-info comparison.
-
-        Normalises so that ``version_info`` is always on the left.  For example,
-        ``(3, 11) < sys.version_info`` is returned as ``(>=, (3, 11))``.
-        """
+        """Extract operator and version from a ``version_info`` comparison."""
         if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
             return None
 
         cmp = test.comparisons[0]
-        left = test.left
-        right = cmp.comparator
-        op = cmp.operator
-
-        if self._is_version_info(left):
-            version = _parse_version_tuple(right)
-        elif self._is_version_info(right):
-            version = _parse_version_tuple(left)
-            # Swap the operator direction.
-            match op:
-                case cst.GreaterThanEqual():
-                    op = cst.LessThan()
-                case cst.LessThan():
-                    op = cst.GreaterThanEqual()
-                case _:
-                    return None
-        else:
+        if not self._is_version_info(test.left):
             return None
 
+        version = _parse_version_tuple(cmp.comparator)
         if version is None:
             return None
 
-        return op, version
+        return cmp.operator, version
 
     # ------------------------------------------------------------------
     # If-statement transformation
