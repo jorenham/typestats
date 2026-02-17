@@ -207,7 +207,7 @@ class _VersionGuardTransformer(cst.CSTTransformer):
 
         # SimpleStatementSuite (e.g. ``if ...: pass``)
         assert isinstance(body, cst.SimpleStatementSuite)
-        line = cst.SimpleStatementLine(body=list(body.body))
+        line = cst.SimpleStatementLine(body.body)
         return cst.FlattenSentinel([line])
 
     def _resolve_chain(
