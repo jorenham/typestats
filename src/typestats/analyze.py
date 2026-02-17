@@ -83,31 +83,24 @@ class _VersionGuardTransformer(cst.CSTTransformer):
 
     METADATA_DEPENDENCIES = (QualifiedNameProvider,)
 
+    _elif_ids: set[cst.If]
+    _guard_results: dict[cst.If, bool]
+
     def __init__(self) -> None:
         super().__init__()
-        self._elif_ids: set[int] = set()
-        # Cache guard results during visit_If (original nodes have metadata),
-        # keyed by id(node) so leave_If can look them up via id(original_node).
-        self._guard_results: dict[int, bool] = {}
-
-    # ------------------------------------------------------------------
-    # Version-info detection
-    # ------------------------------------------------------------------
+        self._elif_ids = set()
+        self._guard_results = {}
 
     def _is_version_info(self, node: cst.BaseExpression) -> bool:
         """Check if *node* represents ``sys.version_info``."""
         if isinstance(node, cst.Subscript):
             inner = node.value
             names = self.get_metadata(QualifiedNameProvider, inner, default=set())
-            if "sys.version_info" in names:
+            if any(qn.name == "sys.version_info" for qn in names):
                 _log.warning("subscripted sys.version_info is not supported")
             return False
         names = self.get_metadata(QualifiedNameProvider, node, default=set())
-        return "sys.version_info" in names
-
-    # ------------------------------------------------------------------
-    # Version-guard evaluation
-    # ------------------------------------------------------------------
+        return any(qn.name == "sys.version_info" for qn in names)
 
     def _eval_version_guard(self, test: cst.BaseExpression) -> bool | None:
         """Evaluate a ``sys.version_info`` comparison against the target version.
@@ -138,18 +131,14 @@ class _VersionGuardTransformer(cst.CSTTransformer):
                 )
                 return None
 
-    # ------------------------------------------------------------------
-    # If-statement transformation
-    # ------------------------------------------------------------------
-
     @override
     def visit_If(self, node: cst.If) -> bool:
         if isinstance(node.orelse, cst.If):
-            self._elif_ids.add(id(node.orelse))
+            self._elif_ids.add(node.orelse)
         # Evaluate now while we have original nodes (metadata is keyed to them).
         result = self._eval_version_guard(node.test)
         if result is not None:
-            self._guard_results[id(node)] = result
+            self._guard_results[node] = result
         return True
 
     @override
@@ -157,14 +146,9 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         self,
         original_node: cst.If,
         updated_node: cst.If,
-    ) -> (
-        cst.If
-        | cst.BaseStatement
-        | cst.FlattenSentinel[cst.BaseStatement]
-        | cst.RemovalSentinel
-    ):
-        if id(original_node) in self._elif_ids:
-            self._elif_ids.discard(id(original_node))
+    ) -> cst.If | cst.FlattenSentinel[cst.BaseStatement] | cst.RemovalSentinel:
+        if original_node in self._elif_ids:
+            self._elif_ids.discard(original_node)
             return updated_node
 
         return self._resolve_chain(original_node, updated_node)
@@ -186,7 +170,7 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         original: cst.If,
         updated: cst.If,
     ) -> cst.If | cst.FlattenSentinel[cst.BaseStatement] | cst.RemovalSentinel:
-        result = self._guard_results.get(id(original))
+        result = self._guard_results.get(original)
         if result is None:
             return updated
 
@@ -986,8 +970,9 @@ def collect_symbols(
     package_name: str | None = None,
 ) -> ModuleSymbols:
     module = cst.parse_module(source)
-    pre_wrapper = MetadataWrapper(module, unsafe_skip_copy=True)
-    module = pre_wrapper.visit(_VersionGuardTransformer())
+    module = MetadataWrapper(module, unsafe_skip_copy=True).visit(
+        _VersionGuardTransformer(),
+    )
     wrapper = MetadataWrapper(module, unsafe_skip_copy=True)
 
     # Phase 1: Collect imports, exports, and type-ignore comments.
