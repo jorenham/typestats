@@ -105,7 +105,7 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         """Check if *node* represents ``sys.version_info`` (optionally sliced)."""
         inner = node.value if isinstance(node, cst.Subscript) else node
         names = self.get_metadata(QualifiedNameProvider, inner, default=set())
-        return any(qn.name == "sys.version_info" for qn in names)
+        return "sys.version_info" in names
 
     # ------------------------------------------------------------------
     # Version-guard evaluation
