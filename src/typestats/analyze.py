@@ -1,4 +1,5 @@
 import re
+import sys
 from collections import defaultdict, deque
 from dataclasses import dataclass
 from enum import StrEnum
@@ -10,6 +11,7 @@ from libcst.codemod import CodemodContext
 from libcst.codemod.visitors import GatherExportsVisitor, GatherImportsVisitor
 from libcst.helpers import get_full_name_for_node
 from libcst.metadata import MetadataWrapper, QualifiedNameProvider
+from packaging.version import Version
 
 if TYPE_CHECKING:
     import types
@@ -48,35 +50,23 @@ _SPECIAL_TYPEFORMS: Final[frozenset[str]] = frozenset({
     "TypeVarTuple",
 })
 
-_TARGET_VERSION: Final = (3, 14)
+_TARGET_VERSION: Final = Version(f"{sys.version_info.major}.{sys.version_info.minor}")
 
 type TypeForm = _TypeMarker | Expr | Function | Class
 
 
-def _parse_version_tuple(node: cst.BaseExpression) -> tuple[int, ...] | None:
-    """Extract a version tuple like ``(3, 11)`` from a CST tuple literal."""
+def _parse_version_tuple(node: cst.BaseExpression) -> Version | None:
+    """Extract a version like ``(3, 11)`` from a CST tuple literal."""
     if not isinstance(node, cst.Tuple):
         return None
-    parts: list[int] = []
+    parts: list[str] = []
     for element in node.elements:
         match element:
             case cst.Element(value=cst.Integer(value=v)):
-                parts.append(int(v))
+                parts.append(v)
             case _:
                 return None
-    return tuple(parts)
-
-
-def _pad_versions(
-    a: tuple[int, ...],
-    b: tuple[int, ...],
-) -> tuple[tuple[int, ...], tuple[int, ...]]:
-    """Zero-pad two version tuples to equal length for correct comparison."""
-    max_len = max(len(a), len(b))
-    return (
-        a + (0,) * (max_len - len(a)),
-        b + (0,) * (max_len - len(b)),
-    )
+    return Version(".".join(parts))
 
 
 class _VersionGuardTransformer(cst.CSTTransformer):
@@ -121,19 +111,18 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         if parsed is None:
             return None
 
-        op, version_tuple = parsed
-        target, version = _pad_versions(_TARGET_VERSION, version_tuple)
+        op, version = parsed
 
         if isinstance(op, cst.GreaterThanEqual):
-            return target >= version
+            return version <= _TARGET_VERSION
         if isinstance(op, cst.LessThan):
-            return target < version
+            return version > _TARGET_VERSION
         return None
 
     def _parse_version_comparison(
         self,
         test: cst.BaseExpression,
-    ) -> tuple[cst.BaseCompOp, tuple[int, ...]] | None:
+    ) -> tuple[cst.BaseCompOp, Version] | None:
         """Extract operator and version tuple from a version-info comparison.
 
         Normalises so that ``version_info`` is always on the left.  For example,
@@ -148,9 +137,9 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         op = cmp.operator
 
         if self._is_version_info(left):
-            version_tuple = _parse_version_tuple(right)
+            version = _parse_version_tuple(right)
         elif self._is_version_info(right):
-            version_tuple = _parse_version_tuple(left)
+            version = _parse_version_tuple(left)
             # Swap the operator direction.
             match op:
                 case cst.GreaterThanEqual():
@@ -162,10 +151,10 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         else:
             return None
 
-        if version_tuple is None:
+        if version is None:
             return None
 
-        return op, version_tuple
+        return op, version
 
     # ------------------------------------------------------------------
     # If-statement transformation
