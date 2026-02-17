@@ -115,24 +115,6 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         Only ``>=`` and ``<`` are supported.  Returns ``True``/``False`` when the
         comparison can be resolved, ``None`` otherwise.
         """
-        parsed = self._parse_version_comparison(test)
-        if parsed is None:
-            return None
-
-        op, version = parsed
-
-        if isinstance(op, cst.GreaterThanEqual):
-            return version <= _TARGET_VERSION
-        if isinstance(op, cst.LessThan):
-            return version > _TARGET_VERSION
-        _log.warning("unsupported version_info operator: %s", type(op).__name__)
-        return None
-
-    def _parse_version_comparison(
-        self,
-        test: cst.BaseExpression,
-    ) -> tuple[cst.BaseCompOp, Version] | None:
-        """Extract operator and version from a ``version_info`` comparison."""
         if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
             return None
 
@@ -144,7 +126,17 @@ class _VersionGuardTransformer(cst.CSTTransformer):
         if version is None:
             return None
 
-        return cmp.operator, version
+        match cmp.operator:
+            case cst.GreaterThanEqual():
+                return version <= _TARGET_VERSION
+            case cst.LessThan():
+                return version > _TARGET_VERSION
+            case _:
+                _log.warning(
+                    "unsupported version_info operator: %s",
+                    type(cmp.operator).__name__,
+                )
+                return None
 
     # ------------------------------------------------------------------
     # If-statement transformation
