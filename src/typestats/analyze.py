@@ -11,7 +11,7 @@ import mainpy
 from libcst.codemod import CodemodContext
 from libcst.codemod.visitors import GatherExportsVisitor, GatherImportsVisitor
 from libcst.helpers import get_full_name_for_node
-from libcst.metadata import MetadataWrapper, QualifiedNameProvider
+from libcst.metadata import MetadataWrapper
 from packaging.version import Version
 
 if TYPE_CHECKING:
@@ -75,32 +75,40 @@ def _parse_version_tuple(node: cst.BaseExpression) -> Version | None:
 class _VersionGuardTransformer(cst.CSTTransformer):
     """Remove version-guarded branches that don't match the target Python version.
 
-    Uses ``QualifiedNameProvider`` to resolve ``sys.version_info`` references,
-    handling all import patterns (aliases, ``from sys import version_info``, etc.).
+    Uses a pre-built import map (from :class:`_ImportsVisitor`) to resolve
+    ``sys.version_info`` references without the expensive
+    ``QualifiedNameProvider`` / ``ScopeProvider`` pipeline.
     Only ``>=`` and ``<`` comparisons are supported (the only operators recommended
     by the typing spec and enforced by ruff).
     """
 
-    METADATA_DEPENDENCIES = (QualifiedNameProvider,)
-
+    _imports: Mapping[str, str]
     _elif_ids: set[cst.If]
     _guard_results: dict[cst.If, bool]
 
-    def __init__(self) -> None:
+    def __init__(self, imports: Mapping[str, str]) -> None:
         super().__init__()
+        self._imports = imports
         self._elif_ids = set()
         self._guard_results = {}
+
+    def _resolve_name(self, node: cst.CSTNode) -> str | None:
+        """Resolve a CST node to its fully qualified name using the import map."""
+        if (raw := get_full_name_for_node(node)) is None:
+            return None
+
+        first, _, rest = raw.partition(".")
+        if fqn := self._imports.get(first):
+            return f"{fqn}.{rest}" if rest else fqn
+        return raw
 
     def _is_version_info(self, node: cst.BaseExpression) -> bool:
         """Check if *node* represents ``sys.version_info``."""
         if isinstance(node, cst.Subscript):
-            inner = node.value
-            names = self.get_metadata(QualifiedNameProvider, inner, default=set())
-            if any(qn.name == "sys.version_info" for qn in names):
+            if self._resolve_name(node.value) == "sys.version_info":
                 _log.warning("subscripted sys.version_info is not supported")
             return False
-        names = self.get_metadata(QualifiedNameProvider, node, default=set())
-        return any(qn.name == "sys.version_info" for qn in names)
+        return self._resolve_name(node) == "sys.version_info"
 
     def _eval_version_guard(self, test: cst.BaseExpression) -> bool | None:
         """Evaluate a ``sys.version_info`` comparison against the target version.
@@ -934,6 +942,24 @@ class _ImportsVisitor(GatherImportsVisitor, cst.BatchableCSTVisitor):
             "visit_ImportFrom": self.visit_ImportFrom,
         }
 
+    def build_import_map(self) -> dict[str, str]:
+        """Build a local-name -> fully-qualified-name mapping from gathered imports."""
+        return (
+            {mod: mod for mod in self.module_imports}
+            | {alias: mod for mod, alias in self.module_aliases.items()}
+            | {
+                obj: f"{mod}.{obj}"
+                for mod, objects in self.object_mapping.items()
+                for obj in objects
+                if obj != "*"
+            }
+            | {
+                alias: f"{mod}.{obj}"
+                for mod, aliases in self.alias_mapping.items()
+                for obj, alias in aliases
+            }
+        )
+
 
 class _TypeIgnoreVisitor(cst.BatchableCSTVisitor):
     _TYPE_IGNORE_RE: Final[re.Pattern[str]] = re.compile(
@@ -970,14 +996,22 @@ def collect_symbols(
     package_name: str | None = None,
 ) -> ModuleSymbols:
     module = cst.parse_module(source)
-    module = MetadataWrapper(module, unsafe_skip_copy=True).visit(
-        _VersionGuardTransformer(),
+
+    # Phase 0: Quick imports pass for version-guard resolution.
+    # This is a lightweight batched visit (no metadata providers), so it
+    # avoids the expensive QualifiedNameProvider / ScopeProvider pipeline.
+    pre_wrapper = MetadataWrapper(module, unsafe_skip_copy=True)
+    pre_imports = _ImportsVisitor(
+        CodemodContext(full_package_name=package_name or ""),
     )
+    pre_wrapper.visit_batched([pre_imports])
+
+    # Phase 1: Remove version-guarded branches (no MetadataWrapper needed).
+    module = module.visit(_VersionGuardTransformer(pre_imports.build_import_map()))
     wrapper = MetadataWrapper(module, unsafe_skip_copy=True)
 
-    # Phase 1: Collect imports, exports, and type-ignore comments.
-    # None of these visitors require metadata providers, so no expensive
-    # scope analysis is triggered.
+    # Phase 2: Collect imports, exports, and type-ignore comments from the
+    # resolved module.  None of these visitors require metadata providers.
     exports_visitor = _ExportsVisitor(CodemodContext())
     imports_visitor = _ImportsVisitor(
         CodemodContext(full_package_name=package_name or ""),
@@ -985,25 +1019,9 @@ def collect_symbols(
     type_ignore_visitor = _TypeIgnoreVisitor()
     wrapper.visit_batched([exports_visitor, imports_visitor, type_ignore_visitor])
 
-    # Build an import map for lightweight name resolution (replaces
-    # the expensive QualifiedNameProvider / ScopeProvider pipeline).
-    imports_map: dict[str, str] = (
-        {mod: mod for mod in imports_visitor.module_imports}
-        | {alias: mod for mod, alias in imports_visitor.module_aliases.items()}
-        | {
-            obj: f"{mod}.{obj}"
-            for mod, objects in imports_visitor.object_mapping.items()
-            for obj in objects
-            if obj != "*"
-        }
-        | {
-            alias: f"{mod}.{obj}"
-            for mod, aliases in imports_visitor.alias_mapping.items()
-            for obj, alias in aliases
-        }
-    )
+    imports_map = imports_visitor.build_import_map()
 
-    # Phase 2: Collect symbols using the import map for name resolution.
+    # Phase 3: Collect symbols using the import map for name resolution.
     symbol_visitor = _SymbolVisitor(wrapper.module, imports_map)
     wrapper.visit_batched([symbol_visitor])
 
