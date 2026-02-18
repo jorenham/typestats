@@ -121,9 +121,9 @@ class _VersionGuardTransformer(cst.CSTTransformer):
 
         match cmp.operator:
             case cst.GreaterThanEqual():
-                return version <= _TARGET_VERSION
+                return _TARGET_VERSION >= version  # noqa: SIM300
             case cst.LessThan():
-                return version > _TARGET_VERSION
+                return _TARGET_VERSION < version  # noqa: SIM300
             case _:
                 _log.warning(
                     "unsupported version_info operator: %s",
