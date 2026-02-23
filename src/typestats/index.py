@@ -603,10 +603,15 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     elapsed = time.perf_counter() - t0
     _logger.info("collect_public_symbols: %.2fs", elapsed)
+
+    # Use sources from the (possibly filtered) module_paths so that
+    # get_py_typed sees the package root, not the sdist root.
+    filtered_sources = list(chain.from_iterable(module_paths.values()))
+
     return PublicSymbols(
         symbols=dict(result),
         type_ignores=type_ignores,
-        py_typed=await get_py_typed(sources),
+        py_typed=await get_py_typed(filtered_sources or sources),
     )
 
 
