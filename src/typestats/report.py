@@ -530,8 +530,9 @@ class PackageReport(BaseModel):
         """
         Download `project` from PyPI and build a `PackageReport`.
 
-        Handles both regular packages and `{name}-stubs` packages (downloading base +
-        stubs concurrently for the latter).
+        Handles both regular packages and stubs packages (downloading base +
+        stubs concurrently for the latter).  Recognized stubs patterns:
+        `{name}-stubs` (third-party) and `types-{name}` (typeshed).
         """
         import re
 
@@ -539,8 +540,14 @@ class PackageReport(BaseModel):
 
         from typestats import _pypi
 
-        if m := re.match(r"^(.+)-stubs$", project.name):
-            base_name = m.group(1)
+        # Detect stubs package patterns:
+        #   {name}-stubs  → third-party companion stubs (e.g. scipy-stubs)
+        #   types-{name}  → typeshed stubs (e.g. types-networkx)
+        base_name: str | None = None
+        if m := re.match(r"^(?:(.+)-stubs|types-(.+))$", project.name):
+            base_name = m.group(1) or m.group(2)
+
+        if base_name is not None:
             (base_path, _), (stubs_path, stubs_sdist) = await asyncio.gather(
                 _pypi.download_sdist_latest(client, base_name, out_dir),
                 _pypi.download_sdist_latest(client, project.name, out_dir),

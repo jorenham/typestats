@@ -625,6 +625,30 @@ class TestPackageReportFromProject:
         assert report.version == "3.0.0.1"
         assert report.py_typed is PyTyped.STUBS
 
+    async def test_typeshed_stubs_package(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+    ) -> None:
+        """Typeshed `types-{name}` project downloads base + stubs concurrently."""
+        typeshed_name = f"types-{self._PKG}"
+        base_tar = self._make_sdist_tar_gz(self._PKG, "3.0.0", _FIXTURES / "stubs_base")
+        stubs_tar = self._make_sdist_tar_gz(
+            typeshed_name,
+            "3.0.0.1",
+            _FIXTURES / "stubs_overlay",
+        )
+        self._mock_pypi(httpx_mock, self._PKG, "3.0.0", base_tar)
+        self._mock_pypi(httpx_mock, typeshed_name, "3.0.0.1", stubs_tar)
+
+        project = Project(name=typeshed_name)
+        async with httpx.AsyncClient() as client:
+            report = await PackageReport.from_project(project, client, tmp_path)
+
+        assert report.package == typeshed_name
+        assert report.version == "3.0.0.1"
+        assert report.py_typed is PyTyped.STUBS
+
     async def test_exclude_passed_through(
         self,
         tmp_path: Path,
