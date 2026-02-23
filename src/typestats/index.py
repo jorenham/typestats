@@ -1,4 +1,5 @@
 import enum
+import fnmatch
 import logging
 import os
 import re
@@ -95,21 +96,12 @@ def _is_public(name: str) -> bool:
     return not name.startswith("_") or name.endswith("__")
 
 
-def _is_excluded_path(path: str, /, *, prefix: str = "") -> bool:
-    """Check if a source path contains an excluded directory or file name.
-
-    When *prefix* is given, it is stripped before inspecting the remaining
-    path components so that the project directory itself does not trigger
-    false positives (e.g. a project stored under a `tests/` directory).
-    """
-    rel = path.removeprefix(prefix).lstrip("/")
-    parts = rel.split("/")
-    if parts[-1] in _EXCLUDED_FILE_NAMES:
-        return True
-    return bool(_EXCLUDED_DIR_NAMES.intersection(parts))
-
-
-async def _analyze_graph(project_dir: StrPath, /, *opts: str) -> dict[str, list[str]]:
+async def _analyze_graph(
+    project_dir: StrPath,
+    /,
+    *opts: str,
+    exclude: Sequence[str] = (),
+) -> dict[str, list[str]]:
     """Run `ruff analyze graph` and clean self/parent-package dependencies."""
     graph = await _ruff.analyze_graph(project_dir, *opts)
 
@@ -125,10 +117,19 @@ async def _analyze_graph(project_dir: StrPath, /, *opts: str) -> dict[str, list[
         # project_dir is not under cwd; ruff will use absolute paths
         rel_prefix = abs_prefix
 
+    exclude_re = None
+    if exclude:
+        exclude_re = re.compile("|".join(fnmatch.translate(pat) for pat in exclude))
+
     def _excluded(path: str) -> bool:
-        return _is_excluded_path(
-            path,
-            prefix=abs_prefix if path.startswith("/") else rel_prefix,
+        prefix = abs_prefix if path.startswith("/") else rel_prefix
+        rel = path.removeprefix(prefix).lstrip("/")
+        parts = rel.split("/")
+
+        return (
+            parts[-1] in _EXCLUDED_FILE_NAMES
+            or bool(_EXCLUDED_DIR_NAMES.intersection(parts))
+            or (exclude_re is not None and exclude_re.fullmatch(rel) is not None)
         )
 
     def _skip_dep(node: str, dep: str, deps: list[str]) -> bool:
@@ -150,10 +151,15 @@ async def _analyze_graph(project_dir: StrPath, /, *opts: str) -> dict[str, list[
     }
 
 
-async def list_sources(project_dir: StrPath, /) -> list[anyio.Path]:
+async def list_sources(
+    path: StrPath,
+    /,
+    *,
+    exclude: Sequence[str] = (),
+) -> list[anyio.Path]:
     """List all source files in the given project directory."""
-    graph = await _analyze_graph(project_dir, "--type-checking-imports")
-    return [anyio.Path(p) for p in graph]
+    graph = await _analyze_graph(path, "--type-checking-imports", exclude=exclude)
+    return list(map(anyio.Path, graph))
 
 
 async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
@@ -373,6 +379,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     *,
     trace_origins: bool = True,
     package_name: str | None = None,
+    exclude: Sequence[str] = (),
 ) -> PublicSymbols:
     """Collect public, fully qualified symbols from a package by source path.
 
@@ -383,9 +390,12 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     When *package_name* is given, only modules whose top-level component
     matches *package_name* are included (useful for sdists that contain
     unrelated sub-projects).
+
+    When *exclude* is given, source files whose project-relative paths match
+    any of the glob patterns are excluded from analysis.
     """
     t0 = time.perf_counter()
-    sources = list(await list_sources(project_dir))
+    sources = list(await list_sources(project_dir, exclude=exclude))
 
     # Drop .py when .pyi exists for the same file
     pyi_set = frozenset(str(s) for s in sources if s.suffix == ".pyi")
