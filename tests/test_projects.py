@@ -6,8 +6,6 @@ from pydantic import ValidationError
 
 from typestats.projects import Project, load_projects
 
-_FIXTURES = Path(__file__).parent / "fixtures"
-
 
 class TestProject:
     def test_name_only(self) -> None:
