@@ -302,6 +302,14 @@ def test_collect_public_symbols_unresolved_all_names_unknown() -> None:
     assert types["pkg.lazy.dynamic_b"] is analyze.UNKNOWN
 
 
+def test_collect_public_symbols_typevar_in_all_not_unknown() -> None:
+    """TypeVar listed in __all__ should be KNOWN, not UNKNOWN (GH-130)."""
+    types = _public_symbol_types(_PROJECT)
+
+    assert "pkg.T" in types
+    assert types["pkg.T"] is analyze.KNOWN
+
+
 def test_collect_public_symbols_same_name_module_not_unknown() -> None:
     """Functions re-exported from a submodule with the same name should not be UNKNOWN.
 
