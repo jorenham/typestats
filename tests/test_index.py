@@ -7,8 +7,9 @@ import pytest
 
 from typestats import analyze
 from typestats.index import (
+    _EXCLUDED_DIR_NAMES,
+    _EXCLUDED_FILE_NAMES,
     PyTyped,
-    _is_excluded_path,
     _resolve_expr_name,
     _resolves_to_any,
     collect_public_symbols,
@@ -24,42 +25,40 @@ _STUBS_BASE: Path = _FIXTURES / "stubs_base"
 _STUBS_OVERLAY: Path = _FIXTURES / "stubs_overlay"
 
 
+def _is_excluded(rel: str) -> bool:
+    """Local helper matching the inlined logic in ``_analyze_graph``."""
+    parts = rel.split("/")
+    return parts[-1] in _EXCLUDED_FILE_NAMES or bool(
+        _EXCLUDED_DIR_NAMES.intersection(parts),
+    )
+
+
 @pytest.mark.parametrize(
-    ("path", "prefix", "expected"),
+    ("path", "expected"),
     [
-        # Paths within an sdist (no prefix needed)
-        ("numpy/_core/tests/test_abc.py", "", True),
-        ("numpy/tests/__init__.py", "", True),
-        ("benchmarks/bench_core.py", "", True),
-        ("benchmarks/benchmarks/bench_app.py", "", True),
-        ("doc/source/conf.py", "", True),
-        ("docs/conf.py", "", True),
-        ("tools/changelog.py", "", True),
-        ("examples/tutorial.py", "", True),
-        (".spin/cmds.py", "", True),
-        ("numpy/random/_examples/cffi/extending.py", "", True),
-        ("numpy/conftest.py", "", True),
-        ("conftest.py", "", True),
-        ("numpy/__init__.py", "", False),
-        ("numpy/_core/__init__.py", "", False),
-        ("numpy/linalg/__init__.pyi", "", False),
-        ("numpy/testing/__init__.pyi", "", False),
-        ("numpy/f2py/__init__.pyi", "", False),
-        # Prefix stripping: project under a tests/ directory should not match
-        (
-            "tests/fixtures/project/pkg/__init__.py",
-            "tests/fixtures/project/",
-            False,
-        ),
-        (
-            "tests/fixtures/project/pkg/a.py",
-            "tests/fixtures/project/",
-            False,
-        ),
+        ("numpy/_core/tests/test_abc.py", True),
+        ("numpy/tests/__init__.py", True),
+        ("benchmarks/bench_core.py", True),
+        ("benchmarks/benchmarks/bench_app.py", True),
+        ("doc/source/conf.py", True),
+        ("docs/conf.py", True),
+        ("tools/changelog.py", True),
+        ("examples/tutorial.py", True),
+        (".spin/cmds.py", True),
+        ("numpy/random/_examples/cffi/extending.py", True),
+        ("numpy/conftest.py", True),
+        ("conftest.py", True),
+        ("numpy/__init__.py", False),
+        ("numpy/_core/__init__.py", False),
+        ("numpy/linalg/__init__.pyi", False),
+        ("numpy/testing/__init__.pyi", False),
+        ("numpy/f2py/__init__.pyi", False),
+        ("pkg/__init__.py", False),
+        ("pkg/a.py", False),
     ],
 )
-def test_is_excluded_path(path: str, prefix: str, expected: bool) -> None:
-    assert _is_excluded_path(path, prefix=prefix) == expected
+def test_is_excluded_path(path: str, expected: bool) -> None:
+    assert _is_excluded(path) == expected
 
 
 class TestGetPyTyped:
@@ -728,3 +727,95 @@ def test_collect_public_symbols_type_check_only_excluded() -> None:
     assert "tcopkg.mod._InternalProto" not in names
     # public-named but @type_check_only, excluded by decorator (not by _is_public)
     assert "tcopkg.mod.CheckerProtocol" not in names
+
+
+class TestExcludeGlobs:
+    pytestmark = pytest.mark.anyio
+
+    async def test_list_sources_exclude_single_file(self) -> None:
+        """A glob matching a single file should exclude it from sources."""
+        all_sources = await list_sources(_PROJECT)
+        filtered = await list_sources(_PROJECT, exclude=["pkg/a.py"])
+
+        all_names = {s.name for s in all_sources}
+        filtered_names = {s.name for s in filtered}
+
+        assert "a.py" in all_names
+        assert "a.py" not in filtered_names
+
+    async def test_list_sources_exclude_wildcard(self) -> None:
+        """A wildcard glob should exclude all matching files."""
+        all_sources = await list_sources(_PROJECT)
+        filtered = await list_sources(_PROJECT, exclude=["pkg/*.py"])
+
+        all_names = {s.name for s in all_sources}
+        filtered_names = {s.name for s in filtered}
+
+        # pkg/ files should be excluded
+        assert "a.py" in all_names
+        assert "a.py" not in filtered_names
+        assert "_b.py" not in filtered_names
+
+        # Other packages should remain
+        assert any("mylib" in str(s) for s in filtered)
+
+    async def test_list_sources_exclude_recursive_glob(self) -> None:
+        """A recursive glob (/**) should exclude nested files."""
+        all_sources = await list_sources(_PROJECT)
+        filtered = await list_sources(_PROJECT, exclude=["mylib/**"])
+
+        all_stems = {s.stem for s in all_sources}
+        assert "_can" in all_stems or "_do" in all_stems
+
+        # No mylib files should remain (but mylib_pyi should be unaffected)
+        assert not any("/mylib/" in str(s) for s in filtered)
+        assert any("/mylib_pyi/" in str(s) for s in filtered)
+
+    async def test_list_sources_exclude_empty(self) -> None:
+        """An empty exclude list should return all sources."""
+        all_sources = await list_sources(_PROJECT)
+        filtered = await list_sources(_PROJECT, exclude=())
+        assert {s.name for s in all_sources} == {s.name for s in filtered}
+
+    async def test_collect_public_symbols_exclude_module(self) -> None:
+        """Excluding a module should remove its symbols from the result."""
+        pub_all = await collect_public_symbols(_PROJECT)
+        pub_filtered = await collect_public_symbols(
+            _PROJECT,
+            exclude=["pkg/a.py"],
+        )
+
+        names_all = {s.name for syms in pub_all.symbols.values() for s in syms}
+        names_filtered = {
+            s.name for syms in pub_filtered.symbols.values() for s in syms
+        }
+
+        # pkg.a symbols should be present in the unfiltered set
+        assert "pkg.a.public_func" in names_all
+
+        # pkg.a symbols should be gone after excluding pkg/a.py
+        assert "pkg.a.public_func" not in names_filtered
+        assert "pkg.a.spam" not in names_filtered
+
+    async def test_collect_public_symbols_exclude_package(self) -> None:
+        """Excluding an entire package should remove all its symbols."""
+        pub_filtered = await collect_public_symbols(
+            _PROJECT,
+            exclude=["mylib/**"],
+        )
+
+        names = {s.name for syms in pub_filtered.symbols.values() for s in syms}
+
+        assert not any(n.startswith("mylib.") for n in names)
+
+    async def test_list_sources_exclude_multiple_patterns(self) -> None:
+        """Multiple exclude patterns should all be applied."""
+        filtered = await list_sources(
+            _PROJECT,
+            exclude=["pkg/**", "mylib/**"],
+        )
+
+        assert not any("/pkg/" in str(s) for s in filtered)
+        assert not any("/mylib/" in str(s) for s in filtered)
+        # Other packages should still be present
+        assert any("/mylib_pyi/" in str(s) for s in filtered)

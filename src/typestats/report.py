@@ -517,7 +517,7 @@ class PackageReport(BaseModel):
             print(f"   Type-checkers: {checkers}")  # noqa: T201
 
     @classmethod
-    async def from_path(
+    async def from_path(  # noqa: PLR0913
         cls,
         pkg: str,
         path: StrPath,
@@ -526,6 +526,7 @@ class PackageReport(BaseModel):
         *,
         stubs_path: StrPath | None = None,
         project: str | None = None,
+        exclude: Sequence[str] = (),
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
@@ -552,6 +553,7 @@ class PackageReport(BaseModel):
                 path,
                 trace_origins=stubs_path is None,
                 package_name=pkg,
+                exclude=exclude,
             ),
         ]
         if stubs_path is not None:
