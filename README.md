@@ -37,7 +37,7 @@ For a given project:
 11. Compute various statistics:
     - coverage (% of public symbols annotated)
     - strict coverage (% of public symbols annotated without `Any`)
-    - TODO: average overload ratio (function without overloads counts as 1 overload)
+    - average overload ratio (function without overloads counts as 1 overload)
     - supported type-checkers + strictness flags
     - stubs-only classification (`no`, `yes (third party)`, or `yes (typeshed)`)
 12. TODO: Export the statistics for use in a website/dashboard (e.g. json, csv, or sqlite)
