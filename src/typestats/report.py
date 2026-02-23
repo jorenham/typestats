@@ -527,10 +527,11 @@ class PackageReport(BaseModel):
         out_dir: StrPath,
         /,
     ) -> Self:
-        """Download *project* from PyPI and build a `PackageReport`.
+        """
+        Download `project` from PyPI and build a `PackageReport`.
 
-        Handles both regular packages and ``{name}-stubs`` packages
-        (downloading base + stubs concurrently for the latter).
+        Handles both regular packages and `{name}-stubs` packages (downloading base +
+        stubs concurrently for the latter).
         """
         import re
 
@@ -577,18 +578,16 @@ class PackageReport(BaseModel):
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
-        When *stubs_path* is given (a companion ``{pkg}-stubs`` sdist),
-        symbols from the stubs overlay take priority and any original symbol
-        whose module is covered by stubs but absent from those stubs is
-        marked ``UNKNOWN``.
+        When `stubs_path` is given (a companion `{pkg}-stubs` sdist), symbols from the
+        stubs overlay take priority and any original symbol whose module is covered by
+        stubs but absent from those stubs is marked `UNKNOWN`.
 
-        When *project* is given, it is used as the display name in the report
-        instead of *pkg* (useful for stubs packages where the PyPI project
-        name differs from the Python package name, e.g. ``scipy-stubs``
-        vs ``scipy``).
+        When `project` is given, it is used as the display name in the report instead
+        of `pkg` (useful for stubs packages where the PyPI project name differs from
+        the Python package name, e.g. `scipy-stubs` vs `scipy`).
 
-        Runs ``collect_public_symbols`` (and optionally the stubs collection)
-        and ``discover_configs`` concurrently.
+        Runs `collect_public_symbols` (and optionally the stubs collection) and
+        `discover_configs` concurrently.
         """
 
         from typestats.index import collect_public_symbols, merge_stubs_overlay
