@@ -1,7 +1,11 @@
+import io
 import json
 import shutil
+import tarfile
 from pathlib import Path
+from typing import TYPE_CHECKING
 
+import httpx
 import libcst as cst
 import pytest
 
@@ -22,6 +26,7 @@ from typestats.analyze import (
     TypeForm,
 )
 from typestats.index import PyTyped
+from typestats.projects import Project
 from typestats.report import (
     ClassReport,
     FunctionReport,
@@ -33,7 +38,11 @@ from typestats.report import (
     _symbol_report,
 )
 
+if TYPE_CHECKING:
+    from pytest_httpx import HTTPXMock
+
 _FIXTURES = Path(__file__).parent / "fixtures"
+_PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 
 _INT = Expr(cst.parse_expression("int"))
 _PARAM = ParamKind.POSITIONAL_OR_KEYWORD
@@ -533,3 +542,102 @@ class TestPackageReportFromPath:
 
         assert report.package == "mypkg"
         assert report.py_typed is PyTyped.STUBS
+
+
+class TestPackageReportFromProject:
+    pytestmark = pytest.mark.anyio
+
+    _PKG = "mypkg"
+    _STUBS_PKG = f"{_PKG}-stubs"
+
+    @staticmethod
+    def _make_sdist_tar_gz(name: str, version: str, source_dir: Path) -> bytes:
+        buf = io.BytesIO()
+        prefix = f"{name}-{version}"
+        with tarfile.open(fileobj=buf, mode="w:gz") as tar:
+            for file in sorted(source_dir.rglob("*")):
+                tar.add(file, arcname=f"{prefix}/{file.relative_to(source_dir)}")
+
+        return buf.getvalue()
+
+    @staticmethod
+    def _pypi_detail_json(name: str, version: str) -> dict[str, object]:
+        filename = f"{name}-{version}.tar.gz"
+        return {
+            "name": name,
+            "versions": [version],
+            "meta": {"api-version": "1.0"},
+            "files": [
+                {
+                    "filename": filename,
+                    "hashes": {"sha256": "fake"},
+                    "size": 0,
+                    "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
+                },
+            ],
+        }
+
+    @classmethod
+    def _mock_pypi(
+        cls,
+        httpx_mock: HTTPXMock,
+        name: str,
+        version: str,
+        content: bytes,
+    ) -> None:
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{name}/"),
+            json=cls._pypi_detail_json(name, version),
+        )
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/packages/{name}-{version}.tar.gz"),
+            content=content,
+        )
+
+    async def test_base_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
+        """Regular (non-stubs) project delegates to from_path correctly."""
+        tar_gz = self._make_sdist_tar_gz(self._PKG, "2.5.0", _FIXTURES / "stubs_base")
+        self._mock_pypi(httpx_mock, self._PKG, "2.5.0", tar_gz)
+
+        project = Project(name=self._PKG)
+        async with httpx.AsyncClient() as client:
+            report = await PackageReport.from_project(project, client, tmp_path)
+
+        assert report.package == self._PKG
+        assert report.version == "2.5.0"
+
+    async def test_stubs_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
+        """Stubs project downloads base + stubs concurrently."""
+        base_tar = self._make_sdist_tar_gz(self._PKG, "3.0.0", _FIXTURES / "stubs_base")
+        stubs_tar = self._make_sdist_tar_gz(
+            self._STUBS_PKG,
+            "3.0.0.1",
+            _FIXTURES / "stubs_overlay",
+        )
+        self._mock_pypi(httpx_mock, self._PKG, "3.0.0", base_tar)
+        self._mock_pypi(httpx_mock, self._STUBS_PKG, "3.0.0.1", stubs_tar)
+
+        project = Project(name=self._STUBS_PKG)
+        async with httpx.AsyncClient() as client:
+            report = await PackageReport.from_project(project, client, tmp_path)
+
+        assert report.package == self._STUBS_PKG
+        assert report.version == "3.0.0.1"
+        assert report.py_typed is PyTyped.STUBS
+
+    async def test_exclude_passed_through(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+    ) -> None:
+        """The exclude list from the Project is forwarded to from_path."""
+        tar_gz = self._make_sdist_tar_gz(self._PKG, "1.0.0", _FIXTURES / "stubs_base")
+        self._mock_pypi(httpx_mock, self._PKG, "1.0.0", tar_gz)
+
+        project = Project(name=self._PKG, exclude=[f"{self._PKG}/utils.py"])
+        async with httpx.AsyncClient() as client:
+            report = await PackageReport.from_project(project, client, tmp_path)
+
+        # utils.py is excluded, so it should not appear in module reports
+        module_paths = {m.path for m in report.module_reports}
+        assert f"{self._PKG}/utils.py" not in module_paths
