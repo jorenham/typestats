@@ -222,11 +222,9 @@ async def try_download_sdist_latest(
     Raises
         httpx.HTTPStatusError: for HTTP 5xx and other unexpected errors.
     """
-    import httpx as _httpx  # noqa: PLC0415
-
     try:
         return await download_sdist_latest(client, project_name, out_dir)
-    except _httpx.HTTPStatusError as exc:
+    except httpx.HTTPStatusError as exc:
         if exc.response.status_code < 500:  # noqa: PLR2004
             _logger.debug("Package %s not found on PyPI", project_name)
             return None

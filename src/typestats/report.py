@@ -108,6 +108,17 @@ class NameReport(BaseModel):
         )
 
 
+def _count_overload_slots(overload: analyze.Overload) -> tuple[int, int, int]:
+    """Count `(annotated, any, unannotated)` slots in a single overload."""
+    annotated = any_ = unannotated = 0
+    for ann in [*(p.annotation for p in overload.params), overload.returns]:
+        s = _SlotState.of(ann)
+        annotated += s.annotated
+        any_ += s.any
+        unannotated += s.unannotated
+    return annotated, any_, unannotated
+
+
 class FunctionReport(BaseModel):
     """Report for a function/method; counts individual param + return slots."""
 
@@ -141,11 +152,10 @@ class FunctionReport(BaseModel):
     def from_symbol(cls, name: str, ty: analyze.Function, /) -> Self:
         annotated = any_ = unannotated = 0
         for overload in ty.overloads:
-            for ann in [*(p.annotation for p in overload.params), overload.returns]:
-                s = _SlotState.of(ann)
-                annotated += s.annotated
-                any_ += s.any
-                unannotated += s.unannotated
+            a, n, u = _count_overload_slots(overload)
+            annotated += a
+            any_ += n
+            unannotated += u
 
         return cls(
             name=name,
@@ -185,11 +195,10 @@ class PropertyReport(BaseModel):
         annotated = any_ = unannotated = 0
         for accessor in (ty.fget, ty.fset, ty.fdel):
             if accessor is not None:
-                for ann in [*(p.annotation for p in accessor.params), accessor.returns]:
-                    s = _SlotState.of(ann)
-                    annotated += s.annotated
-                    any_ += s.any
-                    unannotated += s.unannotated
+                a, n, u = _count_overload_slots(accessor)
+                annotated += a
+                any_ += n
+                unannotated += u
 
         return cls(
             name=name,
@@ -269,15 +278,15 @@ class ClassReport(BaseModel):
         return len(self.properties)
 
     @classmethod
-    def from_class(cls, name: str, class_: analyze.Class) -> Self:
+    def from_symbol(cls, name: str, ty: analyze.Class, /) -> Self:
         methods = [
             FunctionReport.from_symbol(member.name, member)
-            for member in class_.members
+            for member in ty.members
             if isinstance(member, analyze.Function)
         ]
         properties = [
             PropertyReport.from_symbol(member.name, member)
-            for member in class_.members
+            for member in ty.members
             if isinstance(member, analyze.Property)
         ]
         return cls(
@@ -285,10 +294,6 @@ class ClassReport(BaseModel):
             methods=tuple(methods),
             properties=tuple(properties),
         )
-
-    @classmethod
-    def from_symbol(cls, name: str, ty: analyze.Class, /) -> Self:
-        return cls.from_class(name, ty)
 
 
 def _symbol_report(symbol: analyze.Symbol) -> _AnySymbolReport:
@@ -302,6 +307,18 @@ def _symbol_report(symbol: analyze.Symbol) -> _AnySymbolReport:
             return ClassReport.from_symbol(symbol.name, symbol.type_)
         case _:
             return NameReport.from_symbol(symbol.name, symbol.type_)
+
+
+def _coverage(
+    n_annotated: int,
+    n_any: int,
+    n_annotatable: int,
+    strict: bool = False,
+) -> float:
+    """Compute coverage ratio. If *strict*, `Any` slots don't count."""
+    total = n_annotatable
+    annotated = n_annotated if strict else n_annotated + n_any
+    return annotated / total if total else 0.0
 
 
 class ModuleReport(BaseModel):
@@ -392,9 +409,7 @@ class ModuleReport(BaseModel):
         Args:
             strict (bool): If `True`, `Any` types won't be counted as annotated.
         """
-        total = self.n_annotatable
-        annotated = self.n_annotated if strict else self.n_annotated + self.n_any
-        return annotated / total if total else 0.0
+        return _coverage(self.n_annotated, self.n_any, self.n_annotatable, strict)
 
     @classmethod
     def from_symbols(
@@ -496,9 +511,7 @@ class PackageReport(BaseModel):
 
     def coverage(self, strict: bool = False, /) -> float:
         """Coverage ratio. If *strict*, `Any` slots don't count."""
-        total = self.n_annotatable
-        annotated = self.n_annotated if strict else self.n_annotated + self.n_any
-        return annotated / total if total else 0.0
+        return _coverage(self.n_annotated, self.n_any, self.n_annotatable, strict)
 
     def print(self) -> None:
         """Print a human-readable summary to stdout."""
