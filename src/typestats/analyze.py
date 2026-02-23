@@ -930,6 +930,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     self._add_type_aliases(_extract_names(target), value)
                     return
                 if self._is_special_typeform(value):
+                    self._add_symbols(_extract_names(target), KNOWN)
                     return
 
             if cls and cls.is_schema:
@@ -1044,14 +1045,15 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 self._add_type_aliases(_extract_names(target), typealias_value)
             return
 
-        if self._is_special_typeform(value):
-            return
-
         if self._try_add_name_alias(node) or self._try_resolve_method_alias(node):
             return
 
-        # enum attributes are considered KNOWN
-        ty = KNOWN if cls and cls.is_enum else UNKNOWN
+        # special typeforms (TypeVar, etc.) and enum attributes are KNOWN
+        ty = (
+            KNOWN
+            if self._is_special_typeform(value) or (cls and cls.is_enum)
+            else UNKNOWN
+        )
         for target in targets:
             self._add_symbols(_extract_names(target), ty)
 
