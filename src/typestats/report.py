@@ -1,6 +1,7 @@
 # ruff: noqa: PLC0415
 
 import asyncio
+import enum
 import sys
 from collections.abc import Sequence
 from pathlib import PurePosixPath
@@ -34,10 +35,18 @@ __all__ = (
     "NameReport",
     "PackageReport",
     "PropertyReport",
+    "StubsOnly",
 )
 
 type _Symbols = Sequence[analyze.Symbol]
 type _Max1 = Literal[0, 1]
+
+
+class StubsOnly(enum.Enum):
+    NO = "no"
+    THIRD_PARTY = "yes (third party)"
+    TYPESHED = "yes (typeshed)"
+
 
 type _AnySymbolReport = Annotated[
     NameReport | FunctionReport | PropertyReport | ClassReport,
@@ -408,6 +417,7 @@ class PackageReport(BaseModel):
 
     package: str
     version: str
+    stubs_only: StubsOnly = StubsOnly.NO
     py_typed: PyTyped
     module_reports: tuple[ModuleReport, ...]
     typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] = Field(
@@ -514,6 +524,7 @@ class PackageReport(BaseModel):
             f"{self.n_classes} classes, {self.n_names} names, "
             f"{self.n_type_ignores} ignore comments",
         )
+        print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
         print(f"   py.typed: {self.py_typed.name}")  # noqa: T201
         if self.typecheckers:
             checkers = ", ".join(sorted(self.typecheckers))
@@ -544,8 +555,10 @@ class PackageReport(BaseModel):
         #   {name}-stubs  → third-party companion stubs (e.g. scipy-stubs)
         #   types-{name}  → typeshed stubs (e.g. types-networkx)
         base_name: str | None = None
+        stubs_only = StubsOnly.NO
         if m := re.match(r"^(?:(.+)-stubs|types-(.+))$", project.name):
             base_name = m.group(1) or m.group(2)
+            stubs_only = StubsOnly.THIRD_PARTY if m.group(1) else StubsOnly.TYPESHED
 
         if base_name is not None:
             (base_path, _), (stubs_path, stubs_sdist) = await asyncio.gather(
@@ -559,6 +572,7 @@ class PackageReport(BaseModel):
                 str(stubs_ver),
                 stubs_path=stubs_path,
                 project=project.name,
+                stubs_only=stubs_only,
                 exclude=project.exclude,
             )
 
@@ -581,6 +595,7 @@ class PackageReport(BaseModel):
         *,
         stubs_path: StrPath | None = None,
         project: str | None = None,
+        stubs_only: StubsOnly = StubsOnly.NO,
         exclude: Sequence[str] = (),
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
@@ -651,6 +666,7 @@ class PackageReport(BaseModel):
         )
         return cls(
             package=project or pkg,
+            stubs_only=stubs_only,
             module_reports=files,
             version=version,
             py_typed=py_typed,

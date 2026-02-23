@@ -34,6 +34,7 @@ from typestats.report import (
     NameReport,
     PackageReport,
     PropertyReport,
+    StubsOnly,
     _SlotState,
     _symbol_report,
 )
@@ -605,6 +606,7 @@ class TestPackageReportFromProject:
 
         assert report.package == self._PKG
         assert report.version == "2.5.0"
+        assert report.stubs_only is StubsOnly.NO
 
     async def test_stubs_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
         """Stubs project downloads base + stubs concurrently."""
@@ -623,6 +625,7 @@ class TestPackageReportFromProject:
 
         assert report.package == self._STUBS_PKG
         assert report.version == "3.0.0.1"
+        assert report.stubs_only is StubsOnly.THIRD_PARTY
         assert report.py_typed is PyTyped.STUBS
 
     async def test_typeshed_stubs_package(
@@ -647,6 +650,7 @@ class TestPackageReportFromProject:
 
         assert report.package == typeshed_name
         assert report.version == "3.0.0.1"
+        assert report.stubs_only is StubsOnly.TYPESHED
         assert report.py_typed is PyTyped.STUBS
 
     async def test_exclude_passed_through(

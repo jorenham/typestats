@@ -13,8 +13,9 @@ For a given project:
 
 1. Query PyPI for the latest version
 2. Download the latest (non-yanked) sdist, and extract it
-3. When the input is a `{project}-stubs` package, also download the base `{project}` sdist so that
-   the stubs overlay can be merged with the original package (see below)
+3. When the input is a stubs package (`{project}-stubs` or `types-{project}`), also download the
+   base `{project}` sdist so that the stubs overlay can be merged with the original package (see
+   below)
 4. Compute the import graph using `ruff analyze graph`
 5. Filter to files transitively reachable from public modules (skip tests, tools, etc.)
 6. For each reachable file, parse it using `libcst`, and extract:
@@ -38,7 +39,7 @@ For a given project:
     - strict coverage (% of public symbols annotated without `Any`)
     - TODO: average overload ratio (function without overloads counts as 1 overload)
     - supported type-checkers + strictness flags
-    - TODO: annotation kind (inline, bundled stubs, typeshed stubs, third-party stubs, etc)
+    - stubs-only classification (`no`, `yes (third party)`, or `yes (typeshed)`)
 12. TODO: Export the statistics for use in a website/dashboard (e.g. json, csv, or sqlite)
 
 ### Symbol collection
