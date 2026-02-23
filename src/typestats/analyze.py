@@ -286,9 +286,7 @@ def annotation_counts(type_: TypeForm, /) -> tuple[int, int]:
     match type_:
         case Function() | Property() | Class():
             return type_.annotation_counts
-        case Expr():
-            return 1, 1
-        case _TypeMarker.ANY:
+        case Expr() | _TypeMarker.ANY:
             return 1, 1
         case _TypeMarker.UNKNOWN:
             return 0, 1
