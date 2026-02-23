@@ -39,10 +39,7 @@ projects = [
 """)
         projects = load_projects(toml_path)
         assert len(projects) == 2
-        assert projects[0] == Project(
-            name="numpy",
-            exclude=["numpy/typing/tests/**"],
-        )
+        assert projects[0] == Project(name="numpy", exclude=["numpy/typing/tests/**"])
         assert projects[1] == Project(name="scipy-stubs")
 
     def test_empty_projects_list(self, tmp_path: Path) -> None:

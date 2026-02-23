@@ -1,5 +1,3 @@
-"""Load a curated list of PyPI projects from a TOML file."""
-
 import tomllib
 from pathlib import Path
 from typing import TYPE_CHECKING
