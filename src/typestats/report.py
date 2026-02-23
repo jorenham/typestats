@@ -7,7 +7,10 @@ from pathlib import PurePosixPath
 from typing import TYPE_CHECKING, Annotated, Any, Literal, NamedTuple, Self, cast
 
 if TYPE_CHECKING:
+    import httpx
     from _typeshed import StrPath
+
+    from typestats.projects import Project
 
 import anyio
 import mainpy
@@ -517,6 +520,50 @@ class PackageReport(BaseModel):
             print(f"   Type-checkers: {checkers}")  # noqa: T201
 
     @classmethod
+    async def from_project(
+        cls,
+        project: Project,
+        client: httpx.AsyncClient,
+        out_dir: StrPath,
+        /,
+    ) -> Self:
+        """Download *project* from PyPI and build a `PackageReport`.
+
+        Handles both regular packages and ``{name}-stubs`` packages
+        (downloading base + stubs concurrently for the latter).
+        """
+        import re
+
+        from packaging.utils import parse_sdist_filename
+
+        from typestats import _pypi
+
+        if m := re.match(r"^(.+)-stubs$", project.name):
+            base_name = m.group(1)
+            (base_path, _), (stubs_path, stubs_sdist) = await asyncio.gather(
+                _pypi.download_sdist_latest(client, base_name, out_dir),
+                _pypi.download_sdist_latest(client, project.name, out_dir),
+            )
+            _, stubs_ver = parse_sdist_filename(stubs_sdist["filename"])
+            return await cls.from_path(
+                base_name,
+                base_path,
+                str(stubs_ver),
+                stubs_path=stubs_path,
+                project=project.name,
+                exclude=project.exclude,
+            )
+
+        path, sdist = await _pypi.download_sdist_latest(client, project.name, out_dir)
+        _, ver = parse_sdist_filename(sdist["filename"])
+        return await cls.from_path(
+            project.name,
+            path,
+            str(ver),
+            exclude=project.exclude,
+        )
+
+    @classmethod
     async def from_path(  # noqa: PLR0913
         cls,
         pkg: str,
@@ -607,40 +654,15 @@ class PackageReport(BaseModel):
 
 @mainpy.main
 async def main() -> None:
-    import re
-
-    from packaging.utils import parse_sdist_filename
-
-    from typestats import _pypi
     from typestats._http import retry_client
+    from typestats.projects import Project
 
-    package = sys.argv[1] if len(sys.argv) > 1 else "optype"
+    if not sys.argv[1:] or not sys.argv[1].strip():
+        print("Usage: report.py <project-name-or-path>", file=sys.stderr)  # noqa: T201
+        sys.exit(1)
 
-    async with anyio.TemporaryDirectory() as temp_dir:
-        async with retry_client() as client:
-            if m := re.match(r"^(.+)-stubs$", package):
-                # Stubs package: download both base and stubs concurrently
-                base_name = m.group(1)
-                (base_path, _), (stubs_path, stubs_sdist) = await asyncio.gather(
-                    _pypi.download_sdist_latest(client, base_name, temp_dir),
-                    _pypi.download_sdist_latest(client, package, temp_dir),
-                )
-                _, stubs_ver = parse_sdist_filename(stubs_sdist["filename"])
-                report = await PackageReport.from_path(
-                    base_name,
-                    base_path,
-                    str(stubs_ver),
-                    stubs_path=stubs_path,
-                    project=package,
-                )
-            else:
-                # Base package: analyze standalone
-                path, sdist = await _pypi.download_sdist_latest(
-                    client,
-                    package,
-                    temp_dir,
-                )
-                _, ver = parse_sdist_filename(sdist["filename"])
-                report = await PackageReport.from_path(package, path, str(ver))
+    project = Project(name=sys.argv[1])
 
+    async with anyio.TemporaryDirectory() as temp_dir, retry_client() as client:
+        report = await PackageReport.from_project(project, client, temp_dir)
         report.print()
