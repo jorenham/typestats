@@ -215,7 +215,7 @@ class TestSymbols:
         assert symbols[0].name == "D"
         assert len(symbols) == 1
 
-    def test_special_typeforms_ignored_aliases(self) -> None:
+    def test_special_typeforms_known_aliases(self) -> None:
         src = textwrap.dedent("""
         import typing as t
         from typing import NewType as NT
@@ -232,7 +232,7 @@ class TestSymbols:
         assert symbols[1].type_ is KNOWN
         assert symbols[2].name == "D"
 
-    def test_special_typeforms_ignored_annassign(self) -> None:
+    def test_special_typeforms_known_annassign(self) -> None:
         src = textwrap.dedent("""
         import typing as t
 
