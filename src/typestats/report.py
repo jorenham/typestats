@@ -530,8 +530,9 @@ class PackageReport(BaseModel):
         """
         Download `project` from PyPI and build a `PackageReport`.
 
-        Handles both regular packages and `{name}-stubs` packages (downloading base +
-        stubs concurrently for the latter).
+        Handles both regular packages and stubs packages (downloading base +
+        stubs concurrently for the latter).  Recognized stubs patterns:
+        `{name}-stubs` (third-party) and `types-{name}` (typeshed).
         """
         import re
 
