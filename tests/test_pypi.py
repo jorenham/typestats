@@ -2,15 +2,12 @@
 
 import sys
 
-import pytest
 from packaging.version import Version
 
 from typestats._pypi import (
     FileDetail,
-    NoDistributionError,
     ProjectDetail,
-    _best_wheel,
-    _latest_sdist,
+    _best_distribution,
     parse_file_version,
 )
 
@@ -34,7 +31,18 @@ def _detail(name: str, files: list[FileDetail]) -> ProjectDetail:
     )
 
 
-class TestBestWheel:
+class TestBestDistribution:
+    def test_prefers_sdist_over_wheel(self) -> None:
+        detail = _detail(
+            "pkg",
+            [
+                _file("pkg-1.0.0-py3-none-any.whl", size=50),
+                _file("pkg-1.0.0.tar.gz", size=900),
+            ],
+        )
+        best = _best_distribution(detail)
+        assert best[Version("1.0.0")]["filename"] == "pkg-1.0.0.tar.gz"
+
     def test_prefers_pure_python(self) -> None:
         detail = _detail(
             "pkg",
@@ -43,8 +51,8 @@ class TestBestWheel:
                 _file("pkg-1.0.0-py3-none-any.whl", size=50),
             ],
         )
-        best = _best_wheel(detail)
-        assert best["filename"] == "pkg-1.0.0-py3-none-any.whl"
+        best = _best_distribution(detail)
+        assert best[Version("1.0.0")]["filename"] == "pkg-1.0.0-py3-none-any.whl"
 
     def test_prefers_matching_cpython(self) -> None:
         vi = sys.implementation.version
@@ -58,8 +66,8 @@ class TestBestWheel:
                 _file(f"pkg-1.0.0-{cp}-{cp}-manylinux_2_28_x86_64.whl", size=100),
             ],
         )
-        best = _best_wheel(detail)
-        assert cp in best["filename"]
+        best = _best_distribution(detail)
+        assert cp in best[Version("1.0.0")]["filename"]
 
     def test_prefers_smaller_size(self) -> None:
         detail = _detail(
@@ -69,8 +77,8 @@ class TestBestWheel:
                 _file("pkg-1.0.0-cp314-cp314-macosx_14_0_arm64.whl", size=80),
             ],
         )
-        best = _best_wheel(detail)
-        assert best["size"] == 80
+        best = _best_distribution(detail)
+        assert best[Version("1.0.0")]["size"] == 80
 
     def test_skips_yanked(self) -> None:
         detail = _detail(
@@ -80,10 +88,13 @@ class TestBestWheel:
                 _file("pkg-1.0.0-cp314-cp314-manylinux_2_28_x86_64.whl", size=900),
             ],
         )
-        best = _best_wheel(detail)
-        assert best["filename"] == "pkg-1.0.0-cp314-cp314-manylinux_2_28_x86_64.whl"
+        best = _best_distribution(detail)
+        assert (
+            best[Version("1.0.0")]["filename"]
+            == "pkg-1.0.0-cp314-cp314-manylinux_2_28_x86_64.whl"
+        )
 
-    def test_latest_version(self) -> None:
+    def test_multiple_versions(self) -> None:
         detail = _detail(
             "pkg",
             [
@@ -91,19 +102,13 @@ class TestBestWheel:
                 _file("pkg-2.0.0-cp314-cp314-manylinux_2_28_x86_64.whl", size=900),
             ],
         )
-        best = _best_wheel(detail)
-        # Should pick v2.0.0 even though v1.0.0 is smaller and pure
-        assert best["filename"] == "pkg-2.0.0-cp314-cp314-manylinux_2_28_x86_64.whl"
-
-    def test_no_wheels_raises(self) -> None:
-        detail = _detail("pkg", [_file("pkg-1.0.0.tar.gz")])
-        with pytest.raises(NoDistributionError, match="No wheels found"):
-            _best_wheel(detail)
-
-    def test_all_yanked_raises(self) -> None:
-        detail = _detail("pkg", [_file("pkg-1.0.0-py3-none-any.whl", yanked=True)])
-        with pytest.raises(NoDistributionError, match="No wheels found"):
-            _best_wheel(detail)
+        best = _best_distribution(detail)
+        # Should have an entry for each version
+        assert best[Version("1.0.0")]["filename"] == "pkg-1.0.0-py3-none-any.whl"
+        assert (
+            best[Version("2.0.0")]["filename"]
+            == "pkg-2.0.0-cp314-cp314-manylinux_2_28_x86_64.whl"
+        )
 
     def test_cpython_free_threaded_match(self) -> None:
         """Wheels with a free-threaded ABI tag (e.g. `cp314t`) match via `cp314`."""
@@ -116,16 +121,29 @@ class TestBestWheel:
                 _file("pkg-1.0.0-cp312-cp312-manylinux_2_28_x86_64.whl", size=50),
             ],
         )
-        best = _best_wheel(detail)
+        best = _best_distribution(detail)
         # The current-CPython match should win despite larger size
-        assert cp in best["filename"]
+        assert cp in best[Version("1.0.0")]["filename"]
 
+    def test_only_sdists(self) -> None:
+        detail = _detail(
+            "pkg",
+            [
+                _file("pkg-1.0.0.tar.gz", size=100),
+                _file("pkg-2.0.0.tar.gz", size=200),
+            ],
+        )
+        best = _best_distribution(detail)
+        assert Version("1.0.0") in best
+        assert best[Version("2.0.0")]["filename"] == "pkg-2.0.0.tar.gz"
 
-class TestLatestSdist:
-    def test_no_sdists_raises(self) -> None:
-        detail = _detail("pkg", [_file("pkg-1.0.0-py3-none-any.whl")])
-        with pytest.raises(NoDistributionError, match="No sdists found"):
-            _latest_sdist(detail)
+    def test_only_wheels(self) -> None:
+        detail = _detail(
+            "pkg",
+            [_file("pkg-1.0.0-py3-none-any.whl", size=50)],
+        )
+        best = _best_distribution(detail)
+        assert best[Version("1.0.0")]["filename"] == "pkg-1.0.0-py3-none-any.whl"
 
 
 class TestParseFileVersion:
