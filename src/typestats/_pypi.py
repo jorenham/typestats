@@ -1,6 +1,7 @@
 import csv
 import io
 import logging
+import os
 import sys
 import tarfile
 import zipfile
@@ -158,8 +159,7 @@ def _latest_sdist(details: ProjectDetail, /) -> FileDetail:
     sdists = [
         sdist
         for sdist in details["files"]
-        if (sdist["filename"].endswith((".tar.gz", ".zip")))
-        and not sdist.get("yanked", False)
+        if sdist["filename"].endswith(".tar.gz") and not sdist.get("yanked", False)
     ]
     if not sdists:
         msg = f"No sdists found for {details['name']}"
@@ -214,7 +214,13 @@ def _extract_sdist(content: bytes, target_dir: anyio.Path, /) -> None:
 
 
 def _extract_wheel(content: bytes, target_dir: anyio.Path, /) -> None:
+    resolved = os.path.realpath(target_dir)
     with zipfile.ZipFile(io.BytesIO(content)) as zf:
+        for member in zf.namelist():
+            dest = os.path.realpath(target_dir / member)
+            if not dest.startswith(resolved + os.sep) and dest != resolved:
+                msg = f"Zip member {member!r} escapes target directory"
+                raise ValueError(msg)
         zf.extractall(path=target_dir)  # noqa: S202
 
 

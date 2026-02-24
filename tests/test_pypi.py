@@ -106,7 +106,7 @@ class TestBestWheel:
             _best_wheel(detail)
 
     def test_cpython_free_threaded_match(self) -> None:
-        """Wheels tagged `cp314t` should still match when interpreting `cp314`."""
+        """Wheels with a free-threaded ABI tag (e.g. `cp314t`) match via `cp314`."""
         vi = sys.implementation.version
         cp = f"cp{vi.major}{vi.minor}"
         detail = _detail(
