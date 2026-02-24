@@ -2,6 +2,7 @@ import io
 import json
 import shutil
 import tarfile
+import zipfile
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -562,6 +563,16 @@ class TestPackageReportFromProject:
         return buf.getvalue()
 
     @staticmethod
+    def _make_wheel_zip(source_dir: Path) -> bytes:
+        """Create a wheel-like zip archive from `source_dir` (flat, no prefix)."""
+        buf = io.BytesIO()
+        with zipfile.ZipFile(buf, "w") as zf:
+            for file in sorted(source_dir.rglob("*")):
+                if file.is_file():
+                    zf.write(file, arcname=str(file.relative_to(source_dir)))
+        return buf.getvalue()
+
+    @staticmethod
     def _pypi_detail_json(name: str, version: str) -> dict[str, object]:
         filename = f"{name}-{version}.tar.gz"
         return {
@@ -573,6 +584,24 @@ class TestPackageReportFromProject:
                     "filename": filename,
                     "hashes": {"sha256": "fake"},
                     "size": 0,
+                    "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
+                },
+            ],
+        }
+
+    @staticmethod
+    def _pypi_detail_json_wheel(name: str, version: str) -> dict[str, object]:
+        """Project detail with only a wheel (no sdist)."""
+        filename = f"{name}-{version}-py3-none-any.whl"
+        return {
+            "name": name,
+            "versions": [version],
+            "meta": {"api-version": "1.0"},
+            "files": [
+                {
+                    "filename": filename,
+                    "hashes": {"sha256": "fake"},
+                    "size": 42,
                     "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
                 },
             ],
@@ -669,3 +698,25 @@ class TestPackageReportFromProject:
         # utils.py is excluded, so it should not appear in module reports
         module_paths = {m.path for m in report.module_reports}
         assert f"{self._PKG}/utils.py" not in module_paths
+
+    async def test_wheel_fallback(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
+        """When no sdist exists, falls back to a wheel."""
+        whl_zip = self._make_wheel_zip(_FIXTURES / "stubs_base")
+        whl_filename = f"{self._PKG}-2.0.0-py3-none-any.whl"
+
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
+            json=self._pypi_detail_json_wheel(self._PKG, "2.0.0"),
+        )
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/packages/{whl_filename}"),
+            content=whl_zip,
+        )
+
+        project = Project(name=self._PKG)
+        async with httpx.AsyncClient() as client:
+            report = await PackageReport.from_project(project, client, tmp_path)
+
+        assert report.package == self._PKG
+        assert report.version == "2.0.0"
+        assert report.stubs_only is StubsOnly.NO
