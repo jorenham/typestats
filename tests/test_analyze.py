@@ -1,3 +1,4 @@
+import logging
 import textwrap
 
 import libcst as cst
@@ -1138,6 +1139,290 @@ class TestTypeCheckOnly:
         """)
         module = collect_symbols(src)
         assert module.type_check_only == {"_f", "_P"}
+
+
+class TestVersionGuards:
+    def test_matching_branch_gte(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 11):
+            from typing import Self
+        else:
+            from typing_extensions import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_non_matching_branch_lt(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 11):
+            from typing_extensions import Self
+        else:
+            from typing import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_non_version_if_unchanged(self) -> None:
+        src = textwrap.dedent("""
+        import os
+
+        if os.name == "nt":
+            x: int = 1
+        else:
+            x: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+
+    def test_no_else_branch_removed(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 10):
+            old_thing: int = 1
+
+        new_thing: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "old_thing" not in symbols
+        assert "new_thing" in symbols
+
+    def test_matching_branch_collected(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 12):
+            type Alias = int
+        else:
+            from typing import TypeAlias
+            Alias: TypeAlias = int
+        """)
+        module = collect_symbols(src)
+        aliases = {a.name for a in module.type_aliases}
+        assert "Alias" in aliases
+
+    def test_elif_chain_imports(self) -> None:
+        """Version elif chain should pick the matching branch."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 13):
+            from typing import TypeIs
+        elif sys.version_info >= (3, 10):
+            from typing_extensions import TypeIs
+        else:
+            from typing_extensions import TypeIs as TypeIs
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "TypeIs" in imports
+        assert imports["TypeIs"] == "typing.TypeIs"
+
+    def test_from_sys_import_version_info(self) -> None:
+        """Handle ``from sys import version_info``."""
+        src = textwrap.dedent("""
+        from sys import version_info
+
+        if version_info >= (3, 11):
+            from typing import Self
+        else:
+            from typing_extensions import Self
+        """)
+        module = collect_symbols(src)
+        imports = dict(module.imports)
+        assert "Self" in imports
+        assert imports["Self"] == "typing.Self"
+
+    def test_import_sys_as_alias(self) -> None:
+        """Handle ``import sys as _sys``."""
+        src = textwrap.dedent("""
+        import sys as _sys
+
+        if _sys.version_info >= (3, 12):
+            type Alias = int
+        else:
+            from typing import TypeAlias
+            Alias: TypeAlias = int
+        """)
+        module = collect_symbols(src)
+        aliases = {a.name for a in module.type_aliases}
+        assert "Alias" in aliases
+
+    def test_version_triple(self) -> None:
+        """Support version triples like ``(3, 99, 1)``."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (3, 99, 1):
+            new_thing: int = 1
+        else:
+            old_thing: str = "fallback"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        # Running Python is < 3.99.1, so the else branch should be taken
+        assert "new_thing" not in symbols
+        assert "old_thing" in symbols
+
+    def test_version_single(self) -> None:
+        """Support single-element tuples like ``(4,)``."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info >= (4,):
+            future_thing: int = 1
+        else:
+            current_thing: str = "now"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "future_thing" not in symbols
+        assert "current_thing" in symbols
+
+    def test_version_guard_selects_function_definition(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 11):
+            def f(x: int) -> float: ...
+        else:
+            def f(x: int, y: int = 0) -> float: ...
+        """)
+        module = collect_symbols(src)
+        functions = [s.type_ for s in module.symbols if s.name == "f"]
+        assert len(functions) == 1
+        assert isinstance(functions[0], Function)
+        assert len(functions[0].overloads) == 1
+        assert len(functions[0].overloads[0].params) == 2
+        assert str(functions[0].overloads[0].returns) == "float"
+
+    def test_version_guard_selects_class_definition(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 11):
+            class C:
+                x: int
+        else:
+            class C:
+                def f(self, y: int) -> None: ...
+        """)
+        module = collect_symbols(src)
+        classes = [s.type_ for s in module.symbols if s.name == "C"]
+        assert len(classes) == 1
+        assert isinstance(classes[0], Class)
+        assert len(classes[0].members) == 1
+        assert isinstance(classes[0].members[0], Function)
+        assert classes[0].members[0].name == "C.f"
+
+    def test_nested_guard_in_dead_branch_stays_skipped(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 10):
+            if sys.version_info >= (3, 11):
+                dead_inner: int = 1
+
+        active: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "dead_inner" not in symbols
+        assert "active" in symbols
+
+    def test_dead_version_branch_is_not_traversed(
+        self,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 10):
+            if sys.version_info[:2] >= (3, 11):
+                dead_inner: int = 1
+        else:
+            live_inner: str = "hello"
+        """)
+        with caplog.at_level(logging.WARNING, logger="typestats.analyze"):
+            module = collect_symbols(src)
+        messages = [record.getMessage() for record in caplog.records]
+        symbols = {s.name for s in module.symbols}
+        assert not any(
+            "subscripted sys.version_info is not supported" in msg for msg in messages
+        )
+        assert "dead_inner" not in symbols
+        assert "live_inner" in symbols
+
+    def test_skipped_function_branch_does_not_corrupt_depth(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info < (3, 11):
+            def legacy() -> None: ...
+
+        sentinel: int = 1
+
+        def current(x: int) -> int: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "legacy" not in symbols
+        assert "sentinel" in symbols
+        assert "current" in symbols
+
+    def test_unsupported_operator_warns_and_is_ignored(
+        self,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        """Operators other than ``>=`` and ``<`` are left as-is."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info > (3, 11):
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        with caplog.at_level(logging.WARNING, logger="typestats.analyze"):
+            module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        messages = [record.getMessage() for record in caplog.records]
+        assert any("unsupported version_info operator" in msg for msg in messages)
+        assert "x" in symbols
+        assert "y" in symbols
+
+    def test_version_info_sliced_warns_and_is_not_evaluated(
+        self,
+        caplog: pytest.LogCaptureFixture,
+    ) -> None:
+        """Subscripted ``sys.version_info[:2]`` is not evaluated (both kept)."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[:2] >= (3, 11):
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        with caplog.at_level(logging.WARNING, logger="typestats.analyze"):
+            module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        messages = [record.getMessage() for record in caplog.records]
+        assert any(
+            "subscripted sys.version_info is not supported" in msg for msg in messages
+        )
+        assert "x" in symbols
+        assert "y" in symbols
 
 
 class TestProperty:

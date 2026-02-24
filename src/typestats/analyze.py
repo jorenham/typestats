@@ -1,4 +1,6 @@
+import logging
 import re
+import sys
 from collections import defaultdict, deque
 from dataclasses import dataclass
 from enum import StrEnum
@@ -49,8 +51,27 @@ _SPECIAL_TYPEFORMS: Final = frozenset({
     "TypeVarTuple",
 })
 _ALL: Final = "__all__"
+_TARGET_VERSION: Final[tuple[int, int, int]] = sys.version_info[:3]
+_SYS_VERSION_INFO: Final[str] = "sys.version_info"
+_logger: Final = logging.getLogger(__name__)
 
 type TypeForm = _TypeMarker | Expr | Function | Property | Class
+
+
+def _parse_version_tuple(node: cst.BaseExpression) -> tuple[int, ...] | None:
+    """Extract a version like ``(3, 11)`` from a CST tuple literal."""
+    if not isinstance(node, cst.Tuple):
+        return None
+    parts: list[str] = []
+    for element in node.elements:
+        match element:
+            case cst.Element(value=cst.Integer(value=v)):
+                parts.append(v)
+            case _:
+                return None
+    if not parts:
+        return None
+    return tuple(int(p) for p in parts)
 
 
 class ParamKind(StrEnum):
@@ -502,6 +523,58 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             return f"{fqn}.{rest}" if rest else fqn
         return raw
 
+    def _is_version_info(self, node: cst.BaseExpression) -> bool:
+        """Check if *node* represents ``sys.version_info``."""
+        if isinstance(node, cst.Subscript):
+            value = node.value
+            if (isinstance(value, cst.Name) and value.value != "version_info") or (
+                isinstance(value, cst.Attribute) and value.attr.value != "version_info"
+            ):
+                return False
+            if self._resolve_name(value) == _SYS_VERSION_INFO:
+                _logger.warning("subscripted %s is not supported", _SYS_VERSION_INFO)
+            return False
+
+        if isinstance(node, cst.Name):
+            if node.value != "version_info":
+                return False
+        elif isinstance(node, cst.Attribute):
+            if node.attr.value != "version_info":
+                return False
+        else:
+            return False
+
+        return self._resolve_name(node) == _SYS_VERSION_INFO
+
+    def _eval_version_guard(self, test: cst.BaseExpression) -> bool | None:
+        """Evaluate a ``sys.version_info`` comparison against the target version.
+
+        Only ``>=`` and ``<`` are supported.  Returns ``True``/``False`` when the
+        comparison can be resolved, ``None`` otherwise.
+        """
+        if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
+            return None
+
+        if not self._is_version_info(test.left):
+            return None
+
+        cmp = test.comparisons[0]
+        version = _parse_version_tuple(cmp.comparator)
+        if version is None:
+            return None
+
+        match cmp.operator:
+            case cst.GreaterThanEqual():
+                return version <= _TARGET_VERSION
+            case cst.LessThan():
+                return version > _TARGET_VERSION
+            case _:
+                _logger.warning(
+                    "unsupported version_info operator: %s",
+                    type(cmp.operator).__name__,
+                )
+                return None
+
     def _symbol_name(self, node: cst.Name) -> str:
         name = node.value
         if (cls := self._current_class) and not self._function_depth:
@@ -634,13 +707,16 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
     @override
     def visit_Import(self, node: cst.Import) -> bool:
-        if not isinstance(node.names, cst.ImportStar):
-            for name in node.names:
-                evaluated_name = name.evaluated_name
-                if alias := name.evaluated_alias:
-                    self.module_aliases[evaluated_name] = alias
-                # pyrefly: ignore[unbound-name]
-                self.imports[alias or evaluated_name] = evaluated_name
+        if isinstance(node.names, cst.ImportStar):
+            return False
+
+        for name in node.names:
+            evaluated_name = name.evaluated_name
+            import_name = evaluated_name
+            if alias := name.evaluated_alias:
+                self.module_aliases[evaluated_name] = alias
+                import_name = alias
+            self.imports[import_name] = evaluated_name
 
         return False
 
@@ -655,13 +731,14 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     if (name := ia.evaluated_name) == "*":
                         continue
 
+                    import_name = name
                     if alias := ia.evaluated_alias:
                         self.alias_mapping[mod].append((name, alias))
+                        import_name = alias
                     elif "*" not in (objects := self.from_imports[mod]):
                         objects.add(name)
 
-                    # pyrefly: ignore[unbound-name]
-                    self.imports[alias or name] = f"{mod}.{name}"
+                    self.imports[import_name] = f"{mod}.{name}"
 
         return False
 
@@ -688,7 +765,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         return False
 
-    def _visit_container(self, node: _Container) -> Literal[True]:
+    def _visit_container(self, node: _Container) -> bool:
         if node in self._is_assigned_export:
             self._in_assigned_export.add(node)
         return True
@@ -747,6 +824,19 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 if rules is not None:
                     rules = frozenset(rs for r in rules.split(",") if (rs := r.strip()))
                 self.ignore_comments.append(IgnoreComment(match.group(1), rules))
+        return False
+
+    # --- Version guard handling ---
+
+    @override
+    def visit_If(self, node: cst.If) -> bool:
+        result = self._eval_version_guard(node.test)
+        if result is None:
+            return True
+
+        branch = node.body if result else node.orelse
+        if branch is not None:
+            branch.visit(self)
         return False
 
     # --- Symbol handling ---
@@ -1084,8 +1174,10 @@ def collect_symbols(
         return _EMPTY_SYMBOLS
 
     module = cst.parse_module(source)
+
+    # Single pass: collects symbols AND evaluates version guards.
     visitor = _SymbolVisitor(package_name=package_name or "")
-    module.visit(visitor)  # type: ignore[arg-type]  # CSTVisitor is accepted at runtime
+    module.visit(visitor)
 
     imports = visitor.imports
 
