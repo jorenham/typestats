@@ -1,4 +1,5 @@
 import io
+import itertools
 import logging
 import os
 import sys
@@ -18,7 +19,6 @@ if TYPE_CHECKING:
 
 
 __all__ = (
-    "NoDistributionError",
     "download_latest",
     "fetch_project_detail",
     "latest_version",
@@ -91,10 +91,6 @@ ProjectDetail = TypedDict(
 _logger = logging.getLogger(__name__)
 
 
-class NoDistributionError(ValueError):
-    """No suitable distribution (sdist or wheel) was found for a project."""
-
-
 async def _get_json(client: httpx.AsyncClient, url: httpx.URL, /, **kwargs: Any) -> Any:
     response = await client.get(url, **kwargs)
     response.raise_for_status()
@@ -106,73 +102,54 @@ async def fetch_project_detail(
     project_name: str,
     /,
 ) -> ProjectDetail:
-    """
-    Get the project detail from PyPI's Simple API.
+    """Get the project detail from PyPI's Simple API.
 
     For details, see:
     - https://peps.python.org/pep-0691/
     - https://docs.pypi.org/api/index-api/#json_1
     """
     url = HOST.join(f"/simple/{project_name}/")
-
     data = await _get_json(client, url, headers=HEADERS_SIMPLE_API)
     return ProjectDetail(data)
 
 
-def _latest_sdist(details: ProjectDetail, /) -> FileDetail:
-    """Find the latest sdist from the given project detail.
+def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
+    """Find the best distribution per version from the project detail.
 
-    Raises:
-        NoDistributionError: If no (non-yanked) sdists are found.
+    Only considers non-yanked files. Returns a mapping from version to the
+    best distribution for that version.
+    Sdists are preferred over wheels. Among wheels, prefers pure-python
+    over platform-specific, matching CPython version, then smallest size.
     """
-    sdists = [
-        sdist
-        for sdist in details["files"]
-        if sdist["filename"].endswith(".tar.gz") and not sdist.get("yanked", False)
-    ]
-    if not sdists:
-        msg = f"No sdists found for {details['name']}"
-        raise NoDistributionError(msg)
-
-    return max(sdists, key=lambda sdist: parse_sdist_filename(sdist["filename"])[1])
-
-
-def _best_wheel(details: ProjectDetail, /) -> FileDetail:
-    """Find the best wheel from the project detail.
-
-    Prefers pure-python wheels over platform-specific ones. Among
-    platform-specific wheels, prefers those matching the current CPython
-    version. Ties are broken by file size (smallest first).
-
-    Raises:
-        NoDistributionError: If no (non-yanked) wheels are found.
-    """
-    wheels = [
-        w
-        for w in details["files"]
-        if w["filename"].endswith(".whl") and not w.get("yanked", False)
-    ]
-    if not wheels:
-        msg = f"No wheels found for {details['name']}"
-        raise NoDistributionError(msg)
-
-    # Keep only wheels from the latest version.
-    latest_version = max(parse_wheel_filename(w["filename"])[1] for w in wheels)
-    wheels = [
-        w for w in wheels if parse_wheel_filename(w["filename"])[1] == latest_version
+    files = [
+        f
+        for f in details["files"]
+        if not f.get("yanked", False) and f["filename"].endswith((".tar.gz", ".whl"))
     ]
 
     # Current CPython interpreter tag, e.g. "cp314".
     vi = sys.implementation.version
     cp_tag = f"cp{vi.major}{vi.minor}"
 
-    def _score(w: FileDetail, /) -> tuple[int, int, int]:
-        _, _, _, tags = parse_wheel_filename(w["filename"])
+    def _rank(f: FileDetail, /) -> tuple[int, int, int]:
+        filename = f["filename"]
+        if filename.endswith(".tar.gz"):
+            # Sdists are always preferred (lowest rank).
+            return 0, 0, -1
+
+        _, _, _, tags = parse_wheel_filename(filename)
         is_pure = any(t.platform == "any" for t in tags)
         matches_cp = any(t.interpreter.startswith(cp_tag) for t in tags)
-        return 0 if is_pure else 1, 0 if matches_cp else 1, w["size"]
+        return 0 if is_pure else 1, 0 if matches_cp else 1, f["size"]
 
-    return min(wheels, key=_score)
+    def _version(f: FileDetail, /) -> Version:
+        return parse_file_version(f["filename"])
+
+    files.sort(key=_version)
+    return {
+        version: min(group, key=_rank)
+        for version, group in itertools.groupby(files, key=_version)
+    }
 
 
 def _extract_sdist(content: bytes, target_dir: anyio.Path, /) -> None:
@@ -185,19 +162,20 @@ def _extract_sdist(content: bytes, target_dir: anyio.Path, /) -> None:
 def _extract_wheel(content: bytes, target_dir: anyio.Path, /) -> None:
     resolved = os.path.realpath(target_dir)
     with zipfile.ZipFile(io.BytesIO(content)) as zf:
+        # guard against zip slip attacks
         for member in zf.namelist():
             dest = os.path.realpath(target_dir / member)
-            if not dest.startswith(resolved + os.sep) and dest != resolved:
-                msg = f"Zip member {member!r} escapes target directory"
-                raise ValueError(msg)
+            assert dest.startswith(resolved + os.sep) or dest == resolved, (
+                f"Zip member {member!r} escapes target directory"
+            )
+
         zf.extractall(path=target_dir)  # noqa: S202
 
 
-def parse_file_version(filename: str, /) -> Version:
+def parse_file_version(fname: str, /) -> Version:
     """Extract the version from an sdist or wheel filename."""
-    if filename.endswith(".whl"):
-        return parse_wheel_filename(filename)[1]
-    return parse_sdist_filename(filename)[1]
+    parse = parse_wheel_filename if fname.endswith(".whl") else parse_sdist_filename
+    return parse(fname)[1]
 
 
 async def _download_file(
@@ -206,7 +184,6 @@ async def _download_file(
     out_dir: StrPath,
     /,
 ) -> anyio.Path:
-    """Download, extract, and cache a distribution file (sdist or wheel)."""
     filename = file["filename"]
     if filename.endswith(".whl"):
         name, version, _, _ = parse_wheel_filename(filename)
@@ -232,15 +209,8 @@ async def _download_file(
 
 async def latest_version(client: httpx.AsyncClient, project_name: str, /) -> Version:
     """Return the latest non-yanked version of a project without downloading it."""
-
     detail = await fetch_project_detail(client, project_name)
-
-    try:
-        filename = _latest_sdist(detail)["filename"]
-    except NoDistributionError:
-        filename = _best_wheel(detail)["filename"]
-
-    return parse_file_version(filename)
+    return max(_best_distribution(detail))
 
 
 async def download_latest(
@@ -256,14 +226,7 @@ async def download_latest(
     (preferring pure-python and matching CPython version, then smallest size).
     """
     detail = await fetch_project_detail(client, project_name)
-
-    try:
-        sdist = _latest_sdist(detail)
-    except NoDistributionError:
-        _logger.info("No sdist for %s, falling back to wheel", project_name)
-        wheel = _best_wheel(detail)
-        path = await _download_file(client, wheel, out_dir)
-        return path, wheel
-
-    path = await _download_file(client, sdist, out_dir)
-    return path, sdist
+    best = _best_distribution(detail)
+    dist = best[max(best)]
+    path = await _download_file(client, dist, out_dir)
+    return path, dist
