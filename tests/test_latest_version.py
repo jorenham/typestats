@@ -8,6 +8,7 @@ from packaging.version import Version
 
 from typestats._pypi import (
     FileDetail,
+    NoDistributionError,
     ProjectDetail,
     latest_version,
 )
@@ -78,3 +79,12 @@ class TestLatestVersion:
         async with httpx.AsyncClient() as client:
             ver = await latest_version(client, "mypkg")
         assert ver == Version("1.0.0")
+
+    async def test_no_distributions(self, httpx_mock: HTTPXMock) -> None:
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join("/simple/mypkg/"),
+            json=_detail("mypkg", []),
+        )
+        async with httpx.AsyncClient() as client:
+            with pytest.raises(NoDistributionError):
+                await latest_version(client, "mypkg")

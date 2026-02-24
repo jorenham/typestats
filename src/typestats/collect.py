@@ -39,10 +39,10 @@ async def collect_project(
     version = await latest_version(client, project.name)
     out = data_dir / project.name / f"{version}.json"
     if await out.exists():
-        _logger.info("  %s %s — already collected, skipping", project.name, version)
+        _logger.info("  %s %s - already collected, skipping", project.name, version)
         return None
 
-    _logger.info("  %s %s — analyzing …", project.name, version)
+    _logger.info("  %s %s - analyzing...", project.name, version)
     report = await PackageReport.from_project(project, client, str(work_dir))
     json_bytes = report.model_dump_json(indent=2).encode()
 
