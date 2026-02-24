@@ -12,9 +12,10 @@ A tool to analyze the type annotation coverage of Python projects on PyPI.
 For a given project:
 
 1. Query PyPI for the latest version
-2. Download the latest (non-yanked) sdist, and extract it
+2. Download the latest (non-yanked) sdist and extract it; if no sdist is available, fall back to the
+   best wheel (preferring pure-python, then matching CPython version, then smallest size)
 3. When the input is a stubs package (`{project}-stubs` or `types-{project}`), also download the
-   base `{project}` sdist so that the stubs overlay can be merged with the original package (see
+   base `{project}` package so that the stubs overlay can be merged with the original package (see
    below)
 4. Compute the import graph using `ruff analyze graph`
 5. Filter to files transitively reachable from public modules (skip tests, tools, etc.)
