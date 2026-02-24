@@ -30,31 +30,10 @@ For a given PyPI project the tool runs an end-to-end pipeline:
 7. **Measure** — compute coverage and other statistics.
 8. **Export** — output the results for consumption by a website or dashboard.
 
-## Architecture & Key Modules
+## Contributing
 
-| Module            | Responsibility                                                                    |
-| ----------------- | --------------------------------------------------------------------------------- |
-| `_pypi.py`        | PyPI HTTP queries and sdist downloading                                           |
-| `_ruff.py`        | Subprocess wrapper around `ruff analyze graph`                                    |
-| `_typeshed.py`    | Typeshed-related helpers                                                          |
-| `analyze.py`      | `libcst`-based per-file symbol extraction (annotations, overloads, classes, etc.) |
-| `index.py`        | Cross-module import resolution, public API construction, stubs overlay merge      |
-| `report.py`       | Slot-level coverage reporting (`SymbolReport` protocol, module/package reports)   |
-| `typecheckers.py` | Detection of type-checker configs and strictness flags                            |
-
-## Conventions
-
-- **Python ≥ 3.14** — the project targets the latest Python, and can optionally run on a
-  free-threaded (e.g. `3.14t`) build for performance.
-- **Async IO** — all IO (HTTP, subprocesses, file reads) is async via `anyio` + `httpx` (HTTP/2).
-- **`libcst`** — used instead of `ast` because it preserves comments and formatting, which are
-  needed for detecting type-ignore directives and other metadata.
-- **Type-checking** — the project itself is strictly typed. Pyrefly and Pyright are both configured
-  in strict mode in `pyproject.toml`.
-- **Linting & formatting** — `ruff` for linting/formatting, `dprint` for non-Python formatting.
-- **Testing** — `pytest` with `--doctest-modules`. Test fixtures live in `tests/fixtures/` as small
-  installable packages.
-- **Builds** — managed with `uv` (`uv sync`, `uv run pytest`, etc.).
+- **Tests** — new features must include tests.
+- **Documentation** — non-obvious design choices should be documented in the README.
 
 ## Key Domain Concepts
 
@@ -66,7 +45,6 @@ For a given PyPI project the tool runs an end-to-end pipeline:
   annotated when their full signature (including overloads) is annotated.
 - **`__all__` resolution** — names in `__all__` that can't be resolved are treated as `UNKNOWN`,
   matching type-checker semantics.
-- **Stub priority** — when both `.py` and `.pyi` exist, only the `.pyi` is used.
 - **Stubs overlay** — a companion `{project}-stubs` package is merged with the original package.
   Stubs `.pyi` files take priority per-module. The public API is the union of symbols from both
   packages. Symbols present in the original but missing from stubs (in covered modules) are
