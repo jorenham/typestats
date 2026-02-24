@@ -1,4 +1,3 @@
-import csv
 import io
 import logging
 import os
@@ -10,7 +9,6 @@ from typing import TYPE_CHECKING, Any, Final, Literal, NotRequired, TypedDict
 import anyio
 import anyio.to_thread
 import httpx
-import mainpy
 from packaging.utils import parse_sdist_filename, parse_wheel_filename
 
 if TYPE_CHECKING:
@@ -22,15 +20,11 @@ __all__ = (
     "NoDistributionError",
     "download_latest",
     "fetch_project_detail",
-    "fetch_top_packages",
     "parse_file_version",
 )
 
 
 HOST: Final = httpx.URL("https://files.pythonhosted.org")
-TOP_30D: Final = httpx.URL(
-    "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.csv",
-)
 
 HEADERS_SIMPLE_API: Final = {
     "Host": "pypi.org",
@@ -92,11 +86,6 @@ ProjectDetail = TypedDict(
 )
 
 
-class TopPackage(TypedDict):
-    project: str
-    download_count: int
-
-
 _logger = logging.getLogger(__name__)
 
 
@@ -108,17 +97,6 @@ async def _get_json(client: httpx.AsyncClient, url: httpx.URL, /, **kwargs: Any)
     response = await client.get(url, **kwargs)
     response.raise_for_status()
     return response.json()
-
-
-async def _get_csv(
-    client: httpx.AsyncClient,
-    url: httpx.URL,
-    /,
-    **kwargs: Any,
-) -> list[dict[str, str]]:
-    response = await client.get(url, **kwargs)
-    response.raise_for_status()
-    return list(csv.DictReader(io.StringIO(response.text)))
 
 
 async def fetch_project_detail(
@@ -137,17 +115,6 @@ async def fetch_project_detail(
 
     data = await _get_json(client, url, headers=HEADERS_SIMPLE_API)
     return ProjectDetail(data)
-
-
-async def fetch_top_packages(client: httpx.AsyncClient, n: int, /) -> list[TopPackage]:
-    """Fetch the top *n* most-downloaded PyPI packages (over the last 30 days)."""
-    assert n > 0, "n must be a positive integer"
-    # the CSV is less than half the size of the minified JSON
-    data = await _get_csv(client, TOP_30D)
-    return [
-        {"project": r["project"], "download_count": int(r["download_count"])}
-        for r in data[:n]
-    ]
 
 
 def _latest_sdist(details: ProjectDetail, /) -> FileDetail:
@@ -285,26 +252,3 @@ async def download_latest(
 
     path = await _download_file(client, sdist, out_dir)
     return path, sdist
-
-
-@mainpy.main
-async def example() -> None:
-    from typestats._http import retry_client  # noqa: PLC0415
-
-    async with retry_client() as client:
-        if sys.argv[1:]:
-            project = sys.argv[1]
-            path, _ = await download_latest(client, project, "./projects")
-            print(f"Downloaded {project} to {path}")  # noqa: T201
-        else:
-            top_packages = await fetch_top_packages(client, 42)
-
-            wmax = max(len(pkg["project"]) for pkg in top_packages)
-            print("Rank", "Package".ljust(wmax + 2), "Downloads (30 days)")  # noqa: T201
-            for i, pkg in enumerate(top_packages, start=1):
-                dl = pkg["download_count"]
-                print(  # noqa: T201
-                    f"{i:4}",
-                    f"{pkg['project']:<{wmax + 2}}",
-                    f"{dl:14,}",
-                )
