@@ -1,0 +1,48 @@
+name: Collect
+
+on:
+  schedule:
+    # daily at 06:00 UTC
+    - cron: "0 6 * * *"
+  push:
+    branches: [main]
+    paths: [projects.toml]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: reports
+    steps:
+      - name: checkout main
+        uses: actions/checkout@v6.0.2
+
+      - name: checkout data
+        uses: actions/checkout@v6.0.2
+        with:
+          ref: data
+          path: _data
+
+      - uses: astral-sh/setup-uv@v7.3.0
+        with:
+          python-version: "3.14t"
+
+      - name: collect type-coverage data
+        run: uv run -m typestats collect --data-dir _data/reports
+
+      - name: Commit and push new data
+        uses: EndBug/add-and-commit@v9.1.4
+        with:
+          add: reports/
+          commit: --signoff
+          cwd: _data
+          default_author: github_actions
+          message: "Update type-coverage data"

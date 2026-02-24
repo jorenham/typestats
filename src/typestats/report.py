@@ -22,6 +22,8 @@ from pydantic import (
     Field,
     NonNegativeInt,
     computed_field,
+    field_serializer,
+    field_validator,
 )
 
 from typestats import analyze
@@ -342,6 +344,11 @@ class ModuleReport(BaseModel):
     def names(self) -> frozenset[str]:
         return frozenset(s.name for s in self.symbol_reports)
 
+    @field_serializer("names")
+    @staticmethod
+    def _serialize_names(val: frozenset[str]) -> list[str]:
+        return sorted(val)
+
     @computed_field
     @property
     def n_annotatable(self) -> NonNegativeInt:
@@ -438,6 +445,20 @@ class PackageReport(BaseModel):
     typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] = Field(
         default_factory=dict,
     )
+
+    @field_serializer("py_typed")
+    @staticmethod
+    def _serialize_py_typed(val: PyTyped) -> str:
+        return val.name
+
+    @field_validator("py_typed", mode="before")
+    @classmethod
+    def _validate_py_typed(cls, val: str | int | PyTyped) -> PyTyped:
+        if isinstance(val, str):
+            return PyTyped[val]
+        if isinstance(val, PyTyped):
+            return val
+        return PyTyped(val)
 
     @computed_field
     @property
