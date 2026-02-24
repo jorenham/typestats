@@ -9,7 +9,6 @@ from typing import TYPE_CHECKING, Any, Final, Literal, NotRequired, TypedDict
 import anyio
 import anyio.to_thread
 import httpx
-import mainpy
 from packaging.utils import parse_sdist_filename, parse_wheel_filename
 
 if TYPE_CHECKING:
@@ -253,13 +252,3 @@ async def download_latest(
 
     path = await _download_file(client, sdist, out_dir)
     return path, sdist
-
-
-@mainpy.main
-async def example() -> None:
-    from typestats._http import retry_client  # noqa: PLC0415
-
-    async with retry_client() as client:
-        project = sys.argv[1] if sys.argv[1:] else "numpy"
-        path, _ = await download_latest(client, project, "./projects")
-        print(f"Downloaded {project} to {path}")  # noqa: T201
