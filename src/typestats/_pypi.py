@@ -10,6 +10,7 @@ import anyio
 import anyio.to_thread
 import httpx
 from packaging.utils import parse_sdist_filename, parse_wheel_filename
+from packaging.version import Version
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
@@ -20,6 +21,7 @@ __all__ = (
     "NoDistributionError",
     "download_latest",
     "fetch_project_detail",
+    "latest_version",
     "parse_file_version",
 )
 
@@ -226,6 +228,19 @@ async def _download_file(
         _logger.info("Extracted %s into %s", filename, target_path)
 
     return target_path
+
+
+async def latest_version(client: httpx.AsyncClient, project_name: str, /) -> Version:
+    """Return the latest non-yanked version of a project without downloading it."""
+
+    detail = await fetch_project_detail(client, project_name)
+
+    try:
+        filename = _latest_sdist(detail)["filename"]
+    except NoDistributionError:
+        filename = _best_wheel(detail)["filename"]
+
+    return parse_file_version(filename)
 
 
 async def download_latest(

@@ -1,6 +1,39 @@
+import argparse
+
+import anyio
 from mainpy import main
 
 
 @main
-def app() -> None:
-    print("boing")  # noqa: T201
+async def app() -> None:
+    parser = argparse.ArgumentParser(
+        prog="typestats",
+        description="Type annotation coverage statistics for Python packages.",
+    )
+
+    sub = parser.add_subparsers(dest="command")
+    collect_p = sub.add_parser(
+        "collect",
+        help="Collect type-coverage report data for curated projects.",
+    )
+    collect_p.add_argument(
+        "--data-dir",
+        type=anyio.Path,
+        required=True,
+        help="Directory to write {package}/{version}.json files into.",
+    )
+    collect_p.add_argument(
+        "--projects",
+        type=anyio.Path,
+        default=None,
+        help="Path to projects TOML file (default: projects.toml in repo root).",
+    )
+
+    args = parser.parse_args()
+
+    if args.command == "collect":
+        from typestats.collect import collect_all  # noqa: PLC0415
+
+        await collect_all(args.data_dir, args.projects)
+    else:
+        parser.print_help()

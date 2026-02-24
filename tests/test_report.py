@@ -470,6 +470,63 @@ class TestPackageReport:
         assert r.type_ignores == (c1, c2, c3)
 
 
+class TestPackageReportJson:
+    """Validate JSON serialization round-trips correctly."""
+
+    @staticmethod
+    def _pkg(*symbols: Symbol) -> PackageReport:
+        mod = ModuleReport.from_symbols(
+            "mod.py",
+            list(symbols),
+            type_ignores=(
+                IgnoreComment("type", frozenset({"assignment", "override"})),
+                IgnoreComment("pyright", None),
+            ),
+        )
+        return PackageReport(
+            package="pkg",
+            module_reports=(mod,),
+            version="1.0.0",
+            py_typed=PyTyped.YES,
+            typecheckers={"mypy": {"strict": True}},
+        )
+
+    def test_round_trip(self) -> None:
+        """model_dump_json → model_validate_json should reproduce the report."""
+        report = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNKNOWN))
+        json_str = report.model_dump_json(indent=2)
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored == report
+
+    def test_py_typed_serializes_as_name(self) -> None:
+        report = self._pkg(Symbol("x", _INT))
+        data = report.model_dump(mode="json")
+        assert data["py_typed"] == "YES"
+
+    def test_py_typed_partial(self) -> None:
+        mod = ModuleReport.from_symbols("m.py", [Symbol("x", _INT)])
+        report = PackageReport(
+            package="p",
+            module_reports=(mod,),
+            version="0.1",
+            py_typed=PyTyped.PARTIAL,
+        )
+        data = report.model_dump(mode="json")
+        assert data["py_typed"] == "PARTIAL"
+        restored = PackageReport.model_validate(data)
+        assert restored.py_typed is PyTyped.PARTIAL
+
+    def test_names_sorted_in_json(self) -> None:
+        report = self._pkg(
+            Symbol("z_name", _INT),
+            Symbol("a_name", _INT),
+            Symbol("m_name", _INT),
+        )
+        data = report.model_dump(mode="json")
+        names = data["module_reports"][0]["names"]
+        assert names == sorted(names)
+
+
 class TestPackageReportFromPath:
     pytestmark = pytest.mark.anyio
 
