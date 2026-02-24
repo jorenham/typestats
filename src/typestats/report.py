@@ -560,8 +560,6 @@ class PackageReport(BaseModel):
         """
         import re
 
-        from packaging.utils import parse_sdist_filename
-
         from typestats import _pypi
 
         # Detect stubs package patterns:
@@ -574,11 +572,11 @@ class PackageReport(BaseModel):
             stubs_only = StubsOnly.THIRD_PARTY if m.group(1) else StubsOnly.TYPESHED
 
         if base_name is not None:
-            (base_path, _), (stubs_path, stubs_sdist) = await asyncio.gather(
-                _pypi.download_sdist_latest(client, base_name, out_dir),
-                _pypi.download_sdist_latest(client, project.name, out_dir),
+            (base_path, _), (stubs_path, stubs_file) = await asyncio.gather(
+                _pypi.download_latest(client, base_name, out_dir),
+                _pypi.download_latest(client, project.name, out_dir),
             )
-            _, stubs_ver = parse_sdist_filename(stubs_sdist["filename"])
+            stubs_ver = _pypi.parse_file_version(stubs_file["filename"])
             return await cls.from_path(
                 base_name,
                 base_path,
@@ -589,8 +587,8 @@ class PackageReport(BaseModel):
                 exclude=project.exclude,
             )
 
-        path, sdist = await _pypi.download_sdist_latest(client, project.name, out_dir)
-        _, ver = parse_sdist_filename(sdist["filename"])
+        path, dist_file = await _pypi.download_latest(client, project.name, out_dir)
+        ver = _pypi.parse_file_version(dist_file["filename"])
         return await cls.from_path(
             project.name,
             path,
