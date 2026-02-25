@@ -28,12 +28,20 @@ async def app() -> None:
         default=None,
         help="Path to projects TOML file (default: projects.toml in repo root).",
     )
+    collect_p.add_argument(
+        "--clean",
+        action="store_true",
+        default=False,
+        help="Remove all previously collected JSON files before collecting.",
+    )
 
     args = parser.parse_args()
 
     if args.command == "collect":
-        from typestats.collect import collect_all  # noqa: PLC0415
+        from typestats.collect import clean_data, collect_all  # noqa: PLC0415
 
+        if args.clean:
+            await clean_data(args.data_dir)
         await collect_all(args.data_dir, args.projects)
     else:
         parser.print_help()
