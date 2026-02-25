@@ -5,6 +5,7 @@ import os
 import sys
 import tarfile
 import zipfile
+from datetime import date
 from typing import TYPE_CHECKING, Any, Final, Literal, NotRequired, TypedDict
 
 import anyio
@@ -19,10 +20,12 @@ if TYPE_CHECKING:
 
 
 __all__ = (
+    "download_file",
     "download_latest",
     "fetch_project_detail",
     "latest_version",
     "parse_file_version",
+    "versions_since",
 )
 
 
@@ -207,10 +210,48 @@ async def _download_file(
     return target_path
 
 
+async def download_file(
+    client: httpx.AsyncClient,
+    file: FileDetail,
+    out_dir: StrPath,
+    /,
+) -> anyio.Path:
+    """Download and extract a distribution file into `out_dir`."""
+    return await _download_file(client, file, out_dir)
+
+
 async def latest_version(client: httpx.AsyncClient, project_name: str, /) -> Version:
     """Return the latest non-yanked version of a project without downloading it."""
     detail = await fetch_project_detail(client, project_name)
     return max(_best_distribution(detail))
+
+
+async def versions_since(
+    client: httpx.AsyncClient,
+    project_name: str,
+    since: date,
+    /,
+    *,
+    limit: int | None = None,
+) -> dict[Version, FileDetail]:
+    """Non-yanked final versions on or after `since`, with their best distribution.
+
+    Pre-releases are excluded.  When `limit` is set, only the most recent
+    `limit` versions are returned.
+    """
+    detail = await fetch_project_detail(client, project_name)
+    result: dict[Version, FileDetail] = {}
+    for version, file in _best_distribution(detail).items():
+        if version.is_prerelease:
+            continue
+        upload_time = file.get("upload-time")
+        if upload_time is not None and date.fromisoformat(upload_time[:10]) >= since:
+            result[version] = file
+
+    if limit is not None and len(result) > limit:
+        result = dict(sorted(result.items(), reverse=True)[:limit])
+
+    return result
 
 
 async def download_latest(

@@ -1,14 +1,16 @@
 """Batch collection of type-coverage data for curated projects."""
 
 import logging
+import re
+from datetime import date
 from typing import TYPE_CHECKING, Final
 
 import anyio
 
 from typestats._http import retry_client
-from typestats._pypi import latest_version
+from typestats._pypi import download_file, download_latest, versions_since
 from typestats.projects import load_projects
-from typestats.report import PackageReport
+from typestats.report import PackageReport, StubsOnly
 
 if TYPE_CHECKING:
     import httpx
@@ -22,6 +24,18 @@ __all__ = ("collect_all",)
 _logger: Final = logging.getLogger(__name__)
 _DEFAULT_PROJECTS: Final = anyio.Path(__file__).parents[2] / "projects.toml"
 
+BACKFILL_SINCE: Final = date(2025, 1, 1)
+BACKFILL_LIMIT: Final = 10
+
+
+def _stubs_info(project_name: str) -> tuple[str, StubsOnly] | None:
+    """Detect stubs package patterns and return `(base_name, stubs_only)`, or `None`."""
+    if m := re.match(r"^(?:(.+)-stubs|types-(.+))$", project_name):
+        base_name = m.group(1) or m.group(2)
+        stubs_only = StubsOnly.THIRD_PARTY if m.group(1) else StubsOnly.TYPESHED
+        return base_name, stubs_only
+    return None
+
 
 async def collect_project(
     project: Project,
@@ -29,28 +43,64 @@ async def collect_project(
     data_dir: anyio.Path,
     work_dir: anyio.Path,
     /,
-) -> anyio.Path | None:
-    """Collect type-coverage data for a single project.
+) -> list[anyio.Path]:
+    """Collect type-coverage data for all eligible versions of a project.
 
-    Returns the path of the written JSON file, or `None` if the latest version
-    was already collected.
+    Collects all versions uploaded on or after `BACKFILL_SINCE` that haven't
+    been collected yet.  Returns the paths of newly written JSON files.
     """
+    eligible = await versions_since(
+        client,
+        project.name,
+        BACKFILL_SINCE,
+        limit=BACKFILL_LIMIT,
+    )
+    stubs = _stubs_info(project.name)
 
-    version = await latest_version(client, project.name)
-    out = data_dir / project.name / f"{version}.json"
-    if await out.exists():
-        _logger.info("  %s %s - already collected, skipping", project.name, version)
-        return None
+    # For stubs packages, download the latest base package once (not per version).
+    base_path: anyio.Path | None = None
+    if stubs is not None:
+        base_path, _ = await download_latest(client, stubs[0], str(work_dir))
 
-    _logger.info("  %s %s - analyzing...", project.name, version)
-    report = await PackageReport.from_project(project, client, str(work_dir))
-    json_bytes = report.model_dump_json(indent=2).encode()
+    written: list[anyio.Path] = []
+    for version in sorted(eligible):
+        out = data_dir / project.name / f"{version}.json"
+        if await out.exists():
+            _logger.info("  %s %s - already collected, skipping", project.name, version)
+            continue
 
-    await out.parent.mkdir(parents=True, exist_ok=True)
-    await out.write_bytes(json_bytes)
-    _logger.info("  %s %s - wrote %s", project.name, version, out)
+        _logger.info("  %s %s - analyzing...", project.name, version)
+        file_detail = eligible[version]
 
-    return out
+        if stubs is not None:
+            assert base_path is not None
+            base_name, stubs_only = stubs
+            stubs_path = await download_file(client, file_detail, str(work_dir))
+            report = await PackageReport.from_path(
+                base_name,
+                base_path,
+                str(version),
+                stubs_path=stubs_path,
+                project=project.name,
+                stubs_only=stubs_only,
+                exclude=project.exclude,
+            )
+        else:
+            path = await download_file(client, file_detail, str(work_dir))
+            report = await PackageReport.from_path(
+                project.name,
+                path,
+                str(version),
+                exclude=project.exclude,
+            )
+
+        json_bytes = report.model_dump_json(indent=2).encode()
+        await out.parent.mkdir(parents=True, exist_ok=True)
+        await out.write_bytes(json_bytes)
+        _logger.info("  %s %s - wrote %s", project.name, version, out)
+        written.append(out)
+
+    return written
 
 
 async def collect_all(
@@ -60,8 +110,8 @@ async def collect_all(
 ) -> list[anyio.Path]:
     """Analyze every project in `projects_path` and write JSON reports.
 
-    Skips projects whose latest version has already been collected (i.e. the
-    output file already exists).  Returns the list of newly written files.
+    Collects all versions since `BACKFILL_SINCE` that haven't been collected
+    yet.  Returns the list of newly written files.
     """
 
     if projects_path is None:
@@ -75,8 +125,9 @@ async def collect_all(
         work_dir = anyio.Path(tmp)
 
         async def _collect(project: Project) -> None:
-            if path := await collect_project(project, client, data_dir, work_dir):
-                written.append(path)
+            written.extend(
+                await collect_project(project, client, data_dir, work_dir),
+            )
 
         async with anyio.create_task_group() as tg:
             for project in projects:
