@@ -291,3 +291,86 @@ class TestBackfillCutoff:
         assert len(results) == 2
         versions = {r.name.removesuffix(".json") for r in results}
         assert versions == {"1.0.0", "1.1.0"}
+
+    async def test_collects_stubs_project(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+    ) -> None:
+        """Stubs projects download base + stubs and produce correct metadata."""
+        stubs_name = "mypkg-stubs"
+        base_name = "mypkg"
+        stubs_version = "1.0.0"
+        base_version = "2.0.0"
+
+        # Mock versions_since for the stubs project
+        stubs_detail = {
+            "name": stubs_name,
+            "versions": [stubs_version],
+            "meta": {"api-version": "1.0"},
+            "files": [
+                {
+                    "filename": f"{stubs_name}-{stubs_version}.tar.gz",
+                    "hashes": {"sha256": "a"},
+                    "size": 0,
+                    "upload-time": "2025-06-01T00:00:00Z",
+                    "url": str(
+                        _PYPI_HOST.join(
+                            f"/packages/{stubs_name}-{stubs_version}.tar.gz",
+                        ),
+                    ),
+                },
+            ],
+        }
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{stubs_name}/"),
+            json=stubs_detail,
+        )
+
+        # Mock download_latest for the base project
+        base_detail = _pypi_detail_json(base_name, base_version)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{base_name}/"),
+            json=base_detail,
+        )
+        base_tar = _make_sdist_tar_gz(
+            base_name,
+            base_version,
+            _FIXTURES / "stubs_base",
+        )
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/packages/{base_name}-{base_version}.tar.gz"),
+            content=base_tar,
+        )
+
+        # Mock the stubs sdist download
+        stubs_tar = _make_sdist_tar_gz(
+            stubs_name,
+            stubs_version,
+            _FIXTURES / "stubs_overlay",
+        )
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(
+                f"/packages/{stubs_name}-{stubs_version}.tar.gz",
+            ),
+            content=stubs_tar,
+        )
+
+        project = Project(name=stubs_name)
+        data_dir = anyio.Path(tmp_path)
+        async with httpx.AsyncClient() as client:
+            results = await collect_project(
+                project,
+                client,
+                data_dir,
+                anyio.Path(tmp_path / "_work"),
+            )
+
+        assert len(results) == 1
+        result = results[0]
+        assert result == data_dir / stubs_name / f"{stubs_version}.json"
+
+        data = json.loads(await result.read_text())
+        assert data["package"] == stubs_name
+        assert data["version"] == stubs_version
+        assert data["stubs_only"] == "yes (third party)"

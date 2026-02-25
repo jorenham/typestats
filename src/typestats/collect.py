@@ -57,6 +57,11 @@ async def collect_project(
     )
     stubs = _stubs_info(project.name)
 
+    # For stubs packages, download the latest base package once (not per version).
+    base_path: anyio.Path | None = None
+    if stubs is not None:
+        base_path, _ = await download_latest(client, stubs[0], str(work_dir))
+
     written: list[anyio.Path] = []
     for version in sorted(eligible):
         out = data_dir / project.name / f"{version}.json"
@@ -68,9 +73,9 @@ async def collect_project(
         file_detail = eligible[version]
 
         if stubs is not None:
+            assert base_path is not None
             base_name, stubs_only = stubs
             stubs_path = await download_file(client, file_detail, str(work_dir))
-            base_path, _ = await download_latest(client, base_name, str(work_dir))
             report = await PackageReport.from_path(
                 base_name,
                 base_path,
