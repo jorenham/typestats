@@ -1,5 +1,6 @@
 """Batch collection of type-coverage data for curated projects."""
 
+import contextlib
 import logging
 import re
 from datetime import date
@@ -18,7 +19,7 @@ if TYPE_CHECKING:
 
     from typestats.projects import Project
 
-__all__ = ("collect_all",)
+__all__ = "clean_data", "collect_all"
 
 
 _logger: Final = logging.getLogger(__name__)
@@ -26,6 +27,33 @@ _DEFAULT_PROJECTS: Final = anyio.Path(__file__).parents[2] / "projects.toml"
 
 BACKFILL_SINCE: Final = date(2025, 1, 1)
 BACKFILL_LIMIT: Final = 10
+
+
+async def clean_data(data_dir: anyio.Path, /) -> int:
+    """Remove previously collected JSON files from `data_dir` and return the count."""
+    removed = 0
+
+    if not await data_dir.is_dir():
+        return removed
+
+    async for json_file in data_dir.rglob("*.json"):
+        await json_file.unlink()
+        removed += 1
+        _logger.debug("  removed %s", json_file)
+
+    # remove empty subdirectories
+    async for child in data_dir.iterdir():
+        if await child.is_dir():
+            with contextlib.suppress(OSError):
+                await child.rmdir()
+
+    _logger.info(
+        "Cleaned %d JSON %s from %s",
+        removed,
+        "file" if removed == 1 else "files",
+        data_dir,
+    )
+    return removed
 
 
 def _stubs_info(project_name: str) -> tuple[str, StubsOnly] | None:

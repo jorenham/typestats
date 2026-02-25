@@ -11,6 +11,7 @@ import httpx
 import pytest
 
 from typestats.collect import (
+    clean_data,
     collect_all,
     collect_project,
 )
@@ -374,3 +375,53 @@ class TestBackfillCutoff:
         assert data["package"] == stubs_name
         assert data["version"] == stubs_version
         assert data["stubs_only"] == "yes (third party)"
+
+
+class TestCleanData:
+    pytestmark = pytest.mark.anyio
+
+    async def test_removes_json_files(self, tmp_path: Path) -> None:
+        """All .json files under data_dir are removed."""
+        pkg_dir = tmp_path / "mypkg"
+        pkg_dir.mkdir()
+        (pkg_dir / "1.0.0.json").write_text("{}")
+        (pkg_dir / "2.0.0.json").write_text("{}")
+
+        removed = await clean_data(anyio.Path(tmp_path))
+
+        assert removed == 2
+        assert not (pkg_dir / "1.0.0.json").exists()
+        assert not (pkg_dir / "2.0.0.json").exists()
+
+    async def test_removes_empty_subdirs(self, tmp_path: Path) -> None:
+        """Empty package directories are cleaned up after removing JSON files."""
+        pkg_dir = tmp_path / "mypkg"
+        pkg_dir.mkdir()
+        (pkg_dir / "1.0.0.json").write_text("{}")
+
+        await clean_data(anyio.Path(tmp_path))
+
+        assert not pkg_dir.exists()
+
+    async def test_keeps_nonempty_subdirs(self, tmp_path: Path) -> None:
+        """Subdirectories with non-JSON files are kept."""
+        pkg_dir = tmp_path / "mypkg"
+        pkg_dir.mkdir()
+        (pkg_dir / "1.0.0.json").write_text("{}")
+        (pkg_dir / "notes.txt").write_text("keep me")
+
+        await clean_data(anyio.Path(tmp_path))
+
+        assert pkg_dir.exists()
+        assert not (pkg_dir / "1.0.0.json").exists()
+        assert (pkg_dir / "notes.txt").exists()
+
+    async def test_nonexistent_dir(self, tmp_path: Path) -> None:
+        """Returns 0 when data_dir does not exist."""
+        removed = await clean_data(anyio.Path(tmp_path / "nope"))
+        assert removed == 0
+
+    async def test_empty_dir(self, tmp_path: Path) -> None:
+        """Returns 0 when data_dir contains no JSON files."""
+        removed = await clean_data(anyio.Path(tmp_path))
+        assert removed == 0
