@@ -7,6 +7,9 @@ on:
   push:
     branches: [main]
     paths: [projects.toml]
+  pull_request:
+    branches: [main]
+    types: [closed]
   workflow_dispatch:
 
 permissions:
@@ -18,6 +21,9 @@ concurrency:
 
 jobs:
   collect:
+    if: >-
+      github.event_name != 'pull_request'
+      || (github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'cmd: recollect'))
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: reports
@@ -36,7 +42,9 @@ jobs:
           python-version: "3.14t"
 
       - name: collect type-coverage data
-        run: uv run -m typestats collect --data-dir _data/reports
+        run: >-
+          uv run -m typestats collect --data-dir _data/reports
+          ${{ github.event_name == 'pull_request' && '--clean' || '' }}
 
       - name: Commit and push new data
         uses: EndBug/add-and-commit@v9.1.4
