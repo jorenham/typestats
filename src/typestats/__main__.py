@@ -1,3 +1,5 @@
+# ruff: noqa: PLC0415
+
 import argparse
 
 import anyio
@@ -12,6 +14,7 @@ async def app() -> None:
     )
 
     sub = parser.add_subparsers(dest="command")
+
     collect_p = sub.add_parser(
         "collect",
         help="Collect type-coverage report data for curated projects.",
@@ -35,13 +38,44 @@ async def app() -> None:
         help="Remove all previously collected JSON files before collecting.",
     )
 
+    dashboard_p = sub.add_parser(
+        "dashboard",
+        help="Build the markdown index page from collected data.",
+    )
+    dashboard_p.add_argument(
+        "--data-dir",
+        type=anyio.Path,
+        required=True,
+        help="Directory containing collected {package}/{version}.json files.",
+    )
+    dashboard_p.add_argument(
+        "--site-dir",
+        type=anyio.Path,
+        required=True,
+        help="Output directory for generated markdown pages.",
+    )
+    dashboard_p.add_argument(
+        "--projects",
+        type=anyio.Path,
+        default=None,
+        help="Path to projects TOML file (default: projects.toml in repo root).",
+    )
+
     args = parser.parse_args()
 
-    if args.command == "collect":
-        from typestats.collect import clean_data, collect_all  # noqa: PLC0415
+    match args.command:
+        case "collect":
+            from typestats.collect import clean_data, collect_all
 
-        if args.clean:
-            await clean_data(args.data_dir)
-        await collect_all(args.data_dir, args.projects)
-    else:
-        parser.print_help()
+            if args.clean:
+                await clean_data(args.data_dir)
+
+            await collect_all(args.data_dir, args.projects)
+
+        case "dashboard":
+            from typestats.dashboard import build_site
+
+            await build_site(args.data_dir, args.site_dir, args.projects)
+
+        case _:
+            parser.print_help()
