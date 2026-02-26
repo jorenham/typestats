@@ -24,12 +24,19 @@ dependencies = [
   "mainpy>=1.5,<2", # like `if __name__ == "__main__": ...` but Pythonic
   "anyio>=4.12.1,<5", # like asyncio but with a decent API (asyncio is a mess)
   "uvloop>=0.22.1,<1; sys_platform != 'win32'",
-  "httpx[http2]>=0.28.1,<1", # like requests but modern and with async support
-  "httpx-retries>=0.4.6",
-  "packaging>=26.0",
   "libcst>=1.8.6,<2", # like ast but preservers comments/formatting and other goodies
   "pydantic>=2.12.5,<3",
   "ruff>=0.15.2,<1",
+]
+
+[project.optional-dependencies]
+pypi = [
+  "httpx[http2]>=0.28.1,<1", # like requests but modern and with async support
+  "httpx-retries>=0.4.6",
+  "packaging>=26.0",
+]
+docs = [
+  "packaging>=26.0",
   "tabulate>=0.9.0,<1",
 ]
 
@@ -38,6 +45,7 @@ typestats = "typestats:__main__.app"
 
 [dependency-groups]
 test = [
+  "typestats[pypi,docs]",
   "pytest>=9.0.2",
   "pytest-httpx>=0.36.0,<1",
   "test-project",
