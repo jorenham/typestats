@@ -1,0 +1,70 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**
+      - .github/workflows/docs.yml
+      - projects.toml
+      - uv.lock
+      - zensical.toml
+  workflow_run:
+    workflows: [Collect]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: checkout main
+        uses: actions/checkout@v6.0.2
+
+      - name: checkout data
+        uses: actions/checkout@v6.0.2
+        with:
+          ref: data
+          path: _data
+
+      - uses: actions/configure-pages@v5
+
+      - uses: astral-sh/setup-uv@v7.3.0
+        with:
+          python-version: "3.14"
+
+      - name: Build dashboard table
+        run: >-
+          uv run -m typestats
+          dashboard
+          --data-dir _data/reports
+          --site-dir _site
+          --projects projects.toml
+
+      - name: build site
+        run: uv run zensical build --clean
+
+      - uses: actions/upload-pages-artifact@v4.0.0
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4.0.5
