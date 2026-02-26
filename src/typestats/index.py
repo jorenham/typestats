@@ -349,6 +349,40 @@ def _unfold_any(
             return type_
 
 
+def _resolve_package_name(package_name: str, top_level: frozenset[str]) -> str | None:
+    """Resolve a PyPI project name to its top-level Python import name.
+
+    Tries, in order:
+    1. Hyphen-to-underscore normalisation (`more-itertools` -> `more_itertools`).
+    2. If the sdist contains exactly one public (non-underscore) top-level
+       package, use that (`pillow` -> `PIL`, `beautifulsoup4` -> `bs4`).
+
+    Returns `None` when resolution fails, which disables filtering so all
+    public modules are analysed.
+    """
+    normalized = package_name.replace("-", "_")
+    if normalized in top_level:
+        return normalized
+
+    public = {t for t in top_level if not t.startswith("_")}
+    if len(public) == 1:
+        resolved = next(iter(public))
+        _logger.info(
+            "Resolved package_name %r -> %r (sole public top-level module)",
+            package_name,
+            resolved,
+        )
+        return resolved
+
+    _logger.warning(
+        "Could not resolve package_name %r to a top-level module "
+        "(found: %s); analysing all public modules",
+        package_name,
+        ", ".join(sorted(public)) or "(none)",
+    )
+    return None
+
+
 def _is_public_module(module_path: str, /) -> bool:
     """Check if all parts of a dotted module path are public."""
     return all(not part.startswith("_") for part in module_path.split("."))
@@ -384,20 +418,32 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     module_paths = sources_to_module_paths(sources)
 
-    if package_name is not None:
-        module_paths = {
-            m: ps
-            for m, ps in module_paths.items()
-            if m.split(".", 1)[0] == package_name
-        }
-
+    # Compute top_level from ALL discovered modules (used for auto-resolving
+    # package_name).  A narrower `in_scope` set is derived below for wildcard
+    # traversal and EXTERNAL-vs-UNKNOWN decisions so that unrelated packages
+    # bundled in the same sdist are not accidentally treated as internal.
     top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
 
-    # Step 1: Parse all modules, build flat symbol table (fqn → (path, type))
-    # TODO(@jorenham): use anyio.to_thread to avoid blocking the event loop with
+    # Auto-resolve package_name when it doesn't match any top-level module.
+    # Handles PyPI names that differ from the Python import name, e.g.
+    # - "pillow" -> "PIL"
+    # - "beautifulsoup4" -> "bs4"
+    # - "more-itertools" -> "more_itertools"
+    if package_name is not None and package_name not in top_level:
+        package_name = _resolve_package_name(package_name, top_level)
+
+    # Scope for wildcard traversal and EXTERNAL-vs-UNKNOWN: only the target
+    # package and its private companion (e.g. pytest + _pytest).
+    in_scope = (
+        frozenset({package_name, f"_{package_name}"})
+        if package_name is not None
+        else top_level
+    )
+
+    # Step 1: Parse all modules, build flat symbol table (fqn -> (path, type))
     all_local: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
     module_data: dict[str, dict[anyio.Path, analyze.ModuleSymbols]] = {}
-    module_locals: dict[str, dict[str, str]] = {}  # mod → {name: fqn}
+    module_locals: dict[str, dict[str, str]] = {}  # mod -> {name: fqn}
     for mod, paths in module_paths.items():
         entries: dict[anyio.Path, analyze.ModuleSymbols] = {}
         local: dict[str, str] = {}
@@ -506,7 +552,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
         wc: dict[str, str] = {}
         for wc_mod in wc_mods:
-            if wc_mod.split(".", 1)[0] in top_level:
+            if wc_mod.split(".", 1)[0] in in_scope:
                 for name, origin in module_exports(wc_mod).items():
                     wc.setdefault(name, origin)
 
@@ -545,6 +591,8 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     for mod, entries in module_data.items():
         if not _is_public_module(mod):
             continue
+        if package_name is not None and mod.split(".", 1)[0] != package_name:
+            continue
         first_path = next(iter(entries))
         for name, origin in module_exports(mod).items():
             if origin in module_data:
@@ -565,7 +613,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
             else:
                 type_ = (
                     analyze.EXTERNAL
-                    if origin.split(".", 1)[0] not in top_level
+                    if origin.split(".", 1)[0] not in in_scope
                     else analyze.UNKNOWN
                 )
                 public.setdefault(f"{mod}.{name}", (first_path, type_))
@@ -584,9 +632,18 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     elapsed = time.perf_counter() - t0
     _logger.info("collect_public_symbols: %.2fs", elapsed)
 
-    # Use sources from the (possibly filtered) module_paths so that
-    # get_py_typed sees the package root, not the sdist root.
-    filtered_sources = list(chain.from_iterable(module_paths.values()))
+    # Use sources from the target package so that get_py_typed sees
+    # the package root, not the sdist root.
+    if package_name is not None:
+        filtered_sources = list(
+            chain.from_iterable(
+                ps
+                for m, ps in module_paths.items()
+                if m.split(".", 1)[0] == package_name
+            ),
+        )
+    else:
+        filtered_sources = list(chain.from_iterable(module_paths.values()))
 
     return PublicSymbols(
         symbols=dict(result),
@@ -602,17 +659,17 @@ def merge_stubs_overlay(
     """Merge a stubs-only package overlay with original package symbols.
 
     Both *original* and *stubs* must be produced by `collect_public_symbols`
-    with ``trace_origins=False`` so that symbol FQNs are public import names
+    with `trace_origins=False` so that symbol FQNs are public import names
     and paths point to the public module file (not origin files).
 
     Stubs types take priority.  Original symbols whose modules are covered by
-    stubs but that are absent from those stubs are marked ``UNKNOWN`` (matching
-    type-checker behaviour: stubs shadow the ``.py``) and are consolidated
+    stubs but that are absent from those stubs are marked `UNKNOWN` (matching
+    type-checker behaviour: stubs shadow the `.py`) and are consolidated
     under the stubs path.  Original symbols whose modules are *not* covered by
-    stubs retain their original types (the type-checker falls back to the
-    ``.py``).
+    stubs retain their original types (the type-checker falls back to the `.py`).
     """
-    # Flatten stubs to {fqn: (path, type)} and build module → stubs-path map
+
+    # Flatten stubs to {fqn: (path, type)} and build module -> stubs-path map
     stubs_flat: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
     stubs_mod_path: dict[str, anyio.Path] = {}
     for path, syms in stubs.items():
@@ -631,7 +688,7 @@ def merge_stubs_overlay(
             if sym.name not in merged:
                 mod = sym.name.rsplit(".", 1)[0]
                 if mod in stubs_modules:
-                    # Module covered by stubs but symbol missing → UNKNOWN,
+                    # Module covered by stubs but symbol missing -> UNKNOWN,
                     # consolidated under the stubs path for this module
                     merged[sym.name] = (stubs_mod_path[mod], analyze.UNKNOWN)
                 else:
