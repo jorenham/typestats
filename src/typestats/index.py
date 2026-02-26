@@ -384,13 +384,9 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     module_paths = sources_to_module_paths(sources)
 
-    if package_name is not None:
-        module_paths = {
-            m: ps
-            for m, ps in module_paths.items()
-            if m.split(".", 1)[0] == package_name
-        }
-
+    # Compute top_level from ALL discovered modules so that private
+    # companion packages (e.g. _pytest for pytest) are not treated as
+    # external.  The package_name filter is applied later in Step 3.
     top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
 
     # Step 1: Parse all modules, build flat symbol table (fqn → (path, type))
@@ -545,6 +541,8 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     for mod, entries in module_data.items():
         if not _is_public_module(mod):
             continue
+        if package_name is not None and mod.split(".", 1)[0] != package_name:
+            continue
         first_path = next(iter(entries))
         for name, origin in module_exports(mod).items():
             if origin in module_data:
@@ -584,9 +582,18 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     elapsed = time.perf_counter() - t0
     _logger.info("collect_public_symbols: %.2fs", elapsed)
 
-    # Use sources from the (possibly filtered) module_paths so that
-    # get_py_typed sees the package root, not the sdist root.
-    filtered_sources = list(chain.from_iterable(module_paths.values()))
+    # Use sources from the target package so that get_py_typed sees
+    # the package root, not the sdist root.
+    if package_name is not None:
+        filtered_sources = list(
+            chain.from_iterable(
+                ps
+                for m, ps in module_paths.items()
+                if m.split(".", 1)[0] == package_name
+            ),
+        )
+    else:
+        filtered_sources = list(chain.from_iterable(module_paths.values()))
 
     return PublicSymbols(
         symbols=dict(result),

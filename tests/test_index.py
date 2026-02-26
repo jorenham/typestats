@@ -819,3 +819,34 @@ class TestExcludeGlobs:
         assert not any("/mylib/" in str(s) for s in filtered)
         # Other packages should still be present
         assert any("/mylib_pyi/" in str(s) for s in filtered)
+
+    async def test_package_name_private_companion(self, tmp_path: Path) -> None:
+        """Private companion packages (e.g. _pytest) should not be treated
+        as external when using package_name filtering (GH src-layout)."""
+        # Simulate a src-layout: src/mypkg/__init__.py re-exports from src/_mypkg/
+        src = tmp_path / "src"
+        pkg = src / "mypkg"
+        pkg.mkdir(parents=True)
+        (pkg / "__init__.py").write_text(
+            '__all__ = ["greet", "helper"]\n'
+            "from _mypkg import greet\n"
+            "from _mypkg.utils import helper\n",
+        )
+
+        _pkg = src / "_mypkg"  # noqa: RUF052
+        _pkg.mkdir()
+        (_pkg / "__init__.py").write_text("from ._impl import greet\n")
+        (_pkg / "_impl.py").write_text("def greet(name: str) -> str: ...\n")
+        (_pkg / "utils.py").write_text("def helper(x: int) -> int: ...\n")
+
+        pub = await collect_public_symbols(src, package_name="mypkg")
+        types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
+
+        # Symbols traced to _mypkg should be resolved, not EXTERNAL
+        assert any("greet" in n for n in types), f"missing greet in {types}"
+        assert any("helper" in n for n in types), f"missing helper in {types}"
+
+        for name, ty in types.items():
+            if "greet" in name or "helper" in name:
+                assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
+                assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
