@@ -163,6 +163,18 @@ class TestBestDistribution:
         best = _best_distribution(detail)
         assert best[Version("1.0.0")]["filename"] == "pkg-1.0.0-py3-none-any.whl"
 
+    def test_skips_invalid_filenames(self) -> None:
+        detail = _detail(
+            "nltk",
+            [
+                _file("nltk-2.0.1rc2-git.tar.gz", size=100),
+                _file("nltk-3.9.1.tar.gz", size=200),
+            ],
+        )
+        best = _best_distribution(detail)
+        assert Version("3.9.1") in best
+        assert len(best) == 1
+
 
 class TestParseFileVersion:
     def test_sdist_tar_gz(self) -> None:

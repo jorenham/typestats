@@ -1,6 +1,7 @@
 import io
 import itertools
 import logging
+import operator
 import os
 import sys
 import tarfile
@@ -11,7 +12,12 @@ from typing import TYPE_CHECKING, Any, Final, Literal, NotRequired, TypedDict
 import anyio
 import anyio.to_thread
 import httpx
-from packaging.utils import parse_sdist_filename, parse_wheel_filename
+from packaging.utils import (
+    InvalidSdistFilename,
+    InvalidWheelFilename,
+    parse_sdist_filename,
+    parse_wheel_filename,
+)
 from packaging.version import Version
 
 if TYPE_CHECKING:
@@ -145,13 +151,18 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
         matches_cp = any(t.interpreter.startswith(cp_tag) for t in tags)
         return 0 if is_pure else 1, 0 if matches_cp else 1, f["size"]
 
-    def _version(f: FileDetail, /) -> Version:
-        return parse_file_version(f["filename"])
+    def _version(f: FileDetail, /) -> Version | None:
+        try:
+            return parse_file_version(f["filename"])
+        except InvalidSdistFilename, InvalidWheelFilename:
+            _logger.debug("Skipping file with invalid name: %s", f["filename"])
+            return None
 
-    files.sort(key=_version)
+    versioned = [(f, v) for f in files if (v := _version(f)) is not None]
+    versioned.sort(key=operator.itemgetter(1))
     return {
-        version: min(group, key=_rank)
-        for version, group in itertools.groupby(files, key=_version)
+        version: min((f for f, _ in group), key=_rank)
+        for version, group in itertools.groupby(versioned, key=operator.itemgetter(1))
     }
 
 
