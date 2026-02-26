@@ -105,6 +105,17 @@ class TestExports:
         exports = collect_symbols(src).exports_explicit
         assert exports == {"a", "b", "c"}
 
+    def test_explicit_delegated_to_module_all(self) -> None:
+        """__all__ = mod.__all__ should mark exports as explicit+dynamic."""
+        src = textwrap.dedent("""
+        import regex._main
+        from regex._main import *
+        __all__ = regex._main.__all__
+        """)
+        result = collect_symbols(src, package_name="regex")
+        assert result.exports_explicit == frozenset()
+        assert result.exports_explicit_dynamic == ("regex._main",)
+
     def test_explicit_missing(self) -> None:
         src = """a = 1"""
         exports = collect_symbols(src).exports_explicit

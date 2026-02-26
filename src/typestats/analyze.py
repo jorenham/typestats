@@ -1113,10 +1113,18 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         value = node.value
         targets = [target.target for target in node.targets]
 
-        # Exports: detect `__all__ = [...]`
+        # Exports: detect `__all__ = [...]` and `__all__ = mod.__all__`
 
         if not self.has_explicit_all and any(map(_is_all_target, targets)):
             self.has_explicit_all = True
+
+            # Handle `__all__ = mod.__all__` (dynamic delegation)
+            if (
+                isinstance(value, cst.Attribute)
+                and value.attr.value == _ALL
+                and (source_name := get_full_name_for_node(value.value))
+            ):
+                self.all_sources.append(source_name)
 
         for target in targets:
             self._handle_assign_target_exports(target, value)
