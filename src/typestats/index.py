@@ -349,6 +349,40 @@ def _unfold_any(
             return type_
 
 
+def _resolve_package_name(package_name: str, top_level: frozenset[str]) -> str | None:
+    """Resolve a PyPI project name to its top-level Python import name.
+
+    Tries, in order:
+    1. Hyphen-to-underscore normalisation (`more-itertools` → `more_itertools`).
+    2. If the sdist contains exactly one public (non-underscore) top-level
+       package, use that (`pillow` → `PIL`, `beautifulsoup4` → `bs4`).
+
+    Returns `None` when resolution fails, which disables filtering so all
+    public modules are analysed.
+    """
+    normalized = package_name.replace("-", "_")
+    if normalized in top_level:
+        return normalized
+
+    public = {t for t in top_level if not t.startswith("_")}
+    if len(public) == 1:
+        resolved = next(iter(public))
+        _logger.info(
+            "Resolved package_name %r → %r (sole public top-level module)",
+            package_name,
+            resolved,
+        )
+        return resolved
+
+    _logger.warning(
+        "Could not resolve package_name %r to a top-level module "
+        "(found: %s); analysing all public modules",
+        package_name,
+        ", ".join(sorted(public)) or "(none)",
+    )
+    return None
+
+
 def _is_public_module(module_path: str, /) -> bool:
     """Check if all parts of a dotted module path are public."""
     return all(not part.startswith("_") for part in module_path.split("."))
@@ -388,6 +422,14 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     # companion packages (e.g. _pytest for pytest) are not treated as
     # external.  The package_name filter is applied later in Step 3.
     top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
+
+    # Auto-resolve package_name when it doesn't match any top-level module.
+    # Handles PyPI names that differ from the Python import name, e.g.
+    # - "pillow" -> "PIL"
+    # - "beautifulsoup4" -> "bs4"
+    # - "more-itertools" -> "more_itertools"
+    if package_name is not None and package_name not in top_level:
+        package_name = _resolve_package_name(package_name, top_level)
 
     # Step 1: Parse all modules, build flat symbol table (fqn → (path, type))
     # TODO(@jorenham): use anyio.to_thread to avoid blocking the event loop with
@@ -609,16 +651,16 @@ def merge_stubs_overlay(
     """Merge a stubs-only package overlay with original package symbols.
 
     Both *original* and *stubs* must be produced by `collect_public_symbols`
-    with ``trace_origins=False`` so that symbol FQNs are public import names
+    with `trace_origins=False` so that symbol FQNs are public import names
     and paths point to the public module file (not origin files).
 
     Stubs types take priority.  Original symbols whose modules are covered by
-    stubs but that are absent from those stubs are marked ``UNKNOWN`` (matching
-    type-checker behaviour: stubs shadow the ``.py``) and are consolidated
+    stubs but that are absent from those stubs are marked `UNKNOWN` (matching
+    type-checker behaviour: stubs shadow the `.py`) and are consolidated
     under the stubs path.  Original symbols whose modules are *not* covered by
-    stubs retain their original types (the type-checker falls back to the
-    ``.py``).
+    stubs retain their original types (the type-checker falls back to the `.py`).
     """
+
     # Flatten stubs to {fqn: (path, type)} and build module → stubs-path map
     stubs_flat: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
     stubs_mod_path: dict[str, anyio.Path] = {}

@@ -11,6 +11,7 @@ from typestats.index import (
     _EXCLUDED_FILE_NAMES,
     PyTyped,
     _resolve_expr_name,
+    _resolve_package_name,
     _resolves_to_any,
     collect_public_symbols,
     get_py_typed,
@@ -341,6 +342,40 @@ class TestResolveExprName:
         expected: str,
     ) -> None:
         assert _resolve_expr_name(name, imports, module) == expected
+
+
+class TestResolvePackageName:
+    @pytest.mark.parametrize(
+        ("name", "top_level", "expected"),
+        [
+            # Exact match — no resolution needed, never called
+            # Hyphen-to-underscore
+            ("more-itertools", {"more_itertools"}, "more_itertools"),
+            # Sole public top-level module
+            ("pillow", {"PIL"}, "PIL"),
+            ("beautifulsoup4", {"bs4"}, "bs4"),
+            ("pyyaml", {"yaml", "_yaml"}, "yaml"),
+            # Multiple public modules — falls back to None
+            ("ambiguous", {"pkg_a", "pkg_b"}, None),
+            # No public modules — falls back to None
+            ("hidden", {"_internal"}, None),
+        ],
+        ids=[
+            "hyphen_normalize",
+            "sole_public_PIL",
+            "sole_public_bs4",
+            "sole_public_with_private",
+            "multiple_public",
+            "no_public",
+        ],
+    )
+    def test_resolve(
+        self,
+        name: str,
+        top_level: set[str],
+        expected: str | None,
+    ) -> None:
+        assert _resolve_package_name(name, frozenset(top_level)) == expected
 
 
 class TestResolvesToAny:
@@ -850,3 +885,41 @@ class TestExcludeGlobs:
             if "greet" in name or "helper" in name:
                 assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
                 assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
+
+    async def test_package_name_different_import_name(self, tmp_path: Path) -> None:
+        """package_name is auto-resolved when the PyPI name differs from the
+        Python import name (e.g. pillow → PIL)."""
+        pil = tmp_path / "PIL"
+        pil.mkdir()
+        (pil / "__init__.py").write_text(
+            '__all__ = ["Image"]\nfrom .Image import Image\n',
+        )
+        (pil / "Image.py").write_text(
+            "class Image:\n    width: int\n    height: int\n",
+        )
+
+        # Pass the PyPI name, not the import name — auto-detection should
+        # resolve "pillow" to the sole public top-level module "PIL".
+        pub = await collect_public_symbols(tmp_path, package_name="pillow")
+        types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
+
+        assert types, "expected symbols from PIL package"
+        assert any("Image" in n for n in types), f"missing Image in {types}"
+
+        # Ensure nothing is UNKNOWN or EXTERNAL
+        for name, ty in types.items():
+            if "Image" in name:
+                assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
+                assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
+
+    async def test_package_name_hyphen_normalization(self, tmp_path: Path) -> None:
+        """PyPI names with hyphens are auto-resolved to underscored imports
+        (e.g. more-itertools → more_itertools)."""
+        pkg = tmp_path / "more_itertools"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("def chunked(it: list, n: int) -> list: ...\n")
+
+        pub = await collect_public_symbols(tmp_path, package_name="more-itertools")
+        types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
+
+        assert any("chunked" in n for n in types), f"missing chunked in {types}"
