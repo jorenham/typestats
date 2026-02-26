@@ -418,9 +418,10 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     module_paths = sources_to_module_paths(sources)
 
-    # Compute top_level from ALL discovered modules so that private
-    # companion packages (e.g. _pytest for pytest) are not treated as
-    # external.  The package_name filter is applied later in Step 3.
+    # Compute top_level from ALL discovered modules (used for auto-resolving
+    # package_name).  A narrower `in_scope` set is derived below for wildcard
+    # traversal and EXTERNAL-vs-UNKNOWN decisions so that unrelated packages
+    # bundled in the same sdist are not accidentally treated as internal.
     top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
 
     # Auto-resolve package_name when it doesn't match any top-level module.
@@ -430,6 +431,14 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     # - "more-itertools" -> "more_itertools"
     if package_name is not None and package_name not in top_level:
         package_name = _resolve_package_name(package_name, top_level)
+
+    # Scope for wildcard traversal and EXTERNAL-vs-UNKNOWN: only the target
+    # package and its private companion (e.g. pytest + _pytest).
+    in_scope = (
+        frozenset({package_name, f"_{package_name}"})
+        if package_name is not None
+        else top_level
+    )
 
     # Step 1: Parse all modules, build flat symbol table (fqn -> (path, type))
     all_local: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
@@ -543,7 +552,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
         wc: dict[str, str] = {}
         for wc_mod in wc_mods:
-            if wc_mod.split(".", 1)[0] in top_level:
+            if wc_mod.split(".", 1)[0] in in_scope:
                 for name, origin in module_exports(wc_mod).items():
                     wc.setdefault(name, origin)
 
@@ -604,7 +613,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
             else:
                 type_ = (
                     analyze.EXTERNAL
-                    if origin.split(".", 1)[0] not in top_level
+                    if origin.split(".", 1)[0] not in in_scope
                     else analyze.UNKNOWN
                 )
                 public.setdefault(f"{mod}.{name}", (first_path, type_))

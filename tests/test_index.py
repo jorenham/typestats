@@ -348,7 +348,6 @@ class TestResolvePackageName:
     @pytest.mark.parametrize(
         ("name", "top_level", "expected"),
         [
-            # Exact match — no resolution needed, never called
             # Hyphen-to-underscore
             ("more-itertools", {"more_itertools"}, "more_itertools"),
             # Sole public top-level module
