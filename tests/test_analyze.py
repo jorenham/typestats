@@ -38,6 +38,18 @@ class TestEmptySource:
         assert result.type_check_only == frozenset()
 
 
+class TestRecursionError:
+    def test_deeply_nested_source_returns_empty(self) -> None:
+        """Deeply nested expressions should not crash; return empty symbols."""
+        from unittest.mock import patch  # noqa: PLC0415
+
+        source = "x = 1"
+        with patch("libcst.Module.visit", side_effect=RecursionError):
+            result = collect_symbols(source)
+        assert result.symbols == ()
+        assert result.type_aliases == ()
+
+
 class TestImports:
     def test_basic(self) -> None:
         src = textwrap.dedent("""
