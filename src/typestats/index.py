@@ -88,8 +88,6 @@ _ANY_FQNS: Final[frozenset[str]] = frozenset({
     "_typeshed.sentinel",
     "_typeshed.AnnotationForm",
 })
-# FQNs that are considered equivalent to `Any` only in input positions.
-_PARAM_ANY_FQNS: Final[frozenset[str]] = frozenset({"builtins.object"})
 
 
 def _is_public(name: str) -> bool:
@@ -292,13 +290,7 @@ def _unfold_overload(
             analyze.Param(
                 p.name,
                 p.kind,
-                _unfold_any(
-                    p.annotation,
-                    import_map,
-                    mod,
-                    alias_targets,
-                    is_param=True,
-                ),
+                _unfold_any(p.annotation, import_map, mod, alias_targets),
             )
             for p in overload.params
         ),
@@ -317,22 +309,16 @@ def _unfold_accessor(
     return _unfold_overload(acc, import_map, mod, alias_targets)
 
 
-def _unfold_any(  # noqa: PLR0911
+def _unfold_any(
     type_: analyze.TypeForm,
     import_map: Mapping[str, str],
     mod: str,
     alias_targets: Mapping[str, str],
-    *,
-    is_param: bool = False,
 ) -> analyze.TypeForm:
     """Replace `Expr` annotations that resolve to `Any` with `ANY`.
 
     Walks *type_* recursively so that function parameters, return types, and
     class members are all checked.
-
-    When *is_param* is `True`, annotations in `_PARAM_ANY_FQNS` (e.g.
-    `typing.Any`) are also replaced with `ANY`, or when it is the (unimported) builtin
-    name `object`.
     """
     match type_:
         case analyze.Expr(expr=expr):
@@ -340,11 +326,6 @@ def _unfold_any(  # noqa: PLR0911
             if name is not None:
                 fqn = _resolve_expr_name(name, import_map, mod)
                 if _resolves_to_any(fqn, alias_targets):
-                    return analyze.ANY
-                if is_param and (
-                    fqn in _PARAM_ANY_FQNS
-                    or (name == "object" and name not in import_map)
-                ):
                     return analyze.ANY
             return type_
         case analyze.Function(name=fn_name, overloads=overloads):
@@ -446,8 +427,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     # Build a table mapping type-alias FQNs to the FQN of their RHS
     # value, then walk every entry in `all_local` and replace any
     # `Expr` annotation that resolves to `typing.Any` (directly or
-    # through alias chains) with `ANY`.  Also treats `object` in
-    # input (parameter) positions as `ANY`.
+    # through alias chains) with `ANY`.
     alias_targets: dict[str, str] = {}
     path_to_mod: dict[anyio.Path, str] = {}
     import_maps: dict[str, dict[str, str]] = {}

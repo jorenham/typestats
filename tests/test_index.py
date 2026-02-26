@@ -470,8 +470,8 @@ def test_collect_public_symbols_function_any_params_unfolded() -> None:
     assert overload.returns is not analyze.ANY
 
 
-def test_collect_public_symbols_object_param_is_any() -> None:
-    """Function params annotated with `object` should be ANY in input position."""
+def test_collect_public_symbols_object_param_not_any() -> None:
+    """Function params annotated with `object` should NOT be treated as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.object_param_func" in types
@@ -479,9 +479,9 @@ def test_collect_public_symbols_object_param_is_any() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # param `x: object` should be ANY (object in input position)
+    # param `x: object` should NOT be ANY
     assert overload.params[0].name == "x"
-    assert overload.params[0].annotation is analyze.ANY
+    assert overload.params[0].annotation is not analyze.ANY
     # param `y: int` should remain annotated
     assert overload.params[1].name == "y"
     assert overload.params[1].annotation is not analyze.ANY
@@ -498,7 +498,7 @@ def test_collect_public_symbols_object_var_not_any() -> None:
 
 
 def test_collect_public_symbols_object_param_no_aliases() -> None:
-    """object-as-ANY unfolding works without any type aliases."""
+    """object is not treated as ANY even without type aliases."""
     types = _public_symbol_types(_PROJECT)
 
     assert "noalias.funcs.object_param_func" in types
@@ -506,9 +506,9 @@ def test_collect_public_symbols_object_param_no_aliases() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # param `x: object` should be ANY (input position, no alias_targets needed)
+    # param `x: object` should NOT be ANY
     assert overload.params[0].name == "x"
-    assert overload.params[0].annotation is analyze.ANY
+    assert overload.params[0].annotation is not analyze.ANY
     # return `-> int` should remain annotated
     assert overload.returns is not analyze.ANY
 
