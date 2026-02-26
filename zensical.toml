@@ -1,0 +1,71 @@
+[project]
+site_name = "typestats"
+site_author = "Joren Hammudoglu"
+site_description = "Static type coverage statistics for Python projects"
+site_url = "https://jorenham.github.io/typestats/"
+repo_url = "https://github.com/jorenham/typestats"
+docs_dir = "docs"
+site_dir = "site"
+
+# theme
+
+[project.theme]
+features = [
+  "navigation.indexes",
+  "navigation.path",
+  "navigation.prune",
+  "navigation.sections",
+]
+icon.repo = "fontawesome/brands/github"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
+
+# extra
+
+[project.extra]
+repo_url = "https://github.com/jorenham/typestats"
+repo_name = "jorenham/typestats"
+edit_uri = "edit/main/docs/"
+
+[[project.extra.social]]
+icon = "simple/github"
+link = "https://github.com/jorenham/typestats"
+
+[[project.extra.social]]
+icon = "simple/pypi"
+link = "https://pypi.org/project/typestats"
+
+# markdown extensions
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.tables]
+
+[project.markdown_extensions.pymdownx.details]
+
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+
+[project.markdown_extensions.pymdownx.smartsymbols]
+
+[project.markdown_extensions.pymdownx.snippets]
+base_path = ["."]
+check_paths = true
+
+[project.markdown_extensions.pymdownx.superfences]
