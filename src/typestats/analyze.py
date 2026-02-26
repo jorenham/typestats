@@ -1177,7 +1177,14 @@ def collect_symbols(
 
     # Single pass: collects symbols AND evaluates version guards.
     visitor = _SymbolVisitor(package_name=package_name or "")
-    module.visit(visitor)
+    try:
+        module.visit(visitor)
+    except RecursionError:
+        _logger.warning(
+            "skipping module %s: CST too deeply nested (recursion limit hit)",
+            package_name or "<unknown>",
+        )
+        return _EMPTY_SYMBOLS
 
     imports = visitor.imports
 
