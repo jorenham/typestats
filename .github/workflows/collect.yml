@@ -42,11 +42,13 @@ jobs:
           python-version: "3.14t"
 
       - name: collect type-coverage data
+        id: collect
         run: >-
           uv run -m typestats collect --data-dir _data/reports
           ${{ github.event_name == 'pull_request' && '--clean' || '' }}
 
       - name: Commit and push new data
+        if: always() && steps.collect.outcome != 'cancelled'
         uses: EndBug/add-and-commit@v9.1.4
         with:
           add: reports/
@@ -54,3 +56,7 @@ jobs:
           cwd: _data
           default_author: github_actions
           message: "Update type-coverage data"
+
+      - name: Fail if collect failed
+        if: always() && steps.collect.outcome == 'failure'
+        run: exit 1
