@@ -353,9 +353,9 @@ def _resolve_package_name(package_name: str, top_level: frozenset[str]) -> str |
     """Resolve a PyPI project name to its top-level Python import name.
 
     Tries, in order:
-    1. Hyphen-to-underscore normalisation (`more-itertools` → `more_itertools`).
+    1. Hyphen-to-underscore normalisation (`more-itertools` -> `more_itertools`).
     2. If the sdist contains exactly one public (non-underscore) top-level
-       package, use that (`pillow` → `PIL`, `beautifulsoup4` → `bs4`).
+       package, use that (`pillow` -> `PIL`, `beautifulsoup4` -> `bs4`).
 
     Returns `None` when resolution fails, which disables filtering so all
     public modules are analysed.
@@ -368,7 +368,7 @@ def _resolve_package_name(package_name: str, top_level: frozenset[str]) -> str |
     if len(public) == 1:
         resolved = next(iter(public))
         _logger.info(
-            "Resolved package_name %r → %r (sole public top-level module)",
+            "Resolved package_name %r -> %r (sole public top-level module)",
             package_name,
             resolved,
         )
@@ -431,11 +431,10 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     if package_name is not None and package_name not in top_level:
         package_name = _resolve_package_name(package_name, top_level)
 
-    # Step 1: Parse all modules, build flat symbol table (fqn → (path, type))
-    # TODO(@jorenham): use anyio.to_thread to avoid blocking the event loop with
+    # Step 1: Parse all modules, build flat symbol table (fqn -> (path, type))
     all_local: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
     module_data: dict[str, dict[anyio.Path, analyze.ModuleSymbols]] = {}
-    module_locals: dict[str, dict[str, str]] = {}  # mod → {name: fqn}
+    module_locals: dict[str, dict[str, str]] = {}  # mod -> {name: fqn}
     for mod, paths in module_paths.items():
         entries: dict[anyio.Path, analyze.ModuleSymbols] = {}
         local: dict[str, str] = {}
@@ -661,7 +660,7 @@ def merge_stubs_overlay(
     stubs retain their original types (the type-checker falls back to the `.py`).
     """
 
-    # Flatten stubs to {fqn: (path, type)} and build module → stubs-path map
+    # Flatten stubs to {fqn: (path, type)} and build module -> stubs-path map
     stubs_flat: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
     stubs_mod_path: dict[str, anyio.Path] = {}
     for path, syms in stubs.items():
@@ -680,7 +679,7 @@ def merge_stubs_overlay(
             if sym.name not in merged:
                 mod = sym.name.rsplit(".", 1)[0]
                 if mod in stubs_modules:
-                    # Module covered by stubs but symbol missing → UNKNOWN,
+                    # Module covered by stubs but symbol missing -> UNKNOWN,
                     # consolidated under the stubs path for this module
                     merged[sym.name] = (stubs_mod_path[mod], analyze.UNKNOWN)
                 else:
