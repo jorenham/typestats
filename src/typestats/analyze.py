@@ -1115,7 +1115,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         # Exports: detect `__all__ = [...]` and `__all__ = mod.__all__`
 
-        if not self.has_explicit_all and any(map(_is_all_target, targets)):
+        if any(map(_is_all_target, targets)):
             self.has_explicit_all = True
 
             # Handle `__all__ = mod.__all__` (dynamic delegation)
