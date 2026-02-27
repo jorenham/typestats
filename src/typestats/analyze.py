@@ -1090,17 +1090,22 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         return False
 
+    def _try_add_all_source(self, value: cst.BaseExpression) -> None:
+        """Record `mod` as a dynamic `__all__` source for `__all__ = mod.__all__`."""
+        if (
+            isinstance(value, cst.Attribute)
+            and value.attr.value == _ALL
+            and (source_name := get_full_name_for_node(value.value))
+            and source_name not in self.all_sources
+        ):
+            self.all_sources.append(source_name)
+
     @override
     def visit_AugAssign(self, node: cst.AugAssign) -> None:
         # Exports: detect `__all__ += [...]` and `__all__ += mod.__all__`
         if _is_all_target(node.target):
             self.has_explicit_all = True
-            if (
-                isinstance(value := node.value, cst.Attribute)
-                and value.attr.value == _ALL
-                and (source_name := get_full_name_for_node(value.value))
-            ):
-                self.all_sources.append(source_name)
+            self._try_add_all_source(value := node.value)
 
             if (
                 isinstance(node.operator, cst.AddAssign)
@@ -1117,14 +1122,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         if any(map(_is_all_target, targets)):
             self.has_explicit_all = True
-
-            # Handle `__all__ = mod.__all__` (dynamic delegation)
-            if (
-                isinstance(value, cst.Attribute)
-                and value.attr.value == _ALL
-                and (source_name := get_full_name_for_node(value.value))
-            ):
-                self.all_sources.append(source_name)
+            self._try_add_all_source(value)
 
         for target in targets:
             self._handle_assign_target_exports(target, value)
