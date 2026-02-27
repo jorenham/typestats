@@ -1,4 +1,5 @@
 import functools
+import textwrap
 from pathlib import Path
 
 import anyio
@@ -922,3 +923,93 @@ class TestExcludeGlobs:
         types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
 
         assert any("chunked" in n for n in types), f"missing chunked in {types}"
+
+    async def test_delegated_all_from_submodule(self, tmp_path: Path) -> None:
+        """__all__ = submod.__all__ should export the submodule's public names.
+
+        Reproduces the regex package pattern where __init__.py delegates its
+        entire public API to a private submodule via attribute access on __all__.
+        """
+        pkg = tmp_path / "regex"
+        pkg.mkdir()
+        (pkg / "_main.py").write_text(
+            textwrap.dedent("""\
+            __all__ = ["compile", "match"]
+
+            def compile(pattern: str) -> str: ...
+            def match(pattern: str, string: str) -> bool: ...
+            """),
+        )
+        (pkg / "__init__.py").write_text(
+            textwrap.dedent("""\
+            import regex._main
+            from regex._main import *
+            __all__ = regex._main.__all__
+            """),
+        )
+
+        pub = await collect_public_symbols(tmp_path, package_name="regex")
+        types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
+
+        # With trace_origins=True (default), symbols are attributed to their
+        # origin in regex._main, not the re-exporting regex.__init__.
+        assert "regex._main.compile" in types, f"missing compile in {types}"
+        assert "regex._main.match" in types, f"missing match in {types}"
+        for name, ty in types.items():
+            assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
+            assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
+
+    async def test_delegated_all_realistic_regex(self, tmp_path: Path) -> None:
+        """Realistic reproduction of the regex sdist layout.
+
+        The actual regex sdist has:
+        - regex/__init__.py with ``__all__ = regex._main.__all__``
+        - regex/_main.py  with ``from regex._regex_core import *``
+        - regex/_regex_core.py providing flag constants
+        - regex/tests/ (excluded)
+        - setup.py at project root
+        """
+        pkg = tmp_path / "regex"
+        pkg.mkdir()
+        (pkg / "_regex_core.py").write_text(
+            textwrap.dedent("""\
+            class RegexFlag:
+                VERSION0 = 0
+            A = ASCII = RegexFlag()
+            error = Exception
+            """),
+        )
+        (pkg / "_main.py").write_text(
+            textwrap.dedent("""\
+            __all__ = ["compile", "match", "A", "ASCII", "error", "RegexFlag"]
+
+            from regex._regex_core import *
+            from regex import _regex_core
+            from regex import _regex
+
+            def compile(pattern, flags=0): ...
+            def match(pattern, string, flags=0): ...
+            """),
+        )
+        (pkg / "__init__.py").write_text(
+            textwrap.dedent("""\
+            import regex._main
+            from regex._main import *
+            __all__ = regex._main.__all__
+            """),
+        )
+        # tests dir (should be excluded)
+        tests_dir = pkg / "tests"
+        tests_dir.mkdir()
+        (tests_dir / "__init__.py").write_text("")
+        (tests_dir / "test_regex.py").write_text("def test_basic(): pass\n")
+        # setup.py at root (should be filtered by package_name)
+        (tmp_path / "setup.py").write_text("from setuptools import setup; setup()\n")
+
+        pub = await collect_public_symbols(tmp_path, package_name="regex")
+        types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
+
+        assert len(types) > 0, f"expected public symbols, got {types}"
+        # Functions defined in _main should be reachable
+        assert "regex._main.compile" in types, f"missing compile in {types}"
+        assert "regex._main.match" in types, f"missing match in {types}"
