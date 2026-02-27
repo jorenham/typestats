@@ -29,6 +29,16 @@ BACKFILL_SINCE: Final = date(2025, 1, 1)
 BACKFILL_LIMIT: Final = 10
 
 
+async def _remove_tree(path: anyio.Path, /) -> None:
+    """Recursively remove a directory tree."""
+    async for child in path.iterdir():
+        if await child.is_dir():
+            await _remove_tree(child)
+        else:
+            await child.unlink()
+    await path.rmdir()
+
+
 async def clean_data(data_dir: anyio.Path, /) -> int:
     """Remove previously collected JSON files from `data_dir` and return the count."""
     removed = 0
@@ -148,6 +158,14 @@ async def collect_all(
 
     projects = load_projects(projects_path)
     _logger.info("Collecting data for %d projects …", len(projects))
+
+    # Remove data directories for projects no longer in the projects list
+    project_names = {p.name for p in projects}
+    if await data_dir.is_dir():
+        async for child in data_dir.iterdir():
+            if await child.is_dir() and child.name not in project_names:
+                _logger.info("Removing unlisted project data: %s", child.name)
+                await _remove_tree(child)
 
     written: list[anyio.Path] = []
     async with anyio.TemporaryDirectory() as tmp, retry_client() as client:

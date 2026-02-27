@@ -176,6 +176,32 @@ class TestCollectAll:
         written = await collect_all(data_dir, projects_toml)
         assert written == []
 
+    async def test_removes_unlisted_projects(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+    ) -> None:
+        """Data directories for projects not in the TOML file are removed."""
+        name, version = "mypkg", "1.0.0"
+        tar_gz = _make_sdist_tar_gz(name, version, _FIXTURES / "stubs_base")
+        _mock_pypi(httpx_mock, name, version, tar_gz)
+
+        # Pre-create data for an unlisted project
+        data_dir = anyio.Path(tmp_path / "data")
+        unlisted = tmp_path / "data" / "oldpkg"
+        unlisted.mkdir(parents=True)
+        (unlisted / "0.1.0.json").write_text("{}")
+
+        projects_toml = tmp_path / "projects.toml"
+        projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
+
+        await collect_all(data_dir, projects_toml)
+
+        # The unlisted project directory should be removed
+        assert not unlisted.exists()
+        # The listed project should still have its data
+        assert (tmp_path / "data" / name).exists()
+
 
 class TestBackfillCutoff:
     pytestmark = pytest.mark.anyio
