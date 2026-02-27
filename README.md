@@ -41,7 +41,7 @@ For a given project:
     - average overload ratio (function without overloads counts as 1 overload)
     - supported type-checkers + strictness flags
     - stubs-only classification (`no`, `yes (third party)`, or `yes (typeshed)`)
-12. TODO: Export the statistics for use in a website/dashboard (e.g. json, csv, or sqlite)
+12. Export the statistics for use in a website/dashboard
 
 ### Symbol collection
 
