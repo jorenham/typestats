@@ -243,21 +243,31 @@ async def versions_since(
     since: date,
     /,
     *,
+    include_latest: bool = False,
     limit: int | None = None,
 ) -> dict[Version, FileDetail]:
     """Non-yanked final versions on or after `since`, with their best distribution.
 
-    Pre-releases are excluded.  When `limit` is set, only the most recent
-    `limit` versions are returned.
+    Pre-releases are excluded.  When `include_latest` is set, the latest
+    non-prerelease version is always included even if it predates `since`.
+    When `limit` is set, only the most recent `limit` versions are returned.
     """
     detail = await fetch_project_detail(client, project_name)
     result: dict[Version, FileDetail] = {}
+    latest: tuple[Version, FileDetail] | None = None
     for version, file in _best_distribution(detail).items():
         if version.is_prerelease:
             continue
+
+        if latest is None or version > latest[0]:
+            latest = version, file
+
         upload_time = file.get("upload-time")
-        if upload_time is not None and date.fromisoformat(upload_time[:10]) >= since:
+        if upload_time and date.fromisoformat(upload_time[:10]) >= since:
             result[version] = file
+
+    if include_latest and not result and latest is not None:
+        result[latest[0]] = latest[1]
 
     if limit is not None and len(result) > limit:
         result = dict(sorted(result.items(), reverse=True)[:limit])

@@ -81,6 +81,7 @@ async def collect_project(
         client,
         project.name,
         BACKFILL_SINCE,
+        include_latest=True,
         limit=BACKFILL_LIMIT,
     )
     stubs = _stubs_info(project.name)

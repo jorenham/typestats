@@ -349,3 +349,85 @@ class TestVersionsSince:
         assert Version("1.2.0") in result
         assert Version("1.1.0") not in result
         assert Version("1.0.0") not in result
+
+    async def test_include_latest_fallback(self, httpx_mock: HTTPXMock) -> None:
+        detail = {
+            "name": "pkg",
+            "versions": ["1.0.0", "2.0.0"],
+            "meta": {"api-version": "1.0"},
+            "files": [
+                {
+                    "filename": "pkg-1.0.0.tar.gz",
+                    "hashes": {"sha256": "a"},
+                    "size": 100,
+                    "upload-time": "2024-03-01T00:00:00Z",
+                    "url": "https://files.pythonhosted.org/packages/pkg-1.0.0.tar.gz",
+                },
+                {
+                    "filename": "pkg-2.0.0.tar.gz",
+                    "hashes": {"sha256": "b"},
+                    "size": 100,
+                    "upload-time": "2024-09-15T00:00:00Z",
+                    "url": "https://files.pythonhosted.org/packages/pkg-2.0.0.tar.gz",
+                },
+            ],
+        }
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join("/simple/pkg/"),
+            json=detail,
+        )
+
+        async with httpx.AsyncClient() as client:
+            result = await versions_since(
+                client,
+                "pkg",
+                date(2025, 1, 1),
+                include_latest=True,
+            )
+
+        # Only the latest non-prerelease version should be included
+        assert Version("2.0.0") in result
+        assert Version("1.0.0") not in result
+
+    async def test_include_latest_noop_when_versions_exist(
+        self,
+        httpx_mock: HTTPXMock,
+    ) -> None:
+        detail = {
+            "name": "pkg",
+            "versions": ["1.0.0", "2.0.0"],
+            "meta": {"api-version": "1.0"},
+            "files": [
+                {
+                    "filename": "pkg-1.0.0.tar.gz",
+                    "hashes": {"sha256": "a"},
+                    "size": 100,
+                    "upload-time": "2024-06-01T00:00:00Z",
+                    "url": "https://files.pythonhosted.org/packages/pkg-1.0.0.tar.gz",
+                },
+                {
+                    "filename": "pkg-2.0.0.tar.gz",
+                    "hashes": {"sha256": "b"},
+                    "size": 100,
+                    "upload-time": "2025-02-01T00:00:00Z",
+                    "url": "https://files.pythonhosted.org/packages/pkg-2.0.0.tar.gz",
+                },
+            ],
+        }
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join("/simple/pkg/"),
+            json=detail,
+        )
+
+        async with httpx.AsyncClient() as client:
+            result = await versions_since(
+                client,
+                "pkg",
+                date(2025, 1, 1),
+                include_latest=True,
+            )
+
+        # Only 2.0.0 qualifies by date; 1.0.0 is NOT added because result is non-empty
+        assert Version("2.0.0") in result
+        assert Version("1.0.0") not in result
+        assert len(result) == 1
