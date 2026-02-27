@@ -884,7 +884,20 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             self._handle_function_def(node)
 
         self._function_depth += 1
-        return True
+
+        # Collect type-ignore comments from decorators and the `def` line
+        # even though we skip the body traversal.
+        for dec in node.decorators:
+            self.visit_TrailingWhitespace(dec.trailing_whitespace)
+
+        match node.body:
+            case (
+                cst.IndentedBlock(header=tw)
+                | cst.SimpleStatementSuite(trailing_whitespace=tw)
+            ):
+                self.visit_TrailingWhitespace(tw)
+
+        return False  # skip function body: no module/class-level symbols there
 
     def _property_accessor(
         self,
