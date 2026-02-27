@@ -1179,7 +1179,14 @@ def collect_symbols(
     if not source or source.isspace():
         return _EMPTY_SYMBOLS
 
-    module = cst.parse_module(source)
+    try:
+        module = cst.parse_module(source)
+    except cst.ParserSyntaxError:
+        _logger.warning(
+            "skipping module %s: source could not be parsed",
+            package_name or "<unknown>",
+        )
+        return _EMPTY_SYMBOLS
 
     # Single pass: collects symbols AND evaluates version guards.
     visitor = _SymbolVisitor(package_name=package_name or "")

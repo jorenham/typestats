@@ -50,6 +50,15 @@ class TestRecursionError:
         assert result.type_aliases == ()
 
 
+class TestParserSyntaxError:
+    def test_unparseable_source_returns_empty(self) -> None:
+        """Files with invalid syntax (e.g. Python 2) should return empty symbols."""
+        source = "print 'hello world'"
+        result = collect_symbols(source)
+        assert result.symbols == ()
+        assert result.type_aliases == ()
+
+
 class TestImports:
     def test_basic(self) -> None:
         src = textwrap.dedent("""
