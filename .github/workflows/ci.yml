@@ -20,7 +20,7 @@ jobs:
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: astral-sh/setup-uv@v7.3.0
+      - uses: astral-sh/setup-uv@v7.3.1
       - name: ruff check
         run: uv run ruff check --output-format=github
       - name: ruff format
@@ -39,7 +39,7 @@ jobs:
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: astral-sh/setup-uv@v7.3.0
+      - uses: astral-sh/setup-uv@v7.3.1
         with:
           python-version: 3.14t
       - name: pyrefly check
@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 2
     steps:
       - uses: actions/checkout@v6.0.2
-      - uses: astral-sh/setup-uv@v7.3.0
+      - uses: astral-sh/setup-uv@v7.3.1
         with:
           python-version: 3.14t
       - name: pytest
