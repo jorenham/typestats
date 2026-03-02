@@ -44,7 +44,6 @@ def _is_excluded(rel: str) -> bool:
         ("benchmarks/benchmarks/bench_app.py", True),
         ("doc/source/conf.py", True),
         ("docs/conf.py", True),
-        ("tools/changelog.py", True),
         ("examples/tutorial.py", True),
         (".spin/cmds.py", True),
         ("numpy/random/_examples/cffi/extending.py", True),
