@@ -1,6 +1,5 @@
 """Generate the markdown dashboard pages from collected JSON data."""
 
-import json
 import logging
 import operator
 import re
@@ -100,7 +99,6 @@ def render_index(reports: list[PackageReport], /) -> str:
                 f"{r.coverage():.1%}",
                 f"{r.coverage(True):.1%}",
                 str(r.n_annotatable),
-                ", ".join(sorted(r.typecheckers)),
                 r.py_typed.name,
                 r.stubs_only.value,
             ]
@@ -112,7 +110,6 @@ def render_index(reports: list[PackageReport], /) -> str:
             "Coverage",
             "Strict Coverage",
             "Public Symbols",
-            "Type Checkers",
             "`py.typed`",
             "Stub-only",
         ],
@@ -122,7 +119,6 @@ def render_index(reports: list[PackageReport], /) -> str:
             "right",
             "right",
             "right",
-            "left",
             "left",
             "left",
         ),
@@ -218,12 +214,6 @@ def render_detail(report: PackageReport, /) -> str:
             ),
         })
 
-    # Pre-render type-checker configs as JSON (indented for ??? admonitions)
-    typechecker_configs: dict[str, str | None] = {
-        name: _indent(json.dumps(config, indent=2, sort_keys=True)) if config else None
-        for name, config in sorted(report.typecheckers.items())
-    }
-
     template = _get_env().get_template("detail.md.j2")
     return template.render(
         report=report,
@@ -231,7 +221,6 @@ def render_detail(report: PackageReport, /) -> str:
         strict_coverage=f"{report.coverage(True):.1%}",
         modules_table=modules_table,
         annotation_sections=annotation_sections,
-        typechecker_configs=typechecker_configs,
     )
 
 
