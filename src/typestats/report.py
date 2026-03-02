@@ -441,6 +441,7 @@ class PackageReport(BaseModel):
     version: str
     stubs_only: StubsOnly = StubsOnly.NO
     py_typed: PyTyped
+    metadata: dict[str, list[str]] | None = None
     module_reports: tuple[ModuleReport, ...]
     typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] = Field(
         default_factory=dict,
@@ -641,6 +642,7 @@ class PackageReport(BaseModel):
         `discover_configs` concurrently.
         """
 
+        from typestats._metadata import read_pkg_metadata
         from typestats.index import collect_public_symbols, merge_stubs_overlay
         from typestats.typecheckers import discover_configs
 
@@ -663,7 +665,9 @@ class PackageReport(BaseModel):
                 ),
             )
 
+        metadata_coro = read_pkg_metadata(stubs_path or path)
         res: list[Any] = await asyncio.gather(*coros)
+        metadata = await metadata_coro
         py_typed = res[-1].py_typed
 
         if stubs_path is not None:
@@ -699,6 +703,7 @@ class PackageReport(BaseModel):
             module_reports=files,
             version=version,
             py_typed=py_typed,
+            metadata=metadata,
             typecheckers=dict(res[0]),
         )
 
