@@ -5,6 +5,7 @@ import pytest
 
 from typestats.dashboard import (
     build_site,
+    render_detail,
     render_index,
 )
 from typestats.index import PyTyped
@@ -113,6 +114,76 @@ def _table_lines(md: str) -> list[str]:
     return [line for line in md.splitlines() if line.startswith("|")]
 
 
+def _rich_report(
+    package: str = "mypkg",
+    version: str = "1.0.0",
+    *,
+    typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] | None = None,
+) -> PackageReport:
+    """Build a report with functions, a class, and mixed annotation status."""
+    module_a = ModuleReport.model_validate({
+        "path": f"{package}/__init__.py",
+        "symbol_reports": [
+            {
+                "kind": "name",
+                "name": f"{package}.VERSION",
+                "n_annotated": 1,
+                "n_any": 0,
+                "n_unannotated": 0,
+                "n_annotatable": 1,
+            },
+            {
+                "kind": "function",
+                "name": f"{package}.run",
+                "n_annotated": 1,
+                "n_any": 0,
+                "n_unannotated": 2,
+                "n_overloads": 1,
+                "n_annotatable": 3,
+            },
+            {
+                "kind": "name",
+                "name": f"{package}.data",
+                "n_annotated": 0,
+                "n_any": 1,
+                "n_unannotated": 0,
+                "n_annotatable": 1,
+            },
+        ],
+    })
+    module_b = ModuleReport.model_validate({
+        "path": f"{package}/utils.py",
+        "symbol_reports": [
+            {
+                "kind": "function",
+                "name": f"{package}.utils.helper",
+                "n_annotated": 3,
+                "n_any": 0,
+                "n_unannotated": 0,
+                "n_overloads": 1,
+                "n_annotatable": 3,
+            },
+            {
+                "kind": "function",
+                "name": f"{package}.utils.mixed",
+                "n_annotated": 1,
+                "n_any": 1,
+                "n_unannotated": 1,
+                "n_overloads": 1,
+                "n_annotatable": 3,
+            },
+        ],
+    })
+    return PackageReport(
+        package=package,
+        version=version,
+        stubs_only=StubsOnly.NO,
+        py_typed=PyTyped.YES,
+        module_reports=(module_a, module_b),
+        typecheckers=typecheckers if typecheckers is not None else {},
+    )
+
+
 class TestRenderIndex:
     def test_single_report(self) -> None:
         report = _minimal_report(
@@ -184,6 +255,136 @@ class TestRenderIndex:
         assert "mypy" not in data_row
 
 
+class TestRenderDetail:
+    def test_heading_and_backlink(self) -> None:
+        report = _minimal_report("numpy", "2.4.2")
+        md = render_detail(report)
+        assert "# numpy 2.4.2" in md
+        assert "[← Overview](index.md)" in md
+
+    def test_summary_section(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            n_annotated=8,
+            n_any=2,
+            n_unannotated=10,
+        )
+        md = render_detail(report)
+        # coverage = (8+2)/20 = 50.0%
+        assert "50.0%" in md
+        # strict = 8/20 = 40.0%
+        assert "40.0%" in md
+        assert "20" in md  # n_annotatable
+        assert "YES" in md  # py.typed
+
+    def test_module_table(self) -> None:
+        report = _rich_report("mypkg", "1.0.0")
+        md = render_detail(report)
+        assert "## Modules" in md
+        # Both modules appear
+        table_lines = _table_lines(md)
+        module_names = [line for line in table_lines if "mypkg" in line.split("|")[1]]
+        assert len(module_names) >= 2
+
+    def test_annotation_status_missing(self) -> None:
+        report = _rich_report("mypkg")
+        md = render_detail(report)
+        assert "## Incomplete Annotations" in md
+        # `run` has n_unannotated=2, n_any=0 → "missing"
+        assert "missing" in md
+
+    def test_annotation_status_any(self) -> None:
+        report = _rich_report("mypkg")
+        md = render_detail(report)
+        # `data` has n_any=1, n_unannotated=0 → "Any"
+        assert "| data" in md
+        lines = md.splitlines()
+        data_lines = [line for line in lines if "data" in line and "|" in line]
+        assert any("Any" in line for line in data_lines)
+
+    def test_annotation_status_mixed(self) -> None:
+        report = _rich_report("mypkg")
+        md = render_detail(report)
+        # `mixed` has n_any=1 AND n_unannotated=1 → "missing + Any"
+        assert "missing + Any" in md
+
+    def test_full_coverage_no_missing(self) -> None:
+        report = _minimal_report(
+            "perfect",
+            "1.0.0",
+            n_annotated=10,
+            n_any=0,
+            n_unannotated=0,
+        )
+        md = render_detail(report)
+        assert "All symbols are fully annotated" in md
+
+    def test_typechecker_configs(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            typecheckers={"mypy": {"strict": True}, "pyright": {}},
+        )
+        md = render_detail(report)
+        assert "## Type Checkers" in md
+        assert '??? "mypy"' in md
+        assert '??? "pyright"' in md
+        assert '"strict": true' in md
+        assert "```json" in md
+        # pyright has empty config
+        assert "Default configuration" in md
+
+    def test_no_typecheckers(self) -> None:
+        report = _minimal_report("pkg", "1.0.0", typecheckers={})
+        md = render_detail(report)
+        assert "No type-checker configurations found" in md
+
+    def test_annotated_symbols_excluded(self) -> None:
+        """Fully annotated symbols should not appear in the Annotations table."""
+        report = _rich_report("mypkg")
+        md = render_detail(report)
+        lines = md.splitlines()
+        # VERSION is fully annotated - should not appear in annotations table
+        annotations_start = next(
+            i for i, line in enumerate(lines) if "## Incomplete Annotations" in line
+        )
+        typecheckers_start = next(
+            i for i, line in enumerate(lines) if "## Type Checkers" in line
+        )
+        annotation_section = "\n".join(lines[annotations_start:typecheckers_start])
+        assert "VERSION" not in annotation_section
+        # helper is fully annotated - should not appear
+        assert "helper" not in annotation_section
+
+    def test_stubs_module_names_normalized(self) -> None:
+        """Stubs packages should display base package module names."""
+        module = ModuleReport.model_validate({
+            "path": "scipy-stubs/fft/__init__.pyi",
+            "symbol_reports": [
+                {
+                    "kind": "name",
+                    "name": "scipy-stubs.fft.x",
+                    "n_annotated": 0,
+                    "n_any": 0,
+                    "n_unannotated": 1,
+                    "n_annotatable": 1,
+                },
+            ],
+        })
+        report = PackageReport(
+            package="scipy-stubs",
+            version="1.0.0",
+            stubs_only=StubsOnly.THIRD_PARTY,
+            py_typed=PyTyped.STUBS,
+            module_reports=(module,),
+        )
+        md = render_detail(report)
+        # Module table should show "scipy.fft", not "scipy-stubs.fft"
+        assert "scipy.fft" in md
+        assert "scipy-stubs.fft" not in md
+
+
 class TestBuildSite:
     pytestmark = pytest.mark.anyio
 
@@ -191,6 +392,7 @@ class TestBuildSite:
         data_dir = tmp_path / "data"
         data_dir.mkdir()
         site_dir = tmp_path / "site"
+        (tmp_path / "docs").mkdir()
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(
@@ -207,6 +409,48 @@ class TestBuildSite:
         assert out is None
         content = (site_dir / "index.md").read_text()
         assert "[mypkg](mypkg.md)" in content
+
+    async def test_creates_detail_pages(self, tmp_path: Path) -> None:
+        data_dir = tmp_path / "data"
+        data_dir.mkdir()
+        site_dir = tmp_path / "site"
+
+        # Committed docs/ with an existing file
+        committed_docs = tmp_path / "docs"
+        committed_docs.mkdir()
+        (committed_docs / "index.md").write_text("# Index\n")
+
+        projects_toml = tmp_path / "projects.toml"
+        projects_toml.write_text(
+            'projects = [{ "name" = "alpha" }, { "name" = "beta" }]\n',
+        )
+        _write_report(data_dir, _minimal_report("alpha", "1.0.0"))
+        _write_report(data_dir, _minimal_report("beta", "2.0.0"))
+
+        await build_site(
+            anyio.Path(data_dir),
+            anyio.Path(site_dir),
+            projects_toml,
+        )
+
+        # Detail pages in site_dir
+        assert (site_dir / "alpha.md").is_file()
+        assert (site_dir / "beta.md").is_file()
+        alpha_content = (site_dir / "alpha.md").read_text()
+        assert "# alpha 1.0.0" in alpha_content
+        beta_content = (site_dir / "beta.md").read_text()
+        assert "# beta 2.0.0" in beta_content
+
+        # Assembled docs: wrappers + committed content
+        assembled_docs = site_dir / "docs"
+        assert (assembled_docs / "alpha.md").is_file()
+        assert (assembled_docs / "beta.md").is_file()
+        wrapper = (assembled_docs / "alpha.md").read_text()
+        assert "site/alpha.md" in wrapper
+        assert "hide:" in wrapper
+        # Committed file was copied
+        assert (assembled_docs / "index.md").is_file()
+        assert "# Index" in (assembled_docs / "index.md").read_text()
 
     async def test_raises_on_no_reports(self, tmp_path: Path) -> None:
         data_dir = tmp_path / "data"

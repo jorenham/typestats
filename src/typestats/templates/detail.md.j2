@@ -1,0 +1,73 @@
+[← Overview](index.md)
+
+# {{ report.package }} {{ report.version }}
+
+<div class="grid cards" markdown>
+
+-   __Coverage__
+
+    ---
+
+    {{ coverage }} coverage · {{ strict_coverage }} strict
+
+-   __Symbols__
+
+    ---
+
+    {{ report.n_annotatable }} total · {{ report.n_annotated }} annotated · {{ report.n_any }} Any · {{ report.n_unannotated }} unannotated
+
+-   __Modules__
+
+    ---
+
+    {{ report.n_modules }} modules · {{ report.n_type_ignores }} type-ignore comments
+
+-   __Definitions__
+
+    ---
+
+    {{ report.n_functions }} functions ({{ report.n_function_overloads }} overloads) · {{ report.n_methods }} methods ({{ report.n_method_overloads }} overloads) · {{ report.n_classes }} classes · {{ report.n_names }} names · {{ report.n_properties }} properties
+
+-   __Metadata__
+
+    ---
+
+    `py.typed`: {{ report.py_typed.name }} · Stub-only: {{ report.stubs_only.value }}
+
+</div>
+
+## Modules
+
+{{ modules_table }}
+
+## Incomplete Annotations
+
+{% if annotation_sections %}
+{% for section in annotation_sections %}
+??? "{{ section.display_name }} ({{ section.n_issues }} symbol{{ 's' if section.n_issues != 1 else '' }})"
+{{ section.table }}
+
+{% endfor %}
+{% else %}
+All symbols are fully annotated. :tada:
+
+{% endif %}
+## Type Checkers
+
+{% if typechecker_configs %}
+{% for name, config_json in typechecker_configs.items() %}
+{% if config_json %}
+??? "{{ name }}"
+    ```json
+{{ config_json }}
+    ```
+{% else %}
+??? "{{ name }}"
+    Default configuration (no overrides).
+{% endif %}
+
+{% endfor %}
+{% else %}
+No type-checker configurations found.
+
+{% endif %}
