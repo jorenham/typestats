@@ -40,7 +40,7 @@ async def app() -> None:
 
     dashboard_p = sub.add_parser(
         "dashboard",
-        help="Build the markdown index page from collected data.",
+        help="Build the markdown dashboard pages from collected data.",
     )
     dashboard_p.add_argument(
         "--data-dir",
@@ -75,7 +75,11 @@ async def app() -> None:
         case "dashboard":
             from typestats.dashboard import build_site
 
-            await build_site(args.data_dir, args.site_dir, args.projects)
+            await build_site(
+                args.data_dir,
+                args.site_dir,
+                args.projects,
+            )
 
         case _:
             parser.print_help()

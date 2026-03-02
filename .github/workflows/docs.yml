@@ -10,6 +10,7 @@ on:
       - uv.lock
       - zensical.toml
       - src/typestats/dashboard.py
+      - src/typestats/templates/**
   workflow_run:
     workflows: [Collect]
     types: [completed]
@@ -52,7 +53,7 @@ jobs:
         with:
           python-version: "3.14"
 
-      - name: Build dashboard table
+      - name: build dashboard pages
         run: >-
           uv run -m typestats
           dashboard

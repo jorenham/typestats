@@ -1,23 +1,65 @@
-"""Generate the markdown index page from collected JSON data."""
+"""Generate the markdown dashboard pages from collected JSON data."""
 
+import json
 import logging
 import operator
+import re
 from typing import TYPE_CHECKING, Final
 
 from packaging.version import Version
 from tabulate import tabulate
 
 from typestats.projects import load_projects
-from typestats.report import PackageReport
+from typestats.report import ModuleReport, PackageReport
 
 if TYPE_CHECKING:
     import anyio
     from _typeshed import StrPath
+    from jinja2 import Environment
 
 __all__ = ("build_site",)
 
 
 _logger: Final = logging.getLogger(__name__)
+
+# Pattern for stubs package names: {name}-stubs or types-{name}
+_STUBS_RE: Final = re.compile(r"^(?:(.+)-stubs|types-(.+))$")
+
+_env: Environment | None = None
+
+
+def _get_env() -> Environment:
+    """Lazily create the Jinja2 template environment."""
+    global _env  # noqa: PLW0603
+
+    if _env is None:
+        from jinja2 import Environment, PackageLoader  # noqa: PLC0415
+
+        _env = Environment(
+            loader=PackageLoader("typestats", "templates"),
+            keep_trailing_newline=True,
+            lstrip_blocks=True,
+            trim_blocks=True,
+            autoescape=False,  # noqa: S701
+        )
+
+    return _env
+
+
+def _display_module_name(module_name: str, package: str, /) -> str:
+    """Normalize module name for stubs packages.
+
+    For stubs packages (e.g. `scipy-stubs`), the on-disk directory is
+    `scipy-stubs/`, so `ModuleReport.name` yields `scipy-stubs.fft`.
+    This function replaces the top-level component with the base package
+    name, producing `scipy.fft`.
+    """
+    m = _STUBS_RE.match(package)
+    if m is None:
+        return module_name
+    base = m.group(1) or m.group(2)
+    stubs_prefix = module_name.split(".", maxsplit=1)[0]
+    return base + module_name.removeprefix(stubs_prefix)
 
 
 async def _load_latest_reports(
@@ -69,7 +111,7 @@ def render_index(reports: list[PackageReport], /) -> str:
             "Version",
             "Coverage",
             "Strict Coverage",
-            "Symbols",
+            "Public Symbols",
             "Type Checkers",
             "`py.typed`",
             "Stub-only",
@@ -88,13 +130,140 @@ def render_index(reports: list[PackageReport], /) -> str:
     )
 
 
+_INDENT: Final = "    "
+
+
+def _indent(text: str, /) -> str:
+    """Indent each line of `text` by 4 spaces for pymdownx admonition blocks."""
+    return "\n".join(f"{_INDENT}{line}" for line in text.splitlines())
+
+
+def _annotation_status(
+    report: ModuleReport,
+) -> list[tuple[str, str, str, str, str, str]]:
+    """
+    Return rows of (symbol, kind, status, annotated, any, unannotated) for imperfect
+    symbols.
+    """
+    rows: list[tuple[str, str, str, str, str, str]] = []
+    for s in report.symbol_reports:
+        if s.n_unannotated == 0 and s.n_any == 0:
+            continue
+
+        if s.n_unannotated > 0 and s.n_any > 0:
+            status = "missing + Any"
+        elif s.n_unannotated > 0:
+            status = "missing"
+        else:
+            status = "Any"
+
+        # Strip module prefix from symbol name for brevity
+        short_name = s.name.removeprefix(f"{report.name}.")
+        rows.append((
+            short_name,
+            s.kind,
+            status,
+            str(s.n_annotated),
+            str(s.n_any),
+            str(s.n_unannotated),
+        ))
+
+    return rows
+
+
+def render_detail(report: PackageReport, /) -> str:
+    """Render a detailed markdown page for a single package report."""
+    sorted_modules = sorted(report.module_reports, key=lambda r: r.path)
+
+    # Pre-render modules table
+    modules_table = tabulate(
+        [
+            [
+                f"`{_display_module_name(m.name, report.package)}`",
+                f"{m.coverage():.1%}",
+                f"{m.coverage(True):.1%}",
+                str(m.n_annotatable),
+                str(m.n_type_ignores),
+            ]
+            for m in sorted_modules
+        ],
+        headers=["Module", "Coverage", "Strict Coverage", "Symbols", "Ignores"],
+        colalign=("left", "right", "right", "right", "right"),
+        tablefmt="pipe",
+    )
+
+    # Pre-render annotation sections
+    annotation_sections: list[dict[str, str | int]] = []
+    for m in sorted_modules:
+        rows = _annotation_status(m)
+        if not rows:
+            continue
+        annotation_sections.append({
+            "display_name": f"`{_display_module_name(m.name, report.package)}`",
+            "n_issues": len(rows),
+            "table": _indent(
+                tabulate(
+                    rows,
+                    headers=[
+                        "Symbol",
+                        "Kind",
+                        "Status",
+                        "Annotated",
+                        "Any",
+                        "Unannotated",
+                    ],
+                    colalign=("left", "left", "left", "right", "right", "right"),
+                    tablefmt="pipe",
+                ),
+            ),
+        })
+
+    # Pre-render type-checker configs as JSON (indented for ??? admonitions)
+    typechecker_configs: dict[str, str | None] = {
+        name: _indent(json.dumps(config, indent=2, sort_keys=True)) if config else None
+        for name, config in sorted(report.typecheckers.items())
+    }
+
+    template = _get_env().get_template("detail.md.j2")
+    return template.render(
+        report=report,
+        coverage=f"{report.coverage():.1%}",
+        strict_coverage=f"{report.coverage(True):.1%}",
+        modules_table=modules_table,
+        annotation_sections=annotation_sections,
+        typechecker_configs=typechecker_configs,
+    )
+
+
+def _detail_wrapper(package: str, site_dir_name: str, /) -> str:
+    """Generate a docs wrapper that snippet-includes `_site/{package}.md`."""
+    template = _get_env().get_template("wrapper.md.j2")
+    return template.render(package=package, site_dir_name=site_dir_name)
+
+
+async def _copy_tree(src: anyio.Path, dst: anyio.Path, /) -> None:
+    """Recursively copy `src` into `dst`, creating directories as needed."""
+    await dst.mkdir(parents=True, exist_ok=True)
+    async for entry in src.iterdir():
+        target = dst / entry.name
+        if await entry.is_dir():
+            await _copy_tree(entry, target)
+        else:
+            await target.write_bytes(await entry.read_bytes())
+
+
 async def build_site(
     data_dir: anyio.Path,
     site_dir: anyio.Path,
     projects_path: StrPath,
     /,
 ) -> None:
-    """Build the markdown index page and write it to `site_dir`.
+    """Build the markdown pages and write them to `site_dir`.
+
+    Generated detail pages go into `site_dir/` and wrapper pages into
+    `site_dir/docs/`.  The committed `docs/` directory (next to `site_dir`)
+    is copied into `site_dir/docs/` so that zensical can use
+    ``docs_dir = "<site_dir>/docs"``.
 
     Raises:
         RuntimeError: If no reports could be loaded.
@@ -105,9 +274,28 @@ async def build_site(
         msg = "No reports loaded -- cannot build dashboard"
         raise RuntimeError(msg)
 
-    content = render_index(reports)
-
     await site_dir.mkdir(parents=True, exist_ok=True)
+
+    # Index page
+    content = render_index(reports)
     out = site_dir / "index.md"
     await out.write_text(content + "\n")
     _logger.info("Wrote index page to %s (%d projects)", out, len(reports))
+
+    # Assemble docs dir: copy committed docs/ then generate wrappers
+    assembled_docs = site_dir / "docs"
+    committed_docs = site_dir.parent / "docs"
+    if await committed_docs.exists():
+        await _copy_tree(committed_docs, assembled_docs)
+
+    # Detail pages + wrappers
+    site_dir_name = site_dir.name
+    for report in reports:
+        detail_content = render_detail(report)
+        detail_path = site_dir / f"{report.package}.md"
+        await detail_path.write_text(detail_content)
+
+        wrapper = _detail_wrapper(report.package, site_dir_name)
+        await (assembled_docs / f"{report.package}.md").write_text(wrapper)
+
+    _logger.info("Wrote %d detail page(s) to %s", len(reports), site_dir)
