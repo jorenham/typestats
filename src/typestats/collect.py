@@ -133,7 +133,7 @@ async def collect_project(
                 exclude=project.exclude,
             )
 
-        json_bytes = report.model_dump_json().encode()
+        json_bytes = report.model_dump_json(indent=2).encode()
         await out.parent.mkdir(parents=True, exist_ok=True)
         await out.write_bytes(json_bytes)
         _logger.info("  %s %s - wrote %s", project.name, version, out)
