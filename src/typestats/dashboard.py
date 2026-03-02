@@ -285,7 +285,8 @@ async def build_site(
     # Assemble docs dir: copy committed docs/ then generate wrappers
     assembled_docs = site_dir / "docs"
     committed_docs = site_dir.parent / "docs"
-    await _copy_tree(committed_docs, assembled_docs)
+    if await committed_docs.exists():
+        await _copy_tree(committed_docs, assembled_docs)
 
     # Detail pages + wrappers
     site_dir_name = site_dir.name
