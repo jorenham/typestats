@@ -665,9 +665,9 @@ class PackageReport(BaseModel):
                 ),
             )
 
-        metadata_coro = read_pkg_metadata(stubs_path or path)
+        coros.append(read_pkg_metadata(stubs_path or path))
         res: list[Any] = await asyncio.gather(*coros)
-        metadata = await metadata_coro
+        metadata = res.pop()
         py_typed = res[-1].py_typed
 
         if stubs_path is not None:

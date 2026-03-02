@@ -7,6 +7,8 @@ import anyio
 if TYPE_CHECKING:
     from _typeshed import StrPath
 
+__all__ = ("read_pkg_metadata",)
+
 type _Metadata = dict[str, list[str]]
 
 _logger = logging.getLogger(__name__)
@@ -18,7 +20,7 @@ async def read_pkg_metadata(path: StrPath, /) -> _Metadata | None:
     """Read package metadata from an extracted distribution at `path`.
 
     Looks for `PKG-INFO` (sdist layout) or `*.dist-info/METADATA` (wheel layout).
-    Returns header values as `{header: [value, ...]}` with multi-valued fields like
+    Returns header values as `{header: [value, ...]}`. Multi-valued fields like
     `Classifier` naturally become multi-element lists.
 
     The `Description` header (which contains the readme body) is excluded.
@@ -34,7 +36,7 @@ async def read_pkg_metadata(path: StrPath, /) -> _Metadata | None:
 
     # wheel layout: {name}-{version}.dist-info/METADATA
     async for child in root.iterdir():
-        if str(child).endswith(".dist-info") and await child.is_dir():
+        if child.name.endswith(".dist-info") and await child.is_dir():
             meta_file = child / "METADATA"
             if await meta_file.is_file():
                 return await _parse_metadata_file(meta_file)
@@ -47,7 +49,7 @@ async def _parse_metadata_file(path: anyio.Path, /) -> _Metadata:
     """Parse a `PKG-INFO` or `METADATA` file into `{header: [value, ...]}`."""
     raw = await path.read_text(encoding="utf-8")
 
-    parser = email.parser.Parser()
+    parser = email.parser.HeaderParser()
     msg = parser.parsestr(raw)
 
     result: _Metadata = {}
