@@ -68,7 +68,6 @@ _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
     "docs",
     "examples",
     "tests",
-    "tools",
 })
 # File names to exclude from analysis.
 _EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py"})
