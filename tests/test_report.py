@@ -526,6 +526,32 @@ class TestPackageReportJson:
         names = data["module_reports"][0]["names"]
         assert names == sorted(names)
 
+    def test_metadata_round_trip(self) -> None:
+        """Metadata survives JSON serialization round-trip."""
+        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        report = PackageReport(
+            package="pkg",
+            module_reports=(mod,),
+            version="1.0.0",
+            py_typed=PyTyped.YES,
+            metadata={
+                "Metadata-Version": ["2.4"],
+                "Name": ["pkg"],
+                "Classifier": ["Typing :: Typed", "Development Status :: 4 - Beta"],
+            },
+        )
+        json_str = report.model_dump_json()
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.metadata == report.metadata
+
+    def test_metadata_none_round_trip(self) -> None:
+        """metadata=None survives JSON serialization round-trip."""
+        report = self._pkg(Symbol("x", _INT))
+        assert report.metadata is None
+        json_str = report.model_dump_json()
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.metadata is None
+
 
 class TestPackageReportFromPath:
     pytestmark = pytest.mark.anyio
@@ -610,23 +636,49 @@ class TestPackageReportFromProject:
     _STUBS_PKG = f"{_PKG}-stubs"
 
     @staticmethod
-    def _make_sdist_tar_gz(name: str, version: str, source_dir: Path) -> bytes:
+    def _pkg_info(name: str, version: str) -> str:
+        return (
+            f"Metadata-Version: 2.4\n"
+            f"Name: {name}\n"
+            f"Version: {version}\n"
+            f"Summary: A test package\n"
+            f"Requires-Python: >=3.10\n"
+            f"Classifier: Typing :: Typed\n"
+        )
+
+    @classmethod
+    def _make_sdist_tar_gz(cls, name: str, version: str, source_dir: Path) -> bytes:
         buf = io.BytesIO()
         prefix = f"{name}-{version}"
         with tarfile.open(fileobj=buf, mode="w:gz") as tar:
             for file in sorted(source_dir.rglob("*")):
                 tar.add(file, arcname=f"{prefix}/{file.relative_to(source_dir)}")
 
+            # Add a synthetic PKG-INFO
+            pkg_info = cls._pkg_info(name, version).encode()
+            info = tarfile.TarInfo(name=f"{prefix}/PKG-INFO")
+            info.size = len(pkg_info)
+            tar.addfile(info, io.BytesIO(pkg_info))
+
         return buf.getvalue()
 
-    @staticmethod
-    def _make_wheel_zip(source_dir: Path) -> bytes:
+    @classmethod
+    def _make_wheel_zip(
+        cls,
+        source_dir: Path,
+        name: str = "mypkg",
+        version: str = "1.0.0",
+    ) -> bytes:
         """Create a wheel-like zip archive from `source_dir` (flat, no prefix)."""
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, "w") as zf:
             for file in sorted(source_dir.rglob("*")):
                 if file.is_file():
                     zf.write(file, arcname=str(file.relative_to(source_dir)))
+
+            # Add a synthetic .dist-info/METADATA
+            dist_info = f"{name}-{version}.dist-info"
+            zf.writestr(f"{dist_info}/METADATA", cls._pkg_info(name, version))
         return buf.getvalue()
 
     @staticmethod
@@ -693,6 +745,9 @@ class TestPackageReportFromProject:
         assert report.package == self._PKG
         assert report.version == "2.5.0"
         assert report.stubs_only is StubsOnly.NO
+        assert report.metadata is not None
+        assert report.metadata["Name"] == [self._PKG]
+        assert report.metadata["Version"] == ["2.5.0"]
 
     async def test_stubs_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
         """Stubs project downloads base + stubs concurrently."""
@@ -758,7 +813,11 @@ class TestPackageReportFromProject:
 
     async def test_wheel_fallback(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
         """When no sdist exists, falls back to a wheel."""
-        whl_zip = self._make_wheel_zip(_FIXTURES / "stubs_base")
+        whl_zip = self._make_wheel_zip(
+            _FIXTURES / "stubs_base",
+            name=self._PKG,
+            version="2.0.0",
+        )
         whl_filename = f"{self._PKG}-2.0.0-py3-none-any.whl"
 
         httpx_mock.add_response(
@@ -777,3 +836,5 @@ class TestPackageReportFromProject:
         assert report.package == self._PKG
         assert report.version == "2.0.0"
         assert report.stubs_only is StubsOnly.NO
+        assert report.metadata is not None
+        assert report.metadata["Name"] == [self._PKG]
