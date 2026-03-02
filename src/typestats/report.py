@@ -560,9 +560,6 @@ class PackageReport(BaseModel):
         )
         print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
         print(f"   py.typed: {self.py_typed.name}")  # noqa: T201
-        if self.typecheckers:
-            checkers = ", ".join(sorted(self.typecheckers))
-            print(f"   Type-checkers: {checkers}")  # noqa: T201
 
     @classmethod
     async def from_project(

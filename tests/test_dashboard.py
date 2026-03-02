@@ -18,8 +18,6 @@ from typestats.report import (
 if TYPE_CHECKING:
     from pathlib import Path
 
-    from typestats.typecheckers import TypeCheckerConfigDict, TypeCheckerName
-
 
 def _make_symbol_reports(
     package: str,
@@ -75,7 +73,6 @@ def _minimal_report(  # noqa: PLR0913
     n_annotated: int = 8,
     n_any: int = 2,
     n_unannotated: int = 5,
-    typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] | None = None,
 ) -> PackageReport:
     """Build a minimal ``PackageReport`` with one ``ModuleReport``."""
     symbol_reports = _make_symbol_reports(
@@ -96,7 +93,6 @@ def _minimal_report(  # noqa: PLR0913
         stubs_only=stubs_only,
         py_typed=py_typed,
         module_reports=(module,),
-        typecheckers=typecheckers if typecheckers is not None else {},
     )
 
 
@@ -117,8 +113,6 @@ def _table_lines(md: str) -> list[str]:
 def _rich_report(
     package: str = "mypkg",
     version: str = "1.0.0",
-    *,
-    typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] | None = None,
 ) -> PackageReport:
     """Build a report with functions, a class, and mixed annotation status."""
     module_a = ModuleReport.model_validate({
@@ -180,7 +174,6 @@ def _rich_report(
         stubs_only=StubsOnly.NO,
         py_typed=PyTyped.YES,
         module_reports=(module_a, module_b),
-        typecheckers=typecheckers if typecheckers is not None else {},
     )
 
 
@@ -192,7 +185,6 @@ class TestRenderIndex:
             n_annotated=90,
             n_any=5,
             n_unannotated=5,
-            typecheckers={"mypy": {}, "pyright": {}},
         )
         md = render_index([report])
         rows = _table_lines(md)
@@ -201,7 +193,6 @@ class TestRenderIndex:
         data_row = rows[2]
         assert "[numpy](numpy.md)" in data_row
         assert "2.4.2" in data_row
-        assert "mypy, pyright" in data_row
         assert "YES" in data_row
         assert "no" in data_row
 
@@ -246,13 +237,6 @@ class TestRenderIndex:
         assert "50.0%" in data_row
         # strict: 8/20 = 40.0%
         assert "40.0%" in data_row
-
-    def test_no_typecheckers_shows_empty(self) -> None:
-        report = _minimal_report("pkg", "1.0.0", typecheckers={})
-        md = render_index([report])
-        data_row = _table_lines(md)[2]
-        # Type Checkers column should be empty
-        assert "mypy" not in data_row
 
 
 class TestRenderDetail:
@@ -320,26 +304,6 @@ class TestRenderDetail:
         md = render_detail(report)
         assert "All symbols are fully annotated" in md
 
-    def test_typechecker_configs(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            typecheckers={"mypy": {"strict": True}, "pyright": {}},
-        )
-        md = render_detail(report)
-        assert "## Type Checkers" in md
-        assert '??? "mypy"' in md
-        assert '??? "pyright"' in md
-        assert '"strict": true' in md
-        assert "```json" in md
-        # pyright has empty config
-        assert "Default configuration" in md
-
-    def test_no_typecheckers(self) -> None:
-        report = _minimal_report("pkg", "1.0.0", typecheckers={})
-        md = render_detail(report)
-        assert "No type-checker configurations found" in md
-
     def test_annotated_symbols_excluded(self) -> None:
         """Fully annotated symbols should not appear in the Annotations table."""
         report = _rich_report("mypkg")
@@ -349,10 +313,7 @@ class TestRenderDetail:
         annotations_start = next(
             i for i, line in enumerate(lines) if "## Incomplete Annotations" in line
         )
-        typecheckers_start = next(
-            i for i, line in enumerate(lines) if "## Type Checkers" in line
-        )
-        annotation_section = "\n".join(lines[annotations_start:typecheckers_start])
+        annotation_section = "\n".join(lines[annotations_start:])
         assert "VERSION" not in annotation_section
         # helper is fully annotated - should not appear
         assert "helper" not in annotation_section

@@ -52,22 +52,3 @@
 All symbols are fully annotated. :tada:
 
 {% endif %}
-## Type Checkers
-
-{% if typechecker_configs %}
-{% for name, config_json in typechecker_configs.items() %}
-{% if config_json %}
-??? "{{ name }}"
-    ```json
-{{ config_json }}
-    ```
-{% else %}
-??? "{{ name }}"
-    Default configuration (no overrides).
-{% endif %}
-
-{% endfor %}
-{% else %}
-No type-checker configurations found.
-
-{% endif %}
