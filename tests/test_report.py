@@ -492,7 +492,7 @@ class TestPackageReportJson:
         )
 
     def test_round_trip(self) -> None:
-        """model_dump_json → model_validate_json should reproduce the report."""
+        """model_dump_json -> model_validate_json should reproduce the report."""
         report = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNKNOWN))
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)

@@ -76,7 +76,7 @@ def _minimal_report(  # noqa: PLR0913
     n_unannotated: int = 5,
     metadata: dict[str, list[str]] | None = None,
 ) -> PackageReport:
-    """Build a minimal ``PackageReport`` with one ``ModuleReport``."""
+    """Build a minimal `PackageReport` with one `ModuleReport`."""
     symbol_reports = _make_symbol_reports(
         package,
         n_annotated=n_annotated,
@@ -100,7 +100,7 @@ def _minimal_report(  # noqa: PLR0913
 
 
 def _write_report(data_dir: Path, report: PackageReport) -> Path:
-    """Serialize *report* to ``{data_dir}/{package}/{version}.json``."""
+    """Serialize *report* to `{data_dir}/{package}/{version}.json`."""
     pkg_dir = data_dir / report.package
     pkg_dir.mkdir(parents=True, exist_ok=True)
     out = pkg_dir / f"{report.version}.json"
@@ -109,7 +109,7 @@ def _write_report(data_dir: Path, report: PackageReport) -> Path:
 
 
 def _table_lines(md: str) -> list[str]:
-    """Extract lines starting with ``|`` from rendered markdown."""
+    """Extract lines starting with `|` from rendered markdown."""
     return [line for line in md.splitlines() if line.startswith("|")]
 
 
@@ -277,13 +277,13 @@ class TestRenderDetail:
         report = _rich_report("mypkg")
         md = render_detail(report)
         assert "## Incomplete Annotations" in md
-        # `run` has n_unannotated=2, n_any=0 → "missing"
+        # `run` has n_unannotated=2, n_any=0 -> "missing"
         assert "missing" in md
 
     def test_annotation_status_any(self) -> None:
         report = _rich_report("mypkg")
         md = render_detail(report)
-        # `data` has n_any=1, n_unannotated=0 → "Any"
+        # `data` has n_any=1, n_unannotated=0 -> "Any"
         assert "| data" in md
         lines = md.splitlines()
         data_lines = [line for line in lines if "data" in line and "|" in line]
@@ -292,7 +292,7 @@ class TestRenderDetail:
     def test_annotation_status_mixed(self) -> None:
         report = _rich_report("mypkg")
         md = render_detail(report)
-        # `mixed` has n_any=1 AND n_unannotated=1 → "missing + Any"
+        # `mixed` has n_any=1 AND n_unannotated=1 -> "missing + Any"
         assert "missing + Any" in md
 
     def test_full_coverage_no_missing(self) -> None:

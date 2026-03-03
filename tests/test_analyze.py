@@ -413,7 +413,7 @@ class TestStringAnnotations:
         """)
         module = collect_symbols(src)
         assert module.symbols[0].name == "x"
-        # Falls back to the original SimpleString — still an Expr (annotated)
+        # Falls back to the original SimpleString -- still an Expr (annotated)
         assert isinstance(module.symbols[0].type_, Expr)
 
 
@@ -1272,7 +1272,7 @@ class TestVersionGuards:
         assert imports["TypeIs"] == "typing.TypeIs"
 
     def test_from_sys_import_version_info(self) -> None:
-        """Handle ``from sys import version_info``."""
+        """Handle `from sys import version_info`."""
         src = textwrap.dedent("""
         from sys import version_info
 
@@ -1287,7 +1287,7 @@ class TestVersionGuards:
         assert imports["Self"] == "typing.Self"
 
     def test_import_sys_as_alias(self) -> None:
-        """Handle ``import sys as _sys``."""
+        """Handle `import sys as _sys`."""
         src = textwrap.dedent("""
         import sys as _sys
 
@@ -1302,7 +1302,7 @@ class TestVersionGuards:
         assert "Alias" in aliases
 
     def test_version_triple(self) -> None:
-        """Support version triples like ``(3, 99, 1)``."""
+        """Support version triples like `(3, 99, 1)`."""
         src = textwrap.dedent("""
         import sys
 
@@ -1318,7 +1318,7 @@ class TestVersionGuards:
         assert "old_thing" in symbols
 
     def test_version_single(self) -> None:
-        """Support single-element tuples like ``(4,)``."""
+        """Support single-element tuples like `(4,)`."""
         src = textwrap.dedent("""
         import sys
 
@@ -1427,7 +1427,7 @@ class TestVersionGuards:
         self,
         caplog: pytest.LogCaptureFixture,
     ) -> None:
-        """Operators other than ``>=`` and ``<`` are left as-is."""
+        """Operators other than `>=` and `<` are left as-is."""
         src = textwrap.dedent("""
         import sys
 
@@ -1448,7 +1448,7 @@ class TestVersionGuards:
         self,
         caplog: pytest.LogCaptureFixture,
     ) -> None:
-        """Subscripted ``sys.version_info[:2]`` is not evaluated (both kept)."""
+        """Subscripted `sys.version_info[:2]` is not evaluated (both kept)."""
         src = textwrap.dedent("""
         import sys
 
