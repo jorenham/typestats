@@ -44,7 +44,7 @@ jobs:
       - name: collect type-coverage data
         id: collect
         run: >-
-          uv run -m typestats collect --data-dir _data/reports
+          uv run -m typestats collect --data-dir _data/reports --backfill-limit 10
           ${{ github.event_name == 'pull_request' && '--clean' || '' }}
 
       - name: Commit and push new data

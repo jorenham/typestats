@@ -3,7 +3,6 @@
 import contextlib
 import logging
 import re
-from datetime import date
 from typing import TYPE_CHECKING, Final
 
 import anyio
@@ -14,6 +13,8 @@ from typestats.projects import load_projects
 from typestats.report import PackageReport, StubsOnly
 
 if TYPE_CHECKING:
+    import datetime as dt
+
     import httpx
     from _typeshed import StrPath
 
@@ -24,9 +25,6 @@ __all__ = "clean_data", "collect_all"
 
 _logger: Final = logging.getLogger(__name__)
 _DEFAULT_PROJECTS: Final = anyio.Path(__file__).parents[2] / "projects.toml"
-
-BACKFILL_SINCE: Final = date(2025, 1, 1)
-BACKFILL_LIMIT: Final = 10
 
 
 async def _remove_tree(path: anyio.Path, /) -> None:
@@ -57,12 +55,14 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
             with contextlib.suppress(OSError):
                 await child.rmdir()
 
-    _logger.info(
-        "Cleaned %d JSON %s from %s",
-        removed,
-        "file" if removed == 1 else "files",
-        data_dir,
-    )
+    if removed:
+        _logger.info(
+            "Cleaned %d JSON %s from %s",
+            removed,
+            "file" if removed == 1 else "files",
+            data_dir,
+        )
+
     return removed
 
 
@@ -75,24 +75,28 @@ def _stubs_info(project_name: str) -> tuple[str, StubsOnly] | None:
     return None
 
 
-async def collect_project(
+async def collect_project(  # noqa: PLR0913
     project: Project,
     client: httpx.AsyncClient,
     data_dir: anyio.Path,
     work_dir: anyio.Path,
     /,
+    *,
+    backfill_since: dt.date,
+    backfill_limit: int,
 ) -> list[anyio.Path]:
     """Collect type-coverage data for all eligible versions of a project.
 
-    Collects all versions uploaded on or after `BACKFILL_SINCE` that haven't
-    been collected yet.  Returns the paths of newly written JSON files.
+    Collects all versions uploaded on or after `backfill_since` that haven't been
+    collected yet, constrained to max `backfill_limit` versions per project, and at
+    least the latest version.
     """
     eligible = await versions_since(
         client,
         project.name,
-        BACKFILL_SINCE,
+        backfill_since,
         include_latest=True,
-        limit=BACKFILL_LIMIT,
+        limit=backfill_limit,
     )
     stubs = _stubs_info(project.name)
 
@@ -146,18 +150,22 @@ async def collect_all(
     data_dir: anyio.Path,
     projects_path: StrPath | None = None,
     /,
+    *,
+    backfill_since: dt.date,
+    backfill_limit: int,
 ) -> list[anyio.Path]:
     """Analyze every project in `projects_path` and write JSON reports.
 
-    Collects all versions since `BACKFILL_SINCE` that haven't been collected
-    yet.  Returns the list of newly written files.
+    Collects all versions since `backfill_since` that haven't been collected yet,
+    constrained to max `backfill_limit` versions per project, and at least the latest
+    version.
     """
 
     if projects_path is None:
         projects_path = _DEFAULT_PROJECTS
 
     projects = load_projects(projects_path)
-    _logger.info("Collecting data for %d projects …", len(projects))
+    _logger.info("Collecting data for %d projects...", len(projects))
 
     # Remove data directories for projects no longer in the projects list
     project_names = {p.name for p in projects}
@@ -173,7 +181,14 @@ async def collect_all(
 
         async def _collect(project: Project) -> None:
             written.extend(
-                await collect_project(project, client, data_dir, work_dir),
+                await collect_project(
+                    project,
+                    client,
+                    data_dir,
+                    work_dir,
+                    backfill_since=backfill_since,
+                    backfill_limit=backfill_limit,
+                ),
             )
 
         async with anyio.create_task_group() as tg:

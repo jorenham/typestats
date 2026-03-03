@@ -3,6 +3,7 @@
 import io
 import json
 import tarfile
+from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -22,6 +23,8 @@ if TYPE_CHECKING:
 
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 _FIXTURES = Path(__file__).parent / "fixtures"
+_BACKFILL_SINCE = date(2025, 1, 1)
+_BACKFILL_LIMIT = 10
 
 
 def _make_sdist_tar_gz(name: str, version: str, source_dir: Path) -> bytes:
@@ -85,6 +88,8 @@ class TestCollectProject:
                 client,
                 data_dir,
                 anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
             )
 
         assert len(results) == 1
@@ -120,6 +125,8 @@ class TestCollectProject:
                 client,
                 data_dir,
                 anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
             )
 
         assert results == []
@@ -144,7 +151,12 @@ class TestCollectAll:
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
 
         data_dir = anyio.Path(tmp_path / "data")
-        written = await collect_all(data_dir, projects_toml)
+        written = await collect_all(
+            data_dir,
+            projects_toml,
+            backfill_since=_BACKFILL_SINCE,
+            backfill_limit=_BACKFILL_LIMIT,
+        )
 
         assert len(written) == 1
         assert await written[0].exists()
@@ -173,7 +185,12 @@ class TestCollectAll:
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
 
-        written = await collect_all(data_dir, projects_toml)
+        written = await collect_all(
+            data_dir,
+            projects_toml,
+            backfill_since=_BACKFILL_SINCE,
+            backfill_limit=_BACKFILL_LIMIT,
+        )
         assert written == []
 
     async def test_removes_unlisted_projects(
@@ -195,7 +212,12 @@ class TestCollectAll:
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
 
-        await collect_all(data_dir, projects_toml)
+        await collect_all(
+            data_dir,
+            projects_toml,
+            backfill_since=_BACKFILL_SINCE,
+            backfill_limit=_BACKFILL_LIMIT,
+        )
 
         # The unlisted project directory should be removed
         assert not unlisted.exists()
@@ -256,6 +278,8 @@ class TestBackfillCutoff:
                 client,
                 data_dir,
                 anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
             )
 
         # Only 1.0.0 should be collected (on the cutoff date), not 0.9.0
@@ -313,6 +337,8 @@ class TestBackfillCutoff:
                 client,
                 data_dir,
                 anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
             )
 
         assert len(results) == 2
@@ -391,6 +417,8 @@ class TestBackfillCutoff:
                 client,
                 data_dir,
                 anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
             )
 
         assert len(results) == 1
