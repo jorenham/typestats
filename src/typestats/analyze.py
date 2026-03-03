@@ -392,6 +392,20 @@ def _parse_string_annotation(expr: cst.BaseExpression) -> cst.BaseExpression:
         return expr
 
 
+def _contains_call(expr: cst.BaseExpression) -> bool:
+    """Return `True` if `expr` (or any sub-expression) is a `Call` node."""
+    if isinstance(expr, cst.Call):
+        return True
+    for ch in expr.children:
+        if isinstance(ch, cst.CSTNode) and any(
+            isinstance(d, cst.Call) for d in ch.children
+        ):
+            return True
+        if isinstance(ch, cst.BaseExpression) and _contains_call(ch):
+            return True
+    return False
+
+
 def _is_dunder_slots(expr: cst.BaseExpression) -> bool:
     return isinstance(expr, cst.Name) and expr.value == "__slots__"
 
@@ -1157,13 +1171,13 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         # Special typeforms (TypeVar, etc.), enum attributes, and simple
         # (non-call) assignments are KNOWN -- type checkers can infer them.
-        # Only call expressions remain UNKNOWN, because the return type
-        # depends on the callee's annotation quality.
+        # Assignments whose RHS contains any call expression remain UNKNOWN,
+        # because the return type depends on the callee's annotation quality.
         ty = (
             KNOWN
             if self._is_special_typeform(value)
             or (cls and cls.is_enum)
-            or not isinstance(value, cst.Call)
+            or not _contains_call(value)
             else UNKNOWN
         )
         for target in targets:

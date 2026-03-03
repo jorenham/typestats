@@ -362,6 +362,33 @@ class TestSimpleAssignKnown:
         assert symbols[0].name == "X"
         assert symbols[0].type_ is UNKNOWN
 
+    @pytest.mark.parametrize(
+        "rhs",
+        [
+            "f().attr",
+            "f()[0]",
+            "f() if cond else g()",
+            "f() or g()",
+            "[f()]",
+        ],
+        ids=[
+            "call_attr",
+            "call_subscript",
+            "call_ternary",
+            "call_boolop",
+            "call_in_list",
+        ],
+    )
+    def test_nested_call_rhs_is_unknown(self, rhs: str) -> None:
+        """An RHS that contains a call anywhere should remain UNKNOWN."""
+        src = textwrap.dedent(f"""
+        X = {rhs}
+        """)
+        symbols = collect_symbols(src).symbols
+        assert len(symbols) == 1
+        assert symbols[0].name == "X"
+        assert symbols[0].type_ is UNKNOWN
+
 
 class TestIgnoreComments:
     def test_basic(self) -> None:
