@@ -30,6 +30,13 @@ For a given PyPI project the tool runs an end-to-end pipeline:
 7. **Measure** — compute coverage and other statistics.
 8. **Export** — output the results for consumption by a website or dashboard.
 
+## Style
+
+- **ASCII only** — all source files must contain only ASCII characters. Do not use emdashes or
+  other non-ASCII punctuation.
+- **Docstrings** — use Markdown formatting in docstrings. Do not use double backticks for inline
+  code; prefer single backticks instead.
+
 ## Contributing
 
 - **Tests** — new features must include tests.
