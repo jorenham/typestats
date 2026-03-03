@@ -275,6 +275,7 @@ class TestSymbols:
         assert symbols[1].name == "Token"
         assert symbols[1].type_ is KNOWN
         assert symbols[2].name == "D"
+        assert symbols[2].type_ is KNOWN
 
     def test_special_typeforms_known_annassign(self) -> None:
         src = textwrap.dedent("""
@@ -288,6 +289,107 @@ class TestSymbols:
         assert symbols[0].name == "T"
         assert symbols[0].type_ is KNOWN
         assert symbols[1].name == "D"
+
+
+class TestSimpleAssignKnown:
+    """Non-call assignments are KNOWN -- type checkers can infer them."""
+
+    @pytest.mark.parametrize(
+        "rhs",
+        [
+            "1",
+            '"hello"',
+            "True",
+            "None",
+            "[1, 2, 3]",
+            "(1, 2)",
+            '{"a", "b"}',
+            '{"key": "val"}',
+            "a + b",
+            "-1",
+            "other_name",
+            "obj.attr",
+        ],
+        ids=[
+            "int",
+            "str",
+            "bool",
+            "none",
+            "list",
+            "tuple",
+            "set",
+            "dict",
+            "binop",
+            "unaryop",
+            "name",
+            "attribute",
+        ],
+    )
+    def test_non_call_rhs_is_known(self, rhs: str) -> None:
+        src = textwrap.dedent(f"""
+        X = {rhs}
+        """)
+        symbols = collect_symbols(src).symbols
+        assert len(symbols) == 1
+        assert symbols[0].name == "X"
+        assert symbols[0].type_ is KNOWN
+
+    def test_call_rhs_is_unknown(self) -> None:
+        src = textwrap.dedent("""
+        X = some_func()
+        """)
+        symbols = collect_symbols(src).symbols
+        assert len(symbols) == 1
+        assert symbols[0].name == "X"
+        assert symbols[0].type_ is UNKNOWN
+
+    def test_method_call_rhs_is_unknown(self) -> None:
+        src = textwrap.dedent("""
+        X = obj.method()
+        """)
+        symbols = collect_symbols(src).symbols
+        assert len(symbols) == 1
+        assert symbols[0].name == "X"
+        assert symbols[0].type_ is UNKNOWN
+
+    def test_builtin_call_rhs_is_unknown(self) -> None:
+        """Calls like `type(...)` or `dict(...)` are still UNKNOWN."""
+        src = textwrap.dedent("""
+        X = type("X", (), {})
+        """)
+        symbols = collect_symbols(src).symbols
+        assert len(symbols) == 1
+        assert symbols[0].name == "X"
+        assert symbols[0].type_ is UNKNOWN
+
+    @pytest.mark.parametrize(
+        "rhs",
+        [
+            "f().attr",
+            "f()[0]",
+            "f() if cond else g()",
+            "f() or g()",
+            "[f()]",
+            "[f() for x in xs]",
+        ],
+        ids=[
+            "call_attr",
+            "call_subscript",
+            "call_ternary",
+            "call_boolop",
+            "call_in_list",
+            "call_in_comprehension",
+        ],
+    )
+    def test_nested_call_rhs_is_unknown(self, rhs: str) -> None:
+        """An RHS that contains a call anywhere should remain UNKNOWN."""
+        src = textwrap.dedent(f"""
+        X = {rhs}
+        """)
+        symbols = collect_symbols(src).symbols
+        assert len(symbols) == 1
+        assert symbols[0].name == "X"
+        assert symbols[0].type_ is UNKNOWN
 
 
 class TestIgnoreComments:

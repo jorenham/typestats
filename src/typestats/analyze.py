@@ -392,6 +392,18 @@ def _parse_string_annotation(expr: cst.BaseExpression) -> cst.BaseExpression:
         return expr
 
 
+def _contains_call(node: cst.CSTNode) -> bool:
+    queue = deque([node])
+    while queue:
+        if isinstance(cur := queue.popleft(), cst.Call):
+            return True
+        queue.extend(cur.children)
+        if len(queue) > (1 << 20):  # arbitrary large limit in case of pathological CSTs
+            err = f"CST node ({type(node).__name__}) is too large to search for calls"
+            raise RecursionError(err)
+    return False
+
+
 def _is_dunder_slots(expr: cst.BaseExpression) -> bool:
     return isinstance(expr, cst.Name) and expr.value == "__slots__"
 
@@ -1155,10 +1167,15 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if self._try_add_name_alias(node) or self._try_resolve_method_alias(node):
             return
 
-        # special typeforms (TypeVar, etc.) and enum attributes are KNOWN
+        # Special typeforms (TypeVar, etc.), enum attributes, and simple
+        # (non-call) assignments are KNOWN -- type checkers can infer them.
+        # Assignments whose RHS contains any call expression remain UNKNOWN,
+        # because the return type depends on the callee's annotation quality.
         ty = (
             KNOWN
-            if self._is_special_typeform(value) or (cls and cls.is_enum)
+            if self._is_special_typeform(value)
+            or (cls and cls.is_enum)
+            or not _contains_call(value)
             else UNKNOWN
         )
         for target in targets:
