@@ -582,8 +582,8 @@ class PackageReport(BaseModel):
         from typestats import _pypi
 
         # Detect stubs package patterns:
-        #   {name}-stubs  → third-party companion stubs (e.g. scipy-stubs)
-        #   types-{name}  → typeshed stubs (e.g. types-networkx)
+        #   {name}-stubs  -> third-party companion stubs (e.g. scipy-stubs)
+        #   types-{name}  -> typeshed stubs (e.g. types-networkx)
         base_name: str | None = None
         stubs_only = StubsOnly.NO
         if m := re.match(r"^(?:(.+)-stubs|types-(.+))$", project.name):

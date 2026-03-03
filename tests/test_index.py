@@ -459,7 +459,7 @@ def test_collect_public_symbols_chained_alias_to_any_is_any() -> None:
     """Aliases through multiple levels should still resolve to ANY."""
     types = _public_symbol_types(_PROJECT)
 
-    # Chained is defined as `type Chained = Unknown`, Unknown → Any
+    # Chained is defined as `type Chained = Unknown`, Unknown -> Any
     assert "anypkg.mod.chained_var" in types
     assert types["anypkg.mod.chained_var"] is analyze.ANY
 
@@ -494,7 +494,7 @@ def test_collect_public_symbols_function_any_params_unfolded() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # param `a: Unknown` should be ANY (Unknown → Any)
+    # param `a: Unknown` should be ANY (Unknown -> Any)
     assert overload.params[0].name == "a"
     assert overload.params[0].annotation is analyze.ANY
     # param `b: int` should remain annotated
@@ -694,14 +694,14 @@ def test_merge_stubs_overlay_stubs_only_symbol() -> None:
 
 
 def test_merge_stubs_overlay_missing_from_stubs_unknown() -> None:
-    """Original symbol not in stubs (module covered) → UNKNOWN."""
+    """Original symbol not in stubs (module covered) -> UNKNOWN."""
     types = _merged_stubs_types()
     assert "mypkg.extra_func" in types
     assert types["mypkg.extra_func"] is analyze.UNKNOWN
 
 
 def test_merge_stubs_overlay_uncovered_module_original() -> None:
-    """Module not covered by stubs → original type preserved."""
+    """Module not covered by stubs -> original type preserved."""
     types = _merged_stubs_types()
     assert "mypkg.utils.helper" in types
     assert types["mypkg.utils.helper"] is not analyze.UNKNOWN
@@ -746,17 +746,17 @@ def test_collect_public_symbols_type_check_only_excluded() -> None:
     """@type_check_only symbols are excluded unless explicitly in __all__."""
     names = _public_symbol_names(_PROJECT)
 
-    # _Proto is @type_check_only but explicitly in __all__ → included
+    # _Proto is @type_check_only but explicitly in __all__ -> included
     assert "tcopkg._Proto" in names
 
-    # visible() is not @type_check_only → included
+    # visible() is not @type_check_only -> included
     assert "tcopkg.visible" in names
 
-    # public_func and PublicClass from mod are in __all__ → included
+    # public_func and PublicClass from mod are in __all__ -> included
     assert "tcopkg.mod.public_func" in names
     assert "tcopkg.mod.PublicClass" in names
 
-    # @type_check_only symbols not in __all__ → excluded
+    # @type_check_only symbols not in __all__ -> excluded
     assert "tcopkg.mod._checker" not in names
     assert "tcopkg.mod._InternalProto" not in names
     # public-named but @type_check_only, excluded by decorator (not by _is_public)
@@ -887,7 +887,7 @@ class TestExcludeGlobs:
 
     async def test_package_name_different_import_name(self, tmp_path: Path) -> None:
         """package_name is auto-resolved when the PyPI name differs from the
-        Python import name (e.g. pillow → PIL)."""
+        Python import name (e.g. pillow -> PIL)."""
         pil = tmp_path / "PIL"
         pil.mkdir()
         (pil / "__init__.py").write_text(
@@ -913,7 +913,7 @@ class TestExcludeGlobs:
 
     async def test_package_name_hyphen_normalization(self, tmp_path: Path) -> None:
         """PyPI names with hyphens are auto-resolved to underscored imports
-        (e.g. more-itertools → more_itertools)."""
+        (e.g. more-itertools -> more_itertools)."""
         pkg = tmp_path / "more_itertools"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("def chunked(it: list, n: int) -> list: ...\n")

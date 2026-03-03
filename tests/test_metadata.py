@@ -74,7 +74,7 @@ class TestReadPkgMetadata:
         assert result["Version"] == ["1.0.0"]
 
     async def test_no_metadata_returns_none(self, tmp_path: Path) -> None:
-        """Empty directory → None."""
+        """Empty directory -> None."""
         result = await read_pkg_metadata(tmp_path)
         assert result is None
 

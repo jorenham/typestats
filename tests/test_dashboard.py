@@ -277,13 +277,13 @@ class TestRenderDetail:
         report = _rich_report("mypkg")
         md = render_detail(report)
         assert "## Incomplete Annotations" in md
-        # `run` has n_unannotated=2, n_any=0 → "missing"
+        # `run` has n_unannotated=2, n_any=0 -> "missing"
         assert "missing" in md
 
     def test_annotation_status_any(self) -> None:
         report = _rich_report("mypkg")
         md = render_detail(report)
-        # `data` has n_any=1, n_unannotated=0 → "Any"
+        # `data` has n_any=1, n_unannotated=0 -> "Any"
         assert "| data" in md
         lines = md.splitlines()
         data_lines = [line for line in lines if "data" in line and "|" in line]
@@ -292,7 +292,7 @@ class TestRenderDetail:
     def test_annotation_status_mixed(self) -> None:
         report = _rich_report("mypkg")
         md = render_detail(report)
-        # `mixed` has n_any=1 AND n_unannotated=1 → "missing + Any"
+        # `mixed` has n_any=1 AND n_unannotated=1 -> "missing + Any"
         assert "missing + Any" in md
 
     def test_full_coverage_no_missing(self) -> None:

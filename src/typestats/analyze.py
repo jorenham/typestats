@@ -1072,7 +1072,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if self._class_stack:
             return False
 
-        # Unwrap subscript: `X = SomeType[args]` → resolve `SomeType`
+        # Unwrap subscript: `X = SomeType[args]` -> resolve `SomeType`
         value = node.value
         is_subscript = isinstance(value, cst.Subscript)
         base = value.value if is_subscript else value
