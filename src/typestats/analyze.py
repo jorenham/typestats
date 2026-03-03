@@ -392,18 +392,11 @@ def _parse_string_annotation(expr: cst.BaseExpression) -> cst.BaseExpression:
         return expr
 
 
-def _contains_call(expr: cst.BaseExpression) -> bool:
-    """Return `True` if `expr` (or any sub-expression) is a `Call` node."""
-    if isinstance(expr, cst.Call):
+def _contains_call(node: cst.CSTNode) -> bool:
+    """Return `True` if `node` (or any descendant) is a `Call` node."""
+    if isinstance(node, cst.Call):
         return True
-    for ch in expr.children:
-        if isinstance(ch, cst.CSTNode) and any(
-            isinstance(d, cst.Call) for d in ch.children
-        ):
-            return True
-        if isinstance(ch, cst.BaseExpression) and _contains_call(ch):
-            return True
-    return False
+    return any(_contains_call(ch) for ch in node.children)
 
 
 def _is_dunder_slots(expr: cst.BaseExpression) -> bool:

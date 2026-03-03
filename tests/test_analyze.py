@@ -370,6 +370,7 @@ class TestSimpleAssignKnown:
             "f() if cond else g()",
             "f() or g()",
             "[f()]",
+            "[f() for x in xs]",
         ],
         ids=[
             "call_attr",
@@ -377,6 +378,7 @@ class TestSimpleAssignKnown:
             "call_ternary",
             "call_boolop",
             "call_in_list",
+            "call_in_comprehension",
         ],
     )
     def test_nested_call_rhs_is_unknown(self, rhs: str) -> None:
