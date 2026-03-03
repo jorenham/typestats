@@ -28,7 +28,7 @@ _STUBS_OVERLAY: Path = _FIXTURES / "stubs_overlay"
 
 
 def _is_excluded(rel: str) -> bool:
-    """Local helper matching the inlined logic in ``_analyze_graph``."""
+    """Local helper matching the inlined logic in `_analyze_graph`."""
     parts = rel.split("/")
     return parts[-1] in _EXCLUDED_FILE_NAMES or bool(
         _EXCLUDED_DIR_NAMES.intersection(parts),
@@ -354,9 +354,9 @@ class TestResolvePackageName:
             ("pillow", {"PIL"}, "PIL"),
             ("beautifulsoup4", {"bs4"}, "bs4"),
             ("pyyaml", {"yaml", "_yaml"}, "yaml"),
-            # Multiple public modules — falls back to None
+            # Multiple public modules -- falls back to None
             ("ambiguous", {"pkg_a", "pkg_b"}, None),
-            # No public modules — falls back to None
+            # No public modules -- falls back to None
             ("hidden", {"_internal"}, None),
         ],
         ids=[
@@ -897,7 +897,7 @@ class TestExcludeGlobs:
             "class Image:\n    width: int\n    height: int\n",
         )
 
-        # Pass the PyPI name, not the import name — auto-detection should
+        # Pass the PyPI name, not the import name -- auto-detection should
         # resolve "pillow" to the sole public top-level module "PIL".
         pub = await collect_public_symbols(tmp_path, package_name="pillow")
         types = {s.name: s.type_ for syms in pub.symbols.values() for s in syms}
@@ -962,8 +962,8 @@ class TestExcludeGlobs:
         """Realistic reproduction of the regex sdist layout.
 
         The actual regex sdist has:
-        - regex/__init__.py with ``__all__ = regex._main.__all__``
-        - regex/_main.py  with ``from regex._regex_core import *``
+        - regex/__init__.py with `__all__ = regex._main.__all__`
+        - regex/_main.py  with `from regex._regex_core import *`
         - regex/_regex_core.py providing flag constants
         - regex/tests/ (excluded)
         - setup.py at project root

@@ -59,7 +59,7 @@ type TypeForm = _TypeMarker | Expr | Function | Property | Class
 
 
 def _parse_version_tuple(node: cst.BaseExpression) -> tuple[int, ...] | None:
-    """Extract a version like ``(3, 11)`` from a CST tuple literal."""
+    """Extract a version like `(3, 11)` from a CST tuple literal."""
     if not isinstance(node, cst.Tuple):
         return None
     parts: list[str] = []
@@ -524,7 +524,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         return raw
 
     def _is_version_info(self, node: cst.BaseExpression) -> bool:
-        """Check if *node* represents ``sys.version_info``."""
+        """Check if *node* represents `sys.version_info`."""
         if isinstance(node, cst.Subscript):
             value = node.value
             if (isinstance(value, cst.Name) and value.value != "version_info") or (
@@ -547,10 +547,10 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         return self._resolve_name(node) == _SYS_VERSION_INFO
 
     def _eval_version_guard(self, test: cst.BaseExpression) -> bool | None:
-        """Evaluate a ``sys.version_info`` comparison against the target version.
+        """Evaluate a `sys.version_info` comparison against the target version.
 
-        Only ``>=`` and ``<`` are supported.  Returns ``True``/``False`` when the
-        comparison can be resolved, ``None`` otherwise.
+        Only `>=` and `<` are supported.  Returns `True`/`False` when the
+        comparison can be resolved, `None` otherwise.
         """
         if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
             return None

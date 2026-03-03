@@ -196,14 +196,14 @@ class PyrightConfig(TypecheckerConfig):
 
     @staticmethod
     async def _parse_json(path: anyio.Path, /) -> dict[str, Any] | None:
-        """Parse a ``pyrightconfig.json`` file."""
+        """Parse a `pyrightconfig.json` file."""
         text = await path.read_text()
         parsed = json.loads(text)
         return parsed if _is_json_dict(parsed) else None
 
     @staticmethod
     async def _parse_pyproject(path: anyio.Path, /) -> dict[str, Any] | None:
-        """Parse Pyright config from ``[tool.pyright]``."""
+        """Parse Pyright config from `[tool.pyright]`."""
         if (tool := await _parse_pyproject_tool(path)) is None:
             return None
         if not _is_json_dict(pyright := tool.get("pyright")):
@@ -216,7 +216,7 @@ _pyright = PyrightConfig()
 
 async def pyright_config(project_dir: StrPath, /) -> dict[str, Any] | None:
     """
-    Returns the Pyright config for the given project directory, or ``None``
+    Returns the Pyright config for the given project directory, or `None`
     if no config is found.
 
     See https://microsoft.github.io/pyright/#/configuration
