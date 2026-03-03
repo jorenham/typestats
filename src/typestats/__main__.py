@@ -1,109 +1,73 @@
-# ruff: noqa: PLC0415
-
-import argparse
+import dataclasses
 from datetime import date
+from typing import Annotated
 
-import anyio
+import anyio  # noqa: TC002
+import tyro
 from mainpy import main
 
 
-def _posint(value: str | int, /) -> int:
-    n = int(value)
-    if n < 1:
-        msg = f"must be >= 1, got {n}"
-        raise argparse.ArgumentTypeError(msg)
-    return n
+@dataclasses.dataclass
+class Collect:
+    """Collect type-coverage report data for curated projects."""
+
+    data_dir: anyio.Path
+    """Directory to write `{package}/{version}.json` files into."""
+
+    projects: anyio.Path | None = None
+    """Path to projects TOML file (default: `projects.toml` in repo root)."""
+
+    clean: bool = False
+    """Remove all previously collected JSON files before collecting."""
+
+    backfill_since: date = date(2025, 1, 1)
+    """Collect versions uploaded on or after this date (default: 2025-01-01)."""
+
+    backfill_limit: Annotated[int, tyro.conf.arg(metavar="N")] = 1
+    """Maximum number of versions to backfill per project (default: 1)."""
+
+
+@dataclasses.dataclass
+class Dashboard:
+    """Build the markdown dashboard pages from collected data."""
+
+    data_dir: anyio.Path
+    """Directory containing collected `{package}/{version}.json` files."""
+
+    site_dir: anyio.Path
+    """Output directory for generated markdown pages."""
+
+    projects: anyio.Path | None = None
+    """Path to projects TOML file (default: `projects.toml` in repo root)."""
 
 
 @main
 async def app() -> None:
-    parser = argparse.ArgumentParser(
+    cmd = tyro.cli(
+        Collect | Dashboard,
         prog="typestats",
         description="Type annotation coverage statistics for Python packages.",
     )
 
-    sub = parser.add_subparsers(dest="command")
+    match cmd:
+        case Collect():
+            if cmd.backfill_limit < 1:
+                msg = f"error: --backfill-limit must be >= 1, got {cmd.backfill_limit}"
+                raise SystemExit(msg)
 
-    collect_p = sub.add_parser(
-        "collect",
-        help="Collect type-coverage report data for curated projects.",
-    )
-    collect_p.add_argument(
-        "--data-dir",
-        type=anyio.Path,
-        required=True,
-        help="Directory to write {package}/{version}.json files into.",
-    )
-    collect_p.add_argument(
-        "--projects",
-        type=anyio.Path,
-        default=None,
-        help="Path to projects TOML file (default: projects.toml in repo root).",
-    )
-    collect_p.add_argument(
-        "--clean",
-        action="store_true",
-        default=False,
-        help="Remove all previously collected JSON files before collecting.",
-    )
-    collect_p.add_argument(
-        "--backfill-since",
-        type=date.fromisoformat,
-        default=date(2025, 1, 1),
-        metavar="YYYY-MM-DD",
-        help="Collect versions uploaded on or after this date (default: 2025-01-01).",
-    )
-    collect_p.add_argument(
-        "--backfill-limit",
-        type=_posint,
-        default=1,
-        metavar="N",
-        help="Maximum number of versions to backfill per project (default: 1).",
-    )
+            from typestats.collect import clean_data, collect_all  # noqa: PLC0415
 
-    dashboard_p = sub.add_parser(
-        "dashboard",
-        help="Build the markdown dashboard pages from collected data.",
-    )
-    dashboard_p.add_argument(
-        "--data-dir",
-        type=anyio.Path,
-        required=True,
-        help="Directory containing collected {package}/{version}.json files.",
-    )
-    dashboard_p.add_argument(
-        "--site-dir",
-        type=anyio.Path,
-        required=True,
-        help="Output directory for generated markdown pages.",
-    )
-    dashboard_p.add_argument(
-        "--projects",
-        type=anyio.Path,
-        default=None,
-        help="Path to projects TOML file (default: projects.toml in repo root).",
-    )
-
-    args = parser.parse_args()
-
-    match args.command:
-        case "collect":
-            from typestats.collect import clean_data, collect_all
-
-            if args.clean:
-                await clean_data(args.data_dir)
+            if cmd.clean:
+                await clean_data(cmd.data_dir)
 
             await collect_all(
-                args.data_dir,
-                args.projects,
-                backfill_since=args.backfill_since,
-                backfill_limit=args.backfill_limit,
+                cmd.data_dir,
+                cmd.projects,
+                backfill_since=cmd.backfill_since,
+                backfill_limit=cmd.backfill_limit,
             )
 
-        case "dashboard":
-            from typestats.dashboard import build_site
+        case Dashboard():
+            from typestats.dashboard import build_site  # noqa: PLC0415
 
-            await build_site(args.data_dir, args.site_dir, args.projects)
-
-        case _:
-            parser.print_help()
+            await build_site(cmd.data_dir, cmd.site_dir, cmd.projects)
