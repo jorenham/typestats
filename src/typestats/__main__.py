@@ -1,6 +1,7 @@
 # ruff: noqa: PLC0415
 
 import argparse
+from datetime import date
 
 import anyio
 from mainpy import main
@@ -37,6 +38,20 @@ async def app() -> None:
         default=False,
         help="Remove all previously collected JSON files before collecting.",
     )
+    collect_p.add_argument(
+        "--backfill-since",
+        type=date.fromisoformat,
+        default=date(2025, 1, 1),
+        metavar="YYYY-MM-DD",
+        help="Collect versions uploaded on or after this date (default: 2025-01-01).",
+    )
+    collect_p.add_argument(
+        "--backfill-limit",
+        type=int,
+        default=1,
+        metavar="N",
+        help="Maximum number of versions to backfill per project (default: 1).",
+    )
 
     dashboard_p = sub.add_parser(
         "dashboard",
@@ -70,16 +85,17 @@ async def app() -> None:
             if args.clean:
                 await clean_data(args.data_dir)
 
-            await collect_all(args.data_dir, args.projects)
+            await collect_all(
+                args.data_dir,
+                args.projects,
+                backfill_since=args.backfill_since,
+                backfill_limit=args.backfill_limit,
+            )
 
         case "dashboard":
             from typestats.dashboard import build_site
 
-            await build_site(
-                args.data_dir,
-                args.site_dir,
-                args.projects,
-            )
+            await build_site(args.data_dir, args.site_dir, args.projects)
 
         case _:
             parser.print_help()
