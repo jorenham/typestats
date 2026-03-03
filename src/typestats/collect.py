@@ -88,7 +88,7 @@ async def collect_project(  # noqa: PLR0913
     """Collect type-coverage data for all eligible versions of a project.
 
     Collects all versions uploaded on or after `backfill_since` that haven't been
-    collected yet, constrainted to max `backfill_limit` versions per project, and at
+    collected yet, constrained to max `backfill_limit` versions per project, and at
     least the latest version.
     """
     eligible = await versions_since(
@@ -157,7 +157,7 @@ async def collect_all(
     """Analyze every project in `projects_path` and write JSON reports.
 
     Collects all versions since `backfill_since` that haven't been collected yet,
-    constrainted to max `backfill_limit` versions per project, and at least the latest
+    constrained to max `backfill_limit` versions per project, and at least the latest
     version.
     """
 

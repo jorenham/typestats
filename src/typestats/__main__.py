@@ -7,6 +7,14 @@ import anyio
 from mainpy import main
 
 
+def _posint(value: str | int, /) -> int:
+    n = int(value)
+    if n < 1:
+        msg = f"must be >= 1, got {n}"
+        raise argparse.ArgumentTypeError(msg)
+    return n
+
+
 @main
 async def app() -> None:
     parser = argparse.ArgumentParser(
@@ -47,7 +55,7 @@ async def app() -> None:
     )
     collect_p.add_argument(
         "--backfill-limit",
-        type=int,
+        type=_posint,
         default=1,
         metavar="N",
         help="Maximum number of versions to backfill per project (default: 1).",
