@@ -193,7 +193,7 @@ def _extract_project_urls(report: PackageReport, /) -> _ProjectUrls:
 
             if httpx.URL(url).host in _REPO_HOSTS:
                 urls["repo"] = url
-            break
+                break
 
     return urls
 

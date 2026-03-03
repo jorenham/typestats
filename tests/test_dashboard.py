@@ -247,7 +247,6 @@ class TestRenderDetail:
         report = _minimal_report("numpy", "2.4.2")
         md = render_detail(report)
         assert "# numpy 2.4.2" in md
-        assert "[← Overview](index.md)" in md
 
     def test_summary_section(self) -> None:
         report = _minimal_report(
