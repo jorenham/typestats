@@ -393,10 +393,15 @@ def _parse_string_annotation(expr: cst.BaseExpression) -> cst.BaseExpression:
 
 
 def _contains_call(node: cst.CSTNode) -> bool:
-    """Return `True` if `node` (or any descendant) is a `Call` node."""
-    if isinstance(node, cst.Call):
-        return True
-    return any(_contains_call(ch) for ch in node.children)
+    queue = deque([node])
+    while queue:
+        if isinstance(cur := queue.popleft(), cst.Call):
+            return True
+        queue.extend(cur.children)
+        if len(queue) > (1 << 20):  # arbitrary large limit in case of pathological CSTs
+            err = f"CST node ({type(node).__name__}) is too large to search for calls"
+            raise RecursionError(err)
+    return False
 
 
 def _is_dunder_slots(expr: cst.BaseExpression) -> bool:
