@@ -1,109 +1,103 @@
-# ruff: noqa: PLC0415
+import contextlib
+import dataclasses
+import datetime as dt
+from pathlib import Path
+from typing import Annotated
 
-import argparse
-from datetime import date
-
-import anyio
+import anyio  # noqa: TC002
+import tyro
 from mainpy import main
 
+_DEFAULT_PROJECTS: Path = Path(__file__).parents[2] / "projects.toml"
 
-def _posint(value: str | int, /) -> int:
-    n = int(value)
+
+def _parse_positive_int(s: str) -> int:
+    n = int(s)
     if n < 1:
         msg = f"must be >= 1, got {n}"
-        raise argparse.ArgumentTypeError(msg)
+        raise ValueError(msg)
     return n
+
+
+def _relative_default(p: str) -> str:
+    path = Path(p)
+    with contextlib.suppress(ValueError):
+        path = path.relative_to(Path.cwd())
+    return f"(default: {path})"
+
+
+type _PositiveInt = Annotated[
+    int,
+    tyro.constructors.PrimitiveConstructorSpec(
+        nargs=1,
+        metavar="N",
+        instance_from_str=lambda args: _parse_positive_int(args[0]),
+        is_instance=lambda v: isinstance(v, int) and v >= 1,
+        str_from_instance=lambda v: [str(v)],
+    ),
+]
+
+
+type _ProjectsArg = Annotated[Path, tyro.conf.arg(help_behavior_hint=_relative_default)]
+
+
+@dataclasses.dataclass
+class Collect:
+    """Collect type-coverage report data for curated projects."""
+
+    data_dir: anyio.Path
+    """Directory to write `{package}/{version}.json` files into."""
+
+    projects: _ProjectsArg = _DEFAULT_PROJECTS
+    """Path to projects TOML file."""
+
+    clean: bool = False
+    """Remove all previously collected JSON files before collecting."""
+
+    backfill_since: dt.date = dt.date(2025, 1, 1)
+    """Collect versions uploaded on or after this date."""
+
+    backfill_limit: _PositiveInt = 1
+    """Maximum number of versions to backfill per project."""
+
+
+@dataclasses.dataclass
+class Dashboard:
+    """Build the markdown dashboard pages from collected data."""
+
+    data_dir: anyio.Path
+    """Directory containing collected `{package}/{version}.json` files."""
+
+    site_dir: anyio.Path
+    """Output directory for generated markdown pages."""
+
+    projects: _ProjectsArg = _DEFAULT_PROJECTS
+    """Path to projects TOML file."""
 
 
 @main
 async def app() -> None:
-    parser = argparse.ArgumentParser(
+    cmd = tyro.cli(
+        Collect | Dashboard,
         prog="typestats",
         description="Type annotation coverage statistics for Python packages.",
     )
 
-    sub = parser.add_subparsers(dest="command")
+    match cmd:
+        case Collect():
+            from typestats.collect import clean_data, collect_all  # noqa: PLC0415
 
-    collect_p = sub.add_parser(
-        "collect",
-        help="Collect type-coverage report data for curated projects.",
-    )
-    collect_p.add_argument(
-        "--data-dir",
-        type=anyio.Path,
-        required=True,
-        help="Directory to write {package}/{version}.json files into.",
-    )
-    collect_p.add_argument(
-        "--projects",
-        type=anyio.Path,
-        default=None,
-        help="Path to projects TOML file (default: projects.toml in repo root).",
-    )
-    collect_p.add_argument(
-        "--clean",
-        action="store_true",
-        default=False,
-        help="Remove all previously collected JSON files before collecting.",
-    )
-    collect_p.add_argument(
-        "--backfill-since",
-        type=date.fromisoformat,
-        default=date(2025, 1, 1),
-        metavar="YYYY-MM-DD",
-        help="Collect versions uploaded on or after this date (default: 2025-01-01).",
-    )
-    collect_p.add_argument(
-        "--backfill-limit",
-        type=_posint,
-        default=1,
-        metavar="N",
-        help="Maximum number of versions to backfill per project (default: 1).",
-    )
-
-    dashboard_p = sub.add_parser(
-        "dashboard",
-        help="Build the markdown dashboard pages from collected data.",
-    )
-    dashboard_p.add_argument(
-        "--data-dir",
-        type=anyio.Path,
-        required=True,
-        help="Directory containing collected {package}/{version}.json files.",
-    )
-    dashboard_p.add_argument(
-        "--site-dir",
-        type=anyio.Path,
-        required=True,
-        help="Output directory for generated markdown pages.",
-    )
-    dashboard_p.add_argument(
-        "--projects",
-        type=anyio.Path,
-        default=None,
-        help="Path to projects TOML file (default: projects.toml in repo root).",
-    )
-
-    args = parser.parse_args()
-
-    match args.command:
-        case "collect":
-            from typestats.collect import clean_data, collect_all
-
-            if args.clean:
-                await clean_data(args.data_dir)
+            if cmd.clean:
+                await clean_data(cmd.data_dir)
 
             await collect_all(
-                args.data_dir,
-                args.projects,
-                backfill_since=args.backfill_since,
-                backfill_limit=args.backfill_limit,
+                cmd.data_dir,
+                cmd.projects,
+                backfill_since=cmd.backfill_since,
+                backfill_limit=cmd.backfill_limit,
             )
 
-        case "dashboard":
-            from typestats.dashboard import build_site
+        case Dashboard():
+            from typestats.dashboard import build_site  # noqa: PLC0415
 
-            await build_site(args.data_dir, args.site_dir, args.projects)
-
-        case _:
-            parser.print_help()
+            await build_site(cmd.data_dir, cmd.site_dir, cmd.projects)

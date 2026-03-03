@@ -3,6 +3,7 @@
 import logging
 import operator
 import re
+from pathlib import Path
 from typing import TYPE_CHECKING, Final, NotRequired, TypedDict
 
 import httpx
@@ -21,6 +22,7 @@ __all__ = ("build_site",)
 
 
 _logger: Final = logging.getLogger(__name__)
+_DEFAULT_PROJECTS: Final = Path(__file__).parents[2] / "projects.toml"
 
 # Pattern for stubs package names: {name}-stubs or types-{name}
 _STUBS_RE: Final = re.compile(r"^(?:(.+)-stubs|types-(.+))$")
@@ -64,9 +66,11 @@ def _display_module_name(module_name: str, package: str, /) -> str:
 
 async def _load_latest_reports(
     data_dir: anyio.Path,
-    projects_path: StrPath,
+    projects_path: StrPath | None,
     /,
 ) -> list[PackageReport]:
+    if projects_path is None:
+        projects_path = _DEFAULT_PROJECTS
     projects = load_projects(projects_path)
     reports: list[PackageReport] = []
 
@@ -278,7 +282,7 @@ async def _copy_tree(src: anyio.Path, dst: anyio.Path, /) -> None:
 async def build_site(
     data_dir: anyio.Path,
     site_dir: anyio.Path,
-    projects_path: StrPath,
+    projects_path: StrPath | None = None,
     /,
 ) -> None:
     """Build the markdown pages and write them to `site_dir`.
