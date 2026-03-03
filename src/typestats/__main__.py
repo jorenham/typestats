@@ -2,13 +2,13 @@ import contextlib
 import dataclasses
 import datetime as dt
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Final
 
-import anyio  # noqa: TC002
+import anyio
 import tyro
 from mainpy import main
 
-_DEFAULT_PROJECTS: Path = Path(__file__).parents[2] / "projects.toml"
+_DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
 
 
 def _parse_positive_int(s: str) -> int:
@@ -45,7 +45,7 @@ type _ProjectsArg = Annotated[Path, tyro.conf.arg(help_behavior_hint=_relative_d
 class Collect:
     """Collect type-coverage report data for curated projects."""
 
-    data_dir: anyio.Path
+    data_dir: Path
     """Directory to write `{package}/{version}.json` files into."""
 
     projects: _ProjectsArg = _DEFAULT_PROJECTS
@@ -65,10 +65,10 @@ class Collect:
 class Dashboard:
     """Build the markdown dashboard pages from collected data."""
 
-    data_dir: anyio.Path
+    data_dir: Path
     """Directory containing collected `{package}/{version}.json` files."""
 
-    site_dir: anyio.Path
+    site_dir: Path
     """Output directory for generated markdown pages."""
 
     projects: _ProjectsArg = _DEFAULT_PROJECTS
@@ -88,10 +88,10 @@ async def app() -> None:
             from typestats.collect import clean_data, collect_all  # noqa: PLC0415
 
             if cmd.clean:
-                await clean_data(cmd.data_dir)
+                await clean_data(anyio.Path(cmd.data_dir))
 
             await collect_all(
-                cmd.data_dir,
+                anyio.Path(cmd.data_dir),
                 cmd.projects,
                 backfill_since=cmd.backfill_since,
                 backfill_limit=cmd.backfill_limit,
@@ -100,4 +100,6 @@ async def app() -> None:
         case Dashboard():
             from typestats.dashboard import build_site  # noqa: PLC0415
 
-            await build_site(cmd.data_dir, cmd.site_dir, cmd.projects)
+            await build_site(
+                anyio.Path(cmd.data_dir), anyio.Path(cmd.site_dir), cmd.projects
+            )
