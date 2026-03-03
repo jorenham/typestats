@@ -3,8 +3,9 @@
 import logging
 import operator
 import re
-from typing import TYPE_CHECKING, Final
+from typing import TYPE_CHECKING, Final, NotRequired, TypedDict
 
+import httpx
 from packaging.version import Version
 from tabulate import tabulate
 
@@ -167,6 +168,36 @@ def _annotation_status(
     return rows
 
 
+# Hosts that indicate a repository URL.
+_REPO_HOSTS: Final = {
+    "github.com",
+    "gitlab.com",
+    "bitbucket.org",
+    "codeberg.org",
+    "sr.ht",
+}
+
+
+class _ProjectUrls(TypedDict):
+    pypi: str
+    repo: NotRequired[str]
+
+
+def _extract_project_urls(report: PackageReport, /) -> _ProjectUrls:
+    urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{report.package}/"}
+
+    if report.metadata:
+        for entry in report.metadata.get("Project-URL", []):
+            url = entry.rsplit(",", 1)[-1].strip()
+            assert url, f"Malformed Project-URL: {entry!r}"
+
+            if httpx.URL(url).host in _REPO_HOSTS:
+                urls["repo"] = url
+            break
+
+    return urls
+
+
 def render_detail(report: PackageReport, /) -> str:
     """Render a detailed markdown page for a single package report."""
     sorted_modules = sorted(report.module_reports, key=lambda r: r.path)
@@ -214,6 +245,8 @@ def render_detail(report: PackageReport, /) -> str:
             ),
         })
 
+    project_urls = _extract_project_urls(report)
+
     template = _get_env().get_template("detail.md.j2")
     return template.render(
         report=report,
@@ -221,6 +254,7 @@ def render_detail(report: PackageReport, /) -> str:
         strict_coverage=f"{report.coverage(True):.1%}",
         modules_table=modules_table,
         annotation_sections=annotation_sections,
+        project_urls=project_urls,
     )
 
 
@@ -249,10 +283,9 @@ async def build_site(
 ) -> None:
     """Build the markdown pages and write them to `site_dir`.
 
-    Generated detail pages go into `site_dir/` and wrapper pages into
-    `site_dir/docs/`.  The committed `docs/` directory (next to `site_dir`)
-    is copied into `site_dir/docs/` so that zensical can use
-    ``docs_dir = "<site_dir>/docs"``.
+    Generated detail pages go into `site_dir/` and wrapper pages into `site_dir/docs/`.
+    The committed `docs/` directory (next to `site_dir`) is copied into `site_dir/docs/`
+    so that zensical can use `docs_dir = "<site_dir>/docs"`.
 
     Raises:
         RuntimeError: If no reports could be loaded.

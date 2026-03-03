@@ -4,6 +4,7 @@ import anyio
 import pytest
 
 from typestats.dashboard import (
+    _extract_project_urls,
     build_site,
     render_detail,
     render_index,
@@ -73,6 +74,7 @@ def _minimal_report(  # noqa: PLR0913
     n_annotated: int = 8,
     n_any: int = 2,
     n_unannotated: int = 5,
+    metadata: dict[str, list[str]] | None = None,
 ) -> PackageReport:
     """Build a minimal ``PackageReport`` with one ``ModuleReport``."""
     symbol_reports = _make_symbol_reports(
@@ -93,6 +95,7 @@ def _minimal_report(  # noqa: PLR0913
         stubs_only=stubs_only,
         py_typed=py_typed,
         module_reports=(module,),
+        metadata=metadata,
     )
 
 
@@ -427,3 +430,121 @@ class TestBuildSite:
                 anyio.Path(site_dir),
                 projects_toml,
             )
+
+
+class TestExtractProjectUrls:
+    def test_pypi_always_present(self) -> None:
+        report = _minimal_report("numpy", "2.0.0")
+        urls = _extract_project_urls(report)
+        assert urls["pypi"] == "https://pypi.org/project/numpy/"
+
+    def test_no_metadata(self) -> None:
+        report = _minimal_report("numpy", "2.0.0")
+        assert report.metadata is None
+        urls = _extract_project_urls(report)
+        assert "repo" not in urls
+
+    def test_github_url(self) -> None:
+        report = _minimal_report(
+            "numpy",
+            "2.0.0",
+            metadata={
+                "Project-URL": [
+                    "Homepage, https://numpy.org/",
+                    "Repository, https://github.com/numpy/numpy",
+                ],
+            },
+        )
+        urls = _extract_project_urls(report)
+        assert urls["repo"] == "https://github.com/numpy/numpy"
+
+    def test_github_homepage_label(self) -> None:
+        """A GitHub URL under the 'Homepage' label is still detected."""
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            metadata={
+                "Project-URL": [
+                    "Homepage, https://github.com/org/pkg",
+                ],
+            },
+        )
+        urls = _extract_project_urls(report)
+        assert urls["repo"] == "https://github.com/org/pkg"
+
+    def test_gitlab_url(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            metadata={
+                "Project-URL": [
+                    "Source, https://gitlab.com/org/pkg",
+                ],
+            },
+        )
+        urls = _extract_project_urls(report)
+        assert urls["repo"] == "https://gitlab.com/org/pkg"
+
+    def test_codeberg_url(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            metadata={
+                "Project-URL": [
+                    "Code, https://codeberg.org/org/pkg",
+                ],
+            },
+        )
+        urls = _extract_project_urls(report)
+        assert urls["repo"] == "https://codeberg.org/org/pkg"
+
+    def test_first_repo_url_wins(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            metadata={
+                "Project-URL": [
+                    "Source, https://github.com/org/pkg",
+                    "Mirror, https://gitlab.com/org/pkg",
+                ],
+            },
+        )
+        urls = _extract_project_urls(report)
+        assert urls["repo"] == "https://github.com/org/pkg"
+
+    def test_no_repo_host(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            metadata={
+                "Project-URL": [
+                    "Homepage, https://example.com/",
+                    "Documentation, https://docs.example.com/",
+                ],
+            },
+        )
+        urls = _extract_project_urls(report)
+        assert "repo" not in urls
+
+
+class TestRenderDetailProjectUrls:
+    def test_pypi_link_present(self) -> None:
+        report = _minimal_report("numpy", "2.0.0")
+        md = render_detail(report)
+        pypi_url = "https://pypi.org/project/numpy/"
+        assert f'<a href="{pypi_url}">{pypi_url}</a>' in md
+
+    def test_repo_link_present(self) -> None:
+        report = _minimal_report(
+            "numpy",
+            "2.0.0",
+            metadata={"Project-URL": ["Repository, https://github.com/numpy/numpy"]},
+        )
+        md = render_detail(report)
+        repo_url = "https://github.com/numpy/numpy"
+        assert f'<a href="{repo_url}">{repo_url}</a>' in md
+
+    def test_no_repo_link_when_absent(self) -> None:
+        report = _minimal_report("numpy", "2.0.0")
+        md = render_detail(report)
+        assert "github.com" not in md
