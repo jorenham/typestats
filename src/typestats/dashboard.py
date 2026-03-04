@@ -257,7 +257,6 @@ def render_diff(reports: list[PackageReport], /) -> str:
         raise ValueError(msg)
 
     package = reports[0].package
-    versions = [r.version for r in reports]
 
     def _cov_cell(r: PackageReport, prev: PackageReport | None, strict: bool) -> str:
         val = r.coverage(strict)
@@ -340,7 +339,7 @@ def render_diff(reports: list[PackageReport], /) -> str:
     )
 
     template = _get_env().get_template(_DIFF_TEMPLATE)
-    return template.render(package=package, versions=versions, table=table)
+    return template.render(package=package, table=table)
 
 
 def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> str:
