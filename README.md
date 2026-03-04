@@ -162,3 +162,32 @@ uvx lefthook validate
 ```
 
 For alternative ways of installing lefthook, see <https://github.com/evilmartians/lefthook#install>
+
+### Previewing the dashboard locally
+
+`scripts/preview.py` provides a live-reloading preview of the generated dashboard site:
+
+```bash
+uv run scripts/preview.py
+```
+
+On first run (and whenever the `data` branch changes) it extracts report data from `origin/data`,
+builds the `_site/` pages via `build_site`, and then starts `zensical serve`.
+Subsequent runs reuse the cached data if the `origin/data` SHA is unchanged.
+
+While the server is running, changes to Jinja2 templates (`src/typestats/templates/`) or
+`projects.toml` are detected automatically and trigger an incremental rebuild.
+Template-only changes skip reloading the JSON reports entirely, so they complete in milliseconds.
+Changes to `.py` source files require a manual restart.
+
+Pass `--clean` to force a fresh extraction regardless of the cached SHA:
+
+```bash
+uv run scripts/preview.py --clean
+```
+
+Any extra flags are forwarded to `zensical serve`, for example:
+
+```bash
+uv run scripts/preview.py --dev-addr 0.0.0.0:9000
+```
