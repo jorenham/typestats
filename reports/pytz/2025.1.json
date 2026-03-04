@@ -87,7 +87,23 @@
       "symbol_reports": [
         {
           "kind": "name",
+          "name": "pytz.common_timezones_set",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
           "name": "pytz.all_timezones_set",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "pytz.country_timezones",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -100,48 +116,6 @@
           "n_any": 0,
           "n_unannotated": 1,
           "n_annotatable": 1
-        },
-        {
-          "kind": "name",
-          "name": "pytz.common_timezones",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "name",
-          "name": "pytz.country_timezones",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "name",
-          "name": "pytz.country_names",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "name",
-          "name": "pytz.common_timezones_set",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "pytz.FixedOffset",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_function_overloads": 1
         },
         {
           "kind": "name",
@@ -159,6 +133,32 @@
           "n_unannotated": 2,
           "n_overloads": 1,
           "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "pytz.common_timezones",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "pytz.country_names",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "pytz.FixedOffset",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
           "n_function_overloads": 1
         },
         {
@@ -300,7 +300,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pytz.exceptions.NonExistentTimeError",
+          "name": "pytz.exceptions.UnknownTimeZoneError",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -315,7 +315,7 @@
         },
         {
           "kind": "class",
-          "name": "pytz.exceptions.UnknownTimeZoneError",
+          "name": "pytz.exceptions.NonExistentTimeError",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -433,6 +433,32 @@
       "symbol_reports": [
         {
           "kind": "class",
+          "name": "pytz.lazy.LazyList",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LazyList.__new__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "pytz.lazy.LazySet",
           "methods": [
             {
@@ -522,32 +548,6 @@
           "n_function_overloads": 0,
           "n_method_overloads": 5,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "pytz.lazy.LazyList",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LazyList.__new__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_function_overloads": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 2,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_functions": 0,
-          "n_methods": 1,
-          "n_function_overloads": 0,
-          "n_method_overloads": 1,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -574,32 +574,20 @@
       "path": "pytz/reference.py",
       "symbol_reports": [
         {
+          "kind": "name",
+          "name": "pytz.reference.Pacific",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
           "kind": "class",
-          "name": "pytz.reference.USTimeZone",
+          "name": "pytz.reference.LocalTimezone",
           "methods": [
             {
               "kind": "function",
-              "name": "USTimeZone.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_function_overloads": 1
-            },
-            {
-              "kind": "function",
-              "name": "USTimeZone.__repr__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_function_overloads": 1
-            },
-            {
-              "kind": "function",
-              "name": "USTimeZone.tzname",
+              "name": "LocalTimezone.utcoffset",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -609,7 +597,7 @@
             },
             {
               "kind": "function",
-              "name": "USTimeZone.utcoffset",
+              "name": "LocalTimezone.dst",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -619,7 +607,17 @@
             },
             {
               "kind": "function",
-              "name": "USTimeZone.dst",
+              "name": "LocalTimezone.tzname",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "LocalTimezone._isdst",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -629,27 +627,19 @@
             }
           ],
           "properties": [],
-          "n_annotatable": 12,
+          "n_annotatable": 8,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 12,
+          "n_unannotated": 8,
           "n_functions": 0,
-          "n_methods": 5,
+          "n_methods": 4,
           "n_function_overloads": 0,
-          "n_method_overloads": 5,
+          "n_method_overloads": 4,
           "n_properties": 0
         },
         {
           "kind": "name",
-          "name": "pytz.reference.Pacific",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "name",
-          "name": "pytz.reference.Central",
+          "name": "pytz.reference.Eastern",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -720,12 +710,40 @@
           "n_annotatable": 1
         },
         {
+          "kind": "name",
+          "name": "pytz.reference.Central",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
           "kind": "class",
-          "name": "pytz.reference.LocalTimezone",
+          "name": "pytz.reference.USTimeZone",
           "methods": [
             {
               "kind": "function",
-              "name": "LocalTimezone.utcoffset",
+              "name": "USTimeZone.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "USTimeZone.__repr__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "USTimeZone.tzname",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -735,7 +753,7 @@
             },
             {
               "kind": "function",
-              "name": "LocalTimezone.dst",
+              "name": "USTimeZone.utcoffset",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -745,17 +763,7 @@
             },
             {
               "kind": "function",
-              "name": "LocalTimezone.tzname",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_function_overloads": 1
-            },
-            {
-              "kind": "function",
-              "name": "LocalTimezone._isdst",
+              "name": "USTimeZone.dst",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -765,23 +773,15 @@
             }
           ],
           "properties": [],
-          "n_annotatable": 8,
+          "n_annotatable": 12,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 8,
+          "n_unannotated": 12,
           "n_functions": 0,
-          "n_methods": 4,
+          "n_methods": 5,
           "n_function_overloads": 0,
-          "n_method_overloads": 4,
+          "n_method_overloads": 5,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "pytz.reference.Eastern",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
         }
       ],
       "type_ignores": [],
@@ -812,14 +812,6 @@
       "path": "pytz/tzfile.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "pytz.tzfile.base",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
           "kind": "function",
           "name": "pytz.tzfile.build_tzinfo",
           "n_annotated": 0,
@@ -832,6 +824,14 @@
         {
           "kind": "name",
           "name": "pytz.tzfile.tz",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "pytz.tzfile.base",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
