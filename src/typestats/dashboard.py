@@ -311,6 +311,22 @@ async def _write_pages_async(pages: list[tuple[str, str]], /) -> None:
     await anyio.to_thread.run_sync(_write_pages, pages)
 
 
+def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
+    """Replace the markdown content of `site_dir` with the build in `tmp_str`.
+
+    Only the `.md` files directly in `site_dir` and the `docs/` subtree are replaced.
+    Other files (e.g. `.preview_sha`, `.reports/`) are left intact.
+    This ensures stale package pages are removed when projects are renamed or deleted.
+    """
+    site_dir = Path(site_dir_str)
+    for f in site_dir.glob("*.md"):
+        f.unlink()
+    docs = site_dir / "docs"
+    if docs.exists():
+        shutil.rmtree(docs)
+    shutil.copytree(tmp_str, site_dir_str, dirs_exist_ok=True)
+
+
 async def build_site(
     data_dir: anyio.Path,
     site_dir: anyio.Path,
@@ -391,11 +407,9 @@ async def build_site(
                     ),
                 ))
             await _write_pages_async(full_pages)
-
-            copy = functools.partial(
-                shutil.copytree, tmp_str, str(site_dir), dirs_exist_ok=True
+            await anyio.to_thread.run_sync(
+                functools.partial(_install_site_dir, tmp_str, str(site_dir))
             )
-            await anyio.to_thread.run_sync(copy)
         finally:
             shutil.rmtree(tmp_str, ignore_errors=True)
 

@@ -5,8 +5,7 @@
 Workflow:
 1. Extract report data from the `data` git branch into a temporary directory.
 2. Build dashboard pages via `build_site`.
-3. Run `zensical build` to produce the static HTML in `site/`.
-4. Serve `site/` on a local port.
+3. Run `zensical serve` to build and serve the docs site locally.
 
 On repeat runs, steps 1-2 are skipped when the data branch SHA is unchanged.
 Template and config changes are detected automatically and trigger a rebuild.
@@ -78,7 +77,9 @@ async def _resolve_hash() -> str:
 
 async def _extract_into(into: anyio.Path, sha: str) -> None:
     log.info("Extracting report data ...")
-    await into.mkdir(parents=True, exist_ok=True)
+    if await into.exists():
+        shutil.rmtree(str(into))
+    await into.mkdir(parents=True)
     archive = await _run("git", "archive", sha)
     await anyio.run_process(["tar", "-x", "-C", str(into)], input=archive, stderr=None)
 
