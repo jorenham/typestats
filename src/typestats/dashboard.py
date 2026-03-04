@@ -1,12 +1,18 @@
 """Generate the markdown dashboard pages from collected JSON data."""
 
+import asyncio
+import functools
 import logging
 import operator
 import re
+import shutil
+import tempfile
 from collections import Counter
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, NotRequired, TypedDict
 
+import anyio
+import anyio.to_thread
 import httpx
 from packaging.version import Version
 from tabulate import tabulate
@@ -15,7 +21,6 @@ from typestats.projects import load_projects
 from typestats.report import ModuleReport, PackageReport
 
 if TYPE_CHECKING:
-    import anyio
     from _typeshed import StrPath
     from jinja2 import Environment
 
@@ -327,26 +332,38 @@ async def build_site(
 
     await site_dir.mkdir(parents=True, exist_ok=True)
 
-    # Index page
-    content = render_index(reports)
-    out = site_dir / "index.md"
-    await out.write_text(content + "\n")
-    _logger.info("Wrote index page to %s (%d projects)", out, len(reports))
+    # Render all content into a temp dir (not watched by zensical), then replace
+    # site_dir in one blocking call so all changes land in a single inotify burst.
+    tmp_str = tempfile.mkdtemp(dir=site_dir.parent, prefix=".build_")
+    tmp = anyio.Path(tmp_str)
+    try:
+        tmp_docs = tmp / "docs"
+        await tmp_docs.mkdir()
 
-    # Assemble docs dir: copy committed docs/ then generate wrappers
-    assembled_docs = site_dir / "docs"
-    committed_docs = site_dir.parent / "docs"
-    if await committed_docs.exists():
-        await _copy_tree(committed_docs, assembled_docs)
+        committed_docs = site_dir.parent / "docs"
+        if await committed_docs.exists():
+            await _copy_tree(committed_docs, tmp_docs)
 
-    # Detail pages + wrappers
-    site_dir_name = site_dir.name
-    for report in reports:
-        detail_content = render_detail(report)
-        detail_path = site_dir / f"{report.package}.md"
-        await detail_path.write_text(detail_content)
+        site_dir_name = site_dir.name
+        pages: list[tuple[anyio.Path, str]] = [
+            (tmp / "index.md", render_index(reports) + "\n"),
+        ]
+        for report in reports:
+            pages.extend((
+                (tmp / f"{report.package}.md", render_detail(report)),
+                (
+                    tmp_docs / f"{report.package}.md",
+                    _detail_wrapper(report.package, site_dir_name),
+                ),
+            ))
+        await asyncio.gather(*(path.write_text(content) for path, content in pages))
 
-        wrapper = _detail_wrapper(report.package, site_dir_name)
-        await (assembled_docs / f"{report.package}.md").write_text(wrapper)
+        # Replace site_dir in one blocking call -- no event-loop yields between writes.
+        copy = functools.partial(
+            shutil.copytree, tmp_str, str(site_dir), dirs_exist_ok=True
+        )
+        await anyio.to_thread.run_sync(copy)
+    finally:
+        shutil.rmtree(tmp_str, ignore_errors=True)
 
-    _logger.info("Wrote %d detail page(s) to %s", len(reports), site_dir)
+    _logger.info("Wrote index page + %d detail page(s) to %s", len(reports), site_dir)

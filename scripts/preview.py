@@ -1,0 +1,150 @@
+# ruff: noqa: INP001
+
+"""Preview the docs site locally.
+
+Workflow:
+1. Extract report data from the `data` git branch into a temporary directory.
+2. Build dashboard pages via `build_site`.
+3. Run `zensical build` to produce the static HTML in `site/`.
+4. Serve `site/` on a local port.
+
+On repeat runs, steps 1-2 are skipped when the data branch SHA is unchanged.
+Template and config changes are detected automatically and trigger a rebuild.
+Changes to Python source files (.py) require a manual restart.
+
+Usage:
+    uv run scripts/preview.py [--clean] [zensical-serve-flags ...]
+
+Examples:
+    uv run scripts/preview.py
+    uv run scripts/preview.py --clean
+    uv run scripts/preview.py --dev-addr 0.0.0.0:9000
+"""
+
+import asyncio
+import contextlib
+import logging
+import os
+import shutil
+import sys
+import time
+from subprocess import PIPE  # noqa: S404
+from typing import Final
+
+import anyio
+import watchfiles
+
+from typestats.dashboard import build_site
+
+ROOT: Final = anyio.Path(__file__).parent.parent
+SITE_DIR: Final = ROOT / "site"
+_SITE_DIR: Final = ROOT / "_site"
+_SITE_SHA: Final = _SITE_DIR / ".preview_sha"
+_REPORTS_DIR: Final = _SITE_DIR / ".reports"
+
+_CMD: Final = ">"
+
+logging.basicConfig(level=logging.INFO, format="%(message)s")
+log = logging.getLogger(__name__)
+
+
+async def _run(
+    *args: str,
+    cwd: anyio.Path = ROOT,
+    env: dict[str, str] | None = None,
+    input: bytes | None = None,  # noqa: A002
+    stdout: int | None = PIPE,
+    stderr: int | None = None,
+) -> bytes:
+    log.info("%s %s", _CMD, " ".join(args))
+    result = await anyio.run_process(
+        list(args),
+        cwd=cwd,
+        stdout=stdout,
+        stderr=stderr,
+        env=env,
+        input=input,
+    )
+    return result.stdout
+
+
+async def _resolve_hash() -> str:
+    sha = (await _run("git", "rev-parse", "origin/data")).strip().decode()
+    log.info("Using origin/data (%s) for report data", sha[:12])
+    return sha
+
+
+async def _extract_into(into: anyio.Path, sha: str) -> None:
+    log.info("Extracting report data ...")
+    await into.mkdir(parents=True, exist_ok=True)
+    archive = await _run("git", "archive", sha)
+    await anyio.run_process(["tar", "-x", "-C", str(into)], input=archive, stderr=None)
+
+
+async def _watch_and_rebuild(reports_dir: anyio.Path) -> None:
+    watch_paths = (ROOT / "src" / "typestats" / "templates", ROOT / "projects.toml")
+    log.info("Watching %s ...", ", ".join(p.name for p in watch_paths))
+    async for changes in watchfiles.awatch(*map(str, watch_paths)):
+        changed = sorted({anyio.Path(str(c[1])).name for c in changes})
+        log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
+
+        t0 = time.perf_counter()
+        await build_site(reports_dir, _SITE_DIR, ROOT / "projects.toml")
+        log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
+
+
+async def _serve(*args: str) -> None:
+    log.info("%s zensical serve %s", _CMD, " ".join(args))
+    async with await anyio.open_process(
+        ["zensical", "serve", *args],
+        cwd=ROOT,
+        stdout=PIPE,
+        stderr=None,
+        env={**os.environ, "PYTHON_GIL": "1"},
+    ) as proc:
+        assert proc.stdout is not None
+        with contextlib.suppress(anyio.EndOfStream):
+            async for chunk in proc.stdout:
+                for line in chunk.decode().splitlines():
+                    if line and not line.startswith("+"):
+                        log.info(" " * len(_CMD) + " %s", line)  # noqa: G003
+    if proc.returncode:
+        raise SystemExit(proc.returncode)
+
+
+async def main() -> None:
+    args = sys.argv[1:]
+    clean = "--clean" in args
+    serve_args = [a for a in args if a != "--clean"]
+
+    t0 = time.perf_counter()
+
+    sha = await _resolve_hash()
+
+    cached_sha = await _SITE_SHA.read_text() if await _SITE_SHA.exists() else None
+    if not clean and sha == cached_sha and await _REPORTS_DIR.exists():
+        log.info("Data unchanged (%s), skipping extraction.", sha[:12])
+    else:
+        await _extract_into(_REPORTS_DIR, sha)
+
+        log.info("Building dashboard pages ...")
+        await asyncio.gather(
+            build_site(_REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"),
+            _SITE_SHA.write_text(sha),
+        )
+
+    log.info("Built in %.1fs", time.perf_counter() - t0)
+    try:
+        async with anyio.create_task_group() as tg:
+            tg.start_soon(_watch_and_rebuild, _REPORTS_DIR / "reports")
+            await _serve(*serve_args)
+            tg.cancel_scope.cancel()
+    finally:
+        if await _REPORTS_DIR.exists():
+            shutil.rmtree(str(_REPORTS_DIR))
+            log.info("Cleaned up %s", _REPORTS_DIR)
+
+
+if __name__ == "__main__":
+    with contextlib.suppress(KeyboardInterrupt):
+        anyio.run(main)
