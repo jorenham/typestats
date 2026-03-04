@@ -148,22 +148,26 @@ async def _analyze_graph(
     }
 
 
-async def _detect_src_layout(project_dir: anyio.Path, /) -> anyio.Path:
-    """Return the effective source root for analysis.
+async def _is_src_layout(project_dir: anyio.Path, /) -> bool:
+    """Check whether *project_dir* uses a Python
+    [src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
 
-    If `project_dir` contains a `src/` directory that is not itself a Python
-    package (no `__init__.py` or `__init__.pyi`), the project uses a
-    [src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
-    and `src/` is the source root.  Otherwise `project_dir` is returned as-is.
+    Returns `True` when `project_dir/src/` exists, is not itself a Python
+    package (no `__init__.py` or `__init__.pyi`), and contains at least one
+    `*.py` or `*.pyi` file.
     """
     src = project_dir / "src"
-    if (
-        await src.is_dir()
-        and not await (src / "__init__.py").exists()
-        and not await (src / "__init__.pyi").exists()
-    ):
-        return src
-    return project_dir
+    if not await src.is_dir():
+        return False
+    if await (src / "__init__.py").exists() or await (src / "__init__.pyi").exists():
+        return False
+
+    async for _ in src.glob("**/*.py"):
+        return True
+    async for _ in src.glob("**/*.pyi"):
+        return True
+
+    return False
 
 
 async def list_sources(
@@ -172,10 +176,23 @@ async def list_sources(
     *,
     exclude: Sequence[str] = (),
 ) -> list[anyio.Path]:
-    """List all source files in the given project directory."""
-    root = await _detect_src_layout(anyio.Path(path))
-    graph = await _analyze_graph(root, "--type-checking-imports", exclude=exclude)
-    return list(map(anyio.Path, graph))
+    """List all source files in the given project directory.
+
+    When the project uses a
+    [src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/),
+    only files under `src/` are included.
+    """
+    project_dir = anyio.Path(path)
+    graph = await _analyze_graph(
+        project_dir, "--type-checking-imports", exclude=exclude
+    )
+    sources = list(map(anyio.Path, graph))
+
+    if await _is_src_layout(project_dir):
+        src_prefix = str(await (project_dir / "src").resolve()) + os.sep
+        sources = [s for s in sources if str(await s.resolve()).startswith(src_prefix)]
+
+    return sources
 
 
 async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
