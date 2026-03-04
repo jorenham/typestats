@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 
     from typestats import analyze
 
-__all__ = ("build_site",)
+__all__ = ("TEMPLATES", "build_site")
 
 
 _logger: Final = logging.getLogger(__name__)
@@ -34,6 +34,12 @@ _DEFAULT_PROJECTS: Final = Path(__file__).parents[2] / "projects.toml"
 
 # Pattern for stubs package names: {name}-stubs or types-{name}
 _STUBS_RE: Final = re.compile(r"^(?:(.+)-stubs|types-(.+))$")
+
+_DETAIL_TEMPLATE: Final = "detail.md.j2"
+_WRAPPER_TEMPLATE: Final = "wrapper.md.j2"
+TEMPLATES: Final = frozenset({_DETAIL_TEMPLATE, _WRAPPER_TEMPLATE})
+
+_INDENT: Final = " " * 4
 
 _env: Environment | None = None
 
@@ -80,7 +86,7 @@ async def _load_latest_reports(
     if projects_path is None:
         projects_path = _DEFAULT_PROJECTS
     projects = load_projects(projects_path)
-    reports: list[PackageReport] = []
+    paths: list[anyio.Path] = []
 
     for project in projects:
         project_dir = data_dir / project.name
@@ -94,13 +100,12 @@ async def _load_latest_reports(
         ]
         assert json_files
 
-        # Pick the highest version
+        # Pick the highest version and read it
         _, latest_path = max(json_files, key=operator.itemgetter(0))
+        paths.append(latest_path)
 
-        raw = await latest_path.read_bytes()
-        reports.append(PackageReport.model_validate_json(raw))
-
-    return reports
+    raws = await asyncio.gather(*[p.read_bytes() for p in paths])
+    return [PackageReport.model_validate_json(raw) for raw in raws]
 
 
 def render_index(reports: list[PackageReport], /) -> str:
@@ -126,20 +131,9 @@ def render_index(reports: list[PackageReport], /) -> str:
             "`py.typed`",
             "Stub-only",
         ],
-        colalign=(
-            "left",
-            "left",
-            "right",
-            "right",
-            "right",
-            "left",
-            "left",
-        ),
+        colalign=("left", "left", "right", "right", "right", "left", "left"),
         tablefmt="pipe",
     )
-
-
-_INDENT: Final = "    "
 
 
 def _indent(text: str, /) -> str:
@@ -280,7 +274,7 @@ def render_detail(report: PackageReport, /) -> str:
 
     project_urls = _extract_project_urls(report)
 
-    template = _get_env().get_template("detail.md.j2")
+    template = _get_env().get_template(_DETAIL_TEMPLATE)
     return template.render(
         report=report,
         coverage=f"{report.coverage():.1%}",
@@ -294,7 +288,7 @@ def render_detail(report: PackageReport, /) -> str:
 
 def _detail_wrapper(package: str, site_dir_name: str, /) -> str:
     """Generate a docs wrapper that snippet-includes `_site/{package}.md`."""
-    template = _get_env().get_template("wrapper.md.j2")
+    template = _get_env().get_template(_WRAPPER_TEMPLATE)
     return template.render(package=package, site_dir_name=site_dir_name)
 
 
@@ -309,22 +303,42 @@ async def _copy_tree(src: anyio.Path, dst: anyio.Path, /) -> None:
             await target.write_bytes(await entry.read_bytes())
 
 
+async def _write_pages_async(pages: list[tuple[str, str]], /) -> None:
+    def _write_pages(pages: list[tuple[str, str]], /) -> None:
+        for path_str, content in pages:
+            Path(path_str).write_text(content, encoding="utf-8")
+
+    await anyio.to_thread.run_sync(_write_pages, pages)
+
+
 async def build_site(
     data_dir: anyio.Path,
     site_dir: anyio.Path,
     projects_path: StrPath | None = None,
     /,
-) -> None:
+    *,
+    reports: list[PackageReport] | None = None,
+    rebuild: frozenset[str] | None = None,
+) -> list[PackageReport]:
     """Build the markdown pages and write them to `site_dir`.
 
     Generated detail pages go into `site_dir/` and wrapper pages into `site_dir/docs/`.
     The committed `docs/` directory (next to `site_dir`) is copied into `site_dir/docs/`
     so that zensical can use `docs_dir = "<site_dir>/docs"`.
 
+    If `reports` is provided, skip loading from disk (use for incremental rebuilds).
+    Returns the list of reports used, so callers can cache them for the next build.
+
+    If `rebuild` is a frozenset of template filenames (see `TEMPLATES`), only the pages
+    driven by those templates are re-rendered and written directly to `site_dir`,
+    skipping the temp-dir round-trip.
+    Pass `None` (the default) to perform a full rebuild via a temp dir.
+
     Raises:
         RuntimeError: If no reports could be loaded.
     """
-    reports = await _load_latest_reports(data_dir, projects_path)
+    if reports is None:
+        reports = await _load_latest_reports(data_dir, projects_path)
 
     if not reports:
         msg = "No reports loaded -- cannot build dashboard"
@@ -332,38 +346,58 @@ async def build_site(
 
     await site_dir.mkdir(parents=True, exist_ok=True)
 
-    # Render all content into a temp dir (not watched by zensical), then replace
-    # site_dir in one blocking call so all changes land in a single inotify burst.
-    tmp_str = tempfile.mkdtemp(dir=site_dir.parent, prefix=".build_")
-    tmp = anyio.Path(tmp_str)
-    try:
-        tmp_docs = tmp / "docs"
-        await tmp_docs.mkdir()
+    render_detail_pages = rebuild is None or _DETAIL_TEMPLATE in rebuild
+    render_wrapper_pages = rebuild is None or _WRAPPER_TEMPLATE in rebuild
+    site_dir_name = site_dir.name
 
-        committed_docs = site_dir.parent / "docs"
-        if await committed_docs.exists():
-            await _copy_tree(committed_docs, tmp_docs)
-
-        site_dir_name = site_dir.name
-        pages: list[tuple[anyio.Path, str]] = [
-            (tmp / "index.md", render_index(reports) + "\n"),
-        ]
+    if rebuild is not None:
+        # Partial rebuild: only re-render and write the affected pages.
+        # Written synchronously in a thread so all inotify events land in one burst.
+        pages: list[tuple[str, str]] = []
+        if render_detail_pages:
+            pages.append((str(site_dir / "index.md"), render_index(reports) + "\n"))
         for report in reports:
-            pages.extend((
-                (tmp / f"{report.package}.md", render_detail(report)),
-                (
-                    tmp_docs / f"{report.package}.md",
+            if render_detail_pages:
+                pages.append((
+                    str(site_dir / f"{report.package}.md"),
+                    render_detail(report),
+                ))
+            if render_wrapper_pages:
+                pages.append((
+                    str(site_dir / "docs" / f"{report.package}.md"),
                     _detail_wrapper(report.package, site_dir_name),
-                ),
-            ))
-        await asyncio.gather(*(path.write_text(content) for path, content in pages))
+                ))
+        await _write_pages_async(pages)
+    else:
+        # Full rebuild: write everything into a temp dir first, then replace site_dir
+        # in one blocking call so all changes land in a single inotify burst.
+        tmp_str = tempfile.mkdtemp(dir=site_dir.parent, prefix=".build_")
+        tmp = anyio.Path(tmp_str)
+        try:
+            tmp_docs = tmp / "docs"
+            await tmp_docs.mkdir()
 
-        # Replace site_dir in one blocking call -- no event-loop yields between writes.
-        copy = functools.partial(
-            shutil.copytree, tmp_str, str(site_dir), dirs_exist_ok=True
-        )
-        await anyio.to_thread.run_sync(copy)
-    finally:
-        shutil.rmtree(tmp_str, ignore_errors=True)
+            committed_docs = site_dir.parent / "docs"
+            if await committed_docs.exists():
+                await _copy_tree(committed_docs, tmp_docs)
+
+            full_pages = [(str(tmp / "index.md"), render_index(reports) + "\n")]
+            for report in reports:
+                full_pages.extend((
+                    (str(tmp / f"{report.package}.md"), render_detail(report)),
+                    (
+                        str(tmp_docs / f"{report.package}.md"),
+                        _detail_wrapper(report.package, site_dir_name),
+                    ),
+                ))
+            await _write_pages_async(full_pages)
+
+            copy = functools.partial(
+                shutil.copytree, tmp_str, str(site_dir), dirs_exist_ok=True
+            )
+            await anyio.to_thread.run_sync(copy)
+        finally:
+            shutil.rmtree(tmp_str, ignore_errors=True)
 
     _logger.info("Wrote index page + %d detail page(s) to %s", len(reports), site_dir)
+    return reports
