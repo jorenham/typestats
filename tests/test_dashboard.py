@@ -369,7 +369,8 @@ class TestBuildSite:
             projects_toml,
         )
 
-        assert out is None
+        assert isinstance(out, list)
+        assert len(out) == 1
         content = (site_dir / "index.md").read_text()
         assert "[mypkg](mypkg.md)" in content
 
