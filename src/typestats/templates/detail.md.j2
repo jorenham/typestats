@@ -21,12 +21,6 @@
 
     {{ report.n_annotatable }} total · {{ report.n_annotated }} annotated · {{ report.n_any }} Any · {{ report.n_unannotated }} unannotated
 
--   __Modules__
-
-    ---
-
-    {{ report.n_modules }} modules · {{ report.n_type_ignores }} type-ignore comments
-
 -   __Definitions__
 
     ---
@@ -43,6 +37,8 @@
 
 ## Modules
 
+{{ report.n_modules }} modules
+
 {{ modules_table }}
 
 ## Incomplete Annotations
@@ -55,5 +51,14 @@
 {% endfor %}
 {% else %}
 All symbols are fully annotated. :tada:
+
+{% endif %}
+
+## Type-Ignore Comments
+
+{% if type_ignore_table %}
+{{ type_ignore_table }}
+{% else %}
+No type-ignore comments.
 
 {% endif %}
