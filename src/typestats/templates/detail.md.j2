@@ -25,7 +25,7 @@
 
     ---
 
-    {{ report.n_modules }} modules · {{ report.n_type_ignores }} type-ignore comments
+    {{ report.n_modules }} modules
 
 -   __Definitions__
 
@@ -55,5 +55,14 @@
 {% endfor %}
 {% else %}
 All symbols are fully annotated. :tada:
+
+{% endif %}
+
+## Type-Ignore Comments
+
+{% if type_ignore_table %}
+{{ type_ignore_table }}
+{% else %}
+No type-ignore comments.
 
 {% endif %}

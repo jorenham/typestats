@@ -3,6 +3,7 @@
 import logging
 import operator
 import re
+from collections import Counter
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, NotRequired, TypedDict
 
@@ -17,6 +18,8 @@ if TYPE_CHECKING:
     import anyio
     from _typeshed import StrPath
     from jinja2 import Environment
+
+    from typestats import analyze
 
 __all__ = ("build_site",)
 
@@ -249,6 +252,27 @@ def render_detail(report: PackageReport, /) -> str:
             ),
         })
 
+    # Pre-render type-ignore counts table
+    def _ignore_label(ic: analyze.IgnoreComment) -> str:
+        if ic.rules is None:
+            return f"{ic.kind}: ignore"
+        return f"{ic.kind}: ignore[{', '.join(sorted(ic.rules))}]"
+
+    type_ignore_counter = Counter(_ignore_label(ic) for ic in report.type_ignores)
+    type_ignore_counts = sorted(
+        type_ignore_counter.items(), key=lambda x: (-x[1], x[0])
+    )
+    type_ignore_table = (
+        tabulate(
+            [[f"`{flavor}`", str(count)] for flavor, count in type_ignore_counts],
+            headers=["Flavor", "Count"],
+            colalign=("left", "right"),
+            tablefmt="pipe",
+        )
+        if type_ignore_counts
+        else ""
+    )
+
     project_urls = _extract_project_urls(report)
 
     template = _get_env().get_template("detail.md.j2")
@@ -258,6 +282,7 @@ def render_detail(report: PackageReport, /) -> str:
         strict_coverage=f"{report.coverage(True):.1%}",
         modules_table=modules_table,
         annotation_sections=annotation_sections,
+        type_ignore_table=type_ignore_table,
         project_urls=project_urls,
     )
 
