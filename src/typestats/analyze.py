@@ -14,7 +14,7 @@ from libcst.helpers import (
 )
 
 if TYPE_CHECKING:
-    from collections.abc import Callable, Collection
+    from collections.abc import Callable, Collection, Mapping
 
 __all__ = (
     "ANY",
@@ -51,27 +51,71 @@ _SPECIAL_TYPEFORMS: Final = frozenset({
     "TypeVarTuple",
 })
 _ALL: Final = "__all__"
-_TARGET_VERSION: Final[tuple[int, int, int]] = sys.version_info[:3]
-_SYS_VERSION_INFO: Final[str] = "sys.version_info"
+
+_VERSION_INFO_FQN: Final = "sys.version_info"
+_VERSION_CMP_OPS: Final[Mapping[type[cst.BaseCompOp], str]] = {
+    cst.GreaterThanEqual: "__ge__",
+    cst.LessThan: "__lt__",
+    cst.GreaterThan: "__gt__",
+    cst.LessThanEqual: "__le__",
+    cst.Equal: "__eq__",
+    cst.NotEqual: "__ne__",
+}
+
 _logger: Final = logging.getLogger(__name__)
 
 type TypeForm = _TypeMarker | Expr | Function | Property | Class
 
 
-def _parse_version_tuple(node: cst.BaseExpression) -> tuple[int, ...] | None:
-    """Extract a version like `(3, 11)` from a CST tuple literal."""
-    if not isinstance(node, cst.Tuple):
+def _parse_slice_bounds(sl: cst.Slice) -> tuple[int | None, int | None] | None:
+    """Parse integer bounds from a CST `Slice`.
+
+    Returns `(lower, upper)` with `None` for missing bounds,
+    or `None` if either bound is a non-integer expression.
+    """
+    match sl.lower:
+        case cst.Integer(v):
+            lo = int(v)
+        case None:
+            lo = None
+        case _:
+            return None
+
+    match sl.upper:
+        case cst.Integer(v):
+            hi = int(v)
+        case None:
+            hi = None
+        case _:
+            return None
+
+    return lo, hi
+
+
+def _eval_version_info_expr(node: cst.BaseExpression) -> tuple[int, ...] | int | None:
+    target = sys.version_info[:3]
+
+    if not isinstance(node, cst.Subscript):
+        return target
+
+    if len(node.slice) != 1:
         return None
-    parts: list[str] = []
-    for element in node.elements:
-        match element:
-            case cst.Element(value=cst.Integer(value=v)):
-                parts.append(v)
-            case _:
-                return None
-    if not parts:
-        return None
-    return tuple(int(p) for p in parts)
+
+    match node.slice[0].slice:
+        case cst.Index(cst.Integer(v)):
+            out = target[int(v)]
+            if isinstance(out, int):
+                return out
+        case cst.Slice() as sl if (bounds := _parse_slice_bounds(sl)) is not None:
+            out = target[bounds[0] : bounds[1]]
+            if all(isinstance(i, int) for i in out):
+                return out
+
+    _logger.warning(
+        "unsupported version_info subscript: %s",
+        _EMPTY_MODULE.code_for_node(node),
+    )
+    return None
 
 
 class ParamKind(StrEnum):
@@ -527,65 +571,63 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
     def _resolve_name(self, expr: cst.BaseExpression) -> str | None:
         """Resolve a CST node to its fully qualified name using the import map."""
-        if (raw := get_full_name_for_node(expr)) is None:
+        if (fname := get_full_name_for_node(expr)) is None:
             return None
 
-        first, _, rest = raw.partition(".")
+        first, _, rest = fname.partition(".")
         if fqn := self.imports.get(first):
             return f"{fqn}.{rest}" if rest else fqn
-        return raw
+        return fname
 
     def _is_version_info(self, node: cst.BaseExpression) -> bool:
-        """Check if *node* represents `sys.version_info`."""
-        if isinstance(node, cst.Subscript):
-            value = node.value
-            if (isinstance(value, cst.Name) and value.value != "version_info") or (
-                isinstance(value, cst.Attribute) and value.attr.value != "version_info"
-            ):
+        """Check for a `sys.version_info` expression."""
+        value = node.value if isinstance(node, cst.Subscript) else node
+        match value:
+            case cst.Name(_) | cst.Attribute(_, cst.Name("version_info")):
+                return self._resolve_name(value) == _VERSION_INFO_FQN
+            case _:
                 return False
-            if self._resolve_name(value) == _SYS_VERSION_INFO:
-                _logger.warning("subscripted %s is not supported", _SYS_VERSION_INFO)
-            return False
-
-        if isinstance(node, cst.Name):
-            if node.value != "version_info":
-                return False
-        elif isinstance(node, cst.Attribute):
-            if node.attr.value != "version_info":
-                return False
-        else:
-            return False
-
-        return self._resolve_name(node) == _SYS_VERSION_INFO
 
     def _eval_version_guard(self, test: cst.BaseExpression) -> bool | None:
         """Evaluate a `sys.version_info` comparison against the target version.
 
-        Only `>=` and `<` are supported.  Returns `True`/`False` when the
-        comparison can be resolved, `None` otherwise.
+        Supports `>=`, `<`, `>`, `<=`, `==`, and `!=`, including subscripted forms like
+        `sys.version_info[0] == 3` and `sys.version_info[:2] >= (3, 4)`.
+        Returns `None` if the comparison can't be resolved
         """
-        if not isinstance(test, cst.Comparison) or len(test.comparisons) != 1:
-            return None
-
-        if not self._is_version_info(test.left):
-            return None
-
-        cmp = test.comparisons[0]
-        version = _parse_version_tuple(cmp.comparator)
-        if version is None:
-            return None
-
-        match cmp.operator:
-            case cst.GreaterThanEqual():
-                return version <= _TARGET_VERSION
-            case cst.LessThan():
-                return version > _TARGET_VERSION
+        match test:
+            case cst.Comparison(left, [cmp]) if self._is_version_info(left):
+                pass
             case _:
-                _logger.warning(
-                    "unsupported version_info operator: %s",
-                    type(cmp.operator).__name__,
-                )
                 return None
+
+        if (target := _eval_version_info_expr(left)) is None:
+            return None
+
+        version: tuple[int, ...] | int
+        match cmp.comparator:
+            case cst.Integer(v):
+                version = int(v)
+            case cst.Tuple(elems):
+                parts: list[str] = []
+                for element in elems:
+                    match element:
+                        case cst.Element(cst.Integer(v)):
+                            parts.append(v)
+                        case _:
+                            return None
+                version = tuple(map(int, parts))
+            case _:
+                return None
+
+        if not (dunder := _VERSION_CMP_OPS.get(type(cmp.operator))):
+            _logger.warning(
+                "unsupported version_info operator: %s",
+                type(cmp.operator).__name__,
+            )
+            return None
+
+        return getattr(target, dunder)(version)
 
     def _symbol_name(self, node: cst.Name) -> str:
         name = node.value
@@ -1110,7 +1152,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
             if first in self._defined_names:
                 for target in node.targets:
-                    self._add_type_aliases(_extract_names(target.target), value)
+                    names = _extract_names(target.target)
+                    if is_subscript:
+                        self._add_type_aliases(names, value)
+                    else:
+                        self.imports.update({n.value: raw for n in names})
                 return True
 
         return False

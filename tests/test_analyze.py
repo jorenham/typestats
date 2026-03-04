@@ -179,7 +179,7 @@ class TestTypeAliases:
         assert type_aliases[3].name == "B2"
 
     def test_assign_local_name(self) -> None:
-        """X = Y (locally defined) should become a type alias, not an UNKNOWN symbol."""
+        """X = Y (locally defined type alias) should become an import alias."""
         src = textwrap.dedent("""
         from typing import TypeAlias
 
@@ -187,10 +187,20 @@ class TestTypeAliases:
         AnyByteArray = AnyInt8Array
         """)
         module = collect_symbols(src)
-        aliases = {a.name: str(a.value) for a in module.type_aliases}
-        assert "AnyByteArray" in aliases
-        assert aliases["AnyByteArray"] == "AnyInt8Array"
+        assert dict(module.imports)["AnyByteArray"] == "AnyInt8Array"
         assert all(s.name != "AnyByteArray" for s in module.symbols)
+        assert all(a.name != "AnyByteArray" for a in module.type_aliases)
+
+    def test_assign_local_value_is_not_type_alias(self) -> None:
+        """X = Y where Y is a regular value should become an import alias."""
+        src = textwrap.dedent("""
+        advance_iterator = next
+        next = advance_iterator
+        """)
+        module = collect_symbols(src)
+        assert dict(module.imports)["next"] == "advance_iterator"
+        assert all(a.name != "next" for a in module.type_aliases)
+        assert all(s.name != "next" for s in module.symbols)
 
     def test_assign_subscript_imported(self) -> None:
         """X = ImportedType[args] should become a type alias, not UNKNOWN."""
@@ -1286,7 +1296,7 @@ class TestTypeCheckOnly:
         assert module.type_check_only == {"_f", "_P"}
 
 
-class TestVersionGuards:
+class TestVersionGuards:  # noqa: PLR0904
     def test_matching_branch_gte(self) -> None:
         src = textwrap.dedent("""
         import sys
@@ -1525,11 +1535,7 @@ class TestVersionGuards:
         assert "sentinel" in symbols
         assert "current" in symbols
 
-    def test_unsupported_operator_warns_and_is_ignored(
-        self,
-        caplog: pytest.LogCaptureFixture,
-    ) -> None:
-        """Operators other than `>=` and `<` are left as-is."""
+    def test_gt_operator(self) -> None:
         src = textwrap.dedent("""
         import sys
 
@@ -1538,19 +1544,57 @@ class TestVersionGuards:
         else:
             y: str = "hello"
         """)
-        with caplog.at_level(logging.WARNING, logger="typestats.analyze"):
-            module = collect_symbols(src)
+        module = collect_symbols(src)
         symbols = {s.name for s in module.symbols}
-        messages = [record.getMessage() for record in caplog.records]
-        assert any("unsupported version_info operator" in msg for msg in messages)
+        # Python 3.14+ > (3, 11) is True
         assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_le_operator(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info <= (3, 11):
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        # Python 3.14+ <= (3, 11) is False
+        assert "x" not in symbols
         assert "y" in symbols
 
-    def test_version_info_sliced_warns_and_is_not_evaluated(
-        self,
-        caplog: pytest.LogCaptureFixture,
-    ) -> None:
-        """Subscripted `sys.version_info[:2]` is not evaluated (both kept)."""
+    def test_eq_operator(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info == (3, 99):
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" not in symbols
+        assert "y" in symbols
+
+    def test_ne_operator(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info != (3, 99):
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_version_info_sliced_is_evaluated(self) -> None:
+        """Subscripted `sys.version_info[:2]` is evaluated."""
         src = textwrap.dedent("""
         import sys
 
@@ -1559,15 +1603,101 @@ class TestVersionGuards:
         else:
             y: str = "hello"
         """)
-        with caplog.at_level(logging.WARNING, logger="typestats.analyze"):
-            module = collect_symbols(src)
+        module = collect_symbols(src)
         symbols = {s.name for s in module.symbols}
-        messages = [record.getMessage() for record in caplog.records]
-        assert any(
-            "subscripted sys.version_info is not supported" in msg for msg in messages
-        )
+        # Python 3.14+ [:2] >= (3, 11) is True
         assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_version_info_index_eq(self) -> None:
+        """Single index `sys.version_info[0] == 3` is evaluated."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[0] == 3:
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_version_info_index_eq_dead(self) -> None:
+        """Single index `sys.version_info[0] == 2` selects else branch."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[0] == 2:
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" not in symbols
         assert "y" in symbols
+
+    def test_version_info_index_gte(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[0] >= 3:
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_version_info_explicit_slice(self) -> None:
+        """Explicit slice `sys.version_info[0:2] >= (3, 4)` is evaluated."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[0:2] >= (3, 4):
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_version_info_index_ne(self) -> None:
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[0] != 2:
+            x: int = 1
+        else:
+            y: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        assert "x" in symbols
+        assert "y" not in symbols
+
+    def test_version_info_index_le_nested(self) -> None:
+        """Nested subscripted guard (botocore pattern)."""
+        src = textwrap.dedent("""
+        import sys
+
+        if sys.version_info[0] >= 3:
+            if sys.version_info[1] <= 1:
+                old: int = 1
+            else:
+                new: str = "hello"
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name for s in module.symbols}
+        # Python 3.14: [0] >= 3 is True, [1] <= 1 is False
+        assert "old" not in symbols
+        assert "new" in symbols
 
 
 class TestProperty:
