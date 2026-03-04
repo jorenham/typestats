@@ -450,6 +450,16 @@ class PypiInfo(BaseModel):
     sha256: str | None = None
     """SHA-256 hash of the distribution file."""
 
+    @classmethod
+    def from_file_detail(cls, file: FileDetail, /) -> Self:
+        """Construct from a PyPI Simple API `FileDetail` record."""
+        return cls(
+            upload_time=file.get("upload-time"),
+            requires_python=file.get("requires-python"),
+            size=file.get("size"),
+            sha256=file["hashes"].get("sha256"),
+        )
+
 
 class PackageReport(BaseModel):
     model_config = ConfigDict(frozen=True)
@@ -580,15 +590,6 @@ class PackageReport(BaseModel):
         print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
         print(f"   py.typed: {self.py_typed.name}")  # noqa: T201
 
-    @staticmethod
-    def _pypi_info(file: FileDetail, /) -> PypiInfo:
-        return PypiInfo(
-            upload_time=file.get("upload-time"),
-            requires_python=file.get("requires-python"),
-            size=file.get("size"),
-            sha256=file["hashes"].get("sha256"),
-        )
-
     @classmethod
     async def from_project(
         cls,
@@ -631,7 +632,7 @@ class PackageReport(BaseModel):
                 project=project.name,
                 stubs_only=stubs_only,
                 exclude=project.exclude,
-                pypi=cls._pypi_info(stubs_file),
+                pypi=PypiInfo.from_file_detail(stubs_file),
             )
 
         path, dist_file = await _pypi.download_latest(client, project.name, out_dir)
@@ -641,7 +642,7 @@ class PackageReport(BaseModel):
             path,
             str(ver),
             exclude=project.exclude,
-            pypi=cls._pypi_info(dist_file),
+            pypi=PypiInfo.from_file_detail(dist_file),
         )
 
     @classmethod

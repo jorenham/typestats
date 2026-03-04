@@ -829,6 +829,11 @@ class TestPackageReportFromProject:
         assert report.version == "3.0.0.1"
         assert report.stubs_only is StubsOnly.THIRD_PARTY
         assert report.py_typed is PyTyped.STUBS
+        assert report.pypi is not None
+        assert report.pypi.upload_time == "2025-03-01T10:00:00Z"
+        assert report.pypi.requires_python == ">=3.10"
+        assert report.pypi.size == 98765
+        assert report.pypi.sha256 == "abc123def456"
 
     async def test_typeshed_stubs_package(
         self,
@@ -854,6 +859,11 @@ class TestPackageReportFromProject:
         assert report.version == "3.0.0.1"
         assert report.stubs_only is StubsOnly.TYPESHED
         assert report.py_typed is PyTyped.STUBS
+        assert report.pypi is not None
+        assert report.pypi.upload_time == "2025-03-01T10:00:00Z"
+        assert report.pypi.requires_python == ">=3.10"
+        assert report.pypi.size == 98765
+        assert report.pypi.sha256 == "abc123def456"
 
     async def test_exclude_passed_through(
         self,
