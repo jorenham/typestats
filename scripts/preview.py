@@ -87,10 +87,12 @@ async def _extract_into(into: anyio.Path, sha: str) -> None:
 async def _watch_and_rebuild(
     reports_dir: anyio.Path,
     initial_reports: list[PackageReport] | None = None,
+    initial_all_reports: dict[str, list[PackageReport]] | None = None,
 ) -> None:
     watch_paths = (ROOT / "src" / "typestats" / "templates", ROOT / "projects.toml")
     log.info("Watching %s ...", ", ".join(p.name for p in watch_paths))
     cached_reports = initial_reports
+    cached_all_reports = initial_all_reports
     async for changes in watchfiles.awatch(*map(str, watch_paths)):
         changed = sorted({anyio.Path(str(c[1])).name for c in changes})
         log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
@@ -98,11 +100,12 @@ async def _watch_and_rebuild(
         projects_changed = "projects.toml" in changed
         rebuild = None if projects_changed else frozenset(changed) & TEMPLATES
         t0 = time.perf_counter()
-        cached_reports = await build_site(
+        cached_reports, cached_all_reports = await build_site(
             reports_dir,
             _SITE_DIR,
             ROOT / "projects.toml",
             reports=None if projects_changed else cached_reports,
+            all_reports=None if projects_changed else cached_all_reports,
             rebuild=rebuild,
         )
         log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
@@ -137,14 +140,15 @@ async def main() -> None:
     sha = await _resolve_hash()
     sha_cached = await _SITE_SHA.read_text() if await _SITE_SHA.exists() else None
 
-    initial_reports = None
+    initial_reports: list[PackageReport] | None = None
+    initial_all_reports: dict[str, list[PackageReport]] | None = None
     if not clean and sha == sha_cached and await _REPORTS_DIR.exists():
         log.info("Data unchanged (%s), skipping extraction.", sha[:12])
     else:
         await _extract_into(_REPORTS_DIR, sha)
 
         log.info("Building dashboard pages ...")
-        initial_reports, _ = await asyncio.gather(
+        (initial_reports, initial_all_reports), _ = await asyncio.gather(
             build_site(_REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"),
             _SITE_SHA.write_text(sha),
         )
@@ -152,7 +156,12 @@ async def main() -> None:
     log.info("Built in %.1fs", time.perf_counter() - t0)
     try:
         async with anyio.create_task_group() as tg:
-            tg.start_soon(_watch_and_rebuild, _REPORTS_DIR / "reports", initial_reports)
+            tg.start_soon(
+                _watch_and_rebuild,
+                _REPORTS_DIR / "reports",
+                initial_reports,
+                initial_all_reports,
+            )
             await _serve(*serve_args)
             tg.cancel_scope.cancel()
     finally:
