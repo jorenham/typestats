@@ -11,7 +11,7 @@ from typestats.index import (
     _EXCLUDED_DIR_NAMES,
     _EXCLUDED_FILE_NAMES,
     PyTyped,
-    _detect_src_layout,
+    _is_src_layout,
     _resolve_expr_name,
     _resolve_package_name,
     _resolves_to_any,
@@ -1018,7 +1018,7 @@ class TestExcludeGlobs:
 class TestSrcLayout:
     pytestmark = pytest.mark.anyio
 
-    async def test_detect_src_layout(self, tmp_path: Path) -> None:
+    async def test_is_src_layout(self, tmp_path: Path) -> None:
         """A `src/` directory without `__init__.py` is a src layout."""
         src = tmp_path / "src"
         pkg = src / "mypkg"
@@ -1026,26 +1026,38 @@ class TestSrcLayout:
         (pkg / "__init__.py").write_text("")
         (pkg / "core.py").write_text("x: int = 1\n")
 
-        result = await _detect_src_layout(anyio.Path(tmp_path))
-        assert result == anyio.Path(src)
+        assert await _is_src_layout(anyio.Path(tmp_path)) is True
 
-    async def test_detect_src_layout_with_init(self, tmp_path: Path) -> None:
+    async def test_is_src_layout_with_init(self, tmp_path: Path) -> None:
         """A `src/` directory WITH `__init__.py` is not a src layout."""
         src = tmp_path / "src"
         src.mkdir()
         (src / "__init__.py").write_text("")
 
-        result = await _detect_src_layout(anyio.Path(tmp_path))
-        assert result == anyio.Path(tmp_path)
+        assert await _is_src_layout(anyio.Path(tmp_path)) is False
 
-    async def test_detect_src_layout_no_src(self, tmp_path: Path) -> None:
-        """Without a `src/` directory, the project root is returned."""
+    async def test_is_src_layout_no_src(self, tmp_path: Path) -> None:
+        """Without a `src/` directory, returns False."""
         pkg = tmp_path / "mypkg"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("")
 
-        result = await _detect_src_layout(anyio.Path(tmp_path))
-        assert result == anyio.Path(tmp_path)
+        assert await _is_src_layout(anyio.Path(tmp_path)) is False
+
+    async def test_is_src_layout_no_python_files(self, tmp_path: Path) -> None:
+        """A `src/` with only non-Python files (e.g. C++) is not a src layout."""
+        src = tmp_path / "src"
+        lib = src / "mylib"
+        lib.mkdir(parents=True)
+        (lib / "main.c").write_text("int main() { return 0; }\n")
+        (lib / "util.h").write_text("void util();\n")
+
+        # Python package at the project root
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("")
+
+        assert await _is_src_layout(anyio.Path(tmp_path)) is False
 
     async def test_src_layout_ignores_non_src_files(self, tmp_path: Path) -> None:
         """Files outside `src/` should not be discovered in a src layout."""
