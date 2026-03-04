@@ -10,7 +10,7 @@ import anyio
 from typestats._http import retry_client
 from typestats._pypi import download_file, download_latest, versions_since
 from typestats.projects import load_projects
-from typestats.report import PackageReport, StubsOnly
+from typestats.report import PackageReport, PypiInfo, StubsOnly
 
 if TYPE_CHECKING:
     import datetime as dt
@@ -127,6 +127,7 @@ async def collect_project(  # noqa: PLR0913
                 project=project.name,
                 stubs_only=stubs_only,
                 exclude=project.exclude,
+                pypi=PypiInfo.from_file_detail(file_detail),
             )
         else:
             path = await download_file(client, file_detail, str(work_dir))
@@ -135,6 +136,7 @@ async def collect_project(  # noqa: PLR0913
                 path,
                 str(version),
                 exclude=project.exclude,
+                pypi=PypiInfo.from_file_detail(file_detail),
             )
 
         json_bytes = report.model_dump_json(indent=2).encode()
