@@ -11,6 +11,7 @@ from typestats.index import (
     _EXCLUDED_DIR_NAMES,
     _EXCLUDED_FILE_NAMES,
     PyTyped,
+    _detect_src_layout,
     _resolve_expr_name,
     _resolve_package_name,
     _resolves_to_any,
@@ -1012,3 +1013,79 @@ class TestExcludeGlobs:
         # Functions defined in _main should be reachable
         assert "regex._main.compile" in types, f"missing compile in {types}"
         assert "regex._main.match" in types, f"missing match in {types}"
+
+
+class TestSrcLayout:
+    pytestmark = pytest.mark.anyio
+
+    async def test_detect_src_layout(self, tmp_path: Path) -> None:
+        """A `src/` directory without `__init__.py` is a src layout."""
+        src = tmp_path / "src"
+        pkg = src / "mypkg"
+        pkg.mkdir(parents=True)
+        (pkg / "__init__.py").write_text("")
+        (pkg / "core.py").write_text("x: int = 1\n")
+
+        result = await _detect_src_layout(anyio.Path(tmp_path))
+        assert result == anyio.Path(src)
+
+    async def test_detect_src_layout_with_init(self, tmp_path: Path) -> None:
+        """A `src/` directory WITH `__init__.py` is not a src layout."""
+        src = tmp_path / "src"
+        src.mkdir()
+        (src / "__init__.py").write_text("")
+
+        result = await _detect_src_layout(anyio.Path(tmp_path))
+        assert result == anyio.Path(tmp_path)
+
+    async def test_detect_src_layout_no_src(self, tmp_path: Path) -> None:
+        """Without a `src/` directory, the project root is returned."""
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("")
+
+        result = await _detect_src_layout(anyio.Path(tmp_path))
+        assert result == anyio.Path(tmp_path)
+
+    async def test_src_layout_ignores_non_src_files(self, tmp_path: Path) -> None:
+        """Files outside `src/` should not be discovered in a src layout."""
+        # src layout package
+        src = tmp_path / "src"
+        pkg = src / "mypkg"
+        pkg.mkdir(parents=True)
+        (pkg / "__init__.py").write_text("x: int = 1\n")
+
+        # Non-src files (e.g. website, setup.py) at the project root
+        website = tmp_path / "website"
+        website.mkdir()
+        (website / "__init__.py").write_text("")
+        (website / "app.py").write_text("y: int = 2\n")
+        (tmp_path / "setup.py").write_text("from setuptools import setup; setup()\n")
+
+        sources = await list_sources(tmp_path)
+
+        # Only files under src/ should be found
+        source_strs = [str(s) for s in sources]
+        assert any("mypkg" in s for s in source_strs), f"missing mypkg: {source_strs}"
+        assert not any("website" in s for s in source_strs), (
+            f"website should not be included: {source_strs}"
+        )
+        assert not any("setup.py" in s for s in source_strs), (
+            f"setup.py should not be included: {source_strs}"
+        )
+
+    async def test_src_layout_no_namespace_package(self, tmp_path: Path) -> None:
+        """In a src layout, `src` should not appear as a top-level module."""
+        src = tmp_path / "src"
+        pkg = src / "mypkg"
+        pkg.mkdir(parents=True)
+        (pkg / "__init__.py").write_text("x: int = 1\n")
+
+        pub = await collect_public_symbols(tmp_path, package_name="mypkg")
+        names = {s.name for syms in pub.symbols.values() for s in syms}
+
+        # `src` must not appear as a module prefix
+        assert not any(n.startswith("src.") for n in names), (
+            f"src should not be a namespace package: {names}"
+        )
+        assert any("mypkg" in n for n in names), f"missing mypkg symbols: {names}"

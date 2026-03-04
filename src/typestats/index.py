@@ -148,6 +148,24 @@ async def _analyze_graph(
     }
 
 
+async def _detect_src_layout(project_dir: anyio.Path, /) -> anyio.Path:
+    """Return the effective source root for analysis.
+
+    If `project_dir` contains a `src/` directory that is not itself a Python
+    package (no `__init__.py` or `__init__.pyi`), the project uses a
+    [src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/)
+    and `src/` is the source root.  Otherwise `project_dir` is returned as-is.
+    """
+    src = project_dir / "src"
+    if (
+        await src.is_dir()
+        and not await (src / "__init__.py").exists()
+        and not await (src / "__init__.pyi").exists()
+    ):
+        return src
+    return project_dir
+
+
 async def list_sources(
     path: StrPath,
     /,
@@ -155,7 +173,8 @@ async def list_sources(
     exclude: Sequence[str] = (),
 ) -> list[anyio.Path]:
     """List all source files in the given project directory."""
-    graph = await _analyze_graph(path, "--type-checking-imports", exclude=exclude)
+    root = await _detect_src_layout(anyio.Path(path))
+    graph = await _analyze_graph(root, "--type-checking-imports", exclude=exclude)
     return list(map(anyio.Path, graph))
 
 
