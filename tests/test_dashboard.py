@@ -7,6 +7,7 @@ from typestats.dashboard import (
     _extract_project_urls,
     build_site,
     render_detail,
+    render_diff,
     render_index,
 )
 from typestats.index import PyTyped
@@ -194,7 +195,7 @@ class TestRenderIndex:
         assert len(rows) == 3
 
         data_row = rows[2]
-        assert "[numpy](numpy.md)" in data_row
+        assert "[numpy](numpy/index.md)" in data_row
         assert "2.4.2" in data_row
         assert "YES" in data_row
         assert "no" in data_row
@@ -224,7 +225,7 @@ class TestRenderIndex:
         md = render_index([report])
         data_row = _table_lines(md)[2]
         assert "yes (third party)" in data_row
-        assert "[pandas-stubs](pandas-stubs.md)" in data_row
+        assert "[pandas-stubs](pandas-stubs/index.md)" in data_row
 
     def test_coverage_values(self) -> None:
         report = _minimal_report(
@@ -369,10 +370,11 @@ class TestBuildSite:
             projects_toml,
         )
 
-        assert isinstance(out, list)
-        assert len(out) == 1
-        content = (site_dir / "index.md").read_text()
-        assert "[mypkg](mypkg.md)" in content
+        reports, _ = out
+        assert isinstance(reports, list)
+        assert len(reports) == 1
+        content = (site_dir / "docs" / "index.md").read_text()
+        assert "[mypkg](mypkg/index.md)" in content
 
     async def test_creates_detail_pages(self, tmp_path: Path) -> None:
         data_dir = tmp_path / "data"
@@ -397,24 +399,19 @@ class TestBuildSite:
             projects_toml,
         )
 
-        # Detail pages in site_dir
-        assert (site_dir / "alpha.md").is_file()
-        assert (site_dir / "beta.md").is_file()
-        alpha_content = (site_dir / "alpha.md").read_text()
+        # Detail pages written directly to docs/{pkg}/index.md
+        docs = site_dir / "docs"
+        assert (docs / "alpha" / "index.md").is_file()
+        assert (docs / "beta" / "index.md").is_file()
+        alpha_content = (docs / "alpha" / "index.md").read_text()
         assert "# alpha 1.0.0" in alpha_content
-        beta_content = (site_dir / "beta.md").read_text()
+        assert "hide:" in alpha_content
+        beta_content = (docs / "beta" / "index.md").read_text()
         assert "# beta 2.0.0" in beta_content
 
-        # Assembled docs: wrappers + committed content
-        assembled_docs = site_dir / "docs"
-        assert (assembled_docs / "alpha.md").is_file()
-        assert (assembled_docs / "beta.md").is_file()
-        wrapper = (assembled_docs / "alpha.md").read_text()
-        assert "site/alpha.md" in wrapper
-        assert "hide:" in wrapper
-        # Committed file was copied
-        assert (assembled_docs / "index.md").is_file()
-        assert "# Index" in (assembled_docs / "index.md").read_text()
+        # Index page generated (overwrites committed placeholder)
+        assert (docs / "index.md").is_file()
+        assert "# Overview" in (docs / "index.md").read_text()
 
     async def test_raises_on_no_reports(self, tmp_path: Path) -> None:
         data_dir = tmp_path / "data"
@@ -548,3 +545,194 @@ class TestRenderDetailProjectUrls:
         report = _minimal_report("numpy", "2.0.0")
         md = render_detail(report)
         assert "github.com" not in md
+
+    def test_no_diff_link_by_default(self) -> None:
+        report = _minimal_report("numpy", "2.0.0")
+        md = render_detail(report)
+        assert "Version history" not in md
+
+    def test_diff_link_present_when_provided(self) -> None:
+        report = _minimal_report("numpy", "2.0.0")
+        md = render_detail(report, diff_link="diff.md")
+        assert "Version history" in md
+        assert "[Version history](diff.md)" in md
+
+
+class TestRenderDiff:
+    def test_two_versions_basic(self) -> None:
+        r1 = _minimal_report("mypkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("mypkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        assert "# mypkg Version History" in md
+        assert "1.0.0" in md
+        assert "2.0.0" in md
+        # Coverage row present
+        assert "Coverage" in md
+        # Latest version links to detail page
+        assert "[2.0.0](index.md)" in md
+
+    def test_version_rows_newest_first(self) -> None:
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=4, n_any=0, n_unannotated=6)
+        r2 = _minimal_report("pkg", "1.1.0", n_annotated=6, n_any=0, n_unannotated=4)
+        r3 = _minimal_report("pkg", "2.0.0", n_annotated=9, n_any=0, n_unannotated=1)
+        md = render_diff([r1, r2, r3])
+        lines = md.splitlines()
+        version_positions = {
+            v: next(i for i, line in enumerate(lines) if v in line)
+            for v in ("1.0.0", "1.1.0", "2.0.0")
+        }
+        assert version_positions["2.0.0"] < version_positions["1.1.0"]
+        assert version_positions["1.1.0"] < version_positions["1.0.0"]
+
+    def test_coverage_improvement_colored_green(self) -> None:
+        # v1: 5/10 = 50%, v2: 8/10 = 80% -> +30.0%, should be green
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        assert "color:green" in md
+        assert "+30.0%" in md
+
+    def test_coverage_regression_colored_red(self) -> None:
+        # v1: 8/10 = 80%, v2: 5/10 = 50% -> -30.0%, should be red
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        md = render_diff([r1, r2])
+        assert "color:red" in md
+        assert "-30.0%" in md
+
+    def test_unannotated_decrease_colored_green(self) -> None:
+        # Fewer unannotated is an improvement -> green
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        # Find the v2 row and check for green delta in the Unannotated column
+        lines = md.splitlines()
+        v2_line = next(line for line in lines if "2.0.0" in line)
+        assert "color:green" in v2_line
+
+    def test_public_symbols_delta_neutral_no_color(self) -> None:
+        # Public symbol counts are neutral -- no color span
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        lines = md.splitlines()
+        # The v2 row has the deltas; Public Symbols delta should not be colored
+        v2_line = next(line for line in lines if "2.0.0" in line)
+        # Split cells and check the Public Symbols cell has no color
+        cells = [c.strip() for c in v2_line.split("|")]
+        # Index 4: '', version, cov, strict_cov, pub_symbols
+        public_symbols_cell = cells[4]
+        assert "color:" not in public_symbols_cell
+
+    def test_no_delta_when_unchanged(self) -> None:
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        md = render_diff([r1, r2])
+        # No span elements when nothing changed
+        assert "<span" not in md
+
+    def test_raises_for_single_report(self) -> None:
+        r = _minimal_report("pkg", "1.0.0")
+        with pytest.raises(ValueError, match="at least 2"):
+            render_diff([r])
+
+    def test_raises_for_empty_list(self) -> None:
+        with pytest.raises(ValueError, match="at least 2"):
+            render_diff([])
+
+    def test_all_metric_rows_present(self) -> None:
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        for metric in (
+            "Coverage",
+            "Strict Coverage",
+            "Public Symbols",
+            "Unannotated",
+            "Type-ignores",
+        ):
+            assert metric in md
+
+
+class TestBuildSiteDiff:
+    pytestmark = pytest.mark.anyio
+
+    async def test_diff_page_created_for_multiple_versions(
+        self, tmp_path: Path
+    ) -> None:
+        data_dir = tmp_path / "data"
+        data_dir.mkdir()
+        site_dir = tmp_path / "site"
+        (tmp_path / "docs").mkdir()
+
+        projects_toml = tmp_path / "projects.toml"
+        projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+
+        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
+        _write_report(data_dir, _minimal_report("mypkg", "2.0.0"))
+
+        reports, all_reports = await build_site(
+            anyio.Path(data_dir),
+            anyio.Path(site_dir),
+            projects_toml,
+        )
+
+        assert isinstance(reports, list)
+        assert isinstance(all_reports, dict)
+
+        # Diff page in docs/mypkg/
+        diff_page = site_dir / "docs" / "mypkg" / "diff.md"
+        assert diff_page.is_file()
+        content = diff_page.read_text()
+        assert "# mypkg Version History" in content
+        assert "1.0.0" in content
+        assert "2.0.0" in content
+
+        # Detail page links to diff page
+        detail = (site_dir / "docs" / "mypkg" / "index.md").read_text()
+        assert "Version history" in detail
+        assert "diff.md" in detail
+
+    async def test_no_diff_page_for_single_version(self, tmp_path: Path) -> None:
+        data_dir = tmp_path / "data"
+        data_dir.mkdir()
+        site_dir = tmp_path / "site"
+        (tmp_path / "docs").mkdir()
+
+        projects_toml = tmp_path / "projects.toml"
+        projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+
+        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
+
+        await build_site(
+            anyio.Path(data_dir),
+            anyio.Path(site_dir),
+            projects_toml,
+        )
+
+        assert not (site_dir / "docs" / "mypkg" / "diff.md").is_file()
+        detail = (site_dir / "docs" / "mypkg" / "index.md").read_text()
+        assert "Version history" not in detail
+
+    async def test_build_site_returns_tuple(self, tmp_path: Path) -> None:
+        data_dir = tmp_path / "data"
+        data_dir.mkdir()
+        site_dir = tmp_path / "site"
+        (tmp_path / "docs").mkdir()
+
+        projects_toml = tmp_path / "projects.toml"
+        projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
+
+        result = await build_site(
+            anyio.Path(data_dir),
+            anyio.Path(site_dir),
+            projects_toml,
+        )
+
+        reports, all_reports = result
+        assert isinstance(reports, list)
+        assert len(reports) == 1
+        assert isinstance(all_reports, dict)
+        assert "mypkg" in all_reports
+        assert len(all_reports["mypkg"]) == 1
