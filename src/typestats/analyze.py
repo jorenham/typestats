@@ -14,7 +14,7 @@ from libcst.helpers import (
 )
 
 if TYPE_CHECKING:
-    from collections.abc import Callable, Collection, Mapping, Sequence
+    from collections.abc import Callable, Collection, Mapping
 
 __all__ = (
     "ANY",
@@ -65,20 +65,6 @@ _VERSION_CMP_OPS: Final[Mapping[type[cst.BaseCompOp], str]] = {
 _logger: Final = logging.getLogger(__name__)
 
 type TypeForm = _TypeMarker | Expr | Function | Property | Class
-
-
-def _parse_version_tuple(elements: Sequence[cst.BaseElement]) -> tuple[int, ...] | None:
-    """Extract a version like `(3, 11)` from the elements of a CST tuple ."""
-    parts: list[str] = []
-    for element in elements:
-        match element:
-            case cst.Element(value=cst.Integer(value=v)):
-                parts.append(v)
-            case _:
-                return None
-    if not parts:
-        return None
-    return tuple(int(p) for p in parts)
 
 
 def _parse_slice_bounds(sl: cst.Slice) -> tuple[int | None, int | None] | None:
