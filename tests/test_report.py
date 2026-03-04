@@ -35,6 +35,7 @@ from typestats.report import (
     NameReport,
     PackageReport,
     PropertyReport,
+    PypiInfo,
     StubsOnly,
     _SlotState,
     _symbol_report,
@@ -552,6 +553,57 @@ class TestPackageReportJson:
         restored = PackageReport.model_validate_json(json_str)
         assert restored.metadata is None
 
+    def test_pypi_round_trip(self) -> None:
+        """PypiInfo survives JSON serialization round-trip."""
+        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        pypi = PypiInfo(
+            upload_time="2025-06-15T12:30:00Z",
+            requires_python=">=3.10",
+            size=123456,
+            sha256="abcdef1234567890",
+        )
+        report = PackageReport(
+            package="pkg",
+            module_reports=(mod,),
+            version="1.0.0",
+            py_typed=PyTyped.YES,
+            pypi=pypi,
+        )
+        json_str = report.model_dump_json()
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.pypi == pypi
+        assert restored.pypi is not None
+        assert restored.pypi.upload_time == "2025-06-15T12:30:00Z"
+        assert restored.pypi.requires_python == ">=3.10"
+        assert restored.pypi.size == 123456
+        assert restored.pypi.sha256 == "abcdef1234567890"
+
+    def test_pypi_none_round_trip(self) -> None:
+        """pypi=None survives JSON serialization round-trip."""
+        report = self._pkg(Symbol("x", _INT))
+        assert report.pypi is None
+        json_str = report.model_dump_json()
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.pypi is None
+
+    def test_pypi_partial_fields(self) -> None:
+        """PypiInfo with only some fields set round-trips correctly."""
+        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        pypi = PypiInfo(upload_time="2025-01-01T00:00:00Z")
+        report = PackageReport(
+            package="pkg",
+            module_reports=(mod,),
+            version="1.0.0",
+            py_typed=PyTyped.YES,
+            pypi=pypi,
+        )
+        json_str = report.model_dump_json()
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.pypi is not None
+        assert restored.pypi.upload_time == "2025-01-01T00:00:00Z"
+        assert restored.pypi.requires_python is None
+        assert restored.pypi.size is None
+
 
 class TestPackageReportFromPath:
     pytestmark = pytest.mark.anyio
@@ -691,9 +743,11 @@ class TestPackageReportFromProject:
             "files": [
                 {
                     "filename": filename,
-                    "hashes": {"sha256": "fake"},
-                    "size": 0,
+                    "hashes": {"sha256": "abc123def456"},
+                    "size": 98765,
                     "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
+                    "upload-time": "2025-03-01T10:00:00Z",
+                    "requires-python": ">=3.10",
                 },
             ],
         }
@@ -709,9 +763,11 @@ class TestPackageReportFromProject:
             "files": [
                 {
                     "filename": filename,
-                    "hashes": {"sha256": "fake"},
+                    "hashes": {"sha256": "deadbeef9876"},
                     "size": 42,
                     "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
+                    "upload-time": "2025-06-15T12:00:00Z",
+                    "requires-python": ">=3.12",
                 },
             ],
         }
@@ -748,6 +804,11 @@ class TestPackageReportFromProject:
         assert report.metadata is not None
         assert report.metadata["Name"] == [self._PKG]
         assert report.metadata["Version"] == ["2.5.0"]
+        assert report.pypi is not None
+        assert report.pypi.upload_time == "2025-03-01T10:00:00Z"
+        assert report.pypi.requires_python == ">=3.10"
+        assert report.pypi.size == 98765
+        assert report.pypi.sha256 == "abc123def456"
 
     async def test_stubs_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
         """Stubs project downloads base + stubs concurrently."""
@@ -838,3 +899,8 @@ class TestPackageReportFromProject:
         assert report.stubs_only is StubsOnly.NO
         assert report.metadata is not None
         assert report.metadata["Name"] == [self._PKG]
+        assert report.pypi is not None
+        assert report.pypi.upload_time == "2025-06-15T12:00:00Z"
+        assert report.pypi.requires_python == ">=3.12"
+        assert report.pypi.size == 42
+        assert report.pypi.sha256 == "deadbeef9876"

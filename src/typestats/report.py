@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     import httpx
     from _typeshed import StrPath
 
+    from typestats._pypi import FileDetail
     from typestats.projects import Project
 
 import anyio
@@ -37,6 +38,7 @@ __all__ = (
     "NameReport",
     "PackageReport",
     "PropertyReport",
+    "PypiInfo",
     "StubsOnly",
 )
 
@@ -434,6 +436,21 @@ class ModuleReport(BaseModel):
         )
 
 
+class PypiInfo(BaseModel):
+    """Metadata from the PyPI Simple Repository API for a distribution file."""
+
+    model_config = ConfigDict(frozen=True)
+
+    upload_time: str | None = None
+    """ISO 8601 timestamp of when the distribution was uploaded to PyPI."""
+    requires_python: str | None = None
+    """PEP 440 version specifier for the required Python version."""
+    size: int | None = None
+    """Size of the distribution file in bytes."""
+    sha256: str | None = None
+    """SHA-256 hash of the distribution file."""
+
+
 class PackageReport(BaseModel):
     model_config = ConfigDict(frozen=True)
 
@@ -441,6 +458,7 @@ class PackageReport(BaseModel):
     version: str
     stubs_only: StubsOnly = StubsOnly.NO
     py_typed: PyTyped
+    pypi: PypiInfo | None = None
     metadata: dict[str, list[str]] | None = None
     module_reports: tuple[ModuleReport, ...]
     typecheckers: dict[TypeCheckerName, TypeCheckerConfigDict] = Field(
@@ -562,6 +580,15 @@ class PackageReport(BaseModel):
         print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
         print(f"   py.typed: {self.py_typed.name}")  # noqa: T201
 
+    @staticmethod
+    def _pypi_info(file: FileDetail, /) -> PypiInfo:
+        return PypiInfo(
+            upload_time=file.get("upload-time"),
+            requires_python=file.get("requires-python"),
+            size=file.get("size"),
+            sha256=file["hashes"].get("sha256"),
+        )
+
     @classmethod
     async def from_project(
         cls,
@@ -604,6 +631,7 @@ class PackageReport(BaseModel):
                 project=project.name,
                 stubs_only=stubs_only,
                 exclude=project.exclude,
+                pypi=cls._pypi_info(stubs_file),
             )
 
         path, dist_file = await _pypi.download_latest(client, project.name, out_dir)
@@ -613,6 +641,7 @@ class PackageReport(BaseModel):
             path,
             str(ver),
             exclude=project.exclude,
+            pypi=cls._pypi_info(dist_file),
         )
 
     @classmethod
@@ -627,6 +656,7 @@ class PackageReport(BaseModel):
         project: str | None = None,
         stubs_only: StubsOnly = StubsOnly.NO,
         exclude: Sequence[str] = (),
+        pypi: PypiInfo | None = None,
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
@@ -703,6 +733,7 @@ class PackageReport(BaseModel):
             module_reports=files,
             version=version,
             py_typed=py_typed,
+            pypi=pypi,
             metadata=metadata,
             typecheckers=dict(res[0]),
         )

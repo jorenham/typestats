@@ -10,7 +10,7 @@ import anyio
 from typestats._http import retry_client
 from typestats._pypi import download_file, download_latest, versions_since
 from typestats.projects import load_projects
-from typestats.report import PackageReport, StubsOnly
+from typestats.report import PackageReport, PypiInfo, StubsOnly
 
 if TYPE_CHECKING:
     import datetime as dt
@@ -18,6 +18,7 @@ if TYPE_CHECKING:
     import httpx
     from _typeshed import StrPath
 
+    from typestats._pypi import FileDetail
     from typestats.projects import Project
 
 __all__ = "clean_data", "collect_all"
@@ -25,6 +26,15 @@ __all__ = "clean_data", "collect_all"
 
 _logger: Final = logging.getLogger(__name__)
 _DEFAULT_PROJECTS: Final = anyio.Path(__file__).parents[2] / "projects.toml"
+
+
+def _pypi_info(file: FileDetail, /) -> PypiInfo:
+    return PypiInfo(
+        upload_time=file.get("upload-time"),
+        requires_python=file.get("requires-python"),
+        size=file.get("size"),
+        sha256=file["hashes"].get("sha256"),
+    )
 
 
 async def _remove_tree(path: anyio.Path, /) -> None:
@@ -127,6 +137,7 @@ async def collect_project(  # noqa: PLR0913
                 project=project.name,
                 stubs_only=stubs_only,
                 exclude=project.exclude,
+                pypi=_pypi_info(file_detail),
             )
         else:
             path = await download_file(client, file_detail, str(work_dir))
@@ -135,6 +146,7 @@ async def collect_project(  # noqa: PLR0913
                 path,
                 str(version),
                 exclude=project.exclude,
+                pypi=_pypi_info(file_detail),
             )
 
         json_bytes = report.model_dump_json(indent=2).encode()
