@@ -179,7 +179,7 @@ class TestTypeAliases:
         assert type_aliases[3].name == "B2"
 
     def test_assign_local_name(self) -> None:
-        """X = Y (locally defined) should become a type alias, not an UNKNOWN symbol."""
+        """X = Y (locally defined type alias) should become an import alias."""
         src = textwrap.dedent("""
         from typing import TypeAlias
 
@@ -187,10 +187,20 @@ class TestTypeAliases:
         AnyByteArray = AnyInt8Array
         """)
         module = collect_symbols(src)
-        aliases = {a.name: str(a.value) for a in module.type_aliases}
-        assert "AnyByteArray" in aliases
-        assert aliases["AnyByteArray"] == "AnyInt8Array"
+        assert dict(module.imports)["AnyByteArray"] == "AnyInt8Array"
         assert all(s.name != "AnyByteArray" for s in module.symbols)
+        assert all(a.name != "AnyByteArray" for a in module.type_aliases)
+
+    def test_assign_local_value_is_not_type_alias(self) -> None:
+        """X = Y where Y is a regular value should become an import alias."""
+        src = textwrap.dedent("""
+        advance_iterator = next
+        next = advance_iterator
+        """)
+        module = collect_symbols(src)
+        assert dict(module.imports)["next"] == "advance_iterator"
+        assert all(a.name != "next" for a in module.type_aliases)
+        assert all(s.name != "next" for s in module.symbols)
 
     def test_assign_subscript_imported(self) -> None:
         """X = ImportedType[args] should become a type alias, not UNKNOWN."""

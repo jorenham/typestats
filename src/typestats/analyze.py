@@ -1166,7 +1166,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
             if first in self._defined_names:
                 for target in node.targets:
-                    self._add_type_aliases(_extract_names(target.target), value)
+                    names = _extract_names(target.target)
+                    if is_subscript:
+                        self._add_type_aliases(names, value)
+                    else:
+                        self.imports.update({n.value: raw for n in names})
                 return True
 
         return False
