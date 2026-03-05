@@ -18,7 +18,7 @@ from packaging.version import Version
 from tabulate import tabulate
 
 from typestats.projects import load_projects
-from typestats.report import ModuleReport, PackageReport
+from typestats.report import ModuleReport, PackageReport, PyTyped
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
@@ -40,6 +40,13 @@ _DIFF_TEMPLATE: Final = "diff.md.j2"
 TEMPLATES: Final = frozenset({_DETAIL_TEMPLATE, _DIFF_TEMPLATE})
 
 _MIN_VERSIONS_FOR_DIFF: Final = 2
+
+_PY_TYPED_ICON: Final[dict[PyTyped, str]] = {
+    PyTyped.YES: ":material-check-circle:",
+    PyTyped.NO: ":material-close-circle:",
+    PyTyped.PARTIAL: ":material-progress-check:",
+    PyTyped.STUBS: ":material-check-circle-outline:",
+}
 
 _PAGE_FRONTMATTER: Final = """\
 ---
@@ -156,7 +163,7 @@ def render_index(reports: list[PackageReport], /) -> str:
                 f"{r.coverage():.1%}",
                 f"{r.coverage(True):.1%}",
                 str(r.n_annotatable),
-                r.py_typed.name,
+                _PY_TYPED_ICON[r.py_typed],
                 r.stubs_only.value,
             ]
             for r in reports
@@ -424,6 +431,7 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
         report=report,
         coverage=f"{report.coverage():.1%}",
         strict_coverage=f"{report.coverage(True):.1%}",
+        py_typed_icon=_PY_TYPED_ICON[report.py_typed],
         modules_table=modules_table,
         annotation_sections=annotation_sections,
         type_ignore_table=type_ignore_table,

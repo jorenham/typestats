@@ -70,7 +70,7 @@ _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
     "tests",
 })
 # File names to exclude from analysis.
-_EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py"})
+_EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py", "setup.py"})
 # Module-level dunder names that are not real symbols for typing purposes.
 _MODULE_DUNDERS: Final[frozenset[str]] = frozenset({
     "__all__",
