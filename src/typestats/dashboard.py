@@ -84,6 +84,39 @@ hide:
 
 _INDENT: Final = " " * 4
 
+
+def _abbr(text: str, title: str, /) -> str:
+    return f'<abbr title="{title}">{text}</abbr>'
+
+
+_COL_COV: Final = _abbr(
+    "Coverage",
+    "Percentage of annotated symbols",
+)
+_COL_COV_STRICT: Final = _abbr(
+    "Coverage (strict)",
+    "Percentage of annotated symbols, excluding `Any`",
+)
+_COL_SYMBOLS: Final = _abbr(
+    "Symbols",
+    (
+        "Number of public annotatable slots: "
+        "each function parameter, return type, and variable counts as one"
+    ),
+)
+_COL_UNANNOTATED: Final = _abbr("Unannotated", "Slots without a type annotation")
+_COL_IGNORES: Final = _abbr("Ignores", "Number of type: ignore comments")
+_INDEX_HEADERS: Final = [
+    _abbr("Package", "PyPI package name"),
+    _abbr("Version", "Latest release version"),
+    _abbr("Released", "Release date on PyPI"),
+    _COL_COV,
+    _COL_COV_STRICT,
+    _COL_SYMBOLS,
+    _abbr("py.typed", "PEP 561 py.typed marker"),
+    _abbr("Stubs-only", "Type info from a standalone stubs package"),
+]
+
 _env: Environment | None = None
 
 
@@ -186,16 +219,7 @@ def render_index(reports: list[PackageReport], /) -> str:
             ]
             for r in reports
         ],
-        headers=[
-            "Package",
-            "Version",
-            "Released",
-            "Coverage",
-            "Coverage (strict)",
-            "Symbols",
-            "`py.typed`",
-            "Stubs-only",
-        ],
+        headers=_INDEX_HEADERS,
         colalign=("left", "left", "left", "right", "right", "right", "left", "left"),
         tablefmt="pipe",
     )
@@ -228,7 +252,7 @@ def _annotation_status(
         # Strip module prefix from symbol name for brevity
         short_name = s.name.removeprefix(f"{report.name}.")
         rows.append((
-            short_name,
+            f"`{short_name}`",
             s.kind,
             status,
             str(s.n_annotated),
@@ -327,12 +351,12 @@ def render_diff(reports: list[PackageReport], /) -> str:  # noqa: C901
 
     headers = [
         "Version",
-        "Released",
-        "Coverage",
-        "Strict Coverage",
-        "Public Symbols",
-        "Unannotated",
-        "Type-ignores",
+        _abbr("Released", "Release date on PyPI"),
+        _COL_COV,
+        _COL_COV_STRICT,
+        _COL_SYMBOLS,
+        _COL_UNANNOTATED,
+        _COL_IGNORES,
     ]
     # Build rows oldest-to-newest (so deltas reference the previous version),
     # then reverse for newest-first display.
@@ -391,7 +415,13 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
             ]
             for m in sorted_modules
         ],
-        headers=["Module", "Coverage", "Strict Coverage", "Symbols", "Ignores"],
+        headers=[
+            "Module",
+            _COL_COV,
+            _COL_COV_STRICT,
+            _COL_SYMBOLS,
+            _COL_IGNORES,
+        ],
         colalign=("left", "right", "right", "right", "right"),
         tablefmt="pipe",
     )
@@ -412,9 +442,9 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
                         "Symbol",
                         "Kind",
                         "Status",
-                        "Annotated",
-                        "Any",
-                        "Unannotated",
+                        _abbr("Annotated", "Slots with a type annotation"),
+                        _abbr("Any", "Slots typed as Any"),
+                        _COL_UNANNOTATED,
                     ],
                     colalign=("left", "left", "left", "right", "right", "right"),
                     tablefmt="pipe",
@@ -435,7 +465,7 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
     type_ignore_table = (
         tabulate(
             [[f"`{flavor}`", str(count)] for flavor, count in type_ignore_counts],
-            headers=["Flavor", "Count"],
+            headers=[_abbr("Flavor", "Type-checker ignore directive"), "Count"],
             colalign=("left", "right"),
             tablefmt="pipe",
         )
