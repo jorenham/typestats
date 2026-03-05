@@ -36,7 +36,6 @@ import anyio
 import watchfiles
 
 import typestats.dashboard
-from typestats.dashboard import TEMPLATES, build_site
 
 if TYPE_CHECKING:
     from typestats.report import PackageReport
@@ -110,7 +109,8 @@ async def _watch_and_rebuild(
 
         projects_changed = "projects.toml" in changed
         full_rebuild = projects_changed or dashboard_changed
-        rebuild = None if full_rebuild else frozenset(changed) & TEMPLATES
+        templates = typestats.dashboard.TEMPLATES
+        rebuild = None if full_rebuild else frozenset(changed) & templates
         t0 = time.perf_counter()
         cached_reports, cached_all_reports = await typestats.dashboard.build_site(
             reports_dir,
@@ -161,7 +161,9 @@ async def main() -> None:
 
         log.info("Building dashboard pages ...")
         (initial_reports, initial_all_reports), _ = await asyncio.gather(
-            build_site(_REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"),
+            typestats.dashboard.build_site(
+                _REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"
+            ),
             _SITE_SHA.write_text(sha),
         )
 
