@@ -105,7 +105,7 @@ _COL_SYMBOLS: Final = _abbr(
     ),
 )
 _COL_UNANNOTATED: Final = _abbr("Unannotated", "Slots without a type annotation")
-_COL_IGNORES: Final = _abbr("Ignores", "Number of type: ignore comments")
+_COL_IGNORES: Final = _abbr("Ignores", "Number of type-checker ignore comments")
 _INDEX_HEADERS: Final = [
     _abbr("Package", "PyPI package name"),
     _abbr("Version", "Latest release version"),
