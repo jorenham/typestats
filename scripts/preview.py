@@ -22,6 +22,7 @@ Examples:
 
 import asyncio
 import contextlib
+import importlib
 import logging
 import os
 import shutil
@@ -33,6 +34,7 @@ from typing import TYPE_CHECKING, Final
 import anyio
 import watchfiles
 
+import typestats.dashboard
 from typestats.dashboard import TEMPLATES, build_site
 
 if TYPE_CHECKING:
@@ -89,7 +91,11 @@ async def _watch_and_rebuild(
     initial_reports: list[PackageReport] | None = None,
     initial_all_reports: dict[str, list[PackageReport]] | None = None,
 ) -> None:
-    watch_paths = (ROOT / "src" / "typestats" / "templates", ROOT / "projects.toml")
+    watch_paths = (
+        ROOT / "src" / "typestats" / "templates",
+        ROOT / "src" / "typestats" / "dashboard.py",
+        ROOT / "projects.toml",
+    )
     log.info("Watching %s ...", ", ".join(p.name for p in watch_paths))
     cached_reports = initial_reports
     cached_all_reports = initial_all_reports
@@ -97,10 +103,15 @@ async def _watch_and_rebuild(
         changed = sorted({anyio.Path(str(c[1])).name for c in changes})
         log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
 
+        dashboard_changed = "dashboard.py" in changed
+        if dashboard_changed:
+            importlib.reload(typestats.dashboard)
+
         projects_changed = "projects.toml" in changed
-        rebuild = None if projects_changed else frozenset(changed) & TEMPLATES
+        full_rebuild = projects_changed or dashboard_changed
+        rebuild = None if full_rebuild else frozenset(changed) & TEMPLATES
         t0 = time.perf_counter()
-        cached_reports, cached_all_reports = await build_site(
+        cached_reports, cached_all_reports = await typestats.dashboard.build_site(
             reports_dir,
             _SITE_DIR,
             ROOT / "projects.toml",
