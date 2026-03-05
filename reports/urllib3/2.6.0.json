@@ -1,0 +1,6512 @@
+{
+  "package": "urllib3",
+  "version": "2.6.0",
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2025-12-05T15:08:47.885766Z",
+    "requires_python": ">=3.9",
+    "size": 432585,
+    "sha256": "cb9bcef5a4b345d5da5d145dc3e30834f58e8018828cbc724d30b4cb7d4d49f1"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "urllib3"
+    ],
+    "Version": [
+      "2.6.0"
+    ],
+    "Summary": [
+      "HTTP library with thread-safe connection pooling, file post, and more."
+    ],
+    "Project-URL": [
+      "Changelog, https://github.com/urllib3/urllib3/blob/main/CHANGES.rst",
+      "Documentation, https://urllib3.readthedocs.io",
+      "Code, https://github.com/urllib3/urllib3",
+      "Issue tracker, https://github.com/urllib3/urllib3/issues"
+    ],
+    "Author-email": [
+      "Andrey Petrov <andrey.petrov@shazow.net>"
+    ],
+    "Maintainer-email": [
+      "Seth Michael Larson <sethmichaellarson@gmail.com>, Quentin Pradet <quentin@pradet.me>, Illia Volochii <illia.volochii@gmail.com>"
+    ],
+    "License-Expression": [
+      "MIT"
+    ],
+    "License-File": [
+      "LICENSE.txt"
+    ],
+    "Keywords": [
+      "filepost,http,httplib,https,pooling,ssl,threadsafe,urllib"
+    ],
+    "Classifier": [
+      "Environment :: Web Environment",
+      "Intended Audience :: Developers",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Programming Language :: Python :: Free Threading :: 2 - Beta",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy",
+      "Topic :: Internet :: WWW/HTTP",
+      "Topic :: Software Development :: Libraries"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Provides-Extra": [
+      "brotli",
+      "h2",
+      "socks",
+      "zstd"
+    ],
+    "Requires-Dist": [
+      "brotli>=1.2.0; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+      "brotlicffi>=1.2.0.0; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+      "h2<5,>=4; extra == 'h2'",
+      "pysocks!=1.5.7,<2.0,>=1.5.6; extra == 'socks'",
+      "backports-zstd>=1.0.0; (python_version < '3.14') and extra == 'zstd'"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "src/urllib3/response.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.response.HTTPResponse",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPResponse.__init__",
+              "n_annotated": 19,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 19,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.release_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.drain_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.isclosed",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.tell",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse._init_length",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse._error_catcher",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse._fp_read",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse._raw_read",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.read",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.read1",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.stream",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.readable",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.shutdown",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.fileno",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.supports_chunked_reads",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse._update_chunk_length",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse._handle_chunk",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.read_chunked",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPResponse.__iter__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "HTTPResponse.data",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPResponse.connection",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPResponse.closed",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPResponse.url",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 3
+            }
+          ],
+          "n_annotatable": 61,
+          "n_annotated": 61,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 22,
+          "n_function_overloads": 0,
+          "n_method_overloads": 22,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.BaseHTTPResponse",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.__init__",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.get_redirect_location",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.json",
+              "n_annotated": 0,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.stream",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.read",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.read1",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.read_chunked",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.release_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.drain_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.shutdown",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse._init_decoder",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse._decode",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse._flush_decoder",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.readinto",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.info",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHTTPResponse.geturl",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BaseHTTPResponse.data",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BaseHTTPResponse.url",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 3
+            },
+            {
+              "kind": "property",
+              "name": "BaseHTTPResponse.connection",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BaseHTTPResponse.retries",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 3
+            }
+          ],
+          "n_annotatable": 47,
+          "n_annotated": 46,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 17,
+          "n_function_overloads": 0,
+          "n_method_overloads": 17,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.BrotliDecoder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BrotliDecoder.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BrotliDecoder._decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BrotliDecoder.decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BrotliDecoder.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BrotliDecoder.has_unconsumed_tail",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 9,
+          "n_annotated": 9,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.MultiDecoder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MultiDecoder.__init__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "MultiDecoder.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "MultiDecoder.decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MultiDecoder.has_unconsumed_tail",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 7,
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.DeflateDecoder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DeflateDecoder.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "DeflateDecoder.decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "DeflateDecoder.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "DeflateDecoder.has_unconsumed_tail",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 6,
+          "n_annotated": 6,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.ContentDecoder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ContentDecoder.decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ContentDecoder.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ContentDecoder.has_unconsumed_tail",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 5,
+          "n_annotated": 5,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.response.HAS_ZSTD",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.GzipDecoder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GzipDecoder.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "GzipDecoder.decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "GzipDecoder.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GzipDecoder.has_unconsumed_tail",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 6,
+          "n_annotated": 6,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.response.brotli",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.ZstdDecoder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ZstdDecoder.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ZstdDecoder.decompress",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ZstdDecoder.flush",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ZstdDecoder.has_unconsumed_tail",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 6,
+          "n_annotated": 6,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.GzipDecoderState",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.response.log",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.response.BytesQueueBuffer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BytesQueueBuffer.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesQueueBuffer.__len__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesQueueBuffer.put",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesQueueBuffer.get",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesQueueBuffer.get_all",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 7,
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 5,
+          "n_function_overloads": 0,
+          "n_method_overloads": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        }
+      ],
+      "name": "src.urllib3.response",
+      "names": [
+        "urllib3.response.BaseHTTPResponse",
+        "urllib3.response.BrotliDecoder",
+        "urllib3.response.BytesQueueBuffer",
+        "urllib3.response.ContentDecoder",
+        "urllib3.response.DeflateDecoder",
+        "urllib3.response.GzipDecoder",
+        "urllib3.response.GzipDecoderState",
+        "urllib3.response.HAS_ZSTD",
+        "urllib3.response.HTTPResponse",
+        "urllib3.response.MultiDecoder",
+        "urllib3.response.ZstdDecoder",
+        "urllib3.response.brotli",
+        "urllib3.response.log"
+      ],
+      "n_annotatable": 155,
+      "n_annotated": 153,
+      "n_any": 1,
+      "n_unannotated": 1,
+      "n_functions": 0,
+      "n_methods": 62,
+      "n_function_overloads": 0,
+      "n_method_overloads": 62,
+      "n_classes": 10,
+      "n_names": 3,
+      "n_properties": 14,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "src/urllib3/connectionpool.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.connectionpool.connection_from_url",
+          "n_annotated": 2,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.connectionpool.HTTPConnectionPool",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool.__init__",
+              "n_annotated": 10,
+              "n_any": 1,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 12,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._new_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._get_conn",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._put_conn",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._validate_conn",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._prepare_proxy",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._get_timeout",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._raise_timeout",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool._make_request",
+              "n_annotated": 13,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 13,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool.is_same_host",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnectionPool.urlopen",
+              "n_annotated": 15,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 16,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 59,
+          "n_annotated": 56,
+          "n_any": 2,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 12,
+          "n_function_overloads": 0,
+          "n_method_overloads": 12,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.connectionpool.HTTPSConnectionPool",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPSConnectionPool.__init__",
+              "n_annotated": 21,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 22,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPSConnectionPool._prepare_proxy",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPSConnectionPool._new_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPSConnectionPool._validate_conn",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 27,
+          "n_annotated": 26,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.connectionpool.ConnectionPool",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConnectionPool.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConnectionPool.__str__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConnectionPool.__enter__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConnectionPool.__exit__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConnectionPool.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 10,
+          "n_annotated": 10,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 5,
+          "n_function_overloads": 0,
+          "n_method_overloads": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connectionpool.log",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        }
+      ],
+      "name": "src.urllib3.connectionpool",
+      "names": [
+        "urllib3.connectionpool.ConnectionPool",
+        "urllib3.connectionpool.HTTPConnectionPool",
+        "urllib3.connectionpool.HTTPSConnectionPool",
+        "urllib3.connectionpool.connection_from_url",
+        "urllib3.connectionpool.log"
+      ],
+      "n_annotatable": 100,
+      "n_annotated": 94,
+      "n_any": 4,
+      "n_unannotated": 2,
+      "n_functions": 1,
+      "n_methods": 21,
+      "n_function_overloads": 1,
+      "n_method_overloads": 21,
+      "n_classes": 3,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "src/urllib3/util/timeout.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.util.timeout.Timeout",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Timeout.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.__repr__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.__str__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.resolve_default_timeout",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout._validate_timeout",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.from_float",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.clone",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.start_connect",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.get_connect_duration",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Timeout.connect_timeout",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Timeout.read_timeout",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 18,
+          "n_annotated": 18,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 9,
+          "n_function_overloads": 0,
+          "n_method_overloads": 9,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.timeout",
+      "names": [
+        "urllib3.util.timeout.Timeout"
+      ],
+      "n_annotatable": 18,
+      "n_annotated": 18,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 9,
+      "n_function_overloads": 0,
+      "n_method_overloads": 9,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/request.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.request.make_headers",
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 7,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.request.SKIPPABLE_HEADERS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.request.SKIP_HEADER",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.request.ACCEPT_ENCODING",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.request.set_file_position",
+          "n_annotated": 2,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.request.rewind_body",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.util.request.ChunksAndContentLength",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.request.body_to_chunks",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        }
+      ],
+      "name": "src.urllib3.util.request",
+      "names": [
+        "urllib3.util.request.ACCEPT_ENCODING",
+        "urllib3.util.request.ChunksAndContentLength",
+        "urllib3.util.request.SKIPPABLE_HEADERS",
+        "urllib3.util.request.SKIP_HEADER",
+        "urllib3.util.request.body_to_chunks",
+        "urllib3.util.request.make_headers",
+        "urllib3.util.request.rewind_body",
+        "urllib3.util.request.set_file_position"
+      ],
+      "n_annotatable": 18,
+      "n_annotated": 16,
+      "n_any": 1,
+      "n_unannotated": 1,
+      "n_functions": 4,
+      "n_methods": 0,
+      "n_function_overloads": 4,
+      "n_method_overloads": 0,
+      "n_classes": 1,
+      "n_names": 3,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "src/urllib3/poolmanager.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.poolmanager.ProxyManager",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProxyManager.__init__",
+              "n_annotated": 9,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 10,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ProxyManager.connection_from_host",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ProxyManager._set_proxy_headers",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "ProxyManager.urlopen",
+              "n_annotated": 4,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 23,
+          "n_annotated": 21,
+          "n_any": 2,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.poolmanager.proxy_from_url",
+          "n_annotated": 2,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.poolmanager.PoolManager",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PoolManager.__init__",
+              "n_annotated": 3,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.__enter__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.__exit__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager._new_pool",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.clear",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.connection_from_host",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.connection_from_context",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.connection_from_pool_key",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.connection_from_url",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager._merge_pool_kwargs",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager._proxy_requires_url_absolute_form",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolManager.urlopen",
+              "n_annotated": 4,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 37,
+          "n_annotated": 35,
+          "n_any": 2,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 12,
+          "n_function_overloads": 0,
+          "n_method_overloads": 12,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.poolmanager",
+      "names": [
+        "urllib3.poolmanager.PoolManager",
+        "urllib3.poolmanager.ProxyManager",
+        "urllib3.poolmanager.proxy_from_url"
+      ],
+      "n_annotatable": 63,
+      "n_annotated": 58,
+      "n_any": 5,
+      "n_unannotated": 0,
+      "n_functions": 1,
+      "n_methods": 16,
+      "n_function_overloads": 1,
+      "n_method_overloads": 16,
+      "n_classes": 2,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.disable_warnings",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.add_stderr_logger",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.request",
+          "n_annotated": 12,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 12,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3",
+      "names": [
+        "urllib3.add_stderr_logger",
+        "urllib3.disable_warnings",
+        "urllib3.request"
+      ],
+      "n_annotatable": 16,
+      "n_annotated": 16,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 3,
+      "n_methods": 0,
+      "n_function_overloads": 3,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/filepost.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.filepost.encode_multipart_formdata",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.filepost.writer",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.filepost.choose_boundary",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.filepost.iter_field_objects",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.filepost",
+      "names": [
+        "urllib3.filepost.choose_boundary",
+        "urllib3.filepost.encode_multipart_formdata",
+        "urllib3.filepost.iter_field_objects",
+        "urllib3.filepost.writer"
+      ],
+      "n_annotatable": 7,
+      "n_annotated": 6,
+      "n_any": 0,
+      "n_unannotated": 1,
+      "n_functions": 3,
+      "n_methods": 0,
+      "n_function_overloads": 3,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/retry.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.util.retry.Retry",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Retry.__init__",
+              "n_annotated": 17,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 17,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.new",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.from_int",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.get_backoff_time",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.parse_retry_after",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.get_retry_after",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.sleep_for_retry",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry._sleep_backoff",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.sleep",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry._is_connection_error",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry._is_read_error",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry._is_method_retryable",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.is_retry",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.is_exhausted",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.increment",
+              "n_annotated": 7,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 7,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Retry.__repr__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 52,
+          "n_annotated": 51,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 16,
+          "n_function_overloads": 0,
+          "n_method_overloads": 16,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.retry.log",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.util.retry.RequestHistory",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.retry",
+      "names": [
+        "urllib3.util.retry.RequestHistory",
+        "urllib3.util.retry.Retry",
+        "urllib3.util.retry.log"
+      ],
+      "n_annotatable": 53,
+      "n_annotated": 51,
+      "n_any": 1,
+      "n_unannotated": 1,
+      "n_functions": 0,
+      "n_methods": 16,
+      "n_function_overloads": 0,
+      "n_method_overloads": 16,
+      "n_classes": 2,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/_collections.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3._collections.HTTPHeaderDict",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__init__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__setitem__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__getitem__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__delitem__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__contains__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.setdefault",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__eq__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__ne__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__len__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__iter__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.discard",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.add",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.extend",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.getlist",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 2,
+              "n_annotatable": 5,
+              "n_function_overloads": 2
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict._prepare_for_method_change",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.getheaders",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 2,
+              "n_annotatable": 5,
+              "n_function_overloads": 2
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.getallmatchingheaders",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 2,
+              "n_annotatable": 5,
+              "n_function_overloads": 2
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.iget",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 2,
+              "n_annotatable": 5,
+              "n_function_overloads": 2
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.get_all",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 2,
+              "n_annotatable": 5,
+              "n_function_overloads": 2
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__repr__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict._copy_from",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.copy",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.iteritems",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.itermerged",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.items",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict._has_value_for_header",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__ior__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__or__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPHeaderDict.__ror__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 72,
+          "n_annotated": 71,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 29,
+          "n_function_overloads": 0,
+          "n_method_overloads": 34,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        }
+      ],
+      "name": "src.urllib3._collections",
+      "names": [
+        "urllib3._collections.HTTPHeaderDict"
+      ],
+      "n_annotatable": 72,
+      "n_annotated": 71,
+      "n_any": 0,
+      "n_unannotated": 1,
+      "n_functions": 0,
+      "n_methods": 29,
+      "n_function_overloads": 0,
+      "n_method_overloads": 34,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "src/urllib3/connection.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.connection.DummyConnection",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.port_by_scheme",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.ConnectionError",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.BrokenPipeError",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.HTTPException",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.ssl",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.connection.HTTPSConnection",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPSConnection.__init__",
+              "n_annotated": 23,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 23,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPSConnection.set_cert",
+              "n_annotated": 10,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 10,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPSConnection.connect",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPSConnection._connect_tls_proxy",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 37,
+          "n_annotated": 37,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.connection.HTTPConnection",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPConnection.__init__",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.__str__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.__repr__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection._new_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.set_tunnel",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection._wrap_ipv6",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection._tunnel",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.connect",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.putrequest",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.putheader",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.request",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.request_chunked",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPConnection.getresponse",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "HTTPConnection.host",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 3
+            },
+            {
+              "kind": "property",
+              "name": "HTTPConnection.is_closed",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPConnection.is_connected",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPConnection.has_connected_to_proxy",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPConnection.proxy_is_forwarding",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "HTTPConnection.proxy_is_tunneling",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 53,
+          "n_annotated": 53,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 14,
+          "n_function_overloads": 0,
+          "n_method_overloads": 14,
+          "n_properties": 6
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.connection.BaseSSLError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.log",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.connection.RECENT_DATE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "no-redef"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        }
+      ],
+      "name": "src.urllib3.connection",
+      "names": [
+        "urllib3.connection.BaseSSLError",
+        "urllib3.connection.BrokenPipeError",
+        "urllib3.connection.ConnectionError",
+        "urllib3.connection.DummyConnection",
+        "urllib3.connection.HTTPConnection",
+        "urllib3.connection.HTTPException",
+        "urllib3.connection.HTTPSConnection",
+        "urllib3.connection.RECENT_DATE",
+        "urllib3.connection.log",
+        "urllib3.connection.port_by_scheme",
+        "urllib3.connection.ssl"
+      ],
+      "n_annotatable": 92,
+      "n_annotated": 90,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 0,
+      "n_methods": 18,
+      "n_function_overloads": 0,
+      "n_method_overloads": 18,
+      "n_classes": 4,
+      "n_names": 7,
+      "n_properties": 6,
+      "n_type_ignores": 6
+    },
+    {
+      "path": "src/urllib3/_base_connection.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3._base_connection.ProxyConfig",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3._base_connection",
+      "names": [
+        "urllib3._base_connection.ProxyConfig"
+      ],
+      "n_annotatable": 0,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 0,
+      "n_function_overloads": 0,
+      "n_method_overloads": 0,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/contrib/emscripten/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.inject_into_urllib3",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.contrib.emscripten",
+      "names": [
+        "urllib3.contrib.emscripten.inject_into_urllib3"
+      ],
+      "n_annotatable": 1,
+      "n_annotated": 1,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 1,
+      "n_methods": 0,
+      "n_function_overloads": 1,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/contrib/emscripten/connection.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.emscripten.connection.EmscriptenHTTPSConnection",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPSConnection.__init__",
+              "n_annotated": 23,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 23,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPSConnection.set_cert",
+              "n_annotated": 10,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 10,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 33,
+          "n_annotated": 33,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.connection.HTTPException",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.emscripten.connection.EmscriptenHTTPConnection",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPConnection.__init__",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPConnection.set_tunnel",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPConnection.connect",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPConnection.request",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPConnection.getresponse",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHTTPConnection.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "EmscriptenHTTPConnection.is_closed",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EmscriptenHTTPConnection.is_connected",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EmscriptenHTTPConnection.has_connected_to_proxy",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 29,
+          "n_annotated": 29,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 6,
+          "n_function_overloads": 0,
+          "n_method_overloads": 6,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.contrib.emscripten.connection",
+      "names": [
+        "urllib3.contrib.emscripten.connection.EmscriptenHTTPConnection",
+        "urllib3.contrib.emscripten.connection.EmscriptenHTTPSConnection",
+        "urllib3.contrib.emscripten.connection.HTTPException"
+      ],
+      "n_annotatable": 62,
+      "n_annotated": 62,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 8,
+      "n_function_overloads": 0,
+      "n_method_overloads": 8,
+      "n_classes": 2,
+      "n_names": 1,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/contrib/emscripten/fetch.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.is_in_browser_main_thread",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.streaming_ready",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.send_jspi_request",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.fetch.ERROR_TIMEOUT",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.is_cross_origin_isolated",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.fetch.NODE_JSPI_ERROR",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.is_worker_available",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.is_in_node",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.fetch.SUCCESS_HEADER",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.fetch.HEADERS_TO_IGNORE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.send_streaming_request",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.fetch.SUCCESS_EOF",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.send_request",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.wait_for_streaming_ready",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.emscripten.fetch.has_jspi",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.fetch.ERROR_EXCEPTION",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        }
+      ],
+      "name": "src.urllib3.contrib.emscripten.fetch",
+      "names": [
+        "urllib3.contrib.emscripten.fetch.ERROR_EXCEPTION",
+        "urllib3.contrib.emscripten.fetch.ERROR_TIMEOUT",
+        "urllib3.contrib.emscripten.fetch.HEADERS_TO_IGNORE",
+        "urllib3.contrib.emscripten.fetch.NODE_JSPI_ERROR",
+        "urllib3.contrib.emscripten.fetch.SUCCESS_EOF",
+        "urllib3.contrib.emscripten.fetch.SUCCESS_HEADER",
+        "urllib3.contrib.emscripten.fetch.has_jspi",
+        "urllib3.contrib.emscripten.fetch.is_cross_origin_isolated",
+        "urllib3.contrib.emscripten.fetch.is_in_browser_main_thread",
+        "urllib3.contrib.emscripten.fetch.is_in_node",
+        "urllib3.contrib.emscripten.fetch.is_worker_available",
+        "urllib3.contrib.emscripten.fetch.send_jspi_request",
+        "urllib3.contrib.emscripten.fetch.send_request",
+        "urllib3.contrib.emscripten.fetch.send_streaming_request",
+        "urllib3.contrib.emscripten.fetch.streaming_ready",
+        "urllib3.contrib.emscripten.fetch.wait_for_streaming_ready"
+      ],
+      "n_annotatable": 14,
+      "n_annotated": 14,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 10,
+      "n_methods": 0,
+      "n_function_overloads": 10,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 6,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "src/urllib3/contrib/emscripten/request.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.emscripten.request.EmscriptenRequest",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmscriptenRequest.set_header",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenRequest.set_body",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 5,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.contrib.emscripten.request",
+      "names": [
+        "urllib3.contrib.emscripten.request.EmscriptenRequest"
+      ],
+      "n_annotatable": 5,
+      "n_annotated": 5,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 2,
+      "n_function_overloads": 0,
+      "n_method_overloads": 2,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/contrib/emscripten/response.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.response.HTTPException",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.emscripten.response.EmscriptenHttpResponseWrapper",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.stream",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper._init_length",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.read",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.read_chunked",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.release_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.drain_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.json",
+              "n_annotated": 0,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmscriptenHttpResponseWrapper._error_catcher",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "EmscriptenHttpResponseWrapper.url",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 3
+            },
+            {
+              "kind": "property",
+              "name": "EmscriptenHttpResponseWrapper.connection",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EmscriptenHttpResponseWrapper.retries",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 3
+            },
+            {
+              "kind": "property",
+              "name": "EmscriptenHttpResponseWrapper.data",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 29,
+          "n_annotated": 27,
+          "n_any": 1,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 10,
+          "n_function_overloads": 0,
+          "n_method_overloads": 10,
+          "n_properties": 4
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.emscripten.response.log",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.emscripten.response.EmscriptenResponse",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.contrib.emscripten.response",
+      "names": [
+        "urllib3.contrib.emscripten.response.EmscriptenHttpResponseWrapper",
+        "urllib3.contrib.emscripten.response.EmscriptenResponse",
+        "urllib3.contrib.emscripten.response.HTTPException",
+        "urllib3.contrib.emscripten.response.log"
+      ],
+      "n_annotatable": 30,
+      "n_annotated": 27,
+      "n_any": 1,
+      "n_unannotated": 2,
+      "n_functions": 0,
+      "n_methods": 10,
+      "n_function_overloads": 0,
+      "n_method_overloads": 10,
+      "n_classes": 2,
+      "n_names": 2,
+      "n_properties": 4,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/contrib/pyopenssl.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.pyopenssl.extract_from_urllib3",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.contrib.pyopenssl.inject_into_urllib3",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "no-redef"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "import-not-found"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        }
+      ],
+      "name": "src.urllib3.contrib.pyopenssl",
+      "names": [
+        "urllib3.contrib.pyopenssl.extract_from_urllib3",
+        "urllib3.contrib.pyopenssl.inject_into_urllib3"
+      ],
+      "n_annotatable": 2,
+      "n_annotated": 2,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 2,
+      "n_methods": 0,
+      "n_function_overloads": 2,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 7
+    },
+    {
+      "path": "src/urllib3/contrib/socks.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.socks.SOCKSHTTPSConnectionPool",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.contrib.socks.ssl",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.socks.SOCKSHTTPConnectionPool",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.socks.SOCKSHTTPSConnection",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.socks.SOCKSConnection",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SOCKSConnection.__init__",
+              "n_annotated": 2,
+              "n_any": 2,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SOCKSConnection._new_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 3,
+          "n_any": 2,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.contrib.socks.SOCKSProxyManager",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SOCKSProxyManager.__init__",
+              "n_annotated": 5,
+              "n_any": 1,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 7,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 7,
+          "n_annotated": 5,
+          "n_any": 1,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "import-untyped"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "assignment"
+          ]
+        }
+      ],
+      "name": "src.urllib3.contrib.socks",
+      "names": [
+        "urllib3.contrib.socks.SOCKSConnection",
+        "urllib3.contrib.socks.SOCKSHTTPConnectionPool",
+        "urllib3.contrib.socks.SOCKSHTTPSConnection",
+        "urllib3.contrib.socks.SOCKSHTTPSConnectionPool",
+        "urllib3.contrib.socks.SOCKSProxyManager",
+        "urllib3.contrib.socks.ssl"
+      ],
+      "n_annotatable": 12,
+      "n_annotated": 8,
+      "n_any": 3,
+      "n_unannotated": 1,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 5,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "src/urllib3/exceptions.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.LocationParseError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LocationParseError.__init__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.SSLError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.URLSchemeUnknown",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "URLSchemeUnknown.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.TimeoutStateError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.FullPoolError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.HostChangedError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HostChangedError.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.HTTPError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.SystemTimeWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.SecurityWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ProxySchemeUnsupported",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.BodyNotHttplibCompatible",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.UnrewindableBodyError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.HTTPWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.RequestError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RequestError.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "RequestError.__reduce__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 5,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.DependencyWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.EmptyPoolError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.MaxRetryError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MaxRetryError.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "MaxRetryError.__reduce__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 5,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.HeaderParsingError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HeaderParsingError.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.LocationValueError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.IncompleteRead",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "IncompleteRead.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "IncompleteRead.__repr__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.InvalidChunkLength",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InvalidChunkLength.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "InvalidChunkLength.__repr__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.NotOpenSSLWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.InvalidHeader",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.PoolError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PoolError.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PoolError.__reduce__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.InsecurePlatformWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ProtocolError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ProxyError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProxyError.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.DecodeError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ConnectTimeoutError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.NewConnectionError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NewConnectionError.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "NewConnectionError.__reduce__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "NewConnectionError.pool",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 5,
+          "n_annotated": 5,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ResponseNotChunked",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.TimeoutError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.NameResolutionError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NameResolutionError.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "NameResolutionError.__reduce__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ReadTimeoutError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.InsecureRequestWarning",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ProxySchemeUnknown",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProxySchemeUnknown.__init__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ClosedPoolError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.exceptions.ResponseError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "assignment"
+          ]
+        }
+      ],
+      "name": "src.urllib3.exceptions",
+      "names": [
+        "urllib3.exceptions.BodyNotHttplibCompatible",
+        "urllib3.exceptions.ClosedPoolError",
+        "urllib3.exceptions.ConnectTimeoutError",
+        "urllib3.exceptions.DecodeError",
+        "urllib3.exceptions.DependencyWarning",
+        "urllib3.exceptions.EmptyPoolError",
+        "urllib3.exceptions.FullPoolError",
+        "urllib3.exceptions.HTTPError",
+        "urllib3.exceptions.HTTPWarning",
+        "urllib3.exceptions.HeaderParsingError",
+        "urllib3.exceptions.HostChangedError",
+        "urllib3.exceptions.IncompleteRead",
+        "urllib3.exceptions.InsecurePlatformWarning",
+        "urllib3.exceptions.InsecureRequestWarning",
+        "urllib3.exceptions.InvalidChunkLength",
+        "urllib3.exceptions.InvalidHeader",
+        "urllib3.exceptions.LocationParseError",
+        "urllib3.exceptions.LocationValueError",
+        "urllib3.exceptions.MaxRetryError",
+        "urllib3.exceptions.NameResolutionError",
+        "urllib3.exceptions.NewConnectionError",
+        "urllib3.exceptions.NotOpenSSLWarning",
+        "urllib3.exceptions.PoolError",
+        "urllib3.exceptions.ProtocolError",
+        "urllib3.exceptions.ProxyError",
+        "urllib3.exceptions.ProxySchemeUnknown",
+        "urllib3.exceptions.ProxySchemeUnsupported",
+        "urllib3.exceptions.ReadTimeoutError",
+        "urllib3.exceptions.RequestError",
+        "urllib3.exceptions.ResponseError",
+        "urllib3.exceptions.ResponseNotChunked",
+        "urllib3.exceptions.SSLError",
+        "urllib3.exceptions.SecurityWarning",
+        "urllib3.exceptions.SystemTimeWarning",
+        "urllib3.exceptions.TimeoutError",
+        "urllib3.exceptions.TimeoutStateError",
+        "urllib3.exceptions.URLSchemeUnknown",
+        "urllib3.exceptions.UnrewindableBodyError"
+      ],
+      "n_annotatable": 48,
+      "n_annotated": 46,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 0,
+      "n_methods": 20,
+      "n_function_overloads": 0,
+      "n_method_overloads": 20,
+      "n_classes": 38,
+      "n_names": 0,
+      "n_properties": 1,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "src/urllib3/fields.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.fields.format_header_param_html5",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.fields.RequestField",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RequestField.__init__",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "RequestField.from_tuples",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "RequestField._render_part",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "RequestField._render_parts",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "RequestField.render_headers",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "RequestField.make_multipart",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 20,
+          "n_annotated": 19,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 6,
+          "n_function_overloads": 0,
+          "n_method_overloads": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.fields.format_multipart_header_param",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.fields.format_header_param_rfc2231",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.fields.format_header_param",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.fields.guess_content_type",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.fields",
+      "names": [
+        "urllib3.fields.RequestField",
+        "urllib3.fields.format_header_param",
+        "urllib3.fields.format_header_param_html5",
+        "urllib3.fields.format_header_param_rfc2231",
+        "urllib3.fields.format_multipart_header_param",
+        "urllib3.fields.guess_content_type"
+      ],
+      "n_annotatable": 35,
+      "n_annotated": 34,
+      "n_any": 0,
+      "n_unannotated": 1,
+      "n_functions": 5,
+      "n_methods": 6,
+      "n_function_overloads": 5,
+      "n_method_overloads": 6,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/http2/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.http2.extract_from_urllib3",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.http2.inject_into_urllib3",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.http2",
+      "names": [
+        "urllib3.http2.extract_from_urllib3",
+        "urllib3.http2.inject_into_urllib3"
+      ],
+      "n_annotatable": 2,
+      "n_annotated": 2,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 2,
+      "n_methods": 0,
+      "n_function_overloads": 2,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/http2/connection.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "urllib3.http2.connection.T",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.http2.connection.RE_IS_ILLEGAL_HEADER_VALUE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.http2.connection.HTTP2Connection",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.__init__",
+              "n_annotated": 3,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection._new_h2_conn",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.connect",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.putrequest",
+              "n_annotated": 3,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.putheader",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.endheaders",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.send",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.set_tunnel",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.getresponse",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.request",
+              "n_annotated": 8,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Connection.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 33,
+          "n_annotated": 28,
+          "n_any": 5,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 11,
+          "n_function_overloads": 0,
+          "n_method_overloads": 11,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.http2.connection.RE_IS_LEGAL_HEADER_NAME",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.http2.connection.log",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.http2.connection.HTTP2Response",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTP2Response.__init__",
+              "n_annotated": 6,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Response.get_redirect_location",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTP2Response.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "HTTP2Response.data",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 9,
+          "n_annotated": 9,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "import-untyped"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "import-untyped"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "import-untyped"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        }
+      ],
+      "name": "src.urllib3.http2.connection",
+      "names": [
+        "urllib3.http2.connection.HTTP2Connection",
+        "urllib3.http2.connection.HTTP2Response",
+        "urllib3.http2.connection.RE_IS_ILLEGAL_HEADER_VALUE",
+        "urllib3.http2.connection.RE_IS_LEGAL_HEADER_NAME",
+        "urllib3.http2.connection.T",
+        "urllib3.http2.connection.log"
+      ],
+      "n_annotatable": 45,
+      "n_annotated": 37,
+      "n_any": 5,
+      "n_unannotated": 3,
+      "n_functions": 0,
+      "n_methods": 14,
+      "n_function_overloads": 0,
+      "n_method_overloads": 14,
+      "n_classes": 2,
+      "n_names": 4,
+      "n_properties": 1,
+      "n_type_ignores": 5
+    },
+    {
+      "path": "src/urllib3/http2/probe.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "urllib3.http2.probe.set_and_release",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.http2.probe.acquire_and_get",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.http2.probe",
+      "names": [
+        "urllib3.http2.probe.acquire_and_get",
+        "urllib3.http2.probe.set_and_release"
+      ],
+      "n_annotatable": 0,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 0,
+      "n_function_overloads": 0,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/ssl_.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_.create_urllib3_context",
+          "n_annotated": 8,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 8,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.ALPN_PROTOCOLS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.SSLContext",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_.resolve_ssl_version",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.IS_PYOPENSSL",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_.assert_fingerprint",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_.ssl_wrap_socket",
+          "n_annotated": 28,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 2,
+          "n_annotatable": 28,
+          "n_function_overloads": 2
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_.resolve_cert_reqs",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.HAS_NEVER_CHECK_COMMON_NAME",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.VERIFY_X509_STRICT",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.PROTOCOL_TLS_CLIENT",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.PROTOCOL_SSLv23",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.PROTOCOL_TLS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.VERIFY_X509_PARTIAL_CHAIN",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.HASHFUNC_MAP",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.OP_NO_SSLv3",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.OP_NO_TICKET",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.OP_NO_COMPRESSION",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.OP_NO_SSLv2",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_.SSLTransport",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_.is_ipaddress",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc",
+            "assignment"
+          ]
+        }
+      ],
+      "name": "src.urllib3.util.ssl_",
+      "names": [
+        "urllib3.util.ssl_.ALPN_PROTOCOLS",
+        "urllib3.util.ssl_.HASHFUNC_MAP",
+        "urllib3.util.ssl_.HAS_NEVER_CHECK_COMMON_NAME",
+        "urllib3.util.ssl_.IS_PYOPENSSL",
+        "urllib3.util.ssl_.OP_NO_COMPRESSION",
+        "urllib3.util.ssl_.OP_NO_SSLv2",
+        "urllib3.util.ssl_.OP_NO_SSLv3",
+        "urllib3.util.ssl_.OP_NO_TICKET",
+        "urllib3.util.ssl_.PROTOCOL_SSLv23",
+        "urllib3.util.ssl_.PROTOCOL_TLS",
+        "urllib3.util.ssl_.PROTOCOL_TLS_CLIENT",
+        "urllib3.util.ssl_.SSLContext",
+        "urllib3.util.ssl_.SSLTransport",
+        "urllib3.util.ssl_.VERIFY_X509_PARTIAL_CHAIN",
+        "urllib3.util.ssl_.VERIFY_X509_STRICT",
+        "urllib3.util.ssl_.assert_fingerprint",
+        "urllib3.util.ssl_.create_urllib3_context",
+        "urllib3.util.ssl_.is_ipaddress",
+        "urllib3.util.ssl_.resolve_cert_reqs",
+        "urllib3.util.ssl_.resolve_ssl_version",
+        "urllib3.util.ssl_.ssl_wrap_socket"
+      ],
+      "n_annotatable": 47,
+      "n_annotated": 45,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 6,
+      "n_methods": 0,
+      "n_function_overloads": 7,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 15,
+      "n_properties": 0,
+      "n_type_ignores": 9
+    },
+    {
+      "path": "src/urllib3/util/wait.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.wait.wait_for_read",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.wait.wait_for_write",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.wait",
+      "names": [
+        "urllib3.util.wait.wait_for_read",
+        "urllib3.util.wait.wait_for_write"
+      ],
+      "n_annotatable": 6,
+      "n_annotated": 6,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 2,
+      "n_methods": 0,
+      "n_function_overloads": 2,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/connection.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.connection.is_connection_dropped",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.connection.HAS_IPV6",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.connection.create_connection",
+          "n_annotated": 5,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.connection.allowed_gai_family",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.connection",
+      "names": [
+        "urllib3.util.connection.HAS_IPV6",
+        "urllib3.util.connection.allowed_gai_family",
+        "urllib3.util.connection.create_connection",
+        "urllib3.util.connection.is_connection_dropped"
+      ],
+      "n_annotatable": 9,
+      "n_annotated": 8,
+      "n_any": 0,
+      "n_unannotated": 1,
+      "n_functions": 3,
+      "n_methods": 0,
+      "n_function_overloads": 3,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/url.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.url.parse_url",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.util.url.Url",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Url.__new__",
+              "n_annotated": 7,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Url.__str__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Url.hostname",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Url.request_uri",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Url.authority",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Url.netloc",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Url.url",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 14,
+          "n_annotated": 13,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.url",
+      "names": [
+        "urllib3.util.url.Url",
+        "urllib3.util.url.parse_url"
+      ],
+      "n_annotatable": 16,
+      "n_annotated": 15,
+      "n_any": 0,
+      "n_unannotated": 1,
+      "n_functions": 1,
+      "n_methods": 2,
+      "n_function_overloads": 1,
+      "n_method_overloads": 2,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/response.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.response.is_fp_closed",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.response.is_response_to_head",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.response.assert_header_parsing",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.response",
+      "names": [
+        "urllib3.util.response.assert_header_parsing",
+        "urllib3.util.response.is_fp_closed",
+        "urllib3.util.response.is_response_to_head"
+      ],
+      "n_annotatable": 6,
+      "n_annotated": 6,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 3,
+      "n_methods": 0,
+      "n_function_overloads": 3,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/proxy.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.proxy.connection_requires_http_tunnel",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.proxy",
+      "names": [
+        "urllib3.util.proxy.connection_requires_http_tunnel"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 4,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 1,
+      "n_methods": 0,
+      "n_function_overloads": 1,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/ssl_match_hostname.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "urllib3.util.ssl_match_hostname.CertificateError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssl_match_hostname.__version__",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.ssl_match_hostname.match_hostname",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.ssl_match_hostname",
+      "names": [
+        "urllib3.util.ssl_match_hostname.CertificateError",
+        "urllib3.util.ssl_match_hostname.__version__",
+        "urllib3.util.ssl_match_hostname.match_hostname"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 4,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 1,
+      "n_methods": 0,
+      "n_function_overloads": 1,
+      "n_method_overloads": 0,
+      "n_classes": 1,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/ssltransport.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "urllib3.util.ssltransport.SSL_BLOCKSIZE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "urllib3.util.ssltransport.SSLTransport",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SSLTransport._validate_ssl_context_for_tls_in_tls",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.__init__",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.__enter__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.__exit__",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.fileno",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.read",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.recv",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.recv_into",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.sendall",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.send",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.makefile",
+              "n_annotated": 6,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.unwrap",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.close",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.getpeercert",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 2,
+              "n_annotatable": 4,
+              "n_function_overloads": 2
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.version",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.cipher",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.selected_alpn_protocol",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.shared_ciphers",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.compression",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.settimeout",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport.gettimeout",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport._decref_socketios",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport._wrap_ssl_read",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "SSLTransport._ssl_io_loop",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 3,
+              "n_annotatable": 9,
+              "n_function_overloads": 3
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 60,
+          "n_annotated": 59,
+          "n_any": 1,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 24,
+          "n_function_overloads": 0,
+          "n_method_overloads": 27,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.ssltransport",
+      "names": [
+        "urllib3.util.ssltransport.SSLTransport",
+        "urllib3.util.ssltransport.SSL_BLOCKSIZE"
+      ],
+      "n_annotatable": 60,
+      "n_annotated": 59,
+      "n_any": 1,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 24,
+      "n_function_overloads": 0,
+      "n_method_overloads": 27,
+      "n_classes": 1,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "src/urllib3/util/util.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "urllib3.util.util.reraise",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.util.to_str",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "urllib3.util.util.to_bytes",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "src.urllib3.util.util",
+      "names": [
+        "urllib3.util.util.reraise",
+        "urllib3.util.util.to_bytes",
+        "urllib3.util.util.to_str"
+      ],
+      "n_annotatable": 12,
+      "n_annotated": 12,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 3,
+      "n_methods": 0,
+      "n_function_overloads": 3,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {
+    "mypy": {
+      "mypy_path": "src",
+      "check_untyped_defs": true,
+      "disallow_any_generics": true,
+      "disallow_incomplete_defs": true,
+      "disallow_subclassing_any": true,
+      "disallow_untyped_calls": true,
+      "disallow_untyped_decorators": true,
+      "disallow_untyped_defs": true,
+      "no_implicit_optional": true,
+      "no_implicit_reexport": true,
+      "show_error_codes": true,
+      "strict_equality": true,
+      "warn_redundant_casts": true,
+      "warn_return_any": true,
+      "warn_unused_configs": true,
+      "warn_unused_ignores": true,
+      "enable_error_code": [
+        "ignore-without-code"
+      ]
+    }
+  },
+  "n_modules": 32,
+  "n_annotatable": 1014,
+  "n_annotated": 970,
+  "n_any": 22,
+  "n_unannotated": 22,
+  "n_functions": 52,
+  "n_methods": 260,
+  "n_function_overloads": 53,
+  "n_method_overloads": 268,
+  "n_classes": 79,
+  "n_names": 50,
+  "n_properties": 36,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-redef"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-redef"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-not-found"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-untyped"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-untyped"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-untyped"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "import-untyped"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc",
+        "assignment"
+      ]
+    }
+  ],
+  "n_type_ignores": 38
+}

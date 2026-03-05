@@ -1,0 +1,3336 @@
+{
+  "package": "sacrebleu",
+  "version": "2.6.0",
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2026-01-12T17:17:20.799092Z",
+    "requires_python": ">=3.9",
+    "size": 1893419,
+    "sha256": "91499b6cd46138d95154fff1e863c2f9be57e82f0c719d8dd718d0006cf6c566"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "sacrebleu"
+    ],
+    "Version": [
+      "2.6.0"
+    ],
+    "Summary": [
+      "Hassle-free computation of shareable, comparable, and reproducible BLEU, chrF, and TER scores"
+    ],
+    "Author-email": [
+      "Matt Post <post@cs.jhu.edu>"
+    ],
+    "Maintainer-email": [
+      "Matt Post <post@cs.jhu.edu>"
+    ],
+    "License-Expression": [
+      "Apache-2.0"
+    ],
+    "Project-URL": [
+      "Repository, https://github.com/mjpost/sacrebleu"
+    ],
+    "Keywords": [
+      "machine translation,evaluation,NLP,natural language processing,computational linguistics"
+    ],
+    "Classifier": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Science/Research",
+      "Topic :: Scientific/Engineering",
+      "Topic :: Scientific/Engineering :: Artificial Intelligence",
+      "Topic :: Text Processing",
+      "Operating System :: POSIX",
+      "Operating System :: MacOS :: MacOS X",
+      "Operating System :: Microsoft :: Windows",
+      "Programming Language :: Python :: 3 :: Only",
+      "Typing :: Typed"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE.txt"
+    ],
+    "Requires-Dist": [
+      "portalocker",
+      "regex",
+      "tabulate>=0.8.9",
+      "numpy>=1.17",
+      "colorama",
+      "lxml",
+      "wheel; extra == \"dev\"",
+      "pytest; extra == \"dev\"",
+      "mypy; extra == \"dev\"",
+      "types-tabulate; extra == \"dev\"",
+      "lxml-stubs; extra == \"dev\"",
+      "setuptools; extra == \"dev\"",
+      "mecab-python3<2.0.0,>=1.0.9; extra == \"ja\"",
+      "ipadic<2.0,>=1.0; extra == \"ja\"",
+      "mecab-ko<2.0.0,>=1.0.2; extra == \"ko\"",
+      "mecab-ko-dic<2.0,>=1.0; extra == \"ko\""
+    ],
+    "Provides-Extra": [
+      "dev",
+      "ja",
+      "ko"
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "sacrebleu/dataset/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.dataset.DATASETS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.dataset.SUBSETS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.dataset.DOMAINS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.dataset.COUNTRIES",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset",
+      "names": [
+        "sacrebleu.dataset.COUNTRIES",
+        "sacrebleu.dataset.DATASETS",
+        "sacrebleu.dataset.DOMAINS",
+        "sacrebleu.dataset.SUBSETS"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 0,
+      "n_methods": 0,
+      "n_function_overloads": 0,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sacrebleu.metrics.helpers.extract_char_ngrams",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.metrics.helpers.extract_word_ngrams",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.metrics.helpers.extract_all_word_ngrams",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.metrics.helpers.extract_all_char_ngrams",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics.helpers",
+      "names": [
+        "sacrebleu.metrics.helpers.extract_all_char_ngrams",
+        "sacrebleu.metrics.helpers.extract_all_word_ngrams",
+        "sacrebleu.metrics.helpers.extract_char_ngrams",
+        "sacrebleu.metrics.helpers.extract_word_ngrams"
+      ],
+      "n_annotatable": 15,
+      "n_annotated": 15,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 4,
+      "n_methods": 0,
+      "n_function_overloads": 4,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/chrf.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.chrf.CHRF",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CHRF.__init__",
+              "n_annotated": 7,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._get_match_statistics",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._remove_punctuation",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._preprocess_segment",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._compute_f_score",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._compute_score_from_stats",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._aggregate_and_compute",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._extract_reference_info",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "CHRF._compute_segment_statistics",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 26,
+          "n_annotated": 25,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 9,
+          "n_function_overloads": 0,
+          "n_method_overloads": 9,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.chrf.CHRFScore",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CHRFScore.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.chrf.CHRFSignature",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CHRFSignature.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics.chrf",
+      "names": [
+        "sacrebleu.metrics.chrf.CHRF",
+        "sacrebleu.metrics.chrf.CHRFScore",
+        "sacrebleu.metrics.chrf.CHRFSignature"
+      ],
+      "n_annotatable": 33,
+      "n_annotated": 30,
+      "n_any": 0,
+      "n_unannotated": 3,
+      "n_functions": 0,
+      "n_methods": 11,
+      "n_function_overloads": 0,
+      "n_method_overloads": 11,
+      "n_classes": 3,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/compat.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.corpus_ter",
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 7,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.corpus_bleu",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 9,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.corpus_chrf",
+          "n_annotated": 8,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 8,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.sentence_bleu",
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 8,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.raw_corpus_bleu",
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.sentence_chrf",
+          "n_annotated": 8,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 8,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.compat.sentence_ter",
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 7,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.compat",
+      "names": [
+        "sacrebleu.compat.corpus_bleu",
+        "sacrebleu.compat.corpus_chrf",
+        "sacrebleu.compat.corpus_ter",
+        "sacrebleu.compat.raw_corpus_bleu",
+        "sacrebleu.compat.sentence_bleu",
+        "sacrebleu.compat.sentence_chrf",
+        "sacrebleu.compat.sentence_ter"
+      ],
+      "n_annotatable": 51,
+      "n_annotated": 44,
+      "n_any": 0,
+      "n_unannotated": 7,
+      "n_functions": 7,
+      "n_methods": 0,
+      "n_function_overloads": 7,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_available_testsets",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.download_test_set",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.utils.SACREBLEU_DIR",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.smart_open",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_langpairs_for_testset",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_source_file",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_reference_files",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_files",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.utils.USERHOME",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_available_origlangs",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.utils.sacrelogger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.sum_of_lists",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.sanity_check_lengths",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.print_single_results",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.print_subset_results",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_available_testsets_for_langpair",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.print_test_set",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_available_subsets",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.extract_tarball",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.filter_subset",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.utils.Color",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Color.format",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.my_log",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.print_results_table",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.args_to_dict",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.download_file",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.utils.get_md5sum",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.utils",
+      "names": [
+        "sacrebleu.utils.Color",
+        "sacrebleu.utils.SACREBLEU_DIR",
+        "sacrebleu.utils.USERHOME",
+        "sacrebleu.utils.args_to_dict",
+        "sacrebleu.utils.download_file",
+        "sacrebleu.utils.download_test_set",
+        "sacrebleu.utils.extract_tarball",
+        "sacrebleu.utils.filter_subset",
+        "sacrebleu.utils.get_available_origlangs",
+        "sacrebleu.utils.get_available_subsets",
+        "sacrebleu.utils.get_available_testsets",
+        "sacrebleu.utils.get_available_testsets_for_langpair",
+        "sacrebleu.utils.get_files",
+        "sacrebleu.utils.get_langpairs_for_testset",
+        "sacrebleu.utils.get_md5sum",
+        "sacrebleu.utils.get_reference_files",
+        "sacrebleu.utils.get_source_file",
+        "sacrebleu.utils.my_log",
+        "sacrebleu.utils.print_results_table",
+        "sacrebleu.utils.print_single_results",
+        "sacrebleu.utils.print_subset_results",
+        "sacrebleu.utils.print_test_set",
+        "sacrebleu.utils.sacrelogger",
+        "sacrebleu.utils.sanity_check_lengths",
+        "sacrebleu.utils.smart_open",
+        "sacrebleu.utils.sum_of_lists"
+      ],
+      "n_annotatable": 79,
+      "n_annotated": 29,
+      "n_any": 0,
+      "n_unannotated": 50,
+      "n_functions": 22,
+      "n_methods": 1,
+      "n_function_overloads": 22,
+      "n_method_overloads": 1,
+      "n_classes": 1,
+      "n_names": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/ter.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.ter.TER",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TER.__init__",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TER._preprocess_segment",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TER._compute_score_from_stats",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TER._aggregate_and_compute",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TER._compute_segment_statistics",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TER._extract_reference_info",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 17,
+          "n_annotated": 16,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 6,
+          "n_function_overloads": 0,
+          "n_method_overloads": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.ter.TERSignature",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TERSignature.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.ter.TERScore",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TERScore.__init__",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics.ter",
+      "names": [
+        "sacrebleu.metrics.ter.TER",
+        "sacrebleu.metrics.ter.TERScore",
+        "sacrebleu.metrics.ter.TERSignature"
+      ],
+      "n_annotatable": 23,
+      "n_annotated": 20,
+      "n_any": 0,
+      "n_unannotated": 3,
+      "n_functions": 0,
+      "n_methods": 8,
+      "n_function_overloads": 0,
+      "n_method_overloads": 8,
+      "n_classes": 3,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/bleu.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.bleu.BLEU",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BLEU.__init__",
+              "n_annotated": 9,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 10,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU.compute_bleu",
+              "n_annotated": 8,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU._preprocess_segment",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU._compute_score_from_stats",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU._aggregate_and_compute",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU._get_closest_ref_len",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU._extract_reference_info",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU._compute_segment_statistics",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BLEU.sentence_score",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 36,
+          "n_annotated": 34,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 9,
+          "n_function_overloads": 0,
+          "n_method_overloads": 9,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.metrics.bleu.MAX_NGRAM_ORDER",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.bleu.BLEUScore",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BLEUScore.__init__",
+              "n_annotated": 7,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 8,
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.bleu.BLEUSignature",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BLEUSignature.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.metrics.bleu.sacrelogger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics.bleu",
+      "names": [
+        "sacrebleu.metrics.bleu.BLEU",
+        "sacrebleu.metrics.bleu.BLEUScore",
+        "sacrebleu.metrics.bleu.BLEUSignature",
+        "sacrebleu.metrics.bleu.MAX_NGRAM_ORDER",
+        "sacrebleu.metrics.bleu.sacrelogger"
+      ],
+      "n_annotatable": 47,
+      "n_annotated": 42,
+      "n_any": 0,
+      "n_unannotated": 5,
+      "n_functions": 0,
+      "n_methods": 11,
+      "n_function_overloads": 0,
+      "n_method_overloads": 11,
+      "n_classes": 3,
+      "n_names": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/version.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.version.__version__",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.version.version",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.version.__commit_id__",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.version.version_tuple",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.version.__version_tuple__",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.version.commit_id",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.version",
+      "names": [
+        "sacrebleu.version.__commit_id__",
+        "sacrebleu.version.__version__",
+        "sacrebleu.version.__version_tuple__",
+        "sacrebleu.version.commit_id",
+        "sacrebleu.version.version",
+        "sacrebleu.version.version_tuple"
+      ],
+      "n_annotatable": 6,
+      "n_annotated": 6,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 0,
+      "n_function_overloads": 0,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/dataset/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.base.Dataset",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Dataset.__init__",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.maybe_download",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset._clean",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset._get_tarball_filename",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset._get_txt_file_path",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset._get_langpair_metadata",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.process_to_text",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.fieldnames",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.__iter__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.source",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.references",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.get_source_file",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.get_reference_files",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Dataset.get_files",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 34,
+          "n_annotated": 7,
+          "n_any": 0,
+          "n_unannotated": 27,
+          "n_functions": 0,
+          "n_methods": 14,
+          "n_function_overloads": 0,
+          "n_method_overloads": 14,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset.base",
+      "names": [
+        "sacrebleu.dataset.base.Dataset"
+      ],
+      "n_annotatable": 34,
+      "n_annotated": 7,
+      "n_any": 0,
+      "n_unannotated": 27,
+      "n_functions": 0,
+      "n_methods": 14,
+      "n_function_overloads": 0,
+      "n_method_overloads": 14,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/dataset/fake_sgml.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.fake_sgml.FakeSGMLDataset",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FakeSGMLDataset._convert_format",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "FakeSGMLDataset._convert_meta",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "FakeSGMLDataset.process_to_text",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "FakeSGMLDataset.fieldnames",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 11,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 11,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.fake_sgml.WMTAdditionDataset",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WMTAdditionDataset._convert_format",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset.fake_sgml",
+      "names": [
+        "sacrebleu.dataset.fake_sgml.FakeSGMLDataset",
+        "sacrebleu.dataset.fake_sgml.WMTAdditionDataset"
+      ],
+      "n_annotatable": 14,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 14,
+      "n_functions": 0,
+      "n_methods": 5,
+      "n_function_overloads": 0,
+      "n_method_overloads": 5,
+      "n_classes": 2,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/dataset/iwslt_xml.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.iwslt_xml.IWSLTXMLDataset",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_methods": 0,
+          "n_function_overloads": 0,
+          "n_method_overloads": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset.iwslt_xml",
+      "names": [
+        "sacrebleu.dataset.iwslt_xml.IWSLTXMLDataset"
+      ],
+      "n_annotatable": 0,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 0,
+      "n_function_overloads": 0,
+      "n_method_overloads": 0,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/dataset/plain_text.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.plain_text.PlainTextDataset",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PlainTextDataset.process_to_text",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset.plain_text",
+      "names": [
+        "sacrebleu.dataset.plain_text.PlainTextDataset"
+      ],
+      "n_annotatable": 2,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 0,
+      "n_methods": 1,
+      "n_function_overloads": 0,
+      "n_method_overloads": 1,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/dataset/tsv.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.tsv.TSVDataset",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TSVDataset._split_index_and_filename",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TSVDataset.process_to_text",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset.tsv",
+      "names": [
+        "sacrebleu.dataset.tsv.TSVDataset"
+      ],
+      "n_annotatable": 5,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 5,
+      "n_functions": 0,
+      "n_methods": 2,
+      "n_function_overloads": 0,
+      "n_method_overloads": 2,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/dataset/wmt_xml.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.dataset.wmt_xml.WMTXMLDataset",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WMTXMLDataset._unwrap_wmt21_or_later",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "WMTXMLDataset._get_langpair_path",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "WMTXMLDataset.process_to_text",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "WMTXMLDataset._get_langpair_allowed_refs",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "WMTXMLDataset.get_reference_files",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "WMTXMLDataset.fieldnames",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 12,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 12,
+          "n_functions": 0,
+          "n_methods": 6,
+          "n_function_overloads": 0,
+          "n_method_overloads": 6,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.dataset.wmt_xml",
+      "names": [
+        "sacrebleu.dataset.wmt_xml.WMTXMLDataset"
+      ],
+      "n_annotatable": 12,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 12,
+      "n_functions": 0,
+      "n_methods": 6,
+      "n_function_overloads": 0,
+      "n_method_overloads": 6,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.metrics.METRICS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics",
+      "names": [
+        "sacrebleu.metrics.METRICS"
+      ],
+      "n_annotatable": 0,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_methods": 0,
+      "n_function_overloads": 0,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.base.Score",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Score.__init__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Score.format",
+              "n_annotated": 5,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Score.estimate_ci",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Score.__repr__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 11,
+          "n_annotated": 8,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.base.Signature",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Signature.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Signature.format",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Signature.update",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Signature.__str__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Signature.__repr__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 9,
+          "n_annotated": 4,
+          "n_any": 1,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_methods": 5,
+          "n_function_overloads": 0,
+          "n_method_overloads": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.base.Metric",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Metric.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._check_sentence_score_args",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._check_corpus_score_args",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._aggregate_and_compute",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._compute_score_from_stats",
+              "n_annotated": 1,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._preprocess_segment",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._extract_reference_info",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._compute_segment_statistics",
+              "n_annotated": 3,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._cache_references",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric._extract_corpus_statistics",
+              "n_annotated": 2,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric.sentence_score",
+              "n_annotated": 2,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric.corpus_score",
+              "n_annotated": 3,
+              "n_any": 1,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metric.get_signature",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 31,
+          "n_annotated": 23,
+          "n_any": 5,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_methods": 13,
+          "n_function_overloads": 0,
+          "n_method_overloads": 13,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.metrics.base.sacrelogger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics.base",
+      "names": [
+        "sacrebleu.metrics.base.Metric",
+        "sacrebleu.metrics.base.Score",
+        "sacrebleu.metrics.base.Signature",
+        "sacrebleu.metrics.base.sacrelogger"
+      ],
+      "n_annotatable": 52,
+      "n_annotated": 35,
+      "n_any": 6,
+      "n_unannotated": 11,
+      "n_functions": 0,
+      "n_methods": 22,
+      "n_function_overloads": 0,
+      "n_method_overloads": 22,
+      "n_classes": 3,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/metrics/lib_ter.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sacrebleu.metrics.lib_ter.trace_to_alignment",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.metrics.lib_ter.translation_edit_rate",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.metrics.lib_ter.BeamEditDistance",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BeamEditDistance.__init__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BeamEditDistance.__call__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BeamEditDistance._edit_distance",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BeamEditDistance._add_cache",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BeamEditDistance._find_cache",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 13,
+          "n_annotated": 11,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 5,
+          "n_function_overloads": 0,
+          "n_method_overloads": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.metrics.lib_ter",
+      "names": [
+        "sacrebleu.metrics.lib_ter.BeamEditDistance",
+        "sacrebleu.metrics.lib_ter.trace_to_alignment",
+        "sacrebleu.metrics.lib_ter.translation_edit_rate"
+      ],
+      "n_annotatable": 18,
+      "n_annotated": 16,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 2,
+      "n_methods": 5,
+      "n_function_overloads": 2,
+      "n_method_overloads": 5,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/sacrebleu.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.sacrebleu.parent",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.sacrebleu.__package__",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.sacrebleu.main",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.sacrebleu.parse_args",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.sacrebleu.sacrelogger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "sacrebleu.sacrebleu",
+      "names": [
+        "sacrebleu.sacrebleu.__package__",
+        "sacrebleu.sacrebleu.main",
+        "sacrebleu.sacrebleu.parent",
+        "sacrebleu.sacrebleu.parse_args",
+        "sacrebleu.sacrebleu.sacrelogger"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 1,
+      "n_any": 0,
+      "n_unannotated": 3,
+      "n_functions": 2,
+      "n_methods": 0,
+      "n_function_overloads": 2,
+      "n_method_overloads": 0,
+      "n_classes": 0,
+      "n_names": 3,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "sacrebleu/significance.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.significance.IS_WINDOWS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.significance.Result",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Result.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Result.__repr__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 4,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.significance.PairedTest",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PairedTest.__init__",
+              "n_annotated": 7,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "PairedTest.__call__",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 9,
+          "n_annotated": 8,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "sacrebleu.significance.estimate_ci",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_function_overloads": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.significance.sacrelogger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.significance",
+      "names": [
+        "sacrebleu.significance.IS_WINDOWS",
+        "sacrebleu.significance.PairedTest",
+        "sacrebleu.significance.Result",
+        "sacrebleu.significance.estimate_ci",
+        "sacrebleu.significance.sacrelogger"
+      ],
+      "n_annotatable": 18,
+      "n_annotated": 14,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 1,
+      "n_methods": 4,
+      "n_function_overloads": 1,
+      "n_method_overloads": 4,
+      "n_classes": 2,
+      "n_names": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_13a.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_13a.Tokenizer13a",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Tokenizer13a.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer13a.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer13a.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_13a",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_13a.Tokenizer13a"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_base.BaseTokenizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_base",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_base.BaseTokenizer"
+      ],
+      "n_annotatable": 3,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 3,
+      "n_functions": 0,
+      "n_methods": 2,
+      "n_function_overloads": 0,
+      "n_method_overloads": 2,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_char.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_char.TokenizerChar",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerChar.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerChar.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerChar.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_char",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_char.TokenizerChar"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_intl.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_intl.TokenizerV14International",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerV14International.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerV14International.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerV14International.__call__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_intl",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_intl.TokenizerV14International"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 2,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_ja_mecab.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.tokenizers.tokenizer_ja_mecab.FAIL_MESSAGE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.tokenizers.tokenizer_ja_mecab.MeCab",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_ja_mecab.TokenizerJaMecab",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerJaMecab.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerJaMecab.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerJaMecab.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_ja_mecab",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_ja_mecab.FAIL_MESSAGE",
+        "sacrebleu.tokenizers.tokenizer_ja_mecab.MeCab",
+        "sacrebleu.tokenizers.tokenizer_ja_mecab.TokenizerJaMecab"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_ko_mecab.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "sacrebleu.tokenizers.tokenizer_ko_mecab.FAIL_MESSAGE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.tokenizers.tokenizer_ko_mecab.MeCab",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_ko_mecab.TokenizerKoMecab",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerKoMecab.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerKoMecab.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerKoMecab.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_ko_mecab",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_ko_mecab.FAIL_MESSAGE",
+        "sacrebleu.tokenizers.tokenizer_ko_mecab.MeCab",
+        "sacrebleu.tokenizers.tokenizer_ko_mecab.TokenizerKoMecab"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_none.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_none.NoneTokenizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NoneTokenizer.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "NoneTokenizer.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_methods": 2,
+          "n_function_overloads": 0,
+          "n_method_overloads": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_none",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_none.NoneTokenizer"
+      ],
+      "n_annotatable": 3,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 3,
+      "n_functions": 0,
+      "n_methods": 2,
+      "n_function_overloads": 0,
+      "n_method_overloads": 2,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_re.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_re.TokenizerRegexp",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerRegexp.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerRegexp.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerRegexp.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_re",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_re.TokenizerRegexp"
+      ],
+      "n_annotatable": 4,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 4,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_spm.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_spm.TokenizerSPM",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerSPM.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerSPM.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerSPM.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_spm.Flores101Tokenizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Flores101Tokenizer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 1,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_spm.spBLEU1KTokenizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "spBLEU1KTokenizer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 1,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.tokenizers.tokenizer_spm.sacrelogger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "sacrebleu.tokenizers.tokenizer_spm.SPM_MODELS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_spm.Flores200Tokenizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Flores200Tokenizer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 1,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_functions": 0,
+          "n_methods": 1,
+          "n_function_overloads": 0,
+          "n_method_overloads": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_spm",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_spm.Flores101Tokenizer",
+        "sacrebleu.tokenizers.tokenizer_spm.Flores200Tokenizer",
+        "sacrebleu.tokenizers.tokenizer_spm.SPM_MODELS",
+        "sacrebleu.tokenizers.tokenizer_spm.TokenizerSPM",
+        "sacrebleu.tokenizers.tokenizer_spm.sacrelogger",
+        "sacrebleu.tokenizers.tokenizer_spm.spBLEU1KTokenizer"
+      ],
+      "n_annotatable": 9,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 9,
+      "n_functions": 0,
+      "n_methods": 6,
+      "n_function_overloads": 0,
+      "n_method_overloads": 6,
+      "n_classes": 4,
+      "n_names": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_ter.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_ter.TercomTokenizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TercomTokenizer.__init__",
+              "n_annotated": 4,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TercomTokenizer.__call__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 0,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TercomTokenizer.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 8,
+          "n_annotated": 6,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_methods": 3,
+          "n_function_overloads": 0,
+          "n_method_overloads": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_ter",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_ter.TercomTokenizer"
+      ],
+      "n_annotatable": 8,
+      "n_annotated": 6,
+      "n_any": 0,
+      "n_unannotated": 2,
+      "n_functions": 0,
+      "n_methods": 3,
+      "n_function_overloads": 0,
+      "n_method_overloads": 3,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "sacrebleu/tokenizers/tokenizer_zh.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "sacrebleu.tokenizers.tokenizer_zh.TokenizerZh",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenizerZh.signature",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerZh.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerZh._is_chinese_char",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenizerZh.__call__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_function_overloads": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_functions": 0,
+          "n_methods": 4,
+          "n_function_overloads": 0,
+          "n_method_overloads": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "sacrebleu.tokenizers.tokenizer_zh",
+      "names": [
+        "sacrebleu.tokenizers.tokenizer_zh.TokenizerZh"
+      ],
+      "n_annotatable": 6,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 6,
+      "n_functions": 0,
+      "n_methods": 4,
+      "n_function_overloads": 0,
+      "n_method_overloads": 4,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {
+    "mypy": {
+      "python_version": "3.12",
+      "overrides": [
+        {
+          "module": "portalocker.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "colorama.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "numpy.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "regex.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "ipadic.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "MeCab.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "mecab_ko.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "mecab_ko_dic.*",
+          "ignore_missing_imports": "True"
+        },
+        {
+          "module": "sentencepiece.*",
+          "ignore_missing_imports": "True"
+        }
+      ]
+    }
+  },
+  "n_modules": 30,
+  "n_annotatable": 470,
+  "n_annotated": 267,
+  "n_any": 6,
+  "n_unannotated": 197,
+  "n_functions": 38,
+  "n_methods": 125,
+  "n_function_overloads": 38,
+  "n_method_overloads": 125,
+  "n_classes": 37,
+  "n_names": 28,
+  "n_properties": 0,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 1
+}
