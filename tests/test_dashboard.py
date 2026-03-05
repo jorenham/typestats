@@ -317,7 +317,7 @@ class TestRenderDetail:
         report = _rich_report("mypkg")
         md = render_detail(report)
         # `data` has n_any=1, n_unannotated=0 -> "Any"
-        assert "| data" in md
+        assert "| `data`" in md
         lines = md.splitlines()
         data_lines = [line for line in lines if "data" in line and "|" in line]
         assert any("Any" in line for line in data_lines)
@@ -694,10 +694,10 @@ class TestRenderDiff:
         for metric in (
             "Released",
             "Coverage",
-            "Strict Coverage",
-            "Public Symbols",
+            "Coverage (strict)",
+            "Symbols",
             "Unannotated",
-            "Type-ignores",
+            "Ignores",
         ):
             assert metric in md
 
