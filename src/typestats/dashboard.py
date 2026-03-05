@@ -1,6 +1,7 @@
 """Generate the markdown dashboard pages from collected JSON data."""
 
 import asyncio
+import datetime
 import functools
 import logging
 import operator
@@ -41,6 +42,22 @@ _DIFF_TEMPLATE: Final = "diff.md.j2"
 TEMPLATES: Final = frozenset({_DETAIL_TEMPLATE, _DIFF_TEMPLATE})
 
 _MIN_VERSIONS_FOR_DIFF: Final = 2
+_MONTHS_PER_YEAR: Final = 12
+
+_MONTH_ABBR: Final = {
+    1: "Jan",
+    2: "Feb",
+    3: "Mar",
+    4: "Apr",
+    5: "May",
+    6: "Jun",
+    7: "Jul",
+    8: "Aug",
+    9: "Sep",
+    10: "Oct",
+    11: "Nov",
+    12: "Dec",
+}
 
 _ICON_PY_TYPED: Final[dict[PyTyped, str]] = {
     PyTyped.YES: ':material-check-circle:{ style="color: #4caf50" }',
@@ -293,6 +310,88 @@ def _extract_project_urls(report: PackageReport, /) -> _ProjectUrls:
     return urls
 
 
+def _monthly_series(
+    dates: list[datetime.date],
+    cov: list[float],
+    strict: list[float],
+) -> tuple[list[str], list[float], list[float]]:
+    """Quantize coverage data into monthly buckets for a linear time axis.
+
+    Multiple releases within the same month are collapsed by taking the
+    maximum coverage value. Months with no releases carry forward the
+    previous month's value, giving a continuous series with one tick per
+    calendar month.
+    """
+    # Bucket by (year, month), keeping the max coverage per bucket.
+    buckets: dict[tuple[int, int], tuple[float, float]] = {}
+    for d, c, s in zip(dates, cov, strict, strict=True):
+        key = (d.year, d.month)
+        prev_c, prev_s = buckets.get(key, (c, s))
+        buckets[key] = (max(prev_c, c), max(prev_s, s))
+
+    # Build a continuous month range from the first to the last bucket.
+    year, month = dates[0].year, dates[0].month
+    end = (dates[-1].year, dates[-1].month)
+
+    labels: list[str] = []
+    out_cov: list[float] = []
+    out_strict: list[float] = []
+    last_c, last_s = cov[0], strict[0]
+
+    while (year, month) <= end:
+        labels.append(f"{_MONTH_ABBR[month]} {year}")
+        last_c, last_s = buckets.get((year, month), (last_c, last_s))
+        out_cov.append(round(last_c, 1))
+        out_strict.append(round(last_s, 1))
+        year, month = (year + month // _MONTHS_PER_YEAR, month % _MONTHS_PER_YEAR + 1)
+
+    return labels, out_cov, out_strict
+
+
+_CHART_PALETTE: Final = "#4caf50, #fb8c00"
+_CHART_THEME_COLORS: Final = (
+    "xAxisLabelColor",
+    "yAxisLabelColor",
+    "xAxisTitleColor",
+    "yAxisTitleColor",
+    "xAxisTickColor",
+    "yAxisTickColor",
+    "xAxisLineColor",
+    "yAxisLineColor",
+)
+
+
+def _chart_data(reports: list[PackageReport], /) -> dict[str, object]:
+    """Prepare chart template variables for the diff page.
+
+    When all reports have upload dates, the x-axis uses monthly buckets
+    with date labels. Otherwise falls back to version strings.
+    """
+    cov_raw = [r.coverage() * 100 for r in reports]
+    strict_raw = [r.coverage(True) * 100 for r in reports]
+
+    dates = [
+        datetime.date.fromisoformat(r.pypi.upload_time[:10])
+        for r in reports
+        if r.pypi and r.pypi.upload_time
+    ]
+
+    if len(dates) == len(reports) >= _MIN_VERSIONS_FOR_DIFF:
+        labels, cov, strict_cov = _monthly_series(dates, cov_raw, strict_raw)
+    else:
+        labels = [r.version for r in reports]
+        cov = [round(v, 1) for v in cov_raw]
+        strict_cov = [round(v, 1) for v in strict_raw]
+
+    return {
+        "labels": labels,
+        "cov": cov,
+        "strict_cov": strict_cov,
+        "palette": _CHART_PALETTE,
+        "theme_colors": _CHART_THEME_COLORS,
+    }
+
+
 def render_diff(reports: list[PackageReport], /) -> str:  # noqa: C901
     """Render a version-history diff page for a package.
 
@@ -395,8 +494,10 @@ def render_diff(reports: list[PackageReport], /) -> str:  # noqa: C901
         tablefmt="pipe",
     )
 
+    chart = _chart_data(reports)
+
     template = _get_env().get_template(_DIFF_TEMPLATE)
-    return template.render(package=package, table=table)
+    return template.render(package=package, table=table, chart=chart)
 
 
 def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> str:
