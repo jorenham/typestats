@@ -48,6 +48,14 @@ _ICON_PY_TYPED: Final[dict[PyTyped, str]] = {
     PyTyped.PARTIAL: ':material-progress-check:{ style="color: #fb8c00" }',
     PyTyped.STUBS: ':material-check-circle-outline:{ style="color: #4caf50" }',
 }
+# Sort values for icon-only columns (lower = better typing status).
+# Exposed as hidden <span> elements so tablesort can order icon cells.
+_ICON_PY_TYPED_SORT: Final[dict[PyTyped, int]] = {
+    PyTyped.YES: 0,
+    PyTyped.STUBS: 1,
+    PyTyped.PARTIAL: 2,
+    PyTyped.NO: 3,
+}
 _STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
     StubsOnly.NO: "",
     StubsOnly.THIRD_PARTY: "third-party",
@@ -170,7 +178,10 @@ def render_index(reports: list[PackageReport], /) -> str:
                 f"{r.coverage():.1%}",
                 f"{r.coverage(True):.1%}",
                 f"{r.n_annotatable:,}",
-                _ICON_PY_TYPED[r.py_typed],
+                (
+                    f"<span hidden>{_ICON_PY_TYPED_SORT[r.py_typed]}</span>"
+                    f"{_ICON_PY_TYPED[r.py_typed]}"
+                ),
                 _STUBS_ONLY_LABEL[r.stubs_only],
             ]
             for r in reports
