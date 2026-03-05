@@ -202,6 +202,20 @@ class TestRenderIndex:
         assert "2.4.2" in data_row
         assert ":material-check-circle:" in data_row  # colored icon
 
+    def test_py_typed_sort_values(self) -> None:
+        reports = [
+            _minimal_report("a", "1.0", py_typed=PyTyped.YES),
+            _minimal_report("b", "1.0", py_typed=PyTyped.NO),
+            _minimal_report("c", "1.0", py_typed=PyTyped.PARTIAL),
+            _minimal_report("d", "1.0", py_typed=PyTyped.STUBS),
+        ]
+        md = render_index(reports)
+        rows = _table_lines(md)
+        assert "<span hidden>0</span>" in rows[2]  # YES
+        assert "<span hidden>3</span>" in rows[3]  # NO
+        assert "<span hidden>2</span>" in rows[4]  # PARTIAL
+        assert "<span hidden>1</span>" in rows[5]  # STUBS
+
     def test_multiple_reports_preserve_order(self) -> None:
         reports = [
             _minimal_report("alpha", "1.0.0"),
