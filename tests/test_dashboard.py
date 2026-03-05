@@ -366,6 +366,21 @@ class TestRenderDetail:
         assert "scipy.fft" in md
         assert "scipy-stubs.fft" not in md
 
+    def test_detail_stubs_only_shown(self) -> None:
+        report = _minimal_report(
+            "pandas-stubs",
+            "2.2.3",
+            stubs_only=StubsOnly.THIRD_PARTY,
+            py_typed=PyTyped.YES,
+        )
+        md = render_detail(report)
+        assert "Stubs-only: third-party" in md
+
+    def test_detail_stubs_only_hidden_when_no(self) -> None:
+        report = _minimal_report("numpy", "2.4.2")
+        md = render_detail(report)
+        assert "Stubs-only" not in md
+
 
 class TestBuildSite:
     pytestmark = pytest.mark.anyio

@@ -9,7 +9,8 @@ Workflow:
 
 On repeat runs, steps 1-2 are skipped when the data branch SHA is unchanged.
 Template and config changes are detected automatically and trigger a rebuild.
-Changes to Python source files (.py) require a manual restart.
+Changes to `dashboard.py` are auto-reloaded; other Python source changes
+require a manual restart.
 
 Usage:
     uv run scripts/preview.py [--clean] [zensical-serve-flags ...]
