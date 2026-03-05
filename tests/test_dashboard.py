@@ -200,8 +200,7 @@ class TestRenderIndex:
         data_row = rows[2]
         assert "[numpy](numpy/index.md)" in data_row
         assert "2.4.2" in data_row
-        assert ":material-check-circle:" in data_row
-        assert "no" in data_row
+        assert ":material-check-circle:" in data_row  # colored icon
 
     def test_multiple_reports_preserve_order(self) -> None:
         reports = [
@@ -227,8 +226,24 @@ class TestRenderIndex:
         )
         md = render_index([report])
         data_row = _table_lines(md)[2]
-        assert "yes (third party)" in data_row
+        assert "third-party" in data_row
         assert "[pandas-stubs](pandas-stubs/index.md)" in data_row
+
+    def test_released_column(self) -> None:
+        report = _minimal_report(
+            "pkg",
+            "1.0.0",
+            pypi=PypiInfo(upload_time="2025-06-15T12:00:00Z"),
+        )
+        md = render_index([report])
+        data_row = _table_lines(md)[2]
+        assert "2025-06-15" in data_row
+
+    def test_released_column_missing(self) -> None:
+        report = _minimal_report("pkg", "1.0.0")
+        md = render_index([report])
+        header = _table_lines(md)[0]
+        assert "Released" in header
 
     def test_coverage_values(self) -> None:
         report = _minimal_report(
@@ -266,7 +281,7 @@ class TestRenderDetail:
         # strict = 8/20 = 40.0%
         assert "40.0%" in md
         assert "20" in md  # n_annotatable
-        assert ":material-check-circle:" in md  # py.typed
+        assert ":material-check-circle:" in md  # colored py.typed icon
 
     def test_module_table(self) -> None:
         report = _rich_report("mypkg", "1.0.0")
@@ -350,6 +365,21 @@ class TestRenderDetail:
         # Module table should show "scipy.fft", not "scipy-stubs.fft"
         assert "scipy.fft" in md
         assert "scipy-stubs.fft" not in md
+
+    def test_detail_stubs_only_shown(self) -> None:
+        report = _minimal_report(
+            "pandas-stubs",
+            "2.2.3",
+            stubs_only=StubsOnly.THIRD_PARTY,
+            py_typed=PyTyped.YES,
+        )
+        md = render_detail(report)
+        assert "Stubs-only: third-party" in md
+
+    def test_detail_stubs_only_hidden_when_no(self) -> None:
+        report = _minimal_report("numpy", "2.4.2")
+        md = render_detail(report)
+        assert "Stubs-only" not in md
 
 
 class TestBuildSite:

@@ -9,7 +9,8 @@ Workflow:
 
 On repeat runs, steps 1-2 are skipped when the data branch SHA is unchanged.
 Template and config changes are detected automatically and trigger a rebuild.
-Changes to Python source files (.py) require a manual restart.
+Changes to `dashboard.py` are auto-reloaded; other Python source changes
+require a manual restart.
 
 Usage:
     uv run scripts/preview.py [--clean] [zensical-serve-flags ...]
@@ -22,6 +23,7 @@ Examples:
 
 import asyncio
 import contextlib
+import importlib
 import logging
 import os
 import shutil
@@ -33,7 +35,7 @@ from typing import TYPE_CHECKING, Final
 import anyio
 import watchfiles
 
-from typestats.dashboard import TEMPLATES, build_site
+import typestats.dashboard
 
 if TYPE_CHECKING:
     from typestats.report import PackageReport
@@ -89,7 +91,11 @@ async def _watch_and_rebuild(
     initial_reports: list[PackageReport] | None = None,
     initial_all_reports: dict[str, list[PackageReport]] | None = None,
 ) -> None:
-    watch_paths = (ROOT / "src" / "typestats" / "templates", ROOT / "projects.toml")
+    watch_paths = (
+        ROOT / "src" / "typestats" / "templates",
+        ROOT / "src" / "typestats" / "dashboard.py",
+        ROOT / "projects.toml",
+    )
     log.info("Watching %s ...", ", ".join(p.name for p in watch_paths))
     cached_reports = initial_reports
     cached_all_reports = initial_all_reports
@@ -97,10 +103,16 @@ async def _watch_and_rebuild(
         changed = sorted({anyio.Path(str(c[1])).name for c in changes})
         log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
 
+        dashboard_changed = "dashboard.py" in changed
+        if dashboard_changed:
+            importlib.reload(typestats.dashboard)
+
         projects_changed = "projects.toml" in changed
-        rebuild = None if projects_changed else frozenset(changed) & TEMPLATES
+        full_rebuild = projects_changed or dashboard_changed
+        templates = typestats.dashboard.TEMPLATES
+        rebuild = None if full_rebuild else frozenset(changed) & templates
         t0 = time.perf_counter()
-        cached_reports, cached_all_reports = await build_site(
+        cached_reports, cached_all_reports = await typestats.dashboard.build_site(
             reports_dir,
             _SITE_DIR,
             ROOT / "projects.toml",
@@ -149,7 +161,9 @@ async def main() -> None:
 
         log.info("Building dashboard pages ...")
         (initial_reports, initial_all_reports), _ = await asyncio.gather(
-            build_site(_REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"),
+            typestats.dashboard.build_site(
+                _REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"
+            ),
             _SITE_SHA.write_text(sha),
         )
 

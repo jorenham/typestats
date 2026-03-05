@@ -19,7 +19,7 @@ from tabulate import tabulate
 
 from typestats.index import PyTyped
 from typestats.projects import load_projects
-from typestats.report import ModuleReport, PackageReport
+from typestats.report import ModuleReport, PackageReport, StubsOnly
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
@@ -42,11 +42,16 @@ TEMPLATES: Final = frozenset({_DETAIL_TEMPLATE, _DIFF_TEMPLATE})
 
 _MIN_VERSIONS_FOR_DIFF: Final = 2
 
-_PY_TYPED_ICON: Final[dict[PyTyped, str]] = {
-    PyTyped.YES: ":material-check-circle:",
-    PyTyped.NO: ":material-close-circle:",
-    PyTyped.PARTIAL: ":material-progress-check:",
-    PyTyped.STUBS: ":material-check-circle-outline:",
+_ICON_PY_TYPED: Final[dict[PyTyped, str]] = {
+    PyTyped.YES: ':material-check-circle:{ style="color: #4caf50" }',
+    PyTyped.NO: ':material-close-circle:{ style="color: #e53935" }',
+    PyTyped.PARTIAL: ':material-progress-check:{ style="color: #fb8c00" }',
+    PyTyped.STUBS: ':material-check-circle-outline:{ style="color: #4caf50" }',
+}
+_STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
+    StubsOnly.NO: "",
+    StubsOnly.THIRD_PARTY: "third-party",
+    StubsOnly.TYPESHED: "typeshed",
 }
 
 _PAGE_FRONTMATTER: Final = """\
@@ -161,24 +166,26 @@ def render_index(reports: list[PackageReport], /) -> str:
             [
                 f"[{r.package}]({r.package}/index.md)",
                 r.version,
+                r.pypi.upload_time[:10] if r.pypi and r.pypi.upload_time else "",
                 f"{r.coverage():.1%}",
                 f"{r.coverage(True):.1%}",
-                str(r.n_annotatable),
-                _PY_TYPED_ICON[r.py_typed],
-                r.stubs_only.value,
+                f"{r.n_annotatable:,}",
+                _ICON_PY_TYPED[r.py_typed],
+                _STUBS_ONLY_LABEL[r.stubs_only],
             ]
             for r in reports
         ],
         headers=[
             "Package",
             "Version",
+            "Released",
             "Coverage",
-            "Strict Coverage",
-            "Public Symbols",
+            "Coverage (strict)",
+            "Symbols",
             "`py.typed`",
-            "Stub-only",
+            "Stubs-only",
         ],
-        colalign=("left", "left", "right", "right", "right", "left", "left"),
+        colalign=("left", "left", "left", "right", "right", "right", "left", "left"),
         tablefmt="pipe",
     )
 
@@ -432,7 +439,8 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
         report=report,
         coverage=f"{report.coverage():.1%}",
         strict_coverage=f"{report.coverage(True):.1%}",
-        py_typed_icon=_PY_TYPED_ICON[report.py_typed],
+        py_typed_icon=_ICON_PY_TYPED[report.py_typed],
+        stubs_only_label=_STUBS_ONLY_LABEL[report.stubs_only],
         modules_table=modules_table,
         annotation_sections=annotation_sections,
         type_ignore_table=type_ignore_table,
