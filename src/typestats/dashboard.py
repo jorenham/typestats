@@ -243,7 +243,7 @@ def _extract_project_urls(report: PackageReport, /) -> _ProjectUrls:
     return urls
 
 
-def render_diff(reports: list[PackageReport], /) -> str:
+def render_diff(reports: list[PackageReport], /) -> str:  # noqa: C901
     """Render a version-history diff page for a package.
 
     `reports` must be sorted oldest-to-newest and contain at least 2 entries.
@@ -294,8 +294,14 @@ def render_diff(reports: list[PackageReport], /) -> str:
         span = f'<span style="color:{color}">({sign}{delta})</span>'
         return f"{formatted}<br>{span}"
 
+    def _released_cell(r: PackageReport) -> str:
+        if r.pypi and r.pypi.upload_time:
+            return r.pypi.upload_time[:10]
+        return ""
+
     headers = [
         "Version",
+        "Released",
         "Coverage",
         "Strict Coverage",
         "Public Symbols",
@@ -307,6 +313,7 @@ def render_diff(reports: list[PackageReport], /) -> str:
     rows = [
         [
             r.version,
+            _released_cell(r),
             _cov_cell(r, reports[i - 1] if i > 0 else None, False),
             _cov_cell(r, reports[i - 1] if i > 0 else None, True),
             _int_cell(
