@@ -6,4 +6,40 @@ hide:
 
 # {{ package }} Version History
 
+{% if chart %}
+!!! info "Coverage timeline"
+
+    ``` mermaid
+    ---
+    config:
+        xyChart:
+            width: 1600
+            height: 320
+            xAxis:
+                labelPadding: 16
+        themeVariables:
+            xyChart:
+                plotColorPalette: "{{ chart.palette }}"
+                backgroundColor: "transparent"
+    {% for key in chart.theme_colors %}
+                {{ key }}: "currentColor"
+    {% endfor %}
+    ---
+    xychart-beta
+        x-axis [{{ chart.labels | map('tojson') | join(', ') }}]
+        y-axis "Coverage (%)" 0 --> 100
+        line [{{ chart.cov | join(', ') }}]
+        line [{{ chart.strict_cov | join(', ') }}]
+    ```
+
+    <div class="chart-legend" markdown>
+      <span class="chart-legend-item">
+        <span class="chart-legend-swatch" style="background:#4caf50"></span> Coverage
+      </span>
+      <span class="chart-legend-item">
+        <span class="chart-legend-swatch" style="background:#fb8c00"></span> Coverage (strict)
+      </span>
+    </div>
+{% endif %}
+
 {{ table }}

@@ -623,7 +623,7 @@ class TestRenderDiff:
         r2 = _minimal_report("pkg", "1.1.0", n_annotated=6, n_any=0, n_unannotated=4)
         r3 = _minimal_report("pkg", "2.0.0", n_annotated=9, n_any=0, n_unannotated=1)
         md = render_diff([r1, r2, r3])
-        lines = md.splitlines()
+        lines = _table_lines(md)
         version_positions = {
             v: next(i for i, line in enumerate(lines) if v in line)
             for v in ("1.0.0", "1.1.0", "2.0.0")
@@ -652,8 +652,8 @@ class TestRenderDiff:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
         md = render_diff([r1, r2])
-        # Find the v2 row and check for green delta in the Unannotated column
-        lines = md.splitlines()
+        # Find the v2 table row and check for green delta in Unannotated column
+        lines = _table_lines(md)
         v2_line = next(line for line in lines if "2.0.0" in line)
         assert "color:green" in v2_line
 
@@ -662,7 +662,7 @@ class TestRenderDiff:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
         md = render_diff([r1, r2])
-        lines = md.splitlines()
+        lines = _table_lines(md)
         # The v2 row has the deltas; Public Symbols delta should not be colored
         v2_line = next(line for line in lines if "2.0.0" in line)
         # Split cells and check the Public Symbols cell has no color
@@ -675,8 +675,9 @@ class TestRenderDiff:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         md = render_diff([r1, r2])
-        # No span elements when nothing changed
-        assert "<span" not in md
+        # No span elements in the table when nothing changed
+        for line in _table_lines(md):
+            assert "<span" not in line
 
     def test_raises_for_single_report(self) -> None:
         r = _minimal_report("pkg", "1.0.0")
@@ -722,6 +723,87 @@ class TestRenderDiff:
         md = render_diff([r1, r2])
         # The Released header must be present even without dates
         assert "Released" in md
+
+    def test_chart_present(self) -> None:
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        assert "``` mermaid" in md
+        assert "xychart-beta" in md
+        assert "Coverage" in md
+
+    def test_chart_uses_dates_when_available(self) -> None:
+        r1 = _minimal_report(
+            "pkg",
+            "1.0.0",
+            n_annotated=5,
+            n_any=0,
+            n_unannotated=5,
+            pypi=PypiInfo(upload_time="2024-01-15T10:30:00Z"),
+        )
+        r2 = _minimal_report(
+            "pkg",
+            "2.0.0",
+            n_annotated=8,
+            n_any=0,
+            n_unannotated=2,
+            pypi=PypiInfo(upload_time="2025-06-20T14:00:00Z"),
+        )
+        md = render_diff([r1, r2])
+        assert '"Jan 2024"' in md
+        assert '"Jun 2025"' in md
+        # Version strings should NOT appear on the x-axis
+        assert '"1.0.0"' not in md
+        assert '"2.0.0"' not in md
+
+    def test_chart_uses_versions_without_dates(self) -> None:
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        assert '"1.0.0"' in md
+        assert '"2.0.0"' in md
+
+    def test_chart_coverage_values(self) -> None:
+        # 5/10 = 50%, 8/10 = 80%
+        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        md = render_diff([r1, r2])
+        assert "50.0" in md
+        assert "80.0" in md
+
+    def test_chart_time_proportional_spacing(self) -> None:
+        # 6-month gap then 1-month gap: should have more spacers in first gap
+        r1 = _minimal_report(
+            "pkg",
+            "1.0.0",
+            n_annotated=5,
+            n_any=0,
+            n_unannotated=5,
+            pypi=PypiInfo(upload_time="2024-01-01T00:00:00Z"),
+        )
+        r2 = _minimal_report(
+            "pkg",
+            "2.0.0",
+            n_annotated=7,
+            n_any=0,
+            n_unannotated=3,
+            pypi=PypiInfo(upload_time="2024-07-01T00:00:00Z"),
+        )
+        r3 = _minimal_report(
+            "pkg",
+            "3.0.0",
+            n_annotated=9,
+            n_any=0,
+            n_unannotated=1,
+            pypi=PypiInfo(upload_time="2024-08-01T00:00:00Z"),
+        )
+        md = render_diff([r1, r2, r3])
+        # Chart should have spacer entries (rendered as " ")
+        chart_block = md.split("``` mermaid")[1].split("```")[0]
+        x_line = next(line for line in chart_block.splitlines() if "x-axis" in line)
+        # More total entries than the 3 real data points
+        label_count = x_line.count('"')
+        assert label_count // 2 > 3
 
 
 class TestBuildSiteDiff:
