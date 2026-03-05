@@ -200,7 +200,7 @@ class TestRenderIndex:
         data_row = rows[2]
         assert "[numpy](numpy/index.md)" in data_row
         assert "2.4.2" in data_row
-        assert "YES" in data_row
+        assert ":material-check-circle:" in data_row
         assert "no" in data_row
 
     def test_multiple_reports_preserve_order(self) -> None:
@@ -266,7 +266,7 @@ class TestRenderDetail:
         # strict = 8/20 = 40.0%
         assert "40.0%" in md
         assert "20" in md  # n_annotatable
-        assert "YES" in md  # py.typed
+        assert ":material-check-circle:" in md  # py.typed
 
     def test_module_table(self) -> None:
         report = _rich_report("mypkg", "1.0.0")

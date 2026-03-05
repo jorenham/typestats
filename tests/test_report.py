@@ -680,6 +680,33 @@ class TestPackageReportFromPath:
         assert report.package == "mypkg"
         assert report.py_typed is PyTyped.STUBS
 
+    async def test_stubs_with_setup_py(self, tmp_path: Path) -> None:
+        """setup.py in a stubs sdist must not pollute py.typed detection.
+
+        Reproduces the types-PyYAML bug: when a stubs sdist contains
+        setup.py, `_resolve_package_name` fails (multiple public
+        top-level modules) and `get_py_typed` sees the sdist root
+        instead of the `-stubs` directory.
+        """
+        base = tmp_path / "base"
+        stubs = tmp_path / "stubs"
+        shutil.copytree(_FIXTURES / "stubs_base", base)
+        shutil.copytree(_FIXTURES / "stubs_overlay", stubs)
+
+        # Add a setup.py at the stubs sdist root (as stub_uploader does).
+        (stubs / "setup.py").write_text("from setuptools import setup; setup()\n")
+
+        report = await PackageReport.from_path(
+            "mypkg",
+            base,
+            "1.0.0",
+            stubs_path=stubs,
+            project="types-mypkg",
+            stubs_only=StubsOnly.TYPESHED,
+        )
+
+        assert report.py_typed is PyTyped.STUBS
+
 
 class TestPackageReportFromProject:
     pytestmark = pytest.mark.anyio

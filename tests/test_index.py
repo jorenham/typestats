@@ -50,6 +50,7 @@ def _is_excluded(rel: str) -> bool:
         ("numpy/random/_examples/cffi/extending.py", True),
         ("numpy/conftest.py", True),
         ("conftest.py", True),
+        ("setup.py", True),
         ("numpy/__init__.py", False),
         ("numpy/_core/__init__.py", False),
         ("numpy/linalg/__init__.pyi", False),
