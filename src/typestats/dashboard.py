@@ -17,8 +17,9 @@ import httpx
 from packaging.version import Version
 from tabulate import tabulate
 
+from typestats.index import PyTyped
 from typestats.projects import load_projects
-from typestats.report import ModuleReport, PackageReport, PyTyped
+from typestats.report import ModuleReport, PackageReport
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
