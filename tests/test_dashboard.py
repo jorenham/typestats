@@ -14,6 +14,7 @@ from typestats.index import PyTyped
 from typestats.report import (
     ModuleReport,
     PackageReport,
+    PypiInfo,
     StubsOnly,
 )
 
@@ -76,6 +77,7 @@ def _minimal_report(  # noqa: PLR0913
     n_any: int = 2,
     n_unannotated: int = 5,
     metadata: dict[str, list[str]] | None = None,
+    pypi: PypiInfo | None = None,
 ) -> PackageReport:
     """Build a minimal `PackageReport` with one `ModuleReport`."""
     symbol_reports = _make_symbol_reports(
@@ -97,6 +99,7 @@ def _minimal_report(  # noqa: PLR0913
         py_typed=py_typed,
         module_reports=(module,),
         metadata=metadata,
+        pypi=pypi,
     )
 
 
@@ -620,8 +623,8 @@ class TestRenderDiff:
         v2_line = next(line for line in lines if "2.0.0" in line)
         # Split cells and check the Public Symbols cell has no color
         cells = [c.strip() for c in v2_line.split("|")]
-        # Index 4: '', version, cov, strict_cov, pub_symbols
-        public_symbols_cell = cells[4]
+        # Index 5: '', version, released, cov, strict_cov, pub_symbols
+        public_symbols_cell = cells[5]
         assert "color:" not in public_symbols_cell
 
     def test_no_delta_when_unchanged(self) -> None:
@@ -645,6 +648,7 @@ class TestRenderDiff:
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
         md = render_diff([r1, r2])
         for metric in (
+            "Released",
             "Coverage",
             "Strict Coverage",
             "Public Symbols",
@@ -652,6 +656,28 @@ class TestRenderDiff:
             "Type-ignores",
         ):
             assert metric in md
+
+    def test_released_column_shows_date(self) -> None:
+        r1 = _minimal_report(
+            "pkg",
+            "1.0.0",
+            pypi=PypiInfo(upload_time="2024-01-15T10:30:00Z"),
+        )
+        r2 = _minimal_report(
+            "pkg",
+            "2.0.0",
+            pypi=PypiInfo(upload_time="2025-06-20T14:00:00Z"),
+        )
+        md = render_diff([r1, r2])
+        assert "2024-01-15" in md
+        assert "2025-06-20" in md
+
+    def test_released_column_empty_when_no_pypi(self) -> None:
+        r1 = _minimal_report("pkg", "1.0.0")
+        r2 = _minimal_report("pkg", "2.0.0")
+        md = render_diff([r1, r2])
+        # The Released header must be present even without dates
+        assert "Released" in md
 
 
 class TestBuildSiteDiff:
