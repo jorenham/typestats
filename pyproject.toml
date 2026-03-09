@@ -74,7 +74,10 @@ minversion = "9.0"
 testpaths = ["src", "tests"]
 addopts = ["-ra", "--doctest-modules", "--ignore=tests/fixtures"]
 doctest_optionflags = ["NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL", "ELLIPSIS"]
-filterwarnings = ["error"]
+filterwarnings = [
+  "error",
+  "ignore:The global interpreter lock .GIL. has been enabled:RuntimeWarning",
+]
 log_level = "INFO"
 strict = true
 
