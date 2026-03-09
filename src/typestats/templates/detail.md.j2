@@ -1,3 +1,4 @@
+{% from "_macros.j2" import icon_py_typed, icon_incomplete %}
 ---
 hide:
   - navigation
@@ -7,10 +8,16 @@ hide:
 # {{ report.package }} {{ report.version }}
 
 <table>
-<tr><td>PyPI</td><td><a href="{{ project_urls.pypi }}">{{ project_urls.pypi }}</a></td></tr>
-{% if project_urls.repo %}
-<tr><td>Repository</td><td><a href="{{ project_urls.repo }}">{{ project_urls.repo }}</a></td></tr>
-{% endif %}
+  <tr>
+    <td>PyPI</td>
+    <td><a href="{{ project_urls.pypi }}">{{ project_urls.pypi }}</a></td>
+  </tr>
+  {% if project_urls.repo %}
+    <tr>
+      <td>Repository</td>
+      <td><a href="{{ project_urls.repo }}">{{ project_urls.repo }}</a></td>
+    </tr>
+  {% endif %}
 </table>
 
 <div class="grid cards" markdown>
@@ -37,7 +44,7 @@ hide:
 
     ---
 
-    `py.typed`: {{ py_typed_icon }}{% if stubs_only_label %} · Stubs-only: {{ stubs_only_label }}{% endif %}
+    `py.typed`: {{ icon_py_typed(py_typed) }}{% if stubs_only_label %} · Stubs-only: {{ stubs_only_label }}{% endif %}
 
 </div>
 
@@ -50,7 +57,33 @@ No version history available.
 
 {{ report.n_modules }} modules
 
-{{ modules_table }}
+<table>
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th style="text-align: right"><abbr title="Percentage of annotated symbols">Coverage</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of annotated symbols, excluding Any">Coverage (strict)</abbr></th>
+      <th style="text-align: right"><abbr title="Number of public annotatable slots: each function parameter, return type, and variable counts as one">Symbols</abbr></th>
+      <th style="text-align: right"><abbr title="Number of type-checker ignore comments">Ignores</abbr></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in modules %}
+      <tr>
+        <td>
+          <code>{{ m.display_name }}</code>
+          {%- if m.slug %}
+            <a href="#{{ m.slug }}" title="Incomplete annotations">{{ icon_incomplete() }}</a>
+          {%- endif %}
+        </td>
+        <td style="text-align: right">{{ m.coverage }}</td>
+        <td style="text-align: right">{{ m.coverage_strict }}</td>
+        <td style="text-align: right">{{ m.n_annotatable }}</td>
+        <td style="text-align: right">{{ m.n_type_ignores }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 ## Incomplete Annotations
 
@@ -58,7 +91,30 @@ No version history available.
 {% for section in annotation_sections %}
 <span id="{{ section.slug }}"></span>
 ??? "{{ section.display_name }} ({{ section.n_issues }} symbol{{ 's' if section.n_issues != 1 else '' }})"
-{{ section.table }}
+    <table>
+      <thead>
+        <tr>
+          <th>Symbol</th>
+          <th>Kind</th>
+          <th>Status</th>
+          <th style="text-align: right"><abbr title="Slots with a type annotation">Annotated</abbr></th>
+          <th style="text-align: right"><abbr title="Slots typed as Any">Any</abbr></th>
+          <th style="text-align: right"><abbr title="Slots without a type annotation">Unannotated</abbr></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in section.rows %}
+          <tr>
+            <td><code>{{ row.name }}</code></td>
+            <td>{{ row.kind }}</td>
+            <td>{{ row.status }}</td>
+            <td style="text-align: right">{{ row.n_annotated }}</td>
+            <td style="text-align: right">{{ row.n_any }}</td>
+            <td style="text-align: right">{{ row.n_unannotated }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
 
 {% endfor %}
 {% else %}
@@ -68,8 +124,23 @@ All symbols are fully annotated. :tada:
 
 ## Type-Ignore Comments
 
-{% if type_ignore_table %}
-{{ type_ignore_table }}
+{% if type_ignores %}
+<table>
+  <thead>
+    <tr>
+      <th><abbr title="Type-checker ignore directive">Flavor</abbr></th>
+      <th style="text-align: right">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for flavor, count in type_ignores %}
+      <tr>
+        <td><code>{{ flavor }}</code></td>
+        <td style="text-align: right">{{ count }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% else %}
 No type-ignore comments.
 

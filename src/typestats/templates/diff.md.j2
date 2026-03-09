@@ -1,3 +1,4 @@
+{% from "_macros.j2" import metric_cell %}
 ---
 hide:
   - navigation
@@ -42,4 +43,45 @@ hide:
     </div>
 {% endif %}
 
-{{ table }}
+<table>
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th style="text-align: right">
+        <abbr title="Release date on PyPI">Released</abbr>
+      </th>
+      <th style="text-align: right">
+        <abbr title="Percentage of annotated symbols">Coverage</abbr>
+      </th>
+      <th style="text-align: right">
+        <abbr title="Percentage of annotated symbols, excluding Any">Coverage (strict)</abbr>
+      </th>
+      <th style="text-align: right">
+        <abbr title="Number of public annotatable slots: each function parameter, return type, and variable counts as one">Symbols</abbr>
+      </th>
+      <th style="text-align: right">
+        <abbr title="Slots without a type annotation">Unannotated</abbr>
+      </th>
+      <th style="text-align: right">
+        <abbr title="Number of type-checker ignore comments">Ignores</abbr>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+      <tr>
+        {% if loop.first %}
+          <td><a href="../">{{ row.version }}</a></td>
+        {% else %}
+          <td>{{ row.version }}</td>
+        {% endif %}
+        <td style="text-align: right">{{ row.release_date }}</td>
+        {{ metric_cell(row.coverage) }}
+        {{ metric_cell(row.coverage_strict) }}
+        {{ metric_cell(row.symbols) }}
+        {{ metric_cell(row.unannotated) }}
+        {{ metric_cell(row.ignores) }}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

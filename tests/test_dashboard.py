@@ -1,3 +1,4 @@
+import re
 from typing import TYPE_CHECKING, Any
 
 import anyio
@@ -111,9 +112,9 @@ def _write_report(data_dir: Path, report: PackageReport) -> Path:
     return out
 
 
-def _table_lines(md: str) -> list[str]:
-    """Extract lines starting with `|` from rendered markdown."""
-    return [line for line in md.splitlines() if line.startswith("|")]
+def _table_rows(md: str) -> list[str]:
+    """Extract data `<tr>...</tr>` blocks (containing `<td>`) from HTML tables."""
+    return [m for m in re.findall(r"<tr>.*?</tr>", md, re.DOTALL) if "<td" in m]
 
 
 def _rich_report(
@@ -193,13 +194,14 @@ class TestRenderIndex:
             n_unannotated=5,
         )
         md = IndexPage([report]).render()
-        rows = _table_lines(md)
-        assert len(rows) == 3
+        rows = _table_rows(md)
+        assert len(rows) == 1
 
-        data_row = rows[2]
-        assert "[numpy](numpy/index.md)" in data_row
+        data_row = rows[0]
+        assert '<a href="numpy/">numpy</a>' in data_row
         assert "2.4.2" in data_row
-        assert ":material-check-circle:" in data_row  # colored icon
+        assert ":material-check-circle:" not in data_row
+        assert '<span class="twemoji"' in data_row  # SVG icon
 
     def test_py_typed_sort_values(self) -> None:
         reports = [
@@ -209,11 +211,11 @@ class TestRenderIndex:
             _minimal_report("d", "1.0", py_typed=PyTyped.STUBS),
         ]
         md = IndexPage(reports).render()
-        rows = _table_lines(md)
-        assert "<span hidden>0</span>" in rows[2]  # YES
-        assert "<span hidden>3</span>" in rows[3]  # NO
-        assert "<span hidden>2</span>" in rows[4]  # PARTIAL
-        assert "<span hidden>1</span>" in rows[5]  # STUBS
+        rows = _table_rows(md)
+        assert "<span hidden>0</span>" in rows[0]  # YES
+        assert "<span hidden>3</span>" in rows[1]  # NO
+        assert "<span hidden>2</span>" in rows[2]  # PARTIAL
+        assert "<span hidden>1</span>" in rows[3]  # STUBS
 
     def test_multiple_reports_preserve_order(self) -> None:
         reports = [
@@ -222,13 +224,13 @@ class TestRenderIndex:
             _minimal_report("gamma", "3.0.0"),
         ]
         md = IndexPage(reports).render()
-        rows = _table_lines(md)
-        assert len(rows) == 5
+        rows = _table_rows(md)
+        assert len(rows) == 3
 
         # Verify order is preserved (not sorted alphabetically)
-        assert "[alpha]" in rows[2]
-        assert "[beta]" in rows[3]
-        assert "[gamma]" in rows[4]
+        assert ">alpha<" in rows[0]
+        assert ">beta<" in rows[1]
+        assert ">gamma<" in rows[2]
 
     def test_stubs_package(self) -> None:
         report = _minimal_report(
@@ -238,9 +240,9 @@ class TestRenderIndex:
             py_typed=PyTyped.YES,
         )
         md = IndexPage([report]).render()
-        data_row = _table_lines(md)[2]
+        data_row = _table_rows(md)[0]
         assert "third-party" in data_row
-        assert "[pandas-stubs](pandas-stubs/index.md)" in data_row
+        assert '<a href="pandas-stubs/">pandas-stubs</a>' in data_row
 
     def test_released_column(self) -> None:
         report = _minimal_report(
@@ -249,14 +251,13 @@ class TestRenderIndex:
             pypi=PypiInfo(upload_time="2025-06-15T12:00:00Z"),
         )
         md = IndexPage([report]).render()
-        data_row = _table_lines(md)[2]
+        data_row = _table_rows(md)[0]
         assert "2025-06-15" in data_row
 
     def test_released_column_missing(self) -> None:
         report = _minimal_report("pkg", "1.0.0")
         md = IndexPage([report]).render()
-        header = _table_lines(md)[0]
-        assert "Released" in header
+        assert "Released" in md
 
     def test_coverage_values(self) -> None:
         report = _minimal_report(
@@ -267,7 +268,7 @@ class TestRenderIndex:
             n_unannotated=10,
         )
         md = IndexPage([report]).render()
-        data_row = _table_lines(md)[2]
+        data_row = _table_rows(md)[0]
         # naive: (8+2)/20 = 50.0%
         assert "50.0%" in data_row
         # strict: 8/20 = 40.0%
@@ -294,16 +295,16 @@ class TestRenderDetail:
         # strict = 8/20 = 40.0%
         assert "40.0%" in md
         assert "20" in md  # n_annotatable
-        assert ":material-check-circle:" in md  # colored py.typed icon
+        assert '<span class="twemoji"' in md  # SVG py.typed icon
 
     def test_module_table(self) -> None:
         report = _rich_report("mypkg", "1.0.0")
         md = DetailPage(report).render()
         assert "## Modules" in md
         # Both modules appear
-        table_lines = _table_lines(md)
-        module_names = [line for line in table_lines if "mypkg" in line.split("|")[1]]
-        assert len(module_names) >= 2
+        rows = _table_rows(md)
+        module_rows = [r for r in rows if "mypkg" in r]
+        assert len(module_rows) >= 2
 
     def test_annotation_status_missing(self) -> None:
         report = _rich_report("mypkg")
@@ -316,10 +317,10 @@ class TestRenderDetail:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
         # `data` has n_any=1, n_unannotated=0 -> "Any"
-        assert "| `data`" in md
-        lines = md.splitlines()
-        data_lines = [line for line in lines if "data" in line and "|" in line]
-        assert any("Any" in line for line in data_lines)
+        assert "<code>data</code>" in md
+        rows = _table_rows(md)
+        data_rows = [r for r in rows if "data" in r]
+        assert any("Any" in r for r in data_rows)
 
     def test_annotation_status_mixed(self) -> None:
         report = _rich_report("mypkg")
@@ -357,8 +358,8 @@ class TestRenderDetail:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
         # mypkg (init) has incomplete symbols -> icon link after module name
-        assert "(#module-mypkg " in md
-        assert "(#module-mypkg.utils " in md
+        assert '<a href="#module-mypkg"' in md
+        assert '<a href="#module-mypkg.utils"' in md
 
     def test_module_no_icon_when_fully_annotated(self) -> None:
         """Fully annotated modules should not have an icon."""
@@ -370,7 +371,7 @@ class TestRenderDetail:
             n_unannotated=0,
         )
         md = DetailPage(report).render()
-        assert "`perfect`" in md
+        assert "<code>perfect</code>" in md
 
     def test_annotation_section_has_anchor(self) -> None:
         """Each incomplete annotation section should have an anchor for linking."""
@@ -447,7 +448,7 @@ class TestBuildSite:
         assert isinstance(reports, list)
         assert len(reports) == 1
         content = (site_dir / "docs" / "index.md").read_text()
-        assert "[mypkg](mypkg/index.md)" in content
+        assert '<a href="mypkg/">mypkg</a>' in content
 
     async def test_creates_detail_pages(self, tmp_path: Path) -> None:
         data_dir = tmp_path / "data"
@@ -642,16 +643,16 @@ class TestRenderDiff:
         # Coverage row present
         assert "Coverage" in md
         # Latest version links to detail page
-        assert "[2.0.0](index.md)" in md
+        assert '<a href="../">2.0.0</a>' in md
 
     def test_version_rows_newest_first(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=4, n_any=0, n_unannotated=6)
         r2 = _minimal_report("pkg", "1.1.0", n_annotated=6, n_any=0, n_unannotated=4)
         r3 = _minimal_report("pkg", "2.0.0", n_annotated=9, n_any=0, n_unannotated=1)
         md = DiffPage([r1, r2, r3]).render()
-        lines = _table_lines(md)
+        rows = _table_rows(md)
         version_positions = {
-            v: next(i for i, line in enumerate(lines) if v in line)
+            v: next(i for i, row in enumerate(rows) if v in row)
             for v in ("1.0.0", "1.1.0", "2.0.0")
         }
         assert version_positions["2.0.0"] < version_positions["1.1.0"]
@@ -679,31 +680,31 @@ class TestRenderDiff:
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
         md = DiffPage([r1, r2]).render()
         # Find the v2 table row and check for green delta in Unannotated column
-        lines = _table_lines(md)
-        v2_line = next(line for line in lines if "2.0.0" in line)
-        assert "color:green" in v2_line
+        rows = _table_rows(md)
+        v2_row = next(r for r in rows if "2.0.0" in r)
+        assert "color:green" in v2_row
 
     def test_public_symbols_delta_neutral_no_color(self) -> None:
         # Public symbol counts are neutral -- no color span
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
         md = DiffPage([r1, r2]).render()
-        lines = _table_lines(md)
-        # The v2 row has the deltas; Public Symbols delta should not be colored
-        v2_line = next(line for line in lines if "2.0.0" in line)
-        # Split cells and check the Public Symbols cell has no color
-        cells = [c.strip() for c in v2_line.split("|")]
-        # Index 5: '', version, released, cov, strict_cov, pub_symbols
-        public_symbols_cell = cells[5]
-        assert "color:" not in public_symbols_cell
+        rows = _table_rows(md)
+        # The v2 row has the deltas; Public Symbols (5th <td>) should not be colored
+        v2_row = next(r for r in rows if "2.0.0" in r)
+
+        cells = re.findall(r"<td[^>]*>(.*?)</td>", v2_row, re.DOTALL)
+        # cells: version, released, cov, strict_cov, symbols, unannotated, ignores
+        symbols_cell = cells[4]
+        assert "color:" not in symbols_cell
 
     def test_no_delta_when_unchanged(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         md = DiffPage([r1, r2]).render()
-        # No span elements in the table when nothing changed
-        for line in _table_lines(md):
-            assert "<span" not in line
+        # No span elements in the data rows when nothing changed
+        for row in _table_rows(md):
+            assert "<span" not in row
 
     def test_raises_for_single_report(self) -> None:
         r = _minimal_report("pkg", "1.0.0")

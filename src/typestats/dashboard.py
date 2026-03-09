@@ -16,7 +16,6 @@ from typing import TYPE_CHECKING, ClassVar, Final
 import anyio
 import anyio.to_thread
 from packaging.version import Version
-from tabulate import tabulate
 
 from typestats.index import PyTyped
 from typestats.projects import load_projects
@@ -38,26 +37,10 @@ _DEFAULT_PROJECTS: Final = Path(__file__).parents[2] / "projects.toml"
 _MIN_VERSIONS_FOR_DIFF: Final = 2
 
 
-def _abbr(text: str, title: str, /) -> str:
-    return f'<abbr title="{title}">{text}</abbr>'
-
-
-def _icon(name: str, /, cls: str = "", **attrs: str) -> str:
-    parts = [f".{cls}"] if cls else []
-    parts += [f'{k}="{v}"' for k, v in attrs.items()]
-    return f":{name}:{{ {' '.join(parts)} }}"
-
-
 def _release_date(r: PackageReport, /) -> str:
     return r.pypi.upload_time[:10] if r.pypi and r.pypi.upload_time else ""
 
 
-_ICON_PY_TYPED: Final[dict[PyTyped, str]] = {
-    PyTyped.YES: _icon("material-check-circle", style="color: #4caf50"),
-    PyTyped.NO: _icon("material-close-circle", style="color: #e53935"),
-    PyTyped.PARTIAL: _icon("material-progress-check", style="color: #fb8c00"),
-    PyTyped.STUBS: _icon("material-check-circle-outline", style="color: #4caf50"),
-}
 _STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
     StubsOnly.NO: "",
     StubsOnly.THIRD_PARTY: "third-party",
@@ -65,32 +48,19 @@ _STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
 }
 
 
-_COL_COV: Final = _abbr("Coverage", "Percentage of annotated symbols")
-_COL_COV_STRICT: Final = _abbr(
-    "Coverage (strict)",
-    "Percentage of annotated symbols, excluding `Any`",
-)
-_COL_SYMBOLS: Final = _abbr(
-    "Symbols",
-    (
-        "Number of public annotatable slots: "
-        "each function parameter, return type, and variable counts as one"
-    ),
-)
-_COL_UNANNOTATED: Final = _abbr("Unannotated", "Slots without a type annotation")
-_COL_IGNORES: Final = _abbr("Ignores", "Number of type-checker ignore comments")
-
-
 @functools.cache
 def _get_env() -> Environment:
-    from jinja2 import Environment, PackageLoader  # noqa: PLC0415
+    from jinja2 import ChoiceLoader, Environment, PackageLoader  # noqa: PLC0415
 
     return Environment(
-        loader=PackageLoader("typestats", "templates"),
+        loader=ChoiceLoader([
+            PackageLoader("typestats", "templates"),
+            PackageLoader("zensical", "templates"),
+        ]),
         keep_trailing_newline=True,
         lstrip_blocks=True,
         trim_blocks=True,
-        autoescape=False,  # noqa: S701
+        autoescape=True,
     )
 
 
@@ -105,46 +75,28 @@ class IndexPage:
         PyTyped.PARTIAL: 2,
         PyTyped.NO: 3,
     }
-    _HEADERS: ClassVar = [
-        _abbr("Package", "PyPI package name"),
-        _abbr("Version", "Latest release version"),
-        _abbr("Released", "Release date on PyPI"),
-        _COL_COV,
-        _COL_COV_STRICT,
-        _COL_SYMBOLS,
-        _abbr("py.typed", "PEP 561 py.typed marker"),
-        _abbr("Stubs-only", "Type info from a standalone stubs package"),
-    ]
-    _COLALIGN: ClassVar = ("left",) * 3 + ("right",) * 3 + ("left",) * 2
 
     def __init__(self, reports: list[PackageReport], /) -> None:
         self._reports = reports
 
     def render(self) -> str:
-        table = tabulate(
-            [self._row(r) for r in self._reports],
-            headers=self._HEADERS,
-            colalign=self._COLALIGN,
-            tablefmt="pipe",
-        )
+        rows = [self._row(r) for r in self._reports]
         template = _get_env().get_template(self.TEMPLATE)
-        return template.render(table=table)
+        return template.render(rows=rows)
 
     @classmethod
-    def _row(cls, r: PackageReport, /) -> list[str]:
-        return [
-            f"[{r.package}]({r.package}/index.md)",
-            r.version,
-            _release_date(r),
-            f"{r.coverage():.1%}",
-            f"{r.coverage(True):.1%}",
-            f"{r.n_annotatable:,}",
-            (
-                f"<span hidden>{cls._PY_TYPED_SORT[r.py_typed]}</span>"
-                f"{_ICON_PY_TYPED[r.py_typed]}"
-            ),
-            _STUBS_ONLY_LABEL[r.stubs_only],
-        ]
+    def _row(cls, r: PackageReport, /) -> dict[str, str | int]:
+        return {
+            "package": r.package,
+            "version": r.version,
+            "release_date": _release_date(r),
+            "coverage": f"{r.coverage():.1%}",
+            "coverage_strict": f"{r.coverage(True):.1%}",
+            "n_annotatable": f"{r.n_annotatable:,}",
+            "py_typed_sort": cls._PY_TYPED_SORT[r.py_typed],
+            "py_typed": r.py_typed.name.lower(),
+            "stubs_only_label": _STUBS_ONLY_LABEL[r.stubs_only],
+        }
 
 
 class DiffPage:
@@ -176,57 +128,39 @@ class DiffPage:
         reports = self._reports
         package = reports[0].package
 
-        headers = [
-            "Version",
-            _abbr("Released", "Release date on PyPI"),
-            _COL_COV,
-            _COL_COV_STRICT,
-            _COL_SYMBOLS,
-            _COL_UNANNOTATED,
-            _COL_IGNORES,
-        ]
         # Build rows oldest-to-newest (so deltas reference the
         # previous version), then reverse for newest-first display.
-        prevs: list[PackageReport | None] = [None, *reports[:-1]]
+        prevs = [None, *reports[:-1]]
         rows = [
-            [
-                r.version,
-                _release_date(r),
-                self._cov_cell(r, prev, False),
-                self._cov_cell(r, prev, True),
-                self._int_cell(
+            {
+                "version": r.version,
+                "release_date": _release_date(r),
+                "coverage": self._cov_data(r, prev, strict=False),
+                "coverage_strict": self._cov_data(r, prev, strict=True),
+                "symbols": self._int_data(
                     r.n_annotatable,
                     prev.n_annotatable if prev else None,
                     neutral=True,
                 ),
-                self._int_cell(
+                "unannotated": self._int_data(
                     r.n_unannotated,
                     prev.n_unannotated if prev else None,
                     prefer_lower=True,
                 ),
-                self._int_cell(
+                "ignores": self._int_data(
                     r.n_type_ignores,
                     prev.n_type_ignores if prev else None,
                     prefer_lower=True,
                 ),
-            ]
+            }
             for prev, r in zip(prevs, reports, strict=True)
         ]
         rows.reverse()
-        # Latest version (first row after reversal) links to detail.
-        rows[0][0] = f"[{rows[0][0]}](index.md)"
-
-        table = tabulate(
-            rows,
-            headers=headers,
-            colalign=("left", *("right",) * (len(headers) - 1)),
-            tablefmt="pipe",
-        )
 
         chart = self._chart_data()
 
         template = _get_env().get_template(self.TEMPLATE)
-        return template.render(package=package, table=table, chart=chart)
+        return template.render(package=package, rows=rows, chart=chart)
 
     def _chart_data(self) -> dict[str, object]:
         """Prepare chart template variables.
@@ -297,60 +231,50 @@ class DiffPage:
         return labels, out_cov, out_strict
 
     @staticmethod
-    def _cov_cell(r: PackageReport, prev: PackageReport | None, strict: bool) -> str:
+    def _cov_data(
+        r: PackageReport,
+        prev: PackageReport | None,
+        *,
+        strict: bool,
+    ) -> dict[str, str]:
         val = r.coverage(strict)
-        formatted = f"{val:.1%}"
+        data: dict[str, str] = {"value": f"{val:.1%}"}
         if prev is None:
-            return formatted
+            return data
         delta_pp = (val - prev.coverage(strict)) * 100
         if not delta_pp:
-            return formatted
-        color = "green" if delta_pp > 0 else "red"
+            return data
         sign = "+" if delta_pp > 0 else ""
-        span = f'<span style="color:{color}">({sign}{delta_pp:.1f}%)</span>'
-        return f"{formatted}<br>{span}"
+        data["delta"] = f"({sign}{delta_pp:.1f}%)"
+        data["color"] = "green" if delta_pp > 0 else "red"
+        return data
 
     @staticmethod
-    def _int_cell(
+    def _int_data(
         val: int,
         prev_val: int | None,
         /,
         *,
         prefer_lower: bool = False,
         neutral: bool = False,
-    ) -> str:
-        formatted = str(val)
+    ) -> dict[str, str]:
+        data: dict[str, str] = {"value": str(val)}
         if prev_val is None:
-            return formatted
+            return data
         delta = val - prev_val
         if delta == 0:
-            return formatted
+            return data
         sign = "+" if delta > 0 else ""
-        if neutral:
-            return f"{formatted}<br>({sign}{delta})"
-        color = "green" if (delta < 0) == prefer_lower else "red"
-        span = f'<span style="color:{color}">({sign}{delta})</span>'
-        return f"{formatted}<br>{span}"
+        data["delta"] = f"({sign}{delta})"
+        if not neutral:
+            data["color"] = "green" if (delta < 0) == prefer_lower else "red"
+        return data
 
 
 class DetailPage:
     TEMPLATE: ClassVar = "detail.md.j2"
 
     _STUBS_RE: ClassVar = re.compile(r"^(?:(.+)-stubs|types-(.+))$")
-
-    _INDENT: ClassVar = " " * 4
-    _ICON_INCOMPLETE: ClassVar = _icon(
-        "material-arrow-down-right",
-        cls="md-icon",
-        style="vertical-align: middle",
-    )
-    _HEADERS: ClassVar = (
-        "Module",
-        _COL_COV,
-        _COL_COV_STRICT,
-        _COL_SYMBOLS,
-        _COL_IGNORES,
-    )
 
     def __init__(
         self,
@@ -371,22 +295,22 @@ class DetailPage:
             report=self._report,
             coverage=f"{self._report.coverage():.1%}",
             strict_coverage=f"{self._report.coverage(True):.1%}",
-            py_typed_icon=_ICON_PY_TYPED[self._report.py_typed],
+            py_typed=self._report.py_typed.name.lower(),
             stubs_only_label=_STUBS_ONLY_LABEL[self._report.stubs_only],
-            modules_table=self._modules_table(incomplete_slugs),
+            modules=self._modules_data(incomplete_slugs),
             annotation_sections=annotation_secs,
-            type_ignore_table=self._type_ignore_table(),
+            type_ignores=self._type_ignore_data(),
             project_urls=self._report.project_urls(),
             diff_link=self._diff_link,
         )
 
-    def _annotation_sections(self) -> tuple[list[dict[str, str | int]], dict[str, str]]:
+    def _annotation_sections(self) -> tuple[list[dict[str, object]], dict[str, str]]:
         """Build collapsible annotation sections for incomplete modules.
 
         Returns `(sections, incomplete_slugs)` where `incomplete_slugs`
         maps each display name to its HTML anchor slug.
         """
-        sections: list[dict[str, str | int]] = []
+        sections: list[dict[str, object]] = []
         slugs: dict[str, str] = {}
         package = self._report.package
         for m in self._sorted_modules:
@@ -401,53 +325,31 @@ class DetailPage:
                 "display_name": f"`{display_name}`",
                 "slug": slug,
                 "n_issues": len(rows),
-                "table": self._indent(
-                    tabulate(
-                        rows,
-                        headers=[
-                            "Symbol",
-                            "Kind",
-                            "Status",
-                            _abbr("Annotated", "Slots with a type annotation"),
-                            _abbr("Any", "Slots typed as Any"),
-                            _COL_UNANNOTATED,
-                        ],
-                        colalign=("left", "left", "left", "right", "right", "right"),
-                        tablefmt="pipe",
-                    ),
-                ),
+                "rows": rows,
             })
+
         return sections, slugs
 
-    def _modules_table(self, incomplete_slugs: dict[str, str]) -> str:
+    def _modules_data(
+        self,
+        incomplete_slugs: dict[str, str],
+    ) -> list[dict[str, str | None]]:
         package = self._report.package
-
-        def _cell(m: ModuleReport) -> str:
+        result = []
+        for m in self._sorted_modules:
             display_name = self._display_module_name(m.name, package)
-            if display_name in incomplete_slugs:
-                slug = incomplete_slugs[display_name]
-                icon = f'[{self._ICON_INCOMPLETE}](#{slug} "Incomplete annotations")'
-                return f"`{display_name}` {icon}"
-            return f"`{display_name}`"
+            result.append({
+                "display_name": display_name,
+                "slug": incomplete_slugs.get(display_name),
+                "coverage": f"{m.coverage():.1%}",
+                "coverage_strict": f"{m.coverage(True):.1%}",
+                "n_annotatable": str(m.n_annotatable),
+                "n_type_ignores": str(m.n_type_ignores),
+            })
+        return result
 
-        return tabulate(
-            [
-                [
-                    _cell(m),
-                    f"{m.coverage():.1%}",
-                    f"{m.coverage(True):.1%}",
-                    str(m.n_annotatable),
-                    str(m.n_type_ignores),
-                ]
-                for m in self._sorted_modules
-            ],
-            headers=self._HEADERS,
-            colalign=("left", "right", "right", "right", "right"),
-            tablefmt="pipe",
-        )
-
-    def _type_ignore_table(self) -> str:
-        """Render the type-ignore comments table, or empty string."""
+    def _type_ignore_data(self) -> list[tuple[str, int]]:
+        """Return sorted (flavor, count) pairs for type-ignore comments."""
 
         def _ignore_label(ic: analyze.IgnoreComment) -> str:
             out = f"{ic.kind}: ignore"
@@ -456,30 +358,12 @@ class DetailPage:
             return out
 
         counts = Counter(_ignore_label(ic) for ic in self._report.type_ignores)
-        sorted_counts = sorted(counts.items(), key=lambda x: (-x[1], x[0]))
-        if not sorted_counts:
-            return ""
-        return tabulate(
-            [[f"`{flavor}`", str(count)] for flavor, count in sorted_counts],
-            headers=[
-                _abbr("Flavor", "Type-checker ignore directive"),
-                "Count",
-            ],
-            colalign=("left", "right"),
-            tablefmt="pipe",
-        )
-
-    @classmethod
-    def _indent(cls, text: str, /) -> str:
-        """Indent each line by 4 spaces for pymdownx admonition blocks."""
-        return "\n".join(f"{cls._INDENT}{line}" for line in text.splitlines())
+        return sorted(counts.items(), key=lambda x: (-x[1], x[0]))
 
     @staticmethod
-    def _annotation_status(
-        report: ModuleReport,
-    ) -> list[tuple[str, str, str, str, str, str]]:
+    def _annotation_status(report: ModuleReport) -> list[dict[str, str | int]]:
         """Return rows for symbols with imperfect annotations."""
-        rows: list[tuple[str, str, str, str, str, str]] = []
+        rows: list[dict[str, str | int]] = []
         for s in report.symbol_reports:
             if s.n_unannotated == 0 and s.n_any == 0:
                 continue
@@ -492,14 +376,14 @@ class DetailPage:
                 status = "Any"
 
             short_name = s.name.removeprefix(f"{report.name}.")
-            rows.append((
-                f"`{short_name}`",
-                s.kind,
-                status,
-                str(s.n_annotated),
-                str(s.n_any),
-                str(s.n_unannotated),
-            ))
+            rows.append({
+                "name": short_name,
+                "kind": s.kind,
+                "status": status,
+                "n_annotated": s.n_annotated,
+                "n_any": s.n_any,
+                "n_unannotated": s.n_unannotated,
+            })
 
         return rows
 
