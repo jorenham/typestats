@@ -108,9 +108,6 @@ async def _watch_and_rebuild(
             importlib.reload(typestats.dashboard)
 
         projects_changed = "projects.toml" in changed
-        full_rebuild = projects_changed or dashboard_changed
-        templates = typestats.dashboard.TEMPLATES
-        rebuild = None if full_rebuild else frozenset(changed) & templates
         t0 = time.perf_counter()
         cached_reports, cached_all_reports = await typestats.dashboard.build_site(
             reports_dir,
@@ -118,7 +115,6 @@ async def _watch_and_rebuild(
             ROOT / "projects.toml",
             reports=None if projects_changed else cached_reports,
             all_reports=None if projects_changed else cached_all_reports,
-            rebuild=rebuild,
         )
         log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
 

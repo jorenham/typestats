@@ -5,7 +5,18 @@ import enum
 import sys
 from collections.abc import Sequence
 from pathlib import PurePosixPath
-from typing import TYPE_CHECKING, Annotated, Any, Literal, NamedTuple, Self, cast
+from typing import (
+    TYPE_CHECKING,
+    Annotated,
+    Any,
+    Final,
+    Literal,
+    NamedTuple,
+    NotRequired,
+    Self,
+    TypedDict,
+    cast,
+)
 
 if TYPE_CHECKING:
     import httpx
@@ -461,6 +472,21 @@ class PypiInfo(BaseModel):
         )
 
 
+# Hosts that indicate a repository URL.
+_REPO_HOSTS: Final = {
+    "github.com",
+    "gitlab.com",
+    "bitbucket.org",
+    "codeberg.org",
+    "sr.ht",
+}
+
+
+class _ProjectUrls(TypedDict):
+    pypi: str
+    repo: NotRequired[str]
+
+
 class PackageReport(BaseModel):
     model_config = ConfigDict(frozen=True)
 
@@ -562,6 +588,23 @@ class PackageReport(BaseModel):
     def coverage(self, strict: bool = False, /) -> float:
         """Coverage ratio. If *strict*, `Any` slots don't count."""
         return _coverage(self.n_annotated, self.n_any, self.n_annotatable, strict)
+
+    def project_urls(self) -> _ProjectUrls:
+        """Extract PyPI and repository URLs from package metadata."""
+        import httpx
+
+        urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{self.package}/"}
+
+        if self.metadata:
+            for entry in self.metadata.get("Project-URL", []):
+                url = entry.rsplit(",", 1)[-1].strip()
+                assert url, f"Malformed Project-URL: {entry!r}"
+
+                if httpx.URL(url).host in _REPO_HOSTS:
+                    urls["repo"] = url
+                    break
+
+        return urls
 
     def print(self) -> None:
         """Print a human-readable summary to stdout."""
