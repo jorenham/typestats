@@ -353,6 +353,34 @@ class TestRenderDetail:
         # helper is fully annotated - should not appear
         assert "helper" not in annotation_section
 
+    def test_module_icon_links_to_incomplete_section(self) -> None:
+        """Modules with incomplete symbols should link to annotations."""
+        report = _rich_report("mypkg")
+        md = render_detail(report)
+        # mypkg (init) has incomplete symbols -> icon link before module name
+        assert "[:material-alert-circle-outline:](#module-mypkg" in md
+        assert "[:material-alert-circle-outline:](#module-mypkg.utils" in md
+
+    def test_module_no_icon_when_fully_annotated(self) -> None:
+        """Fully annotated modules should not have an icon."""
+        report = _minimal_report(
+            "perfect",
+            "1.0.0",
+            n_annotated=10,
+            n_any=0,
+            n_unannotated=0,
+        )
+        md = render_detail(report)
+        assert "`perfect`" in md
+        assert ":material-alert-circle-outline:" not in md
+
+    def test_annotation_section_has_anchor(self) -> None:
+        """Each incomplete annotation section should have an anchor for linking."""
+        report = _rich_report("mypkg")
+        md = render_detail(report)
+        assert '<span id="module-mypkg"></span>' in md
+        assert '<span id="module-mypkg.utils"></span>' in md
+
     def test_stubs_module_names_normalized(self) -> None:
         """Stubs packages should display base package module names."""
         module = ModuleReport.model_validate({

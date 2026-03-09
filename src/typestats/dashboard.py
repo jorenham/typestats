@@ -79,6 +79,10 @@ _STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
     StubsOnly.TYPESHED: "typeshed",
 }
 
+_ICON_INCOMPLETE: Final = (
+    ':material-arrow-down-right:{ .md-icon style="vertical-align: middle" }'
+)
+
 _PAGE_FRONTMATTER: Final = """\
 ---
 hide:
@@ -504,37 +508,19 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
     """Render a detailed markdown page for a single package report."""
     sorted_modules = sorted(report.module_reports, key=lambda r: r.path)
 
-    # Pre-render modules table
-    modules_table = tabulate(
-        [
-            [
-                f"`{_display_module_name(m.name, report.package)}`",
-                f"{m.coverage():.1%}",
-                f"{m.coverage(True):.1%}",
-                str(m.n_annotatable),
-                str(m.n_type_ignores),
-            ]
-            for m in sorted_modules
-        ],
-        headers=[
-            "Module",
-            _COL_COV,
-            _COL_COV_STRICT,
-            _COL_SYMBOLS,
-            _COL_IGNORES,
-        ],
-        colalign=("left", "right", "right", "right", "right"),
-        tablefmt="pipe",
-    )
-
-    # Pre-render annotation sections
+    # Pre-render annotation sections (before modules table, to know which have issues)
     annotation_sections: list[dict[str, str | int]] = []
+    incomplete_slugs: dict[str, str] = {}  # display_name -> slug
     for m in sorted_modules:
         rows = _annotation_status(m)
         if not rows:
             continue
+        display_name = _display_module_name(m.name, report.package)
+        slug = f"module-{display_name}"
+        incomplete_slugs[display_name] = slug
         annotation_sections.append({
-            "display_name": f"`{_display_module_name(m.name, report.package)}`",
+            "display_name": f"`{display_name}`",
+            "slug": slug,
             "n_issues": len(rows),
             "table": _indent(
                 tabulate(
@@ -552,6 +538,37 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
                 ),
             ),
         })
+
+    # Pre-render modules table
+    def _module_cell(m: ModuleReport) -> str:
+        display_name = _display_module_name(m.name, report.package)
+        if display_name in incomplete_slugs:
+            slug = incomplete_slugs[display_name]
+            icon = f'[{_ICON_INCOMPLETE}](#{slug} "Incomplete annotations")'
+            return f"`{display_name}` {icon}"
+        return f"`{display_name}`"
+
+    modules_table = tabulate(
+        [
+            [
+                _module_cell(m),
+                f"{m.coverage():.1%}",
+                f"{m.coverage(True):.1%}",
+                str(m.n_annotatable),
+                str(m.n_type_ignores),
+            ]
+            for m in sorted_modules
+        ],
+        headers=[
+            "Module",
+            _COL_COV,
+            _COL_COV_STRICT,
+            _COL_SYMBOLS,
+            _COL_IGNORES,
+        ],
+        colalign=("left", "right", "right", "right", "right"),
+        tablefmt="pipe",
+    )
 
     # Pre-render type-ignore counts table
     def _ignore_label(ic: analyze.IgnoreComment) -> str:
