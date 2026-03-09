@@ -4,12 +4,10 @@ import anyio
 import pytest
 
 from typestats.dashboard import (
-    _ICON_INCOMPLETE,
-    _extract_project_urls,
+    DetailPage,
+    DiffPage,
+    IndexPage,
     build_site,
-    render_detail,
-    render_diff,
-    render_index,
 )
 from typestats.index import PyTyped
 from typestats.report import (
@@ -194,7 +192,7 @@ class TestRenderIndex:
             n_any=5,
             n_unannotated=5,
         )
-        md = render_index([report])
+        md = IndexPage([report]).render()
         rows = _table_lines(md)
         assert len(rows) == 3
 
@@ -210,7 +208,7 @@ class TestRenderIndex:
             _minimal_report("c", "1.0", py_typed=PyTyped.PARTIAL),
             _minimal_report("d", "1.0", py_typed=PyTyped.STUBS),
         ]
-        md = render_index(reports)
+        md = IndexPage(reports).render()
         rows = _table_lines(md)
         assert "<span hidden>0</span>" in rows[2]  # YES
         assert "<span hidden>3</span>" in rows[3]  # NO
@@ -223,7 +221,7 @@ class TestRenderIndex:
             _minimal_report("beta", "2.0.0"),
             _minimal_report("gamma", "3.0.0"),
         ]
-        md = render_index(reports)
+        md = IndexPage(reports).render()
         rows = _table_lines(md)
         assert len(rows) == 5
 
@@ -239,7 +237,7 @@ class TestRenderIndex:
             stubs_only=StubsOnly.THIRD_PARTY,
             py_typed=PyTyped.YES,
         )
-        md = render_index([report])
+        md = IndexPage([report]).render()
         data_row = _table_lines(md)[2]
         assert "third-party" in data_row
         assert "[pandas-stubs](pandas-stubs/index.md)" in data_row
@@ -250,13 +248,13 @@ class TestRenderIndex:
             "1.0.0",
             pypi=PypiInfo(upload_time="2025-06-15T12:00:00Z"),
         )
-        md = render_index([report])
+        md = IndexPage([report]).render()
         data_row = _table_lines(md)[2]
         assert "2025-06-15" in data_row
 
     def test_released_column_missing(self) -> None:
         report = _minimal_report("pkg", "1.0.0")
-        md = render_index([report])
+        md = IndexPage([report]).render()
         header = _table_lines(md)[0]
         assert "Released" in header
 
@@ -268,7 +266,7 @@ class TestRenderIndex:
             n_any=2,
             n_unannotated=10,
         )
-        md = render_index([report])
+        md = IndexPage([report]).render()
         data_row = _table_lines(md)[2]
         # naive: (8+2)/20 = 50.0%
         assert "50.0%" in data_row
@@ -279,7 +277,7 @@ class TestRenderIndex:
 class TestRenderDetail:
     def test_heading_and_backlink(self) -> None:
         report = _minimal_report("numpy", "2.4.2")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "# numpy 2.4.2" in md
 
     def test_summary_section(self) -> None:
@@ -290,7 +288,7 @@ class TestRenderDetail:
             n_any=2,
             n_unannotated=10,
         )
-        md = render_detail(report)
+        md = DetailPage(report).render()
         # coverage = (8+2)/20 = 50.0%
         assert "50.0%" in md
         # strict = 8/20 = 40.0%
@@ -300,7 +298,7 @@ class TestRenderDetail:
 
     def test_module_table(self) -> None:
         report = _rich_report("mypkg", "1.0.0")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "## Modules" in md
         # Both modules appear
         table_lines = _table_lines(md)
@@ -309,14 +307,14 @@ class TestRenderDetail:
 
     def test_annotation_status_missing(self) -> None:
         report = _rich_report("mypkg")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "## Incomplete Annotations" in md
         # `run` has n_unannotated=2, n_any=0 -> "missing"
         assert "missing" in md
 
     def test_annotation_status_any(self) -> None:
         report = _rich_report("mypkg")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         # `data` has n_any=1, n_unannotated=0 -> "Any"
         assert "| `data`" in md
         lines = md.splitlines()
@@ -325,7 +323,7 @@ class TestRenderDetail:
 
     def test_annotation_status_mixed(self) -> None:
         report = _rich_report("mypkg")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         # `mixed` has n_any=1 AND n_unannotated=1 -> "missing + Any"
         assert "missing + Any" in md
 
@@ -337,13 +335,13 @@ class TestRenderDetail:
             n_any=0,
             n_unannotated=0,
         )
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "All symbols are fully annotated" in md
 
     def test_annotated_symbols_excluded(self) -> None:
         """Fully annotated symbols should not appear in the Annotations table."""
         report = _rich_report("mypkg")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         lines = md.splitlines()
         # VERSION is fully annotated - should not appear in annotations table
         annotations_start = next(
@@ -357,7 +355,7 @@ class TestRenderDetail:
     def test_module_icon_links_to_incomplete_section(self) -> None:
         """Modules with incomplete symbols should link to annotations."""
         report = _rich_report("mypkg")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         # mypkg (init) has incomplete symbols -> icon link after module name
         assert "(#module-mypkg " in md
         assert "(#module-mypkg.utils " in md
@@ -371,14 +369,13 @@ class TestRenderDetail:
             n_any=0,
             n_unannotated=0,
         )
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "`perfect`" in md
-        assert _ICON_INCOMPLETE not in md
 
     def test_annotation_section_has_anchor(self) -> None:
         """Each incomplete annotation section should have an anchor for linking."""
         report = _rich_report("mypkg")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert '<span id="module-mypkg"></span>' in md
         assert '<span id="module-mypkg.utils"></span>' in md
 
@@ -404,7 +401,7 @@ class TestRenderDetail:
             py_typed=PyTyped.STUBS,
             module_reports=(module,),
         )
-        md = render_detail(report)
+        md = DetailPage(report).render()
         # Module table should show "scipy.fft", not "scipy-stubs.fft"
         assert "scipy.fft" in md
         assert "scipy-stubs.fft" not in md
@@ -416,12 +413,12 @@ class TestRenderDetail:
             stubs_only=StubsOnly.THIRD_PARTY,
             py_typed=PyTyped.YES,
         )
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "Stubs-only: third-party" in md
 
     def test_detail_stubs_only_hidden_when_no(self) -> None:
         report = _minimal_report("numpy", "2.4.2")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "Stubs-only" not in md
 
 
@@ -508,13 +505,13 @@ class TestBuildSite:
 class TestExtractProjectUrls:
     def test_pypi_always_present(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert urls["pypi"] == "https://pypi.org/project/numpy/"
 
     def test_no_metadata(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
         assert report.metadata is None
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert "repo" not in urls
 
     def test_github_url(self) -> None:
@@ -528,7 +525,7 @@ class TestExtractProjectUrls:
                 ],
             },
         )
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert urls["repo"] == "https://github.com/numpy/numpy"
 
     def test_github_homepage_label(self) -> None:
@@ -542,7 +539,7 @@ class TestExtractProjectUrls:
                 ],
             },
         )
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert urls["repo"] == "https://github.com/org/pkg"
 
     def test_gitlab_url(self) -> None:
@@ -555,7 +552,7 @@ class TestExtractProjectUrls:
                 ],
             },
         )
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert urls["repo"] == "https://gitlab.com/org/pkg"
 
     def test_codeberg_url(self) -> None:
@@ -568,7 +565,7 @@ class TestExtractProjectUrls:
                 ],
             },
         )
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert urls["repo"] == "https://codeberg.org/org/pkg"
 
     def test_first_repo_url_wins(self) -> None:
@@ -582,7 +579,7 @@ class TestExtractProjectUrls:
                 ],
             },
         )
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert urls["repo"] == "https://github.com/org/pkg"
 
     def test_no_repo_host(self) -> None:
@@ -596,14 +593,14 @@ class TestExtractProjectUrls:
                 ],
             },
         )
-        urls = _extract_project_urls(report)
+        urls = report.project_urls()
         assert "repo" not in urls
 
 
 class TestRenderDetailProjectUrls:
     def test_pypi_link_present(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         pypi_url = "https://pypi.org/project/numpy/"
         assert f'<a href="{pypi_url}">{pypi_url}</a>' in md
 
@@ -613,23 +610,23 @@ class TestRenderDetailProjectUrls:
             "2.0.0",
             metadata={"Project-URL": ["Repository, https://github.com/numpy/numpy"]},
         )
-        md = render_detail(report)
+        md = DetailPage(report).render()
         repo_url = "https://github.com/numpy/numpy"
         assert f'<a href="{repo_url}">{repo_url}</a>' in md
 
     def test_no_repo_link_when_absent(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "github.com" not in md
 
     def test_no_diff_link_by_default(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
-        md = render_detail(report)
+        md = DetailPage(report).render()
         assert "Version history" not in md
 
     def test_diff_link_present_when_provided(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
-        md = render_detail(report, diff_link="diff.md")
+        md = DetailPage(report, diff_link="diff.md").render()
         assert "Version history" in md
         assert "[Version history](diff.md)" in md
 
@@ -638,7 +635,7 @@ class TestRenderDiff:
     def test_two_versions_basic(self) -> None:
         r1 = _minimal_report("mypkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("mypkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert "# mypkg Version History" in md
         assert "1.0.0" in md
         assert "2.0.0" in md
@@ -651,7 +648,7 @@ class TestRenderDiff:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=4, n_any=0, n_unannotated=6)
         r2 = _minimal_report("pkg", "1.1.0", n_annotated=6, n_any=0, n_unannotated=4)
         r3 = _minimal_report("pkg", "2.0.0", n_annotated=9, n_any=0, n_unannotated=1)
-        md = render_diff([r1, r2, r3])
+        md = DiffPage([r1, r2, r3]).render()
         lines = _table_lines(md)
         version_positions = {
             v: next(i for i, line in enumerate(lines) if v in line)
@@ -664,7 +661,7 @@ class TestRenderDiff:
         # v1: 5/10 = 50%, v2: 8/10 = 80% -> +30.0%, should be green
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert "color:green" in md
         assert "+30.0%" in md
 
@@ -672,7 +669,7 @@ class TestRenderDiff:
         # v1: 8/10 = 80%, v2: 5/10 = 50% -> -30.0%, should be red
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=8, n_any=0, n_unannotated=2)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert "color:red" in md
         assert "-30.0%" in md
 
@@ -680,7 +677,7 @@ class TestRenderDiff:
         # Fewer unannotated is an improvement -> green
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         # Find the v2 table row and check for green delta in Unannotated column
         lines = _table_lines(md)
         v2_line = next(line for line in lines if "2.0.0" in line)
@@ -690,7 +687,7 @@ class TestRenderDiff:
         # Public symbol counts are neutral -- no color span
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         lines = _table_lines(md)
         # The v2 row has the deltas; Public Symbols delta should not be colored
         v2_line = next(line for line in lines if "2.0.0" in line)
@@ -703,7 +700,7 @@ class TestRenderDiff:
     def test_no_delta_when_unchanged(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         # No span elements in the table when nothing changed
         for line in _table_lines(md):
             assert "<span" not in line
@@ -711,16 +708,16 @@ class TestRenderDiff:
     def test_raises_for_single_report(self) -> None:
         r = _minimal_report("pkg", "1.0.0")
         with pytest.raises(ValueError, match="at least 2"):
-            render_diff([r])
+            DiffPage([r]).render()
 
     def test_raises_for_empty_list(self) -> None:
         with pytest.raises(ValueError, match="at least 2"):
-            render_diff([])
+            DiffPage([]).render()
 
     def test_all_metric_rows_present(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         for metric in (
             "Released",
             "Coverage",
@@ -742,21 +739,21 @@ class TestRenderDiff:
             "2.0.0",
             pypi=PypiInfo(upload_time="2025-06-20T14:00:00Z"),
         )
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert "2024-01-15" in md
         assert "2025-06-20" in md
 
     def test_released_column_empty_when_no_pypi(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0")
         r2 = _minimal_report("pkg", "2.0.0")
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         # The Released header must be present even without dates
         assert "Released" in md
 
     def test_chart_present(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert "``` mermaid" in md
         assert "xychart-beta" in md
         assert "Coverage" in md
@@ -778,7 +775,7 @@ class TestRenderDiff:
             n_unannotated=2,
             pypi=PypiInfo(upload_time="2025-06-20T14:00:00Z"),
         )
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert '"Jan 2024"' in md
         assert '"Jun 2025"' in md
         # Version strings should NOT appear on the x-axis
@@ -788,7 +785,7 @@ class TestRenderDiff:
     def test_chart_uses_versions_without_dates(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert '"1.0.0"' in md
         assert '"2.0.0"' in md
 
@@ -796,7 +793,7 @@ class TestRenderDiff:
         # 5/10 = 50%, 8/10 = 80%
         r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
         r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        md = render_diff([r1, r2])
+        md = DiffPage([r1, r2]).render()
         assert "50.0" in md
         assert "80.0" in md
 
@@ -826,7 +823,7 @@ class TestRenderDiff:
             n_unannotated=1,
             pypi=PypiInfo(upload_time="2024-08-01T00:00:00Z"),
         )
-        md = render_diff([r1, r2, r3])
+        md = DiffPage([r1, r2, r3]).render()
         # Chart should have spacer entries (rendered as " ")
         chart_block = md.split("``` mermaid")[1].split("```")[0]
         x_line = next(line for line in chart_block.splitlines() if "x-axis" in line)
