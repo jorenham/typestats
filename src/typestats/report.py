@@ -591,16 +591,16 @@ class PackageReport(BaseModel):
 
     def project_urls(self) -> _ProjectUrls:
         """Extract PyPI and repository URLs from package metadata."""
-        import httpx
+        from urllib.parse import urlparse
 
         urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{self.package}/"}
 
         if self.metadata:
             for entry in self.metadata.get("Project-URL", []):
-                url = entry.rsplit(",", 1)[-1].strip()
-                assert url, f"Malformed Project-URL: {entry!r}"
+                if not (url := entry.rsplit(",", 1)[-1].strip()):
+                    continue
 
-                if httpx.URL(url).host in _REPO_HOSTS:
+                if (hostname := urlparse(url).hostname) and hostname in _REPO_HOSTS:
                     urls["repo"] = url
                     break
 
