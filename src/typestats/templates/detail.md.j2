@@ -50,6 +50,7 @@ No version history available.
 
 {% if annotation_sections %}
 {% for section in annotation_sections %}
+<span id="{{ section.slug }}"></span>
 ??? "{{ section.display_name }} ({{ section.n_issues }} symbol{{ 's' if section.n_issues != 1 else '' }})"
 {{ section.table }}
 
