@@ -19,6 +19,7 @@ hide:
       <th style="text-align: right"><abbr title="Number of public annotatable slots: each function parameter, return type, and variable counts as one">Symbols</abbr></th>
       <th><abbr title="PEP 561 py.typed marker">py.typed</abbr></th>
       <th><abbr title="Type info from a standalone stubs package">Stubs-only</abbr></th>
+      <th style="text-align: right" data-sort-method="number"><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>
     </tr>
   </thead>
   <tbody>
@@ -32,6 +33,7 @@ hide:
         <td style="text-align: right">{{ r.n_annotatable }}</td>
         <td><span hidden>{{ r.py_typed_sort }}</span>{{ icon_py_typed(r.py_typed) }}</td>
         <td>{{ r.stubs_only_label }}</td>
+        <td class="pypi-downloads" data-package="{{ r.package }}" style="text-align: right"></td>
       </tr>
     {% endfor %}
   </tbody>
