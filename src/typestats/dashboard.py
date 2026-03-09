@@ -60,7 +60,7 @@ def _get_env() -> Environment:
         keep_trailing_newline=True,
         lstrip_blocks=True,
         trim_blocks=True,
-        autoescape=False,  # noqa: S701
+        autoescape=True,
     )
 
 
