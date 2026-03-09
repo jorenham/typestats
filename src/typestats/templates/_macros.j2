@@ -1,0 +1,35 @@
+{% macro twemoji(icon, style="") -%}
+  <span class="twemoji"{% if style %} style="{{ style }}"{% endif %}>
+    {%- include icon -%}
+  </span>
+{%- endmacro %}
+
+{% macro icon_py_typed(py_typed) -%}
+  {% if py_typed == "yes" -%}
+    {{ twemoji(".icons/material/check-circle.svg", style="color: #4caf50") }}
+  {%- elif py_typed == "no" -%}
+    {{ twemoji(".icons/material/close-circle.svg", style="color: #e53935") }}
+  {%- elif py_typed == "partial" -%}
+    {{ twemoji(".icons/material/progress-check.svg", style="color: #fb8c00") }}
+  {%- elif py_typed == "stubs" -%}
+    {{ twemoji(".icons/material/check-circle-outline.svg", style="color: #4caf50") }}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro icon_incomplete() -%}
+  {{ twemoji(".icons/material/arrow-bottom-right.svg") }}
+{%- endmacro %}
+
+{% macro metric_cell(cell) -%}
+  <td style="text-align: right">
+    {{- cell.value }}
+    {%- if cell.delta is defined -%}
+      <br>
+      {%- if cell.color is defined -%}
+        <span style="color:{{ cell.color }}">{{ cell.delta }}</span>
+      {%- else -%}
+        {{ cell.delta }}
+      {%- endif -%}
+    {%- endif -%}
+  </td>
+{%- endmacro %}
