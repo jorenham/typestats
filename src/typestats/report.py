@@ -107,7 +107,9 @@ class NameReport(BaseModel):
     n_functions: Literal[0] = Field(0, exclude=True)
     n_methods: Literal[0] = Field(0, exclude=True)
     n_function_overloads: Literal[0] = Field(0, exclude=True)
+    n_function_params: Literal[0] = Field(0, exclude=True)
     n_method_overloads: Literal[0] = Field(0, exclude=True)
+    n_method_params: Literal[0] = Field(0, exclude=True)
     n_classes: Literal[0] = Field(0, exclude=True)
     n_names: Literal[1] = Field(1, exclude=True)
     n_properties: Literal[0] = Field(0, exclude=True)
@@ -154,14 +156,25 @@ class FunctionReport(BaseModel):
     n_functions: Literal[1] = Field(1, exclude=True)
     n_methods: Literal[0] = Field(0, exclude=True)
     n_method_overloads: Literal[0] = Field(0, exclude=True)
+    n_method_params: Literal[0] = Field(0, exclude=True)
     n_classes: Literal[0] = Field(0, exclude=True)
     n_names: Literal[0] = Field(0, exclude=True)
     n_properties: Literal[0] = Field(0, exclude=True)
 
     @computed_field
     @property
+    def n_params(self) -> NonNegativeInt:
+        return self.n_annotatable - self.n_overloads
+
+    @computed_field
+    @property
     def n_function_overloads(self) -> NonNegativeInt:
         return self.n_overloads
+
+    @computed_field
+    @property
+    def n_function_params(self) -> NonNegativeInt:
+        return self.n_params
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Function, /) -> Self:
@@ -198,12 +211,20 @@ class PropertyReport(BaseModel):
         return self.n_annotated + self.n_any + self.n_unannotated
 
     n_functions: Literal[0] = Field(0, exclude=True)
-    n_methods: Literal[0] = Field(0, exclude=True)
     n_function_overloads: Literal[0] = Field(0, exclude=True)
+    n_function_params: Literal[0] = Field(0, exclude=True)
+    n_methods: Literal[0] = Field(0, exclude=True)
     n_method_overloads: Literal[0] = Field(0, exclude=True)
+    n_method_params: Literal[0] = Field(0, exclude=True)
     n_classes: Literal[0] = Field(0, exclude=True)
     n_names: Literal[0] = Field(0, exclude=True)
     n_properties: Literal[1] = Field(1, exclude=True)
+
+    @computed_field
+    @property
+    def n_params(self) -> NonNegativeInt:
+        # TODO(@jorenham): https://github.com/jorenham/typestats/issues/225
+        return 0
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Property, /) -> Self:
@@ -271,18 +292,28 @@ class ClassReport(BaseModel):
 
     @computed_field
     @property
-    def n_methods(self) -> NonNegativeInt:
-        return len(self.methods)
-
-    @computed_field
-    @property
     def n_function_overloads(self) -> Literal[0]:
         return 0
 
     @computed_field
     @property
+    def n_function_params(self) -> Literal[0]:
+        return 0
+
+    @computed_field
+    @property
+    def n_methods(self) -> NonNegativeInt:
+        return len(self.methods)
+
+    @computed_field
+    @property
     def n_method_overloads(self) -> NonNegativeInt:
         return sum(m.n_overloads for m in self.methods)
+
+    @computed_field
+    @property
+    def n_method_params(self) -> NonNegativeInt:
+        return sum(m.n_params for m in self.methods)
 
     n_classes: Literal[1] = Field(1, exclude=True)
     n_names: Literal[0] = Field(0, exclude=True)
@@ -389,18 +420,28 @@ class ModuleReport(BaseModel):
 
     @computed_field
     @property
-    def n_methods(self) -> NonNegativeInt:
-        return sum(s.n_methods for s in self.symbol_reports)
-
-    @computed_field
-    @property
     def n_function_overloads(self) -> NonNegativeInt:
         return sum(s.n_function_overloads for s in self.symbol_reports)
 
     @computed_field
     @property
+    def n_function_params(self) -> NonNegativeInt:
+        return sum(s.n_function_params for s in self.symbol_reports)
+
+    @computed_field
+    @property
+    def n_methods(self) -> NonNegativeInt:
+        return sum(s.n_methods for s in self.symbol_reports)
+
+    @computed_field
+    @property
     def n_method_overloads(self) -> NonNegativeInt:
         return sum(s.n_method_overloads for s in self.symbol_reports)
+
+    @computed_field
+    @property
+    def n_method_params(self) -> NonNegativeInt:
+        return sum(s.n_method_params for s in self.symbol_reports)
 
     @computed_field
     @property
@@ -487,7 +528,7 @@ class _ProjectUrls(TypedDict):
     repo: NotRequired[str]
 
 
-class PackageReport(BaseModel):
+class PackageReport(BaseModel):  # noqa: PLR0904
     model_config = ConfigDict(frozen=True)
 
     package: str
@@ -547,13 +588,23 @@ class PackageReport(BaseModel):
 
     @computed_field
     @property
+    def n_function_overloads(self) -> NonNegativeInt:
+        return sum(m.n_function_overloads for m in self.module_reports)
+
+    @computed_field
+    @property
+    def n_function_params(self) -> NonNegativeInt:
+        return sum(m.n_function_params for m in self.module_reports)
+
+    @computed_field
+    @property
     def n_methods(self) -> NonNegativeInt:
         return sum(m.n_methods for m in self.module_reports)
 
     @computed_field
     @property
-    def n_function_overloads(self) -> NonNegativeInt:
-        return sum(m.n_function_overloads for m in self.module_reports)
+    def n_method_params(self) -> NonNegativeInt:
+        return sum(m.n_method_params for m in self.module_reports)
 
     @computed_field
     @property
