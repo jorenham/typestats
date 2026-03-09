@@ -7,55 +7,79 @@ hide:
 
 # {{ report.package }} {{ report.version }}
 
-<table>
-  <tr>
-    <td>PyPI</td>
-    <td><a href="{{ project_urls.pypi }}">{{ project_urls.pypi }}</a></td>
-  </tr>
-  {% if project_urls.repo %}
-    <tr>
-      <td>Repository</td>
-      <td><a href="{{ project_urls.repo }}">{{ project_urls.repo }}</a></td>
-    </tr>
-  {% endif %}
-</table>
-
-<div class="grid cards" markdown>
-
--   __Coverage__
-
-    ---
-
-    {{ coverage }} coverage · {{ strict_coverage }} strict
-
--   __Symbols__
-
-    ---
-
-    {{ report.n_annotatable }} total · {{ report.n_annotated }} annotated · {{ report.n_any }} Any · {{ report.n_unannotated }} unannotated
-
--   __Definitions__
-
-    ---
-
-    {{ report.n_functions }} functions ({{ report.n_function_overloads }} overloads) · {{ report.n_methods }} methods ({{ report.n_method_overloads }} overloads) · {{ report.n_classes }} classes · {{ report.n_names }} names · {{ report.n_properties }} properties
-
--   __Metadata__
-
-    ---
-
-    `py.typed`: {{ icon_py_typed(py_typed) }}{% if stubs_only_label %} · Stubs-only: {{ stubs_only_label }}{% endif %}
-
-</div>
-
 {% if diff_link %}[Version history]({{ diff_link }})
 {% else %}
 No version history available.
 {% endif %}
 
-## Modules
+<div class="grid cards" markdown>
 
-{{ report.n_modules }} modules
+-   <table>
+      <tr>
+      <td>PyPI</td>
+      <td><a href="{{ project_urls.pypi }}">{{ project_urls.pypi }}</a></td>
+      </tr>{% if project_urls.repo %}
+      <tr>
+      <td>Repository</td>
+      <td><a href="{{ project_urls.repo }}">{{ project_urls.repo }}</a></td>
+      </tr>{% endif %}
+    </table>
+
+-   <table>
+      <tr>
+      <td><code>py.typed</code></td>
+      <td>{{ icon_py_typed(py_typed) }}</td>
+      </tr>{% if stubs_only_label %}
+      <tr>
+      <td>stubs-only</td>
+      <td>{{ stubs_only_label }}</td>
+      </tr>{% endif %}
+    </table>
+
+
+-   __Coverage__
+
+    ---
+
+    ```mermaid
+    %%{init: {{ mermaid_config_pie | tojson }}}%%
+    pie title
+        "Annotated" : {{ report.n_annotated }}
+        "Any" : {{ report.n_any }}
+        "Unannotated" : {{ report.n_unannotated }}
+    ```
+
+    - {{ coverage }} coverage
+    - {{ strict_coverage }} strict coverage (excluding `Any`)
+    - {{ report.n_annotatable }} annotatable
+        - {{ report.n_annotated }} annotated
+        - {{ report.n_unannotated }} unannotated
+        - {{ report.n_any }} `Any`
+
+-   __Definitions__
+
+    ---
+
+    ```mermaid
+    %%{init: {{ mermaid_config_pie | tojson }}}%%
+    pie title
+        "functions" : {{ symbols_by_kind.functions }}
+        "classes" : {{ symbols_by_kind.classes }}
+        "other" : {{ symbols_by_kind.names }}
+    ```
+
+    - {{ report.n_functions }} functions (+{{ report.n_function_overloads - report.n_functions }} overloads)
+        - {{ report.n_function_params }} parameters
+    - {{ report.n_classes }} classes
+        - {{ report.n_methods }} methods (+{{ report.n_method_overloads - report.n_methods }} overloads)
+            - {{ report.n_method_params }} parameters
+        - {{ report.n_properties }} properties
+    - {{ report.n_modules }} modules
+        - {{ report.n_names }} names ({{ symbols_by_kind.names }} annotatables)
+
+</div>
+
+## Modules
 
 <table>
   <thead>

@@ -275,6 +275,11 @@ class DetailPage:
     TEMPLATE: ClassVar = "detail.md.j2"
 
     _STUBS_RE: ClassVar = re.compile(r"^(?:(.+)-stubs|types-(.+))$")
+    _MERMAID_CONFIG_PIE: ClassVar = {
+        "theme": "neutral",
+        "themeVariables": {"pieStrokeWidth": "1px"},
+        "pie": {"textPosition": 0.85},
+    }
 
     def __init__(
         self,
@@ -302,6 +307,8 @@ class DetailPage:
             type_ignores=self._type_ignore_data(),
             project_urls=self._report.project_urls(),
             diff_link=self._diff_link,
+            symbols_by_kind=self._symbols_by_kind(),
+            mermaid_config_pie=self._MERMAID_CONFIG_PIE,
         )
 
     def _annotation_sections(self) -> tuple[list[dict[str, object]], dict[str, str]]:
@@ -347,6 +354,25 @@ class DetailPage:
                 "n_type_ignores": str(m.n_type_ignores),
             })
         return result
+
+    def _symbols_by_kind(self) -> dict[str, int]:
+        totals: dict[str, int] = {"functions": 0, "classes": 0, "names": 0}
+        for m in self._report.module_reports:
+            for s in m.symbol_reports:
+                if s.kind == "class":
+                    for method in s.methods:
+                        totals["classes"] += method.n_annotatable
+                    for prop in s.properties:
+                        totals["classes"] += prop.n_annotatable
+                else:
+                    totals[
+                        {
+                            "function": "functions",
+                            "name": "names",
+                            "property": "classes",
+                        }[s.kind]
+                    ] += s.n_annotatable
+        return totals
 
     def _type_ignore_data(self) -> list[tuple[str, int]]:
         """Return sorted (flavor, count) pairs for type-ignore comments."""
