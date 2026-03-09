@@ -516,7 +516,7 @@ def render_detail(report: PackageReport, /, *, diff_link: str | None = None) -> 
         if not rows:
             continue
         display_name = _display_module_name(m.name, report.package)
-        slug = f"module-{display_name}"
+        slug = re.sub(r"[^\w.-]", "", f"module-{display_name}")  # sanitize for HTML id
         incomplete_slugs[display_name] = slug
         annotation_sections.append({
             "display_name": f"`{display_name}`",
