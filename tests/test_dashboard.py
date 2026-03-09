@@ -4,6 +4,7 @@ import anyio
 import pytest
 
 from typestats.dashboard import (
+    _ICON_INCOMPLETE,
     _extract_project_urls,
     build_site,
     render_detail,
@@ -357,9 +358,9 @@ class TestRenderDetail:
         """Modules with incomplete symbols should link to annotations."""
         report = _rich_report("mypkg")
         md = render_detail(report)
-        # mypkg (init) has incomplete symbols -> icon link before module name
-        assert "[:material-alert-circle-outline:](#module-mypkg" in md
-        assert "[:material-alert-circle-outline:](#module-mypkg.utils" in md
+        # mypkg (init) has incomplete symbols -> icon link after module name
+        assert "(#module-mypkg " in md
+        assert "(#module-mypkg.utils " in md
 
     def test_module_no_icon_when_fully_annotated(self) -> None:
         """Fully annotated modules should not have an icon."""
@@ -372,7 +373,7 @@ class TestRenderDetail:
         )
         md = render_detail(report)
         assert "`perfect`" in md
-        assert ":material-alert-circle-outline:" not in md
+        assert _ICON_INCOMPLETE not in md
 
     def test_annotation_section_has_anchor(self) -> None:
         """Each incomplete annotation section should have an anchor for linking."""
