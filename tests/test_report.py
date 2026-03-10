@@ -751,6 +751,28 @@ class TestPackageReportFromPath:
 
         assert report.stubs_only is StubsOnly.THIRD_PARTY
 
+    async def test_typeshed_stubs_without_stubs_dir(self, tmp_path: Path) -> None:
+        """types-* stubs install under the real import name (e.g. requests/),
+        not requests-stubs/. stubs_only should still be detected via stubs_path."""
+        base = tmp_path / "base"
+        stubs = tmp_path / "stubs"
+        pkg_base = base / "requests"
+        pkg_stubs = stubs / "requests"
+        pkg_base.mkdir(parents=True)
+        pkg_stubs.mkdir(parents=True)
+        (pkg_base / "__init__.py").write_text("def get(url): ...\n")
+        (pkg_stubs / "__init__.pyi").write_text("def get(url: str) -> None: ...\n")
+
+        report = await PackageReport.from_path(
+            "requests",
+            base,
+            "1.0.0",
+            stubs_path=stubs,
+            project="types-requests",
+        )
+
+        assert report.stubs_only is StubsOnly.TYPESHED
+
 
 class TestPackageReportFromProject:
     pytestmark = pytest.mark.anyio

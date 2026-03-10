@@ -8,7 +8,7 @@ import anyio
 
 from typestats._http import retry_client
 from typestats._pypi import download_file, download_latest, versions_since
-from typestats.index import find_stubs_dir
+from typestats._stubs import find_stubs_dir, stubs_base_name
 from typestats.projects import load_projects
 from typestats.report import PackageReport, PypiInfo
 
@@ -89,8 +89,12 @@ async def collect_project(  # noqa: PLR0913
         include_latest=True,
         limit=backfill_limit,
     )
-    base_name: str | None = None
+    base_name = stubs_base_name(project.name)
+
+    # For stubs packages, download the latest base package once (not per version).
     base_path: anyio.Path | None = None
+    if base_name is not None:
+        base_path, _ = await download_latest(client, base_name, work_dir)
 
     written: list[anyio.Path] = []
     for version in sorted(eligible):
@@ -103,7 +107,8 @@ async def collect_project(  # noqa: PLR0913
         file_detail = eligible[version]
         path = await download_file(client, file_detail, str(work_dir))
 
-        # On first download, scan for *-stubs/ dirs (including src-layout).
+        # On first download, scan for *-stubs/ dirs if not already detected from the
+        # project name (handles e.g. boto3-stubs-lite), including src-layout packages.
         if (
             base_name is None
             and (detected := await find_stubs_dir(anyio.Path(path))) is not None
@@ -113,19 +118,23 @@ async def collect_project(  # noqa: PLR0913
 
         if base_name is not None:
             assert base_path is not None
-            pkg, stubs_path = base_name, path
+            report = await PackageReport.from_path(
+                base_name,
+                base_path,
+                str(version),
+                stubs_path=path,
+                project=project.name,
+                exclude=project.exclude,
+                pypi=PypiInfo.from_file_detail(file_detail),
+            )
         else:
-            pkg, stubs_path = project.name, None
-
-        report = await PackageReport.from_path(
-            pkg,
-            base_path or path,
-            str(version),
-            stubs_path=stubs_path,
-            project=project.name,
-            exclude=project.exclude,
-            pypi=PypiInfo.from_file_detail(file_detail),
-        )
+            report = await PackageReport.from_path(
+                project.name,
+                path,
+                str(version),
+                exclude=project.exclude,
+                pypi=PypiInfo.from_file_detail(file_detail),
+            )
 
         json_bytes = report.model_dump_json(indent=2).encode()
         await out.parent.mkdir(parents=True, exist_ok=True)

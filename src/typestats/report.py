@@ -695,35 +695,60 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         """
         Download `project` from PyPI and build a `PackageReport`.
 
-        Handles both regular packages and stubs packages.  After downloading,
-        the extracted sdist is scanned for `*-stubs/` directories (PEP 561).
-        When one is found, the corresponding base package is also downloaded
-        so that symbols can be merged.
+        Handles both regular packages and stubs packages (downloading base +
+        stubs concurrently for the latter).  Recognized stubs patterns:
+        `{name}-stubs` (third-party) and `types-{name}` (typeshed).
+
+        When the project name doesn't match a known stubs pattern, the
+        extracted package is scanned for `*-stubs/` directories (e.g.
+        `boto3-stubs-lite` ships a `boto3-stubs/` directory).
         """
         from typestats import _pypi
-        from typestats.index import find_stubs_dir
+        from typestats._stubs import find_stubs_dir, stubs_base_name
 
-        path, dist_file = await _pypi.download_latest(
-            client,
-            project.name,
-            out_dir,
-        )
+        # Fast path: project name reveals the base package, so both the
+        # base and stubs sdists can be downloaded concurrently.
+        base_name = stubs_base_name(project.name)
+        base_path: anyio.Path | None = None
+        if base_name is not None:
+            (base_path, _), (path, dist_file) = await asyncio.gather(
+                _pypi.download_latest(client, base_name, out_dir),
+                _pypi.download_latest(client, project.name, out_dir),
+            )
+        else:
+            path, dist_file = await _pypi.download_latest(
+                client,
+                project.name,
+                out_dir,
+            )
+            # Scan for a *-stubs/ directory (e.g. boto3-stubs-lite),
+            # including src-layout packages.
+            if (detected := await find_stubs_dir(anyio.Path(path))) is not None:
+                base_name = detected
+                base_path, _ = await _pypi.download_latest(
+                    client,
+                    base_name,
+                    out_dir,
+                )
+
         ver = _pypi.parse_file_version(dist_file["filename"])
 
-        pkg = project.name
-        stubs_path: StrPath | None = None
-        # Scan for a *-stubs/ directory (including src-layout).
-        if (base_name := await find_stubs_dir(anyio.Path(path))) is not None:
-            stubs_path = path
-            path, _ = await _pypi.download_latest(client, base_name, out_dir)
-            pkg = base_name
+        if base_name is not None:
+            assert base_path is not None
+            return await cls.from_path(
+                base_name,
+                base_path,
+                str(ver),
+                stubs_path=path,
+                project=project.name,
+                exclude=project.exclude,
+                pypi=PypiInfo.from_file_detail(dist_file),
+            )
 
         return await cls.from_path(
-            pkg,
+            project.name,
             path,
             str(ver),
-            stubs_path=stubs_path,
-            project=project.name,
             exclude=project.exclude,
             pypi=PypiInfo.from_file_detail(dist_file),
         )
@@ -811,17 +836,21 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             for src_path, syms in symbols.items()
         )
 
-        # Detect stubs-only from package directory names.
-        # PEP 561 stubs packages use *-stubs directory naming.  This catches
-        # projects like boto3-stubs-lite whose PyPI name doesn't match the
-        # *-stubs pattern but whose installable packages do.
+        # Detect stubs-only status.
+        # When `stubs_path` is set, the caller already identified this as a stubs
+        # package (via project name or directory scan), so derive `stubs_only` from the
+        # display name.
+        # Otherwise, fall back to checking whether any analyzed module lives under a
+        # `*-stubs` directory (PEP 561), which catches projects like boto3-stubs-lite
+        # whose PyPI name doesn't match the `*-stubs` pattern but whose installable
+        # packages do.
         stubs_only = StubsOnly.NO
-        if any(
+        display = project or pkg
+        if stubs_path is not None or any(
             part.endswith("-stubs")
             for f in files
             for part in PurePosixPath(f.path).parts
         ):
-            display = project or pkg
             stubs_only = (
                 StubsOnly.TYPESHED
                 if display.startswith("types-")
