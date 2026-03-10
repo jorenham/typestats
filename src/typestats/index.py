@@ -57,7 +57,6 @@ class PublicSymbols:
 
 
 _RE_INIT: Final = re.compile(r"^__init__\.pyi?$")
-_RE_STUBS_DIR: Final = re.compile(r"^(.+)-stubs$")
 
 # Directory names to exclude from analysis (tests, benchmarks, docs, etc.)
 _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
@@ -212,7 +211,7 @@ async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
 
     py_typed = root / "py.typed"
     if not await py_typed.exists():
-        # TODO(@jorenham): find a more robust way to detect stub-only packages
+        # PEP 561: stub-only packages use *-stubs directory naming.
         return PyTyped.STUBS if root.name.endswith("-stubs") else PyTyped.NO
 
     # https://typing.python.org/en/latest/spec/distributing.html#partial-stub-packages
@@ -266,8 +265,8 @@ def sources_to_module_paths(
         current_dir = source.parent
         while current_dir in init_dirs:
             dir_name = current_dir.name
-            if match := _RE_STUBS_DIR.match(dir_name):
-                parts.appendleft(match.group(1))
+            if dir_name.endswith("-stubs"):
+                parts.appendleft(dir_name.removesuffix("-stubs"))
                 break
             parts.appendleft(dir_name)
             current_dir = current_dir.parent

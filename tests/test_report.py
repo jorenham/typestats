@@ -702,10 +702,76 @@ class TestPackageReportFromPath:
             "1.0.0",
             stubs_path=stubs,
             project="types-mypkg",
-            stubs_only=StubsOnly.TYPESHED,
         )
 
         assert report.py_typed is PyTyped.STUBS
+        assert report.stubs_only is StubsOnly.TYPESHED
+
+    async def test_stubs_only_detected_from_package_dir(self, tmp_path: Path) -> None:
+        """Stubs-only should be detected from package directory name (*-stubs),
+        even when not passed explicitly.
+
+        Reproduces GH-231: boto3-stubs-lite installs a `boto3-stubs/`
+        directory but the project name doesn't match `*-stubs`.
+        """
+        pkg_dir = tmp_path / "mypkg-stubs"
+        pkg_dir.mkdir()
+        (pkg_dir / "__init__.pyi").write_text("x: int\n")
+
+        report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
+
+        assert report.stubs_only is StubsOnly.THIRD_PARTY
+
+    async def test_stubs_only_typeshed_detected_from_package_dir(
+        self,
+        tmp_path: Path,
+    ) -> None:
+        """Typeshed stubs detected from package dir + project name."""
+        pkg_dir = tmp_path / "mypkg-stubs"
+        pkg_dir.mkdir()
+        (pkg_dir / "__init__.pyi").write_text("x: int\n")
+
+        report = await PackageReport.from_path(
+            "mypkg",
+            tmp_path,
+            "1.0.0",
+            project="types-mypkg",
+        )
+
+        assert report.stubs_only is StubsOnly.TYPESHED
+
+    async def test_stubs_only_detected_from_src_layout(self, tmp_path: Path) -> None:
+        """Stubs-only detected when *-stubs dir is under src/ (src-layout)."""
+        src_dir = tmp_path / "src"
+        pkg_dir = src_dir / "mypkg-stubs"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.pyi").write_text("x: int\n")
+
+        report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
+
+        assert report.stubs_only is StubsOnly.THIRD_PARTY
+
+    async def test_typeshed_stubs_without_stubs_dir(self, tmp_path: Path) -> None:
+        """types-* stubs install under the real import name (e.g. requests/),
+        not requests-stubs/. stubs_only should still be detected via stubs_path."""
+        base = tmp_path / "base"
+        stubs = tmp_path / "stubs"
+        pkg_base = base / "requests"
+        pkg_stubs = stubs / "requests"
+        pkg_base.mkdir(parents=True)
+        pkg_stubs.mkdir(parents=True)
+        (pkg_base / "__init__.py").write_text("def get(url): ...\n")
+        (pkg_stubs / "__init__.pyi").write_text("def get(url: str) -> None: ...\n")
+
+        report = await PackageReport.from_path(
+            "requests",
+            base,
+            "1.0.0",
+            stubs_path=stubs,
+            project="types-requests",
+        )
+
+        assert report.stubs_only is StubsOnly.TYPESHED
 
 
 class TestPackageReportFromProject:
@@ -941,3 +1007,27 @@ class TestPackageReportFromProject:
         assert report.pypi.requires_python == ">=3.12"
         assert report.pypi.size == 42
         assert report.pypi.sha256 == "deadbeef9876"
+
+    async def test_stubs_lite_detected(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+    ) -> None:
+        """A *-stubs-lite project whose package dir is *-stubs should
+        download the base package and be detected as stubs-only (GH-231)."""
+        stubs_lite_name = f"{self._PKG}-stubs-lite"
+        stubs_tar = self._make_sdist_tar_gz(
+            stubs_lite_name,
+            "1.0.0",
+            _FIXTURES / "stubs_overlay",
+        )
+        base_tar = self._make_sdist_tar_gz(self._PKG, "1.0.0", _FIXTURES / "stubs_base")
+        self._mock_pypi(httpx_mock, stubs_lite_name, "1.0.0", stubs_tar)
+        self._mock_pypi(httpx_mock, self._PKG, "1.0.0", base_tar)
+
+        project = Project(name=stubs_lite_name)
+        async with httpx.AsyncClient() as client:
+            report = await PackageReport.from_project(project, client, tmp_path)
+
+        assert report.package == stubs_lite_name
+        assert report.stubs_only is StubsOnly.THIRD_PARTY

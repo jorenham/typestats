@@ -2,15 +2,15 @@
 
 import contextlib
 import logging
-import re
 from typing import TYPE_CHECKING, Final
 
 import anyio
 
 from typestats._http import retry_client
 from typestats._pypi import download_file, download_latest, versions_since
+from typestats._stubs import find_stubs_dir, stubs_base_name
 from typestats.projects import load_projects
-from typestats.report import PackageReport, PypiInfo, StubsOnly
+from typestats.report import PackageReport, PypiInfo
 
 if TYPE_CHECKING:
     import datetime as dt
@@ -66,15 +66,6 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
     return removed
 
 
-def _stubs_info(project_name: str) -> tuple[str, StubsOnly] | None:
-    """Detect stubs package patterns and return `(base_name, stubs_only)`, or `None`."""
-    if m := re.match(r"^(?:(.+)-stubs|types-(.+))$", project_name):
-        base_name = m.group(1) or m.group(2)
-        stubs_only = StubsOnly.THIRD_PARTY if m.group(1) else StubsOnly.TYPESHED
-        return base_name, stubs_only
-    return None
-
-
 async def collect_project(  # noqa: PLR0913
     project: Project,
     client: httpx.AsyncClient,
@@ -98,12 +89,12 @@ async def collect_project(  # noqa: PLR0913
         include_latest=True,
         limit=backfill_limit,
     )
-    stubs = _stubs_info(project.name)
+    base_name = stubs_base_name(project.name)
 
     # For stubs packages, download the latest base package once (not per version).
     base_path: anyio.Path | None = None
-    if stubs is not None:
-        base_path, _ = await download_latest(client, stubs[0], str(work_dir))
+    if base_name is not None:
+        base_path, _ = await download_latest(client, base_name, work_dir)
 
     written: list[anyio.Path] = []
     for version in sorted(eligible):
@@ -114,23 +105,29 @@ async def collect_project(  # noqa: PLR0913
 
         _logger.info("  %s %s - analyzing...", project.name, version)
         file_detail = eligible[version]
+        path = await download_file(client, file_detail, str(work_dir))
 
-        if stubs is not None:
+        # On first download, scan for *-stubs/ dirs if not already detected from the
+        # project name (handles e.g. boto3-stubs-lite), including src-layout packages.
+        if (
+            base_name is None
+            and (detected := await find_stubs_dir(anyio.Path(path))) is not None
+        ):
+            base_name = detected
+            base_path, _ = await download_latest(client, base_name, work_dir)
+
+        if base_name is not None:
             assert base_path is not None
-            base_name, stubs_only = stubs
-            stubs_path = await download_file(client, file_detail, str(work_dir))
             report = await PackageReport.from_path(
                 base_name,
                 base_path,
                 str(version),
-                stubs_path=stubs_path,
+                stubs_path=path,
                 project=project.name,
-                stubs_only=stubs_only,
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(file_detail),
             )
         else:
-            path = await download_file(client, file_detail, str(work_dir))
             report = await PackageReport.from_path(
                 project.name,
                 path,
