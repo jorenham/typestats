@@ -90,7 +90,7 @@
         },
         {
           "kind": "function",
-          "name": "emoji.core.replace_emoji",
+          "name": "emoji.core.analyze",
           "n_annotated": 4,
           "n_any": 0,
           "n_unannotated": 0,
@@ -132,7 +132,31 @@
         },
         {
           "kind": "function",
+          "name": "emoji.core.purely_emoji",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
           "name": "emoji.core.distinct_emoji_list",
+          "n_annotated": 2,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "emoji.core.is_emoji",
           "n_annotated": 2,
           "n_any": 0,
           "n_unannotated": 0,
@@ -156,31 +180,7 @@
         },
         {
           "kind": "function",
-          "name": "emoji.core.emoji_count",
-          "n_annotated": 3,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "emoji.core.is_emoji",
-          "n_annotated": 2,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "emoji.core.purely_emoji",
+          "name": "emoji.core.version",
           "n_annotated": 2,
           "n_any": 0,
           "n_unannotated": 0,
@@ -204,7 +204,7 @@
         },
         {
           "kind": "function",
-          "name": "emoji.core.analyze",
+          "name": "emoji.core.replace_emoji",
           "n_annotated": 4,
           "n_any": 0,
           "n_unannotated": 0,
@@ -216,15 +216,15 @@
         },
         {
           "kind": "function",
-          "name": "emoji.core.version",
-          "n_annotated": 2,
+          "name": "emoji.core.emoji_count",
+          "n_annotated": 3,
           "n_any": 0,
           "n_unannotated": 0,
           "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -260,6 +260,77 @@
     {
       "path": "emoji/tokenizer.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "emoji.tokenizer.Token",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "emoji.tokenizer.EmojiMatchZWJNonRGI",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmojiMatchZWJNonRGI.__init__",
+              "n_annotated": 2,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EmojiMatchZWJNonRGI._update",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EmojiMatchZWJNonRGI._add",
+              "n_annotated": 1,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "emoji.tokenizer.EmojiMatchZWJ",
@@ -336,60 +407,6 @@
           "n_methods": 5,
           "n_method_overloads": 5,
           "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "emoji.tokenizer.EmojiMatchZWJNonRGI",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EmojiMatchZWJNonRGI.__init__",
-              "n_annotated": 2,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "EmojiMatchZWJNonRGI._update",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "EmojiMatchZWJNonRGI._add",
-              "n_annotated": 1,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 6,
-          "n_annotated": 3,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 3,
           "n_properties": 0
         },
         {
@@ -471,23 +488,6 @@
           "n_properties": 0
         },
         {
-          "kind": "class",
-          "name": "emoji.tokenizer.Token",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
           "kind": "function",
           "name": "emoji.tokenizer.filter_tokens",
           "n_annotated": 4,
@@ -538,11 +538,69 @@
       "n_type_ignores": 0
     },
     {
+      "path": "emoji/unicode_codes/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "emoji.unicode_codes.EMOJI_DATA",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "emoji.unicode_codes.get_emoji_by_name",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "emoji.unicode_codes.load_from_json",
+          "n_annotated": 1,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "emoji.unicode_codes",
+      "names": [
+        "emoji.unicode_codes.EMOJI_DATA",
+        "emoji.unicode_codes.get_emoji_by_name",
+        "emoji.unicode_codes.load_from_json"
+      ],
+      "n_annotatable": 6,
+      "n_annotated": 5,
+      "n_any": 0,
+      "n_unannotated": 1,
+      "n_functions": 2,
+      "n_function_overloads": 2,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "emoji/unicode_codes/data_dict.py",
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "emoji.unicode_codes.data_dict.LANGUAGES",
+          "name": "emoji.unicode_codes.data_dict.STATUS",
           "n_annotated": 1,
           "n_any": 0,
           "n_unannotated": 0,
@@ -550,7 +608,7 @@
         },
         {
           "kind": "name",
-          "name": "emoji.unicode_codes.data_dict.STATUS",
+          "name": "emoji.unicode_codes.data_dict.LANGUAGES",
           "n_annotated": 1,
           "n_any": 0,
           "n_unannotated": 0,
@@ -577,86 +635,9 @@
       "n_names": 2,
       "n_properties": 0,
       "n_type_ignores": 0
-    },
-    {
-      "path": "emoji/unicode_codes/__init__.py",
-      "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "emoji.unicode_codes.EMOJI_DATA",
-          "n_annotated": 1,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "emoji.unicode_codes.load_from_json",
-          "n_annotated": 1,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "emoji.unicode_codes.get_emoji_by_name",
-          "n_annotated": 3,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "emoji.unicode_codes",
-      "names": [
-        "emoji.unicode_codes.EMOJI_DATA",
-        "emoji.unicode_codes.get_emoji_by_name",
-        "emoji.unicode_codes.load_from_json"
-      ],
-      "n_annotatable": 6,
-      "n_annotated": 5,
-      "n_any": 0,
-      "n_unannotated": 1,
-      "n_functions": 2,
-      "n_function_overloads": 2,
-      "n_function_params": 3,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
     }
   ],
-  "typecheckers": {
-    "pyright": {
-      "pythonVersion": "3.7",
-      "pythonPlatform": "All",
-      "typeCheckingMode": "strict",
-      "extraPaths": [
-        "utils"
-      ],
-      "exclude": [
-        "**/__pycache__",
-        ".git",
-        ".venv",
-        "build",
-        "utils/gh-pages",
-        "utils/generate_emoji.py",
-        "utils/generate_emoji_translations.py",
-        "utils/generateutils.py"
-      ]
-    }
-  },
+  "typecheckers": {},
   "n_modules": 4,
   "n_annotatable": 72,
   "n_annotated": 65,

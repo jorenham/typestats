@@ -90,11 +90,35 @@
   },
   "module_reports": [
     {
-      "path": "lib/yaml/__init__.py",
+      "path": "yaml/__init__.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "yaml.compose_all",
+          "name": "yaml.safe_dump",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "yaml.emit",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 9,
+          "n_overloads": 1,
+          "n_annotatable": 9,
+          "n_params": 8,
+          "n_function_overloads": 1,
+          "n_function_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "yaml.scan",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,
@@ -106,7 +130,7 @@
         },
         {
           "kind": "function",
-          "name": "yaml.full_load",
+          "name": "yaml.warnings",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -115,6 +139,18 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "yaml.dump_all",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 17,
+          "n_overloads": 1,
+          "n_annotatable": 17,
+          "n_params": 16,
+          "n_function_overloads": 1,
+          "n_function_params": 16
         },
         {
           "kind": "function",
@@ -127,74 +163,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "yaml.add_multi_representer",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "yaml.safe_load",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "yaml.unsafe_load",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "yaml.add_constructor",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "yaml.dump",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 5,
-          "n_overloads": 1,
-          "n_annotatable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "name",
-          "name": "yaml.__version__",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
         },
         {
           "kind": "class",
@@ -228,55 +196,19 @@
         },
         {
           "kind": "function",
-          "name": "yaml.emit",
+          "name": "yaml.add_path_resolver",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 9,
+          "n_unannotated": 6,
           "n_overloads": 1,
-          "n_annotatable": 9,
-          "n_params": 8,
+          "n_annotatable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 8
+          "n_function_params": 5
         },
         {
           "kind": "function",
-          "name": "yaml.safe_dump",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "yaml.serialize",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 5,
-          "n_overloads": 1,
-          "n_annotatable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "yaml.parse",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "yaml.safe_load_all",
+          "name": "yaml.safe_load",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -285,6 +217,18 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "yaml.add_multi_representer",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -300,75 +244,15 @@
         },
         {
           "kind": "function",
-          "name": "yaml.scan",
+          "name": "yaml.dump",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 3,
+          "n_unannotated": 5,
           "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
+          "n_annotatable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "yaml.full_load_all",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "yaml.load_all",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "yaml.add_multi_constructor",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "yaml.unsafe_load_all",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "yaml.dump_all",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 17,
-          "n_overloads": 1,
-          "n_annotatable": 17,
-          "n_params": 16,
-          "n_function_overloads": 1,
-          "n_function_params": 16
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -384,26 +268,6 @@
         },
         {
           "kind": "function",
-          "name": "yaml.warnings",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "yaml.__with_libyaml__",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "function",
           "name": "yaml.add_representer",
           "n_annotated": 0,
           "n_any": 0,
@@ -416,27 +280,15 @@
         },
         {
           "kind": "function",
-          "name": "yaml.add_path_resolver",
+          "name": "yaml.load_all",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 6,
+          "n_unannotated": 3,
           "n_overloads": 1,
-          "n_annotatable": 6,
-          "n_params": 5,
+          "n_annotatable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "yaml.add_implicit_resolver",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_overloads": 1,
-          "n_annotatable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
+          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -482,6 +334,154 @@
         },
         {
           "kind": "function",
+          "name": "yaml.serialize",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "yaml.compose_all",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "yaml.__with_libyaml__",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "yaml.__version__",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "yaml.add_multi_constructor",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "yaml.safe_load_all",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "yaml.unsafe_load",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "yaml.full_load_all",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "yaml.parse",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "yaml.add_implicit_resolver",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "yaml.add_constructor",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "yaml.unsafe_load_all",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "yaml.full_load",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
           "name": "yaml.compose",
           "n_annotated": 0,
           "n_any": 0,
@@ -494,7 +494,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml",
+      "name": "yaml",
       "names": [
         "yaml.YAMLObject",
         "yaml.YAMLObjectMetaclass",
@@ -543,7 +543,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/composer.py",
+      "path": "yaml/composer.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -690,7 +690,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.composer",
+      "name": "yaml.composer",
       "names": [
         "yaml.composer.Composer",
         "yaml.composer.ComposerError"
@@ -711,11 +711,11 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/constructor.py",
+      "path": "yaml/constructor.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "yaml.constructor.ConstructorError",
+          "name": "yaml.constructor.Constructor",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -728,6 +728,72 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.constructor.UnsafeConstructor",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UnsafeConstructor.find_python_module",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "UnsafeConstructor.find_python_name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "UnsafeConstructor.make_python_instance",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 6,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "UnsafeConstructor.set_python_instance_state",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 15,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 15,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 11,
           "n_properties": 0
         },
         {
@@ -954,197 +1020,6 @@
         },
         {
           "kind": "class",
-          "name": "yaml.constructor.Constructor",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.constructor.BaseConstructor",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BaseConstructor.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.check_data",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.check_state_key",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.get_data",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.get_single_data",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.construct_document",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.construct_object",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.construct_scalar",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.construct_sequence",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.construct_mapping",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.construct_pairs",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.add_constructor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseConstructor.add_multi_constructor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 28,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 28,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 13,
-          "n_method_overloads": 13,
-          "n_method_params": 15,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "yaml.constructor.SafeConstructor",
           "methods": [
             {
@@ -1367,11 +1242,100 @@
         },
         {
           "kind": "class",
-          "name": "yaml.constructor.UnsafeConstructor",
+          "name": "yaml.constructor.ConstructorError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.constructor.BaseConstructor",
           "methods": [
             {
               "kind": "function",
-              "name": "UnsafeConstructor.find_python_module",
+              "name": "BaseConstructor.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.check_data",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.check_state_key",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.get_data",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.get_single_data",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.construct_document",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.construct_object",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -1383,7 +1347,19 @@
             },
             {
               "kind": "function",
-              "name": "UnsafeConstructor.find_python_name",
+              "name": "BaseConstructor.construct_scalar",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.construct_sequence",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -1395,19 +1371,43 @@
             },
             {
               "kind": "function",
-              "name": "UnsafeConstructor.make_python_instance",
+              "name": "BaseConstructor.construct_mapping",
               "n_annotated": 0,
               "n_any": 0,
-              "n_unannotated": 6,
+              "n_unannotated": 3,
               "n_overloads": 1,
-              "n_annotatable": 6,
-              "n_params": 5,
+              "n_annotatable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 5
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "UnsafeConstructor.set_python_instance_state",
+              "name": "BaseConstructor.construct_pairs",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.add_constructor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseConstructor.add_multi_constructor",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -1419,21 +1419,21 @@
             }
           ],
           "properties": [],
-          "n_annotatable": 15,
+          "n_annotatable": 28,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 15,
+          "n_unannotated": 28,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 11,
+          "n_methods": 13,
+          "n_method_overloads": 13,
+          "n_method_params": 15,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.constructor",
+      "name": "yaml.constructor",
       "names": [
         "yaml.constructor.BaseConstructor",
         "yaml.constructor.Constructor",
@@ -1458,15 +1458,15 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/cyaml.py",
+      "path": "yaml/cyaml.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "yaml.cyaml.CUnsafeLoader",
+          "name": "yaml.cyaml.CLoader",
           "methods": [
             {
               "kind": "function",
-              "name": "CUnsafeLoader.__init__",
+              "name": "CLoader.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -1518,36 +1518,6 @@
           "n_methods": 1,
           "n_method_overloads": 1,
           "n_method_params": 14,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.cyaml.CSafeLoader",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CSafeLoader.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 2,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
           "n_properties": 0
         },
         {
@@ -1642,36 +1612,6 @@
         },
         {
           "kind": "class",
-          "name": "yaml.cyaml.CLoader",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CLoader.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 2,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "yaml.cyaml.CBaseLoader",
           "methods": [
             {
@@ -1699,10 +1639,70 @@
           "n_method_overloads": 1,
           "n_method_params": 1,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.cyaml.CSafeLoader",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CSafeLoader.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.cyaml.CUnsafeLoader",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CUnsafeLoader.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.cyaml",
+      "name": "yaml.cyaml",
       "names": [
         "yaml.cyaml.CBaseDumper",
         "yaml.cyaml.CBaseLoader",
@@ -1729,38 +1729,8 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/dumper.py",
+      "path": "yaml/dumper.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "yaml.dumper.Dumper",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Dumper.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 15,
-              "n_overloads": 1,
-              "n_annotatable": 15,
-              "n_params": 14,
-              "n_function_overloads": 1,
-              "n_function_params": 14
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 15,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 15,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 14,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "yaml.dumper.SafeDumper",
@@ -1820,10 +1790,40 @@
           "n_method_overloads": 1,
           "n_method_params": 14,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.dumper.Dumper",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Dumper.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 15,
+              "n_overloads": 1,
+              "n_annotatable": 15,
+              "n_params": 14,
+              "n_function_overloads": 1,
+              "n_function_params": 14
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 15,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 15,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 14,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.dumper",
+      "name": "yaml.dumper",
       "names": [
         "yaml.dumper.BaseDumper",
         "yaml.dumper.Dumper",
@@ -1845,8 +1845,25 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/emitter.py",
+      "path": "yaml/emitter.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "yaml.emitter.EmitterError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "yaml.emitter.Emitter",
@@ -2572,27 +2589,10 @@
           "n_method_overloads": 59,
           "n_method_params": 41,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.emitter.EmitterError",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.emitter",
+      "name": "yaml.emitter",
       "names": [
         "yaml.emitter.Emitter",
         "yaml.emitter.EmitterError"
@@ -2613,25 +2613,8 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/error.py",
+      "path": "yaml/error.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "yaml.error.YAMLError",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "yaml.error.Mark",
@@ -2688,6 +2671,23 @@
         },
         {
           "kind": "class",
+          "name": "yaml.error.YAMLError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "yaml.error.MarkedYAMLError",
           "methods": [
             {
@@ -2730,7 +2730,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.error",
+      "name": "yaml.error",
       "names": [
         "yaml.error.Mark",
         "yaml.error.MarkedYAMLError",
@@ -2752,7 +2752,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/events.py",
+      "path": "yaml/events.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -2773,32 +2773,36 @@
         },
         {
           "kind": "class",
-          "name": "yaml.events.NodeEvent",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NodeEvent.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
+          "name": "yaml.events.AliasEvent",
+          "methods": [],
           "properties": [],
-          "n_annotatable": 4,
+          "n_annotatable": 0,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 4,
+          "n_unannotated": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.events.SequenceStartEvent",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
           "n_properties": 0
         },
         {
@@ -2850,6 +2854,36 @@
         },
         {
           "kind": "class",
+          "name": "yaml.events.ScalarEvent",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ScalarEvent.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 8,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_params": 7,
+              "n_function_overloads": 1,
+              "n_function_params": 7
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 8,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 7,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "yaml.events.StreamStartEvent",
           "methods": [
             {
@@ -2876,53 +2910,6 @@
           "n_methods": 1,
           "n_method_overloads": 1,
           "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.events.DocumentEndEvent",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DocumentEndEvent.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 4,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.events.SequenceStartEvent",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
           "n_properties": 0
         },
         {
@@ -2974,6 +2961,70 @@
         },
         {
           "kind": "class",
+          "name": "yaml.events.NodeEvent",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NodeEvent.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.events.StreamEndEvent",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.events.SequenceEndEvent",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "yaml.events.Event",
           "methods": [
             {
@@ -3016,88 +3067,37 @@
         },
         {
           "kind": "class",
-          "name": "yaml.events.StreamEndEvent",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.events.SequenceEndEvent",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.events.AliasEvent",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.events.ScalarEvent",
+          "name": "yaml.events.DocumentEndEvent",
           "methods": [
             {
               "kind": "function",
-              "name": "ScalarEvent.__init__",
+              "name": "DocumentEndEvent.__init__",
               "n_annotated": 0,
               "n_any": 0,
-              "n_unannotated": 8,
+              "n_unannotated": 4,
               "n_overloads": 1,
-              "n_annotatable": 8,
-              "n_params": 7,
+              "n_annotatable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 7
+              "n_function_params": 3
             }
           ],
           "properties": [],
-          "n_annotatable": 8,
+          "n_annotatable": 4,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 8,
+          "n_unannotated": 4,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 1,
           "n_method_overloads": 1,
-          "n_method_params": 7,
+          "n_method_params": 3,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.events",
+      "name": "yaml.events",
       "names": [
         "yaml.events.AliasEvent",
         "yaml.events.CollectionEndEvent",
@@ -3130,75 +3130,15 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/loader.py",
+      "path": "yaml/loader.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "yaml.loader.SafeLoader",
+          "name": "yaml.loader.FullLoader",
           "methods": [
             {
               "kind": "function",
-              "name": "SafeLoader.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 2,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.loader.Loader",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Loader.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 2,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.loader.BaseLoader",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BaseLoader.__init__",
+              "name": "FullLoader.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -3254,11 +3194,71 @@
         },
         {
           "kind": "class",
-          "name": "yaml.loader.FullLoader",
+          "name": "yaml.loader.Loader",
           "methods": [
             {
               "kind": "function",
-              "name": "FullLoader.__init__",
+              "name": "Loader.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.loader.SafeLoader",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SafeLoader.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 2,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.loader.BaseLoader",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseLoader.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -3284,7 +3284,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.loader",
+      "name": "yaml.loader",
       "names": [
         "yaml.loader.BaseLoader",
         "yaml.loader.FullLoader",
@@ -3308,41 +3308,11 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/nodes.py",
+      "path": "yaml/nodes.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "yaml.nodes.CollectionNode",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CollectionNode.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 6,
-              "n_overloads": 1,
-              "n_annotatable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 6,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.nodes.SequenceNode",
+          "name": "yaml.nodes.MappingNode",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -3359,7 +3329,7 @@
         },
         {
           "kind": "class",
-          "name": "yaml.nodes.MappingNode",
+          "name": "yaml.nodes.SequenceNode",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -3418,6 +3388,36 @@
         },
         {
           "kind": "class",
+          "name": "yaml.nodes.CollectionNode",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CollectionNode.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 6,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "yaml.nodes.ScalarNode",
           "methods": [
             {
@@ -3448,7 +3448,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.nodes",
+      "name": "yaml.nodes",
       "names": [
         "yaml.nodes.CollectionNode",
         "yaml.nodes.MappingNode",
@@ -3472,7 +3472,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/parser.py",
+      "path": "yaml/parser.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -3883,7 +3883,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.parser",
+      "name": "yaml.parser",
       "names": [
         "yaml.parser.Parser",
         "yaml.parser.ParserError"
@@ -3904,8 +3904,50 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/reader.py",
+      "path": "yaml/reader.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "yaml.reader.ReaderError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ReaderError.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 6,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "ReaderError.__str__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 7,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "yaml.reader.Reader",
@@ -4031,52 +4073,10 @@
           "n_method_overloads": 9,
           "n_method_params": 7,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.reader.ReaderError",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ReaderError.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 6,
-              "n_overloads": 1,
-              "n_annotatable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "ReaderError.__str__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 7,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.reader",
+      "name": "yaml.reader",
       "names": [
         "yaml.reader.Reader",
         "yaml.reader.ReaderError"
@@ -4097,8 +4097,98 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/representer.py",
+      "path": "yaml/representer.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "yaml.representer.Representer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Representer.represent_complex",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Representer.represent_tuple",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Representer.represent_name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Representer.represent_module",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Representer.represent_object",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Representer.represent_ordered_dict",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 12,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 12,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 6,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "yaml.representer.BaseRepresenter",
@@ -4413,96 +4503,6 @@
         },
         {
           "kind": "class",
-          "name": "yaml.representer.Representer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Representer.represent_complex",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Representer.represent_tuple",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Representer.represent_name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Representer.represent_module",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Representer.represent_object",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Representer.represent_ordered_dict",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 12,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 12,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 6,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "yaml.representer.RepresenterError",
           "methods": [],
           "properties": [],
@@ -4520,7 +4520,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.representer",
+      "name": "yaml.representer",
       "names": [
         "yaml.representer.BaseRepresenter",
         "yaml.representer.Representer",
@@ -4543,7 +4543,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/resolver.py",
+      "path": "yaml/resolver.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -4666,7 +4666,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.resolver",
+      "name": "yaml.resolver",
       "names": [
         "yaml.resolver.BaseResolver",
         "yaml.resolver.Resolver"
@@ -4687,7 +4687,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/scanner.py",
+      "path": "yaml/scanner.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -5578,7 +5578,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.scanner",
+      "name": "yaml.scanner",
       "names": [
         "yaml.scanner.Scanner",
         "yaml.scanner.ScannerError"
@@ -5599,25 +5599,8 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/serializer.py",
+      "path": "yaml/serializer.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "yaml.serializer.SerializerError",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "yaml.serializer.Serializer",
@@ -5719,10 +5702,27 @@
           "n_method_overloads": 7,
           "n_method_params": 11,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.serializer.SerializerError",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.serializer",
+      "name": "yaml.serializer",
       "names": [
         "yaml.serializer.Serializer",
         "yaml.serializer.SerializerError"
@@ -5743,11 +5743,11 @@
       "n_type_ignores": 0
     },
     {
-      "path": "lib/yaml/tokens.py",
+      "path": "yaml/tokens.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "yaml.tokens.BlockEndToken",
+          "name": "yaml.tokens.BlockMappingStartToken",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -5764,11 +5764,75 @@
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.TagToken",
+          "name": "yaml.tokens.FlowEntryToken",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.DirectiveToken",
           "methods": [
             {
               "kind": "function",
-              "name": "TagToken.__init__",
+              "name": "DirectiveToken.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 5,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.DocumentStartToken",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.AliasToken",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AliasToken.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 4,
@@ -5795,104 +5859,6 @@
         {
           "kind": "class",
           "name": "yaml.tokens.BlockSequenceStartToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.FlowSequenceStartToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.BlockMappingStartToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.ValueToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.StreamStartToken",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "StreamStartToken.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 4,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.FlowSequenceEndToken",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -5939,7 +5905,7 @@
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.FlowEntryToken",
+          "name": "yaml.tokens.ValueToken",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -5956,58 +5922,7 @@
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.DocumentStartToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.DocumentEndToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.BlockEntryToken",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "yaml.tokens.FlowMappingEndToken",
+          "name": "yaml.tokens.KeyToken",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -6054,37 +5969,41 @@
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.AliasToken",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AliasToken.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
+          "name": "yaml.tokens.BlockEndToken",
+          "methods": [],
           "properties": [],
-          "n_annotatable": 4,
+          "n_annotatable": 0,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 4,
+          "n_unannotated": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.FlowMappingStartToken",
+          "name": "yaml.tokens.FlowSequenceEndToken",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.DocumentEndToken",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -6160,7 +6079,7 @@
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.KeyToken",
+          "name": "yaml.tokens.BlockEntryToken",
           "methods": [],
           "properties": [],
           "n_annotatable": 0,
@@ -6177,37 +6096,118 @@
         },
         {
           "kind": "class",
-          "name": "yaml.tokens.DirectiveToken",
+          "name": "yaml.tokens.FlowSequenceStartToken",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.FlowMappingStartToken",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.StreamStartToken",
           "methods": [
             {
               "kind": "function",
-              "name": "DirectiveToken.__init__",
+              "name": "StreamStartToken.__init__",
               "n_annotated": 0,
               "n_any": 0,
-              "n_unannotated": 5,
+              "n_unannotated": 4,
               "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
+              "n_annotatable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 3
             }
           ],
           "properties": [],
-          "n_annotatable": 5,
+          "n_annotatable": 4,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 5,
+          "n_unannotated": 4,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 1,
           "n_method_overloads": 1,
-          "n_method_params": 4,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.TagToken",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TagToken.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "yaml.tokens.FlowMappingEndToken",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "lib.yaml.tokens",
+      "name": "yaml.tokens",
       "names": [
         "yaml.tokens.AliasToken",
         "yaml.tokens.AnchorToken",
@@ -6245,52 +6245,16 @@
       "n_names": 0,
       "n_properties": 0,
       "n_type_ignores": 0
-    },
-    {
-      "path": "packaging/build/smoketest.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "smoketest.main",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "packaging.build.smoketest",
-      "names": [
-        "smoketest.main"
-      ],
-      "n_annotatable": 1,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 1,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
     }
   ],
   "typecheckers": {},
-  "n_modules": 18,
-  "n_annotatable": 863,
+  "n_modules": 17,
+  "n_annotatable": 862,
   "n_annotated": 0,
   "n_any": 0,
-  "n_unannotated": 863,
-  "n_functions": 27,
-  "n_function_overloads": 27,
+  "n_unannotated": 862,
+  "n_functions": 26,
+  "n_function_overloads": 26,
   "n_function_params": 92,
   "n_methods": 319,
   "n_method_params": 425,

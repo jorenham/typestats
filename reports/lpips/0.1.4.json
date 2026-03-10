@@ -44,6 +44,13 @@
     ],
     "Description-Content-Type": [
       "text/markdown"
+    ],
+    "Requires-Dist": [
+      "torch (>=0.4.0)",
+      "torchvision (>=0.2.1)",
+      "numpy (>=1.14.3)",
+      "scipy (>=1.0.1)",
+      "tqdm (>=4.28.1)"
     ]
   },
   "module_reports": [
@@ -52,7 +59,55 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "lpips.tensor2vec",
+          "name": "lpips.l2",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "lpips.tensor2im",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "lpips.normalize_tensor",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "lpips.voc_ap",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "lpips.np2tensor",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -73,90 +128,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "lpips.dssim",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "lpips.tensor2tensorlab",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "lpips.l2",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "lpips.normalize_tensor",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "lpips.load_image",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "lpips.psnr",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "lpips.im2tensor",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 5,
-          "n_overloads": 1,
-          "n_annotatable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -184,19 +155,31 @@
         },
         {
           "kind": "function",
-          "name": "lpips.tensor2im",
+          "name": "lpips.psnr",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 5,
+          "n_unannotated": 4,
           "n_overloads": 1,
-          "n_annotatable": 5,
-          "n_params": 4,
+          "n_annotatable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 3
         },
         {
           "kind": "function",
-          "name": "lpips.np2tensor",
+          "name": "lpips.dssim",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "lpips.load_image",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -208,7 +191,19 @@
         },
         {
           "kind": "function",
-          "name": "lpips.voc_ap",
+          "name": "lpips.im2tensor",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "lpips.tensor2tensorlab",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 4,
@@ -217,6 +212,18 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "lpips.tensor2vec",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -256,12 +263,36 @@
       "path": "lpips/lpips.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "lpips.lpips.upsample",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
           "kind": "class",
-          "name": "lpips.lpips.BCERankingLoss",
+          "name": "lpips.lpips.ScalingLayer",
           "methods": [
             {
               "kind": "function",
-              "name": "BCERankingLoss.__init__",
+              "name": "ScalingLayer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ScalingLayer.forward",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -270,31 +301,19 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BCERankingLoss.forward",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
             }
           ],
           "properties": [],
-          "n_annotatable": 6,
+          "n_annotatable": 3,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 6,
+          "n_unannotated": 3,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 2,
           "n_method_overloads": 2,
-          "n_method_params": 4,
+          "n_method_params": 1,
           "n_properties": 0
         },
         {
@@ -337,48 +356,6 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "lpips.lpips.print_network",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "lpips.lpips.L2",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "L2.forward",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 4,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
           "n_properties": 0
         },
         {
@@ -425,90 +402,6 @@
         },
         {
           "kind": "class",
-          "name": "lpips.lpips.ScalingLayer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ScalingLayer.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ScalingLayer.forward",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 3,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "lpips.lpips.upsample",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "lpips.lpips.FakeNet",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FakeNet.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 3,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "lpips.lpips.NetLinLayer",
           "methods": [
             {
@@ -550,16 +443,34 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "lpips.lpips.spatial_average",
+          "kind": "class",
+          "name": "lpips.lpips.FakeNet",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FakeNet.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -590,6 +501,102 @@
           "n_method_overloads": 1,
           "n_method_params": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "lpips.lpips.L2",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "L2.forward",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 4,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "lpips.lpips.spatial_average",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "lpips.lpips.BCERankingLoss",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BCERankingLoss.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BCERankingLoss.forward",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "lpips.lpips.print_network",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -627,11 +634,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "lpips.pretrained_networks.squeezenet",
+          "name": "lpips.pretrained_networks.alexnet",
           "methods": [
             {
               "kind": "function",
-              "name": "squeezenet.__init__",
+              "name": "alexnet.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -643,7 +650,7 @@
             },
             {
               "kind": "function",
-              "name": "squeezenet.forward",
+              "name": "alexnet.forward",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -669,53 +676,11 @@
         },
         {
           "kind": "class",
-          "name": "lpips.pretrained_networks.resnet",
+          "name": "lpips.pretrained_networks.squeezenet",
           "methods": [
             {
               "kind": "function",
-              "name": "resnet.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "resnet.forward",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 6,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "lpips.pretrained_networks.alexnet",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "alexnet.__init__",
+              "name": "squeezenet.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -727,7 +692,7 @@
             },
             {
               "kind": "function",
-              "name": "alexnet.forward",
+              "name": "squeezenet.forward",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -792,6 +757,48 @@
           "n_method_overloads": 2,
           "n_method_params": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "lpips.pretrained_networks.resnet",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "resnet.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "resnet.forward",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -823,18 +830,6 @@
         {
           "kind": "function",
           "name": "lpips.trainer.score_jnd_dataset",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "lpips.trainer.score_2afc_dataset",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 4,
@@ -1065,6 +1060,18 @@
           "n_method_overloads": 17,
           "n_method_params": 32,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "lpips.trainer.score_2afc_dataset",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],

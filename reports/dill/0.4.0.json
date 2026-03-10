@@ -77,13 +77,13 @@
       "LICENSE"
     ],
     "Provides-Extra": [
-      "readline",
       "graph",
-      "profile"
+      "profile",
+      "readline"
     ],
     "Requires-Dist": [
-      "objgraph>=1.7.2; extra == \"graph\"",
-      "gprof2dot>=2022.7.29; extra == \"profile\""
+      "objgraph >=1.7.2 ; extra == 'graph'",
+      "gprof2dot >=2022.7.29 ; extra == 'profile'"
     ]
   },
   "module_reports": [
@@ -91,8 +91,48 @@
       "path": "dill/__init__.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "dill.license",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "name",
+          "name": "dill.objects",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "dill.extend",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
           "kind": "name",
           "name": "dill.__license__",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dill.parent",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -113,46 +153,6 @@
         {
           "kind": "function",
           "name": "dill.citation",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "dill.extend",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "dill.objects",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "name",
-          "name": "dill.parent",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "dill.license",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -194,19 +194,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "dill.detect.errors",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 5,
-          "n_overloads": 1,
-          "n_annotatable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "dill.detect.outermost",
+          "name": "dill.detect.code",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -218,7 +206,7 @@
         },
         {
           "kind": "function",
-          "name": "dill.detect.code",
+          "name": "dill.detect.varnames",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -239,6 +227,18 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dill.detect.nestedglobals",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -266,31 +266,7 @@
         },
         {
           "kind": "function",
-          "name": "dill.detect.nestedglobals",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dill.detect.baditems",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "dill.detect.varnames",
+          "name": "dill.detect.outermost",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -302,7 +278,7 @@
         },
         {
           "kind": "function",
-          "name": "dill.detect.referrednested",
+          "name": "dill.detect.nestedcode",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,
@@ -314,7 +290,7 @@
         },
         {
           "kind": "function",
-          "name": "dill.detect.nestedcode",
+          "name": "dill.detect.referrednested",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,
@@ -338,15 +314,27 @@
         },
         {
           "kind": "function",
-          "name": "dill.detect.freevars",
+          "name": "dill.detect.errors",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 2,
+          "n_unannotated": 5,
           "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
+          "n_annotatable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dill.detect.baditems",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -359,6 +347,18 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dill.detect.freevars",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -449,60 +449,11 @@
       "n_type_ignores": 0
     },
     {
-      "path": "dill/_dill.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "dill._dill._proxy_helper",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dill._dill._locate_object",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "dill._dill",
-      "names": [
-        "dill._dill._locate_object",
-        "dill._dill._proxy_helper"
-      ],
-      "n_annotatable": 5,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 5,
-      "n_functions": 2,
-      "n_function_overloads": 2,
-      "n_function_params": 3,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "dill/pointers.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "dill.pointers.children",
+          "name": "dill.pointers.parents",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 5,
@@ -526,7 +477,7 @@
         },
         {
           "kind": "function",
-          "name": "dill.pointers.parents",
+          "name": "dill.pointers.children",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 5,
@@ -560,14 +511,63 @@
       "n_type_ignores": 0
     },
     {
+      "path": "dill/_dill.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "dill._dill._locate_object",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dill._dill._proxy_helper",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "dill._dill",
+      "names": [
+        "dill._dill._locate_object",
+        "dill._dill._proxy_helper"
+      ],
+      "n_annotatable": 5,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 5,
+      "n_functions": 2,
+      "n_function_overloads": 2,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "dill/session.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "dill.session.load_module_asdict",
-          "n_annotated": 3,
+          "name": "dill.session.load_session",
+          "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 1,
+          "n_unannotated": 4,
           "n_overloads": 1,
           "n_annotatable": 4,
           "n_params": 3,
@@ -576,10 +576,10 @@
         },
         {
           "kind": "function",
-          "name": "dill.session.load_session",
-          "n_annotated": 0,
+          "name": "dill.session.load_module",
+          "n_annotated": 3,
           "n_any": 0,
-          "n_unannotated": 4,
+          "n_unannotated": 1,
           "n_overloads": 1,
           "n_annotatable": 4,
           "n_params": 3,
@@ -600,18 +600,6 @@
         },
         {
           "kind": "function",
-          "name": "dill.session.load_module",
-          "n_annotated": 3,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
           "name": "dill.session.dump_module",
           "n_annotated": 4,
           "n_any": 0,
@@ -621,6 +609,18 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dill.session.load_module_asdict",
+          "n_annotated": 3,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -684,15 +684,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "dill.source.findsource",
+          "name": "dill.source._importable",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 2,
+          "n_unannotated": 8,
           "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
+          "n_annotatable": 8,
+          "n_params": 7,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 7
         },
         {
           "kind": "function",
@@ -708,18 +708,6 @@
         },
         {
           "kind": "function",
-          "name": "dill.source.getsource",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 7,
-          "n_overloads": 1,
-          "n_annotatable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
           "name": "dill.source._namespace",
           "n_annotated": 0,
           "n_any": 0,
@@ -729,30 +717,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dill.source._importable",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 8,
-          "n_overloads": 1,
-          "n_annotatable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "dill.source.dumpsource",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 5,
-          "n_overloads": 1,
-          "n_annotatable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -768,19 +732,7 @@
         },
         {
           "kind": "function",
-          "name": "dill.source.indent",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dill.source._wrap",
+          "name": "dill.source.isfrommain",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -789,18 +741,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dill.source.getimport",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_overloads": 1,
-          "n_annotatable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         },
         {
           "kind": "function",
@@ -816,7 +756,19 @@
         },
         {
           "kind": "function",
-          "name": "dill.source.isfrommain",
+          "name": "dill.source.indent",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dill.source.isdynamic",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -840,7 +792,31 @@
         },
         {
           "kind": "function",
-          "name": "dill.source.isdynamic",
+          "name": "dill.source.getimport",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dill.source.dumpsource",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 5,
+          "n_overloads": 1,
+          "n_annotatable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dill.source._wrap",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -849,6 +825,30 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dill.source.findsource",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dill.source.getsource",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 7,
+          "n_overloads": 1,
+          "n_annotatable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
         }
       ],
       "type_ignores": [],
@@ -889,79 +889,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "dill.temp.load_source",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "dill.temp.load",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dill.temp.dump_source",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dill.temp.dumpIO_source",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dill.temp.dumpIO",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dill.temp.capture",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dill.temp.loadIO_source",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,
@@ -985,7 +913,79 @@
         },
         {
           "kind": "function",
+          "name": "dill.temp.dumpIO",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dill.temp.dumpIO_source",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dill.temp.loadIO_source",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "dill.temp.loadIO",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dill.temp.load_source",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dill.temp.capture",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dill.temp.dump_source",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,

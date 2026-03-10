@@ -75,6 +75,10 @@
     "Requires-Python": [
       ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
     ],
+    "Requires-Dist": [
+      "humanfriendly (>=9.1)",
+      "capturer (>=2.4) ; extra == 'cron'"
+    ],
     "Provides-Extra": [
       "cron"
     ]
@@ -85,7 +89,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "coloredlogs.walk_propagation_tree",
+          "name": "coloredlogs.find_hostname",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 2,
@@ -94,275 +98,14 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.find_defined_levels",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.find_username",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.level_to_number",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.NameNormalizer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NameNormalizer.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NameNormalizer.normalize_name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "NameNormalizer.normalize_keys",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "NameNormalizer.get",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 8,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.get_level",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.StandardErrorHandler",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "StandardErrorHandler.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "StandardErrorHandler.stream",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            }
-          ],
-          "n_annotatable": 3,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.BasicFormatter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BasicFormatter.formatTime",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 3,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
         },
         {
           "kind": "name",
-          "name": "coloredlogs.__version__",
+          "name": "coloredlogs.DEFAULT_LOG_FORMAT",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 0,
           "n_annotatable": 0
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.UserNameFilter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "UserNameFilter.install",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "UserNameFilter.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "UserNameFilter.filter",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 9,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 6,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.parse_encoded_styles",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.find_handler",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         },
         {
           "kind": "name",
@@ -374,224 +117,11 @@
         },
         {
           "kind": "name",
-          "name": "coloredlogs.DEFAULT_LOG_FORMAT",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.Empty",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.find_program_name",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.adjust_level",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.match_stream_handler",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.HostNameFilter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "HostNameFilter.install",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "HostNameFilter.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "HostNameFilter.filter",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 9,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 6,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "coloredlogs.ProgramNameFilter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ProgramNameFilter.install",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ProgramNameFilter.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ProgramNameFilter.filter",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 9,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 6,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.increase_verbosity",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.DEFAULT_LEVEL_STYLES",
+          "name": "coloredlogs.DEFAULT_FIELD_STYLES",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
           "n_annotatable": 1
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.DEFAULT_FORMAT_STYLE",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.check_style",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.replace_handler",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -697,7 +227,60 @@
         },
         {
           "kind": "function",
-          "name": "coloredlogs.decrease_verbosity",
+          "name": "coloredlogs.replace_handler",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "coloredlogs.Empty",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.walk_propagation_tree",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.find_handler",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.find_program_name",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -709,23 +292,81 @@
         },
         {
           "kind": "function",
-          "name": "coloredlogs.set_level",
+          "name": "coloredlogs.auto_install",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 2,
+          "n_unannotated": 1,
           "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 0
         },
         {
-          "kind": "name",
-          "name": "coloredlogs.FORMAT_STYLE_PATTERNS",
+          "kind": "class",
+          "name": "coloredlogs.UserNameFilter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UserNameFilter.install",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "UserNameFilter.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UserNameFilter.filter",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 9,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
+          "n_unannotated": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.is_verbose",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
           "kind": "function",
@@ -740,36 +381,100 @@
           "n_function_params": 0
         },
         {
-          "kind": "name",
-          "name": "coloredlogs.DEFAULT_FIELD_STYLES",
+          "kind": "class",
+          "name": "coloredlogs.BasicFormatter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BasicFormatter.formatTime",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 3,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
         },
         {
           "kind": "function",
-          "name": "coloredlogs.find_hostname",
+          "name": "coloredlogs.adjust_level",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 2,
+          "n_unannotated": 3,
           "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 2
         },
         {
-          "kind": "function",
-          "name": "coloredlogs.auto_install",
+          "kind": "class",
+          "name": "coloredlogs.HostNameFilter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HostNameFilter.install",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "HostNameFilter.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "HostNameFilter.filter",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 9,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_unannotated": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 6,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -827,7 +532,106 @@
         },
         {
           "kind": "function",
-          "name": "coloredlogs.is_verbose",
+          "name": "coloredlogs.match_stream_handler",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.find_defined_levels",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "coloredlogs.StandardErrorHandler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StandardErrorHandler.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "StandardErrorHandler.stream",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 3,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.check_style",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.find_username",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.decrease_verbosity",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.get_level",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -839,11 +643,55 @@
         },
         {
           "kind": "name",
-          "name": "coloredlogs.CHROOT_FILES",
+          "name": "coloredlogs.DEFAULT_LEVEL_STYLES",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.level_to_number",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.__version__",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 0,
           "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.set_level",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.increase_verbosity",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
           "kind": "function",
@@ -872,6 +720,162 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.DEFAULT_FORMAT_STYLE",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.CHROOT_FILES",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.FORMAT_STYLE_PATTERNS",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.parse_encoded_styles",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "coloredlogs.NameNormalizer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NameNormalizer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NameNormalizer.normalize_name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NameNormalizer.normalize_keys",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NameNormalizer.get",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 8,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "coloredlogs.ProgramNameFilter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProgramNameFilter.install",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ProgramNameFilter.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ProgramNameFilter.filter",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 9,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 6,
           "n_properties": 0
         }
       ],
@@ -948,6 +952,14 @@
           "n_function_params": 1
         },
         {
+          "kind": "name",
+          "name": "coloredlogs.cli.logger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
           "kind": "function",
           "name": "coloredlogs.cli.main",
           "n_annotated": 0,
@@ -958,14 +970,6 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.cli.logger",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
         }
       ],
       "type_ignores": [],
@@ -993,70 +997,6 @@
     {
       "path": "coloredlogs/converter/__init__.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "coloredlogs.converter.parse_hex_color",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.converter.TOKEN_PATTERN",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.converter.encode_whitespace_cb",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.converter.INDENT_PATTERN",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.converter.select_text_color",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.converter.html_encode",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
         {
           "kind": "class",
           "name": "coloredlogs.converter.ColoredCronMailer",
@@ -1125,7 +1065,7 @@
         },
         {
           "kind": "function",
-          "name": "coloredlogs.converter.convert",
+          "name": "coloredlogs.converter.select_text_color",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 4,
@@ -1134,6 +1074,66 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.converter.parse_hex_color",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.converter.encode_whitespace_cb",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.converter.TOKEN_PATTERN",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.converter.TAG_INDENT_PATTERN",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.converter.INDENT_PATTERN",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.converter.html_encode",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -1149,6 +1149,18 @@
         },
         {
           "kind": "function",
+          "name": "coloredlogs.converter.convert",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
           "name": "coloredlogs.converter.capture",
           "n_annotated": 0,
           "n_any": 0,
@@ -1158,14 +1170,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.converter.TAG_INDENT_PATTERN",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
         }
       ],
       "type_ignores": [],
@@ -1203,7 +1207,7 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "coloredlogs.converter.colors.BRIGHT_COLOR_PALETTE",
+          "name": "coloredlogs.converter.colors.EXTENDED_COLOR_PALETTE",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 0,
@@ -1211,7 +1215,7 @@
         },
         {
           "kind": "name",
-          "name": "coloredlogs.converter.colors.EXTENDED_COLOR_PALETTE",
+          "name": "coloredlogs.converter.colors.BRIGHT_COLOR_PALETTE",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 0,
@@ -1260,6 +1264,14 @@
           "n_annotatable": 1
         },
         {
+          "kind": "name",
+          "name": "coloredlogs.demo.logger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
           "kind": "function",
           "name": "coloredlogs.demo.demonstrate_colored_logging",
           "n_annotated": 0,
@@ -1270,14 +1282,6 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.demo.logger",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
         }
       ],
       "type_ignores": [],
@@ -1307,7 +1311,79 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "coloredlogs.syslog.connect_to_syslog",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.syslog.match_syslog_handler",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 2,
+          "n_overloads": 1,
+          "n_annotatable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.syslog.enable_system_logging",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.syslog.LOG_DEVICE_MACOSX",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
           "name": "coloredlogs.syslog.find_syslog_address",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.syslog.logger",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_annotatable": 1
+        },
+        {
+          "kind": "name",
+          "name": "coloredlogs.syslog.LOG_DEVICE_UNIX",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_annotatable": 0
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.syslog.is_syslog_supported",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 1,
@@ -1372,80 +1448,8 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "coloredlogs.syslog.is_syslog_supported",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.syslog.enable_system_logging",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_overloads": 1,
-          "n_annotatable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.syslog.connect_to_syslog",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
           "kind": "name",
           "name": "coloredlogs.syslog.DEFAULT_LOG_FORMAT",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.syslog.LOG_DEVICE_UNIX",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_annotatable": 0
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.syslog.logger",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.syslog.match_syslog_handler",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 2,
-          "n_overloads": 1,
-          "n_annotatable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "coloredlogs.syslog.LOG_DEVICE_MACOSX",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 0,
@@ -1959,6 +1963,30 @@
           "n_properties": 0
         },
         {
+          "kind": "function",
+          "name": "coloredlogs.tests.check_contents",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "coloredlogs.tests.cleanup_handlers",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 1,
+          "n_overloads": 1,
+          "n_annotatable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
           "kind": "name",
           "name": "coloredlogs.tests.PLAIN_TEXT_PATTERN",
           "n_annotated": 0,
@@ -1985,30 +2013,6 @@
           "n_any": 0,
           "n_unannotated": 1,
           "n_annotatable": 1
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.tests.cleanup_handlers",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 1,
-          "n_overloads": 1,
-          "n_annotatable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "coloredlogs.tests.check_contents",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 4,
-          "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
         }
       ],
       "type_ignores": [],
