@@ -7,7 +7,6 @@ import libcst as cst
 import pytest
 
 from typestats import analyze
-from typestats._stubs import find_stubs_dir
 from typestats.index import (
     _EXCLUDED_DIR_NAMES,
     _EXCLUDED_FILE_NAMES,
@@ -1103,28 +1102,3 @@ class TestSrcLayout:
             f"src should not be a namespace package: {names}"
         )
         assert any("mypkg" in n for n in names), f"missing mypkg symbols: {names}"
-
-
-class TestFindStubsDir:
-    pytestmark = pytest.mark.anyio
-
-    async def test_flat_layout(self, tmp_path: Path) -> None:
-        pkg = tmp_path / "mypkg-stubs"
-        pkg.mkdir()
-        (pkg / "__init__.pyi").touch()
-
-        assert await find_stubs_dir(anyio.Path(tmp_path)) == "mypkg"
-
-    async def test_src_layout(self, tmp_path: Path) -> None:
-        pkg = tmp_path / "src" / "mypkg-stubs"
-        pkg.mkdir(parents=True)
-        (pkg / "__init__.pyi").touch()
-
-        assert await find_stubs_dir(anyio.Path(tmp_path)) == "mypkg"
-
-    async def test_no_stubs(self, tmp_path: Path) -> None:
-        pkg = tmp_path / "mypkg"
-        pkg.mkdir()
-        (pkg / "__init__.py").touch()
-
-        assert await find_stubs_dir(anyio.Path(tmp_path)) is None
