@@ -1842,8 +1842,9 @@ class TestProperty:
         )
         fdel = Overload((), Expr(cst.parse_expression("None")))
         prop = Property("x", fget=fget, fset=fset, fdel=fdel)
-        # fget: 1 return. fset: 1 param + 1 return. fdel: 1 return.
-        assert annotation_counts(prop) == (4, 4)
+
+        # fget: 1 return. fset: 1 param (return excluded). fdel: 0 slots.
+        assert annotation_counts(prop) == (2, 2)
 
     def test_annotation_counts_unannotated(self) -> None:
         fget = Overload((), UNKNOWN)
