@@ -740,6 +740,17 @@ class TestPackageReportFromPath:
 
         assert report.stubs_only is StubsOnly.TYPESHED
 
+    async def test_stubs_only_detected_from_src_layout(self, tmp_path: Path) -> None:
+        """Stubs-only detected when *-stubs dir is under src/ (src-layout)."""
+        src_dir = tmp_path / "src"
+        pkg_dir = src_dir / "mypkg-stubs"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.pyi").write_text("x: int\n")
+
+        report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
+
+        assert report.stubs_only is StubsOnly.THIRD_PARTY
+
 
 class TestPackageReportFromProject:
     pytestmark = pytest.mark.anyio
