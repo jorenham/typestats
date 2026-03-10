@@ -1,9 +1,10 @@
 """Tests for `typestats.collect`."""
 
 import json
+import subprocess  # noqa: S404
 from datetime import date
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Never
 
 import anyio
 import httpx
@@ -129,6 +130,38 @@ class TestCollectProject:
         assert results == []
         # The file content should be unchanged (still the pre-created one)
         assert out.read_text() == "{}"
+
+    async def test_skips_on_install_failure(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        """When install fails (e.g. no compatible wheels), the version is skipped."""
+        name, version = "mypkg", "2.5.0"
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{name}/"),
+            json=_pypi_detail_json(name, version),
+        )
+
+        async def _fail(*_args: object) -> Never:  # noqa: RUF029
+            raise subprocess.CalledProcessError(1, ["uv", "pip", "install"])
+
+        monkeypatch.setattr("typestats.collect.install_to_venv", _fail)
+
+        project = Project(name=name)
+        data_dir = anyio.Path(tmp_path)
+        async with httpx.AsyncClient() as client:
+            results = await collect_project(
+                project,
+                client,
+                data_dir,
+                anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
+            )
+
+        assert results == []
 
 
 class TestCollectAll:
