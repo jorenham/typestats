@@ -483,6 +483,9 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         entries: dict[anyio.Path, analyze.ModuleSymbols] = {}
         local: dict[str, str] = {}
         for path in sorted(paths, key=lambda p: not p.name.endswith(".pyi")):
+            if not await path.is_file():
+                _logger.warning("File from import graph not found: %s", path)
+                continue
             pkg = (
                 mod
                 if _RE_INIT.match(path.name)

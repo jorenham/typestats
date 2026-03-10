@@ -1,8 +1,6 @@
 """Tests for `typestats.collect`."""
 
-import io
 import json
-import tarfile
 from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -11,29 +9,20 @@ import anyio
 import httpx
 import pytest
 
-from typestats.collect import (
-    clean_data,
-    collect_all,
-    collect_project,
-)
+from typestats.collect import clean_data, collect_all, collect_project
 from typestats.projects import Project
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+
     from pytest_httpx import HTTPXMock
+
+    type MockUv = Callable[..., None]
 
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 _FIXTURES = Path(__file__).parent / "fixtures"
 _BACKFILL_SINCE = date(2025, 1, 1)
 _BACKFILL_LIMIT = 10
-
-
-def _make_sdist_tar_gz(name: str, version: str, source_dir: Path) -> bytes:
-    buf = io.BytesIO()
-    prefix = f"{name}-{version}"
-    with tarfile.open(fileobj=buf, mode="w:gz") as tar:
-        for file in sorted(source_dir.rglob("*")):
-            tar.add(file, arcname=f"{prefix}/{file.relative_to(source_dir)}")
-    return buf.getvalue()
 
 
 def _pypi_detail_json(
@@ -58,26 +47,25 @@ def _pypi_detail_json(
     }
 
 
-def _mock_pypi(httpx_mock: HTTPXMock, name: str, version: str, content: bytes) -> None:
-    # One call for versions_since (fetch_project_detail), one download
-    httpx_mock.add_response(
-        url=_PYPI_HOST.join(f"/simple/{name}/"),
-        json=_pypi_detail_json(name, version),
-    )
-    httpx_mock.add_response(
-        url=_PYPI_HOST.join(f"/packages/{name}-{version}.tar.gz"),
-        content=content,
-    )
-
-
 class TestCollectProject:
     pytestmark = pytest.mark.anyio
 
-    async def test_writes_json(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
+    async def test_writes_json(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
+    ) -> None:
         """A new version produces a JSON file."""
         name, version = "mypkg", "2.5.0"
-        tar_gz = _make_sdist_tar_gz(name, version, _FIXTURES / "stubs_base")
-        _mock_pypi(httpx_mock, name, version, tar_gz)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{name}/"),
+            json=_pypi_detail_json(name, version),
+        )
+        mock_uv(
+            {(name, version): _FIXTURES / "stubs_base"},
+            target="typestats.collect.install_to_venv",
+        )
 
         project = Project(name=name)
 
@@ -101,7 +89,12 @@ class TestCollectProject:
         assert data["package"] == name
         assert data["version"] == version
 
-    async def test_skips_existing(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
+    async def test_skips_existing(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
+    ) -> None:
         """When the JSON already exists, the project is skipped."""
         name, version = "mypkg", "2.5.0"
 
@@ -110,10 +103,14 @@ class TestCollectProject:
         out.parent.mkdir(parents=True)
         out.write_text("{}")
 
-        # Mock only the version check (no download should happen)
+        # Mock only the version check (no install should happen)
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=_pypi_detail_json(name, version),
+        )
+        mock_uv(
+            {},
+            target="typestats.collect.install_to_venv",
         )
 
         project = Project(name=name)
@@ -141,11 +138,18 @@ class TestCollectAll:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """Integration test: collect_all processes projects from a TOML file."""
         name, version = "mypkg", "1.0.0"
-        tar_gz = _make_sdist_tar_gz(name, version, _FIXTURES / "stubs_base")
-        _mock_pypi(httpx_mock, name, version, tar_gz)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{name}/"),
+            json=_pypi_detail_json(name, version),
+        )
+        mock_uv(
+            {(name, version): _FIXTURES / "stubs_base"},
+            target="typestats.collect.install_to_venv",
+        )
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
@@ -167,6 +171,7 @@ class TestCollectAll:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """Projects with existing data files are skipped."""
         name, version = "mypkg", "1.0.0"
@@ -180,6 +185,10 @@ class TestCollectAll:
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=_pypi_detail_json(name, version),
+        )
+        mock_uv(
+            {},
+            target="typestats.collect.install_to_venv",
         )
 
         projects_toml = tmp_path / "projects.toml"
@@ -197,11 +206,18 @@ class TestCollectAll:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """Data directories for projects not in the TOML file are removed."""
         name, version = "mypkg", "1.0.0"
-        tar_gz = _make_sdist_tar_gz(name, version, _FIXTURES / "stubs_base")
-        _mock_pypi(httpx_mock, name, version, tar_gz)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{name}/"),
+            json=_pypi_detail_json(name, version),
+        )
+        mock_uv(
+            {(name, version): _FIXTURES / "stubs_base"},
+            target="typestats.collect.install_to_venv",
+        )
 
         # Pre-create data for an unlisted project
         data_dir = anyio.Path(tmp_path / "data")
@@ -232,6 +248,7 @@ class TestBackfillCutoff:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """Versions uploaded before BACKFILL_SINCE are not collected."""
         name = "mypkg"
@@ -260,14 +277,10 @@ class TestBackfillCutoff:
                 },
             ],
         }
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=detail,
-        )
-        tar_gz = _make_sdist_tar_gz(name, "1.0.0", _FIXTURES / "stubs_base")
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/packages/{name}-1.0.0.tar.gz"),
-            content=tar_gz,
+        httpx_mock.add_response(url=_PYPI_HOST.join(f"/simple/{name}/"), json=detail)
+        mock_uv(
+            {(name, "1.0.0"): _FIXTURES / "stubs_base"},
+            target="typestats.collect.install_to_venv",
         )
 
         project = Project(name=name)
@@ -290,6 +303,7 @@ class TestBackfillCutoff:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """Multiple eligible versions are all collected."""
         name = "mypkg"
@@ -322,12 +336,13 @@ class TestBackfillCutoff:
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=detail,
         )
-        for ver in ("1.0.0", "1.1.0"):
-            tar_gz = _make_sdist_tar_gz(name, ver, _FIXTURES / "stubs_base")
-            httpx_mock.add_response(
-                url=_PYPI_HOST.join(f"/packages/{name}-{ver}.tar.gz"),
-                content=tar_gz,
-            )
+        mock_uv(
+            {
+                (name, "1.0.0"): _FIXTURES / "stubs_base",
+                (name, "1.1.0"): _FIXTURES / "stubs_base",
+            },
+            target="typestats.collect.install_to_venv",
+        )
 
         project = Project(name=name)
         data_dir = anyio.Path(tmp_path)
@@ -349,8 +364,9 @@ class TestBackfillCutoff:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
-        """Stubs projects download base + stubs and produce correct metadata."""
+        """Stubs projects install base + stubs and produce correct metadata."""
         stubs_name = "mypkg-stubs"
         base_name = "mypkg"
         stubs_version = "1.0.0"
@@ -380,33 +396,19 @@ class TestBackfillCutoff:
             json=stubs_detail,
         )
 
-        # Mock download_latest for the base project
+        # Mock latest_version for the base project
         base_detail = _pypi_detail_json(base_name, base_version)
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{base_name}/"),
             json=base_detail,
         )
-        base_tar = _make_sdist_tar_gz(
-            base_name,
-            base_version,
-            _FIXTURES / "stubs_base",
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/packages/{base_name}-{base_version}.tar.gz"),
-            content=base_tar,
-        )
 
-        # Mock the stubs sdist download
-        stubs_tar = _make_sdist_tar_gz(
-            stubs_name,
-            stubs_version,
-            _FIXTURES / "stubs_overlay",
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(
-                f"/packages/{stubs_name}-{stubs_version}.tar.gz",
-            ),
-            content=stubs_tar,
+        mock_uv(
+            {
+                (base_name, base_version): _FIXTURES / "stubs_base",
+                (stubs_name, stubs_version): _FIXTURES / "stubs_overlay",
+            },
+            target="typestats.collect.install_to_venv",
         )
 
         project = Project(name=stubs_name)
@@ -434,8 +436,9 @@ class TestBackfillCutoff:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
-        """A *-stubs-lite project downloads base via directory detection (GH-231)."""
+        """A *-stubs-lite project installs base via directory detection."""
         stubs_lite_name = "mypkg-stubs-lite"
         base_name = "mypkg"
         stubs_version = "1.0.0"
@@ -465,33 +468,19 @@ class TestBackfillCutoff:
             json=stubs_detail,
         )
 
-        # Mock the stubs-lite sdist download (contains mypkg-stubs/ directory)
-        stubs_tar = _make_sdist_tar_gz(
-            stubs_lite_name,
-            stubs_version,
-            _FIXTURES / "stubs_overlay",
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(
-                f"/packages/{stubs_lite_name}-{stubs_version}.tar.gz",
-            ),
-            content=stubs_tar,
-        )
-
-        # Mock download_latest for the base project (discovered from directory)
+        # Mock latest_version for the base project (discovered from directory)
         base_detail = _pypi_detail_json(base_name, base_version)
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{base_name}/"),
             json=base_detail,
         )
-        base_tar = _make_sdist_tar_gz(
-            base_name,
-            base_version,
-            _FIXTURES / "stubs_base",
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/packages/{base_name}-{base_version}.tar.gz"),
-            content=base_tar,
+
+        mock_uv(
+            {
+                (stubs_lite_name, stubs_version): _FIXTURES / "stubs_overlay",
+                (base_name, base_version): _FIXTURES / "stubs_base",
+            },
+            target="typestats.collect.install_to_venv",
         )
 
         project = Project(name=stubs_lite_name)

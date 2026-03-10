@@ -1,8 +1,5 @@
-import io
 import json
 import shutil
-import tarfile
-import zipfile
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -42,7 +39,11 @@ from typestats.report import (
 )
 
 if TYPE_CHECKING:
+    from collections.abc import Callable
+
     from pytest_httpx import HTTPXMock
+
+    type MockUv = Callable[..., None]
 
 _FIXTURES = Path(__file__).parent / "fixtures"
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
@@ -774,7 +775,7 @@ class TestPackageReportFromPath:
         assert report.stubs_only is StubsOnly.TYPESHED
 
     async def test_stubs_module_path_normalized(self, tmp_path: Path) -> None:
-        """Module paths should use base package name, not *-stubs directory."""
+        """Module paths should preserve *-stubs directory name."""
         base = tmp_path / "base"
         stubs = tmp_path / "stubs"
         shutil.copytree(_FIXTURES / "stubs_base", base)
@@ -789,11 +790,10 @@ class TestPackageReportFromPath:
         )
 
         names = {m.name for m in report.module_reports}
-        assert all("mypkg-stubs" not in n for n in names)
-        assert "mypkg" in names
+        assert "mypkg-stubs" in names
 
     async def test_stubs_dir_module_path_normalized(self, tmp_path: Path) -> None:
-        """Module paths from *-stubs directory (no stubs_path) are normalized."""
+        """Module paths should preserve *-stubs directory name."""
         pkg_dir = tmp_path / "mypkg-stubs"
         pkg_dir.mkdir()
         (pkg_dir / "__init__.pyi").write_text("x: int\n")
@@ -801,8 +801,7 @@ class TestPackageReportFromPath:
         report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
 
         names = {m.name for m in report.module_reports}
-        assert "mypkg" in names
-        assert all("-stubs" not in n for n in names)
+        assert "mypkg-stubs" in names
 
     async def test_src_layout_module_path_normalized(self, tmp_path: Path) -> None:
         """Module paths should not include 'src.' prefix for src-layout."""
@@ -822,7 +821,7 @@ class TestPackageReportFromPath:
     async def test_src_layout_stubs_module_path_normalized(
         self, tmp_path: Path
     ) -> None:
-        """Stubs under src-layout should have both src. and -stubs stripped."""
+        """Stubs under src-layout should strip src. but keep -stubs."""
         src_dir = tmp_path / "src"
         pkg_dir = src_dir / "mypkg-stubs"
         pkg_dir.mkdir(parents=True)
@@ -831,9 +830,8 @@ class TestPackageReportFromPath:
         report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
 
         names = {m.name for m in report.module_reports}
-        assert "mypkg" in names
+        assert "mypkg-stubs" in names
         assert all(not n.startswith("src.") for n in names)
-        assert all("-stubs" not in n for n in names)
 
 
 class TestPackageReportFromProject:
@@ -841,52 +839,6 @@ class TestPackageReportFromProject:
 
     _PKG = "mypkg"
     _STUBS_PKG = f"{_PKG}-stubs"
-
-    @staticmethod
-    def _pkg_info(name: str, version: str) -> str:
-        return (
-            f"Metadata-Version: 2.4\n"
-            f"Name: {name}\n"
-            f"Version: {version}\n"
-            f"Summary: A test package\n"
-            f"Requires-Python: >=3.10\n"
-            f"Classifier: Typing :: Typed\n"
-        )
-
-    @classmethod
-    def _make_sdist_tar_gz(cls, name: str, version: str, source_dir: Path) -> bytes:
-        buf = io.BytesIO()
-        prefix = f"{name}-{version}"
-        with tarfile.open(fileobj=buf, mode="w:gz") as tar:
-            for file in sorted(source_dir.rglob("*")):
-                tar.add(file, arcname=f"{prefix}/{file.relative_to(source_dir)}")
-
-            # Add a synthetic PKG-INFO
-            pkg_info = cls._pkg_info(name, version).encode()
-            info = tarfile.TarInfo(name=f"{prefix}/PKG-INFO")
-            info.size = len(pkg_info)
-            tar.addfile(info, io.BytesIO(pkg_info))
-
-        return buf.getvalue()
-
-    @classmethod
-    def _make_wheel_zip(
-        cls,
-        source_dir: Path,
-        name: str = "mypkg",
-        version: str = "1.0.0",
-    ) -> bytes:
-        """Create a wheel-like zip archive from `source_dir` (flat, no prefix)."""
-        buf = io.BytesIO()
-        with zipfile.ZipFile(buf, "w") as zf:
-            for file in sorted(source_dir.rglob("*")):
-                if file.is_file():
-                    zf.write(file, arcname=str(file.relative_to(source_dir)))
-
-            # Add a synthetic .dist-info/METADATA
-            dist_info = f"{name}-{version}.dist-info"
-            zf.writestr(f"{dist_info}/METADATA", cls._pkg_info(name, version))
-        return buf.getvalue()
 
     @staticmethod
     def _pypi_detail_json(name: str, version: str) -> dict[str, object]:
@@ -907,47 +859,18 @@ class TestPackageReportFromProject:
             ],
         }
 
-    @staticmethod
-    def _pypi_detail_json_wheel(name: str, version: str) -> dict[str, object]:
-        """Project detail with only a wheel (no sdist)."""
-        filename = f"{name}-{version}-py3-none-any.whl"
-        return {
-            "name": name,
-            "versions": [version],
-            "meta": {"api-version": "1.0"},
-            "files": [
-                {
-                    "filename": filename,
-                    "hashes": {"sha256": "deadbeef9876"},
-                    "size": 42,
-                    "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
-                    "upload-time": "2025-06-15T12:00:00Z",
-                    "requires-python": ">=3.12",
-                },
-            ],
-        }
-
-    @classmethod
-    def _mock_pypi(
-        cls,
+    async def test_base_package(
+        self,
+        tmp_path: Path,
         httpx_mock: HTTPXMock,
-        name: str,
-        version: str,
-        content: bytes,
+        mock_uv: MockUv,
     ) -> None:
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=cls._pypi_detail_json(name, version),
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/packages/{name}-{version}.tar.gz"),
-            content=content,
-        )
-
-    async def test_base_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
         """Regular (non-stubs) project delegates to from_path correctly."""
-        tar_gz = self._make_sdist_tar_gz(self._PKG, "2.5.0", _FIXTURES / "stubs_base")
-        self._mock_pypi(httpx_mock, self._PKG, "2.5.0", tar_gz)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
+            json=self._pypi_detail_json(self._PKG, "2.5.0"),
+        )
+        mock_uv({(self._PKG, "2.5.0"): _FIXTURES / "stubs_base"})
 
         project = Project(name=self._PKG)
         async with httpx.AsyncClient() as client:
@@ -956,25 +879,33 @@ class TestPackageReportFromProject:
         assert report.package == self._PKG
         assert report.version == "2.5.0"
         assert report.stubs_only is StubsOnly.NO
-        assert report.metadata is not None
-        assert report.metadata["Name"] == [self._PKG]
-        assert report.metadata["Version"] == ["2.5.0"]
         assert report.pypi is not None
         assert report.pypi.upload_time == "2025-03-01T10:00:00Z"
         assert report.pypi.requires_python == ">=3.10"
         assert report.pypi.size == 98765
         assert report.pypi.sha256 == "abc123def456"
 
-    async def test_stubs_package(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
-        """Stubs project downloads base + stubs concurrently."""
-        base_tar = self._make_sdist_tar_gz(self._PKG, "3.0.0", _FIXTURES / "stubs_base")
-        stubs_tar = self._make_sdist_tar_gz(
-            self._STUBS_PKG,
-            "3.0.0.1",
-            _FIXTURES / "stubs_overlay",
+    async def test_stubs_package(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
+    ) -> None:
+        """Stubs project installs base + stubs in separate venvs."""
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._STUBS_PKG}/"),
+            json=self._pypi_detail_json(self._STUBS_PKG, "3.0.0.1"),
         )
-        self._mock_pypi(httpx_mock, self._PKG, "3.0.0", base_tar)
-        self._mock_pypi(httpx_mock, self._STUBS_PKG, "3.0.0.1", stubs_tar)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
+            json=self._pypi_detail_json(self._PKG, "3.0.0"),
+        )
+        mock_uv(
+            {
+                (self._STUBS_PKG, "3.0.0.1"): _FIXTURES / "stubs_overlay",
+                (self._PKG, "3.0.0"): _FIXTURES / "stubs_base",
+            },
+        )
 
         project = Project(name=self._STUBS_PKG)
         async with httpx.AsyncClient() as client:
@@ -994,17 +925,24 @@ class TestPackageReportFromProject:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
-        """Typeshed `types-{name}` project downloads base + stubs concurrently."""
+        """Typeshed `types-{name}` project installs base + stubs."""
         typeshed_name = f"types-{self._PKG}"
-        base_tar = self._make_sdist_tar_gz(self._PKG, "3.0.0", _FIXTURES / "stubs_base")
-        stubs_tar = self._make_sdist_tar_gz(
-            typeshed_name,
-            "3.0.0.1",
-            _FIXTURES / "stubs_overlay",
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{typeshed_name}/"),
+            json=self._pypi_detail_json(typeshed_name, "3.0.0.1"),
         )
-        self._mock_pypi(httpx_mock, self._PKG, "3.0.0", base_tar)
-        self._mock_pypi(httpx_mock, typeshed_name, "3.0.0.1", stubs_tar)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
+            json=self._pypi_detail_json(self._PKG, "3.0.0"),
+        )
+        mock_uv(
+            {
+                (typeshed_name, "3.0.0.1"): _FIXTURES / "stubs_overlay",
+                (self._PKG, "3.0.0"): _FIXTURES / "stubs_base",
+            },
+        )
 
         project = Project(name=typeshed_name)
         async with httpx.AsyncClient() as client:
@@ -1024,10 +962,14 @@ class TestPackageReportFromProject:
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """The exclude list from the Project is forwarded to from_path."""
-        tar_gz = self._make_sdist_tar_gz(self._PKG, "1.0.0", _FIXTURES / "stubs_base")
-        self._mock_pypi(httpx_mock, self._PKG, "1.0.0", tar_gz)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
+            json=self._pypi_detail_json(self._PKG, "1.0.0"),
+        )
+        mock_uv({(self._PKG, "1.0.0"): _FIXTURES / "stubs_base"})
 
         project = Project(name=self._PKG, exclude=[f"{self._PKG}/utils.py"])
         async with httpx.AsyncClient() as client:
@@ -1037,55 +979,29 @@ class TestPackageReportFromProject:
         module_paths = {m.path for m in report.module_reports}
         assert f"{self._PKG}/utils.py" not in module_paths
 
-    async def test_wheel_fallback(self, tmp_path: Path, httpx_mock: HTTPXMock) -> None:
-        """When no sdist exists, falls back to a wheel."""
-        whl_zip = self._make_wheel_zip(
-            _FIXTURES / "stubs_base",
-            name=self._PKG,
-            version="2.0.0",
-        )
-        whl_filename = f"{self._PKG}-2.0.0-py3-none-any.whl"
-
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
-            json=self._pypi_detail_json_wheel(self._PKG, "2.0.0"),
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/packages/{whl_filename}"),
-            content=whl_zip,
-        )
-
-        project = Project(name=self._PKG)
-        async with httpx.AsyncClient() as client:
-            report = await PackageReport.from_project(project, client, tmp_path)
-
-        assert report.package == self._PKG
-        assert report.version == "2.0.0"
-        assert report.stubs_only is StubsOnly.NO
-        assert report.metadata is not None
-        assert report.metadata["Name"] == [self._PKG]
-        assert report.pypi is not None
-        assert report.pypi.upload_time == "2025-06-15T12:00:00Z"
-        assert report.pypi.requires_python == ">=3.12"
-        assert report.pypi.size == 42
-        assert report.pypi.sha256 == "deadbeef9876"
-
     async def test_stubs_lite_detected(
         self,
         tmp_path: Path,
         httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
     ) -> None:
         """A *-stubs-lite project whose package dir is *-stubs should
-        download the base package and be detected as stubs-only (GH-231)."""
+        install the base package and be detected as stubs-only."""
         stubs_lite_name = f"{self._PKG}-stubs-lite"
-        stubs_tar = self._make_sdist_tar_gz(
-            stubs_lite_name,
-            "1.0.0",
-            _FIXTURES / "stubs_overlay",
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{stubs_lite_name}/"),
+            json=self._pypi_detail_json(stubs_lite_name, "1.0.0"),
         )
-        base_tar = self._make_sdist_tar_gz(self._PKG, "1.0.0", _FIXTURES / "stubs_base")
-        self._mock_pypi(httpx_mock, stubs_lite_name, "1.0.0", stubs_tar)
-        self._mock_pypi(httpx_mock, self._PKG, "1.0.0", base_tar)
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
+            json=self._pypi_detail_json(self._PKG, "1.0.0"),
+        )
+        mock_uv(
+            {
+                (stubs_lite_name, "1.0.0"): _FIXTURES / "stubs_overlay",
+                (self._PKG, "1.0.0"): _FIXTURES / "stubs_base",
+            },
+        )
 
         project = Project(name=stubs_lite_name)
         async with httpx.AsyncClient() as client:

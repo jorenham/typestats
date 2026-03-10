@@ -7,8 +7,9 @@ from typing import TYPE_CHECKING, Final
 import anyio
 
 from typestats._http import retry_client
-from typestats._pypi import download_file, download_latest, versions_since
+from typestats._pypi import latest_version, versions_since
 from typestats._stubs import find_stubs_dir, stubs_base_name
+from typestats._uv import install_to_venv
 from typestats.projects import load_projects
 from typestats.report import PackageReport, PypiInfo
 
@@ -91,10 +92,11 @@ async def collect_project(  # noqa: PLR0913
     )
     base_name = stubs_base_name(project.name)
 
-    # For stubs packages, download the latest base package once (not per version).
-    base_path: anyio.Path | None = None
+    # For stubs packages, install the latest base package once (not per version).
+    base_sp: anyio.Path | None = None
     if base_name is not None:
-        base_path, _ = await download_latest(client, base_name, work_dir)
+        base_ver = await latest_version(client, base_name)
+        base_sp = await install_to_venv(work_dir, base_name, str(base_ver))
 
     written: list[anyio.Path] = []
     for version in sorted(eligible):
@@ -105,24 +107,23 @@ async def collect_project(  # noqa: PLR0913
 
         _logger.info("  %s %s - analyzing...", project.name, version)
         file_detail = eligible[version]
-        path = await download_file(client, file_detail, str(work_dir))
 
-        # On first download, scan for *-stubs/ dirs if not already detected from the
-        # project name (handles e.g. boto3-stubs-lite), including src-layout packages.
-        if (
-            base_name is None
-            and (detected := await find_stubs_dir(anyio.Path(path))) is not None
-        ):
+        sp = await install_to_venv(work_dir, project.name, str(version))
+
+        # On first install, scan site-packages for *-stubs/ dirs if not already
+        # detected from the project name (handles e.g. boto3-stubs-lite).
+        if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
             base_name = detected
-            base_path, _ = await download_latest(client, base_name, work_dir)
+            base_ver = await latest_version(client, base_name)
+            base_sp = await install_to_venv(work_dir, base_name, str(base_ver))
 
         if base_name is not None:
-            assert base_path is not None
+            assert base_sp is not None
             report = await PackageReport.from_path(
                 base_name,
-                base_path,
+                base_sp,
                 str(version),
-                stubs_path=path,
+                stubs_path=sp,
                 project=project.name,
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(file_detail),
@@ -130,7 +131,7 @@ async def collect_project(  # noqa: PLR0913
         else:
             report = await PackageReport.from_path(
                 project.name,
-                path,
+                sp,
                 str(version),
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(file_detail),

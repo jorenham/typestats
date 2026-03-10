@@ -409,10 +409,8 @@ def _normalize_relpath(
     if strip_src and parts and parts[0] == "src":
         parts = parts[1:]
 
-    if had_stubs := bool(parts and parts[0].endswith("-stubs")):
-        parts[0] = parts[0].removesuffix("-stubs")
+    had_stubs = bool(parts and parts[0].endswith("-stubs"))
 
-    # pyrefly: ignore[unbound-name]
     return anyio.Path(*parts) if parts else rel, had_stubs
 
 
@@ -742,53 +740,49 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         /,
     ) -> Self:
         """
-        Download `project` from PyPI and build a `PackageReport`.
+        Install `project` from PyPI into a temporary venv and build a `PackageReport`.
 
-        Handles both regular packages and stubs packages (downloading base +
-        stubs concurrently for the latter).  Recognized stubs patterns:
+        Handles both regular packages and stubs packages (installing base +
+        stubs in separate venvs for the latter).  Recognized stubs patterns:
         `{name}-stubs` (third-party) and `types-{name}` (typeshed).
 
         When the project name doesn't match a known stubs pattern, the
-        extracted package is scanned for `*-stubs/` directories (e.g.
+        installed site-packages is scanned for `*-stubs/` directories (e.g.
         `boto3-stubs-lite` ships a `boto3-stubs/` directory).
         """
-        from typestats import _pypi
+        from typestats import _pypi, _uv
         from typestats._stubs import find_stubs_dir, stubs_base_name
 
-        # Fast path: project name reveals the base package, so both the
-        # base and stubs sdists can be downloaded concurrently.
+        ver, dist_file = await _pypi.latest_distribution(client, project.name)
+
+        # Install the project into a venv.
+        sp = await _uv.install_to_venv(out_dir, project.name, str(ver))
+
+        # Detect stubs pattern from the project name.
         base_name = stubs_base_name(project.name)
-        base_path: anyio.Path | None = None
+        base_sp: anyio.Path | None = None
+
         if base_name is not None:
-            (base_path, _), (path, dist_file) = await asyncio.gather(
-                _pypi.download_latest(client, base_name, out_dir),
-                _pypi.download_latest(client, project.name, out_dir),
-            )
-        else:
-            path, dist_file = await _pypi.download_latest(
-                client,
-                project.name,
+            # Fast path: project name reveals the base package.
+            base_ver = await _pypi.latest_version(client, base_name)
+            base_sp = await _uv.install_to_venv(out_dir, base_name, str(base_ver))
+        # Scan for a *-stubs/ directory (e.g. boto3-stubs-lite).
+        elif (detected := await find_stubs_dir(sp)) is not None:
+            base_name = detected
+            base_ver = await _pypi.latest_version(client, base_name)
+            base_sp = await _uv.install_to_venv(
                 out_dir,
+                base_name,
+                str(base_ver),
             )
-            # Scan for a *-stubs/ directory (e.g. boto3-stubs-lite),
-            # including src-layout packages.
-            if (detected := await find_stubs_dir(anyio.Path(path))) is not None:
-                base_name = detected
-                base_path, _ = await _pypi.download_latest(
-                    client,
-                    base_name,
-                    out_dir,
-                )
-
-        ver = _pypi.parse_file_version(dist_file["filename"])
 
         if base_name is not None:
-            assert base_path is not None
+            assert base_sp is not None
             return await cls.from_path(
                 base_name,
-                base_path,
+                base_sp,
                 str(ver),
-                stubs_path=path,
+                stubs_path=sp,
                 project=project.name,
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(dist_file),
@@ -796,7 +790,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
         return await cls.from_path(
             project.name,
-            path,
+            sp,
             str(ver),
             exclude=project.exclude,
             pypi=PypiInfo.from_file_detail(dist_file),

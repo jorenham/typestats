@@ -1,17 +1,15 @@
 import json
-import logging
 from typing import TYPE_CHECKING
 
 import anyio
+
+from typestats import _subprocess
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
 
 
 __all__ = ("analyze_graph",)
-
-
-_logger = logging.getLogger(__name__)
 
 
 async def analyze_graph(project_dir: StrPath, *opts: str) -> dict[str, list[str]]:
@@ -32,8 +30,13 @@ async def analyze_graph(project_dir: StrPath, *opts: str) -> dict[str, list[str]
         msg = f"{path} is not a directory"
         raise NotADirectoryError(msg)
 
-    subprocess_args = ["ruff", "analyze", "graph", "--quiet", *opts, str(path)]
-    _logger.info("Running subprocess: %s", " ".join(subprocess_args))
-    result = await anyio.run_process(subprocess_args)
-    result.check_returncode()
+    result = await _subprocess.run(
+        "ruff",
+        "analyze",
+        "graph",
+        "--quiet",
+        "--isolated",
+        *opts,
+        str(path),
+    )
     return json.loads(result.stdout)
