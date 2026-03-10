@@ -215,9 +215,9 @@ class TestClassReport:
         assert len(r.properties) == 1
         assert r.n_methods == 0
         assert r.n_properties == 1
-        # fget: return = 1; fset: value param + return = 2
-        assert r.n_annotatable == 3
-        assert r.n_annotated == 3
+        # fget: return = 1; fset: value param = 1 (return excluded)
+        assert r.n_annotatable == 2
+        assert r.n_annotated == 2
 
 
 class TestPropertyReport:
@@ -239,16 +239,16 @@ class TestPropertyReport:
         fset = _overload([("value", _INT)])  # (value: int) -> int
         prop = Property("x", fget=fget, fset=fset)
         r = PropertyReport.from_symbol("x", prop)
-        # fget: return = 1; fset: value param = 1, return = 1
-        assert r.n_annotatable == 3
-        assert r.n_annotated == 3
+        # fget: return = 1; fset: value param = 1 (return excluded)
+        assert r.n_annotatable == 2
+        assert r.n_annotated == 2
 
     def test_mixed_annotations(self) -> None:
         fget = _overload([], returns=UNKNOWN)
         fset = _overload([("value", _INT)])
         prop = Property("x", fget=fget, fset=fset)
         r = PropertyReport.from_symbol("x", prop)
-        assert r.n_annotated == 2
+        assert r.n_annotated == 1
         assert r.n_unannotated == 1
 
     def test_no_accessors(self) -> None:
@@ -263,9 +263,9 @@ class TestPropertyReport:
         fdel = _overload([])
         prop = Property("x", fget=fget, fset=fset, fdel=fdel)
         r = PropertyReport.from_symbol("x", prop)
-        # fget: return = 1; fset: param + return = 2; fdel: return = 1
-        assert r.n_annotatable == 4
-        assert r.n_annotated == 4
+        # fget: return = 1; fset: param = 1 (return excluded); fdel: 0 slots
+        assert r.n_annotatable == 2
+        assert r.n_annotated == 2
 
 
 class TestSymbolReport:

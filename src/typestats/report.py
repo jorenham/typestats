@@ -236,27 +236,30 @@ class PropertyReport(BaseModel):
     n_names: Literal[0] = Field(0, exclude=True)
     n_properties: Literal[1] = Field(1, exclude=True)
 
-    @computed_field
-    @property
-    def n_params(self) -> NonNegativeInt:
-        # TODO(@jorenham): https://github.com/jorenham/typestats/issues/225
-        return 0
-
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Property, /) -> Self:
-        annotated = any_ = unannotated = 0
-        for accessor in (ty.fget, ty.fset, ty.fdel):
-            if accessor is not None:
-                a, n, u = _count_overload_slots(accessor)
-                annotated += a
-                any_ += n
-                unannotated += u
+        n_annotated = n_any = n_unannotated = 0
+
+        # fget: 0 params, 1 return
+        if ty.fget is not None:
+            s = _SlotState.of(ty.fget.returns)
+            n_annotated += s.annotated
+            n_any += s.any
+            n_unannotated += s.unannotated
+
+        # fset: 1 param, 0 returns
+        if ty.fset is not None:
+            for p in ty.fset.params:
+                s = _SlotState.of(p.annotation)
+                n_annotated += s.annotated
+                n_any += s.any
+                n_unannotated += s.unannotated
 
         return cls(
             name=name,
-            n_annotated=annotated,
-            n_any=any_,
-            n_unannotated=unannotated,
+            n_annotated=n_annotated,
+            n_any=n_any,
+            n_unannotated=n_unannotated,
         )
 
 

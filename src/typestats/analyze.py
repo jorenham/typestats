@@ -299,20 +299,31 @@ class Property:
 
     @property
     def is_annotated(self) -> bool:
-        return any(
-            accessor is not None and accessor.is_annotated
-            for accessor in (self.fget, self.fset, self.fdel)
+        # fget: only return matters (0 params)
+        if self.fget is not None and is_annotated(self.fget.returns):
+            return True
+        # fset: only param matters (0 returns)
+        return bool(
+            self.fset is not None and any(p.is_annotated for p in self.fset.params)
         )
 
     @property
     def annotation_counts(self) -> tuple[int, int]:
-        """`(annotated, annotatable)` counts across all accessors."""
-        counts = [
-            accessor.annotation_counts
-            for accessor in (self.fget, self.fset, self.fdel)
-            if accessor is not None
-        ]
-        return sum(a for a, _ in counts), sum(t for _, t in counts)
+        annotated = total = 0
+
+        # fget: 0 params, 1 return
+        if self.fget is not None:
+            if is_annotated(self.fget.returns):
+                annotated += 1
+            total += 1
+
+        # fset: 1 param, 0 returns
+        if self.fset is not None:
+            a = sum(1 for p in self.fset.params if p.is_annotated)
+            annotated += a
+            total += len(self.fset.params)
+
+        return annotated, total
 
     @override
     def __str__(self) -> str:
