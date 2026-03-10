@@ -1,16 +1,10 @@
-import io
 import itertools
 import logging
 import operator
-import os
 import sys
-import tarfile
-import zipfile
 from datetime import date
 from typing import TYPE_CHECKING, Any, Final, Literal, NotRequired, TypedDict
 
-import anyio
-import anyio.to_thread
 import httpx
 from packaging.utils import (
     InvalidSdistFilename,
@@ -21,14 +15,12 @@ from packaging.utils import (
 from packaging.version import Version
 
 if TYPE_CHECKING:
-    from _typeshed import StrPath
     from packaging.version import Version
 
 
 __all__ = (
-    "download_file",
-    "download_latest",
     "fetch_project_detail",
+    "latest_distribution",
     "latest_version",
     "parse_file_version",
     "versions_since",
@@ -166,75 +158,26 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
     }
 
 
-def _extract_sdist(content: bytes, target_dir: anyio.Path, /) -> None:
-    # sdist tarballs contain a top-level `{name}-{version}/` directory, so we
-    # extract into the *parent* of `target_dir`.
-    with tarfile.open(fileobj=io.BytesIO(content), mode="r:gz") as tar:
-        tar.extractall(path=target_dir.parent, filter="data")
-
-
-def _extract_wheel(content: bytes, target_dir: anyio.Path, /) -> None:
-    resolved = os.path.realpath(target_dir)
-    with zipfile.ZipFile(io.BytesIO(content)) as zf:
-        # guard against zip slip attacks
-        for member in zf.namelist():
-            dest = os.path.realpath(target_dir / member)
-            assert dest.startswith(resolved + os.sep) or dest == resolved, (
-                f"Zip member {member!r} escapes target directory"
-            )
-
-        zf.extractall(path=target_dir)  # noqa: S202
-
-
 def parse_file_version(fname: str, /) -> Version:
-    """Extract the version from an sdist or wheel filename."""
     parse = parse_wheel_filename if fname.endswith(".whl") else parse_sdist_filename
     return parse(fname)[1]
 
 
-async def _download_file(
+async def latest_distribution(
     client: httpx.AsyncClient,
-    file: FileDetail,
-    out_dir: StrPath,
+    project_name: str,
     /,
-) -> anyio.Path:
-    filename = file["filename"]
-    if filename.endswith(".whl"):
-        name, version, _, _ = parse_wheel_filename(filename)
-        target_name = f"{name}-{version}"
-        extract = _extract_wheel
-    else:
-        target_name = filename.removesuffix(".tar.gz")
-        extract = _extract_sdist
-
-    out_dir = await anyio.Path(out_dir).resolve()
-    await out_dir.mkdir(parents=True, exist_ok=True)
-
-    target_path = out_dir / target_name
-    if not await target_path.is_dir():
-        response = await client.get(file["url"])
-        response.raise_for_status()
-
-        await anyio.to_thread.run_sync(extract, response.content, target_path)
-        _logger.info("Extracted %s into %s", filename, target_path)
-
-    return target_path
-
-
-async def download_file(
-    client: httpx.AsyncClient,
-    file: FileDetail,
-    out_dir: StrPath,
-    /,
-) -> anyio.Path:
-    """Download and extract a distribution file into `out_dir`."""
-    return await _download_file(client, file, out_dir)
+) -> tuple[Version, FileDetail]:
+    detail = await fetch_project_detail(client, project_name)
+    best = _best_distribution(detail)
+    stable = {v: f for v, f in best.items() if not v.is_prerelease}
+    ver = max(stable or best)
+    return ver, best[ver]
 
 
 async def latest_version(client: httpx.AsyncClient, project_name: str, /) -> Version:
-    """Return the latest non-yanked version of a project without downloading it."""
-    detail = await fetch_project_detail(client, project_name)
-    return max(_best_distribution(detail))
+    ver, _ = await latest_distribution(client, project_name)
+    return ver
 
 
 async def versions_since(
@@ -273,22 +216,3 @@ async def versions_since(
         result = dict(sorted(result.items(), reverse=True)[:limit])
 
     return result
-
-
-async def download_latest(
-    client: httpx.AsyncClient,
-    project_name: str,
-    out_dir: StrPath,
-    /,
-) -> tuple[anyio.Path, FileDetail]:
-    """
-    Download and extract the latest distribution for the given project.
-
-    Tries an sdist first; if none is available, falls back to the best wheel
-    (preferring pure-python and matching CPython version, then smallest size).
-    """
-    detail = await fetch_project_detail(client, project_name)
-    best = _best_distribution(detail)
-    dist = best[max(best)]
-    path = await _download_file(client, dist, out_dir)
-    return path, dist

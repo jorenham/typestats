@@ -78,3 +78,18 @@ class TestLatestVersion:
         async with httpx.AsyncClient() as client:
             ver = await latest_version(client, "mypkg")
         assert ver == Version("1.0.0")
+
+    async def test_ignores_prerelease(self, httpx_mock: HTTPXMock) -> None:
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join("/simple/mypkg/"),
+            json=_detail(
+                "mypkg",
+                [
+                    _file("mypkg-1.0.0.tar.gz"),
+                    _file("mypkg-120828rc0.tar.gz"),
+                ],
+            ),
+        )
+        async with httpx.AsyncClient() as client:
+            ver = await latest_version(client, "mypkg")
+        assert ver == Version("1.0.0")
