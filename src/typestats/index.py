@@ -26,6 +26,7 @@ __all__ = (
     "PyTyped",
     "collect_public_symbols",
     "get_py_typed",
+    "is_src_layout",
     "list_sources",
     "merge_stubs_overlay",
 )
@@ -147,7 +148,7 @@ async def _analyze_graph(
     }
 
 
-async def _is_src_layout(project_dir: anyio.Path, /) -> bool:
+async def is_src_layout(project_dir: anyio.Path, /) -> bool:
     """Check whether *project_dir* uses a Python
     [src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
 
@@ -187,7 +188,7 @@ async def list_sources(
     )
     sources = list(map(anyio.Path, graph))
 
-    if await _is_src_layout(project_dir):
+    if await is_src_layout(project_dir):
         src_prefix = str(await (project_dir / "src").resolve()) + os.sep
         sources = [s for s in sources if str(await s.resolve()).startswith(src_prefix)]
 

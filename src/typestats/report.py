@@ -3,7 +3,7 @@
 import asyncio
 import enum
 import sys
-from collections.abc import Sequence
+from collections.abc import Coroutine, Mapping, Sequence
 from pathlib import PurePosixPath
 from typing import (
     TYPE_CHECKING,
@@ -39,7 +39,7 @@ from pydantic import (
 )
 
 from typestats import analyze
-from typestats.index import PyTyped
+from typestats.index import PublicSymbols, PyTyped
 from typestats.typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
 __all__ = (
@@ -54,7 +54,23 @@ __all__ = (
 )
 
 type _Symbols = Sequence[analyze.Symbol]
+type _SymbolMap = Mapping[anyio.Path, _Symbols]
+type _IgnoreMap = Mapping[anyio.Path, tuple[analyze.IgnoreComment, ...]]
+type _Metadata = dict[str, list[str]] | None
 type _Max1 = Literal[0, 1]
+
+
+class _CollectResult(NamedTuple):
+    symbols: _SymbolMap
+    type_ignores: _IgnoreMap
+    py_typed: PyTyped
+    metadata: _Metadata
+    configs: dict[TypeCheckerName, TypeCheckerConfigDict]
+
+
+class _BuildResult(NamedTuple):
+    module_reports: tuple[ModuleReport, ...]
+    had_stubs_dir: bool
 
 
 class StubsOnly(enum.Enum):
@@ -365,6 +381,36 @@ def _coverage(
     total = n_annotatable
     annotated = n_annotated if strict else n_annotated + n_any
     return annotated / total if total else 0.0
+
+
+def _normalize_relpath(
+    src: anyio.Path,
+    primary_root: anyio.Path,
+    fallback_root: anyio.Path | None,
+    *,
+    primary_is_src_layout: bool,
+    fallback_is_src_layout: bool,
+) -> tuple[anyio.Path, bool]:
+    try:
+        rel = src.relative_to(primary_root)
+    except ValueError:
+        if fallback_root is None:
+            raise
+
+        rel = src.relative_to(fallback_root)
+        strip_src = fallback_is_src_layout
+    else:
+        strip_src = primary_is_src_layout
+
+    parts = list(rel.parts)
+    if strip_src and parts and parts[0] == "src":
+        parts = parts[1:]
+
+    if had_stubs := bool(parts and parts[0].endswith("-stubs")):
+        parts[0] = parts[0].removesuffix("-stubs")
+
+    # pyrefly: ignore[unbound-name]
+    return anyio.Path(*parts) if parts else rel, had_stubs
 
 
 class ModuleReport(BaseModel):
@@ -779,12 +825,50 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         Runs `collect_public_symbols` (and optionally the stubs collection) and
         `discover_configs` concurrently.
         """
+        path_obj = anyio.Path(path)
+        stubs_obj = anyio.Path(stubs_path) if stubs_path is not None else None
 
+        collected = await cls._collect(pkg, path_obj, stubs_obj, exclude)
+        built = await cls._build_module_reports(
+            collected.symbols,
+            collected.type_ignores,
+            path_obj,
+            stubs_obj,
+        )
+
+        display = project or pkg
+        stubs_only = StubsOnly.NO
+        if stubs_obj is not None or built.had_stubs_dir:
+            stubs_only = (
+                StubsOnly.TYPESHED
+                if display.startswith("types-")
+                else StubsOnly.THIRD_PARTY
+            )
+
+        return cls(
+            package=display,
+            stubs_only=stubs_only,
+            module_reports=built.module_reports,
+            version=version,
+            py_typed=collected.py_typed,
+            pypi=pypi,
+            metadata=collected.metadata,
+            typecheckers=dict(collected.configs),
+        )
+
+    @staticmethod
+    async def _collect(
+        pkg: str,
+        path: anyio.Path,
+        stubs_path: anyio.Path | None,
+        exclude: Sequence[str],
+    ) -> _CollectResult:
+        """Run analysis coroutines and return merged results."""
         from typestats._metadata import read_pkg_metadata
         from typestats.index import collect_public_symbols, merge_stubs_overlay
         from typestats.typecheckers import discover_configs
 
-        coros: list[Any] = [
+        coros: list[Coroutine[Any, Any, Any]] = [
             discover_configs(stubs_path or path),
             collect_public_symbols(
                 path,
@@ -794,7 +878,6 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             ),
         ]
         if stubs_path is not None:
-            stubs_path = anyio.Path(stubs_path)
             coros.append(
                 collect_public_symbols(
                     stubs_path,
@@ -802,71 +885,64 @@ class PackageReport(BaseModel):  # noqa: PLR0904
                     package_name=pkg,
                 ),
             )
-
         coros.append(read_pkg_metadata(stubs_path or path))
-        res: list[Any] = await asyncio.gather(*coros)
-        metadata = res.pop()
-        py_typed = res[-1].py_typed
+
+        res = await asyncio.gather(*coros)
+        configs: dict[TypeCheckerName, TypeCheckerConfigDict] = res[0]
+        base_result: PublicSymbols = res[1]
 
         if stubs_path is not None:
-            symbols = merge_stubs_overlay(res[1].symbols, res[2].symbols)
-            # Keep only ignore comments for paths present in the merged symbols:
-            # stubs comments for stubs-covered modules, original comments for uncovered
-            # modules.
-            ignores_orig, ignores_stubs = res[1].type_ignores, res[2].type_ignores
-            type_ignores = {
+            stubs_result: PublicSymbols = res[2]
+            py_typed = stubs_result.py_typed
+            symbols = merge_stubs_overlay(base_result.symbols, stubs_result.symbols)
+            ignores_orig = base_result.type_ignores
+            ignores_stubs = stubs_result.type_ignores
+            type_ignores: _IgnoreMap = {
                 p: ignores_stubs[p] if p in ignores_stubs else ignores_orig.get(p, ())
                 for p in symbols
             }
         else:
-            symbols, type_ignores = res[1].symbols, res[1].type_ignores
+            py_typed = base_result.py_typed
+            symbols, type_ignores = base_result.symbols, base_result.type_ignores
 
-        def _relpath(src: anyio.Path) -> anyio.Path:
-            try:
-                return src.relative_to(stubs_path or path)
-            except ValueError:
-                return src.relative_to(path)
+        metadata: _Metadata = res[-1]
 
-        files = tuple(
-            ModuleReport.from_symbols(
-                _relpath(src_path),
-                syms,
-                type_ignores=type_ignores.get(src_path, ()),
+        return _CollectResult(symbols, type_ignores, py_typed, metadata, configs)
+
+    @staticmethod
+    async def _build_module_reports(
+        symbols: _SymbolMap,
+        type_ignores: _IgnoreMap,
+        path: anyio.Path,
+        stubs_path: anyio.Path | None,
+    ) -> _BuildResult:
+        """Build `ModuleReport` tuples with normalized paths."""
+        from typestats.index import is_src_layout
+
+        path_src = await is_src_layout(path)
+        stubs_src = await is_src_layout(stubs_path) if stubs_path is not None else False
+
+        primary = stubs_path or path
+        had_stubs_dir = False
+        reports: list[ModuleReport] = []
+        for src_path, syms in symbols.items():
+            rel, had_stubs = _normalize_relpath(
+                src_path,
+                primary,
+                path if stubs_path is not None else None,
+                primary_is_src_layout=stubs_src if stubs_path else path_src,
+                fallback_is_src_layout=path_src,
             )
-            for src_path, syms in symbols.items()
-        )
-
-        # Detect stubs-only status.
-        # When `stubs_path` is set, the caller already identified this as a stubs
-        # package (via project name or directory scan), so derive `stubs_only` from the
-        # display name.
-        # Otherwise, fall back to checking whether any analyzed module lives under a
-        # `*-stubs` directory (PEP 561), which catches projects like boto3-stubs-lite
-        # whose PyPI name doesn't match the `*-stubs` pattern but whose installable
-        # packages do.
-        stubs_only = StubsOnly.NO
-        display = project or pkg
-        if stubs_path is not None or any(
-            part.endswith("-stubs")
-            for f in files
-            for part in PurePosixPath(f.path).parts
-        ):
-            stubs_only = (
-                StubsOnly.TYPESHED
-                if display.startswith("types-")
-                else StubsOnly.THIRD_PARTY
+            had_stubs_dir = had_stubs_dir or had_stubs
+            reports.append(
+                ModuleReport.from_symbols(
+                    rel,
+                    syms,
+                    type_ignores=type_ignores.get(src_path, ()),
+                ),
             )
 
-        return cls(
-            package=project or pkg,
-            stubs_only=stubs_only,
-            module_reports=files,
-            version=version,
-            py_typed=py_typed,
-            pypi=pypi,
-            metadata=metadata,
-            typecheckers=dict(res[0]),
-        )
+        return _BuildResult(tuple(reports), had_stubs_dir)
 
 
 @mainpy.main
