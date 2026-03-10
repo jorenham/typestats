@@ -173,8 +173,8 @@ def is_annotated(type_: TypeForm, /) -> bool:
     For `Function` types, the function is annotated when at least one
     overload has an annotated return type or parameter.
 
-    For `Property` types, the property is annotated when at least one
-    accessor (fget, fset, or fdel) has an annotated return type or parameter.
+    For `Property` types, the property is annotated when the `fget` return
+    type or any `fset` parameter is annotated.
 
     For `Class` types, the class is only considered annotated when **all**
     of its members (stored in `Class.members`) are also annotated.
