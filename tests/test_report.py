@@ -773,6 +773,68 @@ class TestPackageReportFromPath:
 
         assert report.stubs_only is StubsOnly.TYPESHED
 
+    async def test_stubs_module_path_normalized(self, tmp_path: Path) -> None:
+        """Module paths should use base package name, not *-stubs directory."""
+        base = tmp_path / "base"
+        stubs = tmp_path / "stubs"
+        shutil.copytree(_FIXTURES / "stubs_base", base)
+        shutil.copytree(_FIXTURES / "stubs_overlay", stubs)
+
+        report = await PackageReport.from_path(
+            "mypkg",
+            base,
+            "1.0.0",
+            stubs_path=stubs,
+            project="mypkg-stubs",
+        )
+
+        names = {m.name for m in report.module_reports}
+        assert all("mypkg-stubs" not in n for n in names)
+        assert "mypkg" in names
+
+    async def test_stubs_dir_module_path_normalized(self, tmp_path: Path) -> None:
+        """Module paths from *-stubs directory (no stubs_path) are normalized."""
+        pkg_dir = tmp_path / "mypkg-stubs"
+        pkg_dir.mkdir()
+        (pkg_dir / "__init__.pyi").write_text("x: int\n")
+
+        report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
+
+        names = {m.name for m in report.module_reports}
+        assert "mypkg" in names
+        assert all("-stubs" not in n for n in names)
+
+    async def test_src_layout_module_path_normalized(self, tmp_path: Path) -> None:
+        """Module paths should not include 'src.' prefix for src-layout."""
+        src_dir = tmp_path / "src"
+        pkg_dir = src_dir / "mypkg"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.py").write_text("x: int = 1\n")
+        (pkg_dir / "utils.py").write_text("def helper(x: str) -> str: return x\n")
+
+        report = await PackageReport.from_path("mypkg", tmp_path, "1.0.0")
+
+        names = {m.name for m in report.module_reports}
+        assert all(not n.startswith("src.") for n in names)
+        assert "mypkg" in names
+        assert "mypkg.utils" in names
+
+    async def test_src_layout_stubs_module_path_normalized(
+        self, tmp_path: Path
+    ) -> None:
+        """Stubs under src-layout should have both src. and -stubs stripped."""
+        src_dir = tmp_path / "src"
+        pkg_dir = src_dir / "mypkg-stubs"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.pyi").write_text("x: int\n")
+
+        report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
+
+        names = {m.name for m in report.module_reports}
+        assert "mypkg" in names
+        assert all(not n.startswith("src.") for n in names)
+        assert all("-stubs" not in n for n in names)
+
 
 class TestPackageReportFromProject:
     pytestmark = pytest.mark.anyio
