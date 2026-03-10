@@ -25,6 +25,7 @@ __all__ = (
     "PublicSymbols",
     "PyTyped",
     "collect_public_symbols",
+    "find_stubs_dir",
     "get_py_typed",
     "list_sources",
     "merge_stubs_overlay",
@@ -222,6 +223,21 @@ async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
         return PyTyped.PARTIAL
 
     return PyTyped.YES
+
+
+async def find_stubs_dir(root: anyio.Path) -> str | None:
+    """Find a `*-stubs/` directory under *root* and return the base package name.
+
+    Scans direct children of *root* first, then `root/src/` to handle
+    src-layout packages. Returns `None` when no stubs directory is found.
+    """
+    for parent in (root, root / "src"):
+        if not await parent.is_dir():
+            continue
+        async for child in parent.iterdir():
+            if await child.is_dir() and child.name.endswith("-stubs"):
+                return child.name.removesuffix("-stubs")
+    return None
 
 
 def sources_to_module_paths(
