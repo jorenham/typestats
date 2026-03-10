@@ -62,7 +62,7 @@ class TestCreateVenv:
         )
         monkeypatch.setattr("typestats._subprocess.anyio.run_process", mock)
 
-        with pytest.raises(Exception):  # noqa: B017, PT011
+        with pytest.raises(subprocess.CalledProcessError):
             await create_venv(tmp_path / "bad")
 
 
