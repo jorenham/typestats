@@ -2,6 +2,7 @@
 
 import contextlib
 import logging
+import subprocess  # noqa: S404
 from typing import TYPE_CHECKING, Final
 
 import anyio
@@ -108,7 +109,11 @@ async def collect_project(  # noqa: PLR0913
         _logger.info("  %s %s - analyzing...", project.name, version)
         file_detail = eligible[version]
 
-        sp = await install_to_venv(work_dir, project.name, str(version))
+        try:
+            sp = await install_to_venv(work_dir, project.name, str(version))
+        except subprocess.CalledProcessError:
+            _logger.warning("  %s %s - install failed, skipping", project.name, version)
+            continue
 
         # On first install, scan site-packages for *-stubs/ dirs if not already
         # detected from the project name (handles e.g. boto3-stubs-lite).
@@ -180,16 +185,19 @@ async def collect_all(
         work_dir = anyio.Path(tmp)
 
         async def _collect(project: Project) -> None:
-            written.extend(
-                await collect_project(
-                    project,
-                    client,
-                    data_dir,
-                    work_dir,
-                    backfill_since=backfill_since,
-                    backfill_limit=backfill_limit,
-                ),
-            )
+            try:
+                written.extend(
+                    await collect_project(
+                        project,
+                        client,
+                        data_dir,
+                        work_dir,
+                        backfill_since=backfill_since,
+                        backfill_limit=backfill_limit,
+                    ),
+                )
+            except Exception:
+                _logger.exception("  %s - failed, skipping", project.name)
 
         async with anyio.create_task_group() as tg:
             for project in projects:
