@@ -7,6 +7,7 @@ import libcst as cst
 import pytest
 
 from typestats import analyze
+from typestats._stubs import find_stubs_dir
 from typestats.index import (
     _EXCLUDED_DIR_NAMES,
     _EXCLUDED_FILE_NAMES,
@@ -16,7 +17,6 @@ from typestats.index import (
     _resolve_package_name,
     _resolves_to_any,
     collect_public_symbols,
-    find_stubs_dir,
     get_py_typed,
     list_sources,
     merge_stubs_overlay,
