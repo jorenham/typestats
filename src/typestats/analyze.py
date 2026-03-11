@@ -327,10 +327,11 @@ class Function:
     def annotation_counts(self) -> _AnnotationCounts:
         """`(annotated, any, annotatable)` with deduplicated param slots.
 
-        Positional params are keyed by index; keyword-only by name;
-        variadic params are singletons.  A slot's state is determined
-        by the "worst" annotation across all overloads: unannotated
-        beats `Any`, and `Any` beats a concrete annotation.
+        Positional-only params are keyed by index; positional-or-keyword
+        and keyword-only params are keyed by name; variadic params are
+        singletons.  A slot's state is determined by the "worst"
+        annotation across all overloads: unannotated beats `Any`, and
+        `Any` beats a concrete annotation.
         """
         if len(self.overloads) == 1:
             return self.overloads[0].annotation_counts
