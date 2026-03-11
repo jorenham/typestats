@@ -173,6 +173,37 @@ def _rich_report(
                 "n_overloads": 1,
                 "n_annotatable": 3,
             },
+            {
+                "kind": "class",
+                "name": f"{package}.utils.Cache",
+                "methods": [
+                    {
+                        "kind": "function",
+                        "name": "Cache.get",
+                        "n_annotated": 3,
+                        "n_any": 0,
+                        "n_unannotated": 0,
+                        "n_overloads": 1,
+                    },
+                    {
+                        "kind": "function",
+                        "name": "Cache.set",
+                        "n_annotated": 1,
+                        "n_any": 0,
+                        "n_unannotated": 2,
+                        "n_overloads": 1,
+                    },
+                ],
+                "properties": [
+                    {
+                        "kind": "property",
+                        "name": "Cache.size",
+                        "n_annotated": 0,
+                        "n_any": 1,
+                        "n_unannotated": 0,
+                    },
+                ],
+            },
         ],
     })
     return PackageReport(
@@ -334,6 +365,40 @@ class TestRenderDetail:
         md = DetailPage(report).render()
         # `mixed` has n_any=1 AND n_unannotated=1 -> "missing + Any"
         assert "missing + Any" in md
+
+    def test_class_expands_into_methods(self) -> None:
+        """Incomplete class methods appear as individual rows."""
+        report = _rich_report("mypkg")
+        md = DetailPage(report).render()
+        rows = _table_rows(md)
+        # The class itself should not appear as a row with kind "class".
+        assert not any("<td>class</td>" in r for r in rows)
+        # The incomplete method `set` should appear with kind "method".
+        set_rows = [r for r in rows if "Cache.set" in r]
+        assert len(set_rows) == 1
+        assert "<td>method</td>" in set_rows[0]
+        assert "missing" in set_rows[0]
+
+    def test_class_excludes_annotated_methods(self) -> None:
+        """Fully annotated class methods are excluded from the table."""
+        report = _rich_report("mypkg")
+        md = DetailPage(report).render()
+        lines = md.splitlines()
+        annotations_start = next(
+            i for i, line in enumerate(lines) if "## Incomplete Annotations" in line
+        )
+        annotation_section = "\n".join(lines[annotations_start:])
+        assert "Cache.get" not in annotation_section
+
+    def test_class_property_shown(self) -> None:
+        """Incomplete class properties appear with kind 'property'."""
+        report = _rich_report("mypkg")
+        md = DetailPage(report).render()
+        rows = _table_rows(md)
+        size_rows = [r for r in rows if "Cache.size" in r]
+        assert len(size_rows) == 1
+        assert "property" in size_rows[0]
+        assert "Any" in size_rows[0]
 
     def test_full_coverage_no_missing(self) -> None:
         report = _minimal_report(

@@ -19,7 +19,7 @@ from packaging.version import Version
 
 from typestats.index import PyTyped
 from typestats.projects import load_projects
-from typestats.report import ModuleReport, PackageReport, StubsOnly
+from typestats.report import ClassReport, ModuleReport, PackageReport, StubsOnly
 
 if TYPE_CHECKING:
     from _typeshed import StrPath
@@ -321,7 +321,7 @@ class DetailPage:
         slugs: dict[str, str] = {}
         package = self._report.package
         for m in self._sorted_modules:
-            if not (rows := self._annotation_status(m)):
+            if not (rows := self._incomplete_annotations(m)):
                 continue
 
             display_name = self._display_module_name(m.name, package)
@@ -387,11 +387,37 @@ class DetailPage:
         return sorted(counts.items(), key=lambda x: (-x[1], x[0]))
 
     @staticmethod
-    def _annotation_status(report: ModuleReport) -> list[dict[str, str | int]]:
-        """Return rows for symbols with imperfect annotations."""
+    def _incomplete_annotations(report: ModuleReport) -> list[dict[str, str | int]]:
         rows: list[dict[str, str | int]] = []
         for s in report.symbol_reports:
             if s.n_unannotated == 0 and s.n_any == 0:
+                continue
+
+            short_name = s.name.removeprefix(f"{report.name}.")
+
+            # expand classes into individual method/property rows.
+            if isinstance(s, ClassReport):
+                for member in (*s.methods, *s.properties):
+                    if member.n_unannotated == 0 and member.n_any == 0:
+                        continue
+
+                    if member.n_unannotated > 0 and member.n_any > 0:
+                        status = "missing + Any"
+                    elif member.n_unannotated > 0:
+                        status = "missing"
+                    else:
+                        status = "Any"
+
+                    kind = "method" if member.kind == "function" else member.kind
+                    member_short = member.name.removeprefix(f"{short_name}.")
+                    rows.append({
+                        "name": f"{short_name}.{member_short}",
+                        "kind": kind,
+                        "status": status,
+                        "n_annotated": member.n_annotated,
+                        "n_any": member.n_any,
+                        "n_unannotated": member.n_unannotated,
+                    })
                 continue
 
             if s.n_unannotated > 0 and s.n_any > 0:
@@ -401,7 +427,6 @@ class DetailPage:
             else:
                 status = "Any"
 
-            short_name = s.name.removeprefix(f"{report.name}.")
             rows.append({
                 "name": short_name,
                 "kind": s.kind,
