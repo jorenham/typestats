@@ -78,15 +78,15 @@
   },
   "module_reports": [
     {
-      "path": "pyrender/light.py",
+      "path": "pyrender/camera.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.light.DirectionalLight",
+          "name": "pyrender.camera.Camera",
           "methods": [
             {
               "kind": "function",
-              "name": "DirectionalLight.__init__",
+              "name": "Camera.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 4,
@@ -98,7 +98,310 @@
             },
             {
               "kind": "function",
-              "name": "DirectionalLight._generate_shadow_texture",
+              "name": "Camera.get_projection_matrix",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Camera.name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Camera.znear",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Camera.zfar",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 13,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 13,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.camera.IntrinsicsCamera",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "IntrinsicsCamera.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 8,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_params": 7,
+              "n_function_overloads": 1,
+              "n_function_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "IntrinsicsCamera.get_projection_matrix",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.fx",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.fy",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.cx",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.cy",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 19,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 19,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 9,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.camera.OrthographicCamera",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OrthographicCamera.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 6,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "OrthographicCamera.get_projection_matrix",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "OrthographicCamera.xmag",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OrthographicCamera.ymag",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OrthographicCamera.znear",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 15,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 15,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.camera.PerspectiveCamera",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PerspectiveCamera.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 6,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "PerspectiveCamera.get_projection_matrix",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "PerspectiveCamera.yfov",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "PerspectiveCamera.zfar",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "PerspectiveCamera.aspectRatio",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 15,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 15,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.camera",
+      "names": [
+        "pyrender.camera.Camera",
+        "pyrender.camera.IntrinsicsCamera",
+        "pyrender.camera.OrthographicCamera",
+        "pyrender.camera.PerspectiveCamera"
+      ],
+      "n_annotatable": 62,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 62,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 8,
+      "n_method_overloads": 8,
+      "n_method_params": 28,
+      "n_classes": 4,
+      "n_names": 0,
+      "n_properties": 13,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/light.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.light.SpotLight",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SpotLight.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 7,
+              "n_overloads": 1,
+              "n_annotatable": 7,
+              "n_params": 6,
+              "n_function_overloads": 1,
+              "n_function_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "SpotLight._generate_shadow_texture",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -110,7 +413,7 @@
             },
             {
               "kind": "function",
-              "name": "DirectionalLight._get_shadow_camera",
+              "name": "SpotLight._get_shadow_camera",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -121,18 +424,43 @@
               "n_function_params": 1
             }
           ],
-          "properties": [],
-          "n_annotatable": 8,
+          "properties": [
+            {
+              "kind": "property",
+              "name": "SpotLight.innerConeAngle",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpotLight.outerConeAngle",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpotLight.range",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 17,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 8,
+          "n_unannotated": 17,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 3,
           "n_method_overloads": 3,
-          "n_method_params": 5,
-          "n_properties": 0
+          "n_method_params": 8,
+          "n_properties": 3
         },
         {
           "kind": "class",
@@ -286,23 +614,23 @@
         },
         {
           "kind": "class",
-          "name": "pyrender.light.SpotLight",
+          "name": "pyrender.light.DirectionalLight",
           "methods": [
             {
               "kind": "function",
-              "name": "SpotLight.__init__",
+              "name": "DirectionalLight.__init__",
               "n_annotated": 0,
               "n_any": 0,
-              "n_unannotated": 7,
+              "n_unannotated": 4,
               "n_overloads": 1,
-              "n_annotatable": 7,
-              "n_params": 6,
+              "n_annotatable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 6
+              "n_function_params": 3
             },
             {
               "kind": "function",
-              "name": "SpotLight._generate_shadow_texture",
+              "name": "DirectionalLight._generate_shadow_texture",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -314,7 +642,7 @@
             },
             {
               "kind": "function",
-              "name": "SpotLight._get_shadow_camera",
+              "name": "DirectionalLight._get_shadow_camera",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -325,43 +653,18 @@
               "n_function_params": 1
             }
           ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "SpotLight.innerConeAngle",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpotLight.outerConeAngle",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpotLight.range",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 17,
+          "properties": [],
+          "n_annotatable": 8,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 17,
+          "n_unannotated": 8,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 3,
           "n_method_overloads": 3,
-          "n_method_params": 8,
-          "n_properties": 3
+          "n_method_params": 5,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -385,1780 +688,6 @@
       "n_classes": 4,
       "n_names": 0,
       "n_properties": 8,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/primitive.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.primitive.Primitive",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Primitive.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 14,
-              "n_overloads": 1,
-              "n_annotatable": 14,
-              "n_params": 13,
-              "n_function_overloads": 1,
-              "n_function_params": 13
-            },
-            {
-              "kind": "function",
-              "name": "Primitive.delete",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._add_to_context",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._remove_from_context",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._in_context",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._bind",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._unbind",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._compute_bounds",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._compute_transparency",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._compute_buf_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Primitive.positions",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.normals",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.tangents",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.texcoord_0",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.texcoord_1",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.color_0",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.joints_0",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.weights_0",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.indices",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.material",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.mode",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.targets",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.poses",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.bounds",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.centroid",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.extents",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.scale",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.buf_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Primitive.is_transparent",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            }
-          ],
-          "n_annotatable": 55,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 55,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 10,
-          "n_method_overloads": 10,
-          "n_method_params": 13,
-          "n_properties": 19
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.primitive",
-      "names": [
-        "pyrender.primitive.Primitive"
-      ],
-      "n_annotatable": 55,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 55,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 10,
-      "n_method_overloads": 10,
-      "n_method_params": 13,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 19,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/sampler.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.sampler.Sampler",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Sampler.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 6,
-              "n_overloads": 1,
-              "n_annotatable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Sampler.name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.magFilter",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.minFilter",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.wrapS",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.wrapT",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 16,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 16,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 5,
-          "n_properties": 5
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.sampler",
-      "names": [
-        "pyrender.sampler.Sampler"
-      ],
-      "n_annotatable": 16,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 16,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 5,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 5,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/camera.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.camera.PerspectiveCamera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PerspectiveCamera.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 6,
-              "n_overloads": 1,
-              "n_annotatable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "PerspectiveCamera.get_projection_matrix",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.yfov",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.zfar",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.aspectRatio",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 15,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 15,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.camera.Camera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Camera.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Camera.get_projection_matrix",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Camera.name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Camera.znear",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Camera.zfar",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 13,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 13,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.camera.OrthographicCamera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OrthographicCamera.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 6,
-              "n_overloads": 1,
-              "n_annotatable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "OrthographicCamera.get_projection_matrix",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.xmag",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.ymag",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.znear",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 15,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 15,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.camera.IntrinsicsCamera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "IntrinsicsCamera.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 8,
-              "n_overloads": 1,
-              "n_annotatable": 8,
-              "n_params": 7,
-              "n_function_overloads": 1,
-              "n_function_params": 7
-            },
-            {
-              "kind": "function",
-              "name": "IntrinsicsCamera.get_projection_matrix",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.fx",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.fy",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.cx",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.cy",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 19,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 19,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 9,
-          "n_properties": 4
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.camera",
-      "names": [
-        "pyrender.camera.Camera",
-        "pyrender.camera.IntrinsicsCamera",
-        "pyrender.camera.OrthographicCamera",
-        "pyrender.camera.PerspectiveCamera"
-      ],
-      "n_annotatable": 62,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 62,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 8,
-      "n_method_overloads": 8,
-      "n_method_params": 28,
-      "n_classes": 4,
-      "n_names": 0,
-      "n_properties": 13,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/constants.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.constants.TextAlign",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.constants.GLTF",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.constants.RenderFlags",
-          "methods": [],
-          "properties": [],
-          "n_annotatable": 0,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.constants",
-      "names": [
-        "pyrender.constants.GLTF",
-        "pyrender.constants.RenderFlags",
-        "pyrender.constants.TextAlign"
-      ],
-      "n_annotatable": 0,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 3,
-      "n_names": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/texture.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.texture.Texture",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Texture.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 9,
-              "n_overloads": 1,
-              "n_annotatable": 9,
-              "n_params": 8,
-              "n_function_overloads": 1,
-              "n_function_params": 8
-            },
-            {
-              "kind": "function",
-              "name": "Texture.is_transparent",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Texture.delete",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._add_to_context",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._remove_from_context",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._in_context",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._bind",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._unbind",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._bind_as_depth_attachment",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._bind_as_color_attachment",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Texture.name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.sampler",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.source",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.source_channels",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.width",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.height",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.tex_type",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.data_format",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 35,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 35,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 10,
-          "n_method_overloads": 10,
-          "n_method_params": 9,
-          "n_properties": 8
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.texture",
-      "names": [
-        "pyrender.texture.Texture"
-      ],
-      "n_annotatable": 35,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 35,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 10,
-      "n_method_overloads": 10,
-      "n_method_params": 9,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 8,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/material.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.material.Material",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Material.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 11,
-              "n_overloads": 1,
-              "n_annotatable": 11,
-              "n_params": 10,
-              "n_function_overloads": 1,
-              "n_function_params": 10
-            },
-            {
-              "kind": "function",
-              "name": "Material._compute_transparency",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Material._compute_tex_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Material._compute_textures",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Material._format_texture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Material.name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.normalTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.occlusionTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.emissiveTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.emissiveFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.alphaMode",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.alphaCutoff",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.doubleSided",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.smooth",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.wireframe",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.is_transparent",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Material.tex_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Material.textures",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            }
-          ],
-          "n_annotatable": 40,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 40,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 12,
-          "n_properties": 13
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.material.MetallicRoughnessMaterial",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MetallicRoughnessMaterial.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 16,
-              "n_overloads": 1,
-              "n_annotatable": 16,
-              "n_params": 15,
-              "n_function_overloads": 1,
-              "n_function_params": 15
-            },
-            {
-              "kind": "function",
-              "name": "MetallicRoughnessMaterial._compute_tex_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "MetallicRoughnessMaterial._compute_transparency",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "MetallicRoughnessMaterial._compute_textures",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "MetallicRoughnessMaterial.baseColorFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "MetallicRoughnessMaterial.baseColorTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "MetallicRoughnessMaterial.metallicFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "MetallicRoughnessMaterial.roughnessFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "MetallicRoughnessMaterial.metallicRoughnessTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 29,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 29,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 15,
-          "n_properties": 5
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.material.SpecularGlossinessMaterial",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SpecularGlossinessMaterial.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 16,
-              "n_overloads": 1,
-              "n_annotatable": 16,
-              "n_params": 15,
-              "n_function_overloads": 1,
-              "n_function_params": 15
-            },
-            {
-              "kind": "function",
-              "name": "SpecularGlossinessMaterial._compute_tex_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SpecularGlossinessMaterial._compute_transparency",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SpecularGlossinessMaterial._compute_textures",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.diffuseFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.diffuseTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.specularFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.glossinessFactor",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.specularGlossinessTexture",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 29,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 29,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 15,
-          "n_properties": 5
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.material",
-      "names": [
-        "pyrender.material.Material",
-        "pyrender.material.MetallicRoughnessMaterial",
-        "pyrender.material.SpecularGlossinessMaterial"
-      ],
-      "n_annotatable": 98,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 98,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 13,
-      "n_method_overloads": 13,
-      "n_method_params": 42,
-      "n_classes": 3,
-      "n_names": 0,
-      "n_properties": 23,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/offscreen.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.offscreen.OffscreenRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.render",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.delete",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer._create",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.__del__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.viewport_width",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.viewport_height",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.point_size",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 17,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 17,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 6,
-          "n_properties": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.offscreen",
-      "names": [
-        "pyrender.offscreen.OffscreenRenderer"
-      ],
-      "n_annotatable": 17,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 17,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 5,
-      "n_method_overloads": 5,
-      "n_method_params": 6,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 3,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/node.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.node.Node",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Node.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 12,
-              "n_overloads": 1,
-              "n_annotatable": 12,
-              "n_params": 11,
-              "n_function_overloads": 1,
-              "n_function_params": 11
-            },
-            {
-              "kind": "function",
-              "name": "Node._t_from_m",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._r_from_m",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._q_from_m",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._s_from_m",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._r_from_q",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._m_from_tqs",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Node.name",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.camera",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.children",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.skin",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.mesh",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.light",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.rotation",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.translation",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.scale",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.matrix",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 46,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 46,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 7,
-          "n_method_overloads": 7,
-          "n_method_params": 19,
-          "n_properties": 10
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.node",
-      "names": [
-        "pyrender.node.Node"
-      ],
-      "n_annotatable": 46,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 46,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_overloads": 7,
-      "n_method_params": 19,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 10,
       "n_type_ignores": 0
     },
     {
@@ -2502,413 +1031,6 @@
       "n_classes": 1,
       "n_names": 0,
       "n_properties": 21,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/viewer.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.viewer.Viewer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Viewer.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 8,
-              "n_overloads": 1,
-              "n_annotatable": 8,
-              "n_params": 7,
-              "n_function_overloads": 1,
-              "n_function_params": 7
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.close_external",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.save_gif",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_close",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_draw",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_resize",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_press",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_drag",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 7,
-              "n_overloads": 1,
-              "n_annotatable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_release",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_scroll",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_key_press",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._time_event",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._reset_view",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._get_save_filename",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._save_image",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._record",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._rotate",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._render",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._init_and_start_app",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._compute_initial_camera_pose",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._create_raymond_lights",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._create_direct_light",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._set_axes",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._remove_axes",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._location_to_x_y",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Viewer.scene",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.viewport_size",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.render_lock",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.is_active",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.run_in_thread",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.render_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.viewer_flags",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.registered_keys",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_annotatable": 2
-            }
-          ],
-          "n_annotatable": 72,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 72,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 25,
-          "n_method_overloads": 25,
-          "n_method_params": 36,
-          "n_properties": 8
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.viewer",
-      "names": [
-        "pyrender.viewer.Viewer"
-      ],
-      "n_annotatable": 72,
-      "n_annotated": 0,
-      "n_any": 0,
-      "n_unannotated": 72,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 25,
-      "n_method_overloads": 25,
-      "n_method_params": 36,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 8,
       "n_type_ignores": 0
     },
     {
@@ -3562,6 +1684,1247 @@
       "n_type_ignores": 0
     },
     {
+      "path": "pyrender/offscreen.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.offscreen.OffscreenRenderer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OffscreenRenderer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "OffscreenRenderer.render",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "OffscreenRenderer.delete",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OffscreenRenderer._create",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OffscreenRenderer.__del__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "OffscreenRenderer.viewport_width",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OffscreenRenderer.viewport_height",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OffscreenRenderer.point_size",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 17,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 17,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 6,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.offscreen",
+      "names": [
+        "pyrender.offscreen.OffscreenRenderer"
+      ],
+      "n_annotatable": 17,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 17,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_overloads": 5,
+      "n_method_params": 6,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/constants.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.constants.TextAlign",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.constants.GLTF",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.constants.RenderFlags",
+          "methods": [],
+          "properties": [],
+          "n_annotatable": 0,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.constants",
+      "names": [
+        "pyrender.constants.GLTF",
+        "pyrender.constants.RenderFlags",
+        "pyrender.constants.TextAlign"
+      ],
+      "n_annotatable": 0,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 3,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/node.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.node.Node",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Node.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 12,
+              "n_overloads": 1,
+              "n_annotatable": 12,
+              "n_params": 11,
+              "n_function_overloads": 1,
+              "n_function_params": 11
+            },
+            {
+              "kind": "function",
+              "name": "Node._t_from_m",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Node._r_from_m",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Node._q_from_m",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Node._s_from_m",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Node._r_from_q",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Node._m_from_tqs",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Node.name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.camera",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.children",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.skin",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.mesh",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.light",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.rotation",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.translation",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.scale",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.matrix",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 46,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 46,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 7,
+          "n_method_overloads": 7,
+          "n_method_params": 19,
+          "n_properties": 10
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.node",
+      "names": [
+        "pyrender.node.Node"
+      ],
+      "n_annotatable": 46,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 46,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_overloads": 7,
+      "n_method_params": 19,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 10,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/viewer.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.viewer.Viewer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Viewer.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 8,
+              "n_overloads": 1,
+              "n_annotatable": 8,
+              "n_params": 7,
+              "n_function_overloads": 1,
+              "n_function_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.close_external",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.save_gif",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_close",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_draw",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_resize",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_mouse_press",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_mouse_drag",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 7,
+              "n_overloads": 1,
+              "n_annotatable": 7,
+              "n_params": 6,
+              "n_function_overloads": 1,
+              "n_function_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_mouse_release",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_mouse_scroll",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_key_press",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._time_event",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._reset_view",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._get_save_filename",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._save_image",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._record",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._rotate",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._render",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._init_and_start_app",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._compute_initial_camera_pose",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._create_raymond_lights",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._create_direct_light",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._set_axes",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._remove_axes",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer._location_to_x_y",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Viewer.scene",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.viewport_size",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.render_lock",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.is_active",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.run_in_thread",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.render_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.viewer_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.registered_keys",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 72,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 72,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 25,
+          "n_method_overloads": 25,
+          "n_method_params": 36,
+          "n_properties": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.viewer",
+      "names": [
+        "pyrender.viewer.Viewer"
+      ],
+      "n_annotatable": 72,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 72,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 25,
+      "n_method_overloads": 25,
+      "n_method_params": 36,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 8,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/material.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.material.MetallicRoughnessMaterial",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MetallicRoughnessMaterial.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 16,
+              "n_overloads": 1,
+              "n_annotatable": 16,
+              "n_params": 15,
+              "n_function_overloads": 1,
+              "n_function_params": 15
+            },
+            {
+              "kind": "function",
+              "name": "MetallicRoughnessMaterial._compute_tex_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MetallicRoughnessMaterial._compute_transparency",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MetallicRoughnessMaterial._compute_textures",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.baseColorFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.baseColorTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.metallicFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.roughnessFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.metallicRoughnessTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 29,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 29,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 15,
+          "n_properties": 5
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.material.Material",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Material.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 11,
+              "n_overloads": 1,
+              "n_annotatable": 11,
+              "n_params": 10,
+              "n_function_overloads": 1,
+              "n_function_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "Material._compute_transparency",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Material._compute_tex_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Material._compute_textures",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Material._format_texture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Material.name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.normalTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.occlusionTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.emissiveTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.emissiveFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.alphaMode",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.alphaCutoff",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.doubleSided",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.smooth",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.wireframe",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.is_transparent",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Material.tex_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Material.textures",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 40,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 40,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 12,
+          "n_properties": 13
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.material.SpecularGlossinessMaterial",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SpecularGlossinessMaterial.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 16,
+              "n_overloads": 1,
+              "n_annotatable": 16,
+              "n_params": 15,
+              "n_function_overloads": 1,
+              "n_function_params": 15
+            },
+            {
+              "kind": "function",
+              "name": "SpecularGlossinessMaterial._compute_tex_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SpecularGlossinessMaterial._compute_transparency",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SpecularGlossinessMaterial._compute_textures",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.diffuseFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.diffuseTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.specularFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.glossinessFactor",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.specularGlossinessTexture",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 29,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 29,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 15,
+          "n_properties": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.material",
+      "names": [
+        "pyrender.material.Material",
+        "pyrender.material.MetallicRoughnessMaterial",
+        "pyrender.material.SpecularGlossinessMaterial"
+      ],
+      "n_annotatable": 98,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 98,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 13,
+      "n_method_overloads": 13,
+      "n_method_params": 42,
+      "n_classes": 3,
+      "n_names": 0,
+      "n_properties": 23,
+      "n_type_ignores": 0
+    },
+    {
       "path": "pyrender/version.py",
       "symbol_reports": [
         {
@@ -3594,8 +2957,699 @@
       "n_type_ignores": 0
     },
     {
+      "path": "pyrender/texture.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.texture.Texture",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Texture.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 9,
+              "n_overloads": 1,
+              "n_annotatable": 9,
+              "n_params": 8,
+              "n_function_overloads": 1,
+              "n_function_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Texture.is_transparent",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Texture.delete",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._add_to_context",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._remove_from_context",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._in_context",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._bind",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._unbind",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._bind_as_depth_attachment",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Texture._bind_as_color_attachment",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Texture.name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.sampler",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.source",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.source_channels",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.width",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.height",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.tex_type",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.data_format",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 35,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 35,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 10,
+          "n_method_overloads": 10,
+          "n_method_params": 9,
+          "n_properties": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.texture",
+      "names": [
+        "pyrender.texture.Texture"
+      ],
+      "n_annotatable": 35,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 35,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 9,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 8,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/primitive.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.primitive.Primitive",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Primitive.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 14,
+              "n_overloads": 1,
+              "n_annotatable": 14,
+              "n_params": 13,
+              "n_function_overloads": 1,
+              "n_function_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "Primitive.delete",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._add_to_context",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._remove_from_context",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._in_context",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._bind",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._unbind",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._compute_bounds",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._compute_transparency",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Primitive._compute_buf_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Primitive.positions",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.normals",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.tangents",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.texcoord_0",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.texcoord_1",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.color_0",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.joints_0",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.weights_0",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.indices",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.material",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.mode",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.targets",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.poses",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.bounds",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.centroid",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.extents",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.scale",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.buf_flags",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Primitive.is_transparent",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 55,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 55,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 10,
+          "n_method_overloads": 10,
+          "n_method_params": 13,
+          "n_properties": 19
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.primitive",
+      "names": [
+        "pyrender.primitive.Primitive"
+      ],
+      "n_annotatable": 55,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 55,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 13,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 19,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/sampler.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.sampler.Sampler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sampler.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 6,
+              "n_overloads": 1,
+              "n_annotatable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Sampler.name",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.magFilter",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.minFilter",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.wrapS",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.wrapT",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_annotatable": 2
+            }
+          ],
+          "n_annotatable": 16,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 16,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 5,
+          "n_properties": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.sampler",
+      "names": [
+        "pyrender.sampler.Sampler"
+      ],
+      "n_annotatable": 16,
+      "n_annotated": 0,
+      "n_any": 0,
+      "n_unannotated": 16,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
       "path": "pyrender/font.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.font.FontCache",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FontCache.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "FontCache.get_font",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FontCache.clear",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 6,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "pyrender.font.Font",
@@ -3726,60 +3780,6 @@
           "n_method_overloads": 8,
           "n_method_params": 7,
           "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.font.FontCache",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FontCache.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "FontCache.get_font",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FontCache.clear",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_annotatable": 6,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 3,
-          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4676,7 +4676,7 @@
         },
         {
           "kind": "function",
-          "name": "pyrender.utils.format_texture_source",
+          "name": "pyrender.utils.format_color_vector",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,
@@ -4688,7 +4688,7 @@
         },
         {
           "kind": "function",
-          "name": "pyrender.utils.format_color_vector",
+          "name": "pyrender.utils.format_texture_source",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 3,

@@ -66,11 +66,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "cachetools.FIFOCache",
+          "name": "cachetools.LRUCache",
           "methods": [
             {
               "kind": "function",
-              "name": "FIFOCache.__init__",
+              "name": "LRUCache.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -82,7 +82,19 @@
             },
             {
               "kind": "function",
-              "name": "FIFOCache.__setitem__",
+              "name": "LRUCache.__getitem__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LRUCache.__setitem__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 4,
@@ -94,7 +106,7 @@
             },
             {
               "kind": "function",
-              "name": "FIFOCache.__delitem__",
+              "name": "LRUCache.__delitem__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -106,7 +118,7 @@
             },
             {
               "kind": "function",
-              "name": "FIFOCache.popitem",
+              "name": "LRUCache.popitem",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 1,
@@ -115,19 +127,31 @@
               "n_params": 0,
               "n_function_overloads": 1,
               "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LRUCache.__touch",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
             }
           ],
           "properties": [],
-          "n_annotatable": 11,
+          "n_annotatable": 16,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 11,
+          "n_unannotated": 16,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 7,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 10,
           "n_properties": 0
         },
         {
@@ -221,12 +245,36 @@
           "n_properties": 0
         },
         {
+          "kind": "function",
+          "name": "cachetools.cachedmethod",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "cachetools.cached",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 6,
+          "n_overloads": 1,
+          "n_annotatable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
           "kind": "class",
-          "name": "cachetools.LRUCache",
+          "name": "cachetools.FIFOCache",
           "methods": [
             {
               "kind": "function",
-              "name": "LRUCache.__init__",
+              "name": "FIFOCache.__init__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -238,19 +286,7 @@
             },
             {
               "kind": "function",
-              "name": "LRUCache.__getitem__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "LRUCache.__setitem__",
+              "name": "FIFOCache.__setitem__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 4,
@@ -262,7 +298,7 @@
             },
             {
               "kind": "function",
-              "name": "LRUCache.__delitem__",
+              "name": "FIFOCache.__delitem__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 3,
@@ -274,7 +310,172 @@
             },
             {
               "kind": "function",
-              "name": "LRUCache.popitem",
+              "name": "FIFOCache.popitem",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_annotatable": 11,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 11,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 7,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "cachetools.RRCache",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RRCache.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RRCache.__setitem__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RRCache.__delitem__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RRCache.popitem",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "RRCache.choice",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 13,
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 13,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 8,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "cachetools.TTLCache",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TTLCache.__init__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 5,
+              "n_overloads": 1,
+              "n_annotatable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.__contains__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.__getitem__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.__setitem__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 4,
+              "n_overloads": 1,
+              "n_annotatable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.__delitem__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 3,
+              "n_overloads": 1,
+              "n_annotatable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.__iter__",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 1,
@@ -286,7 +487,43 @@
             },
             {
               "kind": "function",
-              "name": "LRUCache.__touch",
+              "name": "TTLCache.__setstate__",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.expire",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 2,
+              "n_overloads": 1,
+              "n_annotatable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.popitem",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_overloads": 1,
+              "n_annotatable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TTLCache.__getlink",
               "n_annotated": 0,
               "n_any": 0,
               "n_unannotated": 2,
@@ -297,18 +534,27 @@
               "n_function_params": 1
             }
           ],
-          "properties": [],
-          "n_annotatable": 16,
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TTLCache.ttl",
+              "n_annotated": 0,
+              "n_any": 0,
+              "n_unannotated": 1,
+              "n_annotatable": 1
+            }
+          ],
+          "n_annotatable": 26,
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 16,
+          "n_unannotated": 26,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 10,
-          "n_properties": 0
+          "n_methods": 10,
+          "n_method_overloads": 10,
+          "n_method_params": 15,
+          "n_properties": 1
         },
         {
           "kind": "class",
@@ -635,252 +881,6 @@
           "n_method_overloads": 13,
           "n_method_params": 15,
           "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "cachetools.TTLCache",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TTLCache.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 5,
-              "n_overloads": 1,
-              "n_annotatable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__contains__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__getitem__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__setitem__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__delitem__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__iter__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__setstate__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.expire",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.popitem",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TTLCache.__getlink",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 2,
-              "n_overloads": 1,
-              "n_annotatable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "TTLCache.ttl",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            }
-          ],
-          "n_annotatable": 26,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 26,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 10,
-          "n_method_overloads": 10,
-          "n_method_params": 15,
-          "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "cachetools.RRCache",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RRCache.__init__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "RRCache.__setitem__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 4,
-              "n_overloads": 1,
-              "n_annotatable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "RRCache.__delitem__",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 3,
-              "n_overloads": 1,
-              "n_annotatable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "RRCache.popitem",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_overloads": 1,
-              "n_annotatable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "RRCache.choice",
-              "n_annotated": 0,
-              "n_any": 0,
-              "n_unannotated": 1,
-              "n_annotatable": 1
-            }
-          ],
-          "n_annotatable": 13,
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 13,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 8,
-          "n_properties": 1
-        },
-        {
-          "kind": "function",
-          "name": "cachetools.cachedmethod",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_overloads": 1,
-          "n_annotatable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "cachetools.cached",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 6,
-          "n_overloads": 1,
-          "n_annotatable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         }
       ],
       "type_ignores": [],
@@ -916,18 +916,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "cachetools.func.fifo_cache",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "cachetools.func.lfu_cache",
           "n_annotated": 0,
           "n_any": 0,
@@ -952,6 +940,18 @@
         },
         {
           "kind": "function",
+          "name": "cachetools.func.rr_cache",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 4,
+          "n_overloads": 1,
+          "n_annotatable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
           "name": "cachetools.func.lru_cache",
           "n_annotated": 0,
           "n_any": 0,
@@ -964,15 +964,15 @@
         },
         {
           "kind": "function",
-          "name": "cachetools.func.rr_cache",
+          "name": "cachetools.func.fifo_cache",
           "n_annotated": 0,
           "n_any": 0,
-          "n_unannotated": 4,
+          "n_unannotated": 3,
           "n_overloads": 1,
-          "n_annotatable": 4,
-          "n_params": 3,
+          "n_annotatable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -1004,7 +1004,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "cachetools.keys.typedmethodkey",
+          "name": "cachetools.keys.methodkey",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 4,
@@ -1013,18 +1013,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "cachetools.keys.hashkey",
-          "n_annotated": 0,
-          "n_any": 0,
-          "n_unannotated": 3,
-          "n_overloads": 1,
-          "n_annotatable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -1040,7 +1028,19 @@
         },
         {
           "kind": "function",
-          "name": "cachetools.keys.methodkey",
+          "name": "cachetools.keys.hashkey",
+          "n_annotated": 0,
+          "n_any": 0,
+          "n_unannotated": 3,
+          "n_overloads": 1,
+          "n_annotatable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "cachetools.keys.typedmethodkey",
           "n_annotated": 0,
           "n_any": 0,
           "n_unannotated": 4,
