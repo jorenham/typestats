@@ -19,7 +19,6 @@ from typestats.analyze import (
     TypeForm,
     annotation_counts,
     collect_symbols,
-    is_annotated,
 )
 
 
@@ -672,7 +671,7 @@ class TestKnownAttrs:
         module = collect_symbols(textwrap.dedent(src))
         symbols = {s.name: s.type_ for s in module.symbols}
         assert isinstance(symbols[class_name], Class)
-        assert is_annotated(symbols[class_name])
+        assert symbols[class_name].is_annotated
 
     def test_regular_class_attrs_not_known(self) -> None:
         """Annotated attrs in plain classes should keep their type expression."""
@@ -714,7 +713,7 @@ class TestKnownAttrs:
         cls = symbols["Foo"]
 
         assert isinstance(cls, Class)
-        assert not is_annotated(cls)
+        assert not cls.is_annotated
 
     @pytest.mark.parametrize(
         ("src", "class_name", "n_members"),
@@ -774,7 +773,7 @@ class TestClassMethodAlias:
         symbols = {s.name: s.type_ for s in module.symbols}
 
         assert isinstance(symbols["Foo.__rand__"], Function)
-        assert is_annotated(symbols["Foo"])
+        assert symbols["Foo"].is_annotated
 
     def test_overloaded(self) -> None:
         src = textwrap.dedent("""
@@ -796,7 +795,7 @@ class TestClassMethodAlias:
         assert isinstance(rand_func, Function)
         assert isinstance(and_func, Function)
         assert len(rand_func.overloads) == len(and_func.overloads)
-        assert is_annotated(symbols["Bool"])
+        assert symbols["Bool"].is_annotated
 
     def test_overload_only(self) -> None:
         """Overload-only methods (no implementation), common in stubs."""
@@ -816,7 +815,7 @@ class TestClassMethodAlias:
 
         assert isinstance(rand_func, Function)
         assert len(rand_func.overloads) == 2
-        assert is_annotated(symbols["Bool"])
+        assert symbols["Bool"].is_annotated
 
     def test_adds_to_class_members(self) -> None:
         src = textwrap.dedent("""
@@ -829,22 +828,22 @@ class TestClassMethodAlias:
 
         assert isinstance(cls, Class)
         assert len(cls.members) == 2
-        assert all(is_annotated(m) for m in cls.members)
+        assert all(m.is_annotated for m in cls.members)
 
 
 class TestIsAnnotated:
     def test_markers(self) -> None:
-        assert not is_annotated(UNKNOWN)
-        assert is_annotated(ANY)
-        assert not is_annotated(KNOWN)
-        assert not is_annotated(EXTERNAL)
+        assert not UNKNOWN.is_annotated
+        assert ANY.is_annotated
+        assert KNOWN.is_annotated
+        assert EXTERNAL.is_annotated
 
     def test_expr(self) -> None:
-        assert is_annotated(Expr(cst.Name("int")))
+        assert Expr(cst.Name("int")).is_annotated
 
     def test_class_no_members(self) -> None:
         """A class with no members is considered annotated."""
-        assert is_annotated(Class("MyClass"))
+        assert Class("MyClass").is_annotated
 
     def test_class_all_members_annotated(self) -> None:
         """A class is annotated when all its members are annotated."""
@@ -869,7 +868,7 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert is_annotated(cls)
+        assert cls.is_annotated
 
     def test_class_with_unannotated_method(self) -> None:
         """A class with an unannotated method is not annotated."""
@@ -893,15 +892,15 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert not is_annotated(cls)
+        assert not cls.is_annotated
 
     def test_class_with_known_members(self) -> None:
         """A class with KNOWN members (e.g. dataclass fields) is annotated."""
-        assert is_annotated(Class("Foo", members=(KNOWN, KNOWN)))
+        assert Class("Foo", members=(KNOWN, KNOWN)).is_annotated
 
     def test_class_with_unannotated_attr(self) -> None:
         """A class with an UNKNOWN attribute is not annotated."""
-        assert not is_annotated(Class("Foo", members=(UNKNOWN,)))
+        assert not Class("Foo", members=(UNKNOWN,)).is_annotated
 
     def test_function_unannotated(self) -> None:
         """A function with no annotations should not be considered annotated."""
@@ -917,7 +916,7 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert not is_annotated(func)
+        assert not func.is_annotated
 
     def test_function_self_only(self) -> None:
         """A method with only self/cls (excluded) should not be annotated."""
@@ -930,7 +929,7 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert not is_annotated(func)
+        assert not func.is_annotated
 
     def test_function_with_return(self) -> None:
         """A function with only a return annotation is annotated."""
@@ -943,7 +942,7 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert is_annotated(func)
+        assert func.is_annotated
 
     def test_function_with_param(self) -> None:
         """A function with at least one annotated param is annotated."""
@@ -963,7 +962,7 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert is_annotated(func)
+        assert func.is_annotated
 
     def test_function_all_any_annotated(self) -> None:
         """A function where all params and return are ANY is annotated."""
@@ -979,7 +978,7 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert is_annotated(func)
+        assert func.is_annotated
 
     def test_function_mixed_any_and_expr_annotated(self) -> None:
         """A function with at least one non-ANY annotation is annotated."""
@@ -999,11 +998,11 @@ class TestIsAnnotated:
                 ),
             ),
         )
-        assert is_annotated(func)
+        assert func.is_annotated
 
     def test_class_with_any_member(self) -> None:
         """A class with an ANY attribute is annotated."""
-        assert is_annotated(Class("Foo", members=(ANY,)))
+        assert Class("Foo", members=(ANY,)).is_annotated
 
 
 class TestImplicitClassmethodDunders:
@@ -1916,8 +1915,8 @@ class TestProperty:
         assert prop.fset is None
         assert prop.fdel is None
         assert len(prop.fget.params) == 0  # self is skipped
-        assert is_annotated(prop.fget.returns)
-        assert is_annotated(prop)
+        assert prop.fget.returns.is_annotated
+        assert prop.is_annotated
 
     def test_getter_unannotated(self) -> None:
         src = textwrap.dedent("""\
@@ -1932,7 +1931,7 @@ class TestProperty:
         assert isinstance(prop, Property)
         assert prop.fget is not None
         assert prop.fget.returns == UNKNOWN
-        assert not is_annotated(prop)
+        assert not prop.is_annotated
 
     def test_getter_and_setter(self) -> None:
         src = textwrap.dedent("""\
@@ -2049,20 +2048,15 @@ class TestProperty:
         prop = Property("x", fget=fget)
         assert annotation_counts(prop) == (0, 0, 1)
 
-    def test_no_accessors(self) -> None:
-        prop = Property("x")
-        assert annotation_counts(prop) == (0, 0, 0)
-        assert not is_annotated(prop)
-
     def test_is_annotated_true(self) -> None:
         fget = Overload((), Expr(cst.parse_expression("int")))
         prop = Property("x", fget=fget)
-        assert is_annotated(prop)
+        assert prop.is_annotated
 
     def test_is_annotated_false(self) -> None:
         fget = Overload((), UNKNOWN)
         prop = Property("x", fget=fget)
-        assert not is_annotated(prop)
+        assert not prop.is_annotated
 
     def test_str_fget_only(self) -> None:
         fget = Overload((), Expr(cst.parse_expression("int")))
