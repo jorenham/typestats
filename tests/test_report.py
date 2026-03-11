@@ -148,10 +148,63 @@ class TestFunctionReport:
             _overload([("a", UNKNOWN)], returns=UNKNOWN),
         )
         r = FunctionReport.from_symbol("f", func)
-        assert r.n_annotatable == 4  # 2 params + 2 returns
-        assert r.n_annotated == 2
+        # 1 unique param (a at pos 0) + 1 return = 2 annotatable
+        # param: annotated in overload 1, unannotated in 2 -> unannotated
+        # return: annotated in overload 1, unannotated in 2 -> unannotated
+        assert r.n_annotatable == 2
+        assert r.n_annotated == 0
         assert r.n_unannotated == 2
         assert r.n_overloads == 2
+        assert r.n_params == 1
+
+    def test_overloads_different_params(self) -> None:
+        """Params across overloads are deduplicated by position/name."""
+        func = _func(
+            _overload([]),  # () -> int
+            Overload(
+                (Param("a", ParamKind.POSITIONAL_ONLY, _INT),),
+                _INT,
+            ),
+            Overload(
+                (Param("b", ParamKind.POSITIONAL_ONLY, _INT),),
+                _INT,
+            ),
+            Overload(
+                (Param("b", ParamKind.KEYWORD_ONLY, _INT),),
+                _INT,
+            ),
+        )
+        r = FunctionReport.from_symbol("f", func)
+        # 1 pos-only param (pos 0) + 1 kw-only param ("b") + 1 return = 3
+        assert r.n_annotatable == 3
+        assert r.n_annotated == 3
+        assert r.n_overloads == 4
+        assert r.n_params == 2
+
+    def test_overloads_worst_wins(self) -> None:
+        """When merging slots, the worst annotation state wins."""
+        func = _func(
+            _overload([("a", _INT)]),
+            _overload([("a", UNKNOWN)]),
+        )
+        r = FunctionReport.from_symbol("f", func)
+        # param: annotated in one, unannotated in other -> unannotated
+        # return: annotated in both -> annotated
+        assert r.n_annotatable == 2
+        assert r.n_annotated == 1
+        assert r.n_unannotated == 1
+
+    def test_overloads_any_state(self) -> None:
+        """ANY is worse than annotated but better than unannotated."""
+        func = _func(
+            _overload([("a", _INT)]),
+            _overload([("a", ANY)]),
+        )
+        r = FunctionReport.from_symbol("f", func)
+        # param: annotated in one, any in other -> any
+        assert r.n_annotatable == 2
+        assert r.n_annotated == 1
+        assert r.n_any == 1
 
 
 class TestClassReport:
