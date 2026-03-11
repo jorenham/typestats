@@ -23,9 +23,9 @@
 {% macro metric_cell(cell) -%}
   <td style="text-align: right">
     {{- cell.value }}
-    {%- if cell.delta is defined -%}
+    {%- if cell.delta is not none -%}
       <br>
-      {%- if cell.color is defined -%}
+      {%- if cell.color is not none -%}
         <span style="color:{{ cell.color }}">{{ cell.delta }}</span>
       {%- else -%}
         {{ cell.delta }}

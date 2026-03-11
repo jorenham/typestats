@@ -11,7 +11,7 @@ import shutil
 import tempfile
 from collections import Counter
 from pathlib import Path
-from typing import TYPE_CHECKING, ClassVar, Final
+from typing import TYPE_CHECKING, ClassVar, Final, NamedTuple
 
 import anyio
 import anyio.to_thread
@@ -46,6 +46,73 @@ _STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
     StubsOnly.THIRD_PARTY: "third-party",
     StubsOnly.TYPESHED: "typeshed",
 }
+
+
+class _IndexRow(NamedTuple):
+    package: str
+    version: str
+    release_date: str
+    coverage: str
+    coverage_strict: str
+    n_annotatable: str
+    py_typed_sort: int
+    py_typed: str
+    stubs_only_label: str
+
+
+class _MetricCell(NamedTuple):
+    value: str
+    delta: str | None = None
+    color: str | None = None
+
+
+class _ChartData(NamedTuple):
+    labels: list[str]
+    cov: list[float]
+    strict_cov: list[float]
+    palette: str
+    theme_colors: tuple[str, ...]
+
+
+class _DiffRow(NamedTuple):
+    version: str
+    release_date: str
+    coverage: _MetricCell
+    coverage_strict: _MetricCell
+    symbols: _MetricCell
+    unannotated: _MetricCell
+    ignores: _MetricCell
+
+
+class _ModuleRow(NamedTuple):
+    display_name: str
+    slug: str | None
+    coverage: str
+    coverage_strict: str
+    n_annotatable: str
+    n_type_ignores: str
+
+
+class _AnnotationRow(NamedTuple):
+    name: str
+    kind: str
+    status: str
+    n_annotated: int
+    n_any: int
+    n_unannotated: int
+
+
+class _AnnotationSection(NamedTuple):
+    display_name: str
+    slug: str
+    n_issues: int
+    rows: list[_AnnotationRow]
+
+
+class _SymbolsByKind(NamedTuple):
+    functions: int
+    classes: int
+    names: int
 
 
 @functools.cache
@@ -85,18 +152,18 @@ class IndexPage:
         return template.render(rows=rows)
 
     @classmethod
-    def _row(cls, r: PackageReport, /) -> dict[str, str | int]:
-        return {
-            "package": r.package,
-            "version": r.version,
-            "release_date": _release_date(r),
-            "coverage": f"{r.coverage():.1%}",
-            "coverage_strict": f"{r.coverage(True):.1%}",
-            "n_annotatable": f"{r.n_annotatable:,}",
-            "py_typed_sort": cls._PY_TYPED_SORT[r.py_typed],
-            "py_typed": r.py_typed.name.lower(),
-            "stubs_only_label": _STUBS_ONLY_LABEL[r.stubs_only],
-        }
+    def _row(cls, r: PackageReport, /) -> _IndexRow:
+        return _IndexRow(
+            package=r.package,
+            version=r.version,
+            release_date=_release_date(r),
+            coverage=f"{r.coverage():.1%}",
+            coverage_strict=f"{r.coverage(True):.1%}",
+            n_annotatable=f"{r.n_annotatable:,}",
+            py_typed_sort=cls._PY_TYPED_SORT[r.py_typed],
+            py_typed=r.py_typed.name.lower(),
+            stubs_only_label=_STUBS_ONLY_LABEL[r.stubs_only],
+        )
 
 
 class DiffPage:
@@ -132,27 +199,27 @@ class DiffPage:
         # previous version), then reverse for newest-first display.
         prevs = [None, *reports[:-1]]
         rows = [
-            {
-                "version": r.version,
-                "release_date": _release_date(r),
-                "coverage": self._cov_data(r, prev, strict=False),
-                "coverage_strict": self._cov_data(r, prev, strict=True),
-                "symbols": self._int_data(
+            _DiffRow(
+                version=r.version,
+                release_date=_release_date(r),
+                coverage=self._cov_data(r, prev, strict=False),
+                coverage_strict=self._cov_data(r, prev, strict=True),
+                symbols=self._int_data(
                     r.n_annotatable,
                     prev.n_annotatable if prev else None,
                     neutral=True,
                 ),
-                "unannotated": self._int_data(
+                unannotated=self._int_data(
                     r.n_unannotated,
                     prev.n_unannotated if prev else None,
                     prefer_lower=True,
                 ),
-                "ignores": self._int_data(
+                ignores=self._int_data(
                     r.n_type_ignores,
                     prev.n_type_ignores if prev else None,
                     prefer_lower=True,
                 ),
-            }
+            )
             for prev, r in zip(prevs, reports, strict=True)
         ]
         rows.reverse()
@@ -162,7 +229,7 @@ class DiffPage:
         template = _get_env().get_template(self.TEMPLATE)
         return template.render(package=package, rows=rows, chart=chart)
 
-    def _chart_data(self) -> dict[str, object]:
+    def _chart_data(self) -> _ChartData:
         """Prepare chart template variables.
 
         When all reports have upload dates, the x-axis uses monthly
@@ -186,13 +253,13 @@ class DiffPage:
             cov = [round(v, 1) for v in cov_raw]
             strict_cov = [round(v, 1) for v in strict_raw]
 
-        return {
-            "labels": labels,
-            "cov": cov,
-            "strict_cov": strict_cov,
-            "palette": self._CHART_PALETTE,
-            "theme_colors": self._CHART_THEME_COLORS,
-        }
+        return _ChartData(
+            labels=labels,
+            cov=cov,
+            strict_cov=strict_cov,
+            palette=self._CHART_PALETTE,
+            theme_colors=self._CHART_THEME_COLORS,
+        )
 
     @staticmethod
     def _monthly_series(
@@ -236,18 +303,19 @@ class DiffPage:
         prev: PackageReport | None,
         *,
         strict: bool,
-    ) -> dict[str, str]:
+    ) -> _MetricCell:
         val = r.coverage(strict)
-        data: dict[str, str] = {"value": f"{val:.1%}"}
         if prev is None:
-            return data
+            return _MetricCell(value=f"{val:.1%}")
         delta_pp = (val - prev.coverage(strict)) * 100
         if not delta_pp:
-            return data
+            return _MetricCell(value=f"{val:.1%}")
         sign = "+" if delta_pp > 0 else ""
-        data["delta"] = f"({sign}{delta_pp:.1f}%)"
-        data["color"] = "green" if delta_pp > 0 else "red"
-        return data
+        return _MetricCell(
+            value=f"{val:.1%}",
+            delta=f"({sign}{delta_pp:.1f}%)",
+            color="green" if delta_pp > 0 else "red",
+        )
 
     @staticmethod
     def _int_data(
@@ -257,18 +325,19 @@ class DiffPage:
         *,
         prefer_lower: bool = False,
         neutral: bool = False,
-    ) -> dict[str, str]:
-        data: dict[str, str] = {"value": str(val)}
+    ) -> _MetricCell:
         if prev_val is None:
-            return data
+            return _MetricCell(value=str(val))
         delta = val - prev_val
         if delta == 0:
-            return data
+            return _MetricCell(value=str(val))
         sign = "+" if delta > 0 else ""
-        data["delta"] = f"({sign}{delta})"
-        if not neutral:
-            data["color"] = "green" if (delta < 0) == prefer_lower else "red"
-        return data
+        color = None if neutral else ("green" if (delta < 0) == prefer_lower else "red")
+        return _MetricCell(
+            value=str(val),
+            delta=f"({sign}{delta})",
+            color=color,
+        )
 
 
 class DetailPage:
@@ -311,13 +380,13 @@ class DetailPage:
             mermaid_config_pie=self._MERMAID_CONFIG_PIE,
         )
 
-    def _annotation_sections(self) -> tuple[list[dict[str, object]], dict[str, str]]:
+    def _annotation_sections(self) -> tuple[list[_AnnotationSection], dict[str, str]]:
         """Build collapsible annotation sections for incomplete modules.
 
         Returns `(sections, incomplete_slugs)` where `incomplete_slugs`
         maps each display name to its HTML anchor slug.
         """
-        sections: list[dict[str, object]] = []
+        sections: list[_AnnotationSection] = []
         slugs: dict[str, str] = {}
         package = self._report.package
         for m in self._sorted_modules:
@@ -328,35 +397,37 @@ class DetailPage:
             # sanitize for HTML id
             slug = re.sub(r"[^\w.-]", "", f"module-{display_name}")
             slugs[display_name] = slug
-            sections.append({
-                "display_name": f"`{display_name}`",
-                "slug": slug,
-                "n_issues": len(rows),
-                "rows": rows,
-            })
+            sections.append(
+                _AnnotationSection(
+                    display_name=f"`{display_name}`",
+                    slug=slug,
+                    n_issues=len(rows),
+                    rows=rows,
+                )
+            )
 
         return sections, slugs
 
-    def _modules_data(
-        self,
-        incomplete_slugs: dict[str, str],
-    ) -> list[dict[str, str | None]]:
+    def _modules_data(self, incomplete_slugs: dict[str, str]) -> list[_ModuleRow]:
         package = self._report.package
-        result = []
+        result: list[_ModuleRow] = []
         for m in self._sorted_modules:
             display_name = self._display_module_name(m.name, package)
-            result.append({
-                "display_name": display_name,
-                "slug": incomplete_slugs.get(display_name),
-                "coverage": f"{m.coverage():.1%}",
-                "coverage_strict": f"{m.coverage(True):.1%}",
-                "n_annotatable": str(m.n_annotatable),
-                "n_type_ignores": str(m.n_type_ignores),
-            })
+            result.append(
+                _ModuleRow(
+                    display_name=display_name,
+                    slug=incomplete_slugs.get(display_name),
+                    coverage=f"{m.coverage():.1%}",
+                    coverage_strict=f"{m.coverage(True):.1%}",
+                    n_annotatable=str(m.n_annotatable),
+                    n_type_ignores=str(m.n_type_ignores),
+                )
+            )
         return result
 
-    def _symbols_by_kind(self) -> dict[str, int]:
-        totals: dict[str, int] = {"functions": 0, "classes": 0, "names": 0}
+    def _symbols_by_kind(self) -> _SymbolsByKind:
+        kind2key = {"function": "functions", "name": "names", "property": "classes"}
+        totals = {"functions": 0, "classes": 0, "names": 0}
         for m in self._report.module_reports:
             for s in m.symbol_reports:
                 if s.kind == "class":
@@ -365,14 +436,8 @@ class DetailPage:
                     for prop in s.properties:
                         totals["classes"] += prop.n_annotatable
                 else:
-                    totals[
-                        {
-                            "function": "functions",
-                            "name": "names",
-                            "property": "classes",
-                        }[s.kind]
-                    ] += s.n_annotatable
-        return totals
+                    totals[kind2key[s.kind]] += s.n_annotatable
+        return _SymbolsByKind(**totals)
 
     def _type_ignore_data(self) -> list[tuple[str, int]]:
         """Return sorted (flavor, count) pairs for type-ignore comments."""
@@ -387,8 +452,8 @@ class DetailPage:
         return sorted(counts.items(), key=lambda x: (-x[1], x[0]))
 
     @staticmethod
-    def _incomplete_annotations(report: ModuleReport) -> list[dict[str, str | int]]:
-        rows: list[dict[str, str | int]] = []
+    def _incomplete_annotations(report: ModuleReport) -> list[_AnnotationRow]:
+        rows: list[_AnnotationRow] = []
         for s in report.symbol_reports:
             if s.n_unannotated == 0 and s.n_any == 0:
                 continue
@@ -410,14 +475,16 @@ class DetailPage:
 
                     kind = "method" if member.kind == "function" else member.kind
                     member_short = member.name.removeprefix(f"{short_name}.")
-                    rows.append({
-                        "name": f"{short_name}.{member_short}",
-                        "kind": kind,
-                        "status": status,
-                        "n_annotated": member.n_annotated,
-                        "n_any": member.n_any,
-                        "n_unannotated": member.n_unannotated,
-                    })
+                    rows.append(
+                        _AnnotationRow(
+                            name=f"{short_name}.{member_short}",
+                            kind=kind,
+                            status=status,
+                            n_annotated=member.n_annotated,
+                            n_any=member.n_any,
+                            n_unannotated=member.n_unannotated,
+                        )
+                    )
                 continue
 
             if s.n_unannotated > 0 and s.n_any > 0:
@@ -427,14 +494,16 @@ class DetailPage:
             else:
                 status = "Any"
 
-            rows.append({
-                "name": short_name,
-                "kind": s.kind,
-                "status": status,
-                "n_annotated": s.n_annotated,
-                "n_any": s.n_any,
-                "n_unannotated": s.n_unannotated,
-            })
+            rows.append(
+                _AnnotationRow(
+                    name=short_name,
+                    kind=s.kind,
+                    status=status,
+                    n_annotated=s.n_annotated,
+                    n_any=s.n_any,
+                    n_unannotated=s.n_unannotated,
+                )
+            )
 
         return rows
 
