@@ -1288,6 +1288,138 @@ class TestAnnotationCounts:
         assert annotation_counts(cls) == (0, 1, 1)
 
 
+class TestToUnknown:
+    _INT: TypeForm = Expr(cst.parse_expression("int"))
+
+    def test_markers(self) -> None:
+        assert UNKNOWN.to_unknown() is UNKNOWN
+        assert KNOWN.to_unknown() is UNKNOWN
+        assert ANY.to_unknown() is UNKNOWN
+        assert EXTERNAL.to_unknown() is UNKNOWN
+
+    def test_expr(self) -> None:
+        assert self._INT.to_unknown() is UNKNOWN
+
+    def test_overload(self) -> None:
+        overload = Overload(
+            (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, self._INT),),
+            self._INT,
+        )
+        result = overload.to_unknown()
+        assert isinstance(result, Overload)
+        assert result.returns is UNKNOWN
+        assert len(result.params) == 1
+        assert result.params[0].name == "x"
+        assert result.params[0].kind is ParamKind.POSITIONAL_OR_KEYWORD
+        assert result.params[0].annotation is UNKNOWN
+
+    def test_function_single_overload(self) -> None:
+        func = Function(
+            "f",
+            (
+                Overload(
+                    (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, self._INT),),
+                    self._INT,
+                ),
+            ),
+        )
+        result = func.to_unknown()
+        assert isinstance(result, Function)
+        assert result.name == "f"
+        assert not result.is_annotated
+        assert len(result.overloads) == 1
+        assert result.overloads[0].returns is UNKNOWN
+        assert result.overloads[0].params[0].annotation is UNKNOWN
+
+    def test_function_multiple_overloads(self) -> None:
+        func = Function(
+            "f",
+            (
+                Overload(
+                    (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, self._INT),),
+                    self._INT,
+                ),
+                Overload(
+                    (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, self._INT),),
+                    self._INT,
+                ),
+            ),
+        )
+        result = func.to_unknown()
+        assert isinstance(result, Function)
+        assert len(result.overloads) == 2
+        for overload in result.overloads:
+            assert overload.returns is UNKNOWN
+            assert overload.params[0].annotation is UNKNOWN
+
+    def test_property_fget(self) -> None:
+        prop = Property("p", fget=Overload((), self._INT))
+        result = prop.to_unknown()
+        assert isinstance(result, Property)
+        assert result.name == "p"
+        assert result.fget is not None
+        assert result.fget.returns is UNKNOWN
+        assert result.fset is None
+        assert result.fdel is None
+
+    def test_property_fget_fset(self) -> None:
+        prop = Property(
+            "p",
+            fget=Overload((), self._INT),
+            fset=Overload(
+                (Param("value", ParamKind.POSITIONAL_OR_KEYWORD, self._INT),),
+                self._INT,
+            ),
+        )
+        result = prop.to_unknown()
+        assert isinstance(result, Property)
+        assert result.fget is not None
+        assert result.fget.returns is UNKNOWN
+        assert result.fset is not None
+        assert result.fset.params[0].annotation is UNKNOWN
+        assert result.fset.returns is UNKNOWN
+
+    def test_property_none_accessors(self) -> None:
+        prop = Property("p")
+        result = prop.to_unknown()
+        assert isinstance(result, Property)
+        assert result.fget is None
+        assert result.fset is None
+        assert result.fdel is None
+
+    def test_class_no_members(self) -> None:
+        cls = Class("C")
+        result = cls.to_unknown()
+        assert isinstance(result, Class)
+        assert result.name == "C"
+        assert result.members == ()
+
+    def test_class_with_members(self) -> None:
+        cls = Class("C", members=(self._INT, ANY))
+        result = cls.to_unknown()
+        assert isinstance(result, Class)
+        assert len(result.members) == 2
+        assert all(m is UNKNOWN for m in result.members)
+
+    def test_class_nested_function_member(self) -> None:
+        func = Function(
+            "method",
+            (
+                Overload(
+                    (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, self._INT),),
+                    self._INT,
+                ),
+            ),
+        )
+        cls = Class("C", members=(func,))
+        result = cls.to_unknown()
+        assert isinstance(result, Class)
+        assert len(result.members) == 1
+        member = result.members[0]
+        assert isinstance(member, Function)
+        assert not member.is_annotated
+
+
 class TestTypeCheckOnly:
     def test_function_detected(self) -> None:
         src = textwrap.dedent("""

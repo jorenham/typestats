@@ -700,11 +700,12 @@ def merge_stubs_overlay(
     with `trace_origins=False` so that symbol FQNs are public import names
     and paths point to the public module file (not origin files).
 
-    Stubs types take priority.  Original symbols whose modules are covered by
-    stubs but that are absent from those stubs are marked `UNKNOWN` (matching
-    type-checker behaviour: stubs shadow the `.py`) and are consolidated
-    under the stubs path.  Original symbols whose modules are *not* covered by
-    stubs retain their original types (the type-checker falls back to the `.py`).
+    Stubs types take priority. Original symbols whose modules are covered by stubs but
+    that are absent from those stubs have their annotations stripped (matching
+    type-checker behaviour: stubs shadow the `.py`) while preserving the structural
+    kind (function, property, class). These symbols are consolidated under the stubs
+    path. Original symbols whose modules are *not* covered by stubs retain their
+    original types (the type-checker falls back to the `.py`).
     """
 
     # Flatten stubs to {fqn: (path, type)} and build module -> stubs-path map
@@ -726,11 +727,11 @@ def merge_stubs_overlay(
             if sym.name not in merged:
                 mod = sym.name.rsplit(".", 1)[0]
                 if mod in stubs_modules:
-                    # Module covered by stubs but symbol missing -> UNKNOWN,
-                    # consolidated under the stubs path for this module
-                    merged[sym.name] = (stubs_mod_path[mod], analyze.UNKNOWN)
+                    # module covered by stubs but symbol missing:
+                    # strip annotations but preserve its kind (func, prop, class, etc)
+                    merged[sym.name] = stubs_mod_path[mod], sym.type_.to_unknown()
                 else:
-                    merged[sym.name] = (path, sym.type_)
+                    merged[sym.name] = path, sym.type_
 
     # Group by path
     result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
