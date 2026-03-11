@@ -1039,15 +1039,15 @@ class TestAnnotationCounts:
     @pytest.mark.parametrize(
         ("typeform", "expected"),
         [
-            (UNKNOWN, (0, 1)),
-            (ANY, (1, 1)),
-            (KNOWN, (0, 0)),
-            (EXTERNAL, (0, 0)),
-            (Expr(cst.Name("int")), (1, 1)),
+            (UNKNOWN, (0, 0, 1)),
+            (ANY, (0, 1, 1)),
+            (KNOWN, (0, 0, 0)),
+            (EXTERNAL, (0, 0, 0)),
+            (Expr(cst.Name("int")), (1, 0, 1)),
         ],
         ids=["unknown", "any", "known", "external", "expr"],
     )
-    def test_simple(self, typeform: TypeForm, expected: tuple[int, int]) -> None:
+    def test_simple(self, typeform: TypeForm, expected: tuple[int, int, int]) -> None:
         assert annotation_counts(typeform) == expected
 
     def test_function_fully_annotated(self) -> None:
@@ -1066,7 +1066,7 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        assert annotation_counts(func) == (2, 2)
+        assert annotation_counts(func) == (2, 0, 2)
 
     def test_function_unannotated(self) -> None:
         func = Function(
@@ -1078,7 +1078,7 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        assert annotation_counts(func) == (0, 2)
+        assert annotation_counts(func) == (0, 0, 2)
 
     def test_function_partial(self) -> None:
         func = Function(
@@ -1097,7 +1097,7 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        assert annotation_counts(func) == (1, 3)
+        assert annotation_counts(func) == (1, 0, 3)
 
     def test_function_self_excluded(self) -> None:
         """self/cls params are excluded entirely, so only x + return count."""
@@ -1116,7 +1116,7 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        assert annotation_counts(func) == (2, 2)
+        assert annotation_counts(func) == (2, 0, 2)
 
     def test_function_with_overloads(self) -> None:
         func = Function(
@@ -1144,19 +1144,85 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        # 2 overloads * (1 param + 1 return) = 4 annotatable, all annotated
-        assert annotation_counts(func) == (4, 4)
+        # 1 unique param (x at pos 0) + 1 return = 2, all annotated
+        assert annotation_counts(func) == (2, 0, 2)
+
+    def test_function_overloads_different_params(self) -> None:
+        """Params across overloads are deduplicated by position/name."""
+        func = Function(
+            "f",
+            (
+                Overload((), Expr(cst.Name("bool"))),
+                Overload(
+                    (
+                        Param(
+                            "a",
+                            ParamKind.POSITIONAL_ONLY,
+                            Expr(cst.Name("int")),
+                        ),
+                    ),
+                    Expr(cst.Name("int")),
+                ),
+                Overload(
+                    (
+                        Param(
+                            "b",
+                            ParamKind.POSITIONAL_ONLY,
+                            Expr(cst.Name("float")),
+                        ),
+                    ),
+                    Expr(cst.Name("float")),
+                ),
+                Overload(
+                    (
+                        Param(
+                            "b",
+                            ParamKind.KEYWORD_ONLY,
+                            Expr(cst.Name("bool")),
+                        ),
+                    ),
+                    Expr(cst.Name("str")),
+                ),
+            ),
+        )
+        # 1 pos-only param (pos 0) + 1 keyword-only param ("b") + 1 return
+        assert annotation_counts(func) == (3, 0, 3)
+
+    def test_function_overloads_partial_annotation(self) -> None:
+        """A param slot is annotated only when ALL occurrences are."""
+        func = Function(
+            "f",
+            (
+                Overload(
+                    (
+                        Param(
+                            "x",
+                            ParamKind.POSITIONAL_OR_KEYWORD,
+                            Expr(cst.Name("int")),
+                        ),
+                    ),
+                    Expr(cst.Name("int")),
+                ),
+                Overload(
+                    (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, UNKNOWN),),
+                    UNKNOWN,
+                ),
+            ),
+        )
+        # x is annotated in one, unannotated in the other -> unannotated
+        # return is annotated in one, unannotated in the other -> unannotated
+        assert annotation_counts(func) == (0, 0, 2)
 
     def test_class_no_members(self) -> None:
-        assert annotation_counts(Class("Foo")) == (0, 0)
+        assert annotation_counts(Class("Foo")) == (0, 0, 0)
 
     def test_class_with_annotated_members(self) -> None:
         cls = Class("Foo", members=(Expr(cst.Name("int")), Expr(cst.Name("str"))))
-        assert annotation_counts(cls) == (2, 2)
+        assert annotation_counts(cls) == (2, 0, 2)
 
     def test_class_with_unannotated_member(self) -> None:
         cls = Class("Foo", members=(UNKNOWN,))
-        assert annotation_counts(cls) == (0, 1)
+        assert annotation_counts(cls) == (0, 0, 1)
 
     def test_class_with_method(self) -> None:
         cls = Class(
@@ -1174,12 +1240,12 @@ class TestAnnotationCounts:
             ),
         )
         # method: 1 param (x) unannotated + 1 return annotated = (1, 2)
-        assert annotation_counts(cls) == (1, 2)
+        assert annotation_counts(cls) == (1, 0, 2)
 
     def test_class_known_members_zero(self) -> None:
         """KNOWN members (dataclass fields, enum values) are 0/0."""
         cls = Class("Foo", members=(KNOWN, KNOWN))
-        assert annotation_counts(cls) == (0, 0)
+        assert annotation_counts(cls) == (0, 0, 0)
 
     def test_function_all_any(self) -> None:
         """ALL ANY params + return counts as all annotated."""
@@ -1195,7 +1261,7 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        assert annotation_counts(func) == (3, 3)
+        assert annotation_counts(func) == (0, 3, 3)
 
     def test_function_mixed_any_and_expr(self) -> None:
         func = Function(
@@ -1214,12 +1280,12 @@ class TestAnnotationCounts:
                 ),
             ),
         )
-        # x: ANY (1/1), y: int (1/1), return: str (1/1) = (3, 3)
-        assert annotation_counts(func) == (3, 3)
+        # x: ANY (0/1), y: int (1/1), return: str (1/1) = (2, 1, 3)
+        assert annotation_counts(func) == (2, 1, 3)
 
     def test_class_with_any_member(self) -> None:
         cls = Class("Foo", members=(ANY,))
-        assert annotation_counts(cls) == (1, 1)
+        assert annotation_counts(cls) == (0, 1, 1)
 
 
 class TestTypeCheckOnly:
@@ -1825,7 +1891,7 @@ class TestProperty:
         """fget with annotated return: 1 annotated, 1 total."""
         fget = Overload((), Expr(cst.parse_expression("int")))
         prop = Property("x", fget=fget)
-        assert annotation_counts(prop) == (1, 1)
+        assert annotation_counts(prop) == (1, 0, 1)
 
     def test_annotation_counts_all_accessors(self) -> None:
         """All three accessors fully annotated."""
@@ -1844,16 +1910,16 @@ class TestProperty:
         prop = Property("x", fget=fget, fset=fset, fdel=fdel)
 
         # fget: 1 return. fset: 1 param (return excluded). fdel: 0 slots.
-        assert annotation_counts(prop) == (2, 2)
+        assert annotation_counts(prop) == (2, 0, 2)
 
     def test_annotation_counts_unannotated(self) -> None:
         fget = Overload((), UNKNOWN)
         prop = Property("x", fget=fget)
-        assert annotation_counts(prop) == (0, 1)
+        assert annotation_counts(prop) == (0, 0, 1)
 
     def test_no_accessors(self) -> None:
         prop = Property("x")
-        assert annotation_counts(prop) == (0, 0)
+        assert annotation_counts(prop) == (0, 0, 0)
         assert not is_annotated(prop)
 
     def test_is_annotated_true(self) -> None:

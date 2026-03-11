@@ -141,17 +141,6 @@ class NameReport(BaseModel):
         )
 
 
-def _count_overload_slots(overload: analyze.Overload) -> tuple[int, int, int]:
-    """Count `(annotated, any, unannotated)` slots in a single overload."""
-    annotated = any_ = unannotated = 0
-    for ann in [*(p.annotation for p in overload.params), overload.returns]:
-        s = _SlotState.of(ann)
-        annotated += s.annotated
-        any_ += s.any
-        unannotated += s.unannotated
-    return annotated, any_, unannotated
-
-
 class FunctionReport(BaseModel):
     """Report for a function/method; counts individual param + return slots."""
 
@@ -180,7 +169,7 @@ class FunctionReport(BaseModel):
     @computed_field
     @property
     def n_params(self) -> NonNegativeInt:
-        return self.n_annotatable - self.n_overloads
+        return self.n_annotatable - 1
 
     @computed_field
     @property
@@ -194,17 +183,13 @@ class FunctionReport(BaseModel):
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Function, /) -> Self:
-        annotated = any_ = unannotated = 0
-        for overload in ty.overloads:
-            a, n, u = _count_overload_slots(overload)
-            annotated += a
-            any_ += n
-            unannotated += u
+        counts = ty.annotation_counts
+        unannotated = counts.annotatable - counts.annotated - counts.any
 
         return cls(
             name=name,
-            n_annotated=annotated,
-            n_any=any_,
+            n_annotated=counts.annotated,
+            n_any=counts.any,
             n_unannotated=unannotated,
             n_overloads=len(ty.overloads),
         )

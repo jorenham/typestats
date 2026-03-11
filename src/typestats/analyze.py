@@ -3,8 +3,8 @@ import re
 import sys
 from collections import defaultdict, deque
 from dataclasses import dataclass
-from enum import StrEnum
-from typing import TYPE_CHECKING, Final, Literal, Self, override
+from enum import IntEnum, StrEnum
+from typing import TYPE_CHECKING, Final, Literal, NamedTuple, Self, override
 from typing import TypeAlias as _TypeAlias
 
 import libcst as cst
@@ -63,6 +63,7 @@ _VERSION_CMP_OPS: Final[Mapping[type[cst.BaseCompOp], str]] = {
 }
 
 _logger: Final = logging.getLogger(__name__)
+
 
 type TypeForm = _TypeMarker | Expr | Function | Property | Class
 
@@ -233,6 +234,23 @@ class Param:
     def __str__(self) -> str:
         return f"{self.kind.prefix()}{self.name}: {self.annotation}"
 
+    def key(self, index: int, /) -> int | str:
+        match self.kind:
+            case ParamKind.POSITIONAL_ONLY:
+                return index
+            case ParamKind.KEYWORD_ONLY | ParamKind.POSITIONAL_OR_KEYWORD:
+                return self.name
+            case ParamKind.VAR_POSITIONAL:
+                return "*"
+            case ParamKind.VAR_KEYWORD:
+                return "**"
+
+
+class _AnnotationCounts(NamedTuple):
+    annotated: int
+    any: int
+    annotatable: int
+
 
 @dataclass(frozen=True, slots=True)
 class Overload:
@@ -244,17 +262,39 @@ class Overload:
         return is_annotated(self.returns) or any(p.is_annotated for p in self.params)
 
     @property
-    def annotation_counts(self) -> tuple[int, int]:
-        """`(annotated, annotatable)` counts for params + return."""
-        annotated = sum(1 for p in self.params if p.is_annotated)
-        if is_annotated(self.returns):
-            annotated += 1
-        return annotated, len(self.params) + 1  # params + return
+    def annotation_counts(self) -> _AnnotationCounts:
+        states = [
+            s
+            for ty in (*(p.annotation for p in self.params), self.returns)
+            if (s := _SlotRank.from_typeform(ty)) is not _SlotRank.SKIP
+        ]
+        return _AnnotationCounts(
+            annotated=states.count(_SlotRank.EXPR),
+            any=states.count(_SlotRank.ANY),
+            annotatable=len(states),
+        )
 
     @override
     def __str__(self) -> str:
         params = ", ".join(str(param) for param in self.params)
         return f"({params}) -> {self.returns}"
+
+
+class _SlotRank(IntEnum):
+    UNKNOWN = 0  # missing annotation
+    ANY = 1  # `Any` or equivalent
+    EXPR = 2  # concrete expression (not `Any`), so it's annotated
+    SKIP = 3  # ignored slot
+
+    @classmethod
+    def from_typeform(cls, ty: TypeForm) -> _SlotRank:
+        if isinstance(ty, Expr):
+            return cls.EXPR
+        if ty is ANY:
+            return cls.ANY
+        if ty is UNKNOWN:
+            return cls.UNKNOWN
+        return cls.SKIP
 
 
 def _nonempty_tuple(items: list[Overload], /) -> tuple[Overload, *tuple[Overload, ...]]:
@@ -272,10 +312,6 @@ class Function:
             msg = "FunctionOverloads must have at least one signature"
             raise ValueError(msg)
 
-    @property
-    def is_annotated(self) -> bool:
-        return any(o.is_annotated for o in self.overloads)
-
     @override
     def __str__(self) -> str:
         if len(self.overloads) == 1:
@@ -284,10 +320,50 @@ class Function:
         return " & ".join(f"({sig})" for sig in self.overloads)
 
     @property
-    def annotation_counts(self) -> tuple[int, int]:
-        """`(annotated, annotatable)` counts across all overloads."""
-        counts = [o.annotation_counts for o in self.overloads]
-        return sum(a for a, _ in counts), sum(t for _, t in counts)
+    def is_annotated(self) -> bool:
+        return any(o.is_annotated for o in self.overloads)
+
+    @property
+    def annotation_counts(self) -> _AnnotationCounts:
+        """`(annotated, any, annotatable)` with deduplicated param slots.
+
+        Positional params are keyed by index; keyword-only by name;
+        variadic params are singletons.  A slot's state is determined
+        by the "worst" annotation across all overloads: unannotated
+        beats `Any`, and `Any` beats a concrete annotation.
+        """
+        if len(self.overloads) == 1:
+            return self.overloads[0].annotation_counts
+
+        params: dict[int | str, _SlotRank] = {}
+        for overload in self.overloads:
+            pos_index = 0
+            for param in overload.params:
+                if param.kind in {
+                    ParamKind.POSITIONAL_ONLY,
+                    ParamKind.POSITIONAL_OR_KEYWORD,
+                }:
+                    pos_index += 1
+
+                key = param.key(pos_index)
+                params[key] = min(
+                    params.get(key, _SlotRank.SKIP),
+                    _SlotRank.from_typeform(param.annotation),
+                )
+
+        ret: _SlotRank = _SlotRank.SKIP
+        for overload in self.overloads:
+            ret = min(ret, _SlotRank.from_typeform(overload.returns))
+
+        all_states = list(params.values())
+        if ret is not _SlotRank.SKIP:
+            all_states.append(ret)
+
+        return _AnnotationCounts(
+            annotated=all_states.count(_SlotRank.EXPR),
+            any=all_states.count(_SlotRank.ANY),
+            annotatable=len(all_states),
+        )
 
 
 @dataclass(frozen=True, slots=True)
@@ -308,22 +384,27 @@ class Property:
         )
 
     @property
-    def annotation_counts(self) -> tuple[int, int]:
-        annotated = total = 0
+    def annotation_counts(self) -> _AnnotationCounts:
+        annotated = any_ = total = 0
 
         # fget: 0 params, 1 return
         if self.fget is not None:
-            if is_annotated(self.fget.returns):
+            if isinstance(self.fget.returns, Expr):
                 annotated += 1
+            elif self.fget.returns is ANY:
+                any_ += 1
             total += 1
 
         # fset: 1 param, 0 returns
         if self.fset is not None:
-            a = sum(1 for p in self.fset.params if p.is_annotated)
-            annotated += a
+            for p in self.fset.params:
+                if isinstance(p.annotation, Expr):
+                    annotated += 1
+                elif p.annotation is ANY:
+                    any_ += 1
             total += len(self.fset.params)
 
-        return annotated, total
+        return _AnnotationCounts(annotated, any_, total)
 
     @override
     def __str__(self) -> str:
@@ -347,27 +428,33 @@ class Class:
         return all(m is KNOWN or is_annotated(m) for m in self.members)
 
     @property
-    def annotation_counts(self) -> tuple[int, int]:
-        """`(annotated, annotatable)` counts across all members."""
+    def annotation_counts(self) -> _AnnotationCounts:
+        """`(annotated, any, annotatable)` counts across all members."""
         counts = [annotation_counts(m) for m in self.members]
-        return sum(a for a, _ in counts), sum(t for _, t in counts)
+        return _AnnotationCounts(
+            sum(c.annotated for c in counts),
+            sum(c.any for c in counts),
+            sum(c.annotatable for c in counts),
+        )
 
     @override
     def __str__(self) -> str:
         return f"type[{self.name}]"
 
 
-def annotation_counts(type_: TypeForm, /) -> tuple[int, int]:
-    """`(annotated, annotatable)` counts for an arbitrary type form."""
+def annotation_counts(type_: TypeForm, /) -> _AnnotationCounts:
+    """`(annotated, any, annotatable)` counts for an arbitrary type form."""
     match type_:
         case Function() | Property() | Class():
             return type_.annotation_counts
-        case Expr() | _TypeMarker.ANY:
-            return 1, 1
+        case Expr():
+            return _AnnotationCounts(1, 0, 1)
+        case _TypeMarker.ANY:
+            return _AnnotationCounts(0, 1, 1)
         case _TypeMarker.UNKNOWN:
-            return 0, 1
+            return _AnnotationCounts(0, 0, 1)
         case _:
-            return 0, 0
+            return _AnnotationCounts(0, 0, 0)
 
 
 @dataclass(frozen=True, slots=True)
