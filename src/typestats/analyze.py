@@ -26,7 +26,6 @@ __all__ = (
     "TypeForm",
     "annotation_counts",
     "collect_symbols",
-    "is_annotated",
 )
 
 _EMPTY_MODULE: Final = cst.Module([])
@@ -144,6 +143,10 @@ class _TypeMarker(StrEnum):
     def __str__(self) -> str:
         return self.value
 
+    @property
+    def is_annotated(self) -> bool:
+        return self is not self.UNKNOWN
+
     def to_unknown(self) -> _TypeMarker:  # noqa: PLR6301
         return _TypeMarker.UNKNOWN
 
@@ -164,35 +167,6 @@ type _PropertyAccessor = Literal["setter", "deleter"]
 # used in isinstance, so we can't use `type _` syntax
 _Sequence: _TypeAlias = cst.List | cst.Tuple  # noqa: UP040
 _Container: _TypeAlias = _Sequence | cst.Set  # noqa: UP040
-
-
-# TODO(@jorenham): turn this into a polymorphic method on TypeForm variants
-def is_annotated(type_: TypeForm, /) -> bool:
-    """Check if a type form represents a meaningfully annotated symbol.
-
-    Returns `True` for `Expr`, `ANY`, and for `Function`/`Property`/`Class`
-    types that are annotated (see below).  Returns `False` for `UNKNOWN`,
-    `KNOWN`, `EXTERNAL`, and unannotated `Function`/`Property`/`Class` types.
-    Note: *self*/*cls* parameters are excluded during parsing.
-
-    For `Function` types, the function is annotated when at least one
-    overload has an annotated return type or parameter.
-
-    For `Property` types, the property is annotated when the `fget` return
-    type or any `fset` parameter is annotated.
-
-    For `Class` types, the class is only considered annotated when **all**
-    of its members (stored in `Class.members`) are also annotated.
-    Members marked `KNOWN` (e.g. dataclass fields, enum values) are
-    considered annotated.  A class with no members is considered annotated.
-    """
-    match type_:
-        case Expr() | _TypeMarker.ANY:
-            return True
-        case Function() | Property() | Class():
-            return type_.is_annotated
-        case _:
-            return False
 
 
 @dataclass(frozen=True, slots=True)
@@ -223,6 +197,10 @@ class Expr:
     ) -> Self:
         return cls(_unwrap_annotated(_parse_string_annotation(expr), name_resolver))
 
+    @property
+    def is_annotated(self) -> bool:
+        return True
+
     def to_unknown(self) -> _UnknownType:  # noqa: PLR6301
         return UNKNOWN
 
@@ -233,13 +211,13 @@ class Param:
     kind: ParamKind
     annotation: TypeForm
 
-    @property
-    def is_annotated(self) -> bool:
-        return is_annotated(self.annotation)
-
     @override
     def __str__(self) -> str:
         return f"{self.kind.prefix()}{self.name}: {self.annotation}"
+
+    @property
+    def is_annotated(self) -> bool:
+        return self.annotation.is_annotated
 
     def key(self, index: int, /) -> int | str:
         match self.kind:
@@ -271,7 +249,7 @@ class Overload:
 
     @property
     def is_annotated(self) -> bool:
-        return is_annotated(self.returns) or any(p.is_annotated for p in self.params)
+        return self.returns.is_annotated or any(p.is_annotated for p in self.params)
 
     @property
     def annotation_counts(self) -> _AnnotationCounts:
@@ -334,7 +312,7 @@ class Function:
 
     @property
     def is_annotated(self) -> bool:
-        return any(o.is_annotated for o in self.overloads)
+        return all(o.is_annotated for o in self.overloads)
 
     @property
     def annotation_counts(self) -> _AnnotationCounts:
@@ -407,13 +385,11 @@ class Property:
 
     @property
     def is_annotated(self) -> bool:
-        # fget: only return matters (0 params)
-        if self.fget is not None and is_annotated(self.fget.returns):
-            return True
-        # fset: only param matters (0 returns)
-        return bool(
-            self.fset is not None and any(p.is_annotated for p in self.fset.params)
-        )
+        if self.fget and not self.fget.returns.is_annotated:
+            return False
+        if self.fset and not all(p.is_annotated for p in self.fset.params):  # noqa: SIM103
+            return False
+        return True
 
     @property
     def annotation_counts(self) -> _AnnotationCounts:
@@ -458,7 +434,7 @@ class Class:
 
     @property
     def is_annotated(self) -> bool:
-        return all(m is KNOWN or is_annotated(m) for m in self.members)
+        return all(m.is_annotated for m in self.members)
 
     @property
     def annotation_counts(self) -> _AnnotationCounts:
