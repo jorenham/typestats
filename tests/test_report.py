@@ -10,8 +10,8 @@ import pytest
 from typestats.analyze import (
     ANY,
     EXTERNAL,
-    KNOWN,
-    UNKNOWN,
+    IMPLICIT,
+    UNTYPED,
     Class,
     Expr,
     Function,
@@ -51,7 +51,7 @@ _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 _INT = Expr(cst.parse_expression("int"))
 _PARAM = ParamKind.POSITIONAL_OR_KEYWORD
 
-# necessary because `pytest.approx` is not (fully) annotated
+# necessary because `pytest.approx` is not (fully) typed
 # pyright: reportUnknownMemberType=false
 
 
@@ -61,45 +61,45 @@ class TestSlotState:
         [
             (_INT, (1, 0, 0)),
             (ANY, (0, 1, 0)),
-            (UNKNOWN, (0, 0, 1)),
-            (KNOWN, (0, 0, 0)),
+            (UNTYPED, (0, 0, 1)),
+            (IMPLICIT, (0, 0, 0)),
             (EXTERNAL, (0, 0, 0)),
         ],
-        ids=["expr", "any", "unknown", "known", "external"],
+        ids=["expr", "any", "untyped", "implicit", "external"],
     )
     def test_slot_state(
         self,
         typeform: TypeForm,
         expected: tuple[int, int, int],
     ) -> None:
-        assert _SlotState.of(typeform) == expected
+        assert _SlotState.from_typeform(typeform) == expected
 
 
 class TestNameReport:
     @pytest.mark.parametrize(
-        ("typeform", "n_annotatable", "n_annotated", "n_any", "n_unannotated"),
+        ("typeform", "n_typable", "n_typed", "n_any", "n_untyped"),
         [
             (_INT, 1, 1, 0, 0),
             (ANY, 1, 0, 1, 0),
-            (UNKNOWN, 1, 0, 0, 1),
-            (KNOWN, 0, 0, 0, 0),
+            (UNTYPED, 1, 0, 0, 1),
+            (IMPLICIT, 0, 0, 0, 0),
             (EXTERNAL, 0, 0, 0, 0),
         ],
-        ids=["annotated", "any", "unknown", "known", "external"],
+        ids=["typed", "any", "untyped", "implicit", "external"],
     )
     def test_from_symbol(
         self,
         typeform: TypeForm,
-        n_annotatable: int,
-        n_annotated: int,
+        n_typable: int,
+        n_typed: int,
         n_any: int,
-        n_unannotated: int,
+        n_untyped: int,
     ) -> None:
         r = NameReport.from_symbol("x", typeform)
-        assert r.n_annotatable == n_annotatable
-        assert r.n_annotated == n_annotated
+        assert r.n_typable == n_typable
+        assert r.n_typed == n_typed
         assert r.n_any == n_any
-        assert r.n_unannotated == n_unannotated
+        assert r.n_untyped == n_untyped
 
 
 def _func(overload0: Overload, /, *overloads: Overload) -> Function:
@@ -111,49 +111,49 @@ def _overload(params: list[tuple[str, TypeForm]], returns: TypeForm = _INT) -> O
 
 
 class TestFunctionReport:
-    def test_fully_annotated(self) -> None:
+    def test_fully_typed(self) -> None:
         func = _func(_overload([("a", _INT), ("b", _INT)]))
         r = FunctionReport.from_symbol("f", func)
-        assert r.n_annotatable == 3  # 2 params + return
-        assert r.n_annotated == 3
+        assert r.n_typable == 3  # 2 params + return
+        assert r.n_typed == 3
         assert r.n_any == 0
-        assert r.n_unannotated == 0
+        assert r.n_untyped == 0
         assert r.n_overloads == 1
 
     def test_mixed(self) -> None:
-        func = _func(_overload([("a", _INT), ("b", UNKNOWN)], returns=ANY))
+        func = _func(_overload([("a", _INT), ("b", UNTYPED)], returns=ANY))
         r = FunctionReport.from_symbol("f", func)
-        assert r.n_annotatable == 3
-        assert r.n_annotated == 1
+        assert r.n_typable == 3
+        assert r.n_typed == 1
         assert r.n_any == 1
-        assert r.n_unannotated == 1
+        assert r.n_untyped == 1
 
-    def test_all_unknown(self) -> None:
-        func = _func(_overload([("a", UNKNOWN)], returns=UNKNOWN))
+    def test_all_untyped(self) -> None:
+        func = _func(_overload([("a", UNTYPED)], returns=UNTYPED))
         r = FunctionReport.from_symbol("f", func)
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 0
-        assert r.n_unannotated == 2
+        assert r.n_typable == 2
+        assert r.n_typed == 0
+        assert r.n_untyped == 2
 
-    def test_known_params_excluded(self) -> None:
-        """KNOWN params (self/cls) don't count as annotatable."""
-        func = _func(_overload([("self", KNOWN), ("x", _INT)]))
+    def test_implicit_params_excluded(self) -> None:
+        """IMPLICIT params (self/cls) don't count as typable."""
+        func = _func(_overload([("self", IMPLICIT), ("x", _INT)]))
         r = FunctionReport.from_symbol("f", func)
-        assert r.n_annotatable == 2  # x + return, not self
-        assert r.n_annotated == 2
+        assert r.n_typable == 2  # x + return, not self
+        assert r.n_typed == 2
 
     def test_multiple_overloads(self) -> None:
         func = _func(
             _overload([("a", _INT)]),
-            _overload([("a", UNKNOWN)], returns=UNKNOWN),
+            _overload([("a", UNTYPED)], returns=UNTYPED),
         )
         r = FunctionReport.from_symbol("f", func)
-        # 1 unique param (a at pos 0) + 1 return = 2 annotatable
-        # param: annotated in overload 1, unannotated in 2 -> unannotated
-        # return: annotated in overload 1, unannotated in 2 -> unannotated
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 0
-        assert r.n_unannotated == 2
+        # 1 unique param (a at pos 0) + 1 return = 2 typable
+        # param: typed in overload 1, untyped in 2 -> untyped
+        # return: typed in overload 1, untyped in 2 -> untyped
+        assert r.n_typable == 2
+        assert r.n_typed == 0
+        assert r.n_untyped == 2
         assert r.n_overloads == 2
         assert r.n_params == 1
 
@@ -176,8 +176,8 @@ class TestFunctionReport:
         )
         r = FunctionReport.from_symbol("f", func)
         # 1 pos-only param (pos 0) + 1 kw-only param ("b") + 1 return = 3
-        assert r.n_annotatable == 3
-        assert r.n_annotated == 3
+        assert r.n_typable == 3
+        assert r.n_typed == 3
         assert r.n_overloads == 4
         assert r.n_params == 2
 
@@ -185,25 +185,25 @@ class TestFunctionReport:
         """When merging slots, the worst annotation state wins."""
         func = _func(
             _overload([("a", _INT)]),
-            _overload([("a", UNKNOWN)]),
+            _overload([("a", UNTYPED)]),
         )
         r = FunctionReport.from_symbol("f", func)
-        # param: annotated in one, unannotated in other -> unannotated
-        # return: annotated in both -> annotated
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 1
-        assert r.n_unannotated == 1
+        # param: typed in one, untyped in other -> untyped
+        # return: typed in both -> typed
+        assert r.n_typable == 2
+        assert r.n_typed == 1
+        assert r.n_untyped == 1
 
     def test_overloads_any_state(self) -> None:
-        """ANY is worse than annotated but better than unannotated."""
+        """ANY is worse than typed but better than untyped."""
         func = _func(
             _overload([("a", _INT)]),
             _overload([("a", ANY)]),
         )
         r = FunctionReport.from_symbol("f", func)
-        # param: annotated in one, any in other -> any
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 1
+        # param: typed in one, any in other -> any
+        assert r.n_typable == 2
+        assert r.n_typed == 1
         assert r.n_any == 1
 
 
@@ -213,33 +213,33 @@ class TestClassReport:
         cls_ = Class("C", (method,))
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 1
-        assert r.n_annotatable == 2  # x + return
-        assert r.n_annotated == 2
+        assert r.n_typable == 2  # x + return
+        assert r.n_typed == 2
         assert r.n_functions == 0
         assert r.n_methods == 1
         assert r.n_method_overloads == 1
 
     def test_non_function_members_ignored(self) -> None:
-        cls_ = Class("C", (KNOWN, _INT, UNKNOWN))
+        cls_ = Class("C", (IMPLICIT, _INT, UNTYPED))
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 0
-        assert r.n_annotatable == 0
+        assert r.n_typable == 0
         assert r.n_functions == 0
         assert r.n_methods == 0
 
     def test_aggregation(self) -> None:
         m1 = Function("a", (_overload([("x", _INT)]),))
-        m2 = Function("b", (_overload([("y", UNKNOWN)], returns=UNKNOWN),))
+        m2 = Function("b", (_overload([("y", UNTYPED)], returns=UNTYPED),))
         cls_ = Class("C", (m1, m2))
         r = ClassReport.from_symbol("C", cls_)
-        assert r.n_annotatable == 4
-        assert r.n_annotated == 2
-        assert r.n_unannotated == 2
+        assert r.n_typable == 4
+        assert r.n_typed == 2
+        assert r.n_untyped == 2
 
     def test_overloaded_methods(self) -> None:
         m1 = Function(
             "a",
-            (_overload([("x", _INT)]), _overload([("x", UNKNOWN)])),
+            (_overload([("x", _INT)]), _overload([("x", UNTYPED)])),
         )
         m2 = Function("b", (_overload([("y", _INT)]),))
         cls_ = Class("C", (m1, m2))
@@ -258,8 +258,8 @@ class TestClassReport:
         assert r.n_methods == 1
         assert r.n_properties == 1
         # method: x + return = 2; property fget: return = 1
-        assert r.n_annotatable == 3
-        assert r.n_annotated == 3
+        assert r.n_typable == 3
+        assert r.n_typed == 3
 
     def test_properties_only(self) -> None:
         prop = Property("p", fget=_overload([]), fset=_overload([("value", _INT)]))
@@ -270,18 +270,18 @@ class TestClassReport:
         assert r.n_methods == 0
         assert r.n_properties == 1
         # fget: return = 1; fset: value param = 1 (return excluded)
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 2
+        assert r.n_typable == 2
+        assert r.n_typed == 2
 
 
 class TestPropertyReport:
-    def test_fget_only_annotated(self) -> None:
+    def test_fget_only_typed(self) -> None:
         prop = Property("x", fget=_overload([]))
         r = PropertyReport.from_symbol("x", prop)
-        assert r.n_annotatable == 1  # return of fget
-        assert r.n_annotated == 1
+        assert r.n_typable == 1  # return of fget
+        assert r.n_typed == 1
         assert r.n_any == 0
-        assert r.n_unannotated == 0
+        assert r.n_untyped == 0
         assert r.n_properties == 1
         assert r.n_functions == 0
         assert r.n_methods == 0
@@ -294,22 +294,22 @@ class TestPropertyReport:
         prop = Property("x", fget=fget, fset=fset)
         r = PropertyReport.from_symbol("x", prop)
         # fget: return = 1; fset: value param = 1 (return excluded)
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 2
+        assert r.n_typable == 2
+        assert r.n_typed == 2
 
     def test_mixed_annotations(self) -> None:
-        fget = _overload([], returns=UNKNOWN)
+        fget = _overload([], returns=UNTYPED)
         fset = _overload([("value", _INT)])
         prop = Property("x", fget=fget, fset=fset)
         r = PropertyReport.from_symbol("x", prop)
-        assert r.n_annotated == 1
-        assert r.n_unannotated == 1
+        assert r.n_typed == 1
+        assert r.n_untyped == 1
 
     def test_no_accessors(self) -> None:
         prop = Property("x")
         r = PropertyReport.from_symbol("x", prop)
-        assert r.n_annotatable == 0
-        assert r.n_annotated == 0
+        assert r.n_typable == 0
+        assert r.n_typed == 0
 
     def test_all_accessors(self) -> None:
         fget = _overload([])
@@ -318,8 +318,8 @@ class TestPropertyReport:
         prop = Property("x", fget=fget, fset=fset, fdel=fdel)
         r = PropertyReport.from_symbol("x", prop)
         # fget: return = 1; fset: param = 1 (return excluded); fdel: 0 slots
-        assert r.n_annotatable == 2
-        assert r.n_annotated == 2
+        assert r.n_typable == 2
+        assert r.n_typed == 2
 
 
 class TestSymbolReport:
@@ -342,10 +342,10 @@ class TestSymbolReport:
         r = _symbol_report(Symbol("x", _INT))
         assert isinstance(r, NameReport)
 
-    def test_unknown(self) -> None:
-        r = _symbol_report(Symbol("x", UNKNOWN))
+    def test_untyped(self) -> None:
+        r = _symbol_report(Symbol("x", UNTYPED))
         assert isinstance(r, NameReport)
-        assert r.n_unannotated == 1
+        assert r.n_untyped == 1
 
 
 class TestModuleReport:
@@ -360,25 +360,25 @@ class TestModuleReport:
     def test_names(self) -> None:
         m = ModuleReport.from_symbols(
             "mod.py",
-            [Symbol("a", _INT), Symbol("b", UNKNOWN)],
+            [Symbol("a", _INT), Symbol("b", UNTYPED)],
         )
         assert m.names == frozenset({"a", "b"})
 
     def test_counts(self) -> None:
         m = ModuleReport.from_symbols(
             "mod.py",
-            [Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNKNOWN)],
+            [Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED)],
         )
-        assert m.n_annotatable == 3
-        assert m.n_annotated == 1
+        assert m.n_typable == 3
+        assert m.n_typed == 1
         assert m.n_any == 1
-        assert m.n_unannotated == 1
+        assert m.n_untyped == 1
 
     def test_entity_counts(self) -> None:
         func = _func(_overload([("a", _INT)]))
         overloaded = _func(
             _overload([("a", _INT)]),
-            _overload([("a", UNKNOWN)]),
+            _overload([("a", UNTYPED)]),
         )
         cls_ = Class("C", ())
         m = ModuleReport.from_symbols(
@@ -388,7 +388,7 @@ class TestModuleReport:
                 Symbol("g", overloaded),
                 Symbol("C", cls_),
                 Symbol("x", _INT),
-                Symbol("y", UNKNOWN),
+                Symbol("y", UNTYPED),
             ],
         )
         assert m.n_functions == 2  # f + g (empty class has no methods)
@@ -412,7 +412,7 @@ class TestModuleReport:
             "m",
             (
                 _overload([("x", _INT)]),
-                _overload([("x", UNKNOWN)]),
+                _overload([("x", UNTYPED)]),
                 _overload([("x", ANY)]),
             ),
         )
@@ -424,12 +424,12 @@ class TestModuleReport:
         assert m.n_method_overloads == 3  # 3 overloads from the class method
 
     def test_coverage_default(self) -> None:
-        """Non-strict: Any counts as annotated."""
+        """Non-strict: Any counts as typed."""
         m = ModuleReport.from_symbols("m.py", [Symbol("a", _INT), Symbol("b", ANY)])
         assert m.coverage() == pytest.approx(1)
 
     def test_coverage_strict(self) -> None:
-        """Strict: Any doesn't count as annotated."""
+        """Strict: Any doesn't count as typed."""
         m = ModuleReport.from_symbols("m.py", [Symbol("a", _INT), Symbol("b", ANY)])
         assert m.coverage(True) == pytest.approx(1 / 2)
 
@@ -471,11 +471,11 @@ class TestPackageReport:
         assert r.coverage(True) == pytest.approx(1 / 2)
 
     def test_aggregation(self) -> None:
-        r = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNKNOWN))
-        assert r.n_annotatable == 3
-        assert r.n_annotated == 1
+        r = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED))
+        assert r.n_typable == 3
+        assert r.n_typed == 1
         assert r.n_any == 1
-        assert r.n_unannotated == 1
+        assert r.n_untyped == 1
 
     def test_entity_counts(self) -> None:
         func = _func(_overload([("a", _INT)]))
@@ -548,7 +548,7 @@ class TestPackageReportJson:
 
     def test_round_trip(self) -> None:
         """model_dump_json -> model_validate_json should reproduce the report."""
-        report = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNKNOWN))
+        report = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED))
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
         assert restored == report
