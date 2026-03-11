@@ -536,7 +536,7 @@ class TestExtractProjectUrls:
             },
         )
         urls = report.project_urls()
-        assert urls["repo"] == "https://github.com/numpy/numpy"
+        assert urls.get("repo") == "https://github.com/numpy/numpy"
 
     def test_github_homepage_label(self) -> None:
         """A GitHub URL under the 'Homepage' label is still detected."""
@@ -550,7 +550,7 @@ class TestExtractProjectUrls:
             },
         )
         urls = report.project_urls()
-        assert urls["repo"] == "https://github.com/org/pkg"
+        assert urls.get("repo") == "https://github.com/org/pkg"
 
     def test_gitlab_url(self) -> None:
         report = _minimal_report(
@@ -563,7 +563,7 @@ class TestExtractProjectUrls:
             },
         )
         urls = report.project_urls()
-        assert urls["repo"] == "https://gitlab.com/org/pkg"
+        assert urls.get("repo") == "https://gitlab.com/org/pkg"
 
     def test_codeberg_url(self) -> None:
         report = _minimal_report(
@@ -576,7 +576,7 @@ class TestExtractProjectUrls:
             },
         )
         urls = report.project_urls()
-        assert urls["repo"] == "https://codeberg.org/org/pkg"
+        assert urls.get("repo") == "https://codeberg.org/org/pkg"
 
     def test_first_repo_url_wins(self) -> None:
         report = _minimal_report(
@@ -590,7 +590,7 @@ class TestExtractProjectUrls:
             },
         )
         urls = report.project_urls()
-        assert urls["repo"] == "https://github.com/org/pkg"
+        assert urls.get("repo") == "https://github.com/org/pkg"
 
     def test_no_repo_host(self) -> None:
         report = _minimal_report(
