@@ -26,30 +26,30 @@ def _make_symbol_reports(
     package: str,
     /,
     *,
-    n_annotated: int,
+    n_typed: int,
     n_any: int,
-    n_unannotated: int,
+    n_untyped: int,
 ) -> list[dict[str, Any]]:
     return [
         *[
             {
                 "kind": "name",
                 "name": f"{package}.x{i}",
-                "n_annotated": 1,
+                "n_typed": 1,
                 "n_any": 0,
-                "n_unannotated": 0,
-                "n_annotatable": 1,
+                "n_untyped": 0,
+                "n_typable": 1,
             }
-            for i in range(n_annotated)
+            for i in range(n_typed)
         ],
         *[
             {
                 "kind": "name",
                 "name": f"{package}.a{i}",
-                "n_annotated": 0,
+                "n_typed": 0,
                 "n_any": 1,
-                "n_unannotated": 0,
-                "n_annotatable": 1,
+                "n_untyped": 0,
+                "n_typable": 1,
             }
             for i in range(n_any)
         ],
@@ -57,12 +57,12 @@ def _make_symbol_reports(
             {
                 "kind": "name",
                 "name": f"{package}.u{i}",
-                "n_annotated": 0,
+                "n_typed": 0,
                 "n_any": 0,
-                "n_unannotated": 1,
-                "n_annotatable": 1,
+                "n_untyped": 1,
+                "n_typable": 1,
             }
-            for i in range(n_unannotated)
+            for i in range(n_untyped)
         ],
     ]
 
@@ -73,18 +73,18 @@ def _minimal_report(  # noqa: PLR0913
     *,
     stubs_only: StubsOnly = StubsOnly.NO,
     py_typed: PyTyped = PyTyped.YES,
-    n_annotated: int = 8,
+    n_typed: int = 8,
     n_any: int = 2,
-    n_unannotated: int = 5,
+    n_untyped: int = 5,
     metadata: dict[str, list[str]] | None = None,
     pypi: PypiInfo | None = None,
 ) -> PackageReport:
     """Build a minimal `PackageReport` with one `ModuleReport`."""
     symbol_reports = _make_symbol_reports(
         package,
-        n_annotated=n_annotated,
+        n_typed=n_typed,
         n_any=n_any,
-        n_unannotated=n_unannotated,
+        n_untyped=n_untyped,
     )
 
     module = ModuleReport.model_validate({
@@ -128,27 +128,27 @@ def _rich_report(
             {
                 "kind": "name",
                 "name": f"{package}.VERSION",
-                "n_annotated": 1,
+                "n_typed": 1,
                 "n_any": 0,
-                "n_unannotated": 0,
-                "n_annotatable": 1,
+                "n_untyped": 0,
+                "n_typable": 1,
             },
             {
                 "kind": "function",
                 "name": f"{package}.run",
-                "n_annotated": 1,
+                "n_typed": 1,
                 "n_any": 0,
-                "n_unannotated": 2,
+                "n_untyped": 2,
                 "n_overloads": 1,
-                "n_annotatable": 3,
+                "n_typable": 3,
             },
             {
                 "kind": "name",
                 "name": f"{package}.data",
-                "n_annotated": 0,
+                "n_typed": 0,
                 "n_any": 1,
-                "n_unannotated": 0,
-                "n_annotatable": 1,
+                "n_untyped": 0,
+                "n_typable": 1,
             },
         ],
     })
@@ -158,20 +158,20 @@ def _rich_report(
             {
                 "kind": "function",
                 "name": f"{package}.utils.helper",
-                "n_annotated": 3,
+                "n_typed": 3,
                 "n_any": 0,
-                "n_unannotated": 0,
+                "n_untyped": 0,
                 "n_overloads": 1,
-                "n_annotatable": 3,
+                "n_typable": 3,
             },
             {
                 "kind": "function",
                 "name": f"{package}.utils.mixed",
-                "n_annotated": 1,
+                "n_typed": 1,
                 "n_any": 1,
-                "n_unannotated": 1,
+                "n_untyped": 1,
                 "n_overloads": 1,
-                "n_annotatable": 3,
+                "n_typable": 3,
             },
             {
                 "kind": "class",
@@ -180,17 +180,17 @@ def _rich_report(
                     {
                         "kind": "function",
                         "name": "Cache.get",
-                        "n_annotated": 3,
+                        "n_typed": 3,
                         "n_any": 0,
-                        "n_unannotated": 0,
+                        "n_untyped": 0,
                         "n_overloads": 1,
                     },
                     {
                         "kind": "function",
                         "name": "Cache.set",
-                        "n_annotated": 1,
+                        "n_typed": 1,
                         "n_any": 0,
-                        "n_unannotated": 2,
+                        "n_untyped": 2,
                         "n_overloads": 1,
                     },
                 ],
@@ -198,9 +198,9 @@ def _rich_report(
                     {
                         "kind": "property",
                         "name": "Cache.size",
-                        "n_annotated": 0,
+                        "n_typed": 0,
                         "n_any": 1,
-                        "n_unannotated": 0,
+                        "n_untyped": 0,
                     },
                 ],
             },
@@ -220,9 +220,9 @@ class TestRenderIndex:
         report = _minimal_report(
             "numpy",
             "2.4.2",
-            n_annotated=90,
+            n_typed=90,
             n_any=5,
-            n_unannotated=5,
+            n_untyped=5,
         )
         md = IndexPage([report]).render()
         rows = _table_rows(md)
@@ -294,9 +294,9 @@ class TestRenderIndex:
         report = _minimal_report(
             "pkg",
             "1.0.0",
-            n_annotated=8,
+            n_typed=8,
             n_any=2,
-            n_unannotated=10,
+            n_untyped=10,
         )
         md = IndexPage([report]).render()
         data_row = _table_rows(md)[0]
@@ -323,16 +323,16 @@ class TestRenderDetail:
         report = _minimal_report(
             "pkg",
             "1.0.0",
-            n_annotated=8,
+            n_typed=8,
             n_any=2,
-            n_unannotated=10,
+            n_untyped=10,
         )
         md = DetailPage(report).render()
         # coverage = (8+2)/20 = 50.0%
         assert "50.0%" in md
         # strict = 8/20 = 40.0%
         assert "40.0%" in md
-        assert "20" in md  # n_annotatable
+        assert "20" in md  # n_typable
         assert '<span class="twemoji"' in md  # SVG py.typed icon
 
     def test_module_table(self) -> None:
@@ -348,13 +348,13 @@ class TestRenderDetail:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
         assert "## Incomplete Annotations" in md
-        # `run` has n_unannotated=2, n_any=0 -> "missing"
+        # `run` has n_untyped=2, n_any=0 -> "missing"
         assert "missing" in md
 
     def test_annotation_status_any(self) -> None:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
-        # `data` has n_any=1, n_unannotated=0 -> "Any"
+        # `data` has n_any=1, n_untyped=0 -> "Any"
         assert "<code>data</code>" in md
         rows = _table_rows(md)
         data_rows = [r for r in rows if "data" in r]
@@ -363,7 +363,7 @@ class TestRenderDetail:
     def test_annotation_status_mixed(self) -> None:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
-        # `mixed` has n_any=1 AND n_unannotated=1 -> "missing + Any"
+        # `mixed` has n_any=1 AND n_untyped=1 -> "missing + Any"
         assert "missing + Any" in md
 
     def test_class_expands_into_methods(self) -> None:
@@ -379,8 +379,8 @@ class TestRenderDetail:
         assert "<td>method</td>" in set_rows[0]
         assert "missing" in set_rows[0]
 
-    def test_class_excludes_annotated_methods(self) -> None:
-        """Fully annotated class methods are excluded from the table."""
+    def test_class_excludes_typed_methods(self) -> None:
+        """Fully typed class methods are excluded from the table."""
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
         lines = md.splitlines()
@@ -404,25 +404,25 @@ class TestRenderDetail:
         report = _minimal_report(
             "perfect",
             "1.0.0",
-            n_annotated=10,
+            n_typed=10,
             n_any=0,
-            n_unannotated=0,
+            n_untyped=0,
         )
         md = DetailPage(report).render()
-        assert "All symbols are fully annotated" in md
+        assert "All symbols are fully typed" in md
 
-    def test_annotated_symbols_excluded(self) -> None:
-        """Fully annotated symbols should not appear in the Annotations table."""
+    def test_typed_symbols_excluded(self) -> None:
+        """Fully typed symbols should not appear in the Annotations table."""
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
         lines = md.splitlines()
-        # VERSION is fully annotated - should not appear in annotations table
+        # VERSION is fully typed - should not appear in annotations table
         annotations_start = next(
             i for i, line in enumerate(lines) if "## Incomplete Annotations" in line
         )
         annotation_section = "\n".join(lines[annotations_start:])
         assert "VERSION" not in annotation_section
-        # helper is fully annotated - should not appear
+        # helper is fully typed - should not appear
         assert "helper" not in annotation_section
 
     def test_module_icon_links_to_incomplete_section(self) -> None:
@@ -433,14 +433,14 @@ class TestRenderDetail:
         assert '<a href="#module-mypkg"' in md
         assert '<a href="#module-mypkg.utils"' in md
 
-    def test_module_no_icon_when_fully_annotated(self) -> None:
-        """Fully annotated modules should not have an icon."""
+    def test_module_no_icon_when_fully_typed(self) -> None:
+        """Fully typed modules should not have an icon."""
         report = _minimal_report(
             "perfect",
             "1.0.0",
-            n_annotated=10,
+            n_typed=10,
             n_any=0,
-            n_unannotated=0,
+            n_untyped=0,
         )
         md = DetailPage(report).render()
         assert "<code>perfect</code>" in md
@@ -460,10 +460,10 @@ class TestRenderDetail:
                 {
                     "kind": "name",
                     "name": "scipy-stubs.fft.x",
-                    "n_annotated": 0,
+                    "n_typed": 0,
                     "n_any": 0,
-                    "n_unannotated": 1,
-                    "n_annotatable": 1,
+                    "n_untyped": 1,
+                    "n_typable": 1,
                 },
             ],
         })
@@ -708,8 +708,8 @@ class TestRenderDetailProjectUrls:
 
 class TestRenderDiff:
     def test_two_versions_basic(self) -> None:
-        r1 = _minimal_report("mypkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("mypkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("mypkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("mypkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         assert "# mypkg Version History" in md
         assert "1.0.0" in md
@@ -720,9 +720,9 @@ class TestRenderDiff:
         assert '<a href="../">2.0.0</a>' in md
 
     def test_version_rows_newest_first(self) -> None:
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=4, n_any=0, n_unannotated=6)
-        r2 = _minimal_report("pkg", "1.1.0", n_annotated=6, n_any=0, n_unannotated=4)
-        r3 = _minimal_report("pkg", "2.0.0", n_annotated=9, n_any=0, n_unannotated=1)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=4, n_any=0, n_untyped=6)
+        r2 = _minimal_report("pkg", "1.1.0", n_typed=6, n_any=0, n_untyped=4)
+        r3 = _minimal_report("pkg", "2.0.0", n_typed=9, n_any=0, n_untyped=1)
         md = DiffPage([r1, r2, r3]).render()
         rows = _table_rows(md)
         version_positions = {
@@ -734,47 +734,47 @@ class TestRenderDiff:
 
     def test_coverage_improvement_colored_green(self) -> None:
         # v1: 5/10 = 50%, v2: 8/10 = 80% -> +30.0%, should be green
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         assert "color:green" in md
         assert "+30.0%" in md
 
     def test_coverage_regression_colored_red(self) -> None:
         # v1: 8/10 = 80%, v2: 5/10 = 50% -> -30.0%, should be red
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=8, n_any=0, n_unannotated=2)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=8, n_any=0, n_untyped=2)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=5, n_any=0, n_untyped=5)
         md = DiffPage([r1, r2]).render()
         assert "color:red" in md
         assert "-30.0%" in md
 
-    def test_unannotated_decrease_colored_green(self) -> None:
-        # Fewer unannotated is an improvement -> green
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+    def test_untyped_decrease_colored_green(self) -> None:
+        # Fewer untyped is an improvement -> green
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
-        # Find the v2 table row and check for green delta in Unannotated column
+        # Find the v2 table row and check for green delta in Untyped column
         rows = _table_rows(md)
         v2_row = next(r for r in rows if "2.0.0" in r)
         assert "color:green" in v2_row
 
     def test_public_symbols_delta_neutral_no_color(self) -> None:
         # Public symbol counts are neutral -- no color span
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         rows = _table_rows(md)
         # The v2 row has the deltas; Public Symbols (5th <td>) should not be colored
         v2_row = next(r for r in rows if "2.0.0" in r)
 
         cells = re.findall(r"<td[^>]*>(.*?)</td>", v2_row, re.DOTALL)
-        # cells: version, released, cov, strict_cov, symbols, unannotated, ignores
+        # cells: version, released, cov, strict_cov, symbols, untyped, ignores
         symbols_cell = cells[4]
         assert "color:" not in symbols_cell
 
     def test_no_delta_when_unchanged(self) -> None:
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=5, n_any=0, n_unannotated=5)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=5, n_any=0, n_untyped=5)
         md = DiffPage([r1, r2]).render()
         # No span elements in the data rows when nothing changed
         for row in _table_rows(md):
@@ -790,15 +790,15 @@ class TestRenderDiff:
             DiffPage([]).render()
 
     def test_all_metric_rows_present(self) -> None:
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         for metric in (
             "Released",
             "Coverage",
             "Coverage (strict)",
             "Symbols",
-            "Unannotated",
+            "Untyped",
             "Ignores",
         ):
             assert metric in md
@@ -826,8 +826,8 @@ class TestRenderDiff:
         assert "Released" in md
 
     def test_chart_present(self) -> None:
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         assert "``` mermaid" in md
         assert "xychart-beta" in md
@@ -837,17 +837,17 @@ class TestRenderDiff:
         r1 = _minimal_report(
             "pkg",
             "1.0.0",
-            n_annotated=5,
+            n_typed=5,
             n_any=0,
-            n_unannotated=5,
+            n_untyped=5,
             pypi=PypiInfo(upload_time="2024-01-15T10:30:00Z"),
         )
         r2 = _minimal_report(
             "pkg",
             "2.0.0",
-            n_annotated=8,
+            n_typed=8,
             n_any=0,
-            n_unannotated=2,
+            n_untyped=2,
             pypi=PypiInfo(upload_time="2025-06-20T14:00:00Z"),
         )
         md = DiffPage([r1, r2]).render()
@@ -858,16 +858,16 @@ class TestRenderDiff:
         assert '"2.0.0"' not in md
 
     def test_chart_uses_versions_without_dates(self) -> None:
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         assert '"1.0.0"' in md
         assert '"2.0.0"' in md
 
     def test_chart_coverage_values(self) -> None:
         # 5/10 = 50%, 8/10 = 80%
-        r1 = _minimal_report("pkg", "1.0.0", n_annotated=5, n_any=0, n_unannotated=5)
-        r2 = _minimal_report("pkg", "2.0.0", n_annotated=8, n_any=0, n_unannotated=2)
+        r1 = _minimal_report("pkg", "1.0.0", n_typed=5, n_any=0, n_untyped=5)
+        r2 = _minimal_report("pkg", "2.0.0", n_typed=8, n_any=0, n_untyped=2)
         md = DiffPage([r1, r2]).render()
         assert "50.0" in md
         assert "80.0" in md
@@ -877,25 +877,25 @@ class TestRenderDiff:
         r1 = _minimal_report(
             "pkg",
             "1.0.0",
-            n_annotated=5,
+            n_typed=5,
             n_any=0,
-            n_unannotated=5,
+            n_untyped=5,
             pypi=PypiInfo(upload_time="2024-01-01T00:00:00Z"),
         )
         r2 = _minimal_report(
             "pkg",
             "2.0.0",
-            n_annotated=7,
+            n_typed=7,
             n_any=0,
-            n_unannotated=3,
+            n_untyped=3,
             pypi=PypiInfo(upload_time="2024-07-01T00:00:00Z"),
         )
         r3 = _minimal_report(
             "pkg",
             "3.0.0",
-            n_annotated=9,
+            n_typed=9,
             n_any=0,
-            n_unannotated=1,
+            n_untyped=1,
             pypi=PypiInfo(upload_time="2024-08-01T00:00:00Z"),
         )
         md = DiffPage([r1, r2, r3]).render()

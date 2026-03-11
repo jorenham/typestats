@@ -455,7 +455,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     # Compute top_level from ALL discovered modules (used for auto-resolving
     # package_name).  A narrower `in_scope` set is derived below for wildcard
-    # traversal and EXTERNAL-vs-UNKNOWN decisions so that unrelated packages
+    # traversal and EXTERNAL-vs-UNTYPED decisions so that unrelated packages
     # bundled in the same sdist are not accidentally treated as internal.
     top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
 
@@ -467,7 +467,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     if package_name is not None and package_name not in top_level:
         package_name = _resolve_package_name(package_name, top_level)
 
-    # Scope for wildcard traversal and EXTERNAL-vs-UNKNOWN: only the target
+    # Scope for wildcard traversal and EXTERNAL-vs-UNTYPED: only the target
     # package and its private companion (e.g. pytest + _pytest).
     in_scope = (
         frozenset({package_name, f"_{package_name}"})
@@ -652,7 +652,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                 type_ = (
                     analyze.EXTERNAL
                     if origin.split(".", 1)[0] not in in_scope
-                    else analyze.UNKNOWN
+                    else analyze.UNTYPED
                 )
                 public.setdefault(f"{mod}.{name}", (first_path, type_))
 

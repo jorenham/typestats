@@ -7,18 +7,19 @@ By computing metrics such as **type-coverage** (the percentage of public symbols
 meaningful type annotations), it helps the Python community identify which projects would benefit
 most from investment in improving their static typing quality.
 
-The end-goal is a dataset (and eventually a dashboard) that ranks packages by typing completeness,
+The end-goal is a dataset and dashboard that ranks packages by typing completeness,
 so maintainers, contributors, and sponsors can prioritize effort where it matters most.
 
 ## How It Works
 
 For a given PyPI project the tool runs an end-to-end pipeline:
 
-1. **Fetch** -- download the latest sdist from PyPI (and any companion stub package).
+1. **Fetch** -- install the package (and any companion stub package) into a temporary venv via
+   `uv pip install --no-deps`.
 2. **Graph** -- compute the import graph via `ruff analyze graph`.
 3. **Filter** -- keep only modules reachable from public entry-points (skip tests, benchmarks,
    docs, vendored code, etc.).
-4. **Parse** -- use `libcst` to extract every annotatable symbol (variables, functions, methods,
+4. **Parse** -- use `libcst` to extract every typable symbol (variables, functions, methods,
    classes, properties, overloads, aliases, etc.) together with its type annotation (or lack
    thereof), building a flat symbol table of all local definitions.
 5. **Resolve** -- compute each public module's exports, tracing re-export chains back to their
@@ -44,18 +45,22 @@ For a given PyPI project the tool runs an end-to-end pipeline:
 
 ## Key Domain Concepts
 
-- **TypeForm** -- the core data structure representing a symbol's type annotation. Variants include
-  `UNKNOWN` (unannotated), `KNOWN` (annotated by construction, e.g. enum members or dataclass
-  fields), and `EXTERNAL` (imported from an outside package).
-- **`is_annotated()`** -- the central helper that decides whether a `TypeForm` counts as
-  "annotated". Classes are annotated only when *all* their members are annotated; functions are
-  annotated when their full signature (including overloads) is annotated.
-- **`__all__` resolution** -- names in `__all__` that can't be resolved are treated as `UNKNOWN`,
+- **TypeForm** -- the core data structure representing a symbol's type annotation. Marker variants
+  include `UNTYPED` (no annotation), `IMPLICIT` (typed by construction, e.g. `self`/`cls`
+  parameters, enum members, dataclass fields), `ANY` (annotations resolving to `typing.Any`),
+  and `EXTERNAL` (imported from an outside package). Structured variants are `Expr` (an explicit
+  type expression), `Function`, `Property`, and `Class`.
+- **`is_typed`** -- the central property that decides whether a `TypeForm` counts as "typed".
+  Classes are typed only when *all* their members are typed; an overload is typed when its return
+  type *or any* parameter is typed; a function is typed when all its overloads are typed.
+- **`type_counts`** -- returns a `(typed, any, typable)` triple for any `TypeForm`, used to
+  compute coverage metrics.
+- **`__all__` resolution** -- names in `__all__` that can't be resolved are treated as `UNTYPED`,
   matching type-checker semantics.
 - **Stubs overlay** -- a companion `{project}-stubs` package is merged with the original package.
   Stubs `.pyi` files take priority per-module. The public API is the union of symbols from both
   packages. Symbols present in the original but missing from stubs (in covered modules) are
-  marked `UNKNOWN`; symbols in uncovered modules keep their original types. Both analyses use
+  marked `UNTYPED`; symbols in uncovered modules keep their original types. Both analyses use
   `trace_origins=False` (public import names) so FQNs match directly.
 - **Private re-exports** -- symbols re-exported from `_private` modules via `__all__` are followed
   correctly.

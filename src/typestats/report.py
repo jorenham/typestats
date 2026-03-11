@@ -86,21 +86,20 @@ type _AnySymbolReport = Annotated[
 
 
 class _SlotState(NamedTuple):
-    annotated: _Max1
+    typed: _Max1
     any: _Max1
-    unannotated: _Max1
+    untyped: _Max1
 
     @classmethod
-    def of(cls, ty: analyze.TypeForm) -> Self:
-        """Classify a single annotation slot."""
+    def from_typeform(cls, ty: analyze.TypeForm) -> Self:
         match ty:
             case analyze.Expr():
                 return cls(1, 0, 0)
             case analyze.ANY:
                 return cls(0, 1, 0)
-            case analyze.UNKNOWN:
+            case analyze.UNTYPED:
                 return cls(0, 0, 1)
-            case _:  # KNOWN / EXTERNAL
+            case _:  # IMPLICIT | EXTERNAL
                 return cls(0, 0, 0)
 
 
@@ -111,14 +110,14 @@ class NameReport(BaseModel):
 
     kind: Literal["name"] = "name"
     name: str
-    n_annotated: _Max1
+    n_typed: _Max1
     n_any: _Max1
-    n_unannotated: _Max1
+    n_untyped: _Max1
 
     @computed_field
     @property
-    def n_annotatable(self) -> _Max1:
-        return cast("_Max1", self.n_annotated + self.n_any + self.n_unannotated)
+    def n_typable(self) -> _Max1:
+        return cast("_Max1", self.n_typed + self.n_any + self.n_untyped)
 
     n_functions: Literal[0] = Field(0, exclude=True)
     n_methods: Literal[0] = Field(0, exclude=True)
@@ -132,13 +131,8 @@ class NameReport(BaseModel):
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.TypeForm, /) -> Self:
-        s = _SlotState.of(ty)
-        return cls(
-            name=name,
-            n_annotated=s.annotated,
-            n_any=s.any,
-            n_unannotated=s.unannotated,
-        )
+        s = _SlotState.from_typeform(ty)
+        return cls(name=name, n_typed=s.typed, n_any=s.any, n_untyped=s.untyped)
 
 
 class FunctionReport(BaseModel):
@@ -148,15 +142,15 @@ class FunctionReport(BaseModel):
 
     kind: Literal["function"] = "function"
     name: str
-    n_annotated: NonNegativeInt
+    n_typed: NonNegativeInt
     n_any: NonNegativeInt
-    n_unannotated: NonNegativeInt
+    n_untyped: NonNegativeInt
     n_overloads: NonNegativeInt
 
     @computed_field
     @property
-    def n_annotatable(self) -> NonNegativeInt:
-        return self.n_annotated + self.n_any + self.n_unannotated
+    def n_typable(self) -> NonNegativeInt:
+        return self.n_typed + self.n_any + self.n_untyped
 
     n_functions: Literal[1] = Field(1, exclude=True)
     n_methods: Literal[0] = Field(0, exclude=True)
@@ -169,7 +163,7 @@ class FunctionReport(BaseModel):
     @computed_field
     @property
     def n_params(self) -> NonNegativeInt:
-        return self.n_annotatable - 1
+        return self.n_typable - 1
 
     @computed_field
     @property
@@ -183,14 +177,14 @@ class FunctionReport(BaseModel):
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Function, /) -> Self:
-        counts = ty.annotation_counts
-        unannotated = counts.annotatable - counts.annotated - counts.any
+        counts = ty.type_counts
+        untyped = counts.typable - counts.typed - counts.any
 
         return cls(
             name=name,
-            n_annotated=counts.annotated,
+            n_typed=counts.typed,
             n_any=counts.any,
-            n_unannotated=unannotated,
+            n_untyped=untyped,
             n_overloads=len(ty.overloads),
         )
 
@@ -202,14 +196,14 @@ class PropertyReport(BaseModel):
 
     kind: Literal["property"] = "property"
     name: str
-    n_annotated: NonNegativeInt
+    n_typed: NonNegativeInt
     n_any: NonNegativeInt
-    n_unannotated: NonNegativeInt
+    n_untyped: NonNegativeInt
 
     @computed_field
     @property
-    def n_annotatable(self) -> NonNegativeInt:
-        return self.n_annotated + self.n_any + self.n_unannotated
+    def n_typable(self) -> NonNegativeInt:
+        return self.n_typed + self.n_any + self.n_untyped
 
     n_functions: Literal[0] = Field(0, exclude=True)
     n_function_overloads: Literal[0] = Field(0, exclude=True)
@@ -223,28 +217,28 @@ class PropertyReport(BaseModel):
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Property, /) -> Self:
-        n_annotated = n_any = n_unannotated = 0
+        n_typed = n_any = n_untyped = 0
 
         # fget: 0 params, 1 return
         if ty.fget is not None:
-            s = _SlotState.of(ty.fget.returns)
-            n_annotated += s.annotated
+            s = _SlotState.from_typeform(ty.fget.returns)
+            n_typed += s.typed
             n_any += s.any
-            n_unannotated += s.unannotated
+            n_untyped += s.untyped
 
         # fset: 1 param, 0 returns
         if ty.fset is not None:
             for p in ty.fset.params:
-                s = _SlotState.of(p.annotation)
-                n_annotated += s.annotated
+                s = _SlotState.from_typeform(p.annotation)
+                n_typed += s.typed
                 n_any += s.any
-                n_unannotated += s.unannotated
+                n_untyped += s.untyped
 
         return cls(
             name=name,
-            n_annotated=n_annotated,
+            n_typed=n_typed,
             n_any=n_any,
-            n_unannotated=n_unannotated,
+            n_untyped=n_untyped,
         )
 
 
@@ -263,31 +257,23 @@ class ClassReport(BaseModel):
 
     @computed_field
     @property
-    def n_annotatable(self) -> NonNegativeInt:
-        return sum(m.n_annotatable for m in self.methods) + sum(
-            p.n_annotatable for p in self.properties
-        )
+    def n_typable(self) -> NonNegativeInt:
+        return sum(m.n_typable for m in self.methods + self.properties)
 
     @computed_field
     @property
-    def n_annotated(self) -> NonNegativeInt:
-        return sum(m.n_annotated for m in self.methods) + sum(
-            p.n_annotated for p in self.properties
-        )
+    def n_typed(self) -> NonNegativeInt:
+        return sum(m.n_typed for m in self.methods + self.properties)
 
     @computed_field
     @property
     def n_any(self) -> NonNegativeInt:
-        return sum(m.n_any for m in self.methods) + sum(
-            p.n_any for p in self.properties
-        )
+        return sum(m.n_any for m in self.methods + self.properties)
 
     @computed_field
     @property
-    def n_unannotated(self) -> NonNegativeInt:
-        return sum(m.n_unannotated for m in self.methods) + sum(
-            p.n_unannotated for p in self.properties
-        )
+    def n_untyped(self) -> NonNegativeInt:
+        return sum(m.n_untyped for m in self.methods + self.properties)
 
     @computed_field
     @property
@@ -359,16 +345,11 @@ def _symbol_report(symbol: analyze.Symbol) -> _AnySymbolReport:
             return NameReport.from_symbol(symbol.name, symbol.type_)
 
 
-def _coverage(
-    n_annotated: int,
-    n_any: int,
-    n_annotatable: int,
-    strict: bool = False,
-) -> float:
+def _coverage(n_typed: int, n_any: int, n_typable: int, strict: bool = False) -> float:
     """Compute coverage ratio. If *strict*, `Any` slots don't count."""
-    total = n_annotatable
-    annotated = n_annotated if strict else n_annotated + n_any
-    return annotated / total if total else 0.0
+    total = n_typable
+    typed = n_typed if strict else n_typed + n_any
+    return typed / total if total else 0.0
 
 
 def _normalize_relpath(
@@ -427,13 +408,13 @@ class ModuleReport(BaseModel):
 
     @computed_field
     @property
-    def n_annotatable(self) -> NonNegativeInt:
-        return sum(s.n_annotatable for s in self.symbol_reports)
+    def n_typable(self) -> NonNegativeInt:
+        return sum(s.n_typable for s in self.symbol_reports)
 
     @computed_field
     @property
-    def n_annotated(self) -> NonNegativeInt:
-        return sum(s.n_annotated for s in self.symbol_reports)
+    def n_typed(self) -> NonNegativeInt:
+        return sum(s.n_typed for s in self.symbol_reports)
 
     @computed_field
     @property
@@ -442,8 +423,8 @@ class ModuleReport(BaseModel):
 
     @computed_field
     @property
-    def n_unannotated(self) -> NonNegativeInt:
-        return sum(s.n_unannotated for s in self.symbol_reports)
+    def n_untyped(self) -> NonNegativeInt:
+        return sum(s.n_untyped for s in self.symbol_reports)
 
     @computed_field
     @property
@@ -496,13 +477,7 @@ class ModuleReport(BaseModel):
         return len(self.type_ignores)
 
     def coverage(self, strict: bool = False, /) -> float:
-        """
-        Coverage ratio.
-
-        Args:
-            strict (bool): If `True`, `Any` types won't be counted as annotated.
-        """
-        return _coverage(self.n_annotated, self.n_any, self.n_annotatable, strict)
+        return _coverage(self.n_typed, self.n_any, self.n_typable, strict)
 
     @classmethod
     def from_symbols(
@@ -545,7 +520,6 @@ class PypiInfo(BaseModel):
         )
 
 
-# Hosts that indicate a repository URL.
 _REPO_HOSTS: Final = {
     "github.com",
     "gitlab.com",
@@ -595,13 +569,13 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
     @computed_field
     @property
-    def n_annotatable(self) -> NonNegativeInt:
-        return sum(m.n_annotatable for m in self.module_reports)
+    def n_typable(self) -> NonNegativeInt:
+        return sum(m.n_typable for m in self.module_reports)
 
     @computed_field
     @property
-    def n_annotated(self) -> NonNegativeInt:
-        return sum(m.n_annotated for m in self.module_reports)
+    def n_typed(self) -> NonNegativeInt:
+        return sum(m.n_typed for m in self.module_reports)
 
     @computed_field
     @property
@@ -610,8 +584,8 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
     @computed_field
     @property
-    def n_unannotated(self) -> NonNegativeInt:
-        return sum(m.n_unannotated for m in self.module_reports)
+    def n_untyped(self) -> NonNegativeInt:
+        return sum(m.n_untyped for m in self.module_reports)
 
     @computed_field
     @property
@@ -669,8 +643,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         return sum(m.n_type_ignores for m in self.module_reports)
 
     def coverage(self, strict: bool = False, /) -> float:
-        """Coverage ratio. If *strict*, `Any` slots don't count."""
-        return _coverage(self.n_annotated, self.n_any, self.n_annotatable, strict)
+        return _coverage(self.n_typed, self.n_any, self.n_typable, strict)
 
     def project_urls(self) -> _ProjectUrls:
         """Extract PyPI and repository URLs from package metadata."""
@@ -692,18 +665,18 @@ class PackageReport(BaseModel):  # noqa: PLR0904
     def print(self) -> None:
         """Print a human-readable summary to stdout."""
         for f in sorted(self.module_reports, key=lambda r: r.path):
-            typed = f.n_annotated + f.n_any
+            typed = f.n_typed + f.n_any
             print(  # noqa: T201
                 f"{f.path} -> {f.coverage():.1%} "
-                f"({typed}/{f.n_annotatable} annotated, "
-                f"{f.n_any} Any, {f.n_unannotated} missing)",
+                f"({typed}/{f.n_typable} typed, "
+                f"{f.n_any} Any, {f.n_untyped} missing)",
             )
 
-        typed = self.n_annotated + self.n_any
+        typed = self.n_typed + self.n_any
         print(  # noqa: T201
             f"=> {self.package} {self.version}: {self.coverage():.1%} "
-            f"({typed}/{self.n_annotatable} annotated, "
-            f"{self.n_any} Any, {self.n_unannotated} missing)",
+            f"({typed}/{self.n_typable} typed, "
+            f"{self.n_any} Any, {self.n_untyped} missing)",
         )
         print(  # noqa: T201
             f"   {self.n_modules} modules, "
@@ -798,7 +771,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
         When `stubs_path` is given (a companion `{pkg}-stubs` sdist), symbols from the
         stubs overlay take priority and any original symbol whose module is covered by
-        stubs but absent from those stubs is marked `UNKNOWN`.
+        stubs but absent from those stubs is marked `UNTYPED`.
 
         When `project` is given, it is used as the display name in the report instead
         of `pkg` (useful for stubs packages where the PyPI project name differs from

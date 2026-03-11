@@ -14,9 +14,9 @@ hide:
       <th><abbr title="PyPI package name">Package</abbr></th>
       <th><abbr title="Latest release version">Version</abbr></th>
       <th><abbr title="Release date on PyPI">Released</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of annotated symbols">Coverage</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of annotated symbols, excluding Any">Coverage (strict)</abbr></th>
-      <th style="text-align: right"><abbr title="Number of public annotatable slots: each function parameter, return type, and variable counts as one">Symbols</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr></th>
+      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Symbols</abbr></th>
       <th><abbr title="PEP 561 py.typed marker">py.typed</abbr></th>
       <th><abbr title="Type info from a standalone stubs package">Stubs-only</abbr></th>
       <th style="text-align: right" data-sort-method="number"><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>
@@ -30,7 +30,7 @@ hide:
         <td>{{ r.release_date }}</td>
         <td style="text-align: right">{{ r.coverage }}</td>
         <td style="text-align: right">{{ r.coverage_strict }}</td>
-        <td style="text-align: right">{{ r.n_annotatable }}</td>
+        <td style="text-align: right">{{ r.n_typable }}</td>
         <td><span hidden>{{ r.py_typed_sort }}</span>{{ icon_py_typed(r.py_typed) }}</td>
         <td>{{ r.stubs_only_label }}</td>
         <td class="pypi-downloads" data-package="{{ r.package }}" style="text-align: right"></td>

@@ -276,44 +276,44 @@ def test_collect_public_symbols_external_reexport() -> None:
     assert types["pkg.sin"] is analyze.EXTERNAL
 
 
-def test_collect_public_symbols_pyi_stub_types_not_unknown() -> None:
-    """Symbols typed only in .pyi stubs should not be reported as UNKNOWN."""
+def test_collect_public_symbols_pyi_stub_types_not_untyped() -> None:
+    """Symbols typed only in .pyi stubs should not be reported as UNTYPED."""
     types = _public_symbol_types(_PROJECT)
 
     assert "stubpkg._typeforms.AnnotatedAlias" in types
     assert "stubpkg._typeforms.GenericType" in types
-    assert types["stubpkg._typeforms.AnnotatedAlias"] is not analyze.UNKNOWN
-    assert types["stubpkg._typeforms.GenericType"] is not analyze.UNKNOWN
+    assert types["stubpkg._typeforms.AnnotatedAlias"] is not analyze.UNTYPED
+    assert types["stubpkg._typeforms.GenericType"] is not analyze.UNTYPED
 
 
-def test_collect_public_symbols_unresolved_all_names_unknown() -> None:
-    """Names in __all__ that can't be resolved should be UNKNOWN."""
+def test_collect_public_symbols_unresolved_all_names_untyped() -> None:
+    """Names in __all__ that can't be resolved should be UNTYPED."""
     types = _public_symbol_types(_PROJECT)
 
     # spam is imported from _b; origin is pkg._b.spam
     assert "pkg._b.spam" in types
-    assert types["pkg._b.spam"] is not analyze.UNKNOWN
+    assert types["pkg._b.spam"] is not analyze.UNTYPED
     assert "pkg.lazy.spam" not in types  # attributed to origin
 
     # dynamic_a and dynamic_b are listed in __all__ but not defined
-    # anywhere resolvable, so they should be UNKNOWN
+    # anywhere resolvable, so they should be UNTYPED
     assert "pkg.lazy.dynamic_a" in types
-    assert types["pkg.lazy.dynamic_a"] is analyze.UNKNOWN
+    assert types["pkg.lazy.dynamic_a"] is analyze.UNTYPED
 
     assert "pkg.lazy.dynamic_b" in types
-    assert types["pkg.lazy.dynamic_b"] is analyze.UNKNOWN
+    assert types["pkg.lazy.dynamic_b"] is analyze.UNTYPED
 
 
-def test_collect_public_symbols_typevar_in_all_not_unknown() -> None:
-    """TypeVar listed in __all__ should be KNOWN, not UNKNOWN (GH-130)."""
+def test_collect_public_symbols_typevar_in_all_not_untyped() -> None:
+    """TypeVar listed in __all__ should be IMPLICIT, not UNTYPED (GH-130)."""
     types = _public_symbol_types(_PROJECT)
 
     assert "pkg.T" in types
-    assert types["pkg.T"] is analyze.KNOWN
+    assert types["pkg.T"] is analyze.IMPLICIT
 
 
-def test_collect_public_symbols_same_name_module_not_unknown() -> None:
-    """Functions re-exported from a submodule with the same name should not be UNKNOWN.
+def test_collect_public_symbols_same_name_module_not_untyped() -> None:
+    """Functions re-exported from a submodule with the same name should not be UNTYPED.
 
     When `from ._private import func` is used, and `_private` re-exports `func`
     from a submodule also named `func` (e.g. `_private/func.py`), the import chain
@@ -322,7 +322,7 @@ def test_collect_public_symbols_same_name_module_not_unknown() -> None:
     types = _public_symbol_types(_PROJECT)
 
     assert "mylib._core._ops.do_mul.do_mul" in types
-    assert types["mylib._core._ops.do_mul.do_mul"] is not analyze.UNKNOWN
+    assert types["mylib._core._ops.do_mul.do_mul"] is not analyze.UNTYPED
 
 
 class TestResolveExprName:
@@ -425,7 +425,7 @@ class TestResolvesToAny:
 
 
 def test_collect_public_symbols_direct_any_is_any() -> None:
-    """Symbols annotated with `typing.Any` should be ANY."""
+    """Symbols typed as `typing.Any` should be ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.any_var" in types
@@ -449,7 +449,7 @@ def test_collect_public_symbols_string_annotation_not_any() -> None:
 
 
 def test_collect_public_symbols_alias_to_any_is_any() -> None:
-    """Symbols annotated with a type alias that resolves to Any should be ANY."""
+    """Symbols typed with a type alias that resolves to Any should be ANY."""
     types = _public_symbol_types(_PROJECT)
 
     # Unknown is defined as `type Unknown = Any` in _defs
@@ -476,10 +476,10 @@ def test_collect_public_symbols_cross_module_alias_to_any_is_any() -> None:
 
 
 def test_collect_public_symbols_non_any_alias_not_any() -> None:
-    """Type aliases that don't resolve to Any should remain annotated."""
+    """Type aliases that don't resolve to Any should remain typed."""
     types = _public_symbol_types(_PROJECT)
 
-    # NotAny is `type NotAny = int`, so not_any_alias_var should still be annotated
+    # NotAny is `type NotAny = int`, so not_any_alias_var should still be typed
     assert "anypkg.mod.not_any_alias_var" in types
     assert types["anypkg.mod.not_any_alias_var"] is not analyze.ANY
 
@@ -488,7 +488,7 @@ def test_collect_public_symbols_non_any_alias_not_any() -> None:
 
 
 def test_collect_public_symbols_function_any_params_unfolded() -> None:
-    """Function params annotated with Any aliases should be unfolded to ANY."""
+    """Function params typed with Any aliases should be unfolded to ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.annotated_func" in types
@@ -499,15 +499,15 @@ def test_collect_public_symbols_function_any_params_unfolded() -> None:
     # param `a: Unknown` should be ANY (Unknown -> Any)
     assert overload.params[0].name == "a"
     assert overload.params[0].annotation is analyze.ANY
-    # param `b: int` should remain annotated
+    # param `b: int` should remain typed
     assert overload.params[1].name == "b"
     assert overload.params[1].annotation is not analyze.ANY
-    # return `str` should remain annotated
+    # return `str` should remain typed
     assert overload.returns is not analyze.ANY
 
 
 def test_collect_public_symbols_object_param_not_any() -> None:
-    """Function params annotated with `object` should NOT be treated as ANY."""
+    """Function params typed as `object` should NOT be treated as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.object_param_func" in types
@@ -518,7 +518,7 @@ def test_collect_public_symbols_object_param_not_any() -> None:
     # param `x: object` should NOT be ANY
     assert overload.params[0].name == "x"
     assert overload.params[0].annotation is not analyze.ANY
-    # param `y: int` should remain annotated
+    # param `y: int` should remain typed
     assert overload.params[1].name == "y"
     assert overload.params[1].annotation is not analyze.ANY
     # return `-> object` should NOT be ANY (output position)
@@ -526,7 +526,7 @@ def test_collect_public_symbols_object_param_not_any() -> None:
 
 
 def test_collect_public_symbols_object_var_not_any() -> None:
-    """Variable annotated with `object` should NOT be treated as ANY."""
+    """Variable typed as `object` should NOT be treated as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.object_var" in types
@@ -545,7 +545,7 @@ def test_collect_public_symbols_object_param_no_aliases() -> None:
     # param `x: object` should NOT be ANY
     assert overload.params[0].name == "x"
     assert overload.params[0].annotation is not analyze.ANY
-    # return `-> int` should remain annotated
+    # return `-> int` should remain typed
     assert overload.returns is not analyze.ANY
 
 
@@ -571,7 +571,7 @@ class TestMergeStubsOverlay:
     def test_stubs_take_priority(self) -> None:
         orig = {
             anyio.Path("/a/pkg/__init__.py"): [
-                analyze.Symbol("pkg.x", analyze.UNKNOWN),
+                analyze.Symbol("pkg.x", analyze.UNTYPED),
             ],
         }
         stubs = {
@@ -603,7 +603,7 @@ class TestMergeStubsOverlay:
             for v in merge_stubs_overlay(orig, stubs).values()
             for s in v
         }
-        assert flat["pkg.y"] is analyze.UNKNOWN
+        assert flat["pkg.y"] is analyze.UNTYPED
 
     def test_uncovered_module_keeps_original(self) -> None:
         orig = {
@@ -669,7 +669,7 @@ class TestMergeStubsOverlay:
         assert "pkg.orphan" in stubs_names
 
     def test_missing_function_preserves_kind(self) -> None:
-        """Function missing from stubs keeps Function kind, unannotated."""
+        """Function missing from stubs keeps Function kind, untyped."""
         func = analyze.Function(
             "f",
             (
@@ -701,14 +701,14 @@ class TestMergeStubsOverlay:
         }
         result = flat["pkg.f"]
         assert isinstance(result, analyze.Function)
-        assert not result.is_annotated
+        assert not result.is_typed
         # params structure preserved, but annotations stripped
         assert len(result.overloads[0].params) == 1
-        assert result.overloads[0].params[0].annotation is analyze.UNKNOWN
-        assert result.overloads[0].returns is analyze.UNKNOWN
+        assert result.overloads[0].params[0].annotation is analyze.UNTYPED
+        assert result.overloads[0].returns is analyze.UNTYPED
 
     def test_missing_class_preserves_kind(self) -> None:
-        """Class missing from stubs keeps Class kind, unannotated."""
+        """Class missing from stubs keeps Class kind, untyped."""
         cls = analyze.Class("C", members=(self._INT, self._INT))
         orig = {
             anyio.Path("/a/pkg/__init__.py"): [
@@ -728,7 +728,7 @@ class TestMergeStubsOverlay:
         }
         result = flat["pkg.C"]
         assert isinstance(result, analyze.Class)
-        assert not result.is_annotated
+        assert not result.is_typed
 
 
 @functools.cache
@@ -742,19 +742,19 @@ def _merged_stubs_types() -> dict[str, analyze.TypeForm]:
     return anyio.run(_run)
 
 
-def test_merge_stubs_overlay_covered_symbols_annotated() -> None:
-    """Symbols covered by stubs use the stubs type (annotated)."""
+def test_merge_stubs_overlay_covered_symbols_typed() -> None:
+    """Symbols covered by stubs use the stubs type (typed)."""
     types = _merged_stubs_types()
     for name in ("mypkg.func_a", "mypkg.func_b", "mypkg.__version__"):
         assert name in types
-        assert types[name] is not analyze.UNKNOWN
+        assert types[name] is not analyze.UNTYPED
 
 
 def test_merge_stubs_overlay_stubs_only_symbol() -> None:
     """Symbols only in stubs (e.g. from __getattr__) are included."""
     types = _merged_stubs_types()
     assert "mypkg.dynamic_func" in types
-    assert types["mypkg.dynamic_func"] is not analyze.UNKNOWN
+    assert types["mypkg.dynamic_func"] is not analyze.UNTYPED
 
 
 def test_merge_stubs_overlay_missing_from_stubs_preserves_kind() -> None:
@@ -763,14 +763,14 @@ def test_merge_stubs_overlay_missing_from_stubs_preserves_kind() -> None:
     assert "mypkg.extra_func" in types
     tf = types["mypkg.extra_func"]
     assert isinstance(tf, analyze.Function)
-    assert not tf.is_annotated
+    assert not tf.is_typed
 
 
 def test_merge_stubs_overlay_uncovered_module_original() -> None:
     """Module not covered by stubs -> original type preserved."""
     types = _merged_stubs_types()
     assert "mypkg.utils.helper" in types
-    assert types["mypkg.utils.helper"] is not analyze.UNKNOWN
+    assert types["mypkg.utils.helper"] is not analyze.UNTYPED
 
 
 def test_merge_stubs_overlay_count_invariant() -> None:
@@ -949,7 +949,7 @@ class TestExcludeGlobs:
         for name, ty in types.items():
             if "greet" in name or "helper" in name:
                 assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
-                assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
+                assert ty is not analyze.UNTYPED, f"{name} should not be UNTYPED"
 
     async def test_package_name_different_import_name(self, tmp_path: Path) -> None:
         """package_name is auto-resolved when the PyPI name differs from the
@@ -971,11 +971,11 @@ class TestExcludeGlobs:
         assert types, "expected symbols from PIL package"
         assert any("Image" in n for n in types), f"missing Image in {types}"
 
-        # Ensure nothing is UNKNOWN or EXTERNAL
+        # Ensure nothing is UNTYPED or EXTERNAL
         for name, ty in types.items():
             if "Image" in name:
                 assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
-                assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
+                assert ty is not analyze.UNTYPED, f"{name} should not be UNTYPED"
 
     async def test_package_name_hyphen_normalization(self, tmp_path: Path) -> None:
         """PyPI names with hyphens are auto-resolved to underscored imports
@@ -1021,7 +1021,7 @@ class TestExcludeGlobs:
         assert "regex._main.compile" in types, f"missing compile in {types}"
         assert "regex._main.match" in types, f"missing match in {types}"
         for name, ty in types.items():
-            assert ty is not analyze.UNKNOWN, f"{name} should not be UNKNOWN"
+            assert ty is not analyze.UNTYPED, f"{name} should not be UNTYPED"
             assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
 
     async def test_delegated_all_realistic_regex(self, tmp_path: Path) -> None:

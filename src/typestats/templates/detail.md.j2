@@ -44,16 +44,16 @@ No version history available.
     ```mermaid
     %%{init: {{ mermaid_config_pie | tojson }}}%%
     pie title
-        "Annotated" : {{ report.n_annotated }}
+        "Typed" : {{ report.n_typed }}
         "Any" : {{ report.n_any }}
-        "Unannotated" : {{ report.n_unannotated }}
+        "Untyped" : {{ report.n_untyped }}
     ```
 
     - {{ coverage }} coverage
     - {{ strict_coverage }} strict coverage (excluding `Any`)
-    - {{ report.n_annotatable }} annotatable
-        - {{ report.n_annotated }} annotated
-        - {{ report.n_unannotated }} unannotated
+    - {{ report.n_typable }} typable
+        - {{ report.n_typed }} typed
+        - {{ report.n_untyped }} untyped
         - {{ report.n_any }} `Any`
 
 -   __Definitions__
@@ -75,7 +75,7 @@ No version history available.
             - {{ report.n_method_params }} parameters
         - {{ report.n_properties }} properties
     - {{ report.n_modules }} modules
-        - {{ report.n_names }} names ({{ symbols_by_kind.names }} annotatables)
+        - {{ report.n_names }} names ({{ symbols_by_kind.names }} typables)
 
 </div>
 
@@ -85,9 +85,9 @@ No version history available.
   <thead>
     <tr>
       <th>Module</th>
-      <th style="text-align: right"><abbr title="Percentage of annotated symbols">Coverage</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of annotated symbols, excluding Any">Coverage (strict)</abbr></th>
-      <th style="text-align: right"><abbr title="Number of public annotatable slots: each function parameter, return type, and variable counts as one">Symbols</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr></th>
+      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Symbols</abbr></th>
       <th style="text-align: right"><abbr title="Number of type-checker ignore comments">Ignores</abbr></th>
     </tr>
   </thead>
@@ -102,7 +102,7 @@ No version history available.
         </td>
         <td style="text-align: right">{{ m.coverage }}</td>
         <td style="text-align: right">{{ m.coverage_strict }}</td>
-        <td style="text-align: right">{{ m.n_annotatable }}</td>
+        <td style="text-align: right">{{ m.n_typable }}</td>
         <td style="text-align: right">{{ m.n_type_ignores }}</td>
       </tr>
     {% endfor %}
@@ -121,9 +121,9 @@ No version history available.
           <th>Symbol</th>
           <th>Kind</th>
           <th>Status</th>
-          <th style="text-align: right"><abbr title="Slots with a type annotation">Annotated</abbr></th>
+          <th style="text-align: right"><abbr title="Slots with a type annotation">Typed</abbr></th>
           <th style="text-align: right"><abbr title="Slots typed as Any">Any</abbr></th>
-          <th style="text-align: right"><abbr title="Slots without a type annotation">Unannotated</abbr></th>
+          <th style="text-align: right"><abbr title="Slots without a type annotation">Untyped</abbr></th>
         </tr>
       </thead>
       <tbody>
@@ -132,9 +132,9 @@ No version history available.
             <td><code>{{ row.name }}</code></td>
             <td>{{ row.kind }}</td>
             <td>{{ row.status }}</td>
-            <td style="text-align: right">{{ row.n_annotated }}</td>
+            <td style="text-align: right">{{ row.n_typed }}</td>
             <td style="text-align: right">{{ row.n_any }}</td>
-            <td style="text-align: right">{{ row.n_unannotated }}</td>
+            <td style="text-align: right">{{ row.n_untyped }}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -142,7 +142,7 @@ No version history available.
 
 {% endfor %}
 {% else %}
-All symbols are fully annotated. :tada:
+All symbols are fully typed. :tada:
 
 {% endif %}
 

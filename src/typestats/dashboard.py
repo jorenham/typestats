@@ -54,7 +54,7 @@ class _IndexRow(NamedTuple):
     release_date: str
     coverage: str
     coverage_strict: str
-    n_annotatable: str
+    n_typable: str
     py_typed_sort: int
     py_typed: str
     stubs_only_label: str
@@ -80,7 +80,7 @@ class _DiffRow(NamedTuple):
     coverage: _MetricCell
     coverage_strict: _MetricCell
     symbols: _MetricCell
-    unannotated: _MetricCell
+    untyped: _MetricCell
     ignores: _MetricCell
 
 
@@ -89,7 +89,7 @@ class _ModuleRow(NamedTuple):
     slug: str | None
     coverage: str
     coverage_strict: str
-    n_annotatable: str
+    n_typable: str
     n_type_ignores: str
 
 
@@ -97,9 +97,9 @@ class _AnnotationRow(NamedTuple):
     name: str
     kind: str
     status: str
-    n_annotated: int
+    n_typed: int
     n_any: int
-    n_unannotated: int
+    n_untyped: int
 
 
 class _AnnotationSection(NamedTuple):
@@ -159,7 +159,7 @@ class IndexPage:
             release_date=_release_date(r),
             coverage=f"{r.coverage():.1%}",
             coverage_strict=f"{r.coverage(True):.1%}",
-            n_annotatable=f"{r.n_annotatable:,}",
+            n_typable=f"{r.n_typable:,}",
             py_typed_sort=cls._PY_TYPED_SORT[r.py_typed],
             py_typed=r.py_typed.name.lower(),
             stubs_only_label=_STUBS_ONLY_LABEL[r.stubs_only],
@@ -205,13 +205,13 @@ class DiffPage:
                 coverage=self._cov_data(r, prev, strict=False),
                 coverage_strict=self._cov_data(r, prev, strict=True),
                 symbols=self._int_data(
-                    r.n_annotatable,
-                    prev.n_annotatable if prev else None,
+                    r.n_typable,
+                    prev.n_typable if prev else None,
                     neutral=True,
                 ),
-                unannotated=self._int_data(
-                    r.n_unannotated,
-                    prev.n_unannotated if prev else None,
+                untyped=self._int_data(
+                    r.n_untyped,
+                    prev.n_untyped if prev else None,
                     prefer_lower=True,
                 ),
                 ignores=self._int_data(
@@ -419,7 +419,7 @@ class DetailPage:
                     slug=incomplete_slugs.get(display_name),
                     coverage=f"{m.coverage():.1%}",
                     coverage_strict=f"{m.coverage(True):.1%}",
-                    n_annotatable=str(m.n_annotatable),
+                    n_typable=str(m.n_typable),
                     n_type_ignores=str(m.n_type_ignores),
                 )
             )
@@ -432,11 +432,11 @@ class DetailPage:
             for s in m.symbol_reports:
                 if s.kind == "class":
                     for method in s.methods:
-                        totals["classes"] += method.n_annotatable
+                        totals["classes"] += method.n_typable
                     for prop in s.properties:
-                        totals["classes"] += prop.n_annotatable
+                        totals["classes"] += prop.n_typable
                 else:
-                    totals[kind2key[s.kind]] += s.n_annotatable
+                    totals[kind2key[s.kind]] += s.n_typable
         return _SymbolsByKind(**totals)
 
     def _type_ignore_data(self) -> list[tuple[str, int]]:
@@ -455,7 +455,7 @@ class DetailPage:
     def _incomplete_annotations(report: ModuleReport) -> list[_AnnotationRow]:
         rows: list[_AnnotationRow] = []
         for s in report.symbol_reports:
-            if s.n_unannotated == 0 and s.n_any == 0:
+            if s.n_untyped == 0 and s.n_any == 0:
                 continue
 
             short_name = s.name.removeprefix(f"{report.name}.")
@@ -463,12 +463,12 @@ class DetailPage:
             # expand classes into individual method/property rows.
             if isinstance(s, ClassReport):
                 for member in (*s.methods, *s.properties):
-                    if member.n_unannotated == 0 and member.n_any == 0:
+                    if member.n_untyped == 0 and member.n_any == 0:
                         continue
 
-                    if member.n_unannotated > 0 and member.n_any > 0:
+                    if member.n_untyped > 0 and member.n_any > 0:
                         status = "missing + Any"
-                    elif member.n_unannotated > 0:
+                    elif member.n_untyped > 0:
                         status = "missing"
                     else:
                         status = "Any"
@@ -480,16 +480,16 @@ class DetailPage:
                             name=f"{short_name}.{member_short}",
                             kind=kind,
                             status=status,
-                            n_annotated=member.n_annotated,
+                            n_typed=member.n_typed,
                             n_any=member.n_any,
-                            n_unannotated=member.n_unannotated,
+                            n_untyped=member.n_untyped,
                         )
                     )
                 continue
 
-            if s.n_unannotated > 0 and s.n_any > 0:
+            if s.n_untyped > 0 and s.n_any > 0:
                 status = "missing + Any"
-            elif s.n_unannotated > 0:
+            elif s.n_untyped > 0:
                 status = "missing"
             else:
                 status = "Any"
@@ -499,9 +499,9 @@ class DetailPage:
                     name=short_name,
                     kind=s.kind,
                     status=status,
-                    n_annotated=s.n_annotated,
+                    n_typed=s.n_typed,
                     n_any=s.n_any,
-                    n_unannotated=s.n_unannotated,
+                    n_untyped=s.n_untyped,
                 )
             )
 

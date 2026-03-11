@@ -24,8 +24,8 @@ __all__ = (
     "Symbol",
     "TypeAlias",
     "TypeForm",
-    "annotation_counts",
     "collect_symbols",
+    "type_counts",
 )
 
 _EMPTY_MODULE: Final = cst.Module([])
@@ -134,8 +134,8 @@ class ParamKind(StrEnum):
 
 
 class _TypeMarker(StrEnum):
-    KNOWN = ""  # for `self` and `cls` parameters
-    UNKNOWN = "?"  # for other missing annotations
+    IMPLICIT = ""  # for `self` and `cls` parameters
+    UNTYPED = "?"  # for other missing annotations
     ANY = "any"  # for annotations that resolve to `typing.Any`
     EXTERNAL = "~"  # for re-exports from external (non-local) packages
 
@@ -144,21 +144,21 @@ class _TypeMarker(StrEnum):
         return self.value
 
     @property
-    def is_annotated(self) -> bool:
-        return self is not self.UNKNOWN
+    def is_typed(self) -> bool:
+        return self is not self.UNTYPED
 
     def to_unknown(self) -> _TypeMarker:  # noqa: PLR6301
-        return _TypeMarker.UNKNOWN
+        return _TypeMarker.UNTYPED
 
 
-type _UnknownType = Literal[_TypeMarker.UNKNOWN]
-type _KnownType = Literal[_TypeMarker.KNOWN]
+type _UntypedType = Literal[_TypeMarker.UNTYPED]
+type _ImplicitType = Literal[_TypeMarker.IMPLICIT]
 type _AnyType = Literal[_TypeMarker.ANY]
 type _ExternalType = Literal[_TypeMarker.EXTERNAL]
 
 
-UNKNOWN: Final[_UnknownType] = _TypeMarker.UNKNOWN
-KNOWN: Final[_KnownType] = _TypeMarker.KNOWN
+UNTYPED: Final[_UntypedType] = _TypeMarker.UNTYPED
+IMPLICIT: Final[_ImplicitType] = _TypeMarker.IMPLICIT
 ANY: Final[_AnyType] = _TypeMarker.ANY
 EXTERNAL: Final[_ExternalType] = _TypeMarker.EXTERNAL
 
@@ -182,11 +182,11 @@ class Expr:
         cls,
         annotation: cst.Annotation | None,
         name_resolver: _NameResolver | None = None,
-    ) -> Self | _UnknownType:
+    ) -> Self | _UntypedType:
         return (
             cls.from_expr(annotation.annotation, name_resolver)
             if annotation
-            else UNKNOWN
+            else UNTYPED
         )
 
     @classmethod
@@ -198,11 +198,11 @@ class Expr:
         return cls(_unwrap_annotated(_parse_string_annotation(expr), name_resolver))
 
     @property
-    def is_annotated(self) -> bool:
+    def is_typed(self) -> bool:
         return True
 
-    def to_unknown(self) -> _UnknownType:  # noqa: PLR6301
-        return UNKNOWN
+    def to_unknown(self) -> _UntypedType:  # noqa: PLR6301
+        return UNTYPED
 
 
 @dataclass(frozen=True, slots=True)
@@ -216,8 +216,8 @@ class Param:
         return f"{self.kind.prefix()}{self.name}: {self.annotation}"
 
     @property
-    def is_annotated(self) -> bool:
-        return self.annotation.is_annotated
+    def is_typed(self) -> bool:
+        return self.annotation.is_typed
 
     def key(self, index: int, /) -> int | str:
         match self.kind:
@@ -231,10 +231,10 @@ class Param:
                 return "**"
 
 
-class _AnnotationCounts(NamedTuple):
-    annotated: int
+class _TypeCounts(NamedTuple):
+    typed: int
     any: int
-    annotatable: int
+    typable: int
 
 
 @dataclass(frozen=True, slots=True)
@@ -248,43 +248,43 @@ class Overload:
         return f"({params}) -> {self.returns}"
 
     @property
-    def is_annotated(self) -> bool:
-        return self.returns.is_annotated or any(p.is_annotated for p in self.params)
+    def is_typed(self) -> bool:
+        return self.returns.is_typed or any(p.is_typed for p in self.params)
 
     @property
-    def annotation_counts(self) -> _AnnotationCounts:
+    def type_counts(self) -> _TypeCounts:
         states = [
             s
             for ty in (*(p.annotation for p in self.params), self.returns)
             if (s := _SlotRank.from_typeform(ty)) is not _SlotRank.SKIP
         ]
-        return _AnnotationCounts(
-            annotated=states.count(_SlotRank.EXPR),
+        return _TypeCounts(
+            typed=states.count(_SlotRank.TYPED),
             any=states.count(_SlotRank.ANY),
-            annotatable=len(states),
+            typable=len(states),
         )
 
     def to_unknown(self) -> Self:
         return type(self)(
-            tuple(Param(p.name, p.kind, UNKNOWN) for p in self.params),
-            UNKNOWN,
+            tuple(Param(p.name, p.kind, UNTYPED) for p in self.params),
+            UNTYPED,
         )
 
 
 class _SlotRank(IntEnum):
-    UNKNOWN = 0  # missing annotation
-    ANY = 1  # `Any` or equivalent
-    EXPR = 2  # concrete expression (not `Any`), so it's annotated
-    SKIP = 3  # ignored slot
+    UNTYPED = 0
+    ANY = 1
+    TYPED = 2
+    SKIP = 3
 
     @classmethod
     def from_typeform(cls, ty: TypeForm) -> _SlotRank:
         if isinstance(ty, Expr):
-            return cls.EXPR
+            return cls.TYPED
         if ty is ANY:
             return cls.ANY
-        if ty is UNKNOWN:
-            return cls.UNKNOWN
+        if ty is UNTYPED:
+            return cls.UNTYPED
         return cls.SKIP
 
 
@@ -311,21 +311,21 @@ class Function:
         return " & ".join(f"({sig})" for sig in self.overloads)
 
     @property
-    def is_annotated(self) -> bool:
-        return all(o.is_annotated for o in self.overloads)
+    def is_typed(self) -> bool:
+        return all(o.is_typed for o in self.overloads)
 
     @property
-    def annotation_counts(self) -> _AnnotationCounts:
-        """`(annotated, any, annotatable)` with deduplicated param slots.
+    def type_counts(self) -> _TypeCounts:
+        """`(typed, any, typable)` with deduplicated param slots.
 
         Positional-only params are keyed by index; positional-or-keyword
         and keyword-only params are keyed by name; variadic params are
         singletons.  A slot's state is determined by the "worst"
-        annotation across all overloads: unannotated beats `Any`, and
+        annotation across all overloads: untyped beats `Any`, and
         `Any` beats a concrete annotation.
         """
         if len(self.overloads) == 1:
-            return self.overloads[0].annotation_counts
+            return self.overloads[0].type_counts
 
         params: dict[int | str, _SlotRank] = {}
         for overload in self.overloads:
@@ -351,10 +351,10 @@ class Function:
         if ret is not _SlotRank.SKIP:
             all_states.append(ret)
 
-        return _AnnotationCounts(
-            annotated=all_states.count(_SlotRank.EXPR),
+        return _TypeCounts(
+            typed=all_states.count(_SlotRank.TYPED),
             any=all_states.count(_SlotRank.ANY),
-            annotatable=len(all_states),
+            typable=len(all_states),
         )
 
     def to_unknown(self) -> Self:
@@ -384,21 +384,21 @@ class Property:
         return f"property({', '.join(parts)})"
 
     @property
-    def is_annotated(self) -> bool:
-        if self.fget and not self.fget.returns.is_annotated:
+    def is_typed(self) -> bool:
+        if self.fget and not self.fget.returns.is_typed:
             return False
-        if self.fset and not all(p.is_annotated for p in self.fset.params):  # noqa: SIM103
+        if self.fset and not all(p.is_typed for p in self.fset.params):  # noqa: SIM103
             return False
         return True
 
     @property
-    def annotation_counts(self) -> _AnnotationCounts:
-        annotated = any_ = total = 0
+    def type_counts(self) -> _TypeCounts:
+        typed = any_ = total = 0
 
         # fget: 0 params, 1 return
         if self.fget is not None:
             if isinstance(self.fget.returns, Expr):
-                annotated += 1
+                typed += 1
             elif self.fget.returns is ANY:
                 any_ += 1
             total += 1
@@ -407,12 +407,12 @@ class Property:
         if self.fset is not None:
             for p in self.fset.params:
                 if isinstance(p.annotation, Expr):
-                    annotated += 1
+                    typed += 1
                 elif p.annotation is ANY:
                     any_ += 1
             total += len(self.fset.params)
 
-        return _AnnotationCounts(annotated, any_, total)
+        return _TypeCounts(typed, any_, total)
 
     def to_unknown(self) -> Self:
         return type(self)(
@@ -433,17 +433,17 @@ class Class:
         return f"type[{self.name}]"
 
     @property
-    def is_annotated(self) -> bool:
-        return all(m.is_annotated for m in self.members)
+    def is_typed(self) -> bool:
+        return all(m.is_typed for m in self.members)
 
     @property
-    def annotation_counts(self) -> _AnnotationCounts:
-        """`(annotated, any, annotatable)` counts across all members."""
-        counts = [annotation_counts(m) for m in self.members]
-        return _AnnotationCounts(
-            sum(c.annotated for c in counts),
+    def type_counts(self) -> _TypeCounts:
+        """`(typed, any, typable)` counts across all members."""
+        counts = [type_counts(m) for m in self.members]
+        return _TypeCounts(
+            sum(c.typed for c in counts),
             sum(c.any for c in counts),
-            sum(c.annotatable for c in counts),
+            sum(c.typable for c in counts),
         )
 
     def to_unknown(self) -> Self:
@@ -453,19 +453,19 @@ class Class:
         )
 
 
-def annotation_counts(type_: TypeForm, /) -> _AnnotationCounts:
-    """`(annotated, any, annotatable)` counts for an arbitrary type form."""
+def type_counts(type_: TypeForm, /) -> _TypeCounts:
+    """`(typed, any, typable)` counts for an arbitrary type form."""
     match type_:
         case Function() | Property() | Class():
-            return type_.annotation_counts
+            return type_.type_counts
         case Expr():
-            return _AnnotationCounts(1, 0, 1)
+            return _TypeCounts(1, 0, 1)
         case _TypeMarker.ANY:
-            return _AnnotationCounts(0, 1, 1)
-        case _TypeMarker.UNKNOWN:
-            return _AnnotationCounts(0, 0, 1)
+            return _TypeCounts(0, 1, 1)
+        case _TypeMarker.UNTYPED:
+            return _TypeCounts(0, 0, 1)
         case _:
-            return _AnnotationCounts(0, 0, 0)
+            return _TypeCounts(0, 0, 0)
 
 
 @dataclass(frozen=True, slots=True)
@@ -569,6 +569,7 @@ def _unwrap_annotated(
     expr: cst.BaseExpression,
     name_resolver: _NameResolver | None = None,
 ) -> cst.BaseExpression:
+    """Unwrap `Annotated[...]` expressions to get the underlying type."""
     current = expr
     while isinstance(current, cst.Subscript):
         value = current.value
@@ -1194,11 +1195,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     self._add_type_aliases(_extract_names(target), value)
                     return
                 if self._is_special_typeform(value):
-                    self._add_symbols(_extract_names(target), KNOWN)
+                    self._add_symbols(_extract_names(target), IMPLICIT)
                     return
 
             if cls and cls.is_schema:
-                ty = KNOWN
+                ty = IMPLICIT
             else:
                 ty = Expr.from_expr(annotation, self._resolve_name)
 
@@ -1323,15 +1324,15 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             return
 
         # Special typeforms (TypeVar, etc.), enum attributes, and simple
-        # (non-call) assignments are KNOWN -- type checkers can infer them.
-        # Assignments whose RHS contains any call expression remain UNKNOWN,
+        # (non-call) assignments are IMPLICIT -- type checkers can infer them.
+        # Assignments whose RHS contains any call expression remain UNTYPED,
         # because the return type depends on the callee's annotation quality.
         ty = (
-            KNOWN
+            IMPLICIT
             if self._is_special_typeform(value)
             or (cls and cls.is_enum)
             or not _contains_call(value)
-            else UNKNOWN
+            else UNTYPED
         )
         for target in targets:
             self._add_symbols(_extract_names(target), ty)
