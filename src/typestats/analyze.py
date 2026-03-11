@@ -144,6 +144,9 @@ class _TypeMarker(StrEnum):
     def __str__(self) -> str:
         return self.value
 
+    def to_unknown(self) -> _TypeMarker:  # noqa: PLR6301
+        return _TypeMarker.UNKNOWN
+
 
 type _UnknownType = Literal[_TypeMarker.UNKNOWN]
 type _KnownType = Literal[_TypeMarker.KNOWN]
@@ -163,6 +166,7 @@ _Sequence: _TypeAlias = cst.List | cst.Tuple  # noqa: UP040
 _Container: _TypeAlias = _Sequence | cst.Set  # noqa: UP040
 
 
+# TODO(@jorenham): turn this into a polymorphic method on TypeForm variants
 def is_annotated(type_: TypeForm, /) -> bool:
     """Check if a type form represents a meaningfully annotated symbol.
 
@@ -219,6 +223,9 @@ class Expr:
     ) -> Self:
         return cls(_unwrap_annotated(_parse_string_annotation(expr), name_resolver))
 
+    def to_unknown(self) -> _UnknownType:  # noqa: PLR6301
+        return UNKNOWN
+
 
 @dataclass(frozen=True, slots=True)
 class Param:
@@ -257,6 +264,11 @@ class Overload:
     params: tuple[Param, ...]
     returns: TypeForm
 
+    @override
+    def __str__(self) -> str:
+        params = ", ".join(str(param) for param in self.params)
+        return f"({params}) -> {self.returns}"
+
     @property
     def is_annotated(self) -> bool:
         return is_annotated(self.returns) or any(p.is_annotated for p in self.params)
@@ -274,10 +286,11 @@ class Overload:
             annotatable=len(states),
         )
 
-    @override
-    def __str__(self) -> str:
-        params = ", ".join(str(param) for param in self.params)
-        return f"({params}) -> {self.returns}"
+    def to_unknown(self) -> Self:
+        return type(self)(
+            tuple(Param(p.name, p.kind, UNKNOWN) for p in self.params),
+            UNKNOWN,
+        )
 
 
 class _SlotRank(IntEnum):
@@ -366,6 +379,13 @@ class Function:
             annotatable=len(all_states),
         )
 
+    def to_unknown(self) -> Self:
+        first, *rest = self.overloads
+        return type(self)(
+            self.name,
+            (first.to_unknown(), *(o.to_unknown() for o in rest)),
+        )
+
 
 @dataclass(frozen=True, slots=True)
 class Property:
@@ -373,6 +393,17 @@ class Property:
     fget: Overload | None = None
     fset: Overload | None = None
     fdel: Overload | None = None
+
+    @override
+    def __str__(self) -> str:
+        parts: list[str] = []
+        if self.fget is not None:
+            parts.append(f"fget={self.fget}")
+        if self.fset is not None:
+            parts.append(f"fset={self.fset}")
+        if self.fdel is not None:
+            parts.append(f"fdel={self.fdel}")
+        return f"property({', '.join(parts)})"
 
     @property
     def is_annotated(self) -> bool:
@@ -407,22 +438,23 @@ class Property:
 
         return _AnnotationCounts(annotated, any_, total)
 
-    @override
-    def __str__(self) -> str:
-        parts: list[str] = []
-        if self.fget is not None:
-            parts.append(f"fget={self.fget}")
-        if self.fset is not None:
-            parts.append(f"fset={self.fset}")
-        if self.fdel is not None:
-            parts.append(f"fdel={self.fdel}")
-        return f"property({', '.join(parts)})"
+    def to_unknown(self) -> Self:
+        return type(self)(
+            self.name,
+            self.fget.to_unknown() if self.fget else None,
+            self.fset.to_unknown() if self.fset else None,
+            self.fdel.to_unknown() if self.fdel else None,
+        )
 
 
 @dataclass(frozen=True, slots=True)
 class Class:
     name: str
     members: tuple[TypeForm, ...] = ()
+
+    @override
+    def __str__(self) -> str:
+        return f"type[{self.name}]"
 
     @property
     def is_annotated(self) -> bool:
@@ -438,9 +470,11 @@ class Class:
             sum(c.annotatable for c in counts),
         )
 
-    @override
-    def __str__(self) -> str:
-        return f"type[{self.name}]"
+    def to_unknown(self) -> Self:
+        return type(self)(
+            self.name,
+            tuple(m.to_unknown() for m in self.members),
+        )
 
 
 def annotation_counts(type_: TypeForm, /) -> _AnnotationCounts:

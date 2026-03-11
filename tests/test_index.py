@@ -668,6 +668,68 @@ class TestMergeStubsOverlay:
         stubs_names = {s.name for s in merged.get(stubs_path, [])}
         assert "pkg.orphan" in stubs_names
 
+    def test_missing_function_preserves_kind(self) -> None:
+        """Function missing from stubs keeps Function kind, unannotated."""
+        func = analyze.Function(
+            "f",
+            (
+                analyze.Overload(
+                    (
+                        analyze.Param(
+                            "x", analyze.ParamKind.POSITIONAL_OR_KEYWORD, self._INT
+                        ),
+                    ),
+                    self._INT,
+                ),
+            ),
+        )
+        orig = {
+            anyio.Path("/a/pkg/__init__.py"): [
+                analyze.Symbol("pkg.x", self._INT),
+                analyze.Symbol("pkg.f", func),
+            ],
+        }
+        stubs = {
+            anyio.Path("/b/pkg-stubs/__init__.pyi"): [
+                analyze.Symbol("pkg.x", self._INT),
+            ],
+        }
+        flat = {
+            s.name: s.type_
+            for v in merge_stubs_overlay(orig, stubs).values()
+            for s in v
+        }
+        result = flat["pkg.f"]
+        assert isinstance(result, analyze.Function)
+        assert not result.is_annotated
+        # params structure preserved, but annotations stripped
+        assert len(result.overloads[0].params) == 1
+        assert result.overloads[0].params[0].annotation is analyze.UNKNOWN
+        assert result.overloads[0].returns is analyze.UNKNOWN
+
+    def test_missing_class_preserves_kind(self) -> None:
+        """Class missing from stubs keeps Class kind, unannotated."""
+        cls = analyze.Class("C", members=(self._INT, self._INT))
+        orig = {
+            anyio.Path("/a/pkg/__init__.py"): [
+                analyze.Symbol("pkg.x", self._INT),
+                analyze.Symbol("pkg.C", cls),
+            ],
+        }
+        stubs = {
+            anyio.Path("/b/pkg-stubs/__init__.pyi"): [
+                analyze.Symbol("pkg.x", self._INT),
+            ],
+        }
+        flat = {
+            s.name: s.type_
+            for v in merge_stubs_overlay(orig, stubs).values()
+            for s in v
+        }
+        result = flat["pkg.C"]
+        assert isinstance(result, analyze.Class)
+        assert not result.is_annotated
+
 
 @functools.cache
 def _merged_stubs_types() -> dict[str, analyze.TypeForm]:
@@ -695,11 +757,13 @@ def test_merge_stubs_overlay_stubs_only_symbol() -> None:
     assert types["mypkg.dynamic_func"] is not analyze.UNKNOWN
 
 
-def test_merge_stubs_overlay_missing_from_stubs_unknown() -> None:
-    """Original symbol not in stubs (module covered) -> UNKNOWN."""
+def test_merge_stubs_overlay_missing_from_stubs_preserves_kind() -> None:
+    """Original function not in stubs (module covered) keeps Function kind."""
     types = _merged_stubs_types()
     assert "mypkg.extra_func" in types
-    assert types["mypkg.extra_func"] is analyze.UNKNOWN
+    tf = types["mypkg.extra_func"]
+    assert isinstance(tf, analyze.Function)
+    assert not tf.is_annotated
 
 
 def test_merge_stubs_overlay_uncovered_module_original() -> None:
