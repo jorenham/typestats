@@ -1124,6 +1124,27 @@ class TestSrcLayout:
 
         assert await is_src_layout(anyio.Path(tmp_path)) is False
 
+    async def test_is_src_layout_nested_py_no_package(self, tmp_path: Path) -> None:
+        """A `src/` with deeply nested `.py` but no direct child packages is not
+        a src layout (e.g. `dash-bootstrap-components` bundles JS source under
+        `src/` with stray `.py` in subdirs)."""
+        src = tmp_path / "src"
+        # Non-package subdir containing a .py file
+        lib = src / "lib"
+        lib.mkdir(parents=True)
+        (lib / "demo.py").write_text("x = 1\n")
+        # Non-Python files at a deeper level
+        components = src / "components"
+        components.mkdir()
+        (components / "Button.tsx").write_text("")
+
+        # The actual Python package is outside src/
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("")
+
+        assert await is_src_layout(anyio.Path(tmp_path)) is False
+
     async def test_src_layout_ignores_non_src_files(self, tmp_path: Path) -> None:
         """Files outside `src/` should not be discovered in a src layout."""
         # src layout package

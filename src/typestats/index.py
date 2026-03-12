@@ -148,24 +148,37 @@ async def _analyze_graph(
     }
 
 
-async def is_src_layout(project_dir: anyio.Path, /) -> bool:
-    """Check whether *project_dir* uses a Python
-    [src layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
+async def _is_package(d: anyio.Path) -> bool:
+    if not await d.is_dir():
+        raise NotADirectoryError(str(d))
 
-    Returns `True` when `project_dir/src/` exists, is not itself a Python
-    package (no `__init__.py` or `__init__.pyi`), and contains at least one
-    `*.py` or `*.pyi` file.
+    return d.name.removesuffix("-stubs").isidentifier() and (
+        await (d / "__init__.py").exists() or await (d / "__init__.pyi").exists()
+    )
+
+
+async def is_src_layout(project_dir: anyio.Path, /) -> bool:
+    """Check whether `project_dir` uses a Python src layout.
+
+    Returns `True` iff.
+
+    - `{project_dir}/src/` exists,
+    - is not itself a Python package (no `__init__.py` or `__init__.pyi`), and
+    - contains at least one direct child that is a package or module.
     """
     src = project_dir / "src"
     if not await src.is_dir():
         return False
-    if await (src / "__init__.py").exists() or await (src / "__init__.pyi").exists():
+
+    if await _is_package(src):
         return False
 
-    async for _ in src.glob("**/*.py"):
-        return True
-    async for _ in src.glob("**/*.pyi"):
-        return True
+    async for child in src.iterdir():
+        if await child.is_dir():
+            if await _is_package(child):
+                return True
+        elif child.suffix in {".py", ".pyi"} and child.stem.isidentifier():
+            return True
 
     return False
 
