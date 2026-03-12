@@ -273,6 +273,17 @@ class TestClassReport:
         assert r.n_typable == 2
         assert r.n_typed == 2
 
+    def test_protocol_excluded(self) -> None:
+        method = Function("m", (_overload([("x", _INT)]),))
+        cls_ = Class("C", (method,), is_protocol=True)
+        r = ClassReport.from_symbol("C", cls_)
+        assert len(r.methods) == 0
+        assert len(r.properties) == 0
+        assert r.n_typable == 0
+        assert r.n_typed == 0
+        assert r.n_methods == 0
+        assert r.n_classes == 1
+
 
 class TestPropertyReport:
     def test_fget_only_typed(self) -> None:

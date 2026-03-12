@@ -315,6 +315,9 @@ class ClassReport(BaseModel):
 
     @classmethod
     def from_symbol(cls, name: str, ty: analyze.Class, /) -> Self:
+        if ty.is_protocol:
+            return cls(name=name, methods=(), properties=())
+
         methods = [
             FunctionReport.from_symbol(member.name, member)
             for member in ty.members

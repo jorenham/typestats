@@ -37,6 +37,7 @@ _ENUM_BASES: Final = frozenset({
     "Flag",
     "IntFlag",
 })
+_PROTOCOL_BASES: Final = frozenset({"Protocol"})
 _SCHEMA_BASES: Final = frozenset({"NamedTuple", "TypedDict"})
 _DATACLASS_DECORATORS: Final = frozenset({"dataclass"})
 _TYPE_CHECK_ONLY: Final = frozenset({"type_check_only"})
@@ -427,6 +428,7 @@ class Property:
 class Class:
     name: str
     members: tuple[TypeForm, ...] = ()
+    is_protocol: bool = False
 
     @override
     def __str__(self) -> str:
@@ -439,6 +441,9 @@ class Class:
     @property
     def type_counts(self) -> _TypeCounts:
         """`(typed, any, typable)` counts across all members."""
+        if self.is_protocol:
+            return _TypeCounts(0, 0, 0)
+
         counts = [type_counts(m) for m in self.members]
         return _TypeCounts(
             sum(c.typed for c in counts),
@@ -450,6 +455,7 @@ class Class:
         return type(self)(
             self.name,
             tuple(m.to_unknown() for m in self.members),
+            is_protocol=self.is_protocol,
         )
 
 
@@ -597,6 +603,7 @@ def _is_all_target(target: cst.BaseExpression) -> bool:
 class _ClassStackItem:
     name: str
     is_enum: bool
+    is_protocol: bool
     is_schema: bool
     symbol_index: int  # index into _SymbolVisitor.symbols where the Class symbol lives
     members: list[TypeForm]
@@ -1016,18 +1023,26 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     self.type_check_only_names.add(name)
                 self._defined_names.add(name)
 
+            is_protocol = any(
+                self._is_name_in(
+                    b.value.value if isinstance(b.value, cst.Subscript) else b.value,
+                    _PROTOCOL_BASES,
+                )
+                for b in node.bases
+            )
             stack.append(
                 _ClassStackItem(
                     name,
                     is_enum=any(
                         self._is_name_in(b.value, _ENUM_BASES) for b in node.bases
                     ),
+                    is_protocol=is_protocol,
                     is_schema=self._is_schema_class(node),
                     symbol_index=len(self.symbols),
                     members=[],
                 ),
             )
-            self.symbols.append(Symbol(name, Class(name)))
+            self.symbols.append(Symbol(name, Class(name, is_protocol=is_protocol)))
 
         return True
 
@@ -1039,7 +1054,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             item = stack.pop()
             self.symbols[item.symbol_index] = Symbol(
                 item.name,
-                Class(item.name, tuple(item.members)),
+                Class(
+                    item.name,
+                    tuple(item.members),
+                    is_protocol=item.is_protocol,
+                ),
             )
 
     @override
