@@ -652,13 +652,17 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{self.package}/"}
 
         if self.metadata:
-            for entry in self.metadata.get("Project-URL", []):
-                if not (url := entry.rsplit(",", 1)[-1].strip()):
-                    continue
+            for header in ("Home-page", "Project-URL"):
+                for entry in self.metadata.get(header, []):
+                    if not (url := entry.rsplit(",", 1)[-1].strip()):
+                        continue
 
-                if (hostname := urlparse(url).hostname) and hostname in _REPO_HOSTS:
-                    urls["repo"] = url
-                    break
+                    res = urlparse(url)
+                    if not (h := res.hostname) or h not in _REPO_HOSTS:
+                        continue
+
+                    urls["repo"] = f"https://{h}{'/'.join(res.path.split('/', 3)[:3])}"
+                    return urls
 
         return urls
 

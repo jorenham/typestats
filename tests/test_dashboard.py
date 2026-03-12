@@ -615,6 +615,14 @@ class TestBuildSite:
 
 
 class TestExtractProjectUrls:
+    @staticmethod
+    def _repo(metadata: dict[str, list[str]]) -> str | None:
+        return (
+            _minimal_report("pkg", "1.0.0", metadata=metadata)
+            .project_urls()
+            .get("repo")
+        )
+
     def test_pypi_always_present(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
         urls = report.project_urls()
@@ -626,87 +634,105 @@ class TestExtractProjectUrls:
         urls = report.project_urls()
         assert "repo" not in urls
 
-    def test_github_url(self) -> None:
-        report = _minimal_report(
-            "numpy",
-            "2.0.0",
-            metadata={
-                "Project-URL": [
-                    "Homepage, https://numpy.org/",
-                    "Repository, https://github.com/numpy/numpy",
-                ],
-            },
-        )
-        urls = report.project_urls()
-        assert urls.get("repo") == "https://github.com/numpy/numpy"
+    @pytest.mark.parametrize(
+        ("metadata", "expected"),
+        [
+            pytest.param(
+                {
+                    "Project-URL": [
+                        "Homepage, https://numpy.org/",
+                        "Repository, https://github.com/numpy/numpy",
+                    ]
+                },
+                "https://github.com/numpy/numpy",
+                id="github-skips-non-repo",
+            ),
+            pytest.param(
+                {"Project-URL": ["Homepage, https://github.com/org/pkg"]},
+                "https://github.com/org/pkg",
+                id="github-homepage-label",
+            ),
+            pytest.param(
+                {"Project-URL": ["Source, https://gitlab.com/org/pkg"]},
+                "https://gitlab.com/org/pkg",
+                id="gitlab",
+            ),
+            pytest.param(
+                {"Project-URL": ["Code, https://codeberg.org/org/pkg"]},
+                "https://codeberg.org/org/pkg",
+                id="codeberg",
+            ),
+            pytest.param(
+                {"Home-page": ["https://github.com/org/pkg"]},
+                "https://github.com/org/pkg",
+                id="home-page-fallback",
+            ),
+        ],
+    )
+    def test_repo_detected(self, metadata: dict[str, list[str]], expected: str) -> None:
+        assert self._repo(metadata) == expected
 
-    def test_github_homepage_label(self) -> None:
-        """A GitHub URL under the 'Homepage' label is still detected."""
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            metadata={
-                "Project-URL": [
-                    "Homepage, https://github.com/org/pkg",
-                ],
-            },
-        )
-        urls = report.project_urls()
-        assert urls.get("repo") == "https://github.com/org/pkg"
-
-    def test_gitlab_url(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            metadata={
-                "Project-URL": [
-                    "Source, https://gitlab.com/org/pkg",
-                ],
-            },
-        )
-        urls = report.project_urls()
-        assert urls.get("repo") == "https://gitlab.com/org/pkg"
-
-    def test_codeberg_url(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            metadata={
-                "Project-URL": [
-                    "Code, https://codeberg.org/org/pkg",
-                ],
-            },
-        )
-        urls = report.project_urls()
-        assert urls.get("repo") == "https://codeberg.org/org/pkg"
+    @pytest.mark.parametrize(
+        ("metadata", "expected"),
+        [
+            pytest.param(
+                {"Project-URL": ["Bug Tracker, https://github.com/org/pkg/issues"]},
+                "https://github.com/org/pkg",
+                id="strips-issues-suffix",
+            ),
+            pytest.param(
+                {"Project-URL": ["Source, https://github.com/org/pkg/tree/main/src"]},
+                "https://github.com/org/pkg",
+                id="strips-deep-path",
+            ),
+            pytest.param(
+                {"Project-URL": ["Source Code, http://github.com/org/pkg"]},
+                "https://github.com/org/pkg",
+                id="http-to-https",
+            ),
+        ],
+    )
+    def test_url_normalized(
+        self, metadata: dict[str, list[str]], expected: str
+    ) -> None:
+        assert self._repo(metadata) == expected
 
     def test_first_repo_url_wins(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            metadata={
-                "Project-URL": [
-                    "Source, https://github.com/org/pkg",
-                    "Mirror, https://gitlab.com/org/pkg",
-                ],
-            },
-        )
-        urls = report.project_urls()
-        assert urls.get("repo") == "https://github.com/org/pkg"
+        metadata = {
+            "Project-URL": [
+                "Source, https://github.com/org/pkg",
+                "Mirror, https://gitlab.com/org/pkg",
+            ],
+        }
+        assert self._repo(metadata) == "https://github.com/org/pkg"
 
-    def test_no_repo_host(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            metadata={
-                "Project-URL": [
-                    "Homepage, https://example.com/",
-                    "Documentation, https://docs.example.com/",
-                ],
-            },
-        )
-        urls = report.project_urls()
-        assert "repo" not in urls
+    def test_home_page_priority_over_project_url(self) -> None:
+        metadata = {
+            "Project-URL": ["Source, https://github.com/org/pkg"],
+            "Home-page": ["https://github.com/other/pkg"],
+        }
+        assert self._repo(metadata) == "https://github.com/other/pkg"
+
+    @pytest.mark.parametrize(
+        "metadata",
+        [
+            pytest.param(
+                {
+                    "Project-URL": [
+                        "Homepage, https://example.com/",
+                        "Documentation, https://docs.example.com/",
+                    ]
+                },
+                id="project-url-no-repo-host",
+            ),
+            pytest.param(
+                {"Home-page": ["https://example.com/"]},
+                id="home-page-no-repo-host",
+            ),
+        ],
+    )
+    def test_no_repo(self, metadata: dict[str, list[str]]) -> None:
+        assert self._repo(metadata) is None
 
 
 class TestRenderDetailProjectUrls:
