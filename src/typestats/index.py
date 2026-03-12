@@ -388,10 +388,11 @@ def _unfold_any(
                 fset=_unfold_accessor(fset, import_map, mod, alias_targets),
                 fdel=_unfold_accessor(fdel, import_map, mod, alias_targets),
             )
-        case analyze.Class(name=cls_name, members=members):
+        case analyze.Class(name=cls_name, members=members, is_protocol=is_protocol):
             return analyze.Class(
                 cls_name,
                 tuple(_unfold_any(m, import_map, mod, alias_targets) for m in members),
+                is_protocol=is_protocol,
             )
         case _:
             return type_

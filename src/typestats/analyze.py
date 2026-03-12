@@ -1024,7 +1024,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 self._defined_names.add(name)
 
             is_protocol = any(
-                self._is_name_in(b.value, _PROTOCOL_BASES) for b in node.bases
+                self._is_name_in(
+                    b.value.value if isinstance(b.value, cst.Subscript) else b.value,
+                    _PROTOCOL_BASES,
+                )
+                for b in node.bases
             )
             stack.append(
                 _ClassStackItem(

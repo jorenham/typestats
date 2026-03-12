@@ -1546,6 +1546,21 @@ class TestProtocol:
         assert isinstance(cls, Class)
         assert cls.is_protocol
 
+    def test_generic_protocol(self) -> None:
+        src = textwrap.dedent("""
+        from typing import Protocol, TypeVar
+
+        T = TypeVar("T")
+
+        class Container(Protocol[T]):
+            def get(self) -> T: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Container"]
+        assert isinstance(cls, Class)
+        assert cls.is_protocol
+
     def test_non_protocol_class(self) -> None:
         src = textwrap.dedent("""
         class Foo:
