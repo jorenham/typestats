@@ -84,18 +84,6 @@
         },
         {
           "kind": "function",
-          "name": "zmq.backend.has",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "zmq.backend.proxy",
           "n_typed": 4,
           "n_any": 0,
@@ -108,15 +96,15 @@
         },
         {
           "kind": "function",
-          "name": "zmq.backend.curve_keypair",
-          "n_typed": 1,
+          "name": "zmq.backend.zmq_poll",
+          "n_typed": 3,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -129,6 +117,18 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "zmq.backend.zmq_errno",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
           "kind": "function",
@@ -152,7 +152,7 @@
         },
         {
           "kind": "function",
-          "name": "zmq.backend.zmq_errno",
+          "name": "zmq.backend.curve_keypair",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -164,23 +164,15 @@
         },
         {
           "kind": "function",
-          "name": "zmq.backend.zmq_poll",
-          "n_typed": 3,
+          "name": "zmq.backend.has",
+          "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "name",
-          "name": "zmq.backend.PYZMQ_DRAFT_API",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -271,22 +263,6 @@
           "n_method_overloads": 5,
           "n_method_params": 6,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.backend.T",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.backend.monitored_queue",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "function",
@@ -539,6 +515,30 @@
           "n_method_overloads": 4,
           "n_method_params": 7,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.backend.T",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.backend.monitored_queue",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.backend.PYZMQ_DRAFT_API",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -590,14 +590,6 @@
         },
         {
           "kind": "name",
-          "name": "zmq.__version__",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
           "name": "zmq.COPY_THRESHOLD",
           "n_typed": 1,
           "n_any": 0,
@@ -606,7 +598,7 @@
         },
         {
           "kind": "function",
-          "name": "zmq.get_includes",
+          "name": "zmq.get_library_dirs",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -617,8 +609,16 @@
           "n_function_params": 0
         },
         {
+          "kind": "name",
+          "name": "zmq.__version__",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "function",
-          "name": "zmq.get_library_dirs",
+          "name": "zmq.get_includes",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -656,6 +656,90 @@
     {
       "path": "zmq/asyncio.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "zmq.asyncio.install",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.asyncio.Context",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Context.__init__",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.asyncio.Poller",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Poller._watch_raw_socket",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Poller._unwatch_raw_sockets",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 6,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "zmq.asyncio.ZMQEventLoop",
@@ -738,90 +822,6 @@
           "n_methods": 3,
           "n_method_overloads": 3,
           "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "zmq.asyncio.Context",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Context.__init__",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "zmq.asyncio.install",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "class",
-          "name": "zmq.asyncio.Poller",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Poller._watch_raw_socket",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Poller._unwatch_raw_sockets",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 6,
           "n_properties": 0
         }
       ],
@@ -947,6 +947,14 @@
     {
       "path": "zmq/auth/base.py",
       "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "zmq.auth.base.CURVE_ALLOW_ANY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
         {
           "kind": "class",
           "name": "zmq.auth.base.Authenticator",
@@ -1144,14 +1152,6 @@
           "n_method_overloads": 15,
           "n_method_params": 26,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.auth.base.CURVE_ALLOW_ANY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1180,6 +1180,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "zmq.auth.certs.load_certificates",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
           "name": "zmq.auth.certs.create_certificates",
           "n_typed": 4,
           "n_any": 0,
@@ -1193,18 +1205,6 @@
         {
           "kind": "function",
           "name": "zmq.auth.certs.load_certificate",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "zmq.auth.certs.load_certificates",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -1589,6 +1589,14 @@
       "path": "zmq/backend/cffi/error.py",
       "symbol_reports": [
         {
+          "kind": "name",
+          "name": "zmq.backend.cffi.error.zmq_errno",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
           "kind": "function",
           "name": "zmq.backend.cffi.error.strerror",
           "n_typed": 0,
@@ -1599,14 +1607,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.backend.cffi.error.zmq_errno",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -1817,6 +1817,14 @@
     {
       "path": "zmq/backend/cffi/socket.py",
       "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "zmq.backend.cffi.socket.IPC_PATH_MAX_LEN",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
         {
           "kind": "class",
           "name": "zmq.backend.cffi.socket.Socket",
@@ -2031,14 +2039,6 @@
           "n_method_overloads": 15,
           "n_method_params": 28,
           "n_properties": 2
-        },
-        {
-          "kind": "name",
-          "name": "zmq.backend.cffi.socket.IPC_PATH_MAX_LEN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -2079,6 +2079,18 @@
         },
         {
           "kind": "function",
+          "name": "zmq.backend.cffi.utils.curve_keypair",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
           "name": "zmq.backend.cffi.utils.has",
           "n_typed": 0,
           "n_any": 0,
@@ -2096,18 +2108,6 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "zmq.backend.cffi.utils.curve_keypair",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
         }
       ],
       "type_ignores": [],
@@ -2338,256 +2338,7 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "zmq.constants.EVENT_CONNECTED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SHARED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RECONNECT_STOP_AFTER_DISCONNECT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TOPICS_COUNT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_UNSPECIFIED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IPV4ONLY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SUBSCRIBE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENETUNREACH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_MESSAGE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.PollEvent",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTER_NOTIFY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ECONNRESET",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENETDOWN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENOCOMPATPROTO",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PRIORITY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.HELLO_MSG",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IntEnum",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XSUB",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XREP",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_CCE_ECNONLY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.VMCI_BUFFER_MAX_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GSSAPI",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RECONNECT_IVL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GATHER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_BLOCK_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_BAD_REQUEST_ID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_MONITOR_STOPPED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_DISCONNECTED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XPUB_VERBOSE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.THREAD_PRIORITY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.BINDTODEVICE",
+          "name": "zmq.constants.BACKLOG",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -2603,1020 +2354,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.WSS_TRUST_SYSTEM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.VMCI_CONNECT_TIMEOUT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.SocketOption",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SocketOption.__new__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENTS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.ReconnectStop",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ReconnectStop._global_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.WSS_KEY_PEM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROBE_ROUTER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PEER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MSG_T_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_LISTENING",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_BAD_VERSION",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.WSS_CERT_PEM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.HEARTBEAT_TTL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ZAP_ENFORCE_DOMAIN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MAX_SOCKETS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XPUB_MANUAL_LAST_VALUE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PUSH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENETRESET",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.Event",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Event._global_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CONNECT_ROUTING_ID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SOCKS_PASSWORD",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CHANNEL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.BUSY_POLL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.DISCONNECT_MSG",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PLAIN_USERNAME",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GSSAPI_SERVICE_PRINCIPAL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MULTICAST_MAXTPDU",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NOTIFY_CONNECT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.REP",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ECONNREFUSED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTING_ID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CONNECT_RID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_WS_UNSPECIFIED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.DeviceType",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TOS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENOTSUP",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.SocketType",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_FIXED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SOCKS_PROXY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTER_RAW",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CURVE_SECRETKEY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SNDTIMEO",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CONNECT_TIMEOUT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.FD",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.UNSUBSCRIBE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_CC",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SUB",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IO_THREADS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PLAIN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IDENTITY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IMMEDIATE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.DEALER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_MALFORMED_REPLY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SNDMORE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.METADATA",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.RouterNotify",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RouterNotify._global_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTER_MANDATORY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.STREAM_NOTIFY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.POLLERR",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EINPROGRESS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_HANDSHAKE_FAILED_AUTH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.POLLIN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_BUFFER_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.SecurityMechanism",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XSUB_VERBOSE_UNSUBSCRIBE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NOBLOCK",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RECONNECT_STOP_CONN_REFUSED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.Enum",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SOCKET_LIMIT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.DELAY_ATTACH_ON_CONNECT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_UNICAST_NACK",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SNDHWM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_CCE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_CLOSED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MAXMSGSIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EMSGSIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SERVER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_ALL_V2",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_ERROR",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.VMCI_BUFFER_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CURVE_SERVER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PAIR",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_ACCEPT_FAILED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_ALL_V1",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.MessageOption",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IPC_FILTER_PID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SRCFD",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_CONNECT_RETRIED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.BACKLOG",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.REQ_CORRELATE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IPV6",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.REQ_RELAXED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_UNSPECIFIED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.FAIL_UNROUTABLE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EADDRINUSE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_INITIATE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NULL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_CCL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.STREAMER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.HANDSHAKE_IVL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EPROTONOSUPPORT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_INVALID_METADATA",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "zmq.constants.Errno",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENOTCONN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GSSAPI_PLAINTEXT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ONLY_FIRST_SUBSCRIBE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_NUM_AUTOPARITY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TCP_KEEPALIVE_IDLE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RECONNECT_STOP",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IPC_FILTER_UID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GSSAPI_PRINCIPAL_NAMETYPE",
+          "name": "zmq.constants.ROUTER_HANDOVER",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3632,7 +2370,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.ETERM",
+          "name": "zmq.constants.PRIORITY",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3640,159 +2378,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.THREAD_SCHED_POLICY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENOTSOCK",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MORE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_CLOSE_FAILED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MECHANISM_MISMATCH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_MODE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EAGAIN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TCP_KEEPALIVE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ECONNABORTED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.HICCUP_MSG",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_HELLO",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTER_BEHAVIOR",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.BLOCKY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_KEY_EXCHANGE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IN_BATCH_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EAFNOSUPPORT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TCP_MAXRT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RCVHWM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_CONNECT_DELAYED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EMTHREAD",
+          "name": "zmq.constants.EFAULT",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3808,15 +2394,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.IntFlag",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.WSS_TRUST_PEM",
+          "name": "zmq.constants.SERVER",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3824,7 +2402,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.HEARTBEAT_TIMEOUT",
+          "name": "zmq.constants.ENOTCONN",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3832,135 +2410,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.INVERT_MATCHING",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_BIND_FAILED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RADIO",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ETIMEDOUT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_UNEXPECTED_COMMAND",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EHOSTUNREACH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.HWM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TCP_KEEPALIVE_INTVL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_PIPES_STATS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SNDBUF",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EFSM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MULTICAST_HOPS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RECONNECT_STOP_HANDSHAKE_FAILED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ZAP_DOMAIN",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MULTICAST_LOOP",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.OUT_BATCH_SIZE",
+          "name": "zmq.constants.NULL",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3976,7 +2426,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.EINVAL",
+          "name": "zmq.constants.ONLY_FIRST_SUBSCRIBE",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3984,7 +2434,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.SCATTER",
+          "name": "zmq.constants.CONNECT_TIMEOUT",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -3992,7 +2442,55 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.DONTWAIT",
+          "name": "zmq.constants.REQ",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.POLLPRI",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_UNSPECIFIED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_ERROR",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_DISCONNECTED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI_SERVER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ENOTSOCK",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4008,7 +2506,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.RECONNECT_IVL_MAX",
+          "name": "zmq.constants.REP",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4016,7 +2514,175 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.GSSAPI_PRINCIPAL",
+          "name": "zmq.constants.PLAIN",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MULTICAST_MAXTPDU",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.FD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.POLLERR",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MAX_SOCKETS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_BAD_VERSION",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CURVE_PUBLICKEY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_CC",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IPC_FILTER_GID",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EINPROGRESS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ECONNABORTED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EADDRNOTAVAIL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SNDMORE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_BLOCK_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_INITIATE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MECHANISM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_ALL_V2",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECOVERY_IVL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_CLOSED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MULTICAST_HOPS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_KEY_EXCHANGE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TOS",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4054,7 +2720,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.CURVE_SERVERKEY",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_INVALID_SEQUENCE",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4062,7 +2728,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_INVALID_METADATA",
+          "name": "zmq.constants.EVENT_CONNECTED",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4070,7 +2736,32 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.RATE",
+          "name": "zmq.constants.EFSM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.Errno",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PUB",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4078,111 +2769,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.VMCI_BUFFER_MIN_SIZE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RCVBUF",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.THREAD_SAFE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.MECHANISM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XPUB_WELCOME_MSG",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.LAST_ENDPOINT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_WELCOME",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.THREAD_AFFINITY_CPU_REMOVE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.THREAD_NAME_PREFIX",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.POLLPRI",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_READY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.LINGER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CLIENT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TCP_KEEPALIVE_CNT",
+          "name": "zmq.constants.ROUTER_NOTIFY",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4198,71 +2785,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.DGRAM",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ROUTER_HANDOVER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_HANDSHAKE_FAILED_PROTOCOL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.REQ",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.WSS_HOSTNAME",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_HANDSHAKE_FAILED_NO_DETAIL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.USE_FD",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PLAIN_SERVER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PLAIN_PASSWORD",
+          "name": "zmq.constants.TCP_MAXRT",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4278,7 +2801,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.RECOVERY_IVL",
+          "name": "zmq.constants.XREQ",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4286,7 +2809,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.EFAULT",
+          "name": "zmq.constants.SUB",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4294,7 +2817,1118 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.EADDRNOTAVAIL",
+          "name": "zmq.constants.EADDRINUSE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_CCL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_BAD_REQUEST_ID",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.WSS_TRUST_SYSTEM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ENETRESET",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.VMCI_BUFFER_MAX_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_PIPES_STATS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RCVBUF",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IO_THREADS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_CONNECT_DELAYED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ENOBUFS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SNDTIMEO",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IPC_FILTER_PID",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SOCKET_LIMIT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.SocketType",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.WSS_KEY_PEM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.HWM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XPUB_NODROP",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TYPE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.OUT_BATCH_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.LOOPBACK_FASTPATH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.QUEUE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ETERM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PLAIN_SERVER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_WELCOME",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ZAP_DOMAIN",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XPUB_WELCOME_MSG",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.HELLO_MSG",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ENETUNREACH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MSG_T_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PLAIN_USERNAME",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.POLLIN",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EMSGSIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IntEnum",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.FAIL_UNROUTABLE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EMTHREAD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EAFNOSUPPORT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_HANDSHAKE_FAILED_NO_DETAIL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.DGRAM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PULL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.LAST_ENDPOINT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_PUSH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.STREAMER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROBE_ROUTER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_CONNECT_RETRIED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PAIR",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CONNECT_ROUTING_ID",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.THREAD_NAME_PREFIX",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IPV6",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.INVERT_MATCHING",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.WSS_HOSTNAME",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XPUB",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.WSS_TRUST_PEM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CURVE_SERVER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TOPICS_COUNT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RATE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RCVHWM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XREP",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_HELLO",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MORE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.ReconnectStop",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ReconnectStop._global_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.USE_FD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TCP_KEEPALIVE_CNT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.BINDTODEVICE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.DEALER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI_PRINCIPAL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_ACCEPT_FAILED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.THREAD_AFFINITY_CPU_ADD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.AFFINITY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECONNECT_STOP",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SUBSCRIBE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XPUB_MANUAL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.STREAM_NOTIFY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.VMCI_CONNECT_TIMEOUT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.PollEvent",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.Event",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Event._global_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.THREAD_PRIORITY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECONNECT_IVL_MAX",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.THREAD_SAFE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.DONTWAIT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.MessageOption",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RCVTIMEO",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CONNECT_RID",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECONNECT_STOP_HANDSHAKE_FAILED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECONNECT_IVL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_CLOSE_FAILED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_BUFFER_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ENOTSUP",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_CCE_ECNONLY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ZAP_ENFORCE_DOMAIN",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_INVALID_METADATA",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.HEARTBEAT_TIMEOUT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MECHANISM_MISMATCH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CURVE_SERVERKEY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_MODE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GATHER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EPROTONOSUPPORT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CLIENT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SCATTER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PLAIN_PASSWORD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CONFLATE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.HEARTBEAT_TTL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MULTICAST_LOOP",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SOCKS_USERNAME",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ROUTING_ID",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_ACCEPTED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IPV4ONLY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ROUTER_BEHAVIOR",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ETIMEDOUT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CHANNEL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.THREAD_SCHED_POLICY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TCP_KEEPALIVE_INTVL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IN_BATCH_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.BLOCKY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_MONITOR_STOPPED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.REQ_RELAXED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ECONNREFUSED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.THREAD_AFFINITY_CPU_REMOVE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_MESSAGE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENTS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_INVALID_METADATA",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_HANDSHAKE_FAILED_AUTH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PEER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.HEARTBEAT_IVL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_INVALID_STATUS_CODE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EHOSTUNREACH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.MAXMSGSIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI_PRINCIPAL_NAMETYPE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SOCKS_PROXY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IPC_FILTER_UID",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4303,6 +3937,347 @@
         {
           "kind": "name",
           "name": "zmq.constants.NORM_NUM_PARITY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.RouterNotify",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RouterNotify._global_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.DeviceType",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECONNECT_STOP_CONN_REFUSED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_FIXED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.WSS_CERT_PEM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NOBLOCK",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.VMCI_BUFFER_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TCP_KEEPALIVE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ROUTER_MANDATORY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SNDBUF",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NOTIFY_CONNECT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SOCKS_PASSWORD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI_SERVICE_PRINCIPAL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XSUB",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_READY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.DELAY_ATTACH_ON_CONNECT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_LISTENING",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.REQ_CORRELATE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.Enum",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CURVE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_NUM_AUTOPARITY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TCP_ACCEPT_FILTER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SNDHWM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ECONNRESET",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XSUB_VERBOSE_UNSUBSCRIBE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RADIO",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_WS_UNSPECIFIED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_HANDSHAKE_FAILED_PROTOCOL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EAGAIN",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.POLLOUT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_BIND_FAILED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.SocketOption",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SocketOption.__new__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.STREAM",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_MALFORMED_REPLY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EVENT_ALL_V1",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.CURVE_SECRETKEY",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4326,6 +4301,223 @@
           "n_properties": 0
         },
         {
+          "kind": "name",
+          "name": "zmq.constants.SHARED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.SRCFD",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.XPUB_MANUAL_LAST_VALUE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ENOCOMPATPROTO",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.UNSUBSCRIBE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.DISCONNECT_MSG",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_UNSPECIFIED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_MALFORMED_COMMAND_UNSPECIFIED",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.HICCUP_MSG",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI_SERVICE_PRINCIPAL_NAMETYPE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PUSH",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.TCP_KEEPALIVE_IDLE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.BUSY_POLL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IMMEDIATE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.IntFlag",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.LINGER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.NORM_UNICAST_NACK",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RECONNECT_STOP_AFTER_DISCONNECT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.EINVAL",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "zmq.constants.SecurityMechanism",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.VMCI_BUFFER_MIN_SIZE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.METADATA",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.ROUTER",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.RCVMORE",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_UNEXPECTED_COMMAND",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "zmq.constants.GSSAPI_PLAINTEXT",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "zmq.constants.ContextOption",
           "methods": [],
@@ -4344,55 +4536,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.THREAD_AFFINITY_CPU_ADD",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.HEARTBEAT_IVL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.SOCKS_USERNAME",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.POLLOUT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RCVMORE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.QUEUE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.RCVTIMEO",
+          "name": "zmq.constants.NORM_CCE",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4408,6 +4552,14 @@
         },
         {
           "kind": "name",
+          "name": "zmq.constants.IDENTITY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
           "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_CRYPTOGRAPHIC",
           "n_typed": 1,
           "n_any": 0,
@@ -4416,7 +4568,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.XPUB_NODROP",
+          "name": "zmq.constants.ENETDOWN",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4424,7 +4576,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.PULL",
+          "name": "zmq.constants.XPUB_VERBOSE",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4432,7 +4584,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.STREAM",
+          "name": "zmq.constants.ROUTER_RAW",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4440,159 +4592,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.constants.PUB",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GSSAPI_SERVER",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CURVE_PUBLICKEY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TYPE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CONFLATE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.NORM_PUSH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.GSSAPI_SERVICE_PRINCIPAL_NAMETYPE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XPUB",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZMTP_INVALID_SEQUENCE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.IPC_FILTER_GID",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XREQ",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_INVALID_STATUS_CODE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.CURVE",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.EVENT_ACCEPTED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.AFFINITY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.LOOPBACK_FASTPATH",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.PROTOCOL_ERROR_ZAP_UNSPECIFIED",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.XPUB_MANUAL",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.ENOBUFS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.constants.TCP_ACCEPT_FILTER",
+          "name": "zmq.constants.HANDSHAKE_IVL",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4883,7 +4883,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "zmq.decorators.context",
+          "name": "zmq.decorators.socket",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -4895,7 +4895,7 @@
         },
         {
           "kind": "function",
-          "name": "zmq.decorators.socket",
+          "name": "zmq.decorators.context",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -5256,7 +5256,7 @@
         },
         {
           "kind": "class",
-          "name": "zmq.devices.monitoredqueuedevice.ThreadMonitoredQueue",
+          "name": "zmq.devices.monitoredqueuedevice.ProcessMonitoredQueue",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5273,7 +5273,7 @@
         },
         {
           "kind": "class",
-          "name": "zmq.devices.monitoredqueuedevice.ProcessMonitoredQueue",
+          "name": "zmq.devices.monitoredqueuedevice.ThreadMonitoredQueue",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5316,7 +5316,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "zmq.devices.proxydevice.ThreadProxy",
+          "name": "zmq.devices.proxydevice.Proxy",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5350,7 +5350,7 @@
         },
         {
           "kind": "class",
-          "name": "zmq.devices.proxydevice.Proxy",
+          "name": "zmq.devices.proxydevice.ThreadProxy",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5393,7 +5393,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "zmq.devices.proxysteerabledevice.ProcessProxySteerable",
+          "name": "zmq.devices.proxysteerabledevice.ProxySteerable",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5410,7 +5410,7 @@
         },
         {
           "kind": "class",
-          "name": "zmq.devices.proxysteerabledevice.ProxySteerable",
+          "name": "zmq.devices.proxysteerabledevice.ProcessProxySteerable",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5487,6 +5487,36 @@
         },
         {
           "kind": "class",
+          "name": "zmq.error.DraftFDWarning",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DraftFDWarning.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "zmq.error.ZMQError",
           "methods": [
             {
@@ -5541,6 +5571,48 @@
         },
         {
           "kind": "class",
+          "name": "zmq.error.InterruptedSystemCall",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InterruptedSystemCall.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "InterruptedSystemCall.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "zmq.error.Again",
           "methods": [
             {
@@ -5571,37 +5643,7 @@
         },
         {
           "kind": "class",
-          "name": "zmq.error.ContextTerminated",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ContextTerminated.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "zmq.error.NotDone",
+          "name": "zmq.error.ZMQBindError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5618,7 +5660,7 @@
         },
         {
           "kind": "class",
-          "name": "zmq.error.ZMQBindError",
+          "name": "zmq.error.NotDone",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5689,41 +5731,11 @@
         },
         {
           "kind": "class",
-          "name": "zmq.error.DraftFDWarning",
+          "name": "zmq.error.ContextTerminated",
           "methods": [
             {
               "kind": "function",
-              "name": "DraftFDWarning.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "zmq.error.InterruptedSystemCall",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "InterruptedSystemCall.__init__",
+              "name": "ContextTerminated.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -5732,30 +5744,18 @@
               "n_params": 2,
               "n_function_overloads": 1,
               "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "InterruptedSystemCall.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
             }
           ],
           "properties": [],
-          "n_typable": 4,
+          "n_typable": 3,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 3,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
+          "n_methods": 1,
+          "n_method_overloads": 1,
           "n_method_params": 2,
           "n_properties": 0
         }
@@ -5825,66 +5825,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "zmq.eventloop.future.Poller",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Poller._watch_raw_socket",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Poller._unwatch_raw_sockets",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 6,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "zmq.eventloop.future.CancelledError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "zmq.eventloop.future.Socket",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5939,6 +5880,65 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.eventloop.future.Poller",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Poller._watch_raw_socket",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Poller._unwatch_raw_sockets",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.eventloop.future.Socket",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
           "n_properties": 0
         }
       ],
@@ -6585,6 +6585,14 @@
       "path": "zmq/log/handlers.py",
       "symbol_reports": [
         {
+          "kind": "name",
+          "name": "zmq.log.handlers.TOPIC_DELIM",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "class",
           "name": "zmq.log.handlers.PUBHandler",
           "methods": [
@@ -6708,14 +6716,6 @@
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.log.handlers.TOPIC_DELIM",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -6782,19 +6782,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "zmq.ssh.tunnel.try_passwordless_ssh",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "zmq.ssh.tunnel.openssh_tunnel",
+          "name": "zmq.ssh.tunnel.paramiko_tunnel",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 8,
@@ -6826,7 +6814,19 @@
         },
         {
           "kind": "function",
-          "name": "zmq.ssh.tunnel.paramiko_tunnel",
+          "name": "zmq.ssh.tunnel.try_passwordless_ssh",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "zmq.ssh.tunnel.openssh_tunnel",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 8,
@@ -7019,14 +7019,6 @@
     {
       "path": "zmq/sugar/context.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "zmq.sugar.context.SyncContext",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "zmq.sugar.context.Context",
@@ -7296,6 +7288,14 @@
           "n_method_overloads": 23,
           "n_method_params": 26,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.sugar.context.SyncContext",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [
@@ -8213,6 +8213,14 @@
       "path": "zmq/sugar/tracker.py",
       "symbol_reports": [
         {
+          "kind": "name",
+          "name": "zmq.sugar.tracker._FINISHED_TRACKER",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "zmq.sugar.tracker.MessageTracker",
           "methods": [
@@ -8262,14 +8270,6 @@
           "n_method_overloads": 2,
           "n_method_params": 2,
           "n_properties": 1
-        },
-        {
-          "kind": "name",
-          "name": "zmq.sugar.tracker._FINISHED_TRACKER",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -8334,7 +8334,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.sugar.version.__revision__",
+          "name": "zmq.sugar.version.__version__",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -8342,7 +8342,7 @@
         },
         {
           "kind": "name",
-          "name": "zmq.sugar.version.__version__",
+          "name": "zmq.sugar.version.__revision__",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -8383,6 +8383,48 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "zmq.utils.garbage.GarbageCollectorThread",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GarbageCollectorThread.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GarbageCollectorThread.run",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_properties": 0
         },
         {
           "kind": "name",
@@ -8534,48 +8576,6 @@
           "n_method_overloads": 9,
           "n_method_params": 3,
           "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "zmq.utils.garbage.GarbageCollectorThread",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "GarbageCollectorThread.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "GarbageCollectorThread.run",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -8642,9 +8642,9 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "zmq.utils.jsonapi.loads",
-          "n_typed": 2,
-          "n_any": 0,
+          "name": "zmq.utils.jsonapi.dumps",
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 1,
           "n_overloads": 1,
           "n_typable": 3,
@@ -8654,9 +8654,9 @@
         },
         {
           "kind": "function",
-          "name": "zmq.utils.jsonapi.dumps",
-          "n_typed": 1,
-          "n_any": 1,
+          "name": "zmq.utils.jsonapi.loads",
+          "n_typed": 2,
+          "n_any": 0,
           "n_untyped": 1,
           "n_overloads": 1,
           "n_typable": 3,
@@ -8739,6 +8739,18 @@
       "path": "zmq/utils/strtypes.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "zmq.utils.strtypes.cast_bytes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
           "kind": "name",
           "name": "zmq.utils.strtypes.u",
           "n_typed": 0,
@@ -8748,7 +8760,23 @@
         },
         {
           "kind": "name",
-          "name": "zmq.utils.strtypes.bytes",
+          "name": "zmq.utils.strtypes.b",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.utils.strtypes.unicode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "zmq.utils.strtypes.basestring",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -8767,36 +8795,8 @@
           "n_function_params": 3
         },
         {
-          "kind": "function",
-          "name": "zmq.utils.strtypes.cast_bytes",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
           "kind": "name",
-          "name": "zmq.utils.strtypes.b",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.utils.strtypes.basestring",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "zmq.utils.strtypes.unicode",
+          "name": "zmq.utils.strtypes.bytes",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -8932,6 +8932,18 @@
       "path": "zmq/utils/z85.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "zmq.utils.z85.encode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
           "kind": "name",
           "name": "zmq.utils.z85.Z85CHARS",
           "n_typed": 0,
@@ -8958,18 +8970,6 @@
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "zmq.utils.z85.encode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],

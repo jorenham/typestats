@@ -91,7 +91,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "ipywidgets.load_ipython_extension",
+          "name": "ipywidgets.register_comm_target",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -103,7 +103,7 @@
         },
         {
           "kind": "function",
-          "name": "ipywidgets.register_comm_target",
+          "name": "ipywidgets.load_ipython_extension",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -152,7 +152,7 @@
         },
         {
           "kind": "function",
-          "name": "ipywidgets.comm.requires_ipykernel_shim",
+          "name": "ipywidgets.comm.get_comm_manager",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -164,7 +164,7 @@
         },
         {
           "kind": "function",
-          "name": "ipywidgets.comm.get_comm_manager",
+          "name": "ipywidgets.comm.requires_ipykernel_shim",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -214,6 +214,14 @@
         },
         {
           "kind": "name",
+          "name": "ipywidgets.embed.html_template",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
           "name": "ipywidgets.embed.snippet_template",
           "n_typed": 0,
           "n_any": 0,
@@ -222,27 +230,7 @@
         },
         {
           "kind": "name",
-          "name": "ipywidgets.embed.html_template",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.embed.dependency_state",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.embed.widget_view_template",
+          "name": "ipywidgets.embed.DEFAULT_EMBED_SCRIPT_URL",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -262,27 +250,31 @@
         },
         {
           "kind": "name",
-          "name": "ipywidgets.embed.DEFAULT_EMBED_REQUIREJS_URL",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.embed.DEFAULT_EMBED_SCRIPT_URL",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
           "name": "ipywidgets.embed.load_template",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.embed.requirejs_snippet_template",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.embed.embed_data",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -297,8 +289,20 @@
           "n_function_params": 2
         },
         {
+          "kind": "function",
+          "name": "ipywidgets.embed.dependency_state",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
           "kind": "name",
-          "name": "ipywidgets.embed.requirejs_snippet_template",
+          "name": "ipywidgets.embed.DEFAULT_EMBED_REQUIREJS_URL",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -325,16 +329,12 @@
           "n_function_params": 1
         },
         {
-          "kind": "function",
-          "name": "ipywidgets.embed.embed_data",
+          "kind": "name",
+          "name": "ipywidgets.embed.widget_view_template",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "name",
@@ -521,14 +521,6 @@
       "path": "ipywidgets/widgets/interaction.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "ipywidgets.widgets.interaction.interact",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "ipywidgets.widgets.interaction.interactive",
           "methods": [
@@ -679,26 +671,6 @@
           "n_properties": 0
         },
         {
-          "kind": "name",
-          "name": "ipywidgets.widgets.interaction.interact_manual",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.interaction.show_inline_matplotlib_plots",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
           "kind": "class",
           "name": "ipywidgets.widgets.interaction.fixed",
           "methods": [
@@ -751,6 +723,34 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.interaction.interact_manual",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.interaction.interact",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.interaction.show_inline_matplotlib_plots",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         }
       ],
       "type_ignores": [],
@@ -783,7 +783,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.bytes_from_json",
+          "name": "ipywidgets.widgets.trait_types.datetime_to_json",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -794,42 +794,32 @@
           "n_function_params": 2
         },
         {
-          "kind": "class",
-          "name": "ipywidgets.widgets.trait_types.CByteMemoryView",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CByteMemoryView.validate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
           "kind": "name",
-          "name": "ipywidgets.widgets.trait_types.datetime_serialization",
+          "name": "ipywidgets.widgets.trait_types.date_serialization",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.trait_types.naive_serialization",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.trait_types.time_to_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -879,8 +869,70 @@
           "n_properties": 0
         },
         {
+          "kind": "class",
+          "name": "ipywidgets.widgets.trait_types.NumberFormat",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NumberFormat.validate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
           "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.time_from_json",
+          "name": "ipywidgets.widgets.trait_types.date_to_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.trait_types.naive_to_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.trait_types.bytes_serialization",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.trait_types.datetime_from_json",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -903,12 +955,117 @@
           "n_function_params": 2
         },
         {
+          "kind": "function",
+          "name": "ipywidgets.widgets.trait_types.time_from_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.trait_types.bytes_from_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.trait_types.Time",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.trait_types.TypedTuple",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
           "kind": "name",
-          "name": "ipywidgets.widgets.trait_types.naive_serialization",
+          "name": "ipywidgets.widgets.trait_types.datetime_serialization",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.trait_types.CByteMemoryView",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CByteMemoryView.validate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.trait_types.Datetime",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -953,42 +1110,8 @@
           "n_properties": 0
         },
         {
-          "kind": "class",
-          "name": "ipywidgets.widgets.trait_types.TypedTuple",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.trait_types.Datetime",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
           "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.time_to_json",
+          "name": "ipywidgets.widgets.trait_types.date_from_json",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -997,6 +1120,14 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.trait_types.time_serialization",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1039,137 +1170,6 @@
           "n_method_overloads": 2,
           "n_method_params": 2,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.trait_types.Time",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.datetime_to_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.date_from_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.widgets.trait_types.bytes_serialization",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.date_to_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.naive_to_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.trait_types.NumberFormat",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NumberFormat.validate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.widgets.trait_types.time_serialization",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.widgets.trait_types.date_serialization",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.trait_types.datetime_from_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -1321,84 +1321,6 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "ipywidgets.widgets.widget.PROTOCOL_VERSION_MAJOR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.widgets.widget.widget_serialization",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget.CallbackDispatcher",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CallbackDispatcher.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "CallbackDispatcher.register_callback",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.widgets.widget.TRAITLETS_FILE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.widget.envset",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "name",
           "name": "ipywidgets.widgets.widget.JUPYTER_WIDGETS_ECHO",
           "n_typed": 0,
           "n_any": 0,
@@ -1434,14 +1356,6 @@
           "n_method_overloads": 1,
           "n_method_params": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "ipywidgets.widgets.widget.CONTROL_PROTOCOL_VERSION_MAJOR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         },
         {
           "kind": "class",
@@ -1508,6 +1422,34 @@
           "n_method_overloads": 4,
           "n_method_params": 13,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.widget.envset",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.widget.CONTROL_PROTOCOL_VERSION_MAJOR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.widget.PROTOCOL_VERSION_MAJOR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -2051,6 +1993,64 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget.CallbackDispatcher",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CallbackDispatcher.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CallbackDispatcher.register_callback",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.widget.TRAITLETS_FILE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "ipywidgets.widgets.widget.widget_serialization",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -2088,24 +2088,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_bool.ToggleButton",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_bool.Checkbox",
+          "name": "ipywidgets.widgets.widget_bool.CheckboxStyle",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2139,7 +2122,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_bool.CheckboxStyle",
+          "name": "ipywidgets.widgets.widget_bool.Checkbox",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2157,6 +2140,23 @@
         {
           "kind": "class",
           "name": "ipywidgets.widgets.widget_bool.ToggleButtonStyle",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_bool.ToggleButton",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2201,41 +2201,24 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_box.GridBox",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_box.HBox",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "ipywidgets.widgets.widget_box.VBox",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_box.GridBox",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2278,6 +2261,23 @@
           "n_methods": 1,
           "n_method_overloads": 1,
           "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_box.HBox",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
           "n_properties": 0
         }
       ],
@@ -2487,7 +2487,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_controller.Axis",
+          "name": "ipywidgets.widgets.widget_controller.Controller",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2504,7 +2504,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_controller.Controller",
+          "name": "ipywidgets.widgets.widget_controller.Axis",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2880,58 +2880,41 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_float.FloatLogSlider",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_float.FloatText",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_float.BoundedFloatText",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "ipywidgets.widgets.widget_float.FloatSlider",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_float.FloatRangeSlider",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_float.FloatLogSlider",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2965,7 +2948,24 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_float.FloatRangeSlider",
+          "name": "ipywidgets.widgets.widget_float.BoundedFloatText",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_float.FloatText",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3011,41 +3011,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_int.SliderStyle",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_int.IntRangeSlider",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_int.IntSlider",
+          "name": "ipywidgets.widgets.widget_int.IntText",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3079,7 +3045,24 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_int.ProgressStyle",
+          "name": "ipywidgets.widgets.widget_int.IntSlider",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_int.SliderStyle",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3113,7 +3096,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_int.IntProgress",
+          "name": "ipywidgets.widgets.widget_int.IntRangeSlider",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3130,7 +3113,24 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_int.IntText",
+          "name": "ipywidgets.widgets.widget_int.ProgressStyle",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_int.IntProgress",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3176,36 +3176,6 @@
     {
       "path": "ipywidgets/widgets/widget_layout.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_layout.LayoutTraitType",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LayoutTraitType.validate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "ipywidgets.widgets.widget_layout.Layout",
@@ -3257,6 +3227,36 @@
           "n_function_params": 0,
           "n_methods": 3,
           "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_layout.LayoutTraitType",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LayoutTraitType.validate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
           "n_method_params": 2,
           "n_properties": 0
         },
@@ -3313,60 +3313,6 @@
         },
         {
           "kind": "function",
-          "name": "ipywidgets.widgets.widget_link.jsdlink",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_link.Link",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Link.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Link.unlink",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
           "name": "ipywidgets.widgets.widget_link.jslink",
           "n_typed": 0,
           "n_any": 0,
@@ -3418,6 +3364,60 @@
           "n_method_overloads": 2,
           "n_method_params": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_link.Link",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Link.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Link.unlink",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "ipywidgets.widgets.widget_link.jsdlink",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -3763,60 +3763,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_selection.SelectionRangeSlider",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SelectionRangeSlider._propagate_options",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SelectionRangeSlider._validate_index",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "ipywidgets.widgets.widget_selection.findvalue",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "class",
           "name": "ipywidgets.widgets.widget_selection.ToggleButtons",
           "methods": [],
           "properties": [],
@@ -3833,8 +3779,37 @@
           "n_properties": 0
         },
         {
+          "kind": "function",
+          "name": "ipywidgets.widgets.widget_selection.findvalue",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_selection.Select",
+          "name": "ipywidgets.widgets.widget_selection.SelectMultiple",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_selection.ToggleButtonsStyle",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3868,7 +3843,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_selection.SelectMultiple",
+          "name": "ipywidgets.widgets.widget_selection.Select",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -3919,19 +3894,44 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_selection.ToggleButtonsStyle",
-          "methods": [],
+          "name": "ipywidgets.widgets.widget_selection.SelectionRangeSlider",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SelectionRangeSlider._propagate_options",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SelectionRangeSlider._validate_index",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
           "properties": [],
-          "n_typable": 0,
+          "n_typable": 4,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 4,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
           "n_properties": 0
         }
       ],
@@ -3977,23 +3977,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_selectioncontainer.Stack",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4052,6 +4035,23 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_selectioncontainer.Stack",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
           "n_properties": 0
         }
       ],
@@ -4137,6 +4137,36 @@
         },
         {
           "kind": "class",
+          "name": "ipywidgets.widgets.widget_string.Password",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Password._repr_keys",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "ipywidgets.widgets.widget_string.Combobox",
           "methods": [],
           "properties": [],
@@ -4154,41 +4184,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_string.HTMLMathStyle",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_string.Textarea",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_string.LabelStyle",
+          "name": "ipywidgets.widgets.widget_string.Label",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -4239,37 +4235,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_string.Password",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Password._repr_keys",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 1,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_string.HTMLMath",
+          "name": "ipywidgets.widgets.widget_string.HTMLMathStyle",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -4286,7 +4252,7 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_string.Label",
+          "name": "ipywidgets.widgets.widget_string.LabelStyle",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -4304,6 +4270,40 @@
         {
           "kind": "class",
           "name": "ipywidgets.widgets.widget_string.HTMLStyle",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_string.Textarea",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_string.HTMLMath",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -4395,71 +4395,24 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_tagsinput.TagsInput",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_tagsinput.FloatsInput",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_tagsinput.TagsInputBase",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TagsInputBase._validate_value",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "ipywidgets.widgets.widget_tagsinput.ColorsInput",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_tagsinput.IntsInput",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -4506,7 +4459,54 @@
         },
         {
           "kind": "class",
-          "name": "ipywidgets.widgets.widget_tagsinput.IntsInput",
+          "name": "ipywidgets.widgets.widget_tagsinput.TagsInputBase",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TagsInputBase._validate_value",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_tagsinput.FloatsInput",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_tagsinput.TagsInput",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -4550,6 +4550,60 @@
     {
       "path": "ipywidgets/widgets/widget_templates.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ipywidgets.widgets.widget_templates.TwoByTwoLayout",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TwoByTwoLayout.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TwoByTwoLayout._update_layout",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TwoByTwoLayout._child_changed",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "ipywidgets.widgets.widget_templates.AppLayout",
@@ -4691,60 +4745,6 @@
           "n_function_params": 0,
           "n_methods": 4,
           "n_method_overloads": 4,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ipywidgets.widgets.widget_templates.TwoByTwoLayout",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TwoByTwoLayout.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TwoByTwoLayout._update_layout",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TwoByTwoLayout._child_changed",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
           "n_method_params": 2,
           "n_properties": 0
         },

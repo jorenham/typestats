@@ -142,15 +142,15 @@
   },
   "module_reports": [
     {
-      "path": "dash/background_callback/managers/celery_manager.py",
+      "path": "dash/background_callback/managers/diskcache_manager.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "dash.background_callback.managers.celery_manager.CeleryManager",
+          "name": "dash.background_callback.managers.diskcache_manager.DiskcacheManager",
           "methods": [
             {
               "kind": "function",
-              "name": "CeleryManager.__init__",
+              "name": "DiskcacheManager.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -162,7 +162,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.terminate_job",
+              "name": "DiskcacheManager.terminate_job",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -174,7 +174,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.terminate_unhealthy_job",
+              "name": "DiskcacheManager.terminate_unhealthy_job",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -186,7 +186,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.job_running",
+              "name": "DiskcacheManager.job_running",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -198,7 +198,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.make_job_fn",
+              "name": "DiskcacheManager.make_job_fn",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -210,7 +210,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.get_task",
+              "name": "DiskcacheManager.clear_cache_entry",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -222,19 +222,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.clear_cache_entry",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "CeleryManager.call_job_fn",
+              "name": "DiskcacheManager.call_job_fn",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 5,
@@ -246,7 +234,19 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.get_progress",
+              "name": "DiskcacheManager._run_async_in_process",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "DiskcacheManager.get_progress",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -258,7 +258,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.result_ready",
+              "name": "DiskcacheManager.result_ready",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -270,7 +270,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.get_result",
+              "name": "DiskcacheManager.get_result",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -282,7 +282,7 @@
             },
             {
               "kind": "function",
-              "name": "CeleryManager.get_updated_props",
+              "name": "DiskcacheManager.get_updated_props",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -294,21 +294,21 @@
             }
           ],
           "properties": [],
-          "n_typable": 32,
+          "n_typable": 35,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 32,
+          "n_untyped": 35,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 12,
           "n_method_overloads": 12,
-          "n_method_params": 20,
+          "n_method_params": 23,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "dash.background_callback.managers.celery_manager.CeleryLongCallbackManager",
+          "name": "dash.background_callback.managers.diskcache_manager.DiskcacheLongCallbackManager",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -325,177 +325,23 @@
         }
       ],
       "type_ignores": [],
-      "name": "dash.background_callback.managers.celery_manager",
+      "name": "dash.background_callback.managers.diskcache_manager",
       "names": [
-        "dash.background_callback.managers.celery_manager.CeleryLongCallbackManager",
-        "dash.background_callback.managers.celery_manager.CeleryManager"
+        "dash.background_callback.managers.diskcache_manager.DiskcacheLongCallbackManager",
+        "dash.background_callback.managers.diskcache_manager.DiskcacheManager"
       ],
-      "n_typable": 32,
+      "n_typable": 35,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 32,
+      "n_untyped": 35,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
       "n_methods": 12,
       "n_method_overloads": 12,
-      "n_method_params": 20,
+      "n_method_params": 23,
       "n_classes": 2,
       "n_names": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "dash/_pages.py",
-      "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash._pages.PAGE_REGISTRY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "dash._pages.register_page",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 13,
-          "n_overloads": 1,
-          "n_typable": 13,
-          "n_params": 12,
-          "n_function_overloads": 1,
-          "n_function_params": 12
-        }
-      ],
-      "type_ignores": [],
-      "name": "dash._pages",
-      "names": [
-        "dash._pages.PAGE_REGISTRY",
-        "dash._pages.register_page"
-      ],
-      "n_typable": 14,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 14,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 12,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "dash/version.py",
-      "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.version.__version__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "dash.version",
-      "names": [
-        "dash.version.__version__"
-      ],
-      "n_typable": 0,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "dash/_jupyter.py",
-      "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash._jupyter.jupyter_dash",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "dash._jupyter",
-      "names": [
-        "dash._jupyter.jupyter_dash"
-      ],
-      "n_typable": 1,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 1,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "dash/_callback_context.py",
-      "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash._callback_context.callback_context",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "dash._callback_context.set_props",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "dash._callback_context",
-      "names": [
-        "dash._callback_context.callback_context",
-        "dash._callback_context.set_props"
-      ],
-      "n_typable": 4,
-      "n_typed": 2,
-      "n_any": 0,
-      "n_untyped": 2,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -576,23 +422,7 @@
         },
         {
           "kind": "name",
-          "name": "dash.dependencies.MATCH",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
           "name": "dash.dependencies.ALLSMALLER",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.dependencies.ALL",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -659,84 +489,20 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "dash.dependencies.handle_callback_args",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dash.dependencies.extract_grouped_input_state_callback_args",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dash.dependencies.extract_grouped_input_state_callback_args_from_args",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dash.dependencies.handle_grouped_callback_args",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
           "kind": "name",
-          "name": "dash.dependencies.ComponentIdType",
-          "n_typed": 1,
+          "name": "dash.dependencies.MATCH",
+          "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 1,
           "n_typable": 1
         },
         {
-          "kind": "function",
-          "name": "dash.dependencies.extract_grouped_output_callback_args",
+          "kind": "name",
+          "name": "dash.dependencies.ALL",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dash.dependencies.extract_callback_args",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -866,7 +632,19 @@
         },
         {
           "kind": "function",
-          "name": "dash.dependencies.extract_grouped_input_state_callback_args_from_kwargs",
+          "name": "dash.dependencies.extract_grouped_input_state_callback_args",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dash.dependencies.extract_grouped_input_state_callback_args_from_args",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -878,7 +656,75 @@
         },
         {
           "kind": "function",
+          "name": "dash.dependencies.handle_grouped_callback_args",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dash.dependencies.handle_callback_args",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "dash.dependencies.ComponentIdType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
           "name": "dash.dependencies.compute_input_state_grouping_indices",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash.dependencies.extract_grouped_output_callback_args",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dash.dependencies.extract_callback_args",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dash.dependencies.extract_grouped_input_state_callback_args_from_kwargs",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -926,16 +772,563 @@
       "n_type_ignores": 0
     },
     {
-      "path": "dash/dash.py",
+      "path": "dash/_get_paths.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "dash._get_paths.get_asset_url",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash._get_paths.strip_relative_path",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash._get_paths.get_relative_path",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "dash._get_paths",
+      "names": [
+        "dash._get_paths.get_asset_url",
+        "dash._get_paths.get_relative_path",
+        "dash._get_paths.strip_relative_path"
+      ],
+      "n_typable": 6,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 3,
+      "n_function_overloads": 3,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "dash/_callback.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "dash._callback.clientside_callback",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "dash._callback.callback",
+          "n_typed": 9,
+          "n_any": 1,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 13,
+          "n_params": 12,
+          "n_function_overloads": 1,
+          "n_function_params": 12
+        }
+      ],
+      "type_ignores": [],
+      "name": "dash._callback",
+      "names": [
+        "dash._callback.callback",
+        "dash._callback.clientside_callback"
+      ],
+      "n_typable": 17,
+      "n_typed": 10,
+      "n_any": 1,
+      "n_untyped": 6,
+      "n_functions": 2,
+      "n_function_overloads": 2,
+      "n_function_params": 15,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "dash/_patch.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "dash._patch.Patch",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Patch.__init__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__getstate__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__setstate__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__getitem__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__getattr__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__setattr__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__delattr__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__setitem__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__delitem__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__iadd__",
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__isub__",
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__imul__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__itruediv__",
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__ior__",
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__iter__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patch.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patch.append",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.prepend",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.insert",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Patch.clear",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patch.reverse",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patch.extend",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.remove",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Patch.update",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Patch.sort",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patch.to_plotly_json",
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 50,
+          "n_typed": 21,
+          "n_any": 13,
+          "n_untyped": 16,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 26,
+          "n_method_overloads": 26,
+          "n_method_params": 24,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "dash._patch",
+      "names": [
+        "dash._patch.Patch"
+      ],
+      "n_typable": 50,
+      "n_typed": 21,
+      "n_any": 13,
+      "n_untyped": 16,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 26,
+      "n_method_overloads": 26,
+      "n_method_params": 24,
+      "n_classes": 1,
+      "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "dash/_callback_context.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "dash._callback_context.set_props",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
           "kind": "name",
-          "name": "dash.dash.no_update",
+          "name": "dash._callback_context.callback_context",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "dash._callback_context",
+      "names": [
+        "dash._callback_context.callback_context",
+        "dash._callback_context.set_props"
+      ],
+      "n_typable": 4,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "dash/_pages.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "dash._pages.register_page",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_overloads": 1,
+          "n_typable": 13,
+          "n_params": 12,
+          "n_function_overloads": 1,
+          "n_function_params": 12
         },
+        {
+          "kind": "name",
+          "name": "dash._pages.PAGE_REGISTRY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "dash._pages",
+      "names": [
+        "dash._pages.PAGE_REGISTRY",
+        "dash._pages.register_page"
+      ],
+      "n_typable": 14,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 14,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 12,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "dash/dash.py",
+      "symbol_reports": [
         {
           "kind": "class",
           "name": "dash.dash.Dash",
@@ -1533,6 +1926,22 @@
         },
         {
           "kind": "name",
+          "name": "dash.dash.no_update",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.dash.DASH_VERSION_URL",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
           "name": "dash.dash.ddk_version",
           "n_typed": 0,
           "n_any": 0,
@@ -1540,28 +1949,8 @@
           "n_typable": 0
         },
         {
-          "kind": "function",
-          "name": "dash.dash.execute_async_function",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
           "kind": "name",
           "name": "dash.dash.plotly_version",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.dash.DASH_VERSION_URL",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1574,6 +1963,18 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash.dash.execute_async_function",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -1604,431 +2005,47 @@
       "n_type_ignores": 0
     },
     {
-      "path": "dash/_get_paths.py",
+      "path": "dash/version.py",
       "symbol_reports": [
         {
-          "kind": "function",
-          "name": "dash._get_paths.get_asset_url",
+          "kind": "name",
+          "name": "dash.version.__version__",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dash._get_paths.strip_relative_path",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "dash._get_paths.get_relative_path",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
-      "name": "dash._get_paths",
+      "name": "dash.version",
       "names": [
-        "dash._get_paths.get_asset_url",
-        "dash._get_paths.get_relative_path",
-        "dash._get_paths.strip_relative_path"
+        "dash.version.__version__"
       ],
-      "n_typable": 6,
+      "n_typable": 0,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 6,
-      "n_functions": 3,
-      "n_function_overloads": 3,
-      "n_function_params": 3,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
       "n_methods": 0,
       "n_method_overloads": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_names": 0,
+      "n_names": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
     {
-      "path": "dash/_patch.py",
+      "path": "dash/background_callback/managers/celery_manager.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "dash._patch.Patch",
+          "name": "dash.background_callback.managers.celery_manager.CeleryManager",
           "methods": [
             {
               "kind": "function",
-              "name": "Patch.__init__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__getstate__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__setstate__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__getitem__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__getattr__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__setattr__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__delattr__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__setitem__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__delitem__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__iadd__",
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__isub__",
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__imul__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__itruediv__",
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__ior__",
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__iter__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Patch.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Patch.append",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.prepend",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.insert",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Patch.clear",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Patch.reverse",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Patch.extend",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.remove",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Patch.update",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Patch.sort",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Patch.to_plotly_json",
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 50,
-          "n_typed": 21,
-          "n_any": 13,
-          "n_untyped": 16,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 26,
-          "n_method_overloads": 26,
-          "n_method_params": 24,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "dash._patch",
-      "names": [
-        "dash._patch.Patch"
-      ],
-      "n_typable": 50,
-      "n_typed": 21,
-      "n_any": 13,
-      "n_untyped": 16,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 26,
-      "n_method_overloads": 26,
-      "n_method_params": 24,
-      "n_classes": 1,
-      "n_names": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "dash/background_callback/managers/diskcache_manager.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "dash.background_callback.managers.diskcache_manager.DiskcacheManager",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DiskcacheManager.__init__",
+              "name": "CeleryManager.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -2040,7 +2057,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.terminate_job",
+              "name": "CeleryManager.terminate_job",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2052,7 +2069,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.terminate_unhealthy_job",
+              "name": "CeleryManager.terminate_unhealthy_job",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2064,7 +2081,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.job_running",
+              "name": "CeleryManager.job_running",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2076,7 +2093,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.make_job_fn",
+              "name": "CeleryManager.make_job_fn",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -2088,7 +2105,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.clear_cache_entry",
+              "name": "CeleryManager.get_task",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2100,7 +2117,19 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.call_job_fn",
+              "name": "CeleryManager.clear_cache_entry",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CeleryManager.call_job_fn",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 5,
@@ -2112,19 +2141,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager._run_async_in_process",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "DiskcacheManager.get_progress",
+              "name": "CeleryManager.get_progress",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2136,7 +2153,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.result_ready",
+              "name": "CeleryManager.result_ready",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2148,7 +2165,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.get_result",
+              "name": "CeleryManager.get_result",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -2160,7 +2177,7 @@
             },
             {
               "kind": "function",
-              "name": "DiskcacheManager.get_updated_props",
+              "name": "CeleryManager.get_updated_props",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2172,21 +2189,21 @@
             }
           ],
           "properties": [],
-          "n_typable": 35,
+          "n_typable": 32,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 35,
+          "n_untyped": 32,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 12,
           "n_method_overloads": 12,
-          "n_method_params": 23,
+          "n_method_params": 20,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "dash.background_callback.managers.diskcache_manager.DiskcacheLongCallbackManager",
+          "name": "dash.background_callback.managers.celery_manager.CeleryLongCallbackManager",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -2203,23 +2220,55 @@
         }
       ],
       "type_ignores": [],
-      "name": "dash.background_callback.managers.diskcache_manager",
+      "name": "dash.background_callback.managers.celery_manager",
       "names": [
-        "dash.background_callback.managers.diskcache_manager.DiskcacheLongCallbackManager",
-        "dash.background_callback.managers.diskcache_manager.DiskcacheManager"
+        "dash.background_callback.managers.celery_manager.CeleryLongCallbackManager",
+        "dash.background_callback.managers.celery_manager.CeleryManager"
       ],
-      "n_typable": 35,
+      "n_typable": 32,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 35,
+      "n_untyped": 32,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
       "n_methods": 12,
       "n_method_overloads": 12,
-      "n_method_params": 23,
+      "n_method_params": 20,
       "n_classes": 2,
       "n_names": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "dash/_jupyter.py",
+      "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "dash._jupyter.jupyter_dash",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "dash._jupyter",
+      "names": [
+        "dash._jupyter.jupyter_dash"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_names": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -2252,55 +2301,6 @@
       "n_method_params": 0,
       "n_classes": 0,
       "n_names": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "dash/_callback.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "dash._callback.clientside_callback",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "dash._callback.callback",
-          "n_typed": 9,
-          "n_any": 1,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 13,
-          "n_params": 12,
-          "n_function_overloads": 1,
-          "n_function_params": 12
-        }
-      ],
-      "type_ignores": [],
-      "name": "dash._callback",
-      "names": [
-        "dash._callback.callback",
-        "dash._callback.clientside_callback"
-      ],
-      "n_typable": 17,
-      "n_typed": 10,
-      "n_any": 1,
-      "n_untyped": 6,
-      "n_functions": 2,
-      "n_function_overloads": 2,
-      "n_function_params": 15,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_names": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -2586,14 +2586,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dash_table.DataTable.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dash_table.DataTable.DataTable",
           "methods": [
@@ -2622,6 +2614,14 @@
           "n_method_overloads": 1,
           "n_method_params": 78,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dash_table.DataTable.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -2651,14 +2651,6 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "dash.dash_table.Format.Sign",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
           "name": "dash.dash_table.Format.Padding",
           "n_typed": 0,
           "n_any": 0,
@@ -2675,7 +2667,7 @@
         },
         {
           "kind": "name",
-          "name": "dash.dash_table.Format.Prefix",
+          "name": "dash.dash_table.Format.Align",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -2691,7 +2683,27 @@
         },
         {
           "kind": "name",
-          "name": "dash.dash_table.Format.Align",
+          "name": "dash.dash_table.Format.Scheme",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash.dash_table.Format.get_named_tuple",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "dash.dash_table.Format.Prefix",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -2992,18 +3004,6 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "dash.dash_table.Format.get_named_tuple",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
           "kind": "name",
           "name": "dash.dash_table.Format.Symbol",
           "n_typed": 0,
@@ -3013,7 +3013,7 @@
         },
         {
           "kind": "name",
-          "name": "dash.dash_table.Format.Scheme",
+          "name": "dash.dash_table.Format.Sign",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3102,22 +3102,6 @@
       "path": "dash/dcc/Checklist.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.dcc.Checklist.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.Checklist.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.Checklist.Checklist",
           "methods": [
@@ -3146,6 +3130,22 @@
           "n_method_overloads": 1,
           "n_method_params": 14,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Checklist.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Checklist.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3182,14 +3182,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dcc.Clipboard.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.Clipboard.Clipboard",
           "methods": [
@@ -3218,6 +3210,14 @@
           "n_method_overloads": 1,
           "n_method_params": 9,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Clipboard.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3326,14 +3326,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dcc.ConfirmDialogProvider.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.ConfirmDialogProvider.ConfirmDialogProvider",
           "methods": [
@@ -3362,6 +3354,14 @@
           "n_method_overloads": 1,
           "n_method_params": 9,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.ConfirmDialogProvider.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3398,14 +3398,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dcc.DatePickerRange.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.DatePickerRange.DatePickerRange",
           "methods": [
@@ -3434,6 +3426,14 @@
           "n_method_overloads": 1,
           "n_method_params": 33,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.DatePickerRange.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3470,14 +3470,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dcc.DatePickerSingle.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.DatePickerSingle.DatePickerSingle",
           "methods": [
@@ -3506,6 +3498,14 @@
           "n_method_overloads": 1,
           "n_method_params": 27,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.DatePickerSingle.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3533,22 +3533,6 @@
     {
       "path": "dash/dcc/Download.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.dcc.Download.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.Download.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.dcc.Download.Download",
@@ -3578,6 +3562,22 @@
           "n_method_overloads": 1,
           "n_method_params": 5,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Download.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Download.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3686,6 +3686,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.dcc.Geolocation.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.dcc.Geolocation.Geolocation",
           "methods": [
@@ -3714,14 +3722,6 @@
           "n_method_overloads": 1,
           "n_method_params": 11,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.Geolocation.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3830,6 +3830,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.dcc.Input.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.dcc.Input.Input",
           "methods": [
@@ -3858,14 +3866,6 @@
           "n_method_overloads": 1,
           "n_method_params": 35,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.Input.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -3966,14 +3966,6 @@
       "path": "dash/dcc/Link.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.dcc.Link.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.Link.Link",
           "methods": [
@@ -4002,6 +3994,14 @@
           "n_method_overloads": 1,
           "n_method_params": 10,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Link.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -4190,14 +4190,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dcc.Markdown.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.Markdown.Markdown",
           "methods": [
@@ -4226,6 +4218,14 @@
           "n_method_overloads": 1,
           "n_method_params": 10,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Markdown.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -4253,22 +4253,6 @@
     {
       "path": "dash/dcc/RadioItems.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.dcc.RadioItems.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.RadioItems.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.dcc.RadioItems.RadioItems",
@@ -4298,6 +4282,22 @@
           "n_method_overloads": 1,
           "n_method_params": 14,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.RadioItems.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.RadioItems.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -4478,6 +4478,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.dcc.Store.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.dcc.Store.Store",
           "methods": [
@@ -4506,14 +4514,6 @@
           "n_method_overloads": 1,
           "n_method_params": 6,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.Store.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -4550,14 +4550,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.dcc.Tab.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.dcc.Tab.Tab",
           "methods": [
@@ -4586,6 +4578,14 @@
           "n_method_overloads": 1,
           "n_method_params": 12,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.dcc.Tab.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -4838,6 +4838,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.dcc.Upload.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.dcc.Upload.Upload",
           "methods": [
@@ -4866,14 +4874,6 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.dcc.Upload.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -4915,15 +4915,15 @@
         },
         {
           "kind": "function",
-          "name": "dash.dcc.express.send_bytes",
+          "name": "dash.dcc.express.send_file",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -4939,15 +4939,15 @@
         },
         {
           "kind": "function",
-          "name": "dash.dcc.express.send_file",
+          "name": "dash.dcc.express.send_bytes",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -4978,41 +4978,19 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "dash.development.base_component.ComponentTemplate",
-          "n_typed": 0,
+          "name": "dash.development.base_component.ComponentType",
+          "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 0
+          "n_typable": 1
         },
         {
-          "kind": "class",
-          "name": "dash.development.base_component.ComponentRegistry",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ComponentRegistry.get_resources",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
+          "kind": "name",
+          "name": "dash.development.base_component.MutableSequence",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -5213,24 +5191,42 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "dash.development.base_component.is_number",
+          "kind": "name",
+          "name": "dash.development.base_component.ComponentTemplate",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
-          "kind": "name",
-          "name": "dash.development.base_component.rd",
+          "kind": "class",
+          "name": "dash.development.base_component.ComponentRegistry",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ComponentRegistry.get_resources",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -5263,19 +5259,23 @@
           "n_properties": 0
         },
         {
-          "kind": "name",
-          "name": "dash.development.base_component.MutableSequence",
+          "kind": "function",
+          "name": "dash.development.base_component.is_number",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "name",
-          "name": "dash.development.base_component.ComponentType",
-          "n_typed": 1,
+          "name": "dash.development.base_component.rd",
+          "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 1,
           "n_typable": 1
         }
       ],
@@ -5309,6 +5309,56 @@
     {
       "path": "dash/development/build_process.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "dash.development.build_process.Renderer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Renderer.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.development.build_process.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash.development.build_process.renderer",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
         {
           "kind": "class",
           "name": "dash.development.build_process.BuildProcess",
@@ -5446,56 +5496,6 @@
           "n_method_overloads": 10,
           "n_method_params": 7,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.development.build_process.renderer",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.development.build_process.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "dash.development.build_process.Renderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Renderer.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 1,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -5526,6 +5526,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "dash.development.component_generator.generate_components",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_overloads": 1,
+          "n_typable": 14,
+          "n_params": 13,
+          "n_function_overloads": 1,
+          "n_function_params": 13
+        },
+        {
+          "kind": "function",
           "name": "dash.development.component_generator.component_build_arg_parser",
           "n_typed": 0,
           "n_any": 0,
@@ -5535,6 +5547,14 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.development.component_generator.reserved_words",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "function",
@@ -5550,15 +5570,15 @@
         },
         {
           "kind": "function",
-          "name": "dash.development.component_generator.generate_components",
+          "name": "dash.development.component_generator.safe_json_loads",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 14,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 14,
-          "n_params": 13,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 13
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -5571,26 +5591,6 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.development.component_generator.safe_json_loads",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.development.component_generator.reserved_words",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -5623,18 +5623,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "dash.development.update_components.build_components",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "dash.development.update_components.bootstrap_components",
           "n_typed": 0,
           "n_any": 0,
@@ -5646,28 +5634,20 @@
           "n_function_params": 3
         },
         {
-          "kind": "name",
-          "name": "dash.development.update_components.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "dash.development.update_components.cli",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
           "kind": "function",
           "name": "dash.development.update_components.status_print",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dash.development.update_components.build_components",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -5684,6 +5664,26 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "dash.development.update_components.cli",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.development.update_components.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -5716,7 +5716,7 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "dash.exceptions.ImportedInsideCallbackError",
+          "name": "dash.exceptions.NoLayoutException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5733,7 +5733,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.DependencyException",
+          "name": "dash.exceptions.MissingCallbackContextException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5750,75 +5750,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.ObsoleteKwargException",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.IDsCantContainPeriods",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.DuplicateIdError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.MissingLongCallbackManagerError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.NonExistentEventException",
+          "name": "dash.exceptions.ProxyError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5865,7 +5797,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.CallbackException",
+          "name": "dash.exceptions.ObsoleteKwargException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5882,41 +5814,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.PreventUpdate",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.IncorrectTypeException",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.InvalidCallbackReturnValue",
+          "name": "dash.exceptions.DependencyException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -5950,58 +5848,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.InvalidResourceError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.UnsupportedRelativePath",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.DuplicateCallback",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.InvalidComponentIdError",
+          "name": "dash.exceptions.InvalidIndexException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6035,24 +5882,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.ResourceException",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.exceptions.ProxyError",
+          "name": "dash.exceptions.DuplicateIdError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6086,7 +5916,177 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.WildcardInLongCallback",
+          "name": "dash.exceptions.UnsupportedRelativePath",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.ImportedInsideCallbackError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.NonExistentEventException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.PreventUpdate",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.InvalidCallbackReturnValue",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.InvalidResourceError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.IDsCantContainPeriods",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.IncorrectTypeException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.MissingLongCallbackManagerError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.PageError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.exceptions.DuplicateCallback",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6120,7 +6120,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.NoLayoutException",
+          "name": "dash.exceptions.ResourceException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6137,7 +6137,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.InvalidIndexException",
+          "name": "dash.exceptions.CallbackException",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6154,7 +6154,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.MissingCallbackContextException",
+          "name": "dash.exceptions.InvalidComponentIdError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6171,7 +6171,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.exceptions.PageError",
+          "name": "dash.exceptions.WildcardInLongCallback",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -6237,14 +6237,6 @@
       "path": "dash/fingerprint.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.fingerprint.cache_regex",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
           "name": "dash.fingerprint.build_fingerprint",
           "n_typed": 0,
@@ -6257,14 +6249,6 @@
           "n_function_params": 3
         },
         {
-          "kind": "name",
-          "name": "dash.fingerprint.version_clean",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
           "name": "dash.fingerprint.check_fingerprint",
           "n_typed": 0,
@@ -6275,6 +6259,22 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.fingerprint.version_clean",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.fingerprint.cache_regex",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6312,6 +6312,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.A.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.A.A",
           "methods": [
@@ -6340,14 +6348,6 @@
           "n_method_overloads": 1,
           "n_method_params": 27,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.A.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6384,6 +6384,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Abbr.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Abbr.Abbr",
           "methods": [
@@ -6412,14 +6420,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Abbr.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6592,22 +6592,6 @@
       "path": "dash/html/Area.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Area.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Area.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Area.Area",
           "methods": [
@@ -6636,6 +6620,22 @@
           "n_method_overloads": 1,
           "n_method_params": 28,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Area.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Area.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6663,14 +6663,6 @@
     {
       "path": "dash/html/Article.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.Article.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.Article.Article",
@@ -6700,6 +6692,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Article.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -6816,6 +6816,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Audio.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Audio.Audio",
           "methods": [
@@ -6844,14 +6852,6 @@
           "n_method_overloads": 1,
           "n_method_params": 26,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Audio.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -7024,14 +7024,6 @@
       "path": "dash/html/Basefont.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Basefont.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Basefont.Basefont",
           "methods": [
@@ -7060,6 +7052,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Basefont.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -7104,14 +7104,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Bdi.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Bdi.Bdi",
           "methods": [
@@ -7140,6 +7132,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Bdi.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -7320,14 +7320,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Blink.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Blink.Blink",
           "methods": [
@@ -7356,6 +7348,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Blink.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -7392,6 +7392,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Blockquote.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Blockquote.Blockquote",
           "methods": [
@@ -7420,14 +7428,6 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Blockquote.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -7528,14 +7528,6 @@
       "path": "dash/html/Button.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Button.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Button.Button",
           "methods": [
@@ -7564,6 +7556,14 @@
           "n_method_overloads": 1,
           "n_method_params": 30,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Button.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -7816,14 +7816,6 @@
       "path": "dash/html/Cite.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Cite.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Cite.Cite",
           "methods": [
@@ -7852,6 +7844,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Cite.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -7896,6 +7896,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Code.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Code.Code",
           "methods": [
@@ -7924,14 +7932,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Code.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -7959,22 +7959,6 @@
     {
       "path": "dash/html/Col.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.Col.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Col.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.Col.Col",
@@ -8004,6 +7988,22 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Col.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Col.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -8176,14 +8176,6 @@
       "path": "dash/html/Data.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Data.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Data.Data",
           "methods": [
@@ -8212,6 +8204,14 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Data.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -8328,14 +8328,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Dd.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Dd.Dd",
           "methods": [
@@ -8364,6 +8356,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Dd.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -8400,6 +8400,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Del.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Del.Del",
           "methods": [
@@ -8428,14 +8436,6 @@
           "n_method_overloads": 1,
           "n_method_params": 21,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Del.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -8608,22 +8608,6 @@
       "path": "dash/html/Dialog.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Dialog.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Dialog.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Dialog.Dialog",
           "methods": [
@@ -8652,6 +8636,22 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Dialog.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Dialog.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -8688,14 +8688,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Div.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Div.Div",
           "methods": [
@@ -8724,6 +8716,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Div.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -8896,22 +8896,6 @@
       "path": "dash/html/Em.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Em.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Em.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Em.Em",
           "methods": [
@@ -8940,6 +8924,22 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Em.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Em.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -9048,6 +9048,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Fieldset.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Fieldset.Fieldset",
           "methods": [
@@ -9076,14 +9084,6 @@
           "n_method_overloads": 1,
           "n_method_params": 22,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Fieldset.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -9192,14 +9192,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Figure.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Figure.Figure",
           "methods": [
@@ -9228,6 +9220,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Figure.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -9472,14 +9472,6 @@
       "path": "dash/html/Frame.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Frame.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Frame.Frame",
           "methods": [
@@ -9508,6 +9500,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Frame.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -9552,14 +9552,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Frameset.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Frameset.Frameset",
           "methods": [
@@ -9588,6 +9580,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Frameset.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -9615,22 +9615,6 @@
     {
       "path": "dash/html/H1.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.H1.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.H1.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.H1.H1",
@@ -9660,6 +9644,22 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.H1.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.H1.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -9768,6 +9768,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.H3.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.H3.H3",
           "methods": [
@@ -9796,14 +9804,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.H3.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -9912,6 +9912,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.H5.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.H5.H5",
           "methods": [
@@ -9940,14 +9948,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.H5.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10056,14 +10056,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Header.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Header.Header",
           "methods": [
@@ -10092,6 +10084,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Header.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10128,14 +10128,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Hgroup.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Hgroup.Hgroup",
           "methods": [
@@ -10164,6 +10156,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Hgroup.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10272,14 +10272,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.I.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.I.I",
           "methods": [
@@ -10308,6 +10300,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.I.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10335,14 +10335,6 @@
     {
       "path": "dash/html/Iframe.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.Iframe.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.Iframe.Iframe",
@@ -10372,6 +10364,14 @@
           "n_method_overloads": 1,
           "n_method_params": 27,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Iframe.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -10560,6 +10560,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Kbd.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Kbd.Kbd",
           "methods": [
@@ -10588,14 +10596,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Kbd.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10632,6 +10632,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Keygen.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Keygen.Keygen",
           "methods": [
@@ -10660,14 +10668,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Keygen.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10912,14 +10912,6 @@
       "path": "dash/html/Link.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Link.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Link.Link",
           "methods": [
@@ -10948,6 +10940,14 @@
           "n_method_overloads": 1,
           "n_method_params": 28,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Link.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -11064,14 +11064,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.MapEl.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.MapEl.MapEl",
           "methods": [
@@ -11100,6 +11092,14 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.MapEl.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -11127,22 +11127,6 @@
     {
       "path": "dash/html/Mark.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.Mark.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Mark.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.Mark.Mark",
@@ -11172,6 +11156,22 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Mark.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Mark.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -11352,14 +11352,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Meter.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Meter.Meter",
           "methods": [
@@ -11388,6 +11380,14 @@
           "n_method_overloads": 1,
           "n_method_params": 26,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Meter.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -11424,14 +11424,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Nav.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Nav.Nav",
           "methods": [
@@ -11460,6 +11452,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Nav.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -11640,6 +11640,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.ObjectEl.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.ObjectEl.ObjectEl",
           "methods": [
@@ -11668,14 +11676,6 @@
           "n_method_overloads": 1,
           "n_method_params": 26,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.ObjectEl.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -11712,6 +11712,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Ol.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Ol.Ol",
           "methods": [
@@ -11740,14 +11748,6 @@
           "n_method_overloads": 1,
           "n_method_params": 22,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Ol.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -11928,6 +11928,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Output.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Output.Output",
           "methods": [
@@ -11956,14 +11964,6 @@
           "n_method_overloads": 1,
           "n_method_params": 22,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Output.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -12136,22 +12136,6 @@
       "path": "dash/html/Picture.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Picture.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Picture.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Picture.Picture",
           "methods": [
@@ -12180,6 +12164,22 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Picture.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Picture.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -12207,14 +12207,6 @@
     {
       "path": "dash/html/Plaintext.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.Plaintext.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.Plaintext.Plaintext",
@@ -12244,6 +12236,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Plaintext.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -12432,6 +12432,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Q.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Q.Q",
           "methods": [
@@ -12460,14 +12468,6 @@
           "n_method_overloads": 1,
           "n_method_params": 20,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Q.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -12640,14 +12640,6 @@
       "path": "dash/html/Rt.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "dash.html.Rt.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Rt.Rt",
           "methods": [
@@ -12676,6 +12668,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Rt.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -12720,6 +12720,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Rtc.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Rtc.Rtc",
           "methods": [
@@ -12748,14 +12756,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Rtc.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -12936,14 +12936,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Samp.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Samp.Samp",
           "methods": [
@@ -12972,6 +12964,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Samp.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13008,14 +13008,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Script.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Script.Script",
           "methods": [
@@ -13044,6 +13036,14 @@
           "n_method_overloads": 1,
           "n_method_params": 25,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Script.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13152,14 +13152,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Select.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Select.Select",
           "methods": [
@@ -13188,6 +13180,14 @@
           "n_method_overloads": 1,
           "n_method_params": 27,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Select.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13368,14 +13368,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Small.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Small.Small",
           "methods": [
@@ -13404,6 +13396,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Small.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13440,14 +13440,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Source.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Source.Source",
           "methods": [
@@ -13476,6 +13468,14 @@
           "n_method_overloads": 1,
           "n_method_params": 24,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Source.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13656,6 +13656,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Strike.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Strike.Strike",
           "methods": [
@@ -13684,14 +13692,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Strike.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13728,6 +13728,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Strong.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Strong.Strong",
           "methods": [
@@ -13756,14 +13764,6 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Strong.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -13791,14 +13791,6 @@
     {
       "path": "dash/html/Sub.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "dash.html.Sub.NumberType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "dash.html.Sub.Sub",
@@ -13828,6 +13820,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Sub.NumberType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -14088,14 +14088,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Tbody.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Tbody.Tbody",
           "methods": [
@@ -14124,6 +14116,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Tbody.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -14160,6 +14160,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Td.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Td.Td",
           "methods": [
@@ -14188,14 +14196,6 @@
           "n_method_overloads": 1,
           "n_method_params": 22,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Td.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -14448,14 +14448,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Th.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Th.Th",
           "methods": [
@@ -14484,6 +14476,14 @@
           "n_method_overloads": 1,
           "n_method_params": 23,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Th.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -14808,14 +14808,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Track.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Track.Track",
           "methods": [
@@ -14844,6 +14836,14 @@
           "n_method_overloads": 1,
           "n_method_params": 24,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Track.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -14880,14 +14880,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.U.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.U.U",
           "methods": [
@@ -14916,6 +14908,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.U.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -15096,6 +15096,14 @@
           "n_typable": 1
         },
         {
+          "kind": "name",
+          "name": "dash.html.Video.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "dash.html.Video.Video",
           "methods": [
@@ -15124,14 +15132,6 @@
           "n_method_overloads": 1,
           "n_method_params": 29,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.html.Video.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -15168,14 +15168,6 @@
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "dash.html.Wbr.ComponentType",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
           "name": "dash.html.Wbr.Wbr",
           "methods": [
@@ -15204,6 +15196,14 @@
           "n_method_overloads": 1,
           "n_method_params": 19,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.Wbr.ComponentType",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -15313,18 +15313,18 @@
         },
         {
           "kind": "name",
-          "name": "dash.html.package",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
           "name": "dash.html.__version__",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "dash.html.package",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
           "n_typable": 1
         }
       ],
@@ -15353,36 +15353,6 @@
     {
       "path": "dash/resources.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "dash.resources.ResourceConfig",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ResourceConfig.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
         {
           "kind": "name",
           "name": "dash.resources.ResourceType",
@@ -15455,6 +15425,36 @@
           "n_methods": 4,
           "n_method_overloads": 4,
           "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.resources.ResourceConfig",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ResourceConfig.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
           "n_properties": 0
         },
         {
@@ -15667,218 +15667,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "dash.testing.application_runners.MultiProcessRunner",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MultiProcessRunner.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "MultiProcessRunner.start",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "MultiProcessRunner.stop",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.application_runners.ProcessRunner",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ProcessRunner.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ProcessRunner.start",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "ProcessRunner.stop",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 7,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "dash.testing.application_runners.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.application_runners.JuliaRunner",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JuliaRunner.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "JuliaRunner.start",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.application_runners.import_app",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.application_runners.KillerThread",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "KillerThread.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "KillerThread.kill",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "dash.testing.application_runners.BaseDashRunner",
           "methods": [
             {
@@ -16006,6 +15794,206 @@
         },
         {
           "kind": "class",
+          "name": "dash.testing.application_runners.JuliaRunner",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JuliaRunner.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "JuliaRunner.start",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.testing.application_runners.RRunner",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RRunner.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RRunner.start",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "dash.testing.application_runners.import_app",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "dash.testing.application_runners.KillerThread",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KillerThread.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KillerThread.kill",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "dash.testing.application_runners.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "dash.testing.application_runners.MultiProcessRunner",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MultiProcessRunner.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "MultiProcessRunner.start",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "MultiProcessRunner.stop",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "dash.testing.application_runners.ThreadedRunner",
           "methods": [
             {
@@ -16072,11 +16060,11 @@
         },
         {
           "kind": "class",
-          "name": "dash.testing.application_runners.RRunner",
+          "name": "dash.testing.application_runners.ProcessRunner",
           "methods": [
             {
               "kind": "function",
-              "name": "RRunner.__init__",
+              "name": "ProcessRunner.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -16088,28 +16076,40 @@
             },
             {
               "kind": "function",
-              "name": "RRunner.start",
+              "name": "ProcessRunner.start",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 4,
+              "n_untyped": 6,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 6,
+              "n_params": 5,
               "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "ProcessRunner.stop",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
             }
           ],
           "properties": [],
-          "n_typable": 7,
+          "n_typable": 10,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
+          "n_untyped": 10,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 7,
           "n_properties": 0
         }
       ],
@@ -16157,6 +16157,14 @@
     {
       "path": "dash/testing/browser.py",
       "symbol_reports": [
+        {
+          "kind": "name",
+          "name": "dash.testing.browser.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
         {
           "kind": "class",
           "name": "dash.testing.browser.Browser",
@@ -16635,14 +16643,6 @@
           "n_method_overloads": 35,
           "n_method_params": 76,
           "n_properties": 5
-        },
-        {
-          "kind": "name",
-          "name": "dash.testing.browser.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -17046,58 +17046,24 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "dash.testing.errors.DashTestingError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.errors.DashAppLoadingError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.errors.TestingTimeoutError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "dash.testing.errors.ServerCloseError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.testing.errors.InvalidDriverError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -17131,6 +17097,40 @@
         },
         {
           "kind": "class",
+          "name": "dash.testing.errors.TestingTimeoutError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "dash.testing.errors.DashTestingError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "dash.testing.errors.NoAppFoundError",
           "methods": [],
           "properties": [],
@@ -17148,7 +17148,7 @@
         },
         {
           "kind": "class",
-          "name": "dash.testing.errors.InvalidDriverError",
+          "name": "dash.testing.errors.DashAppLoadingError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -17243,6 +17243,66 @@
         },
         {
           "kind": "function",
+          "name": "dash.testing.plugin.pytest_addhooks",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dash.testing.plugin.dash_duo",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "dash.testing.plugin.dashjl_server",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "dash.testing.plugin.diskcache_manager",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "dash.testing.plugin.dash_br",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "dash.testing.plugin.dashjl",
           "n_typed": 1,
           "n_any": 0,
@@ -17267,39 +17327,15 @@
         },
         {
           "kind": "function",
-          "name": "dash.testing.plugin.diskcache_manager",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.plugin.dash_process_server",
+          "name": "dash.testing.plugin.dashr",
           "n_typed": 1,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.plugin.dash_br",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -17357,15 +17393,15 @@
         },
         {
           "kind": "function",
-          "name": "dash.testing.plugin.dash_duo_mp",
-          "n_typed": 1,
+          "name": "dash.testing.plugin.pytest_runtest_makereport",
+          "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -17381,54 +17417,6 @@
         },
         {
           "kind": "function",
-          "name": "dash.testing.plugin.dash_duo",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.plugin.dashjl_server",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.plugin.pytest_runtest_makereport",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.plugin.dashr",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
           "name": "dash.testing.plugin.dash_thread_server",
           "n_typed": 1,
           "n_any": 0,
@@ -17441,15 +17429,27 @@
         },
         {
           "kind": "function",
-          "name": "dash.testing.plugin.pytest_addhooks",
-          "n_typed": 0,
+          "name": "dash.testing.plugin.dash_process_server",
+          "n_typed": 1,
           "n_any": 0,
-          "n_untyped": 2,
+          "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
+          "n_typable": 1,
+          "n_params": 0,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "dash.testing.plugin.dash_duo_mp",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [
@@ -17552,6 +17552,72 @@
       "symbol_reports": [
         {
           "kind": "class",
+          "name": "dash.testing.wait.text_to_equal",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "text_to_equal.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "text_to_equal.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "text_to_equal.message",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "text_to_equal._get_element",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "dash.testing.wait.contains_text",
           "methods": [
             {
@@ -17618,6 +17684,48 @@
         },
         {
           "kind": "class",
+          "name": "dash.testing.wait.style_to_equal",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "style_to_equal.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "style_to_equal.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "dash.testing.wait.class_to_equal",
           "methods": [
             {
@@ -17659,6 +17767,18 @@
           "n_properties": 0
         },
         {
+          "kind": "function",
+          "name": "dash.testing.wait.until_not",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
           "kind": "name",
           "name": "dash.testing.wait.logger",
           "n_typed": 0,
@@ -17668,7 +17788,7 @@
         },
         {
           "kind": "function",
-          "name": "dash.testing.wait.until_not",
+          "name": "dash.testing.wait.until",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -17718,126 +17838,6 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "dash.testing.wait.until",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.wait.style_to_equal",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "style_to_equal.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "style_to_equal.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "dash.testing.wait.text_to_equal",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "text_to_equal.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "text_to_equal.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "text_to_equal.message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "text_to_equal._get_element",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 6,
           "n_properties": 0
         }
       ],

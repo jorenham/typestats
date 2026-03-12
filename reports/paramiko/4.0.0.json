@@ -89,11 +89,11 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.__author__",
+          "name": "paramiko.__version__",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "name",
@@ -105,11 +105,11 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.__version__",
+          "name": "paramiko.__author__",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -139,28 +139,12 @@
       "path": "paramiko/agent.py",
       "symbol_reports": [
         {
-          "kind": "name",
-          "name": "paramiko.agent.ALGORITHM_FLAG_MAP",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.agent.cSSH2_AGENTC_REQUEST_IDENTITIES",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
-          "name": "paramiko.agent.AgentRequestHandler",
+          "name": "paramiko.agent.AgentServerProxy",
           "methods": [
             {
               "kind": "function",
-              "name": "AgentRequestHandler.__init__",
+              "name": "AgentServerProxy.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -172,19 +156,7 @@
             },
             {
               "kind": "function",
-              "name": "AgentRequestHandler._forward_agent_handler",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AgentRequestHandler.__del__",
+              "name": "AgentServerProxy.__del__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -196,7 +168,43 @@
             },
             {
               "kind": "function",
-              "name": "AgentRequestHandler.close",
+              "name": "AgentServerProxy.connect",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentServerProxy.close",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentServerProxy.get_env",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentServerProxy._get_filename",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -208,16 +216,134 @@
             }
           ],
           "properties": [],
-          "n_typable": 6,
+          "n_typable": 7,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 6,
+          "n_untyped": 7,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 2,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.agent.SSH_AGENT_RSA_SHA2_256",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.agent.get_agent_connection",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.agent.ALGORITHM_FLAG_MAP",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.agent.AgentSSH",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentSSH.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentSSH.get_keys",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentSSH._connect",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentSSH._close",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentSSH._send_message",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentSSH._read_all",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 3,
           "n_properties": 0
         },
         {
@@ -332,36 +458,12 @@
           "n_properties": 1
         },
         {
-          "kind": "function",
-          "name": "paramiko.agent.get_agent_connection",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
           "kind": "class",
-          "name": "paramiko.agent.AgentServerProxy",
+          "name": "paramiko.agent.Agent",
           "methods": [
             {
               "kind": "function",
-              "name": "AgentServerProxy.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AgentServerProxy.__del__",
+              "name": "Agent.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -373,43 +475,7 @@
             },
             {
               "kind": "function",
-              "name": "AgentServerProxy.connect",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentServerProxy.close",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentServerProxy.get_env",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentServerProxy._get_filename",
+              "name": "Agent.close",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -421,21 +487,219 @@
             }
           ],
           "properties": [],
-          "n_typable": 7,
+          "n_typable": 2,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
+          "n_untyped": 2,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 1,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.agent.cSSH2_AGENTC_SIGN_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.agent.AgentRemoteProxy",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentRemoteProxy.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AgentRemoteProxy.get_connection",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.agent.AgentRequestHandler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentRequestHandler.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRequestHandler._forward_agent_handler",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRequestHandler.__del__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentRequestHandler.close",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 2,
           "n_properties": 0
         },
         {
           "kind": "name",
           "name": "paramiko.agent.SSH2_AGENT_IDENTITIES_ANSWER",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.agent.SSH_AGENT_RSA_SHA2_512",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.agent.AgentClientProxy",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentClientProxy.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentClientProxy.__del__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentClientProxy.connect",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentClientProxy.close",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.agent.SSH2_AGENT_SIGN_RESPONSE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -485,73 +749,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.agent.SSH2_AGENT_SIGN_RESPONSE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.agent.SSH_AGENT_RSA_SHA2_256",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.agent.Agent",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Agent.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Agent.close",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.agent.SSH_AGENT_RSA_SHA2_512",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.agent.cSSH2_AGENTC_SIGN_REQUEST",
+          "name": "paramiko.agent.cSSH2_AGENTC_REQUEST_IDENTITIES",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -622,204 +820,6 @@
           "n_method_overloads": 4,
           "n_method_params": 1,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.agent.AgentClientProxy",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AgentClientProxy.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AgentClientProxy.__del__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentClientProxy.connect",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentClientProxy.close",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.agent.AgentSSH",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AgentSSH.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentSSH.get_keys",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentSSH._connect",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AgentSSH._close",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AgentSSH._send_message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AgentSSH._read_all",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 9,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.agent.AgentRemoteProxy",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AgentRemoteProxy.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AgentRemoteProxy.get_connection",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -861,6 +861,248 @@
     {
       "path": "paramiko/auth_handler.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "paramiko.auth_handler.GssapiWithMicAuthHandler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler.abort",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler._restore_delegate_auth_handler",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler._parse_userauth_gssapi_token",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler._parse_userauth_gssapi_mic",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler._parse_service_request",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GssapiWithMicAuthHandler._parse_userauth_request",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GssapiWithMicAuthHandler.transport",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GssapiWithMicAuthHandler._send_auth_result",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GssapiWithMicAuthHandler.auth_username",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GssapiWithMicAuthHandler.gss_host",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GssapiWithMicAuthHandler._handler_table",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 18,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 7,
+          "n_method_overloads": 7,
+          "n_method_params": 6,
+          "n_properties": 5
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.auth_handler.AuthOnlyHandler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AuthOnlyHandler.send_auth_request",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AuthOnlyHandler.auth_none",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AuthOnlyHandler.auth_publickey",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AuthOnlyHandler.auth_password",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AuthOnlyHandler.auth_interactive",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AuthOnlyHandler._choose_fallback_pubkey_algorithm",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AuthOnlyHandler._client_handler_table",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 20,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 13,
+          "n_properties": 1
+        },
         {
           "kind": "class",
           "name": "paramiko.auth_handler.AuthHandler",
@@ -1275,248 +1517,6 @@
           "n_method_overloads": 31,
           "n_method_params": 44,
           "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.auth_handler.GssapiWithMicAuthHandler",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler.abort",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler._restore_delegate_auth_handler",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler._parse_userauth_gssapi_token",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler._parse_userauth_gssapi_mic",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler._parse_service_request",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "GssapiWithMicAuthHandler._parse_userauth_request",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "GssapiWithMicAuthHandler.transport",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "GssapiWithMicAuthHandler._send_auth_result",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "GssapiWithMicAuthHandler.auth_username",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "GssapiWithMicAuthHandler.gss_host",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "GssapiWithMicAuthHandler._handler_table",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 18,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 7,
-          "n_method_overloads": 7,
-          "n_method_params": 6,
-          "n_properties": 5
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.auth_handler.AuthOnlyHandler",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AuthOnlyHandler.send_auth_request",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AuthOnlyHandler.auth_none",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AuthOnlyHandler.auth_publickey",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AuthOnlyHandler.auth_password",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AuthOnlyHandler.auth_interactive",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AuthOnlyHandler._choose_fallback_pubkey_algorithm",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "AuthOnlyHandler._client_handler_table",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 20,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 20,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 13,
-          "n_properties": 1
         }
       ],
       "type_ignores": [],
@@ -1544,6 +1544,60 @@
     {
       "path": "paramiko/auth_strategy.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "paramiko.auth_strategy.AuthStrategy",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AuthStrategy.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AuthStrategy.get_sources",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AuthStrategy.authenticate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "paramiko.auth_strategy.AuthSource",
@@ -1612,6 +1666,60 @@
         },
         {
           "kind": "class",
+          "name": "paramiko.auth_strategy.Password",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Password.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Password.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Password.authenticate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "paramiko.auth_strategy.OnDiskPrivateKey",
           "methods": [
             {
@@ -1650,6 +1758,44 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.auth_strategy.SourceResult",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.auth_strategy.NoneAuth",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NoneAuth.authenticate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_properties": 0
         },
         {
@@ -1726,122 +1872,6 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.auth_strategy.AuthStrategy",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AuthStrategy.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AuthStrategy.get_sources",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AuthStrategy.authenticate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.auth_strategy.Password",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Password.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Password.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Password.authenticate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.auth_strategy.SourceResult",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
           "name": "paramiko.auth_strategy.AuthResult",
           "methods": [
             {
@@ -1880,36 +1910,6 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.auth_strategy.NoneAuth",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NoneAuth.authenticate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
           "n_properties": 0
         },
         {
@@ -1987,23 +1987,6 @@
     {
       "path": "paramiko/ber.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "paramiko.ber.BERException",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "paramiko.ber.BER",
@@ -2141,6 +2124,23 @@
           "n_method_overloads": 10,
           "n_method_params": 6,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ber.BERException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -2167,6 +2167,23 @@
     {
       "path": "paramiko/buffered_pipe.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "paramiko.buffered_pipe.PipeTimeout",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "paramiko.buffered_pipe.BufferedPipe",
@@ -2304,23 +2321,6 @@
           "n_method_overloads": 10,
           "n_method_params": 6,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.buffered_pipe.PipeTimeout",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -2379,35 +2379,11 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.channel.ChannelFile",
+          "name": "paramiko.channel.ChannelStderrFile",
           "methods": [
             {
               "kind": "function",
-              "name": "ChannelFile.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ChannelFile.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ChannelFile._read",
+              "name": "ChannelStderrFile._read",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2419,7 +2395,7 @@
             },
             {
               "kind": "function",
-              "name": "ChannelFile._write",
+              "name": "ChannelStderrFile._write",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2431,16 +2407,16 @@
             }
           ],
           "properties": [],
-          "n_typable": 9,
+          "n_typable": 4,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 9,
+          "n_untyped": 4,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 5,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
           "n_properties": 0
         },
         {
@@ -3216,11 +3192,35 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.channel.ChannelStderrFile",
+          "name": "paramiko.channel.ChannelFile",
           "methods": [
             {
               "kind": "function",
-              "name": "ChannelStderrFile._read",
+              "name": "ChannelFile.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ChannelFile.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ChannelFile._read",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3232,7 +3232,7 @@
             },
             {
               "kind": "function",
-              "name": "ChannelStderrFile._write",
+              "name": "ChannelFile._write",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3244,16 +3244,16 @@
             }
           ],
           "properties": [],
-          "n_typable": 4,
+          "n_typable": 9,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 9,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 5,
           "n_properties": 0
         },
         {
@@ -3298,71 +3298,41 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "paramiko.client.WarningPolicy",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "WarningPolicy.missing_host_key",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.client.AutoAddPolicy",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AutoAddPolicy.missing_host_key",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "paramiko.client.MissingHostKeyPolicy",
           "methods": [
             {
               "kind": "function",
               "name": "MissingHostKeyPolicy.missing_host_key",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.client.RejectPolicy",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RejectPolicy.missing_host_key",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -3610,11 +3580,41 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.client.RejectPolicy",
+          "name": "paramiko.client.WarningPolicy",
           "methods": [
             {
               "kind": "function",
-              "name": "RejectPolicy.missing_host_key",
+              "name": "WarningPolicy.missing_host_key",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.client.AutoAddPolicy",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AutoAddPolicy.missing_host_key",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -3668,7 +3668,7 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_UNIMPLEMENTED",
+          "name": "paramiko.common.MSG_CHANNEL_DATA",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3676,7 +3676,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_REQUEST_FAILURE",
+          "name": "paramiko.common.cMSG_USERAUTH_SUCCESS",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3684,7 +3684,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_DISCONNECT",
+          "name": "paramiko.common.cMSG_USERAUTH_REQUEST",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3692,7 +3692,23 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_IGNORE",
+          "name": "paramiko.common.o777",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.DEFAULT_WINDOW_SIZE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_REQUEST",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3700,7 +3716,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_SUCCESS",
+          "name": "paramiko.common.cMSG_CHANNEL_OPEN",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3708,7 +3724,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_OPEN_FAILURE",
+          "name": "paramiko.common.cMSG_CHANNEL_OPEN_SUCCESS",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3716,7 +3732,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_WINDOW_ADJUST",
+          "name": "paramiko.common.MSG_CHANNEL_EOF",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3724,7 +3740,15 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_ERROR",
+          "name": "paramiko.common.cMSG_SERVICE_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_EXT_INFO",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3740,7 +3764,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_GLOBAL_REQUEST",
+          "name": "paramiko.common.cMSG_CHANNEL_FAILURE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3748,7 +3772,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_IGNORE",
+          "name": "paramiko.common.MSG_NEWKEYS",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3756,7 +3780,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cr_byte",
+          "name": "paramiko.common.MSG_SERVICE_ACCEPT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3764,11 +3788,67 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.x80000000",
+          "name": "paramiko.common.MSG_CHANNEL_OPEN_FAILURE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_PK_OK",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.xffffffff",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_REQUEST_SUCCESS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.AUTH_FAILED",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_KEXINIT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_CHANNEL_SUCCESS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "function",
@@ -3784,15 +3864,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MIN_WINDOW_SIZE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_SERVICE_REQUEST",
+          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_RESPONSE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3800,83 +3872,11 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_EXTENDED_DATA",
+          "name": "paramiko.common.OPEN_FAILED_CONNECT_FAILED",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_OPEN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_NEWKEYS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_SUCCESS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.o70",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.DISCONNECT_AUTH_CANCELLED_BY_USER",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MIN_PACKET_SIZE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_EXT_INFO",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MAX_WINDOW_SIZE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_PK_OK",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "function",
@@ -3904,31 +3904,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_DEBUG",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_TOKEN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_FAILURE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.o644",
+          "name": "paramiko.common.DISCONNECT_SERVICE_NOT_AVAILABLE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -3936,7 +3912,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_REQUEST_SUCCESS",
+          "name": "paramiko.common.MSG_CHANNEL_WINDOW_ADJUST",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -3944,47 +3920,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_EOF",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_SUCCESS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_TOKEN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.one_byte",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_INFO_REQUEST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.DEFAULT_WINDOW_SIZE",
+          "name": "paramiko.common.DISCONNECT_AUTH_CANCELLED_BY_USER",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -3992,55 +3928,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.o666",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_MIC",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.zero_byte",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_BANNER",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cr_byte_value",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_KEXINIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.AUTH_SUCCESSFUL",
+          "name": "paramiko.common.cr_byte",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4056,7 +3944,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_REQUEST",
+          "name": "paramiko.common.MSG_USERAUTH_FAILURE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4064,23 +3952,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_INFO_RESPONSE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_REQUEST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE",
+          "name": "paramiko.common.o70",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4088,7 +3960,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_REQUEST_FAILURE",
+          "name": "paramiko.common.cMSG_CHANNEL_OPEN_FAILURE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4096,7 +3968,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.AUTH_PARTIALLY_SUCCESSFUL",
+          "name": "paramiko.common.cMSG_CHANNEL_EOF",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4104,7 +3976,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.o660",
+          "name": "paramiko.common.x80000000",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4112,7 +3984,15 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.OPEN_SUCCEEDED",
+          "name": "paramiko.common.o644",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_UNIMPLEMENTED",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4120,7 +4000,47 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_RESPONSE",
+          "name": "paramiko.common.crlf",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_ERRTOK",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_DEBUG",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_REQUEST_SUCCESS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.HIGHEST_USERAUTH_MESSAGE_ID",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_CHANNEL_OPEN",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4136,7 +4056,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_DATA",
+          "name": "paramiko.common.cMSG_SERVICE_ACCEPT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4144,7 +4064,39 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_BANNER",
+          "name": "paramiko.common.AUTH_SUCCESSFUL",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_MIC",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_CHANNEL_CLOSE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_INFO_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_BANNER",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4160,7 +4112,23 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_WINDOW_ADJUST",
+          "name": "paramiko.common.MSG_NAMES",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.four_byte",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4184,31 +4152,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_SUCCESS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_CLOSE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_ERRTOK",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.xffffffff",
+          "name": "paramiko.common.MAX_WINDOW_SIZE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4216,7 +4160,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_GLOBAL_REQUEST",
+          "name": "paramiko.common.MSG_USERAUTH_INFO_REQUEST",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4224,159 +4168,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.io_sleep",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_DEBUG",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.linefeed_byte",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_INFO_REQUEST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_EXT_INFO",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_KEXINIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_EXTENDED_DATA",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_SERVICE_REQUEST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.o777",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_DISCONNECT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_ERROR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_PK_OK",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.linefeed_byte_value",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_REQUEST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.four_byte",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.o700",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.crlf",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.HIGHEST_USERAUTH_MESSAGE_ID",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.o600",
+          "name": "paramiko.common.MSG_USERAUTH_PK_OK",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4392,7 +4184,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_MIC",
+          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_ERROR",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4400,7 +4192,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_FAILURE",
+          "name": "paramiko.common.cMSG_USERAUTH_BANNER",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4408,7 +4200,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_REQUEST_SUCCESS",
+          "name": "paramiko.common.cMSG_DEBUG",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4416,15 +4208,103 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.OPEN_FAILED_RESOURCE_SHORTAGE",
+          "name": "paramiko.common.io_sleep",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "name",
           "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_ERRTOK",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_IGNORE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.one_byte",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_GLOBAL_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cr_byte_value",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_CHANNEL_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_EXT_INFO",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.linefeed_byte_value",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_CHANNEL_EXTENDED_DATA",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_ERROR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_DISCONNECT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4440,7 +4320,23 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_RESPONSE",
+          "name": "paramiko.common.OPEN_FAILED_RESOURCE_SHORTAGE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_FAILURE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_SERVICE_REQUEST",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4456,7 +4352,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.OPEN_FAILED_CONNECT_FAILED",
+          "name": "paramiko.common.cMSG_DISCONNECT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4464,7 +4360,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_UNIMPLEMENTED",
+          "name": "paramiko.common.MSG_CHANNEL_SUCCESS",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4472,47 +4368,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_SERVICE_ACCEPT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.AUTH_FAILED",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_SERVICE_ACCEPT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_OPEN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_OPEN_SUCCESS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_NAMES",
+          "name": "paramiko.common.o700",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4520,31 +4376,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_CHANNEL_EOF",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.MSG_CHANNEL_OPEN_FAILURE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.DISCONNECT_SERVICE_NOT_AVAILABLE",
+          "name": "paramiko.common.MIN_WINDOW_SIZE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4552,11 +4384,187 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_USERAUTH_FAILURE",
+          "name": "paramiko.common.MSG_CHANNEL_FAILURE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_CHANNEL_WINDOW_ADJUST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_TOKEN",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.o666",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_CHANNEL_EXTENDED_DATA",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_TOKEN",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_KEXINIT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_USERAUTH_GSSAPI_RESPONSE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.OPEN_SUCCEEDED",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_SUCCESS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_REQUEST_FAILURE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_GSSAPI_MIC",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_REQUEST_FAILURE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_UNIMPLEMENTED",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.AUTH_PARTIALLY_SUCCESSFUL",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.zero_byte",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_GLOBAL_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.o600",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.o660",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.cMSG_NEWKEYS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_IGNORE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MSG_USERAUTH_INFO_RESPONSE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.common.MIN_PACKET_SIZE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "name",
@@ -4568,15 +4576,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.common.MSG_NEWKEYS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.common.cMSG_USERAUTH_FAILURE",
+          "name": "paramiko.common.linefeed_byte",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -4828,6 +4828,14 @@
       "path": "paramiko/config.py",
       "symbol_reports": [
         {
+          "kind": "name",
+          "name": "paramiko.config.invoke_import_error",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "class",
           "name": "paramiko.config.SSHConfigDict",
           "methods": [
@@ -4854,64 +4862,6 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.config.SSH_PORT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.config.invoke",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.config.LazyFqdn",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LazyFqdn.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "LazyFqdn.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
             }
           ],
           "properties": [],
@@ -5151,11 +5101,61 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.config.invoke_import_error",
+          "name": "paramiko.config.SSH_PORT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.config.invoke",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.config.LazyFqdn",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LazyFqdn.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LazyFqdn.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -5941,72 +5941,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "paramiko.hostkeys.HostKeyEntry",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "HostKeyEntry.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "HostKeyEntry.from_line",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "HostKeyEntry.to_line",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "HostKeyEntry.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "paramiko.hostkeys.HostKeys",
           "methods": [
             {
@@ -6244,6 +6178,72 @@
           "n_method_overloads": 1,
           "n_method_params": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.hostkeys.HostKeyEntry",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HostKeyEntry.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "HostKeyEntry.from_line",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "HostKeyEntry.to_line",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "HostKeyEntry.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 4,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -6271,22 +6271,6 @@
     {
       "path": "paramiko/kex_curve25519.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "paramiko.kex_curve25519.c_MSG_KEXECDH_REPLY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_curve25519.c_MSG_KEXECDH_INIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "paramiko.kex_curve25519.KexCurve25519",
@@ -6388,6 +6372,22 @@
           "n_method_overloads": 7,
           "n_method_params": 6,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_curve25519.c_MSG_KEXECDH_REPLY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_curve25519.c_MSG_KEXECDH_INIT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6507,19 +6507,28 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.kex_ecdh_nist.c_MSG_KEXECDH_REPLY",
+          "name": "paramiko.kex_ecdh_nist.c_MSG_KEXECDH_INIT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
         },
         {
-          "kind": "name",
-          "name": "paramiko.kex_ecdh_nist.c_MSG_KEXECDH_INIT",
+          "kind": "class",
+          "name": "paramiko.kex_ecdh_nist.KexNistp521",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -6539,21 +6548,12 @@
           "n_properties": 0
         },
         {
-          "kind": "class",
-          "name": "paramiko.kex_ecdh_nist.KexNistp521",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
+          "kind": "name",
+          "name": "paramiko.kex_ecdh_nist.c_MSG_KEXECDH_REPLY",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6585,7 +6585,56 @@
       "symbol_reports": [
         {
           "kind": "name",
+          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_REQUEST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_REPLY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
           "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_GROUP",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_INIT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.kex_gex.KexGexSHA256",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_REQUEST_OLD",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -6716,55 +6765,6 @@
           "n_method_overloads": 9,
           "n_method_params": 9,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_REQUEST_OLD",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_INIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_REQUEST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.kex_gex.KexGexSHA256",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gex.c_MSG_KEXDH_GEX_REPLY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -6896,7 +6896,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.kex_group1.c_MSG_KEXDH_INIT",
+          "name": "paramiko.kex_group1.c_MSG_KEXDH_REPLY",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -6904,7 +6904,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.kex_group1.c_MSG_KEXDH_REPLY",
+          "name": "paramiko.kex_group1.c_MSG_KEXDH_INIT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -7046,46 +7046,6 @@
     {
       "path": "paramiko/kex_gss.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.c_MSG_KEXGSS_GROUPREQ",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.c_MSG_KEXGSS_INIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.MSG_KEXGSS_ERROR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.MSG_KEXGSS_GROUPREQ",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.c_MSG_KEXGSS_HOSTKEY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "paramiko.kex_gss.KexGSSGex",
@@ -7238,7 +7198,158 @@
         },
         {
           "kind": "name",
+          "name": "paramiko.kex_gss.c_MSG_KEXGSS_INIT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.MSG_KEXGSS_ERROR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.kex_gss.KexGSSGroup14",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.c_MSG_KEXGSS_GROUP",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.MSG_KEXGSS_COMPLETE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.c_MSG_KEXGSS_HOSTKEY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.MSG_KEXGSS_GROUPREQ",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.c_MSG_KEXGSS_GROUPREQ",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
           "name": "paramiko.kex_gss.c_MSG_KEXGSS_ERROR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.MSG_KEXGSS_CONTINUE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.kex_gss.NullHostKey",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NullHostKey.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NullHostKey.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NullHostKey.get_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.c_MSG_KEXGSS_CONTINUE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.kex_gss.MSG_KEXGSS_INIT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -7372,47 +7483,6 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.kex_gss.MSG_KEXGSS_COMPLETE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.kex_gss.KexGSSGroup14",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.c_MSG_KEXGSS_CONTINUE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.MSG_KEXGSS_INIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
           "name": "paramiko.kex_gss.MSG_KEXGSS_HOSTKEY",
           "n_typed": 0,
           "n_any": 0,
@@ -7421,15 +7491,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.kex_gss.MSG_KEXGSS_CONTINUE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.c_MSG_KEXGSS_GROUP",
+          "name": "paramiko.kex_gss.MSG_KEXGSS_GROUP",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -7438,68 +7500,6 @@
         {
           "kind": "name",
           "name": "paramiko.kex_gss.c_MSG_KEXGSS_COMPLETE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.kex_gss.NullHostKey",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NullHostKey.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NullHostKey.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NullHostKey.get_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.kex_gss.MSG_KEXGSS_GROUP",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -7949,6 +7949,35 @@
           "n_function_params": 3
         },
         {
+          "kind": "function",
+          "name": "paramiko.packet.first_arg",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.packet.NeedRekeyException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
           "kind": "class",
           "name": "paramiko.packet.Packetizer",
           "methods": [
@@ -8334,35 +8363,6 @@
           "n_method_overloads": 30,
           "n_method_params": 35,
           "n_properties": 1
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.packet.first_arg",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.packet.NeedRekeyException",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -8392,16 +8392,58 @@
       "path": "paramiko/pipe.py",
       "symbol_reports": [
         {
-          "kind": "function",
-          "name": "paramiko.pipe.make_pipe",
+          "kind": "class",
+          "name": "paramiko.pipe.OrPipe",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OrPipe.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "OrPipe.set",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OrPipe.clear",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 1,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -8494,72 +8536,6 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "paramiko.pipe.make_or_pipe",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.pipe.OrPipe",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OrPipe.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "OrPipe.set",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OrPipe.clear",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
           "kind": "class",
           "name": "paramiko.pipe.PosixPipe",
           "methods": [
@@ -8648,6 +8624,30 @@
           "n_method_overloads": 6,
           "n_method_params": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.pipe.make_or_pipe",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.pipe.make_pipe",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         }
       ],
       "type_ignores": [],
@@ -8677,150 +8677,6 @@
     {
       "path": "paramiko/pkey.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "paramiko.pkey.UnknownKeyType",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "UnknownKeyType.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "UnknownKeyType.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.pkey.PublicBlob",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PublicBlob.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "PublicBlob.from_file",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PublicBlob.from_string",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PublicBlob.from_message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PublicBlob.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "PublicBlob.__eq__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PublicBlob.__ne__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 15,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 15,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 7,
-          "n_method_overloads": 7,
-          "n_method_params": 8,
-          "n_properties": 0
-        },
         {
           "kind": "name",
           "name": "paramiko.pkey.OPENSSH_AUTH_MAGIC",
@@ -9231,6 +9087,150 @@
           "n_method_overloads": 30,
           "n_method_params": 45,
           "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.pkey.UnknownKeyType",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UnknownKeyType.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "UnknownKeyType.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.pkey.PublicBlob",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PublicBlob.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "PublicBlob.from_file",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PublicBlob.from_string",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PublicBlob.from_message",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PublicBlob.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PublicBlob.__eq__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PublicBlob.__ne__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 15,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 7,
+          "n_method_overloads": 7,
+          "n_method_params": 8,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -9351,6 +9351,14 @@
       "symbol_reports": [
         {
           "kind": "name",
+          "name": "paramiko.proxy.subprocess",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
           "name": "paramiko.proxy.subprocess_import_error",
           "n_typed": 0,
           "n_any": 0,
@@ -9451,14 +9459,6 @@
           "n_method_overloads": 5,
           "n_method_params": 4,
           "n_properties": 2
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.proxy.subprocess",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -9735,48 +9735,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "paramiko.server.InteractiveQuery",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "InteractiveQuery.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "InteractiveQuery.add_prompt",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "paramiko.server.SubsystemHandler",
           "methods": [
             {
@@ -9851,6 +9809,48 @@
           "n_methods": 5,
           "n_method_overloads": 5,
           "n_method_params": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.server.InteractiveQuery",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InteractiveQuery.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "InteractiveQuery.add_prompt",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
           "n_properties": 0
         },
         {
@@ -10175,7 +10175,7 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_FSTAT",
+          "name": "paramiko.sftp.SFTP_FAILURE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10183,67 +10183,11 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.SFTP_FLAG_TRUNC",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_EOF",
+          "name": "paramiko.sftp.CMD_READDIR",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_STATUS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_FLAG_APPEND",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_FLAG_CREATE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_DESC",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_STAT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_FLAG_EXCL",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "name",
@@ -10255,31 +10199,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.SFTP_BAD_MESSAGE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_OK",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_NAMES",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_SYMLINK",
+          "name": "paramiko.sftp.CMD_OPEN",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10295,7 +10215,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_RENAME",
+          "name": "paramiko.sftp.CMD_STATUS",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10303,23 +10223,15 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_FSETSTAT",
+          "name": "paramiko.sftp.SFTP_OK",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_EXTENDED",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_OPENDIR",
+          "name": "paramiko.sftp.CMD_VERSION",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10335,30 +10247,6 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_INIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_NO_CONNECTION",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_LSTAT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
           "name": "paramiko.sftp.CMD_REMOVE",
           "n_typed": 0,
           "n_any": 0,
@@ -10367,96 +10255,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.SFTP_FLAG_WRITE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_CONNECTION_LOST",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_HANDLE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_DATA",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_ATTRS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_OP_UNSUPPORTED",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_FAILURE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_VERSION",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.sftp.SFTPError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_OPEN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_WRITE",
+          "name": "paramiko.sftp.CMD_REALPATH",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10472,11 +10271,187 @@
         },
         {
           "kind": "name",
+          "name": "paramiko.sftp.CMD_LSTAT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_RMDIR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_SETSTAT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_ATTRS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_DATA",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_READ",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_CONNECTION_LOST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_SYMLINK",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_HANDLE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_OPENDIR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_FLAG_APPEND",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_RENAME",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_OP_UNSUPPORTED",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_STAT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_FLAG_READ",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_FLAG_WRITE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_BAD_MESSAGE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
           "name": "paramiko.sftp.SFTP_PERMISSION_DENIED",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_FLAG_CREATE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_INIT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_EXTENDED",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_FSETSTAT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_NAMES",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "name",
@@ -10496,7 +10471,7 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_READ",
+          "name": "paramiko.sftp.CMD_WRITE",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10504,7 +10479,15 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_REALPATH",
+          "name": "paramiko.sftp.SFTP_DESC",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.CMD_FSTAT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -10512,11 +10495,27 @@
         },
         {
           "kind": "name",
-          "name": "paramiko.sftp.CMD_SETSTAT",
+          "name": "paramiko.sftp.SFTP_NO_CONNECTION",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_FLAG_EXCL",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_FLAG_TRUNC",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -10534,30 +10533,6 @@
           "n_method_overloads": 0,
           "n_method_params": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_RMDIR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.SFTP_FLAG_READ",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.sftp.CMD_READDIR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         },
         {
           "kind": "class",
@@ -10672,6 +10647,31 @@
           "n_method_overloads": 8,
           "n_method_params": 7,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.sftp.SFTPError",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.sftp.SFTP_EOF",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -10905,6 +10905,23 @@
     {
       "path": "paramiko/sftp_client.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "paramiko.sftp_client.SFTP",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "paramiko.sftp_client.SFTPClient",
@@ -11386,23 +11403,6 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.sftp_client.SFTP",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -12416,7 +12416,83 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "paramiko.ssh_exception.AuthenticationException",
+          "name": "paramiko.ssh_exception.ChannelException",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ChannelException.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ChannelException.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.SSHException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.PasswordRequiredException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.ConfigParseError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -12475,7 +12551,49 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.ssh_exception.UnableToAuthenticate",
+          "name": "paramiko.ssh_exception.ProxyCommandFailure",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProxyCommandFailure.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ProxyCommandFailure.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.CouldNotCanonicalize",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -12492,7 +12610,83 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.ssh_exception.PasswordRequiredException",
+          "name": "paramiko.ssh_exception.PartialAuthentication",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PartialAuthentication.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PartialAuthentication.__str__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.AuthenticationException",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.IncompatiblePeer",
+          "methods": [],
+          "properties": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.ssh_exception.MessageOrderError",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -12593,201 +12787,7 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.ssh_exception.ProxyCommandFailure",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ProxyCommandFailure.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ProxyCommandFailure.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.ConfigParseError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.PartialAuthentication",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PartialAuthentication.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PartialAuthentication.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.MessageOrderError",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.SSHException",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.ChannelException",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ChannelException.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ChannelException.__str__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.IncompatiblePeer",
-          "methods": [],
-          "properties": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.ssh_exception.CouldNotCanonicalize",
+          "name": "paramiko.ssh_exception.UnableToAuthenticate",
           "methods": [],
           "properties": [],
           "n_typable": 0,
@@ -12841,14 +12841,6 @@
       "symbol_reports": [
         {
           "kind": "name",
-          "name": "paramiko.ssh_gss.GSS_AUTH_AVAILABLE",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "name",
           "name": "paramiko.ssh_gss.GSS_EXCEPTIONS",
           "n_typed": 0,
           "n_any": 0,
@@ -12866,6 +12858,14 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.ssh_gss.GSS_AUTH_AVAILABLE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -12895,35 +12895,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "paramiko.transport.ServiceRequestingTransport",
+          "name": "paramiko.transport.ChannelMap",
           "methods": [
             {
               "kind": "function",
-              "name": "ServiceRequestingTransport.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport._parse_service_accept",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.ensure_session",
+              "name": "ChannelMap.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -12935,43 +12911,7 @@
             },
             {
               "kind": "function",
-              "name": "ServiceRequestingTransport.get_auth_handler",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.auth_none",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.auth_password",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.auth_publickey",
+              "name": "ChannelMap.put",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -12983,43 +12923,7 @@
             },
             {
               "kind": "function",
-              "name": "ServiceRequestingTransport.auth_interactive",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.auth_interactive_dumb",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.auth_gssapi_with_mic",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ServiceRequestingTransport.auth_gssapi_keyex",
+              "name": "ChannelMap.get",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -13028,19 +12932,55 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ChannelMap.delete",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ChannelMap.values",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ChannelMap.__len__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
             }
           ],
           "properties": [],
-          "n_typable": 30,
+          "n_typable": 10,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 30,
+          "n_untyped": 10,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 11,
-          "n_method_overloads": 11,
-          "n_method_params": 19,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 4,
           "n_properties": 0
         },
         {
@@ -14251,23 +14191,11 @@
         },
         {
           "kind": "class",
-          "name": "paramiko.transport.ChannelMap",
+          "name": "paramiko.transport.ServiceRequestingTransport",
           "methods": [
             {
               "kind": "function",
-              "name": "ChannelMap.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ChannelMap.put",
+              "name": "ServiceRequestingTransport.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -14279,7 +14207,7 @@
             },
             {
               "kind": "function",
-              "name": "ChannelMap.get",
+              "name": "ServiceRequestingTransport._parse_service_accept",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -14291,7 +14219,31 @@
             },
             {
               "kind": "function",
-              "name": "ChannelMap.delete",
+              "name": "ServiceRequestingTransport.ensure_session",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ServiceRequestingTransport.get_auth_handler",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ServiceRequestingTransport.auth_none",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -14303,40 +14255,88 @@
             },
             {
               "kind": "function",
-              "name": "ChannelMap.values",
+              "name": "ServiceRequestingTransport.auth_password",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 4,
               "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 3
             },
             {
               "kind": "function",
-              "name": "ChannelMap.__len__",
+              "name": "ServiceRequestingTransport.auth_publickey",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ServiceRequestingTransport.auth_interactive",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ServiceRequestingTransport.auth_interactive_dumb",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ServiceRequestingTransport.auth_gssapi_with_mic",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ServiceRequestingTransport.auth_gssapi_keyex",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
             }
           ],
           "properties": [],
-          "n_typable": 10,
+          "n_typable": 30,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 10,
+          "n_untyped": 30,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 4,
+          "n_methods": 11,
+          "n_method_overloads": 11,
+          "n_method_params": 19,
           "n_properties": 0
         }
       ],
@@ -14368,145 +14368,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "paramiko.util.lookup_ssh_host_config",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.generate_key_bytes",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.log_to_file",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.constant_time_bytes_eq",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.bit_length",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.mod_inverse",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.b",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.deflate_long",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "paramiko.util.PFilter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PFilter.filter",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.safe_string",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.tb_strings",
+          "name": "paramiko.util.get_thread_id",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -14515,42 +14377,6 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.clamp_value",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.load_host_keys",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.u",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -14596,6 +14422,18 @@
         },
         {
           "kind": "function",
+          "name": "paramiko.util.b",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "paramiko.util.parse_ssh_config",
           "n_typed": 0,
           "n_any": 0,
@@ -14608,7 +14446,7 @@
         },
         {
           "kind": "function",
-          "name": "paramiko.util.asbytes",
+          "name": "paramiko.util.get_logger",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -14620,7 +14458,193 @@
         },
         {
           "kind": "function",
-          "name": "paramiko.util.get_thread_id",
+          "name": "paramiko.util.clamp_value",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.u",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.bit_length",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.safe_string",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "paramiko.util.PFilter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PFilter.filter",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.inflate_long",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.deflate_long",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.mod_inverse",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.format_binary_line",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.load_host_keys",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.log_to_file",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.constant_time_bytes_eq",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.generate_key_bytes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.lookup_ssh_host_config",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.util.tb_strings",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -14644,7 +14668,7 @@
         },
         {
           "kind": "function",
-          "name": "paramiko.util.get_logger",
+          "name": "paramiko.util.asbytes",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -14653,30 +14677,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.format_binary_line",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.util.inflate_long",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -14723,26 +14723,6 @@
     {
       "path": "paramiko/win_openssh.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "paramiko.win_openssh.PIPE_NAME",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.win_openssh.can_talk_to_agent",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
         {
           "kind": "class",
           "name": "paramiko.win_openssh.OpenSSHAgentConnection",
@@ -14808,6 +14788,26 @@
           "n_method_overloads": 4,
           "n_method_params": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.win_openssh.PIPE_NAME",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.win_openssh.can_talk_to_agent",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         }
       ],
       "type_ignores": [],
@@ -14835,34 +14835,6 @@
     {
       "path": "paramiko/win_pageant.py",
       "symbol_reports": [
-        {
-          "kind": "name",
-          "name": "paramiko.win_pageant.win32con_WM_COPYDATA",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "paramiko.win_pageant.can_talk_to_agent",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "name",
-          "name": "paramiko.win_pageant.ULONG_PTR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "paramiko.win_pageant.PageantConnection",
@@ -14945,6 +14917,34 @@
           "n_method_overloads": 0,
           "n_method_params": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "paramiko.win_pageant.can_talk_to_agent",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.win_pageant.ULONG_PTR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "name",
+          "name": "paramiko.win_pageant.win32con_WM_COPYDATA",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
