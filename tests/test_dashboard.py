@@ -533,6 +533,18 @@ class TestRenderDetail:
         md = DetailPage(report).render()
         assert "stubs-only" not in md.lower() or "third-party" not in md
 
+    def test_json_url_shown(self) -> None:
+        report = _minimal_report("numpy", "2.4.2")
+        url = "https://raw.githubusercontent.com/jorenham/typestats/data/reports/numpy/2.4.2.json"
+        md = DetailPage(report, json_url=url).render()
+        assert url in md
+        assert "Download JSON" in md
+
+    def test_json_url_hidden_when_none(self) -> None:
+        report = _minimal_report("numpy", "2.4.2")
+        md = DetailPage(report).render()
+        assert "Download JSON" not in md
+
 
 class TestBuildSite:
     pytestmark = pytest.mark.anyio
