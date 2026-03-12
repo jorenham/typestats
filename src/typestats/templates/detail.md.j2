@@ -7,8 +7,9 @@ hide:
 
 # {{ report.package }} {{ report.version }}
 
-{% if diff_link %}[Version history]({{ diff_link }})
-{% else %}
+{% if diff_link %}[Version history]({{ diff_link }}){% if json_url %} | {% endif %}{% endif %}
+{%- if json_url %}[Download JSON]({{ json_url }}){% endif %}
+{% if not diff_link and not json_url %}
 No version history available.
 {% endif %}
 

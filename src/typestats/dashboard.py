@@ -36,6 +36,10 @@ _DEFAULT_PROJECTS: Final = Path(__file__).parents[2] / "projects.toml"
 
 _MIN_VERSIONS_FOR_DIFF: Final = 2
 
+_DATA_BASE_URL: Final = (
+    "https://raw.githubusercontent.com/jorenham/typestats/data/reports"
+)
+
 
 def _release_date(r: PackageReport, /) -> str:
     return r.pypi.upload_time[:10] if r.pypi and r.pypi.upload_time else ""
@@ -356,9 +360,11 @@ class DetailPage:
         /,
         *,
         diff_link: str | None = None,
+        json_url: str | None = None,
     ) -> None:
         self._report = report
         self._diff_link = diff_link
+        self._json_url = json_url
         self._sorted_modules = sorted(report.module_reports, key=lambda r: r.path)
 
     def render(self) -> str:
@@ -376,6 +382,7 @@ class DetailPage:
             type_ignores=self._type_ignore_data(),
             project_urls=self._report.project_urls(),
             diff_link=self._diff_link,
+            json_url=self._json_url,
             symbols_by_kind=self._symbols_by_kind(),
             mermaid_config_pie=self._MERMAID_CONFIG_PIE,
         )
@@ -581,9 +588,10 @@ def _pkg_page_entries(
         has_diff = len(pkg_versions) >= _MIN_VERSIONS_FOR_DIFF
 
         diff_link = "diff.md" if has_diff else None
+        json_url = f"{_DATA_BASE_URL}/{report.package}/{report.version}.json"
         pages.append((
             str(docs_dir / report.package / "index.md"),
-            DetailPage(report, diff_link=diff_link).render(),
+            DetailPage(report, diff_link=diff_link, json_url=json_url).render(),
         ))
 
         if has_diff:
