@@ -642,7 +642,7 @@ class TestExtractProjectUrls:
                     "Project-URL": [
                         "Homepage, https://numpy.org/",
                         "Repository, https://github.com/numpy/numpy",
-                    ]
+                    ],
                 },
                 "https://github.com/numpy/numpy",
                 id="github-skips-non-repo",
@@ -721,7 +721,7 @@ class TestExtractProjectUrls:
                     "Project-URL": [
                         "Homepage, https://example.com/",
                         "Documentation, https://docs.example.com/",
-                    ]
+                    ],
                 },
                 id="project-url-no-repo-host",
             ),
