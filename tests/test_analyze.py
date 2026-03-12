@@ -1493,6 +1493,129 @@ class TestTypeCheckOnly:
         assert module.type_check_only == {"_f", "_P"}
 
 
+class TestProtocol:
+    def test_typing_protocol(self) -> None:
+        src = textwrap.dedent("""
+        from typing import Protocol
+
+        class Readable(Protocol):
+            def read(self, n: int) -> bytes: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Readable"]
+        assert isinstance(cls, Class)
+        assert cls.is_protocol
+
+    def test_typing_extensions_protocol(self) -> None:
+        src = textwrap.dedent("""
+        from typing_extensions import Protocol
+
+        class Readable(Protocol):
+            def read(self, n: int) -> bytes: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Readable"]
+        assert isinstance(cls, Class)
+        assert cls.is_protocol
+
+    def test_dotted_protocol(self) -> None:
+        src = textwrap.dedent("""
+        import typing
+
+        class Readable(typing.Protocol):
+            def read(self, n: int) -> bytes: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Readable"]
+        assert isinstance(cls, Class)
+        assert cls.is_protocol
+
+    def test_aliased_protocol(self) -> None:
+        src = textwrap.dedent("""
+        from typing import Protocol as Proto
+
+        class Readable(Proto):
+            def read(self, n: int) -> bytes: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Readable"]
+        assert isinstance(cls, Class)
+        assert cls.is_protocol
+
+    def test_non_protocol_class(self) -> None:
+        src = textwrap.dedent("""
+        class Foo:
+            x: int
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+        assert isinstance(cls, Class)
+        assert not cls.is_protocol
+
+    def test_protocol_type_counts_zero(self) -> None:
+        """Protocol classes should contribute (0, 0, 0) to type counts."""
+        cls = Class(
+            "Readable",
+            members=(
+                Function(
+                    "read",
+                    (
+                        Overload(
+                            (
+                                Param(
+                                    "n",
+                                    ParamKind.POSITIONAL_OR_KEYWORD,
+                                    Expr(cst.Name("int")),
+                                ),
+                            ),
+                            Expr(cst.Name("bytes")),
+                        ),
+                    ),
+                ),
+            ),
+            is_protocol=True,
+        )
+        assert type_counts(cls) == (0, 0, 0)
+
+    def test_protocol_is_typed(self) -> None:
+        """Protocol classes with typed members should still report is_typed."""
+        cls = Class(
+            "Readable",
+            members=(Expr(cst.Name("int")),),
+            is_protocol=True,
+        )
+        assert cls.is_typed
+
+    def test_to_unknown_preserves_is_protocol(self) -> None:
+        cls = Class(
+            "P",
+            members=(Expr(cst.Name("int")),),
+            is_protocol=True,
+        )
+        result = cls.to_unknown()
+        assert isinstance(result, Class)
+        assert result.is_protocol
+
+    def test_protocol_collect_type_counts_zero(self) -> None:
+        """Protocol detected via collect_symbols should have zero type counts."""
+        src = textwrap.dedent("""
+        from typing import Protocol
+
+        class Writable(Protocol):
+            def write(self, data: bytes) -> int: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Writable"]
+        assert isinstance(cls, Class)
+        assert type_counts(cls) == (0, 0, 0)
+
+
 class TestVersionGuards:  # noqa: PLR0904
     def test_matching_branch_gte(self) -> None:
         src = textwrap.dedent("""
