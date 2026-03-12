@@ -474,10 +474,9 @@ class DetailPage:
                         status = "Any"
 
                     kind = "method" if member.kind == "function" else member.kind
-                    member_short = member.name.removeprefix(f"{short_name}.")
                     rows.append(
                         _AnnotationRow(
-                            name=f"{short_name}.{member_short}",
+                            name=member.name,
                             kind=kind,
                             status=status,
                             n_typed=member.n_typed,
