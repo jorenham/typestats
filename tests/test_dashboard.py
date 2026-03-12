@@ -379,6 +379,43 @@ class TestRenderDetail:
         assert "<td>method</td>" in set_rows[0]
         assert "missing" in set_rows[0]
 
+    def test_class_reexported_no_duplicate_name(self) -> None:
+        """Re-exported class members should not duplicate the class name."""
+        module = ModuleReport.model_validate({
+            "path": "pkg/core/series.pyi",
+            "symbol_reports": [
+                {
+                    "kind": "class",
+                    "name": "pkg.Series",
+                    "methods": [
+                        {
+                            "kind": "function",
+                            "name": "Series.idxmax",
+                            "n_typed": 3,
+                            "n_any": 2,
+                            "n_untyped": 0,
+                            "n_overloads": 1,
+                        },
+                    ],
+                    "properties": [],
+                },
+            ],
+        })
+        report = PackageReport(
+            package="pkg",
+            version="1.0.0",
+            stubs_only=StubsOnly.NO,
+            py_typed=PyTyped.STUBS,
+            module_reports=(module,),
+        )
+        md = DetailPage(report).render()
+        rows = _table_rows(md)
+        method_rows = [r for r in rows if "idxmax" in r]
+        assert len(method_rows) == 1
+        assert "Series.idxmax" in method_rows[0]
+        # Must NOT contain the duplicated form "pkg.Series.Series.idxmax"
+        assert "pkg.Series.Series" not in method_rows[0]
+
     def test_class_excludes_typed_methods(self) -> None:
         """Fully typed class methods are excluded from the table."""
         report = _rich_report("mypkg")
