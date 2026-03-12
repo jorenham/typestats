@@ -83,7 +83,7 @@ class _DiffRow(NamedTuple):
     release_date: str
     coverage: _MetricCell
     coverage_strict: _MetricCell
-    symbols: _MetricCell
+    typables: _MetricCell
     untyped: _MetricCell
     ignores: _MetricCell
 
@@ -208,7 +208,7 @@ class DiffPage:
                 release_date=_release_date(r),
                 coverage=self._cov_data(r, prev, strict=False),
                 coverage_strict=self._cov_data(r, prev, strict=True),
-                symbols=self._int_data(
+                typables=self._int_data(
                     r.n_typable,
                     prev.n_typable if prev else None,
                     neutral=True,

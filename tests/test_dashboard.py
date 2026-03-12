@@ -872,7 +872,7 @@ class TestRenderDiff:
             "Released",
             "Coverage",
             "Coverage (strict)",
-            "Symbols",
+            "Typables",
             "Untyped",
             "Ignores",
         ):
