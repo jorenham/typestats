@@ -183,7 +183,7 @@ class Config:
       <td></td>
       <td><strong>Total</strong></td>
       <td></td>
-      <td style="text-align: right"><strong>9</strong></td>
+      <td style="text-align: right"><strong>10</strong></td>
       <td style="text-align: right"><strong>3</strong></td>
       <td style="text-align: right"><strong>12</strong></td>
     </tr>
@@ -211,7 +211,7 @@ Since `Any` provides no type safety, typestats provides this additional strict c
 
 From the example above:
 
-- **Coverage**: 9 / 12 = **75%**
-- **Coverage (strict)**: (9 - 3) / 12 = **50%**
+- **Coverage**: 10 / 12 = **83%**
+- **Coverage (strict)**: (10 - 3) / 12 = **58%**
 
-The 25% gap is the `Any` share of the annotations.
+The 25-point gap (3 / 12) is the `Any` share of the annotations.
