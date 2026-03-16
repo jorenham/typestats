@@ -101,6 +101,17 @@ class TestAttrReport:
         assert r.n_any == n_any
         assert r.n_untyped == n_untyped
 
+    def test_legacy_kind_name_normalized(self) -> None:
+        r = AttrReport.model_validate({
+            "kind": "name",
+            "name": "x",
+            "n_typed": 1,
+            "n_any": 0,
+            "n_untyped": 0,
+        })
+        assert r.kind == "attr"
+        assert r.model_dump()["kind"] == "attr"
+
 
 def _func(overload0: Overload, /, *overloads: Overload) -> Function:
     return Function("f", (overload0, *overloads))

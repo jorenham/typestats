@@ -114,11 +114,11 @@ class AttrReport(BaseModel):
     n_any: _Max1
     n_untyped: _Max1
 
-    # Always serialize as "attr" even if loaded from legacy "name" data.
+    # Normalize legacy "name" -> "attr" on input.
     # TODO(@jorenham): remove once we've done a full rebuild with `kind="attr"`
-    @field_serializer("kind")
+    @field_validator("kind")
     @staticmethod
-    def _serialize_kind(_v: str) -> str:
+    def _normalize_kind(_v: str) -> str:
         return "attr"
 
     @computed_field

@@ -433,12 +433,7 @@ class DetailPage:
         return result
 
     def _symbols_by_kind(self) -> _SymbolsByKind:
-        kind2key = {
-            "function": "functions",
-            "attr": "attrs",
-            "name": "attrs",  # legacy compat
-            "property": "classes",
-        }
+        kind2key = {"function": "functions", "attr": "attrs", "property": "classes"}
         totals = {"functions": 0, "classes": 0, "attrs": 0}
         for m in self._report.module_reports:
             for s in m.symbol_reports:
