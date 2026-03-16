@@ -62,7 +62,12 @@ Per-module (via `libcst`):
 - **Method aliases**: `__radd__ = __add__` inherits the full function signature
 - **Properties**: `@property` / `@cached_property` with `@name.setter` and `@name.deleter`
   accessors; each accessor's full signature (parameters + return type) contributes to coverage
-- **Classes**: including nested attribute annotations
+- **Classes**: typed only when *all* members (attributes, methods, properties) are typed;
+  protocols are excluded from coverage
+- **Class-body attributes**: annotated and unannotated assignments collected as class members
+- **Instance attributes**: `self.x` assignments in `__init__`/`__new__`/`__post_init__` collected
+  as class members; private (`_`-prefixed) attributes excluded; inherited typed attributes not
+  re-collected in subclasses
 - **`__slots__` exclusion**: `__slots__` assignments are ignored
 - **Enum members**: auto-detected as `IMPLICIT` (via `Enum`/`IntEnum`/`StrEnum`/`Flag`/... bases)
 - **Dataclass / NamedTuple / TypedDict fields**: auto-detected as `IMPLICIT` (typed by definition)
