@@ -20,8 +20,9 @@ For a given PyPI project the tool runs an end-to-end pipeline:
 3. **Filter** -- keep only modules reachable from public entry-points (skip tests, benchmarks,
    docs, vendored code, etc.).
 4. **Parse** -- use `libcst` to extract every typable symbol (variables, functions, methods,
-   classes, properties, overloads, aliases, etc.) together with its type annotation (or lack
-   thereof), building a flat symbol table of all local definitions.
+   classes, properties, overloads, aliases, class-body attributes, instance attributes, etc.)
+   together with its type annotation (or lack thereof), building a flat symbol table of all
+   local definitions.
 5. **Resolve** -- compute each public module's exports, tracing re-export chains back to their
    origin definition. Symbols are attributed to the source file where they are defined, not where
    they are re-exported.
@@ -51,10 +52,15 @@ For a given PyPI project the tool runs an end-to-end pipeline:
   and `EXTERNAL` (imported from an outside package). Structured variants are `Expr` (an explicit
   type expression), `Function`, `Property`, and `Class`.
 - **`is_typed`** -- the central property that decides whether a `TypeForm` counts as "typed".
-  Classes are typed only when *all* their members are typed; an overload is typed when its return
-  type *or any* parameter is typed; a function is typed when all its overloads are typed.
+  Classes are typed only when *all* their members (attributes, methods, properties) are typed;
+  an overload is typed when its return type *or any* parameter is typed; a function is typed
+  when all its overloads are typed.
 - **`type_counts`** -- returns a `(typed, any, typable)` triple for any `TypeForm`, used to
-  compute coverage metrics.
+  compute coverage metrics. For classes, counts are summed across all members; protocols return
+  `(0, 0, 0)` (excluded from coverage).
+- **Instance attributes** -- `self.x` assignments in `__init__`/`__new__`/`__post_init__` are
+  collected as class members. Private (`_`-prefixed) attributes are excluded. Typed attributes
+  inherited from base classes are not re-collected in subclasses.
 - **`__all__` resolution** -- names in `__all__` that can't be resolved are treated as `UNTYPED`,
   matching type-checker semantics.
 - **Stubs overlay** -- a companion `{project}-stubs` package is merged with the original package.
