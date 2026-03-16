@@ -1305,25 +1305,25 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             if attr_name in inherited_typed:
                 continue
 
+            full_name = f"{cls.name}.{attr_name}"
             if attr_name not in cls.member_names:
-                full_name = f"{cls.name}.{attr_name}"
                 sym = Symbol(full_name, ty)
                 cls.members.append(sym)
                 cls.member_names.add(attr_name)
                 self.symbols.append(sym)
-                continue
+            else:
+                self._override_implicit(cls, full_name, ty)
 
-            if ty is not UNTYPED:
-                continue
-
-            full_name = f"{cls.name}.{attr_name}"
-            self._override_implicit(cls, full_name)
-
-    def _override_implicit(self, cls: _ClassStackItem, full_name: str) -> None:
-        """Replace an IMPLICIT class member with UNTYPED."""
+    def _override_implicit(
+        self,
+        cls: _ClassStackItem,
+        full_name: str,
+        replacement: TypeForm = UNTYPED,
+    ) -> None:
+        """Replace an IMPLICIT class member with `replacement`."""
         for i, m in enumerate(cls.members):
             if m.name == full_name and m.type_ is IMPLICIT:
-                cls.members[i] = sym = Symbol(full_name, UNTYPED)
+                cls.members[i] = sym = Symbol(full_name, replacement)
                 for j, s in enumerate(self.symbols):
                     if s.name == full_name and s.type_ is IMPLICIT:
                         self.symbols[j] = sym

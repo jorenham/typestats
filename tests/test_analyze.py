@@ -2245,7 +2245,7 @@ class TestProperty:
         )
 
 
-class TestInstanceAttrs:
+class TestInstanceAttrs:  # noqa: PLR0904
     """Tests for instance attribute detection via self.attr in __init__."""
 
     def test_untyped_instance_attr(self) -> None:
@@ -2305,6 +2305,23 @@ class TestInstanceAttrs:
         assert isinstance(cls, Class)
         members = {m.name: m.type_ for m in cls.members}
         assert members["C.X"] is UNTYPED
+
+    def test_implicit_class_attr_typed_in_init(self) -> None:
+        """Class body `X = 1` (IMPLICIT) + `self.X: int = ...` upgrades to Expr."""
+        src = textwrap.dedent("""\
+        class C:
+            X = 1
+            def __init__(self):
+                self.X: int = 2
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert isinstance(members["C.X"], Expr)
+        # Also reflected in top-level symbols
+        top = {s.name: s.type_ for s in module.symbols}
+        assert isinstance(top["C.X"], Expr)
 
     def test_implicit_class_attr_overridden_in_toplevel(self) -> None:
         """self.X override of IMPLICIT also updates the top-level symbols."""
