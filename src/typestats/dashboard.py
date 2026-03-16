@@ -467,9 +467,9 @@ class DetailPage:
 
             short_name = s.name.removeprefix(f"{report.name}.")
 
-            # expand classes into individual method/property rows.
+            # expand classes into individual method/property/attr rows.
             if isinstance(s, ClassReport):
-                for member in (*s.methods, *s.properties):
+                for member in (*s.methods, *s.properties, *s.attrs):
                     if member.n_untyped == 0 and member.n_any == 0:
                         continue
 
