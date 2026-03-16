@@ -43,10 +43,10 @@ from typestats.index import PublicSymbols, PyTyped
 from typestats.typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
 __all__ = (
+    "AttrReport",
     "ClassReport",
     "FunctionReport",
     "ModuleReport",
-    "NameReport",
     "PackageReport",
     "PropertyReport",
     "PypiInfo",
@@ -79,12 +79,6 @@ class StubsOnly(enum.Enum):
     TYPESHED = "yes (typeshed)"
 
 
-type _AnySymbolReport = Annotated[
-    NameReport | FunctionReport | PropertyReport | ClassReport,
-    Discriminator("kind"),
-]
-
-
 class _SlotState(NamedTuple):
     typed: _Max1
     any: _Max1
@@ -103,16 +97,29 @@ class _SlotState(NamedTuple):
                 return cls(0, 0, 0)
 
 
-class NameReport(BaseModel):
-    """Report for a module-level variable or constant (single slot)."""
+type _AnySymbolReport = Annotated[
+    AttrReport | FunctionReport | PropertyReport | ClassReport,
+    Discriminator("kind"),
+]
+
+
+class AttrReport(BaseModel):
+    """Report for a variable or constant (single slot)."""
 
     model_config = ConfigDict(frozen=True)
 
-    kind: Literal["name"] = "name"
+    kind: Literal["attr", "name"] = "attr"
     name: str
     n_typed: _Max1
     n_any: _Max1
     n_untyped: _Max1
+
+    # Always serialize as "attr" even if loaded from legacy "name" data.
+    # TODO(@jorenham): remove once we've done a full rebuild with `kind="attr"`
+    @field_serializer("kind")
+    @staticmethod
+    def _serialize_kind(_v: str) -> str:
+        return "attr"
 
     @computed_field
     @property
@@ -126,7 +133,7 @@ class NameReport(BaseModel):
     n_method_overloads: Literal[0] = Field(0, exclude=True)
     n_method_params: Literal[0] = Field(0, exclude=True)
     n_classes: Literal[0] = Field(0, exclude=True)
-    n_names: Literal[1] = Field(1, exclude=True)
+    n_attrs: Literal[1] = Field(1, exclude=True)
     n_properties: Literal[0] = Field(0, exclude=True)
 
     @classmethod
@@ -157,7 +164,7 @@ class FunctionReport(BaseModel):
     n_method_overloads: Literal[0] = Field(0, exclude=True)
     n_method_params: Literal[0] = Field(0, exclude=True)
     n_classes: Literal[0] = Field(0, exclude=True)
-    n_names: Literal[0] = Field(0, exclude=True)
+    n_attrs: Literal[0] = Field(0, exclude=True)
     n_properties: Literal[0] = Field(0, exclude=True)
 
     @computed_field
@@ -212,7 +219,7 @@ class PropertyReport(BaseModel):
     n_method_overloads: Literal[0] = Field(0, exclude=True)
     n_method_params: Literal[0] = Field(0, exclude=True)
     n_classes: Literal[0] = Field(0, exclude=True)
-    n_names: Literal[0] = Field(0, exclude=True)
+    n_attrs: Literal[0] = Field(0, exclude=True)
     n_properties: Literal[1] = Field(1, exclude=True)
 
     @classmethod
@@ -306,7 +313,7 @@ class ClassReport(BaseModel):
         return sum(m.n_params for m in self.methods)
 
     n_classes: Literal[1] = Field(1, exclude=True)
-    n_names: Literal[0] = Field(0, exclude=True)
+    n_attrs: Literal[0] = Field(0, exclude=True)
 
     @computed_field
     @property
@@ -345,7 +352,7 @@ def _symbol_report(symbol: analyze.Symbol) -> _AnySymbolReport:
         case analyze.Class():
             return ClassReport.from_symbol(symbol.name, symbol.type_)
         case _:
-            return NameReport.from_symbol(symbol.name, symbol.type_)
+            return AttrReport.from_symbol(symbol.name, symbol.type_)
 
 
 def _coverage(n_typed: int, n_any: int, n_typable: int, strict: bool = False) -> float:
@@ -466,8 +473,8 @@ class ModuleReport(BaseModel):
 
     @computed_field
     @property
-    def n_names(self) -> NonNegativeInt:
-        return sum(s.n_names for s in self.symbol_reports)
+    def n_attrs(self) -> NonNegativeInt:
+        return sum(s.n_attrs for s in self.symbol_reports)
 
     @computed_field
     @property
@@ -627,8 +634,8 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
     @computed_field
     @property
-    def n_names(self) -> NonNegativeInt:
-        return sum(m.n_names for m in self.module_reports)
+    def n_attrs(self) -> NonNegativeInt:
+        return sum(m.n_attrs for m in self.module_reports)
 
     @computed_field
     @property
@@ -690,7 +697,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             f"{self.n_functions} functions ({self.n_function_overloads} overloads), "
             f"{self.n_methods} methods ({self.n_method_overloads} overloads), "
             f"{self.n_properties} properties, "
-            f"{self.n_classes} classes, {self.n_names} names, "
+            f"{self.n_classes} classes, {self.n_attrs} attrs, "
             f"{self.n_type_ignores} ignore comments",
         )
         print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
