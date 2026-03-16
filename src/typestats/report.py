@@ -138,18 +138,11 @@ class AttrReport(BaseModel):
 
     model_config = ConfigDict(frozen=True)
 
-    kind: Literal["attr", "name"] = "attr"
+    kind: Literal["attr"] = "attr"
     name: str
     n_typed: _Max1
     n_any: _Max1
     n_untyped: _Max1
-
-    # Normalize legacy "name" -> "attr" on input.
-    # TODO(@jorenham): remove once we've done a full rebuild with `kind="attr"`
-    @field_validator("kind")
-    @staticmethod
-    def _normalize_kind(_v: str) -> str:
-        return "attr"
 
     @computed_field
     @property
