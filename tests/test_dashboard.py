@@ -203,6 +203,15 @@ def _rich_report(
                         "n_untyped": 0,
                     },
                 ],
+                "attrs": [
+                    {
+                        "kind": "attr",
+                        "name": "Cache.capacity",
+                        "n_typed": 0,
+                        "n_any": 0,
+                        "n_untyped": 1,
+                    },
+                ],
             },
         ],
     })
@@ -313,7 +322,7 @@ class TestRenderIndex:
         assert 'data-package="numpy"' in data_row
 
 
-class TestRenderDetail:
+class TestRenderDetail:  # noqa: PLR0904
     def test_heading_and_backlink(self) -> None:
         report = _minimal_report("numpy", "2.4.2")
         md = DetailPage(report).render()
@@ -436,6 +445,16 @@ class TestRenderDetail:
         assert len(size_rows) == 1
         assert "property" in size_rows[0]
         assert "Any" in size_rows[0]
+
+    def test_class_attr_shown(self) -> None:
+        """Incomplete class attributes appear with kind 'attr'."""
+        report = _rich_report("mypkg")
+        md = DetailPage(report).render()
+        rows = _table_rows(md)
+        cap_rows = [r for r in rows if "Cache.capacity" in r]
+        assert len(cap_rows) == 1
+        assert "attr" in cap_rows[0]
+        assert "missing" in cap_rows[0]
 
     def test_full_coverage_no_missing(self) -> None:
         report = _minimal_report(
