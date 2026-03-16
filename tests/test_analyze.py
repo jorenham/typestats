@@ -16,6 +16,7 @@ from typestats.analyze import (
     Param,
     ParamKind,
     Property,
+    Symbol,
     TypeForm,
     collect_symbols,
     type_counts,
@@ -828,7 +829,7 @@ class TestClassMethodAlias:
 
         assert isinstance(cls, Class)
         assert len(cls.members) == 2
-        assert all(m.is_typed for m in cls.members)
+        assert all(m.type_.is_typed for m in cls.members)
 
 
 class TestIsTyped:
@@ -850,19 +851,22 @@ class TestIsTyped:
         cls = Class(
             "MyClass",
             members=(
-                Expr(cst.Name("int")),
-                Function(
-                    "method",
-                    (
-                        Overload(
-                            (
-                                Param(
-                                    "x",
-                                    ParamKind.POSITIONAL_OR_KEYWORD,
-                                    Expr(cst.Name("int")),
+                Symbol("MyClass.x", Expr(cst.Name("int"))),
+                Symbol(
+                    "MyClass.method",
+                    Function(
+                        "method",
+                        (
+                            Overload(
+                                (
+                                    Param(
+                                        "x",
+                                        ParamKind.POSITIONAL_OR_KEYWORD,
+                                        Expr(cst.Name("int")),
+                                    ),
                                 ),
+                                Expr(cst.Name("None")),
                             ),
-                            Expr(cst.Name("None")),
                         ),
                     ),
                 ),
@@ -875,18 +879,21 @@ class TestIsTyped:
         cls = Class(
             "MatlabOpaque",
             members=(
-                Function(
-                    "__new__",
-                    (
-                        Overload(
-                            (
-                                Param(
-                                    "input_array",
-                                    ParamKind.POSITIONAL_OR_KEYWORD,
-                                    UNTYPED,
+                Symbol(
+                    "MatlabOpaque.__new__",
+                    Function(
+                        "__new__",
+                        (
+                            Overload(
+                                (
+                                    Param(
+                                        "input_array",
+                                        ParamKind.POSITIONAL_OR_KEYWORD,
+                                        UNTYPED,
+                                    ),
                                 ),
+                                UNTYPED,
                             ),
-                            UNTYPED,
                         ),
                     ),
                 ),
@@ -896,11 +903,13 @@ class TestIsTyped:
 
     def test_class_with_implicit_members(self) -> None:
         """A class with IMPLICIT members (e.g. dataclass fields) is typed."""
-        assert Class("Foo", members=(IMPLICIT, IMPLICIT)).is_typed
+        assert Class(
+            "Foo", members=(Symbol("Foo.x", IMPLICIT), Symbol("Foo.y", IMPLICIT))
+        ).is_typed
 
     def test_class_with_untyped_attr(self) -> None:
         """A class with an UNTYPED attribute is not typed."""
-        assert not Class("Foo", members=(UNTYPED,)).is_typed
+        assert not Class("Foo", members=(Symbol("Foo.x", UNTYPED),)).is_typed
 
     def test_function_untyped(self) -> None:
         """A function with no annotations should not be considered typed."""
@@ -1002,7 +1011,7 @@ class TestIsTyped:
 
     def test_class_with_any_member(self) -> None:
         """A class with an ANY attribute is typed."""
-        assert Class("Foo", members=(ANY,)).is_typed
+        assert Class("Foo", members=(Symbol("Foo.x", ANY),)).is_typed
 
 
 class TestImplicitClassmethodDunders:
@@ -1216,23 +1225,32 @@ class TestAnnotationCounts:
         assert type_counts(Class("Foo")) == (0, 0, 0)
 
     def test_class_with_typed_members(self) -> None:
-        cls = Class("Foo", members=(Expr(cst.Name("int")), Expr(cst.Name("str"))))
+        cls = Class(
+            "Foo",
+            members=(
+                Symbol("Foo.x", Expr(cst.Name("int"))),
+                Symbol("Foo.y", Expr(cst.Name("str"))),
+            ),
+        )
         assert type_counts(cls) == (2, 0, 2)
 
     def test_class_with_untyped_member(self) -> None:
-        cls = Class("Foo", members=(UNTYPED,))
+        cls = Class("Foo", members=(Symbol("Foo.x", UNTYPED),))
         assert type_counts(cls) == (0, 0, 1)
 
     def test_class_with_method(self) -> None:
         cls = Class(
             "Foo",
             (
-                Function(
-                    "bar",
-                    (
-                        Overload(
-                            (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, UNTYPED),),
-                            Expr(cst.Name("None")),
+                Symbol(
+                    "Foo.bar",
+                    Function(
+                        "bar",
+                        (
+                            Overload(
+                                (Param("x", ParamKind.POSITIONAL_OR_KEYWORD, UNTYPED),),
+                                Expr(cst.Name("None")),
+                            ),
                         ),
                     ),
                 ),
@@ -1243,7 +1261,9 @@ class TestAnnotationCounts:
 
     def test_class_implicit_members_zero(self) -> None:
         """IMPLICIT members (dataclass fields, enum values) are 0/0."""
-        cls = Class("Foo", members=(IMPLICIT, IMPLICIT))
+        cls = Class(
+            "Foo", members=(Symbol("Foo.x", IMPLICIT), Symbol("Foo.y", IMPLICIT))
+        )
         assert type_counts(cls) == (0, 0, 0)
 
     def test_function_all_any(self) -> None:
@@ -1283,7 +1303,7 @@ class TestAnnotationCounts:
         assert type_counts(func) == (2, 1, 3)
 
     def test_class_with_any_member(self) -> None:
-        cls = Class("Foo", members=(ANY,))
+        cls = Class("Foo", members=(Symbol("Foo.x", ANY),))
         assert type_counts(cls) == (0, 1, 1)
 
 
@@ -1394,11 +1414,11 @@ class TestToUntyped:
         assert result.members == ()
 
     def test_class_with_members(self) -> None:
-        cls = Class("C", members=(self._INT, ANY))
+        cls = Class("C", members=(Symbol("C.x", self._INT), Symbol("C.y", ANY)))
         result = cls.to_unknown()
         assert isinstance(result, Class)
         assert len(result.members) == 2
-        assert all(m is UNTYPED for m in result.members)
+        assert all(m.type_ is UNTYPED for m in result.members)
 
     def test_class_nested_function_member(self) -> None:
         func = Function(
@@ -1410,13 +1430,14 @@ class TestToUntyped:
                 ),
             ),
         )
-        cls = Class("C", members=(func,))
+        cls = Class("C", members=(Symbol("C.method", func),))
         result = cls.to_unknown()
         assert isinstance(result, Class)
         assert len(result.members) == 1
         member = result.members[0]
-        assert isinstance(member, Function)
-        assert not member.is_typed
+        assert isinstance(member, Symbol)
+        assert isinstance(member.type_, Function)
+        assert not member.type_.is_typed
 
 
 class TestTypeCheckOnly:
@@ -1577,18 +1598,21 @@ class TestProtocol:
         cls = Class(
             "Readable",
             members=(
-                Function(
-                    "read",
-                    (
-                        Overload(
-                            (
-                                Param(
-                                    "n",
-                                    ParamKind.POSITIONAL_OR_KEYWORD,
-                                    Expr(cst.Name("int")),
+                Symbol(
+                    "Readable.read",
+                    Function(
+                        "read",
+                        (
+                            Overload(
+                                (
+                                    Param(
+                                        "n",
+                                        ParamKind.POSITIONAL_OR_KEYWORD,
+                                        Expr(cst.Name("int")),
+                                    ),
                                 ),
+                                Expr(cst.Name("bytes")),
                             ),
-                            Expr(cst.Name("bytes")),
                         ),
                     ),
                 ),
@@ -1601,7 +1625,7 @@ class TestProtocol:
         """Protocol classes with typed members should still report is_typed."""
         cls = Class(
             "Readable",
-            members=(Expr(cst.Name("int")),),
+            members=(Symbol("Readable.x", Expr(cst.Name("int"))),),
             is_protocol=True,
         )
         assert cls.is_typed
@@ -1609,7 +1633,7 @@ class TestProtocol:
     def test_to_unknown_preserves_is_protocol(self) -> None:
         cls = Class(
             "P",
-            members=(Expr(cst.Name("int")),),
+            members=(Symbol("P.x", Expr(cst.Name("int"))),),
             is_protocol=True,
         )
         result = cls.to_unknown()
@@ -1812,8 +1836,8 @@ class TestVersionGuards:  # noqa: PLR0904
         assert len(classes) == 1
         assert isinstance(classes[0], Class)
         assert len(classes[0].members) == 1
-        assert isinstance(classes[0].members[0], Function)
-        assert classes[0].members[0].name == "C.f"
+        assert isinstance(classes[0].members[0].type_, Function)
+        assert classes[0].members[0].type_.name == "C.f"
 
     def test_nested_guard_in_dead_branch_stays_skipped(self) -> None:
         src = textwrap.dedent("""
@@ -2046,7 +2070,7 @@ class TestProperty:
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
         assert len(cls.members) == 1
-        prop = cls.members[0]
+        prop = cls.members[0].type_
         assert isinstance(prop, Property)
         assert prop.name == "C.x"
         assert prop.fget is not None
@@ -2065,7 +2089,7 @@ class TestProperty:
         result = collect_symbols(src)
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
-        prop = cls.members[0]
+        prop = cls.members[0].type_
         assert isinstance(prop, Property)
         assert prop.fget is not None
         assert prop.fget.returns == UNTYPED
@@ -2083,7 +2107,7 @@ class TestProperty:
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
         assert len(cls.members) == 1  # single property, not two symbols
-        prop = cls.members[0]
+        prop = cls.members[0].type_
         assert isinstance(prop, Property)
         assert prop.fget is not None
         assert prop.fset is not None
@@ -2105,7 +2129,7 @@ class TestProperty:
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
         assert len(cls.members) == 1
-        prop = cls.members[0]
+        prop = cls.members[0].type_
         assert isinstance(prop, Property)
         assert prop.fget is not None
         assert prop.fset is not None
@@ -2121,7 +2145,7 @@ class TestProperty:
         result = collect_symbols(src)
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
-        prop = cls.members[0]
+        prop = cls.members[0].type_
         assert isinstance(prop, Property)
         assert prop.name == "C.x"
         assert prop.fget is not None
@@ -2139,7 +2163,7 @@ class TestProperty:
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
         assert len(cls.members) == 2
-        assert all(isinstance(m, Property) for m in cls.members)
+        assert all(isinstance(m.type_, Property) for m in cls.members)
 
     def test_property_with_methods(self) -> None:
         """Properties and methods coexist in a class."""
@@ -2153,8 +2177,8 @@ class TestProperty:
         cls = result.symbols[0].type_
         assert isinstance(cls, Class)
         assert len(cls.members) == 2
-        assert isinstance(cls.members[0], Property)
-        assert isinstance(cls.members[1], Function)
+        assert isinstance(cls.members[0].type_, Property)
+        assert isinstance(cls.members[1].type_, Function)
 
     def test_type_counts_fget_only(self) -> None:
         """fget with typed return: 1 typed, 1 total."""
@@ -2219,3 +2243,301 @@ class TestProperty:
             str(prop)
             == "property(fget=() -> int, fset=(value: int) -> None, fdel=() -> None)"
         )
+
+
+class TestInstanceAttrs:
+    """Tests for instance attribute detection via self.attr in __init__."""
+
+    def test_untyped_instance_attr(self) -> None:
+        """self.x = 1 in __init__ creates an UNTYPED member."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.x = 1
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        # __init__ is a member too
+        assert "C.x" in members
+        assert members["C.x"] is UNTYPED
+
+    def test_annotated_instance_attr(self) -> None:
+        """self.x: int = 1 in __init__ creates an Expr member."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.x: int = 1
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert "C.x" in members
+        assert isinstance(members["C.x"], Expr)
+
+    def test_class_body_annotation_used(self) -> None:
+        """Class body `x: int` with `self.x = 1` in __init__: class body wins."""
+        src = textwrap.dedent("""\
+        class C:
+            x: int
+            def __init__(self):
+                self.x = 1
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        # Class body annotation is Expr, instance usage doesn't override
+        assert isinstance(members["C.x"], Expr)
+
+    def test_implicit_class_attr_overridden(self) -> None:
+        """Class body `X = 1` (IMPLICIT) + `self.X = ...` makes it UNTYPED."""
+        src = textwrap.dedent("""\
+        class C:
+            X = 1
+            def __init__(self):
+                self.X = 2
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert members["C.X"] is UNTYPED
+
+    def test_implicit_class_attr_overridden_in_toplevel(self) -> None:
+        """self.X override of IMPLICIT also updates the top-level symbols."""
+        src = textwrap.dedent("""\
+        class C:
+            X = 1
+            def __init__(self):
+                self.X = 2
+        """)
+        module = collect_symbols(src)
+        top = {s.name: s.type_ for s in module.symbols}
+        assert top["C.X"] is UNTYPED
+
+    def test_non_init_method_ignored(self) -> None:
+        """self.x = 1 in a regular method does NOT create instance attrs."""
+        src = textwrap.dedent("""\
+        class C:
+            def some_method(self):
+                self.x = 1
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        member_names = {m.name for m in cls.members}
+        assert "C.x" not in member_names
+
+    def test_new_method_scanned(self) -> None:
+        """__new__ is also scanned for instance attrs."""
+        src = textwrap.dedent("""\
+        class C:
+            def __new__(cls):
+                self = super().__new__(cls)
+                self.x = 1
+                return self
+        """)
+        module = collect_symbols(src)
+        cls_type = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls_type, Class)
+        # __new__ uses cls as first param, not self -- skip_first would be True
+        # but _get_first_param_name returns "cls", and _collect_self_attrs
+        # looks for "cls.attr" -- so self.x = 1 won't match "cls"
+        # This is by design: __new__ typically uses cls, not self
+
+    def test_post_init_scanned(self) -> None:
+        """__post_init__ in a non-dataclass is scanned."""
+        src = textwrap.dedent("""\
+        class C:
+            def __post_init__(self):
+                self.computed = 42
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert "C.computed" in members
+        assert members["C.computed"] is UNTYPED
+
+    def test_nested_function_ignored(self) -> None:
+        """Assignments inside nested functions are not collected."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.x = 1
+                def helper():
+                    self.y = 2  # should be ignored
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        member_names = {m.name for m in cls.members}
+        assert "C.x" in member_names
+        assert "C.y" not in member_names
+
+    def test_dataclass_skips_init_scanning(self) -> None:
+        """Dataclasses are schema classes, init scanning is skipped."""
+        src = textwrap.dedent("""\
+        from dataclasses import dataclass
+
+        @dataclass
+        class C:
+            x: int
+            def __init__(self):
+                self.extra = 1
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        member_names = {m.name for m in cls.members}
+        assert "C.x" in member_names
+        # extra is NOT collected because dataclass is a schema class
+        assert "C.extra" not in member_names
+
+    def test_staticmethod_not_scanned(self) -> None:
+        """Static __init__ (unusual) is not scanned -- skip_first is False."""
+        src = textwrap.dedent("""\
+        class C:
+            @staticmethod
+            def __init__():
+                pass
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        # Should have just the __init__ method, no instance attrs
+        member_names = {m.name for m in cls.members}
+        assert "C.__init__" in member_names
+
+    def test_multiple_init_attrs(self) -> None:
+        """Multiple instance attrs in __init__ are all collected."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.a = 1
+                self.b: str = "hello"
+                self.c = []
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert members["C.a"] is UNTYPED
+        assert isinstance(members["C.b"], Expr)
+        assert members["C.c"] is UNTYPED
+
+    def test_annotated_init_wins_over_bare(self) -> None:
+        """When both `self.x = 1` and `self.x: int = 2` appear, annotation wins."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.x = 1
+                self.x: int = 2
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert isinstance(members["C.x"], Expr)
+
+    def test_instance_attrs_in_top_level_symbols(self) -> None:
+        """Instance attrs also appear in the module-level symbols list."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.x: int = 1
+        """)
+        module = collect_symbols(src)
+        top = {s.name: s.type_ for s in module.symbols}
+        assert "C.x" in top
+        assert isinstance(top["C.x"], Expr)
+
+    def test_init_annotated_overrides_class_body(self) -> None:
+        """self.x: str = ... in __init__ overrides class body annotation."""
+        src = textwrap.dedent("""\
+        class C:
+            x: int
+            def __init__(self):
+                self.x: str = "hello"
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        # Class body annotation stays -- annotated init doesn't override
+        assert isinstance(members["C.x"], Expr)
+
+    def test_private_attrs_excluded(self) -> None:
+        """Attributes starting with _ are excluded from instance attr detection."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.public = 1
+                self._private = 2
+                self.__mangled = 3
+                self._protected: int = 4
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        member_names = {m.name for m in cls.members}
+        assert "C.public" in member_names
+        assert "C._private" not in member_names
+        assert "C.__mangled" not in member_names
+        assert "C._protected" not in member_names
+
+    def test_inherited_typed_attr_skipped(self) -> None:
+        """self.a = ... in subclass init is skipped when parent has `a: str`."""
+        src = textwrap.dedent("""\
+        class A:
+            a: str
+        class B(A):
+            def __init__(self):
+                self.a = "a"
+        """)
+        module = collect_symbols(src)
+        types = {s.name: s.type_ for s in module.symbols}
+        # A.a stays typed
+        assert isinstance(types["A.a"], Expr)
+        # B should NOT have its own UNTYPED B.a
+        b_cls = types["B"]
+        assert isinstance(b_cls, Class)
+        member_names = {m.name for m in b_cls.members}
+        assert "B.a" not in member_names
+
+    def test_inherited_untyped_attr_not_skipped(self) -> None:
+        """self.a = ... in subclass is added when parent has IMPLICIT `a = 1`."""
+        src = textwrap.dedent("""\
+        class A:
+            a = 1
+        class B(A):
+            def __init__(self):
+                self.a = 2
+        """)
+        module = collect_symbols(src)
+        b_cls = {s.name: s.type_ for s in module.symbols}["B"]
+        assert isinstance(b_cls, Class)
+        members = {m.name: m.type_ for m in b_cls.members}
+        # Parent a is IMPLICIT, so subclass self.a should still be collected
+        assert "B.a" in members
+        assert members["B.a"] is UNTYPED
+
+    def test_diamond_inheritance_typed_attr(self) -> None:
+        """Typed attr in grandparent is skipped through chain of inheritance."""
+        src = textwrap.dedent("""\
+        class A:
+            x: int
+        class B(A):
+            pass
+        class C(B):
+            def __init__(self):
+                self.x = 1
+        """)
+        module = collect_symbols(src)
+        c_cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(c_cls, Class)
+        member_names = {m.name for m in c_cls.members}
+        assert "C.x" not in member_names

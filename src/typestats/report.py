@@ -250,10 +250,7 @@ class PropertyReport(BaseModel):
 
 
 class ClassReport(BaseModel):
-    """Report for a class; aggregates its method reports.
-
-    Class-level attributes are ignored (for now?).
-    """
+    """Report for a class; aggregates its method, property, and attribute reports."""
 
     model_config = ConfigDict(frozen=True)
 
@@ -261,26 +258,27 @@ class ClassReport(BaseModel):
     name: str
     methods: tuple[FunctionReport, ...]
     properties: tuple[PropertyReport, ...] = ()
+    attrs: tuple[AttrReport, ...] = ()
 
     @computed_field
     @property
     def n_typable(self) -> NonNegativeInt:
-        return sum(m.n_typable for m in self.methods + self.properties)
+        return sum(m.n_typable for m in (*self.methods, *self.properties, *self.attrs))
 
     @computed_field
     @property
     def n_typed(self) -> NonNegativeInt:
-        return sum(m.n_typed for m in self.methods + self.properties)
+        return sum(m.n_typed for m in (*self.methods, *self.properties, *self.attrs))
 
     @computed_field
     @property
     def n_any(self) -> NonNegativeInt:
-        return sum(m.n_any for m in self.methods + self.properties)
+        return sum(m.n_any for m in (*self.methods, *self.properties, *self.attrs))
 
     @computed_field
     @property
     def n_untyped(self) -> NonNegativeInt:
-        return sum(m.n_untyped for m in self.methods + self.properties)
+        return sum(m.n_untyped for m in (*self.methods, *self.properties, *self.attrs))
 
     @computed_field
     @property
@@ -313,7 +311,11 @@ class ClassReport(BaseModel):
         return sum(m.n_params for m in self.methods)
 
     n_classes: Literal[1] = Field(1, exclude=True)
-    n_attrs: Literal[0] = Field(0, exclude=True)
+
+    @computed_field
+    @property
+    def n_attrs(self) -> NonNegativeInt:
+        return len(self.attrs)
 
     @computed_field
     @property
@@ -326,19 +328,28 @@ class ClassReport(BaseModel):
             return cls(name=name, methods=(), properties=())
 
         methods = [
-            FunctionReport.from_symbol(member.name, member)
+            FunctionReport.from_symbol(member.name, member.type_)
             for member in ty.members
-            if isinstance(member, analyze.Function)
+            if isinstance(member.type_, analyze.Function)
         ]
         properties = [
-            PropertyReport.from_symbol(member.name, member)
+            PropertyReport.from_symbol(member.name, member.type_)
             for member in ty.members
-            if isinstance(member, analyze.Property)
+            if isinstance(member.type_, analyze.Property)
+        ]
+        attrs = [
+            AttrReport.from_symbol(member.name, member.type_)
+            for member in ty.members
+            if not isinstance(
+                member.type_,
+                analyze.Function | analyze.Property | analyze.Class,
+            )
         ]
         return cls(
             name=name,
             methods=tuple(methods),
             properties=tuple(properties),
+            attrs=tuple(attrs),
         )
 
 

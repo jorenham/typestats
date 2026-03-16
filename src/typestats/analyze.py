@@ -427,7 +427,7 @@ class Property:
 @dataclass(frozen=True, slots=True)
 class Class:
     name: str
-    members: tuple[TypeForm, ...] = ()
+    members: tuple[Symbol, ...] = ()
     is_protocol: bool = False
 
     @override
@@ -436,7 +436,7 @@ class Class:
 
     @property
     def is_typed(self) -> bool:
-        return all(m.is_typed for m in self.members)
+        return all(m.type_.is_typed for m in self.members)
 
     @property
     def type_counts(self) -> _TypeCounts:
@@ -444,7 +444,7 @@ class Class:
         if self.is_protocol:
             return _TypeCounts(0, 0, 0)
 
-        counts = [type_counts(m) for m in self.members]
+        counts = [type_counts(m.type_) for m in self.members]
         return _TypeCounts(
             sum(c.typed for c in counts),
             sum(c.any for c in counts),
@@ -454,7 +454,7 @@ class Class:
     def to_unknown(self) -> Self:
         return type(self)(
             self.name,
-            tuple(m.to_unknown() for m in self.members),
+            tuple(Symbol(m.name, m.type_.to_unknown()) for m in self.members),
             is_protocol=self.is_protocol,
         )
 
@@ -599,6 +599,66 @@ def _is_all_target(target: cst.BaseExpression) -> bool:
     return get_full_name_for_node(target) == _ALL
 
 
+_INIT_METHODS: Final = frozenset({"__init__", "__new__", "__post_init__"})
+
+
+def _get_first_param_name(node: cst.FunctionDef) -> str | None:
+    """Return the name of the first positional parameter (usually `self` or `cls`)."""
+    for params in (node.params.posonly_params, node.params.params):
+        for p in params:
+            if isinstance(p, cst.Param):
+                return p.name.value
+    return None
+
+
+def _is_self_attr(node: cst.BaseExpression, self_name: str) -> str | None:
+    if (
+        isinstance(node, cst.Attribute)
+        and isinstance(node.value, cst.Name)
+        and node.value.value == self_name
+        and not node.attr.value.startswith("_")
+    ):
+        return node.attr.value
+    return None
+
+
+def _collect_self_attrs(
+    body: cst.BaseSuite,
+    self_name: str,
+    resolve_name: _NameResolver,
+) -> dict[str, TypeForm]:
+    result: dict[str, TypeForm] = {}
+
+    # BFS over the body, skipping nested scopes
+    queue: deque[cst.CSTNode] = deque([body])
+    while queue:
+        node = queue.popleft()
+
+        if isinstance(node, cst.FunctionDef | cst.ClassDef | cst.Lambda):
+            continue  # skip nested scopes
+
+        if isinstance(node, cst.AnnAssign):
+            if attr := _is_self_attr(node.target, self_name):
+                result[attr] = Expr.from_expr(
+                    node.annotation.annotation,
+                    resolve_name,
+                )
+            continue  # skip `AnnAssign` children
+
+        if isinstance(node, cst.Assign):
+            for target in node.targets:
+                if (
+                    (attr := _is_self_attr(target.target, self_name))
+                    and attr not in result
+                ):  # fmt: skip
+                    result[attr] = UNTYPED
+            continue  # skip `Assign` children
+
+        queue.extend(node.children)
+
+    return result
+
+
 @dataclass(slots=True)
 class _ClassStackItem:
     name: str
@@ -606,7 +666,9 @@ class _ClassStackItem:
     is_protocol: bool
     is_schema: bool
     symbol_index: int  # index into _SymbolVisitor.symbols where the Class symbol lives
-    members: list[TypeForm]
+    members: list[Symbol]
+    member_names: set[str]  # short attr names (without class prefix) for dedup
+    base_names: tuple[str, ...]  # resolved FQNs of base classes
 
 
 class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
@@ -647,6 +709,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     _overload_map: defaultdict[str, list[Overload]]
     _property_map: dict[str, int]
     _added_functions: set[str]
+    _class_attrs_typed: dict[str, frozenset[str]]
 
     _package_name: Final[str]
 
@@ -674,6 +737,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         self._overload_map = defaultdict(list)
         self._property_map = {}
         self._added_functions = set()
+        self._class_attrs_typed = {}
 
         self._package_name = package_name
 
@@ -816,7 +880,9 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         if cls := self._current_class:
             if not self._function_depth:
-                cls.members.extend(annotation for _ in names)
+                for n in names:
+                    cls.members.append(Symbol(self._symbol_name(n), annotation))
+                    cls.member_names.add(n.value)
         else:
             self._defined_names.update(n.value for n in names)
 
@@ -1030,6 +1096,9 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 )
                 for b in node.bases
             )
+            base_names = tuple(
+                n for b in node.bases if (n := self._resolve_name(b.value)) is not None
+            )
             stack.append(
                 _ClassStackItem(
                     name,
@@ -1040,6 +1109,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     is_schema=self._is_schema_class(node),
                     symbol_index=len(self.symbols),
                     members=[],
+                    member_names=set(),
+                    base_names=base_names,
                 ),
             )
             self.symbols.append(Symbol(name, Class(name, is_protocol=is_protocol)))
@@ -1060,6 +1131,18 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     is_protocol=item.is_protocol,
                 ),
             )
+            # Record typed attrs for inheritance lookups by subclasses.
+            typed = {
+                m.name.removeprefix(f"{item.name}.")
+                for m in item.members
+                if not isinstance(m.type_, Function | Property | Class)
+                and m.type_ is not IMPLICIT
+                and m.type_ is not UNTYPED
+            }
+            # Include typed attrs inherited from bases.
+            for base in item.base_names:
+                typed |= self._class_attrs_typed.get(base, frozenset())
+            self._class_attrs_typed[item.name] = frozenset(typed)
 
     @override
     def visit_FunctionDef(self, node: cst.FunctionDef) -> bool:
@@ -1115,7 +1198,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         self.symbols.append(Symbol(name, prop))
 
         if cls := self._current_class:
-            cls.members.append(prop)
+            cls.members.append(Symbol(name, prop))
+            cls.member_names.add(node.name.value)
         else:
             self._defined_names.add(node.name.value)
 
@@ -1139,8 +1223,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         if cls := self._current_class:
             for i, m in enumerate(members := cls.members):
-                if m is prop_old:
-                    members[i] = prop_new
+                if m.type_ is prop_old:
+                    members[i] = Symbol(m.name, prop_new)
                     break
 
     def _handle_function_def(self, node: cst.FunctionDef) -> None:
@@ -1178,7 +1262,63 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             self.symbols.append(Symbol(name, func))
             self._added_functions.add(name)
             if cls:
-                cls.members.append(func)
+                cls.members.append(Symbol(name, func))
+                cls.member_names.add(node.name.value)
+
+        # Scan init-family methods for instance attributes (self.attr = ...)
+        if (
+            cls
+            and not cls.is_schema
+            and node.name.value in _INIT_METHODS
+            and skip_first  # instance method (not static/classmethod)
+            and (self_name := _get_first_param_name(node))
+        ):
+            self._scan_init_attrs(cls, node.body, self_name)
+
+    def _scan_init_attrs(
+        self,
+        cls: _ClassStackItem,
+        body: cst.BaseSuite,
+        self_name: str,
+    ) -> None:
+        """Merge instance attributes from an init-family method into `cls`."""
+
+        # Collect typed attrs from base classes so we skip already-typed
+        # inherited attributes (e.g. `class B(A): def __init__(self): self.a = ...`
+        # where `A.a: str` is already annotated).
+        inherited_typed: set[str] = set()
+        for base in cls.base_names:
+            inherited_typed |= self._class_attrs_typed.get(base, frozenset())
+
+        self_attrs = _collect_self_attrs(body, self_name, self._resolve_name)
+        for attr_name, ty in self_attrs.items():
+            if attr_name in inherited_typed:
+                continue
+
+            if attr_name not in cls.member_names:
+                full_name = f"{cls.name}.{attr_name}"
+                sym = Symbol(full_name, ty)
+                cls.members.append(sym)
+                cls.member_names.add(attr_name)
+                self.symbols.append(sym)
+                continue
+
+            if ty is not UNTYPED:
+                continue
+
+            full_name = f"{cls.name}.{attr_name}"
+            self._override_implicit(cls, full_name)
+
+    def _override_implicit(self, cls: _ClassStackItem, full_name: str) -> None:
+        """Replace an IMPLICIT class member with UNTYPED."""
+        for i, m in enumerate(cls.members):
+            if m.name == full_name and m.type_ is IMPLICIT:
+                cls.members[i] = sym = Symbol(full_name, UNTYPED)
+                for j, s in enumerate(self.symbols):
+                    if s.name == full_name and s.type_ is IMPLICIT:
+                        self.symbols[j] = sym
+                        break
+                break
 
     @override
     def leave_FunctionDef(self, original_node: cst.FunctionDef) -> None:
@@ -1245,8 +1385,9 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             for name_node in _extract_names(target.target):
                 alias_name = self._symbol_name(name_node)
                 func = Function(alias_name, ref_func.overloads)
-                methods.append(func)
-                symbols.append(Symbol(alias_name, func))
+                symbol = Symbol(alias_name, func)
+                methods.append(symbol)
+                symbols.append(symbol)
 
         return True
 
