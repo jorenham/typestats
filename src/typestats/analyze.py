@@ -1276,10 +1276,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         # Scan init-family methods for instance attributes (self.attr = ...)
         if (
-            cls
+            cls  # noqa: PLR0916
             and not cls.is_schema
             and node.name.value in _INIT_METHODS
-            and skip_first  # instance method (not static/classmethod)
+            and skip_first  # not a staticmethod
+            and "classmethod" not in decorators
             and (self_name := _get_first_param_name(node))
         ):
             self._scan_init_attrs(cls, node.body, self_name)
