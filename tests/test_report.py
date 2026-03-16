@@ -26,10 +26,10 @@ from typestats.analyze import (
 from typestats.index import PyTyped
 from typestats.projects import Project
 from typestats.report import (
+    AttrReport,
     ClassReport,
     FunctionReport,
     ModuleReport,
-    NameReport,
     PackageReport,
     PropertyReport,
     PypiInfo,
@@ -75,7 +75,7 @@ class TestSlotState:
         assert _SlotState.from_typeform(typeform) == expected
 
 
-class TestNameReport:
+class TestAttrReport:
     @pytest.mark.parametrize(
         ("typeform", "n_typable", "n_typed", "n_any", "n_untyped"),
         [
@@ -95,11 +95,22 @@ class TestNameReport:
         n_any: int,
         n_untyped: int,
     ) -> None:
-        r = NameReport.from_symbol("x", typeform)
+        r = AttrReport.from_symbol("x", typeform)
         assert r.n_typable == n_typable
         assert r.n_typed == n_typed
         assert r.n_any == n_any
         assert r.n_untyped == n_untyped
+
+    def test_legacy_kind_name_normalized(self) -> None:
+        r = AttrReport.model_validate({
+            "kind": "name",
+            "name": "x",
+            "n_typed": 1,
+            "n_any": 0,
+            "n_untyped": 0,
+        })
+        assert r.kind == "attr"
+        assert r.model_dump()["kind"] == "attr"
 
 
 def _func(overload0: Overload, /, *overloads: Overload) -> Function:
@@ -297,7 +308,7 @@ class TestPropertyReport:
         assert r.n_functions == 0
         assert r.n_methods == 0
         assert r.n_classes == 0
-        assert r.n_names == 0
+        assert r.n_attrs == 0
 
     def test_fget_and_fset(self) -> None:
         fget = _overload([])  # () -> int
@@ -351,11 +362,11 @@ class TestSymbolReport:
 
     def test_name(self) -> None:
         r = _symbol_report(Symbol("x", _INT))
-        assert isinstance(r, NameReport)
+        assert isinstance(r, AttrReport)
 
     def test_untyped(self) -> None:
         r = _symbol_report(Symbol("x", UNTYPED))
-        assert isinstance(r, NameReport)
+        assert isinstance(r, AttrReport)
         assert r.n_untyped == 1
 
 
@@ -407,7 +418,7 @@ class TestModuleReport:
         assert m.n_function_overloads == 3  # f has 1 + g has 2
         assert m.n_method_overloads == 0
         assert m.n_classes == 1
-        assert m.n_names == 2
+        assert m.n_attrs == 2
 
     def test_entity_counts_empty(self) -> None:
         m = ModuleReport(path="m.py", symbol_reports=())
@@ -416,7 +427,7 @@ class TestModuleReport:
         assert m.n_function_overloads == 0
         assert m.n_method_overloads == 0
         assert m.n_classes == 0
-        assert m.n_names == 0
+        assert m.n_attrs == 0
 
     def test_overloads_from_class_methods(self) -> None:
         overloaded_method = Function(
@@ -498,7 +509,7 @@ class TestPackageReport:
         assert r.n_function_overloads == 1
         assert r.n_method_overloads == 1
         assert r.n_classes == 1
-        assert r.n_names == 1
+        assert r.n_attrs == 1
 
     def test_typechecker_configs_default_empty(self) -> None:
         r = self._pkg(Symbol("a", _INT))

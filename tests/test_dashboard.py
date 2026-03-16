@@ -33,7 +33,7 @@ def _make_symbol_reports(
     return [
         *[
             {
-                "kind": "name",
+                "kind": "attr",
                 "name": f"{package}.x{i}",
                 "n_typed": 1,
                 "n_any": 0,
@@ -44,7 +44,7 @@ def _make_symbol_reports(
         ],
         *[
             {
-                "kind": "name",
+                "kind": "attr",
                 "name": f"{package}.a{i}",
                 "n_typed": 0,
                 "n_any": 1,
@@ -55,7 +55,7 @@ def _make_symbol_reports(
         ],
         *[
             {
-                "kind": "name",
+                "kind": "attr",
                 "name": f"{package}.u{i}",
                 "n_typed": 0,
                 "n_any": 0,
@@ -126,7 +126,7 @@ def _rich_report(
         "path": f"{package}/__init__.py",
         "symbol_reports": [
             {
-                "kind": "name",
+                "kind": "attr",
                 "name": f"{package}.VERSION",
                 "n_typed": 1,
                 "n_any": 0,
@@ -143,7 +143,7 @@ def _rich_report(
                 "n_typable": 3,
             },
             {
-                "kind": "name",
+                "kind": "attr",
                 "name": f"{package}.data",
                 "n_typed": 0,
                 "n_any": 1,
@@ -495,7 +495,7 @@ class TestRenderDetail:
             "path": "scipy-stubs/fft/__init__.pyi",
             "symbol_reports": [
                 {
-                    "kind": "name",
+                    "kind": "attr",
                     "name": "scipy-stubs.fft.x",
                     "n_typed": 0,
                     "n_any": 0,
