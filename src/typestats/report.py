@@ -423,7 +423,7 @@ def _normalize_relpath(
     return anyio.Path(*parts) if parts else rel, had_stubs
 
 
-# Pydantic discriminated union for (de)serialization; use `SymbolReport`
+# Pydantic discriminated union for (de)serialization; use `Report`
 # protocol for general type annotations.
 type _AnySymbolReport = Annotated[
     AttrReport | FunctionReport | PropertyReport | ClassReport,
