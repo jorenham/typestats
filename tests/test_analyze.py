@@ -2332,7 +2332,7 @@ class TestInstanceAttrs:
         assert "C.x" not in member_names
 
     def test_new_method_scanned(self) -> None:
-        """__new__ is also scanned for instance attrs."""
+        """__new__ first param is `cls`, so `self.x = 1` is not detected."""
         src = textwrap.dedent("""\
         class C:
             def __new__(cls):
@@ -2343,10 +2343,10 @@ class TestInstanceAttrs:
         module = collect_symbols(src)
         cls_type = {s.name: s.type_ for s in module.symbols}["C"]
         assert isinstance(cls_type, Class)
-        # __new__ uses cls as first param, not self -- skip_first would be True
-        # but _get_first_param_name returns "cls", and _collect_self_attrs
-        # looks for "cls.attr" -- so self.x = 1 won't match "cls"
-        # This is by design: __new__ typically uses cls, not self
+        # _get_first_param_name returns "cls", so _collect_self_attrs looks
+        # for "cls.attr" -- "self.x = 1" does not match.
+        member_names = {m.name for m in cls_type.members}
+        assert "C.x" not in member_names
 
     def test_post_init_scanned(self) -> None:
         """__post_init__ in a non-dataclass is scanned."""
@@ -2456,7 +2456,7 @@ class TestInstanceAttrs:
         assert isinstance(top["C.x"], Expr)
 
     def test_init_annotated_overrides_class_body(self) -> None:
-        """self.x: str = ... in __init__ overrides class body annotation."""
+        """self.x: str = ... in __init__ does not override class body annotation."""
         src = textwrap.dedent("""\
         class C:
             x: int
@@ -2467,7 +2467,7 @@ class TestInstanceAttrs:
         cls = {s.name: s.type_ for s in module.symbols}["C"]
         assert isinstance(cls, Class)
         members = {m.name: m.type_ for m in cls.members}
-        # Class body annotation stays -- annotated init doesn't override
+        # Class body annotation stays
         assert isinstance(members["C.x"], Expr)
 
     def test_private_attrs_excluded(self) -> None:
@@ -2541,3 +2541,20 @@ class TestInstanceAttrs:
         assert isinstance(c_cls, Class)
         member_names = {m.name for m in c_cls.members}
         assert "C.x" not in member_names
+
+    def test_generic_base_typed_attr_skipped(self) -> None:
+        """Typed attr in generic base class `A[int]` is still recognized."""
+        src = textwrap.dedent("""\
+        from typing import Generic, TypeVar
+        T = TypeVar("T")
+        class A(Generic[T]):
+            x: int
+        class B(A[int]):
+            def __init__(self):
+                self.x = 1
+        """)
+        module = collect_symbols(src)
+        b_cls = {s.name: s.type_ for s in module.symbols}["B"]
+        assert isinstance(b_cls, Class)
+        member_names = {m.name for m in b_cls.members}
+        assert "B.x" not in member_names

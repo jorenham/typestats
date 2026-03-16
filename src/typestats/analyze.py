@@ -1097,7 +1097,16 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 for b in node.bases
             )
             base_names = tuple(
-                n for b in node.bases if (n := self._resolve_name(b.value)) is not None
+                n
+                for b in node.bases
+                if (
+                    n := self._resolve_name(
+                        b.value.value
+                        if isinstance(b.value, cst.Subscript)
+                        else b.value,
+                    )
+                )
+                is not None
             )
             stack.append(
                 _ClassStackItem(
