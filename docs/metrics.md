@@ -24,7 +24,9 @@ Functions and classes are not counted as single items.
 x: int = 0
 z: Any = 2
 
+
 def greet(name: str, greeting: Any) -> str: ...
+
 
 class Config:
     debug: bool
@@ -200,21 +202,8 @@ as typed regardless of whether `ArrayLike` can be resolved.
 checker syntactically, yet provides zero type safety.
 That is why typestats reports two coverage metrics.
 
-<div class="grid cards" markdown>
-
-- **Coverage**
-
-  ---
-
-  `typed / typable`
-
-- **Coverage (strict)**
-
-  ---
-
-  `(typed - any) / typable`
-
-</div>
+- **Coverage**: `typed / typable`
+- **Coverage (strict)**: `(typed - any) / typable`
 
 Non-strict coverage counts `Any` as typed: it shows how much of the API is annotated at
 all. Strict coverage excludes `Any`, counting only annotations a type checker can use.
