@@ -92,6 +92,7 @@ async def _watch_and_rebuild(
     initial_all_reports: dict[str, list[PackageReport]] | None = None,
 ) -> None:
     watch_paths = (
+        ROOT / "docs",
         ROOT / "src" / "typestats" / "templates",
         ROOT / "src" / "typestats" / "dashboard.py",
         ROOT / "projects.toml",

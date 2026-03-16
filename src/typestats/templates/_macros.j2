@@ -20,6 +20,10 @@
   {{ twemoji(".icons/material/arrow-bottom-right.svg") }}
 {%- endmacro %}
 
+{% macro help_link(href, title="") -%}
+  <a href="{{ href }}" title="{{ title }}" style="opacity: 0.5">{{ twemoji(".icons/material/help-circle-outline.svg") }}</a>
+{%- endmacro %}
+
 {% macro metric_cell(cell) -%}
   <td style="text-align: right">
     {{- cell.value }}

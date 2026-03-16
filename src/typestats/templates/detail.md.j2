@@ -1,4 +1,4 @@
-{% from "_macros.j2" import icon_py_typed, icon_incomplete %}
+{% from "_macros.j2" import icon_py_typed, icon_incomplete, help_link %}
 ---
 hide:
   - navigation
@@ -50,8 +50,8 @@ No version history available.
         "Untyped" : {{ report.n_untyped }}
     ```
 
-    - {{ coverage }} coverage
-    - {{ strict_coverage }} strict coverage (excluding `Any`)
+    - {{ coverage }} <abbr title="Percentage of typed symbols">coverage</abbr> {{ help_link("../../metrics/", "What is coverage?") }}
+    - {{ strict_coverage }} <abbr title="Percentage of typed symbols, excluding Any">coverage (strict)</abbr> {{ help_link("../../metrics/", "What is strict coverage?") }}
     - {{ report.n_typable }} typable
         - {{ report.n_typed }} typed
         - {{ report.n_untyped }} untyped
@@ -86,9 +86,9 @@ No version history available.
   <thead>
     <tr>
       <th>Module</th>
-      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr></th>
-      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr> {{ help_link("../../metrics/", "What is coverage?") }}</th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr> {{ help_link("../../metrics/", "What is strict coverage?") }}</th>
+      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr> {{ help_link("../../metrics/", "What are typables?") }}</th>
       <th style="text-align: right"><abbr title="Number of type-checker ignore comments">Ignores</abbr></th>
     </tr>
   </thead>
@@ -115,27 +115,25 @@ No version history available.
 {% if annotation_sections %}
 {% for section in annotation_sections %}
 <span id="{{ section.slug }}"></span>
-??? "{{ section.display_name }} ({{ section.n_issues }} symbol{{ 's' if section.n_issues != 1 else '' }})"
+??? "{{ section.display_name }} ({{ section.n_untyped }} missing, {{ section.n_any }} any)"
     <table>
       <thead>
         <tr>
+          <th></th>
           <th>Symbol</th>
-          <th>Kind</th>
-          <th>Status</th>
-          <th style="text-align: right"><abbr title="Slots with a type annotation">Typed</abbr></th>
+          <th style="text-align: right"><abbr title="Total annotation slots">Typable</abbr></th>
+          <th style="text-align: right"><abbr title="Slots with a type annotation (including Any)">Typed</abbr></th>
           <th style="text-align: right"><abbr title="Slots typed as Any">Any</abbr></th>
-          <th style="text-align: right"><abbr title="Slots without a type annotation">Untyped</abbr></th>
         </tr>
       </thead>
       <tbody>
         {% for row in section.rows %}
           <tr>
+            <td>{% if row.kind == 'function' %}<code class="sym-func">func</code>{% elif row.kind == 'method' %}<code class="sym-meth">meth</code>{% elif row.kind == 'property' %}<code class="sym-attr">prop</code>{% else %}<code class="sym-attr">attr</code>{% endif %}</td>
             <td><code>{{ row.name }}</code></td>
-            <td>{{ row.kind }}</td>
-            <td>{{ row.status }}</td>
-            <td style="text-align: right">{{ row.n_typed }}</td>
+            <td style="text-align: right">{{ row.n_typed + row.n_any + row.n_untyped }}</td>
+            <td style="text-align: right">{{ row.n_typed + row.n_any }}</td>
             <td style="text-align: right">{{ row.n_any }}</td>
-            <td style="text-align: right">{{ row.n_untyped }}</td>
           </tr>
         {% endfor %}
       </tbody>

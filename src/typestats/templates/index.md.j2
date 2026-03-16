@@ -1,4 +1,4 @@
-{% from "_macros.j2" import icon_py_typed %}
+{% from "_macros.j2" import icon_py_typed, help_link %}
 ---
 hide:
   - navigation
@@ -14,9 +14,9 @@ hide:
       <th><abbr title="PyPI package name">Package</abbr></th>
       <th><abbr title="Latest release version">Version</abbr></th>
       <th><abbr title="Release date on PyPI">Released</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr></th>
-      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr></th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr> {{ help_link("../metrics/", "What is coverage?") }}</th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr> {{ help_link("../metrics/", "What is strict coverage?") }}</th>
+      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr> {{ help_link("../metrics/", "What are typables?") }}</th>
       <th><abbr title="PEP 561 py.typed marker">py.typed</abbr></th>
       <th><abbr title="Type info from a standalone stubs package">Stubs-only</abbr></th>
       <th style="text-align: right" data-sort-method="number"><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>
