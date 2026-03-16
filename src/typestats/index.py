@@ -391,7 +391,13 @@ def _unfold_any(
         case analyze.Class(name=cls_name, members=members, is_protocol=is_protocol):
             return analyze.Class(
                 cls_name,
-                tuple(_unfold_any(m, import_map, mod, alias_targets) for m in members),
+                tuple(
+                    analyze.Symbol(
+                        m.name,
+                        _unfold_any(m.type_, import_map, mod, alias_targets),
+                    )
+                    for m in members
+                ),
                 is_protocol=is_protocol,
             )
         case _:

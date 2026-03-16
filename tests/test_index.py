@@ -709,7 +709,13 @@ class TestMergeStubsOverlay:
 
     def test_missing_class_preserves_kind(self) -> None:
         """Class missing from stubs keeps Class kind, untyped."""
-        cls = analyze.Class("C", members=(self._INT, self._INT))
+        cls = analyze.Class(
+            "C",
+            members=(
+                analyze.Symbol("C.x", self._INT),
+                analyze.Symbol("C.y", self._INT),
+            ),
+        )
         orig = {
             anyio.Path("/a/pkg/__init__.py"): [
                 analyze.Symbol("pkg.x", self._INT),

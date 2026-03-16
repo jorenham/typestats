@@ -221,7 +221,7 @@ class TestFunctionReport:
 class TestClassReport:
     def test_methods_only(self) -> None:
         method = Function("m", (_overload([("x", _INT)]),))
-        cls_ = Class("C", (method,))
+        cls_ = Class("C", (Symbol("C.m", method),))
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 1
         assert r.n_typable == 2  # x + return
@@ -230,18 +230,28 @@ class TestClassReport:
         assert r.n_methods == 1
         assert r.n_method_overloads == 1
 
-    def test_non_function_members_ignored(self) -> None:
-        cls_ = Class("C", (IMPLICIT, _INT, UNTYPED))
+    def test_non_function_members_reported_as_attrs(self) -> None:
+        cls_ = Class(
+            "C",
+            (
+                Symbol("C.a", IMPLICIT),
+                Symbol("C.b", _INT),
+                Symbol("C.c", UNTYPED),
+            ),
+        )
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 0
-        assert r.n_typable == 0
-        assert r.n_functions == 0
-        assert r.n_methods == 0
+        assert len(r.attrs) == 3
+        # IMPLICIT -> (0,0,0), _INT -> (1,0,1), UNTYPED -> (0,0,1)
+        assert r.n_typable == 2
+        assert r.n_typed == 1
+        assert r.n_untyped == 1
+        assert r.n_attrs == 3
 
     def test_aggregation(self) -> None:
         m1 = Function("a", (_overload([("x", _INT)]),))
         m2 = Function("b", (_overload([("y", UNTYPED)], returns=UNTYPED),))
-        cls_ = Class("C", (m1, m2))
+        cls_ = Class("C", (Symbol("C.a", m1), Symbol("C.b", m2)))
         r = ClassReport.from_symbol("C", cls_)
         assert r.n_typable == 4
         assert r.n_typed == 2
@@ -253,7 +263,7 @@ class TestClassReport:
             (_overload([("x", _INT)]), _overload([("x", UNTYPED)])),
         )
         m2 = Function("b", (_overload([("y", _INT)]),))
-        cls_ = Class("C", (m1, m2))
+        cls_ = Class("C", (Symbol("C.a", m1), Symbol("C.b", m2)))
         r = ClassReport.from_symbol("C", cls_)
         assert r.n_functions == 0
         assert r.n_methods == 2
@@ -262,7 +272,7 @@ class TestClassReport:
     def test_with_properties(self) -> None:
         method = Function("m", (_overload([("x", _INT)]),))
         prop = Property("p", fget=_overload([]))
-        cls_ = Class("C", (method, prop))
+        cls_ = Class("C", (Symbol("C.m", method), Symbol("C.p", prop)))
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 1
         assert len(r.properties) == 1
@@ -274,7 +284,7 @@ class TestClassReport:
 
     def test_properties_only(self) -> None:
         prop = Property("p", fget=_overload([]), fset=_overload([("value", _INT)]))
-        cls_ = Class("C", (prop,))
+        cls_ = Class("C", (Symbol("C.p", prop),))
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 0
         assert len(r.properties) == 1
@@ -286,7 +296,7 @@ class TestClassReport:
 
     def test_protocol_excluded(self) -> None:
         method = Function("m", (_overload([("x", _INT)]),))
-        cls_ = Class("C", (method,), is_protocol=True)
+        cls_ = Class("C", (Symbol("C.m", method),), is_protocol=True)
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 0
         assert len(r.properties) == 0
@@ -438,7 +448,7 @@ class TestModuleReport:
                 _overload([("x", ANY)]),
             ),
         )
-        cls_ = Class("C", (overloaded_method,))
+        cls_ = Class("C", (Symbol("C.m", overloaded_method),))
         m = ModuleReport.from_symbols("mod.py", [Symbol("C", cls_)])
         assert m.n_functions == 0
         assert m.n_methods == 1
@@ -502,7 +512,7 @@ class TestPackageReport:
     def test_entity_counts(self) -> None:
         func = _func(_overload([("a", _INT)]))
         method = Function("m", (_overload([("x", _INT)]),))
-        cls_ = Class("C", (method,))
+        cls_ = Class("C", (Symbol("C.m", method),))
         r = self._pkg(Symbol("f", func), Symbol("C", cls_), Symbol("x", _INT))
         assert r.n_functions == 1  # f
         assert r.n_methods == 1  # C.m
