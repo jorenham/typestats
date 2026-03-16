@@ -1,5 +1,5 @@
 document$.subscribe(() => {
-  const tables = document.querySelectorAll("article table:not([class])")
+  const tables = document.querySelectorAll("article table:not([class]):not([data-no-sort])")
   tables.forEach((table) => {
     const noSortHeaders = []
     table.querySelectorAll("th").forEach((th) => {

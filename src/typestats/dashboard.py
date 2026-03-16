@@ -100,7 +100,6 @@ class _ModuleRow(NamedTuple):
 class _AnnotationRow(NamedTuple):
     name: str
     kind: str
-    status: str
     n_typed: int
     n_any: int
     n_untyped: int
@@ -109,7 +108,8 @@ class _AnnotationRow(NamedTuple):
 class _AnnotationSection(NamedTuple):
     display_name: str
     slug: str
-    n_issues: int
+    n_untyped: int
+    n_any: int
     rows: list[_AnnotationRow]
 
 
@@ -408,7 +408,8 @@ class DetailPage:
                 _AnnotationSection(
                     display_name=f"`{display_name}`",
                     slug=slug,
-                    n_issues=len(rows),
+                    n_untyped=sum(r.n_untyped for r in rows),
+                    n_any=sum(r.n_any for r in rows),
                     rows=rows,
                 )
             )
@@ -473,19 +474,11 @@ class DetailPage:
                     if member.n_untyped == 0 and member.n_any == 0:
                         continue
 
-                    if member.n_untyped > 0 and member.n_any > 0:
-                        status = "missing + Any"
-                    elif member.n_untyped > 0:
-                        status = "missing"
-                    else:
-                        status = "Any"
-
                     kind = "method" if member.kind == "function" else member.kind
                     rows.append(
                         _AnnotationRow(
                             name=member.name,
                             kind=kind,
-                            status=status,
                             n_typed=member.n_typed,
                             n_any=member.n_any,
                             n_untyped=member.n_untyped,
@@ -493,18 +486,10 @@ class DetailPage:
                     )
                 continue
 
-            if s.n_untyped > 0 and s.n_any > 0:
-                status = "missing + Any"
-            elif s.n_untyped > 0:
-                status = "missing"
-            else:
-                status = "Any"
-
             rows.append(
                 _AnnotationRow(
                     name=short_name,
                     kind=s.kind,
-                    status=status,
                     n_typed=s.n_typed,
                     n_any=s.n_any,
                     n_untyped=s.n_untyped,

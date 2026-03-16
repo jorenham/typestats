@@ -363,17 +363,22 @@ class TestRenderDetail:  # noqa: PLR0904
     def test_annotation_status_any(self) -> None:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
-        # `data` has n_any=1, n_untyped=0 -> "Any"
+        # `data` has n_any=1, n_untyped=0 -> typable=1, typed=1, any=1
         assert "<code>data</code>" in md
         rows = _table_rows(md)
         data_rows = [r for r in rows if "data" in r]
-        assert any("Any" in r for r in data_rows)
+        assert len(data_rows) == 1
+        row = data_rows[0]
+        assert 'class="sym-attr"' in row
+        # Verify numeric columns: typable=1, typed=1, any=1
+        cells = re.findall(r"<td[^>]*>(\d+)</td>", row)
+        assert cells == ["1", "1", "1"]
 
     def test_annotation_status_mixed(self) -> None:
         report = _rich_report("mypkg")
         md = DetailPage(report).render()
-        # `mixed` has n_any=1 AND n_untyped=1 -> "missing + Any"
-        assert "missing + Any" in md
+        # `mixed` has n_any=1 AND n_untyped=1; utils section totals: 4 missing, 2 any
+        assert "4 missing, 2 any" in md
 
     def test_class_expands_into_methods(self) -> None:
         """Incomplete class methods appear as individual rows."""
@@ -385,8 +390,10 @@ class TestRenderDetail:  # noqa: PLR0904
         # The incomplete method `set` should appear with kind "method".
         set_rows = [r for r in rows if "Cache.set" in r]
         assert len(set_rows) == 1
-        assert "<td>method</td>" in set_rows[0]
-        assert "missing" in set_rows[0]
+        assert 'class="sym-meth"' in set_rows[0]
+        # n_typed=1, n_any=0, n_untyped=2 -> typable=3, typed=1, any=0
+        cells = re.findall(r"<td[^>]*>(\d+)</td>", set_rows[0])
+        assert cells == ["3", "1", "0"]
 
     def test_class_reexported_no_duplicate_name(self) -> None:
         """Re-exported class members should not duplicate the class name."""
@@ -443,8 +450,10 @@ class TestRenderDetail:  # noqa: PLR0904
         rows = _table_rows(md)
         size_rows = [r for r in rows if "Cache.size" in r]
         assert len(size_rows) == 1
-        assert "property" in size_rows[0]
-        assert "Any" in size_rows[0]
+        assert "prop" in size_rows[0]
+        # n_typed=0, n_any=1, n_untyped=0 -> typable=1, typed=1, any=1
+        cells = re.findall(r"<td[^>]*>(\d+)</td>", size_rows[0])
+        assert cells == ["1", "1", "1"]
 
     def test_class_attr_shown(self) -> None:
         """Incomplete class attributes appear with kind 'attr'."""
@@ -453,8 +462,10 @@ class TestRenderDetail:  # noqa: PLR0904
         rows = _table_rows(md)
         cap_rows = [r for r in rows if "Cache.capacity" in r]
         assert len(cap_rows) == 1
-        assert "attr" in cap_rows[0]
-        assert "missing" in cap_rows[0]
+        assert 'class="sym-attr"' in cap_rows[0]
+        # n_typed=0, n_any=0, n_untyped=1 -> typable=1, typed=0, any=0
+        cells = re.findall(r"<td[^>]*>(\d+)</td>", cap_rows[0])
+        assert cells == ["1", "0", "0"]
 
     def test_full_coverage_no_missing(self) -> None:
         report = _minimal_report(
