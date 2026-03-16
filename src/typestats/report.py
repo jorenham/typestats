@@ -13,6 +13,7 @@ from typing import (
     Literal,
     NamedTuple,
     NotRequired,
+    Protocol,
     Self,
     TypedDict,
     cast,
@@ -50,6 +51,7 @@ __all__ = (
     "PackageReport",
     "PropertyReport",
     "PypiInfo",
+    "Report",
     "StubsOnly",
 )
 
@@ -97,14 +99,42 @@ class _SlotState(NamedTuple):
                 return cls(0, 0, 0)
 
 
-type _AnySymbolReport = Annotated[
-    AttrReport | FunctionReport | PropertyReport | ClassReport,
-    Discriminator("kind"),
-]
+class Report(Protocol):
+    @property
+    def kind(self) -> str: ...
+    @property
+    def name(self) -> str: ...
+
+    @property
+    def n_typed(self) -> int: ...
+    @property
+    def n_any(self) -> int: ...
+    @property
+    def n_untyped(self) -> int: ...
+    @property
+    def n_typable(self) -> int: ...
+    @property
+    def n_functions(self) -> int: ...
+    @property
+    def n_methods(self) -> int: ...
+    @property
+    def n_function_overloads(self) -> int: ...
+    @property
+    def n_function_params(self) -> int: ...
+    @property
+    def n_method_overloads(self) -> int: ...
+    @property
+    def n_method_params(self) -> int: ...
+    @property
+    def n_classes(self) -> int: ...
+    @property
+    def n_attrs(self) -> int: ...
+    @property
+    def n_properties(self) -> int: ...
 
 
 class AttrReport(BaseModel):
-    """Report for a variable or constant (single slot)."""
+    """Report for a module- or class-attribute (single slot)."""
 
     model_config = ConfigDict(frozen=True)
 
@@ -353,8 +383,7 @@ class ClassReport(BaseModel):
         )
 
 
-def _symbol_report(symbol: analyze.Symbol) -> _AnySymbolReport:
-    """Create the appropriate report for a symbol."""
+def _symbol_report(symbol: analyze.Symbol) -> Report:
     match symbol.type_:
         case analyze.Function():
             return FunctionReport.from_symbol(symbol.name, symbol.type_)
@@ -399,6 +428,14 @@ def _normalize_relpath(
     had_stubs = bool(parts and parts[0].endswith("-stubs"))
 
     return anyio.Path(*parts) if parts else rel, had_stubs
+
+
+# Pydantic discriminated union for (de)serialization; use `SymbolReport`
+# protocol for general type annotations.
+type _AnySymbolReport = Annotated[
+    AttrReport | FunctionReport | PropertyReport | ClassReport,
+    Discriminator("kind"),
+]
 
 
 class ModuleReport(BaseModel):
