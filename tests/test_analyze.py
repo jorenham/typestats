@@ -346,8 +346,28 @@ class TestSimpleAssignImplicit:
 
     @pytest.mark.parametrize(
         "rhs",
-        ["some_func()", "obj.method()", 'type("X", (), {})'],
-        ids=["plain_call", "method_call", "builtin_call"],
+        [
+            "some_func()",
+            "obj.method()",
+            'type("X", (), {})',
+            "f().attr",
+            "f()[0]",
+            "f() if cond else g()",
+            "f() or g()",
+            "[f()]",
+            "[f() for x in xs]",
+        ],
+        ids=[
+            "plain_call",
+            "method_call",
+            "builtin_call",
+            "call_attr",
+            "call_subscript",
+            "call_ternary",
+            "call_boolop",
+            "call_in_list",
+            "call_in_comprehension",
+        ],
     )
     def test_call_rhs_is_untyped(self, rhs: str) -> None:
         src = textwrap.dedent(f"""
