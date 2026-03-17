@@ -101,7 +101,13 @@ async def _analyze_graph(
     sources: Sequence[StrPath] = (),
 ) -> dict[str, list[str]]:
     """Run `ruff analyze graph` and clean self/parent-package dependencies."""
-    graph = await _ruff.analyze_graph(project_dir, *opts, sources=sources)
+    raw_graph = await _ruff.analyze_graph(project_dir, *opts, sources=sources)
+
+    # Normalize all paths to forward slashes (ruff uses OS-native separators).
+    graph = {
+        k.replace("\\", "/"): [v.replace("\\", "/") for v in vs]
+        for k, vs in raw_graph.items()
+    }
 
     # Build both absolute and CWD-relative prefixes so we can strip the
     # project directory from graph keys regardless of how ruff reports them.
@@ -119,8 +125,11 @@ async def _analyze_graph(
     if exclude:
         exclude_re = re.compile("|".join(fnmatch.translate(pat) for pat in exclude))
 
+    def _is_absolute(path: str) -> bool:
+        return path.startswith("/") or (len(path) >= 3 and path[1] == ":")  # noqa: PLR2004
+
     def _excluded(path: str) -> bool:
-        prefix = abs_prefix if path.startswith("/") else rel_prefix
+        prefix = abs_prefix if _is_absolute(path) else rel_prefix
         rel = path.removeprefix(prefix).lstrip("/")
         parts = rel.split("/")
 
@@ -231,7 +240,7 @@ async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
         return PyTyped.STUBS if root.name.endswith("-stubs") else PyTyped.NO
 
     # https://typing.python.org/en/latest/spec/distributing.html#partial-stub-packages
-    if "partial\n" in await py_typed.read_text():
+    if "partial\n" in await py_typed.read_text(encoding="utf-8"):
         return PyTyped.PARTIAL
 
     return PyTyped.YES
@@ -521,7 +530,9 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                 if _RE_INIT.match(path.name)
                 else (mod.rsplit(".", 1)[0] if "." in mod else "")
             )
-            syms = analyze.collect_symbols(await path.read_text(), package_name=pkg)
+            syms = analyze.collect_symbols(
+                await path.read_text(encoding="utf-8"), package_name=pkg
+            )
             entries[path] = syms
 
             for name, type_ in chain(

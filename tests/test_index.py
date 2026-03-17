@@ -874,8 +874,8 @@ class TestExcludeGlobs:
         assert "_can" in all_stems or "_do" in all_stems
 
         # No mylib files should remain (but mylib_pyi should be unaffected)
-        assert not any("/mylib/" in str(s) for s in filtered)
-        assert any("/mylib_pyi/" in str(s) for s in filtered)
+        assert not any("/mylib/" in s.as_posix() for s in filtered)
+        assert any("/mylib_pyi/" in s.as_posix() for s in filtered)
 
     async def test_list_sources_exclude_empty(self) -> None:
         """An empty exclude list should return all sources."""
@@ -921,10 +921,10 @@ class TestExcludeGlobs:
             exclude=["pkg/**", "mylib/**"],
         )
 
-        assert not any("/pkg/" in str(s) for s in filtered)
-        assert not any("/mylib/" in str(s) for s in filtered)
+        assert not any("/pkg/" in s.as_posix() for s in filtered)
+        assert not any("/mylib/" in s.as_posix() for s in filtered)
         # Other packages should still be present
-        assert any("/mylib_pyi/" in str(s) for s in filtered)
+        assert any("/mylib_pyi/" in s.as_posix() for s in filtered)
 
     async def test_package_name_private_companion(self, tmp_path: Path) -> None:
         """Private companion packages (e.g. _pytest) should not be treated
