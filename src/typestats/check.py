@@ -181,6 +181,7 @@ async def check(
     strict: bool = False,
     fail_under: float | None = None,
     exclude: Sequence[str] = (),
+    json_report: anyio.Path | None = None,
 ) -> None:
     """Print type-annotation coverage for *package*.
 
@@ -209,6 +210,12 @@ async def check(
         f"typed:      {report.n_typed:>{w}}\n"
         f"any:        {report.n_any:>{w}}",
     )
+
+    if json_report is not None:
+        json_bytes = report.model_dump_json(indent=2).encode()
+        await json_report.parent.mkdir(parents=True, exist_ok=True)
+        await json_report.write_bytes(json_bytes)
+        print(f"\nreport:     {json_report}")  # noqa: T201
 
     if fail_under is not None:
         label = "strict coverage" if strict else "coverage"
