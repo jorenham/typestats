@@ -20,24 +20,14 @@ if TYPE_CHECKING:
     from pytest_httpx import HTTPXMock
 
 
-def _file(
-    filename: str,
-    /,
-    *,
-    size: int = 100,
-    yanked: bool = False,
-    upload_time: str | None = None,
-) -> FileDetail:
-    fd = FileDetail(
+def _file(filename: str, /, *, size: int = 100, yanked: bool = False) -> FileDetail:
+    return FileDetail(
         filename=filename,
         hashes={"sha256": "fake"},
         size=size,
         url=f"https://files.pythonhosted.org/packages/{filename}",
         yanked=yanked,
     )
-    if upload_time is not None:
-        fd["upload-time"] = upload_time
-    return fd
 
 
 def _detail(name: str, files: list[FileDetail]) -> ProjectDetail:
