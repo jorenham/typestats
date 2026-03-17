@@ -2,6 +2,7 @@
 
 import importlib.metadata
 import importlib.util
+import re
 import sys
 from typing import TYPE_CHECKING, NamedTuple
 
@@ -29,10 +30,8 @@ class _Resolved(NamedTuple):
 
 
 def _is_package_dir_name(name: str) -> bool:
-    """Return whether *name* is a valid top-level package directory name.
-
-    Accepts regular Python identifiers and `{name}-stubs` directories.
-    """
+    if name.endswith(".dist-info"):
+        return False
     if name.isidentifier():
         return True
     if name.endswith("-stubs"):
@@ -40,46 +39,63 @@ def _is_package_dir_name(name: str) -> bool:
     return False
 
 
-def _top_level_packages(dist: importlib.metadata.Distribution) -> frozenset[str]:
-    """Return top-level package directory names from distribution metadata."""
-    if dist.files is None:
-        return frozenset()
+class _TopLevel(NamedTuple):
+    packages: frozenset[str]
+    modules: frozenset[str]
 
-    names: set[str] = set()
+
+def _top_level_names(dist: importlib.metadata.Distribution) -> _TopLevel:
+    """Return top-level package dirs and single-file modules from dist metadata."""
+    if dist.files is None:
+        return _TopLevel(frozenset(), frozenset())
+
+    packages: set[str] = set()
+    modules: set[str] = set()
     for f in dist.files:
         parts = f.parts
-        if len(parts) >= 2 and not parts[0].endswith(".dist-info"):  # noqa: PLR2004
-            name = parts[0]
-            if _is_package_dir_name(name):
-                names.add(name)
-    return frozenset(names)
+        if len(parts) >= 2 and _is_package_dir_name(parts[0]):  # noqa: PLR2004
+            packages.add(parts[0])
+        elif len(parts) == 1 and re.fullmatch(r"[^_].*\.pyi?", parts[0]):
+            modules.add(parts[0])
+    return _TopLevel(frozenset(packages), frozenset(modules))
 
 
-async def _source_dirs(
+async def _source_paths(
     dist: importlib.metadata.Distribution,
     sp: anyio.Path,
 ) -> tuple[anyio.Path, ...]:
-    """Return source directories for a distribution in *sp*.
+    """Return source directories or files for a distribution in `sp`.
 
+    Handles both package directories and single-file modules (e.g. `six.py`).
     Falls back to `importlib.util.find_spec` when `dist.files` does not yield top-level
     packages (e.g. editable installs with relative `..` paths).
     """
-    top = _top_level_packages(dist)
-    dirs: list[anyio.Path] = []
-    for name in sorted(top):
-        d = sp / name
-        if await d.is_dir():
-            dirs.append(d)
+
+    top = _top_level_names(dist)
+    dirs = [d for name in sorted(top.packages) if await (d := sp / name).is_dir()]
     if dirs:
         return tuple(dirs)
 
-    # Editable installs: locate the package via the import system.
-    for name in top or _dist_top_level_names(dist):
-        spec = importlib.util.find_spec(name)
-        if spec is not None and spec.submodule_search_locations:
+    # single-file modules (e.g. six.py).
+    files = [f for name in sorted(top.modules) if await (f := sp / name).is_file()]
+    if files:
+        return tuple(files)
+
+    # editable installs: locate the package via the import system.
+    for name in top.packages or _dist_top_level_names(dist):
+        if (spec := importlib.util.find_spec(name)) is None:
+            continue
+
+        if spec.submodule_search_locations:
             pkg_dir = anyio.Path(spec.submodule_search_locations[0])
             if await pkg_dir.is_dir():
                 return (pkg_dir,)
+
+        if spec.origin is not None:
+            origin = anyio.Path(spec.origin)
+            if await origin.is_file():
+                return (origin,)
+
     return ()
 
 
@@ -126,10 +142,13 @@ async def _resolve(package: str) -> _Resolved:
             )
             raise SystemExit(msg) from None
         base_sp = anyio.Path(str(base_dist.locate_file("")))
-        base_sources = await _source_dirs(base_dist, base_sp)
-        stubs_sources = await _source_dirs(dist, sp)
+        base_sources = await _source_paths(base_dist, base_sp)
+        stubs_sources = await _source_paths(dist, sp)
+        if not base_sources:
+            msg = f"could not find source files for {base_name!r}"
+            raise SystemExit(msg)
         if not stubs_sources:
-            msg = f"could not find source directories for {package!r}"
+            msg = f"could not find source files for {package!r}"
             raise SystemExit(msg)
         return _Resolved(
             pkg=base_name.replace("-", "_"),
@@ -141,9 +160,9 @@ async def _resolve(package: str) -> _Resolved:
             stubs_sources=stubs_sources,
         )
 
-    sources = await _source_dirs(dist, sp)
+    sources = await _source_paths(dist, sp)
     if not sources:
-        msg = f"could not find source directories for {package!r}"
+        msg = f"could not find source files for {package!r}"
         raise SystemExit(msg)
     return _Resolved(
         pkg=package.replace("-", "_"),

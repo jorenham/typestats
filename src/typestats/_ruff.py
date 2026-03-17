@@ -57,10 +57,13 @@ async def analyze_graph(
 
 
 async def _walk_sources(sources: Sequence[StrPath]) -> dict[str, list[str]]:
-    """Walk *sources* directories and return a graph with no dependency edges."""
+    """Walk *sources* directories/files and return a graph with no dependency edges."""
     graph: dict[str, list[str]] = {}
     for src in sources:
         src_path = anyio.Path(src)
+        if await src_path.is_file():
+            graph[src_path.as_posix()] = []
+            continue
         if not await src_path.is_dir():
             continue
         async for child in src_path.rglob("*.py"):
