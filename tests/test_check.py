@@ -1,12 +1,14 @@
 """Tests for the `typestats check` module."""
 
 import importlib.metadata
+import importlib.util
 import re
+from pathlib import PurePosixPath
 from unittest.mock import MagicMock
 
 import pytest
 
-from typestats.check import _is_package_dir_name, _top_level_names, check
+from typestats.check import _is_package_dir_name, _resolve, _top_level_names, check
 
 _OUTPUT_RE = re.compile(
     r"coverage:\s+(?P<cov>[\d.]+)%.*\n"
@@ -39,6 +41,36 @@ class TestTopLevelNames:
         top = _top_level_names(dist)
         assert "pytest" not in top.modules  # it's a directory, not a .py file
 
+    def test_single_file_module_detected(self) -> None:
+        """A top-level .py file in dist.files is reported as a module."""
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.files = [PurePosixPath("six.py")]
+        top = _top_level_names(dist)
+        assert "six.py" in top.modules
+        assert top.packages == frozenset()
+
+    def test_pyi_module_detected(self) -> None:
+        """A top-level .pyi file is reported as a module."""
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.files = [PurePosixPath("six.pyi")]
+        top = _top_level_names(dist)
+        assert "six.pyi" in top.modules
+
+    def test_underscore_module_excluded(self) -> None:
+        """Top-level modules starting with _ are excluded."""
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.files = [PurePosixPath("_internal.py")]
+        top = _top_level_names(dist)
+        assert top.modules == frozenset()
+
+    def test_package_dir_detected(self) -> None:
+        """A multi-part path yields a package directory name."""
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.files = [PurePosixPath("mypackage/__init__.py")]
+        top = _top_level_names(dist)
+        assert "mypackage" in top.packages
+        assert top.modules == frozenset()
+
     def test_no_files(self) -> None:
         """Distribution with no files returns empty."""
 
@@ -64,6 +96,54 @@ class TestCheckNotInstalled:
         # the error path for a totally missing stubs package instead.
         with pytest.raises(SystemExit, match="not installed"):
             await check("nonexistent-stubs")
+
+
+class TestResolveStubs:
+    """Edge-case tests for _resolve with stubs packages."""
+
+    pytestmark = pytest.mark.anyio
+
+    async def test_stubs_base_not_installed(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """_resolve exits when the base package for a stubs dist is missing."""
+        stubs_dist = MagicMock(spec=importlib.metadata.Distribution)
+        stubs_dist.metadata = {"Version": "1.0", "Name": "foo-stubs"}
+        stubs_dist.locate_file.return_value = "/fake/sp"
+
+        def fake_distribution(name: str) -> importlib.metadata.Distribution:
+            if name == "foo-stubs":
+                return stubs_dist
+            raise importlib.metadata.PackageNotFoundError(name)
+
+        monkeypatch.setattr(importlib.metadata, "distribution", fake_distribution)
+        with pytest.raises(SystemExit, match="not installed"):
+            await _resolve("foo-stubs")
+
+    async def test_stubs_base_no_sources(self, monkeypatch: pytest.MonkeyPatch) -> None:
+        """_resolve exits when the base package has no discoverable sources."""
+        stubs_dist = MagicMock(spec=importlib.metadata.Distribution)
+        stubs_dist.metadata = {"Version": "1.0", "Name": "foo-stubs"}
+        stubs_dist.locate_file.return_value = "/fake/sp"
+        stubs_dist.files = None
+
+        base_dist = MagicMock(spec=importlib.metadata.Distribution)
+        base_dist.metadata = {"Version": "2.0", "Name": "foo"}
+        base_dist.locate_file.return_value = "/fake/sp"
+        base_dist.files = None
+        base_dist.read_text.return_value = None
+
+        def fake_distribution(name: str) -> importlib.metadata.Distribution:
+            if name == "foo-stubs":
+                return stubs_dist
+            if name == "foo":
+                return base_dist
+            raise importlib.metadata.PackageNotFoundError(name)
+
+        monkeypatch.setattr(importlib.metadata, "distribution", fake_distribution)
+        monkeypatch.setattr(importlib.util, "find_spec", lambda _name: None)
+        with pytest.raises(SystemExit, match="could not find source files"):
+            await _resolve("foo-stubs")
 
 
 class TestCheckInstalled:
