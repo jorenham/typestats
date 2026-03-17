@@ -1,6 +1,6 @@
 import tomllib
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, ClassVar
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -11,7 +11,7 @@ __all__ = "Project", "load_projects"
 
 
 class Project(BaseModel):
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     name: str
     exclude: tuple[str, ...] = Field(default=())

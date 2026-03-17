@@ -9,6 +9,7 @@ from typing import (
     TYPE_CHECKING,
     Annotated,
     Any,
+    ClassVar,
     Final,
     Literal,
     NamedTuple,
@@ -136,7 +137,7 @@ class Report(Protocol):
 class AttrReport(BaseModel):
     """Report for a module- or class-attribute (single slot)."""
 
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     kind: Literal["attr"] = "attr"
     name: str
@@ -168,7 +169,7 @@ class AttrReport(BaseModel):
 class FunctionReport(BaseModel):
     """Report for a function/method; counts individual param + return slots."""
 
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     kind: Literal["function"] = "function"
     name: str
@@ -222,7 +223,7 @@ class FunctionReport(BaseModel):
 class PropertyReport(BaseModel):
     """Report for a property; counts annotation slots across accessors."""
 
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     kind: Literal["property"] = "property"
     name: str
@@ -275,7 +276,7 @@ class PropertyReport(BaseModel):
 class ClassReport(BaseModel):
     """Report for a class; aggregates its method, property, and attribute reports."""
 
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     kind: Literal["class"] = "class"
     name: str
@@ -432,7 +433,7 @@ type _AnySymbolReport = Annotated[
 
 
 class ModuleReport(BaseModel):
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     path: str
     symbol_reports: tuple[_AnySymbolReport, ...]
@@ -549,7 +550,7 @@ class ModuleReport(BaseModel):
 class PypiInfo(BaseModel):
     """Metadata from the PyPI Simple Repository API for a distribution file."""
 
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     upload_time: str | None = None
     """ISO 8601 timestamp of when the distribution was uploaded to PyPI."""
@@ -586,7 +587,7 @@ class _ProjectUrls(TypedDict):
 
 
 class PackageReport(BaseModel):  # noqa: PLR0904
-    model_config = ConfigDict(frozen=True)
+    model_config: ClassVar = ConfigDict(frozen=True)
 
     package: str
     version: str
