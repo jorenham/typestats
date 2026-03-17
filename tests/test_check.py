@@ -3,9 +3,10 @@
 import importlib.metadata
 import importlib.util
 import re
-from pathlib import PurePosixPath
+from pathlib import Path, PurePosixPath
 from unittest.mock import MagicMock
 
+import anyio
 import pytest
 
 from typestats.check import _is_package_dir_name, _resolve, _top_level_names, check
@@ -166,3 +167,21 @@ class TestCheckInstalled:
         m = _OUTPUT_RE.search(out)
         assert m is not None, f"unexpected output: {out!r}"
         assert int(m["typable"]) > 0
+
+    async def test_check_report_writes_json(
+        self,
+        tmp_path: Path,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """The --json-report flag writes valid JSON and prints the path."""
+        import json  # noqa: PLC0415
+
+        report_path = anyio.Path(tmp_path / "report.json")
+        await check("typestats", json_report=report_path)
+        out = capsys.readouterr().out
+        assert "report:" in out
+
+        data = json.loads(await report_path.read_text())
+        assert data["package"] == "typestats"
+        assert isinstance(data["module_reports"], list)
+        assert data["n_typable"] > 0

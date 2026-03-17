@@ -95,6 +95,9 @@ class Check:
     exclude: tuple[str, ...] = ()
     """Glob patterns for modules to exclude from analysis."""
 
+    json_report: Path | None = None
+    """Write the full JSON report to this path."""
+
     verbose: Annotated[bool, arg(aliases=["-v"])] = False
     """Enable verbose (INFO-level) logging."""
 
@@ -136,6 +139,7 @@ async def _run(cmd: Collect | Dashboard | Check) -> None:
                 strict=cmd.strict,
                 fail_under=cmd.fail_under,
                 exclude=cmd.exclude,
+                json_report=anyio.Path(cmd.json_report) if cmd.json_report else None,
             )
 
 

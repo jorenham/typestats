@@ -181,6 +181,7 @@ async def check(
     strict: bool = False,
     fail_under: float | None = None,
     exclude: Sequence[str] = (),
+    json_report: anyio.Path | None = None,
 ) -> None:
     """Print type-annotation coverage for *package*.
 
@@ -188,7 +189,7 @@ async def check(
     """
     resolved = await _resolve(package)
 
-    report = await PackageReport.from_path(
+    report_data = await PackageReport.from_path(
         resolved.pkg,
         resolved.path,
         resolved.version,
@@ -199,16 +200,22 @@ async def check(
         stubs_sources=resolved.stubs_sources,
     )
 
-    cov = report.coverage(strict) * 100
-    w = len(str(report.n_typable))
+    cov = report_data.coverage(strict) * 100
+    w = len(str(report_data.n_typable))
     strict_suffix = " (strict)" if strict else ""
 
     print(  # noqa: T201
         f"coverage:   {cov:.2f}%{strict_suffix}\n"
-        f"typable:    {report.n_typable:>{w}}\n"
-        f"typed:      {report.n_typed:>{w}}\n"
-        f"any:        {report.n_any:>{w}}",
+        f"typable:    {report_data.n_typable:>{w}}\n"
+        f"typed:      {report_data.n_typed:>{w}}\n"
+        f"any:        {report_data.n_any:>{w}}",
     )
+
+    if json_report is not None:
+        json_bytes = report_data.model_dump_json(indent=2).encode()
+        await json_report.parent.mkdir(parents=True, exist_ok=True)
+        await json_report.write_bytes(json_bytes)
+        print(f"\nreport:     {json_report}")  # noqa: T201
 
     if fail_under is not None:
         label = "strict coverage" if strict else "coverage"

@@ -21,12 +21,6 @@ any:          21
 
 ### Options
 
-```bash
-typestats check --help
-```
-
-Output:
-
 ```
 usage: typestats check [-h] [CHECK OPTIONS]
 
@@ -42,6 +36,8 @@ Check type-annotation coverage for an installed package.
 │                        Minimum coverage percentage (0-100). Exit with code 1 when below. (default: None) │
 │ --exclude [STR [STR ...]]                                                                                │
 │                        Glob patterns for modules to exclude from analysis. (default: )                   │
+│ --json-report {None}|PATH                                                                                │
+│                        Write the full JSON report to this path. (default: None)                          │
 │ -v, --verbose, --no-verbose                                                                              │
 │                        Enable verbose (INFO-level) logging. (default: False)                             │
 ╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
