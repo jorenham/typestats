@@ -9,7 +9,7 @@ from typing import Annotated, Final
 import anyio
 import mainpy
 import tyro
-from tyro.conf import Positional, arg
+from tyro.conf import Positional, Suppress, arg
 
 _DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
 
@@ -164,6 +164,12 @@ def app() -> None:
     elif _HAS_DOCS:
         cmd = tyro.cli(Dashboard | Check, prog=prog, description=desc)
     else:
-        cmd = tyro.cli(Check, prog=prog, description=desc)
+        # pad with suppressed None so tyro still renders `check` as a subcommand.
+        cmd = tyro.cli(
+            Check | Annotated[None, Suppress],
+            prog=prog,
+            description=desc,
+        )
+        assert cmd is not None
 
     anyio.run(_run, cmd)
