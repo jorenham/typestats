@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Annotated, Final
 
 import anyio
+import mainpy
 import tyro
 from tyro.conf import Positional, arg
 
@@ -138,6 +139,7 @@ async def _run(cmd: Collect | Dashboard | Check) -> None:
             )
 
 
+@mainpy.main
 def app() -> None:
     cmd = tyro.cli(
         Collect | Dashboard | Check,
