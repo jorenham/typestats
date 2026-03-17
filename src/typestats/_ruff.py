@@ -65,8 +65,8 @@ async def _walk_sources(sources: Sequence[StrPath]) -> dict[str, list[str]]:
             continue
         async for child in src_path.rglob("*.py"):
             if await child.is_file():
-                graph[str(child)] = []
+                graph[child.as_posix()] = []
         async for child in src_path.rglob("*.pyi"):
             if await child.is_file():
-                graph[str(child)] = []
+                graph[child.as_posix()] = []
     return graph
