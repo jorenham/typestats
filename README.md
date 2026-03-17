@@ -7,16 +7,11 @@ A tool to analyze the type annotation coverage of Python projects on PyPI.
 Check the type-annotation coverage of any installed package:
 
 ```bash
-$ typestats check pytest
-```
-
-Output:
-
-```
-coverage:   85.99%
-typable:    1370
-typed:      1157
-any:          21
+$ typestats check scipy-stubs
+coverage:   100.00%
+typable:    13589
+typed:      13554
+any:           35
 ```
 
 ### Options
