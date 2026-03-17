@@ -13,8 +13,13 @@ from tyro.conf import Positional, arg
 
 _DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
 
-_HAS_PYPI: Final = importlib.util.find_spec("httpx") is not None
-_HAS_DOCS: Final = importlib.util.find_spec("jinja2") is not None
+
+def _has_modules(*names: str) -> bool:
+    return all(importlib.util.find_spec(n) is not None for n in names)
+
+
+_HAS_PYPI: Final = _has_modules("httpx", "httpx_retries", "packaging")
+_HAS_DOCS: Final = _has_modules("jinja2", "packaging", "zensical")
 
 
 def _parse_positive_int(s: str) -> int:
