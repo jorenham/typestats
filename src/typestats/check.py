@@ -118,10 +118,19 @@ async def _resolve(package: str) -> _Resolved:
 
     if base_name is not None:
         # Stubs package given directly (e.g. scipy-stubs).
-        base_dist = importlib.metadata.distribution(base_name)
+        try:
+            base_dist = importlib.metadata.distribution(base_name)
+        except importlib.metadata.PackageNotFoundError:
+            msg = (
+                f"base package {base_name!r} is not installed (required by {package!r})"
+            )
+            raise SystemExit(msg) from None
         base_sp = anyio.Path(str(base_dist.locate_file("")))
         base_sources = await _source_dirs(base_dist, base_sp)
         stubs_sources = await _source_dirs(dist, sp)
+        if not stubs_sources:
+            msg = f"could not find source directories for {package!r}"
+            raise SystemExit(msg)
         return _Resolved(
             pkg=base_name.replace("-", "_"),
             path=base_sources[0].parent if base_sources else base_sp,
@@ -133,9 +142,12 @@ async def _resolve(package: str) -> _Resolved:
         )
 
     sources = await _source_dirs(dist, sp)
+    if not sources:
+        msg = f"could not find source directories for {package!r}"
+        raise SystemExit(msg)
     return _Resolved(
         pkg=package.replace("-", "_"),
-        path=sources[0].parent if sources else sp,
+        path=sources[0].parent,
         version=version,
         stubs_path=None,
         project=None,

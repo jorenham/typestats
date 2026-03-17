@@ -906,6 +906,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
                     stubs_path,
                     trace_origins=False,
                     package_name=pkg,
+                    exclude=exclude,
                     sources=stubs_sources,
                 ),
             )
