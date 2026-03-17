@@ -1,6 +1,7 @@
 import contextlib
 import dataclasses
 import datetime as dt
+import importlib.util
 import logging
 from pathlib import Path
 from typing import Annotated, Final
@@ -11,6 +12,14 @@ import tyro
 from tyro.conf import Positional, arg
 
 _DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
+
+
+def _has_modules(*names: str) -> bool:
+    return all(importlib.util.find_spec(n) is not None for n in names)
+
+
+_HAS_PYPI: Final = _has_modules("httpx", "httpx_retries", "packaging")
+_HAS_DOCS: Final = _has_modules("jinja2", "packaging", "zensical")
 
 
 def _parse_positive_int(s: str) -> int:
@@ -145,9 +154,16 @@ async def _run(cmd: Collect | Dashboard | Check) -> None:
 
 @mainpy.main
 def app() -> None:
-    cmd = tyro.cli(
-        Collect | Dashboard | Check,
-        prog="typestats",
-        description="Type annotation coverage statistics for Python packages.",
-    )
+    prog = "typestats"
+    desc = "Type annotation coverage statistics for Python packages."
+
+    if _HAS_PYPI and _HAS_DOCS:
+        cmd = tyro.cli(Collect | Dashboard | Check, prog=prog, description=desc)
+    elif _HAS_PYPI:
+        cmd = tyro.cli(Collect | Check, prog=prog, description=desc)
+    elif _HAS_DOCS:
+        cmd = tyro.cli(Dashboard | Check, prog=prog, description=desc)
+    else:
+        cmd = tyro.cli(Check, prog=prog, description=desc)
+
     anyio.run(_run, cmd)
