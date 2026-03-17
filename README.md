@@ -2,6 +2,58 @@
 
 A tool to analyze the type annotation coverage of Python projects on PyPI.
 
+## Quick start
+
+Check the type-annotation coverage of any installed package:
+
+```bash
+$ typestats check pytest
+```
+
+Output:
+
+```
+coverage:   85.99%
+typable:    1370
+typed:      1157
+any:          21
+```
+
+### Options
+
+```bash
+typestats check --help
+```
+
+Output:
+
+```
+usage: typestats check [-h] [CHECK OPTIONS]
+
+Check type-annotation coverage for an installed package.
+
+╭─ positional arguments ───────────────────────────────────────────────────────────────────────────────────╮
+│ STR                    Package name (must be installed in the current environment). (required)           │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ options ────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ -h, --help             show this help message and exit                                                   │
+│ --strict, --no-strict  Count `Any` annotations as untyped. (default: False)                              │
+│ -f {None}|FLOAT, --fail-under {None}|FLOAT                                                               │
+│                        Minimum coverage percentage (0-100). Exit with code 1 when below. (default: None) │
+│ --exclude [STR [STR ...]]                                                                                │
+│                        Glob patterns for modules to exclude from analysis. (default: )                   │
+│ -v, --verbose, --no-verbose                                                                              │
+│                        Enable verbose (INFO-level) logging. (default: False)                             │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
+
+### Stubs packages
+
+When checking a stubs package (e.g. `scipy-stubs`), the base package (`scipy`) is automatically
+merged with the stubs overlay -- matching the behavior of type-checkers.
+Checking the base package directly (e.g. `scipy`) analyzes only the base package without merging
+stubs.
+
 ## Implementation details
 
 ### High-level Pipeline

@@ -1,12 +1,14 @@
 import contextlib
 import dataclasses
 import datetime as dt
+import logging
 from pathlib import Path
 from typing import Annotated, Final
 
 import anyio
+import mainpy
 import tyro
-from mainpy import main
+from tyro.conf import Positional, arg
 
 _DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
 
@@ -75,17 +77,34 @@ class Dashboard:
     """Path to projects TOML file."""
 
 
-@main
-async def app() -> None:
-    cmd = tyro.cli(
-        Collect | Dashboard,
-        prog="typestats",
-        description="Type annotation coverage statistics for Python packages.",
-    )
+@dataclasses.dataclass
+class Check:
+    """Check type-annotation coverage for an installed package."""
 
+    package: Positional[str]
+    """
+    Package name (must be installed in the current environment).
+    """
+
+    strict: bool = False
+    """Count `Any` annotations as untyped."""
+
+    fail_under: Annotated[float | None, arg(aliases=["-f"])] = None
+    """Minimum coverage percentage (0-100). Exit with code 1 when below."""
+
+    exclude: tuple[str, ...] = ()
+    """Glob patterns for modules to exclude from analysis."""
+
+    verbose: Annotated[bool, arg(aliases=["-v"])] = False
+    """Enable verbose (INFO-level) logging."""
+
+
+async def _run(cmd: Collect | Dashboard | Check) -> None:
     match cmd:
         case Collect():
             from typestats.collect import clean_data, collect_all  # noqa: PLC0415
+
+            logging.getLogger().setLevel(logging.INFO)
 
             if cmd.clean:
                 await clean_data(anyio.Path(cmd.data_dir))
@@ -100,6 +119,31 @@ async def app() -> None:
         case Dashboard():
             from typestats.dashboard import build_site  # noqa: PLC0415
 
+            logging.getLogger().setLevel(logging.INFO)
+
             await build_site(
                 anyio.Path(cmd.data_dir), anyio.Path(cmd.site_dir), cmd.projects
             )
+
+        case Check():
+            from typestats.check import check  # noqa: PLC0415
+
+            if cmd.verbose:
+                logging.getLogger().setLevel(logging.INFO)
+
+            await check(
+                cmd.package,
+                strict=cmd.strict,
+                fail_under=cmd.fail_under,
+                exclude=cmd.exclude,
+            )
+
+
+@mainpy.main
+def app() -> None:
+    cmd = tyro.cli(
+        Collect | Dashboard | Check,
+        prog="typestats",
+        description="Type annotation coverage statistics for Python packages.",
+    )
+    anyio.run(_run, cmd)
