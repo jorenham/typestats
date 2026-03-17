@@ -55,3 +55,14 @@ jobs:
           python-version: 3.14t
       - name: pytest
         run: uv run pytest
+
+  typestats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v6.0.2
+      - uses: astral-sh/setup-uv@v7.3.1
+        with:
+          python-version: 3.14t
+      - name: typestats check
+        run: uv run typestats check typestats --strict --fail-under=100
