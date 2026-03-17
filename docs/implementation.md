@@ -1,3 +1,9 @@
+---
+hide:
+  - navigation
+  - path
+---
+
 # Implementation details
 
 ## Pipeline
