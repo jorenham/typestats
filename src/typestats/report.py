@@ -821,6 +821,8 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         project: str | None = None,
         exclude: Sequence[str] = (),
         pypi: PypiInfo | None = None,
+        sources: Sequence[StrPath] = (),
+        stubs_sources: Sequence[StrPath] = (),
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
@@ -838,7 +840,14 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         path_obj = anyio.Path(path)
         stubs_obj = anyio.Path(stubs_path) if stubs_path is not None else None
 
-        collected = await cls._collect(pkg, path_obj, stubs_obj, exclude)
+        collected = await cls._collect(
+            pkg,
+            path_obj,
+            stubs_obj,
+            exclude,
+            sources=sources,
+            stubs_sources=stubs_sources,
+        )
         built = await cls._build_module_reports(
             collected.symbols,
             collected.type_ignores,
@@ -867,11 +876,14 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         )
 
     @staticmethod
-    async def _collect(
+    async def _collect(  # noqa: PLR0913
         pkg: str,
         path: anyio.Path,
         stubs_path: anyio.Path | None,
         exclude: Sequence[str],
+        *,
+        sources: Sequence[StrPath] = (),
+        stubs_sources: Sequence[StrPath] = (),
     ) -> _CollectResult:
         """Run analysis coroutines and return merged results."""
         from typestats._metadata import read_pkg_metadata
@@ -885,6 +897,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
                 trace_origins=stubs_path is None,
                 package_name=pkg,
                 exclude=exclude,
+                sources=sources,
             ),
         ]
         if stubs_path is not None:
@@ -893,6 +906,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
                     stubs_path,
                     trace_origins=False,
                     package_name=pkg,
+                    sources=stubs_sources,
                 ),
             )
         coros.append(read_pkg_metadata(stubs_path or path))

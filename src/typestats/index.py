@@ -98,9 +98,10 @@ async def _analyze_graph(
     /,
     *opts: str,
     exclude: Sequence[str] = (),
+    sources: Sequence[StrPath] = (),
 ) -> dict[str, list[str]]:
     """Run `ruff analyze graph` and clean self/parent-package dependencies."""
-    graph = await _ruff.analyze_graph(project_dir, *opts)
+    graph = await _ruff.analyze_graph(project_dir, *opts, sources=sources)
 
     # Build both absolute and CWD-relative prefixes so we can strip the
     # project directory from graph keys regardless of how ruff reports them.
@@ -188,6 +189,7 @@ async def list_sources(
     /,
     *,
     exclude: Sequence[str] = (),
+    sources: Sequence[StrPath] = (),
 ) -> list[anyio.Path]:
     """List all source files in the given project directory.
 
@@ -197,15 +199,15 @@ async def list_sources(
     """
     project_dir = anyio.Path(path)
     graph = await _analyze_graph(
-        project_dir, "--type-checking-imports", exclude=exclude
+        project_dir, "--type-checking-imports", exclude=exclude, sources=sources
     )
-    sources = list(map(anyio.Path, graph))
+    found = list(map(anyio.Path, graph))
 
     if await is_src_layout(project_dir):
         src_prefix = str(await (project_dir / "src").resolve()) + os.sep
-        sources = [s for s in sources if str(await s.resolve()).startswith(src_prefix)]
+        found = [s for s in found if str(await s.resolve()).startswith(src_prefix)]
 
-    return sources
+    return found
 
 
 async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
@@ -450,6 +452,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     trace_origins: bool = True,
     package_name: str | None = None,
     exclude: Sequence[str] = (),
+    sources: Sequence[StrPath] = (),
 ) -> PublicSymbols:
     """Collect public, fully qualified symbols from a package by source path.
 
@@ -463,15 +466,22 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     When *exclude* is given, source files whose project-relative paths match
     any of the glob patterns are excluded from analysis.
+
+    When *sources* is given, only those paths are analyzed instead of
+    discovering all sources under *project_dir*.
     """
     t0 = time.perf_counter()
-    sources = list(await list_sources(project_dir, exclude=exclude))
+    source_list = list(
+        await list_sources(project_dir, exclude=exclude, sources=sources)
+    )
 
     # Drop .py when .pyi exists for the same file
-    pyi_set = frozenset(str(s) for s in sources if s.suffix == ".pyi")
-    sources = [s for s in sources if not (s.suffix == ".py" and f"{s}i" in pyi_set)]
+    pyi_set = frozenset(str(s) for s in source_list if s.suffix == ".pyi")
+    source_list = [
+        s for s in source_list if not (s.suffix == ".py" and f"{s}i" in pyi_set)
+    ]
 
-    module_paths = sources_to_module_paths(sources)
+    module_paths = sources_to_module_paths(source_list)
 
     # Compute top_level from ALL discovered modules (used for auto-resolving
     # package_name).  A narrower `in_scope` set is derived below for wildcard
@@ -706,7 +716,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     return PublicSymbols(
         symbols=dict(result),
         type_ignores=type_ignores,
-        py_typed=await get_py_typed(filtered_sources or sources),
+        py_typed=await get_py_typed(filtered_sources or source_list),
     )
 
 

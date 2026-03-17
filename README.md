@@ -2,6 +2,38 @@
 
 A tool to analyze the type annotation coverage of Python projects on PyPI.
 
+## Quick start
+
+Check the type-annotation coverage of any installed package:
+
+```bash
+uv run typestats check pytest
+```
+
+Output:
+
+```
+coverage:   85.99%
+typable:    1370
+typed:      1157
+any:          21
+```
+
+### Options
+
+- `--strict` -- count `Any` annotations as untyped
+- `--fail-under` / `-f` -- set a minimum coverage percentage (0--100); exits with code 1 when
+  below the threshold
+- `--exclude` -- glob patterns for modules to exclude from analysis
+- `--verbose` / `-v` -- enable verbose (INFO-level) logging
+
+### Stubs packages
+
+When checking a stubs package (e.g. `scipy-stubs`), the base package (`scipy`) is automatically
+merged with the stubs overlay -- matching the behavior of type-checkers.
+Checking the base package directly (e.g. `scipy`) analyzes only the base package without merging
+stubs.
+
 ## Implementation details
 
 ### High-level Pipeline
