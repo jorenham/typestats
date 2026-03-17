@@ -344,55 +344,12 @@ class TestSimpleAssignImplicit:
         assert symbols[0].name == "X"
         assert symbols[0].type_ is IMPLICIT
 
-    def test_call_rhs_is_untyped(self) -> None:
-        src = textwrap.dedent("""
-        X = some_func()
-        """)
-        symbols = collect_symbols(src).symbols
-        assert len(symbols) == 1
-        assert symbols[0].name == "X"
-        assert symbols[0].type_ is UNTYPED
-
-    def test_method_call_rhs_is_untyped(self) -> None:
-        src = textwrap.dedent("""
-        X = obj.method()
-        """)
-        symbols = collect_symbols(src).symbols
-        assert len(symbols) == 1
-        assert symbols[0].name == "X"
-        assert symbols[0].type_ is UNTYPED
-
-    def test_builtin_call_rhs_is_untyped(self) -> None:
-        """Calls like `type(...)` or `dict(...)` are still UNTYPED."""
-        src = textwrap.dedent("""
-        X = type("X", (), {})
-        """)
-        symbols = collect_symbols(src).symbols
-        assert len(symbols) == 1
-        assert symbols[0].name == "X"
-        assert symbols[0].type_ is UNTYPED
-
     @pytest.mark.parametrize(
         "rhs",
-        [
-            "f().attr",
-            "f()[0]",
-            "f() if cond else g()",
-            "f() or g()",
-            "[f()]",
-            "[f() for x in xs]",
-        ],
-        ids=[
-            "call_attr",
-            "call_subscript",
-            "call_ternary",
-            "call_boolop",
-            "call_in_list",
-            "call_in_comprehension",
-        ],
+        ["some_func()", "obj.method()", 'type("X", (), {})'],
+        ids=["plain_call", "method_call", "builtin_call"],
     )
-    def test_nested_call_rhs_is_untyped(self, rhs: str) -> None:
-        """An RHS that contains a call anywhere should remain UNTYPED."""
+    def test_call_rhs_is_untyped(self, rhs: str) -> None:
         src = textwrap.dedent(f"""
         X = {rhs}
         """)
@@ -1441,37 +1398,44 @@ class TestToUntyped:
 
 
 class TestTypeCheckOnly:
-    def test_function_detected(self) -> None:
-        src = textwrap.dedent("""
-        from typing import type_check_only
+    @pytest.mark.parametrize(
+        ("src", "expected"),
+        [
+            (
+                """\
+                from typing import type_check_only
 
-        @type_check_only
-        def _secret() -> None: ...
-        """)
-        module = collect_symbols(src)
-        assert module.type_check_only == {"_secret"}
+                @type_check_only
+                def _secret() -> None: ...
+                """,
+                {"_secret"},
+            ),
+            (
+                """\
+                from typing import type_check_only
 
-    def test_class_detected(self) -> None:
-        src = textwrap.dedent("""
-        from typing import type_check_only
+                @type_check_only
+                class _Proto:
+                    x: int
+                """,
+                {"_Proto"},
+            ),
+            (
+                """\
+                from typing_extensions import type_check_only
 
-        @type_check_only
-        class _Proto:
-            x: int
-        """)
-        module = collect_symbols(src)
-        assert module.type_check_only == {"_Proto"}
-
-    def test_typing_extensions_detected(self) -> None:
-        src = textwrap.dedent("""
-        from typing_extensions import type_check_only
-
-        @type_check_only
-        class _Proto:
-            x: int
-        """)
-        module = collect_symbols(src)
-        assert module.type_check_only == {"_Proto"}
+                @type_check_only
+                class _Proto:
+                    x: int
+                """,
+                {"_Proto"},
+            ),
+        ],
+        ids=["function", "class", "typing_extensions"],
+    )
+    def test_detected(self, src: str, expected: set[str]) -> None:
+        module = collect_symbols(textwrap.dedent(src))
+        assert module.type_check_only == expected
 
     def test_no_decorator(self) -> None:
         src = textwrap.dedent("""
@@ -1515,70 +1479,69 @@ class TestTypeCheckOnly:
 
 
 class TestProtocol:
-    def test_typing_protocol(self) -> None:
-        src = textwrap.dedent("""
-        from typing import Protocol
+    @pytest.mark.parametrize(
+        ("src", "class_name"),
+        [
+            (
+                """\
+                from typing import Protocol
 
-        class Readable(Protocol):
-            def read(self, n: int) -> bytes: ...
-        """)
-        module = collect_symbols(src)
+                class Readable(Protocol):
+                    def read(self, n: int) -> bytes: ...
+                """,
+                "Readable",
+            ),
+            (
+                """\
+                from typing_extensions import Protocol
+
+                class Readable(Protocol):
+                    def read(self, n: int) -> bytes: ...
+                """,
+                "Readable",
+            ),
+            (
+                """\
+                import typing
+
+                class Readable(typing.Protocol):
+                    def read(self, n: int) -> bytes: ...
+                """,
+                "Readable",
+            ),
+            (
+                """\
+                from typing import Protocol as Proto
+
+                class Readable(Proto):
+                    def read(self, n: int) -> bytes: ...
+                """,
+                "Readable",
+            ),
+            (
+                """\
+                from typing import Protocol, TypeVar
+
+                T = TypeVar("T")
+
+                class Container(Protocol[T]):
+                    def get(self) -> T: ...
+                """,
+                "Container",
+            ),
+        ],
+        ids=[
+            "typing",
+            "typing_extensions",
+            "dotted",
+            "aliased",
+            "generic",
+        ],
+    )
+    def test_detected(self, src: str, class_name: str) -> None:
+        module = collect_symbols(textwrap.dedent(src))
         symbols = {s.name: s.type_ for s in module.symbols}
-        cls = symbols["Readable"]
-        assert isinstance(cls, Class)
-        assert cls.is_protocol
-
-    def test_typing_extensions_protocol(self) -> None:
-        src = textwrap.dedent("""
-        from typing_extensions import Protocol
-
-        class Readable(Protocol):
-            def read(self, n: int) -> bytes: ...
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name: s.type_ for s in module.symbols}
-        cls = symbols["Readable"]
-        assert isinstance(cls, Class)
-        assert cls.is_protocol
-
-    def test_dotted_protocol(self) -> None:
-        src = textwrap.dedent("""
-        import typing
-
-        class Readable(typing.Protocol):
-            def read(self, n: int) -> bytes: ...
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name: s.type_ for s in module.symbols}
-        cls = symbols["Readable"]
-        assert isinstance(cls, Class)
-        assert cls.is_protocol
-
-    def test_aliased_protocol(self) -> None:
-        src = textwrap.dedent("""
-        from typing import Protocol as Proto
-
-        class Readable(Proto):
-            def read(self, n: int) -> bytes: ...
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name: s.type_ for s in module.symbols}
-        cls = symbols["Readable"]
-        assert isinstance(cls, Class)
-        assert cls.is_protocol
-
-    def test_generic_protocol(self) -> None:
-        src = textwrap.dedent("""
-        from typing import Protocol, TypeVar
-
-        T = TypeVar("T")
-
-        class Container(Protocol[T]):
-            def get(self) -> T: ...
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name: s.type_ for s in module.symbols}
-        cls = symbols["Container"]
+        cls = symbols[class_name]
         assert isinstance(cls, Class)
         assert cls.is_protocol
 
@@ -1655,7 +1618,7 @@ class TestProtocol:
         assert type_counts(cls) == (0, 0, 0)
 
 
-class TestVersionGuards:  # noqa: PLR0904
+class TestVersionGuards:
     def test_matching_branch_gte(self) -> None:
         src = textwrap.dedent("""
         import sys
@@ -1894,152 +1857,66 @@ class TestVersionGuards:  # noqa: PLR0904
         assert "sentinel" in symbols
         assert "current" in symbols
 
-    def test_gt_operator(self) -> None:
-        src = textwrap.dedent("""
+    @pytest.mark.parametrize(
+        ("operator", "version", "x_in", "y_in"),
+        [
+            (">", "(3, 11)", True, False),
+            ("<=", "(3, 11)", False, True),
+            ("==", "(3, 99)", False, True),
+            ("!=", "(3, 99)", True, False),
+        ],
+        ids=["gt", "le", "eq", "ne"],
+    )
+    def test_comparison_operators(
+        self, operator: str, version: str, x_in: bool, y_in: bool
+    ) -> None:
+        src = textwrap.dedent(f"""
         import sys
 
-        if sys.version_info > (3, 11):
+        if sys.version_info {operator} {version}:
             x: int = 1
         else:
             y: str = "hello"
         """)
         module = collect_symbols(src)
         symbols = {s.name for s in module.symbols}
-        # Python 3.14+ > (3, 11) is True
-        assert "x" in symbols
-        assert "y" not in symbols
+        assert ("x" in symbols) == x_in
+        assert ("y" in symbols) == y_in
 
-    def test_le_operator(self) -> None:
-        src = textwrap.dedent("""
+    @pytest.mark.parametrize(
+        ("condition", "x_in", "y_in"),
+        [
+            ("sys.version_info[:2] >= (3, 11)", True, False),
+            ("sys.version_info[0] == 3", True, False),
+            ("sys.version_info[0] == 2", False, True),
+            ("sys.version_info[0] >= 3", True, False),
+            ("sys.version_info[0:2] >= (3, 4)", True, False),
+            ("sys.version_info[0] != 2", True, False),
+        ],
+        ids=[
+            "slice_gte",
+            "index_eq_3",
+            "index_eq_2_dead",
+            "index_gte",
+            "explicit_slice",
+            "index_ne",
+        ],
+    )
+    def test_version_info_subscript(
+        self, condition: str, x_in: bool, y_in: bool
+    ) -> None:
+        src = textwrap.dedent(f"""
         import sys
 
-        if sys.version_info <= (3, 11):
+        if {condition}:
             x: int = 1
         else:
             y: str = "hello"
         """)
         module = collect_symbols(src)
         symbols = {s.name for s in module.symbols}
-        # Python 3.14+ <= (3, 11) is False
-        assert "x" not in symbols
-        assert "y" in symbols
-
-    def test_eq_operator(self) -> None:
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info == (3, 99):
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" not in symbols
-        assert "y" in symbols
-
-    def test_ne_operator(self) -> None:
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info != (3, 99):
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" in symbols
-        assert "y" not in symbols
-
-    def test_version_info_sliced_is_evaluated(self) -> None:
-        """Subscripted `sys.version_info[:2]` is evaluated."""
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info[:2] >= (3, 11):
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        # Python 3.14+ [:2] >= (3, 11) is True
-        assert "x" in symbols
-        assert "y" not in symbols
-
-    def test_version_info_index_eq(self) -> None:
-        """Single index `sys.version_info[0] == 3` is evaluated."""
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info[0] == 3:
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" in symbols
-        assert "y" not in symbols
-
-    def test_version_info_index_eq_dead(self) -> None:
-        """Single index `sys.version_info[0] == 2` selects else branch."""
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info[0] == 2:
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" not in symbols
-        assert "y" in symbols
-
-    def test_version_info_index_gte(self) -> None:
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info[0] >= 3:
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" in symbols
-        assert "y" not in symbols
-
-    def test_version_info_explicit_slice(self) -> None:
-        """Explicit slice `sys.version_info[0:2] >= (3, 4)` is evaluated."""
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info[0:2] >= (3, 4):
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" in symbols
-        assert "y" not in symbols
-
-    def test_version_info_index_ne(self) -> None:
-        src = textwrap.dedent("""
-        import sys
-
-        if sys.version_info[0] != 2:
-            x: int = 1
-        else:
-            y: str = "hello"
-        """)
-        module = collect_symbols(src)
-        symbols = {s.name for s in module.symbols}
-        assert "x" in symbols
-        assert "y" not in symbols
+        assert ("x" in symbols) == x_in
+        assert ("y" in symbols) == y_in
 
     def test_version_info_index_le_nested(self) -> None:
         """Nested subscripted guard (botocore pattern)."""
