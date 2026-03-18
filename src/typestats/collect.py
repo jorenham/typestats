@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Final
 import anyio
 
 from typestats._http import retry_client
-from typestats._pypi import latest_version, versions_since
+from typestats._pypi import available_versions, match_version, versions_since
 from typestats._stubs import find_stubs_dir, stubs_base_name
 from typestats._uv import install_to_venv
 from typestats.projects import load_projects
@@ -19,7 +19,9 @@ if TYPE_CHECKING:
 
     import httpx
     from _typeshed import StrPath
+    from packaging.version import Version
 
+    from typestats._pypi import FileDetail
     from typestats.projects import Project
 
 __all__ = "clean_data", "collect_all"
@@ -93,12 +95,12 @@ async def collect_project(  # noqa: PLR0913
     )
     base_name = stubs_base_name(project.name)
 
-    # For stubs packages, install the latest base package once (not per version).
-    base_sp: anyio.Path | None = None
+    # Pre-fetch available base versions once (used for per-version matching).
+    base_available: dict[Version, FileDetail] | None = None
     if base_name is not None:
-        base_ver = await latest_version(client, base_name)
-        base_sp = await install_to_venv(work_dir, base_name, str(base_ver))
+        base_available = await available_versions(client, base_name)
 
+    base_install_cache: dict[str, anyio.Path] = {}
     written: list[anyio.Path] = []
     for version in sorted(eligible):
         out = data_dir / project.name / f"{version}.json"
@@ -119,17 +121,34 @@ async def collect_project(  # noqa: PLR0913
         # detected from the project name (handles e.g. boto3-stubs-lite).
         if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
             base_name = detected
-            base_ver = await latest_version(client, base_name)
-            base_sp = await install_to_venv(work_dir, base_name, str(base_ver))
+            base_available = await available_versions(client, base_name)
 
+        # Find a base version whose major.minor matches this stubs version.
         if base_name is not None:
-            assert base_sp is not None
+            assert base_available is not None
+            base_ver = match_version(base_available, version)
+            if base_ver is None:
+                _logger.warning(
+                    "  %s %s - no matching %s version, skipping",
+                    project.name,
+                    version,
+                    base_name,
+                )
+                continue
+
+            base_ver_str = str(base_ver)
+            if base_ver_str in base_install_cache:
+                base_sp = base_install_cache[base_ver_str]
+            else:
+                base_sp = await install_to_venv(work_dir, base_name, base_ver_str)
+                base_install_cache[base_ver_str] = base_sp
             report = await PackageReport.from_path(
                 base_name,
                 base_sp,
                 str(version),
                 stubs_path=sp,
                 project=project.name,
+                base_version=base_ver_str,
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(file_detail),
             )

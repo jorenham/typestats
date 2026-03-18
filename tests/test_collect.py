@@ -403,7 +403,7 @@ class TestBackfillCutoff:
         stubs_name = "mypkg-stubs"
         base_name = "mypkg"
         stubs_version = "1.0.0"
-        base_version = "2.0.0"
+        base_version = "1.0.1"
 
         # Mock versions_since for the stubs project
         stubs_detail = {
@@ -463,6 +463,7 @@ class TestBackfillCutoff:
         data = json.loads(await result.read_text())
         assert data["package"] == stubs_name
         assert data["version"] == stubs_version
+        assert data["base_version"] == base_version
         assert data["stubs_only"] == "yes (third party)"
 
     async def test_collects_stubs_lite_project(
@@ -475,7 +476,7 @@ class TestBackfillCutoff:
         stubs_lite_name = "mypkg-stubs-lite"
         base_name = "mypkg"
         stubs_version = "1.0.0"
-        base_version = "2.0.0"
+        base_version = "1.0.1"
 
         # Mock versions_since for the stubs-lite project
         stubs_detail = {
@@ -532,6 +533,45 @@ class TestBackfillCutoff:
         data = json.loads(await results[0].read_text())
         assert data["package"] == stubs_lite_name
         assert data["stubs_only"] == "yes (third party)"
+
+    async def test_skips_stubs_version_without_matching_base(
+        self,
+        tmp_path: Path,
+        httpx_mock: HTTPXMock,
+        mock_uv: MockUv,
+    ) -> None:
+        """Stubs versions with no matching base major.minor are skipped."""
+        stubs_name = "mypkg-stubs"
+        base_name = "mypkg"
+        stubs_version = "2.0.0"
+        base_version = "1.0.0"
+
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{stubs_name}/"),
+            json=_pypi_detail_json(stubs_name, stubs_version),
+        )
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{base_name}/"),
+            json=_pypi_detail_json(base_name, base_version),
+        )
+        mock_uv(
+            {(stubs_name, stubs_version): _FIXTURES / "stubs_overlay"},
+            target="typestats.collect.install_to_venv",
+        )
+
+        project = Project(name=stubs_name)
+        data_dir = anyio.Path(tmp_path)
+        async with httpx.AsyncClient() as client:
+            results = await collect_project(
+                project,
+                client,
+                data_dir,
+                anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
+            )
+
+        assert results == []
 
 
 class TestCleanData:

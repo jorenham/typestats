@@ -591,6 +591,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
     package: str
     version: str
+    base_version: str | None = None
     stubs_only: StubsOnly = StubsOnly.NO
     py_typed: PyTyped
     pypi: PypiInfo | None = None
@@ -763,6 +764,12 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         When the project name doesn't match a known stubs pattern, the
         installed site-packages is scanned for `*-stubs/` directories (e.g.
         `boto3-stubs-lite` ships a `boto3-stubs/` directory).
+
+        For stubs packages, the base package version is required to match the
+        stubs version in the first two release components (major.minor).
+
+        Raises:
+            RuntimeError: If no base package version matches the stubs version.
         """
         from typestats import _pypi, _uv
         from typestats._stubs import find_stubs_dir, stubs_base_name
@@ -774,30 +781,27 @@ class PackageReport(BaseModel):  # noqa: PLR0904
 
         # Detect stubs pattern from the project name.
         base_name = stubs_base_name(project.name)
-        base_sp: anyio.Path | None = None
 
-        if base_name is not None:
-            # Fast path: project name reveals the base package.
-            base_ver = await _pypi.latest_version(client, base_name)
-            base_sp = await _uv.install_to_venv(out_dir, base_name, str(base_ver))
         # Scan for a *-stubs/ directory (e.g. boto3-stubs-lite).
-        elif (detected := await find_stubs_dir(sp)) is not None:
+        if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
             base_name = detected
-            base_ver = await _pypi.latest_version(client, base_name)
-            base_sp = await _uv.install_to_venv(
-                out_dir,
-                base_name,
-                str(base_ver),
-            )
 
         if base_name is not None:
-            assert base_sp is not None
+            base_available = await _pypi.available_versions(client, base_name)
+            base_ver = _pypi.match_version(base_available, ver)
+            if base_ver is None:
+                prefix = ".".join(str(c) for c in ver.release[:2])
+                msg = f"no {base_name} version matching {prefix}.* found"
+                raise RuntimeError(msg)
+            base_sp = await _uv.install_to_venv(out_dir, base_name, str(base_ver))
+
             return await cls.from_path(
                 base_name,
                 base_sp,
                 str(ver),
                 stubs_path=sp,
                 project=project.name,
+                base_version=str(base_ver),
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(dist_file),
             )
@@ -820,6 +824,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         *,
         stubs_path: StrPath | None = None,
         project: str | None = None,
+        base_version: str | None = None,
         exclude: Sequence[str] = (),
         pypi: PypiInfo | None = None,
         sources: Sequence[StrPath] = (),
@@ -834,6 +839,9 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         When `project` is given, it is used as the display name in the report instead
         of `pkg` (useful for stubs packages where the PyPI project name differs from
         the Python package name, e.g. `scipy-stubs` vs `scipy`).
+
+        When `base_version` is given, it is recorded in the report alongside the
+        stubs `version` so both versions are visible.
 
         Runs `collect_public_symbols` (and optionally the stubs collection) and
         `discover_configs` concurrently.
@@ -870,6 +878,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             stubs_only=stubs_only,
             module_reports=built.module_reports,
             version=version,
+            base_version=base_version,
             py_typed=collected.py_typed,
             pypi=pypi,
             metadata=collected.metadata,

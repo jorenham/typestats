@@ -26,6 +26,7 @@ class _Resolved(NamedTuple):
     version: str
     stubs_path: anyio.Path | None
     project: str | None
+    base_version: str | None = None
     sources: tuple[anyio.Path, ...] = ()
     stubs_sources: tuple[anyio.Path, ...] = ()
 
@@ -142,6 +143,7 @@ async def _resolve(package: str) -> _Resolved:
                 f"base package {base_name!r} is not installed (required by {package!r})"
             )
             raise SystemExit(msg) from None
+        base_version = base_dist.metadata["Version"]
         base_sp = anyio.Path(str(base_dist.locate_file("")))
         base_sources = await _source_paths(base_dist, base_sp)
         stubs_sources = await _source_paths(dist, sp)
@@ -157,6 +159,7 @@ async def _resolve(package: str) -> _Resolved:
             version=version,
             stubs_path=stubs_sources[0].parent if stubs_sources else sp,
             project=package,
+            base_version=base_version,
             sources=base_sources,
             stubs_sources=stubs_sources,
         )
@@ -203,6 +206,7 @@ async def check(  # noqa: PLR0913
         resolved.version,
         stubs_path=resolved.stubs_path,
         project=resolved.project,
+        base_version=resolved.base_version,
         exclude=exclude,
         sources=resolved.sources,
         stubs_sources=resolved.stubs_sources,

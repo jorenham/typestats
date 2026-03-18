@@ -12,6 +12,7 @@ from typestats._pypi import (
     FileDetail,
     ProjectDetail,
     _best_distribution,
+    match_version,
     parse_file_version,
     versions_since,
 )
@@ -421,3 +422,41 @@ class TestVersionsSince:
         assert Version("2.0.0") in result
         assert Version("1.0.0") not in result
         assert len(result) == 1
+
+
+class TestMatchVersion:
+    def test_matches_major_minor(self) -> None:
+        available = {
+            Version("1.0.0"): None,
+            Version("1.0.1"): None,
+            Version("2.0.0"): None,
+        }
+        assert match_version(available, Version("1.0.3")) == Version("1.0.1")
+
+    def test_returns_none_when_no_match(self) -> None:
+        available = {Version("2.0.0"): None, Version("3.1.0"): None}
+        assert match_version(available, Version("1.0.0")) is None
+
+    def test_returns_latest_matching(self) -> None:
+        available = {
+            Version("1.17.0"): None,
+            Version("1.17.1"): None,
+            Version("1.17.2"): None,
+            Version("1.18.0"): None,
+        }
+        assert match_version(available, Version("1.17.1.1")) == Version("1.17.2")
+
+    def test_empty_available(self) -> None:
+        assert match_version({}, Version("1.0.0")) is None
+
+    def test_single_component_version(self) -> None:
+        """Versions with fewer than two release components use a shorter prefix."""
+        available = {Version("1"): None}
+        # packaging.version.Version("1").release == (1,), so release[:2] == (1,)
+        assert match_version(available, Version("1.0.0")) is None
+        assert match_version(available, Version("1")) == Version("1")
+
+    def test_four_component_stubs_version(self) -> None:
+        """Stub versions like 1.18.0.0 match base versions like 1.18.x."""
+        available = {Version("1.17.2"): None, Version("1.18.0"): None}
+        assert match_version(available, Version("1.18.0.0")) == Version("1.18.0")
