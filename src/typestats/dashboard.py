@@ -55,6 +55,7 @@ _STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
 class _IndexRow(NamedTuple):
     package: str
     version: str
+    base_version: str | None
     release_date: str
     coverage: str
     coverage_strict: str
@@ -80,6 +81,7 @@ class _ChartData(NamedTuple):
 
 class _DiffRow(NamedTuple):
     version: str
+    base_version: str | None
     release_date: str
     coverage: _MetricCell
     coverage_strict: _MetricCell
@@ -160,6 +162,7 @@ class IndexPage:
         return _IndexRow(
             package=r.package,
             version=r.version,
+            base_version=r.base_version,
             release_date=_release_date(r),
             coverage=f"{r.coverage():.1%}",
             coverage_strict=f"{r.coverage(True):.1%}",
@@ -205,6 +208,7 @@ class DiffPage:
         rows = [
             _DiffRow(
                 version=r.version,
+                base_version=r.base_version,
                 release_date=_release_date(r),
                 coverage=self._cov_data(r, prev, strict=False),
                 coverage_strict=self._cov_data(r, prev, strict=True),

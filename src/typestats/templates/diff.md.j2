@@ -71,9 +71,9 @@ hide:
     {% for row in rows %}
       <tr>
         {% if loop.first %}
-          <td><a href="../">{{ row.version }}</a></td>
+          <td><a href="../">{{ row.version }}{% if row.base_version %} ({{ row.base_version }}){% endif %}</a></td>
         {% else %}
-          <td>{{ row.version }}</td>
+          <td>{{ row.version }}{% if row.base_version %} ({{ row.base_version }}){% endif %}</td>
         {% endif %}
         <td style="text-align: right">{{ row.release_date }}</td>
         {{ metric_cell(row.coverage) }}

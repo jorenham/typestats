@@ -5,7 +5,7 @@ hide:
   - path
 ---
 
-# {{ report.package }} {{ report.version }}
+# {{ report.package }} {{ report.version }}{% if report.base_version %} ({{ report.base_version }}){% endif %}
 
 {% if diff_link %}[Version history]({{ diff_link }}){% if json_url %} | {% endif %}{% endif %}
 {%- if json_url %}[Download JSON]({{ json_url }}){% endif %}

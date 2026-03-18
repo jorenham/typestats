@@ -15,13 +15,17 @@ from packaging.utils import (
 from packaging.version import Version
 
 if TYPE_CHECKING:
+    from collections.abc import Mapping
+
     from packaging.version import Version
 
 
 __all__ = (
+    "available_versions",
     "fetch_project_detail",
     "latest_distribution",
     "latest_version",
+    "match_version",
     "parse_file_version",
     "versions_since",
 )
@@ -161,6 +165,30 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
 def parse_file_version(fname: str, /) -> Version:
     parse = parse_wheel_filename if fname.endswith(".whl") else parse_sdist_filename
     return parse(fname)[1]
+
+
+async def available_versions(
+    client: httpx.AsyncClient,
+    project_name: str,
+    /,
+) -> dict[Version, FileDetail]:
+    """All non-prerelease versions with their best distribution."""
+    detail = await fetch_project_detail(client, project_name)
+    return {v: f for v, f in _best_distribution(detail).items() if not v.is_prerelease}
+
+
+def match_version(
+    available: Mapping[Version, Any],
+    target: Version,
+    /,
+) -> Version | None:
+    """Latest version in `available` whose first two release components match `target`.
+
+    Returns `None` when no matching version is available.
+    """
+    prefix = target.release[:2]
+    matching = [v for v in available if v.release[:2] == prefix]
+    return max(matching) if matching else None
 
 
 async def latest_distribution(

@@ -26,7 +26,7 @@ hide:
     {% for r in rows %}
       <tr>
         <td><a href="{{ r.package }}/">{{ r.package }}</a></td>
-        <td>{{ r.version }}</td>
+        <td>{{ r.version }}{% if r.base_version %} ({{ r.base_version }}){% endif %}</td>
         <td>{{ r.release_date }}</td>
         <td style="text-align: right">{{ r.coverage }}</td>
         <td style="text-align: right">{{ r.coverage_strict }}</td>
