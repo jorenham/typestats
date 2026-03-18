@@ -1,6 +1,6 @@
 # typestats
 
-A tool to analyze the type annotation coverage of Python projects on PyPI.
+Type annotation coverage statistics for Python packages.
 
 ## Quick start
 
