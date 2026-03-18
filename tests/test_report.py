@@ -43,16 +43,13 @@ if TYPE_CHECKING:
 
     from pytest_httpx import HTTPXMock
 
-    type MockUv = Callable[..., None]
+type MockUv = Callable[..., None]
 
 _FIXTURES = Path(__file__).parent / "fixtures"
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 
 _INT = Expr(cst.parse_expression("int"))
 _PARAM = ParamKind.POSITIONAL_OR_KEYWORD
-
-# necessary because `pytest.approx` is not (fully) typed
-# pyright: reportUnknownMemberType=false
 
 
 class TestSlotState:
@@ -161,18 +158,9 @@ class TestFunctionReport:
         """Params across overloads are deduplicated by position/name."""
         func = _func(
             _overload([]),  # () -> int
-            Overload(
-                (Param("a", ParamKind.POSITIONAL_ONLY, _INT),),
-                _INT,
-            ),
-            Overload(
-                (Param("b", ParamKind.POSITIONAL_ONLY, _INT),),
-                _INT,
-            ),
-            Overload(
-                (Param("b", ParamKind.KEYWORD_ONLY, _INT),),
-                _INT,
-            ),
+            Overload((Param("a", ParamKind.POSITIONAL_ONLY, _INT),), _INT),
+            Overload((Param("b", ParamKind.POSITIONAL_ONLY, _INT),), _INT),
+            Overload((Param("b", ParamKind.KEYWORD_ONLY, _INT),), _INT),
         )
         r = FunctionReport.from_symbol("f", func)
         # 1 pos-only param (pos 0) + 1 kw-only param ("b") + 1 return = 3
@@ -183,10 +171,7 @@ class TestFunctionReport:
 
     def test_overloads_worst_wins(self) -> None:
         """When merging slots, the worst annotation state wins."""
-        func = _func(
-            _overload([("a", _INT)]),
-            _overload([("a", UNTYPED)]),
-        )
+        func = _func(_overload([("a", _INT)]), _overload([("a", UNTYPED)]))
         r = FunctionReport.from_symbol("f", func)
         # param: typed in one, untyped in other -> untyped
         # return: typed in both -> typed
@@ -196,10 +181,7 @@ class TestFunctionReport:
 
     def test_overloads_any_state(self) -> None:
         """ANY is worse than typed but better than untyped."""
-        func = _func(
-            _overload([("a", _INT)]),
-            _overload([("a", ANY)]),
-        )
+        func = _func(_overload([("a", _INT)]), _overload([("a", ANY)]))
         r = FunctionReport.from_symbol("f", func)
         # param: typed in one, any in other -> any
         assert r.n_typable == 2
@@ -222,11 +204,7 @@ class TestClassReport:
     def test_non_function_members_reported_as_attrs(self) -> None:
         cls_ = Class(
             "C",
-            (
-                Symbol("C.a", IMPLICIT),
-                Symbol("C.b", _INT),
-                Symbol("C.c", UNTYPED),
-            ),
+            (Symbol("C.a", IMPLICIT), Symbol("C.b", _INT), Symbol("C.c", UNTYPED)),
         )
         r = ClassReport.from_symbol("C", cls_)
         assert len(r.methods) == 0
@@ -247,10 +225,7 @@ class TestClassReport:
         assert r.n_untyped == 2
 
     def test_overloaded_methods(self) -> None:
-        m1 = Function(
-            "a",
-            (_overload([("x", _INT)]), _overload([("x", UNTYPED)])),
-        )
+        m1 = Function("a", (_overload([("x", _INT)]), _overload([("x", UNTYPED)])))
         m2 = Function("b", (_overload([("y", _INT)]),))
         cls_ = Class("C", (Symbol("C.a", m1), Symbol("C.b", m2)))
         r = ClassReport.from_symbol("C", cls_)
@@ -397,10 +372,7 @@ class TestModuleReport:
 
     def test_entity_counts(self) -> None:
         func = _func(_overload([("a", _INT)]))
-        overloaded = _func(
-            _overload([("a", _INT)]),
-            _overload([("a", UNTYPED)]),
-        )
+        overloaded = _func(_overload([("a", _INT)]), _overload([("a", UNTYPED)]))
         cls_ = Class("C", ())
         m = ModuleReport.from_symbols(
             "mod.py",
@@ -521,10 +493,7 @@ class TestPackageReport:
             module_reports=(mod,),
             version="1.0.0",
             py_typed=PyTyped.YES,
-            typecheckers={
-                "mypy": {"strict": True},
-                "ty": {"python-version": "3.14"},
-            },
+            typecheckers={"mypy": {"strict": True}, "ty": {"python-version": "3.14"}},
         )
         assert len(r.typecheckers) == 2
         assert "mypy" in r.typecheckers
@@ -696,12 +665,7 @@ class TestPackageReportFromPath:
         # Place a pyright config only in the stubs dir (should be discovered)
         (stubs / "pyrightconfig.json").write_text(json.dumps({"strict": ["."]}))
 
-        report = await PackageReport.from_path(
-            "mypkg",
-            base,
-            "1.0.0",
-            stubs_path=stubs,
-        )
+        report = await PackageReport.from_path("mypkg", base, "1.0.0", stubs_path=stubs)
 
         assert "pyright" in report.typecheckers
         assert "mypy" not in report.typecheckers
@@ -745,12 +709,7 @@ class TestPackageReportFromPath:
         shutil.copytree(_FIXTURES / "stubs_base", base)
         shutil.copytree(_FIXTURES / "stubs_overlay", stubs)
 
-        report = await PackageReport.from_path(
-            "mypkg",
-            base,
-            "1.0.0",
-            stubs_path=stubs,
-        )
+        report = await PackageReport.from_path("mypkg", base, "1.0.0", stubs_path=stubs)
 
         assert report.package == "mypkg"
         assert report.py_typed is PyTyped.STUBS
@@ -936,7 +895,7 @@ class TestPackageReportFromProject:
     async def test_base_package(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Regular (non-stubs) project delegates to from_path correctly."""
@@ -962,7 +921,7 @@ class TestPackageReportFromProject:
     async def test_stubs_package(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Stubs project installs base + stubs in separate venvs."""
@@ -998,7 +957,7 @@ class TestPackageReportFromProject:
     async def test_typeshed_stubs_package(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Typeshed `types-{name}` project installs base + stubs."""
@@ -1035,7 +994,7 @@ class TestPackageReportFromProject:
     async def test_exclude_passed_through(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """The exclude list from the Project is forwarded to from_path."""
@@ -1056,7 +1015,7 @@ class TestPackageReportFromProject:
     async def test_stubs_lite_detected(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """A *-stubs-lite project whose package dir is *-stubs should

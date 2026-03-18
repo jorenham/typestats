@@ -1,16 +1,14 @@
 import re
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, NamedTuple
+from typing import Any, NamedTuple
 
 import anyio
 import pytest
 
+from typestats._type import StrPath
 from typestats.dashboard import DetailPage, DiffPage, IndexPage, build_site
 from typestats.index import PyTyped
 from typestats.report import ModuleReport, PackageReport, PypiInfo, StubsOnly
-
-if TYPE_CHECKING:
-    from _typeshed import StrPath
 
 
 def _make_symbol_reports(
@@ -107,12 +105,7 @@ class _SiteDirs(NamedTuple):
         self,
         **kwargs: Any,
     ) -> tuple[list[PackageReport], dict[str, list[PackageReport]]]:
-        return await build_site(
-            self.data,
-            self.site,
-            self.projects_toml,
-            **kwargs,
-        )
+        return await build_site(self.data, self.site, self.projects_toml, **kwargs)
 
 
 @pytest.fixture
@@ -330,11 +323,7 @@ class TestRenderIndex:
         assert 'data-package="numpy"' in data_row
 
     def test_base_version_shown(self) -> None:
-        report = _minimal_report(
-            "scipy-stubs",
-            "1.15.0",
-            base_version="1.15.1",
-        )
+        report = _minimal_report("scipy-stubs", "1.15.0", base_version="1.15.1")
         md = IndexPage([report]).render()
         data_row = _table_rows(md)[0]
         assert "1.15.0" in data_row
@@ -355,11 +344,7 @@ class TestRenderDetail:  # noqa: PLR0904
         assert "# numpy 2.4.2" in md
 
     def test_heading_with_base_version(self) -> None:
-        report = _minimal_report(
-            "scipy-stubs",
-            "1.15.0",
-            base_version="1.15.1",
-        )
+        report = _minimal_report("scipy-stubs", "1.15.0", base_version="1.15.1")
         md = DetailPage(report).render()
         assert "# scipy-stubs 1.15.0 (1.15.1)" in md
 

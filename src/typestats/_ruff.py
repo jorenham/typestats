@@ -1,15 +1,10 @@
 import json
-from typing import TYPE_CHECKING
 
 import anyio
 
 from typestats import _subprocess
 
-if TYPE_CHECKING:
-    from collections.abc import Sequence
-
-    from _typeshed import StrPath
-
+from ._type import StrPath, StrPaths
 
 __all__ = ("analyze_graph",)
 
@@ -17,7 +12,7 @@ __all__ = ("analyze_graph",)
 async def analyze_graph(
     project_dir: StrPath,
     *opts: str,
-    sources: Sequence[StrPath] = (),
+    sources: StrPaths = (),
 ) -> dict[str, list[str]]:
     """
     Run `ruff analyze graph` on the given project directory.
@@ -56,7 +51,7 @@ async def analyze_graph(
     return json.loads(result.stdout)
 
 
-async def _walk_sources(sources: Sequence[StrPath]) -> dict[str, list[str]]:
+async def _walk_sources(sources: StrPaths) -> dict[str, list[str]]:
     """Walk *sources* directories/files and return a graph with no dependency edges."""
     graph: dict[str, list[str]] = {}
     for src in sources:

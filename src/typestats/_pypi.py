@@ -2,8 +2,9 @@ import itertools
 import logging
 import operator
 import sys
+from collections.abc import Mapping
 from datetime import date
-from typing import TYPE_CHECKING, Any, Final, Literal, NotRequired, TypedDict
+from typing import Any, Final, Literal, NotRequired, TypedDict
 
 import httpx
 from packaging.utils import (
@@ -13,12 +14,6 @@ from packaging.utils import (
     parse_wheel_filename,
 )
 from packaging.version import Version
-
-if TYPE_CHECKING:
-    from collections.abc import Mapping
-
-    from packaging.version import Version
-
 
 __all__ = (
     "available_versions",
@@ -150,7 +145,7 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
     def _version(f: FileDetail, /) -> Version | None:
         try:
             return parse_file_version(f["filename"])
-        except InvalidSdistFilename, InvalidWheelFilename:
+        except (InvalidSdistFilename, InvalidWheelFilename):
             _logger.debug("Skipping file with invalid name: %s", f["filename"])
             return None
 

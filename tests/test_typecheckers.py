@@ -1,5 +1,5 @@
 import json
-from typing import TYPE_CHECKING
+from pathlib import Path
 
 import pytest
 
@@ -11,9 +11,6 @@ from typestats.typecheckers import (
     ty_config,
     zuban_config,
 )
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 pytestmark = pytest.mark.anyio
 

@@ -1,11 +1,10 @@
 import tomllib
 from pathlib import Path
-from typing import TYPE_CHECKING, ClassVar
+from typing import ClassVar
 
 from pydantic import BaseModel, ConfigDict, Field
 
-if TYPE_CHECKING:
-    from _typeshed import StrPath
+from ._type import StrPath
 
 __all__ = "Project", "load_projects"
 

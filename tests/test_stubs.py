@@ -1,12 +1,9 @@
-from typing import TYPE_CHECKING
+from pathlib import Path
 
 import anyio
 import pytest
 
 from typestats._stubs import find_stubs_dir, stubs_base_name
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 
 class TestStubsBaseName:

@@ -1,10 +1,8 @@
 import logging
-from typing import TYPE_CHECKING, Final
+import subprocess  # noqa: S404
+from typing import Final
 
 import anyio
-
-if TYPE_CHECKING:
-    import subprocess
 
 __all__ = ("run",)
 

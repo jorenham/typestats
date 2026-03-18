@@ -1,12 +1,9 @@
 import textwrap
-from typing import TYPE_CHECKING
+from pathlib import Path
 
 import pytest
 
 from typestats._metadata import read_pkg_metadata
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 
 class TestReadPkgMetadata:

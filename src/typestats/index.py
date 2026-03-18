@@ -5,21 +5,16 @@ import os
 import re
 import time
 from collections import defaultdict, deque
-from collections.abc import Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from itertools import chain
-from typing import TYPE_CHECKING, Final
+from typing import Final
 
 import anyio
 from libcst.helpers import get_full_name_for_node
 
 from typestats import _ruff, analyze
-
-if TYPE_CHECKING:
-    from collections.abc import Iterable, Mapping
-
-    from _typeshed import StrPath
-
+from typestats._type import StrPath, StrPaths
 
 __all__ = (
     "PublicSymbols",
@@ -98,7 +93,7 @@ async def _analyze_graph(
     /,
     *opts: str,
     exclude: Sequence[str] = (),
-    sources: Sequence[StrPath] = (),
+    sources: StrPaths = (),
 ) -> dict[str, list[str]]:
     """Run `ruff analyze graph` and clean self/parent-package dependencies."""
     raw_graph = await _ruff.analyze_graph(project_dir, *opts, sources=sources)
@@ -198,7 +193,7 @@ async def list_sources(
     /,
     *,
     exclude: Sequence[str] = (),
-    sources: Sequence[StrPath] = (),
+    sources: StrPaths = (),
 ) -> list[anyio.Path]:
     """List all source files in the given project directory.
 
@@ -219,7 +214,7 @@ async def list_sources(
     return found
 
 
-async def get_py_typed(sources: Sequence[StrPath], /) -> PyTyped:
+async def get_py_typed(sources: StrPaths, /) -> PyTyped:
     """
     Determine the `py.typed` status from a list of source paths.
 
@@ -461,7 +456,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     trace_origins: bool = True,
     package_name: str | None = None,
     exclude: Sequence[str] = (),
-    sources: Sequence[StrPath] = (),
+    sources: StrPaths = (),
 ) -> PublicSymbols:
     """Collect public, fully qualified symbols from a package by source path.
 

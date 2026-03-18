@@ -1,12 +1,11 @@
 """Shared helpers for stubs-only package detection."""
 
 import re
-from typing import TYPE_CHECKING, Final
+from typing import Final
 
-if TYPE_CHECKING:
-    import anyio
+import anyio
 
-__all__ = ("find_stubs_dir", "stubs_base_name")
+__all__ = "find_stubs_dir", "stubs_base_name"
 
 _RE_STUBS_PROJECT: Final = re.compile(r"^(?:(.+)-stubs|types-(.+))$")
 

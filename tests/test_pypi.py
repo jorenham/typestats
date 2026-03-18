@@ -2,11 +2,11 @@
 
 import sys
 from datetime import date
-from typing import TYPE_CHECKING
 
 import httpx
 import pytest
 from packaging.version import Version
+from pytest_httpx import HTTPXMock
 
 from typestats._pypi import (
     FileDetail,
@@ -16,9 +16,6 @@ from typestats._pypi import (
     parse_file_version,
     versions_since,
 )
-
-if TYPE_CHECKING:
-    from pytest_httpx import HTTPXMock
 
 
 def _file(filename: str, /, *, size: int = 100, yanked: bool = False) -> FileDetail:

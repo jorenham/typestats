@@ -3,15 +3,13 @@ import configparser
 import json
 import os
 import tomllib
+from collections.abc import Awaitable, Callable, Sequence
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Literal, TypeIs, override
+from typing import Any, Literal, TypeGuard, override
 
 import anyio
 
-if TYPE_CHECKING:
-    from collections.abc import Awaitable, Callable, Sequence
-
-    from _typeshed import StrPath
+from typestats._type import StrPath
 
 __all__ = (
     "TypeCheckerConfigDict",
@@ -30,7 +28,7 @@ type TypeCheckerConfigDict = dict[str, Any]
 type TypeCheckerName = Literal["mypy", "pyright", "pyrefly", "ty", "zuban"]
 
 
-def _is_json_dict(obj: object, /) -> TypeIs[dict[str, Any]]:
+def _is_json_dict(obj: object, /) -> TypeGuard[dict[str, Any]]:
     return isinstance(obj, dict)
 
 
