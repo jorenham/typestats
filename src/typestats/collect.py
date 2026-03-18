@@ -100,6 +100,7 @@ async def collect_project(  # noqa: PLR0913
     if base_name is not None:
         base_available = await available_versions(client, base_name)
 
+    base_install_cache: dict[str, anyio.Path] = {}
     written: list[anyio.Path] = []
     for version in sorted(eligible):
         out = data_dir / project.name / f"{version}.json"
@@ -134,8 +135,13 @@ async def collect_project(  # noqa: PLR0913
                     base_name,
                 )
                 continue
+
             base_ver_str = str(base_ver)
-            base_sp = await install_to_venv(work_dir, base_name, base_ver_str)
+            if base_ver_str in base_install_cache:
+                base_sp = base_install_cache[base_ver_str]
+            else:
+                base_sp = await install_to_venv(work_dir, base_name, base_ver_str)
+                base_install_cache[base_ver_str] = base_sp
             report = await PackageReport.from_path(
                 base_name,
                 base_sp,

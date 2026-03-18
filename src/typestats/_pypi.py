@@ -182,7 +182,10 @@ def match_version(
     target: Version,
     /,
 ) -> Version | None:
-    """Latest version in `available` whose first two release components match `target`.
+    """Latest version in `available` matching `target` on major.minor.
+
+    Compares up to the first two release components, so a target with
+    fewer than two components uses a shorter prefix.
 
     Returns `None` when no matching version is available.
     """
