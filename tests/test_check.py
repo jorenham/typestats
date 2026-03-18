@@ -188,8 +188,8 @@ class TestCheckInstalled:
         assert data["n_typable"] > 0
 
 
-class TestFailUnderReport:
-    """Tests for the --fail-under-report flag."""
+class TestFailUnderFrom:
+    """Tests for the --fail-under-from flag."""
 
     pytestmark = pytest.mark.anyio
 
@@ -235,7 +235,7 @@ class TestFailUnderReport:
         import json  # noqa: PLC0415
 
         # Baseline: 80 typed, 20 any, 100 typable.
-        # Non-strict baseline = 80%, strict baseline = 60%.
+        # Non-strict baseline = 100%, strict baseline = 80%.
         fake_report = {"n_typed": 80, "n_any": 20, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
@@ -250,7 +250,7 @@ class TestFailUnderReport:
         assert "strict" in out.lower() or "coverage" in out.lower()
 
     async def test_overrides_fail_under(self, tmp_path: Path) -> None:
-        """--fail-under-report overrides an explicit --fail-under value."""
+        """--fail-under-from overrides an explicit --fail-under value."""
         import json  # noqa: PLC0415
 
         # Craft a baseline with >100% coverage (impossible to meet).
