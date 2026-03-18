@@ -856,6 +856,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             exclude,
             sources=sources,
             stubs_sources=stubs_sources,
+            dist_name=project or pkg,
         )
         built = await cls._build_module_reports(
             collected.symbols,
@@ -894,6 +895,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         *,
         sources: StrPaths = (),
         stubs_sources: StrPaths = (),
+        dist_name: str = "",
     ) -> _CollectResult:
         """Run analysis coroutines and return merged results."""
         from typestats._metadata import read_pkg_metadata
@@ -920,7 +922,7 @@ class PackageReport(BaseModel):  # noqa: PLR0904
                     sources=stubs_sources,
                 ),
             )
-        coros.append(read_pkg_metadata(stubs_path or path))
+        coros.append(read_pkg_metadata(stubs_path or path, dist_name=dist_name or None))
 
         res = await asyncio.gather(*coros)
         configs: dict[TypeCheckerName, TypeCheckerConfigDict] = res[0]

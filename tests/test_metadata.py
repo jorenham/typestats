@@ -134,3 +134,60 @@ class TestReadPkgMetadata:
             "Source, https://github.com/example/pkg",
             "Bug Tracker, https://github.com/example/pkg/issues",
         ]
+
+    async def test_dist_name_selects_correct_dist_info(self, tmp_path: Path) -> None:
+        """When multiple .dist-info dirs exist, `dist_name` picks the right one."""
+        wrong = tmp_path / "other_pkg-2.0.0.dist-info"
+        wrong.mkdir()
+        (wrong / "METADATA").write_text(
+            textwrap.dedent("""\
+                Metadata-Version: 2.1
+                Name: other-pkg
+                Version: 2.0.0
+            """),
+        )
+        correct = tmp_path / "my_package-1.0.0.dist-info"
+        correct.mkdir()
+        (correct / "METADATA").write_text(
+            textwrap.dedent("""\
+                Metadata-Version: 2.1
+                Name: my-package
+                Version: 1.0.0
+            """),
+        )
+
+        result = await read_pkg_metadata(tmp_path, dist_name="my-package")
+        assert result is not None
+        assert result["Name"] == ["my-package"]
+        assert result["Version"] == ["1.0.0"]
+
+    async def test_dist_name_no_match_returns_none(self, tmp_path: Path) -> None:
+        """When `dist_name` does not match any .dist-info, return None."""
+        wrong = tmp_path / "other_pkg-1.0.0.dist-info"
+        wrong.mkdir()
+        (wrong / "METADATA").write_text(
+            textwrap.dedent("""\
+                Metadata-Version: 2.1
+                Name: other-pkg
+                Version: 1.0.0
+            """),
+        )
+
+        result = await read_pkg_metadata(tmp_path, dist_name="my-package")
+        assert result is None
+
+    async def test_dist_name_normalization(self, tmp_path: Path) -> None:
+        """dist_name matching normalizes hyphens, underscores, and case."""
+        dist_info = tmp_path / "Scipy_Stubs-1.0.0.dist-info"
+        dist_info.mkdir()
+        (dist_info / "METADATA").write_text(
+            textwrap.dedent("""\
+                Metadata-Version: 2.1
+                Name: scipy-stubs
+                Version: 1.0.0
+            """),
+        )
+
+        result = await read_pkg_metadata(tmp_path, dist_name="scipy-stubs")
+        assert result is not None
+        assert result["Name"] == ["scipy-stubs"]
