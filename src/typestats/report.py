@@ -790,10 +790,8 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             base_available = await _pypi.available_versions(client, base_name)
             base_ver = _pypi.match_version(base_available, ver)
             if base_ver is None:
-                msg = (
-                    f"no {base_name} version matching "
-                    f"{ver.release[0]}.{ver.release[1]}.* found"
-                )
+                prefix = ".".join(str(c) for c in ver.release[:2])
+                msg = f"no {base_name} version matching {prefix}.* found"
                 raise RuntimeError(msg)
             base_sp = await _uv.install_to_venv(out_dir, base_name, str(base_ver))
 

@@ -450,7 +450,7 @@ class TestMatchVersion:
         assert match_version({}, Version("1.0.0")) is None
 
     def test_single_component_version(self) -> None:
-        """Versions with fewer than two components still match on the padded tuple."""
+        """Versions with fewer than two release components use a shorter prefix."""
         available = {Version("1"): None}
         # packaging.version.Version("1").release == (1,), so release[:2] == (1,)
         assert match_version(available, Version("1.0.0")) is None
