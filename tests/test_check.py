@@ -1,6 +1,5 @@
 """Tests for the `typestats check` module."""
 
-import contextlib
 import importlib.metadata
 import importlib.util
 import re
@@ -235,19 +234,21 @@ class TestFailUnderFrom:
         import json  # noqa: PLC0415
 
         # Baseline: 80 typed, 20 any, 100 typable.
-        # Non-strict baseline = 100%, strict baseline = 80%.
+        # Non-strict coverage = (80 + 20) / 100 = 100%.
+        # Strict coverage = 80 / 100 = 80%.
+        #
+        # Without --strict the derived threshold is 100%, which would
+        # fail for any package below 100%. With --strict the threshold
+        # is 80%, so a package above 80% passes.
         fake_report = {"n_typed": 80, "n_any": 20, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
 
-        # Use a package that has >0% coverage so we can test the logic.
-        # The exact outcome depends on typestats's own coverage, but we can at least
-        # verify it doesn't crash and produces output.
-        with contextlib.suppress(SystemExit):
-            await check("typestats", strict=True, fail_under_from=report_path)
-
+        # typestats has 100% strict coverage, so 80% threshold passes.
+        await check("typestats", strict=True, fail_under_from=report_path)
         out = capsys.readouterr().out
-        assert "strict" in out.lower() or "coverage" in out.lower()
+        assert "OK" in out
+        assert "80.00%" in out
 
     async def test_overrides_fail_under(self, tmp_path: Path) -> None:
         """--fail-under-from overrides an explicit --fail-under value."""

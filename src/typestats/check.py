@@ -192,7 +192,8 @@ async def check(  # noqa: PLR0913
     is used as the threshold (overrides *fail_under*).
 
     Raises:
-        SystemExit: If *fail_under_from* cannot be read or is malformed.
+        SystemExit: If the package is not installed, its sources cannot
+            be found, or *fail_under_from* cannot be read or is malformed.
     """
     resolved = await _resolve(package)
 
@@ -230,7 +231,7 @@ async def check(  # noqa: PLR0913
             n_typed_base: int = data["n_typed"]
             n_any_base: int = data["n_any"]
             n_typable_base: int = data["n_typable"]
-        except (json.JSONDecodeError, KeyError, TypeError) as exc:
+        except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
             msg = (
                 f"failed to read baseline from {fail_under_from}: {exc}\n"
                 "expected a JSON report with"
