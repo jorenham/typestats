@@ -629,20 +629,18 @@ def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
 
 
 def _prune_stale(dest: Path, source: Path) -> None:
-    """Remove files in `dest` absent from `source`, then empty directories.
+    """Remove entries in `dest` absent from `source`, then empty directories.
 
-    Iterates deepest-first so that empty parent directories are cleaned up after their
-    children are removed.
+    Iterates children-before-parents so that empty parent directories are cleaned up
+    after their children are removed.
     """
     if not dest.is_dir():
         return
 
     keep = (
-        {p.relative_to(source) for p in source.rglob("*") if p.is_file()}
-        if source.is_dir()
-        else set()
+        {p.relative_to(source) for p in source.rglob("*")} if source.is_dir() else set()
     )
-    for entry in sorted(dest.rglob("*"), reverse=True):
+    for entry in sorted(dest.rglob("*"), key=lambda p: len(p.parts), reverse=True):
         rel = entry.relative_to(dest)
         if entry.is_file() and rel not in keep:
             entry.unlink()
