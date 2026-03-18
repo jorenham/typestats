@@ -2,14 +2,17 @@
 
 import importlib.metadata
 import importlib.util
+import json
 import re
 from pathlib import Path, PurePosixPath
-from unittest.mock import MagicMock
+from typing import Any
+from unittest.mock import MagicMock, patch
 
 import anyio
 import pytest
 
 from typestats.check import _is_package_dir_name, _resolve, _top_level_names, check
+from typestats.report import PackageReport
 
 _OUTPUT_RE = re.compile(
     r"coverage:\s+(?P<cov>[\d.]+)%.*\n"
@@ -17,6 +20,27 @@ _OUTPUT_RE = re.compile(
     r"typed:\s+(?P<typed>\d+)\s*\n"
     r"any:\s+(?P<any>\d+)",
 )
+
+_from_path_cache: dict[str, PackageReport] = {}
+_original_from_path = PackageReport.from_path
+
+
+@pytest.fixture(autouse=True, scope="module")
+def _cache_from_path() -> Any:
+    """Cache `PackageReport.from_path` results across the module.
+
+    Every `check()` call for the same package re-parses the entire codebase.
+    Since tests never mutate the source, caching the report cuts redundant work.
+    """  # noqa: DOC402
+
+    async def cached(pkg: str, /, *args: Any, **kwargs: Any) -> PackageReport:
+        if pkg not in _from_path_cache:
+            _from_path_cache[pkg] = await _original_from_path(pkg, *args, **kwargs)
+
+        return _from_path_cache[pkg]
+
+    with patch.object(PackageReport, "from_path", cached):
+        yield
 
 
 class TestIsPackageDirName:
@@ -105,7 +129,8 @@ class TestResolveStubs:
     pytestmark = pytest.mark.anyio
 
     async def test_stubs_base_not_installed(
-        self, monkeypatch: pytest.MonkeyPatch
+        self,
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """_resolve exits when the base package for a stubs dist is missing."""
         stubs_dist = MagicMock(spec=importlib.metadata.Distribution)
@@ -173,8 +198,7 @@ class TestCheckInstalled:
         tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """The --json-report flag writes valid JSON and prints the path."""
-        import json  # noqa: PLC0415
+        """The `--json-report` flag writes valid JSON and prints the path."""
 
         report_path = anyio.Path(tmp_path / "report.json")
         await check("typestats", json_report=report_path)
@@ -205,16 +229,12 @@ class TestFailUnderFrom:
         capsys.readouterr()
 
         # Should pass: coverage is identical to the baseline.
-        await check(
-            "typestats",
-            fail_under_from=report_path,
-        )
+        await check("typestats", fail_under_from=report_path)
         out = capsys.readouterr().out
         assert "OK" in out
 
     async def test_fail_when_coverage_below_baseline(self, tmp_path: Path) -> None:
         """Exits with code 1 when baseline report has higher coverage."""
-        import json  # noqa: PLC0415
 
         # Craft a baseline where typed > typable, giving >100% coverage
         # which is impossible to meet.
@@ -230,15 +250,14 @@ class TestFailUnderFrom:
         tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """With --strict, the baseline coverage accounts for `n_any`."""
-        import json  # noqa: PLC0415
+        """With `--strict`, the baseline coverage accounts for `n_any`."""
 
         # Baseline: 80 typed, 20 any, 100 typable.
         # Non-strict coverage = (80 + 20) / 100 = 100%.
         # Strict coverage = 80 / 100 = 80%.
         #
-        # Without --strict the derived threshold is 100%, which would
-        # fail for any package below 100%. With --strict the threshold
+        # Without `--strict` the derived threshold is 100%, which would
+        # fail for any package below 100%. With `--strict` the threshold
         # is 80%, so a package above 80% passes.
         fake_report = {"n_typed": 80, "n_any": 20, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
@@ -251,18 +270,13 @@ class TestFailUnderFrom:
         assert "80.00%" in out
 
     async def test_overrides_fail_under(self, tmp_path: Path) -> None:
-        """--fail-under-from overrides an explicit --fail-under value."""
-        import json  # noqa: PLC0415
+        """The `--fail-under-from` flag overrides an explicit `--fail-under` value."""
 
         # Craft a baseline with >100% coverage (impossible to meet).
         fake_report = {"n_typed": 200, "n_any": 0, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
 
-        # Even though fail_under=0 would pass, the report overrides it.
+        # Even though `fail_under=0` would pass, the report overrides it.
         with pytest.raises(SystemExit):
-            await check(
-                "typestats",
-                fail_under=0,
-                fail_under_from=report_path,
-            )
+            await check("typestats", fail_under=0, fail_under_from=report_path)
