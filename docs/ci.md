@@ -40,8 +40,8 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - name: uv sync
         run: uv sync --no-dev
-      - name: typestats stats
-        run: uvx typestats check --strict --fail-under 90 your-package
+      - name: typestats check
+        run: uv run typestats check --strict --fail-under 90 your-package
 ```
 
 Replace `your-package` with the name of your package and `90` with the desired minimum
@@ -55,7 +55,7 @@ threshold every time coverage improves.
 
 The workflow runs `typestats check` on the base branch first (writing a JSON report via
 `--json-report`), then checks the PR branch with `--fail-under-from` pointed at that
-json report file. The flag reads the base coverage from the json and uses it as the
+JSON report file. The flag reads the base coverage from the report and uses it as the
 threshold automatically.
 
 ```yaml title=".github/workflows/typestats.yml"
@@ -83,14 +83,14 @@ jobs:
         run: |
           git checkout "${{ github.event.pull_request.base.sha }}"
           uv sync --no-dev
-          uvx typestats check --strict --json-report base-report.json your-package
+          uv run typestats check --strict --json-report base-report.json your-package
           git checkout "${{ github.event.pull_request.head.sha }}"
 
       - name: uv sync
         run: uv sync --no-dev
 
       - name: typestats check (head)
-        run: uvx typestats check --strict --fail-under-from base-report.json your-package
+        run: uv run typestats check --strict --fail-under-from base-report.json your-package
 ```
 
 Replace `your-package` with the name of your package.
