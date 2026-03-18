@@ -1,25 +1,16 @@
 import re
-from typing import TYPE_CHECKING, Any
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, NamedTuple
 
 import anyio
 import pytest
 
-from typestats.dashboard import (
-    DetailPage,
-    DiffPage,
-    IndexPage,
-    build_site,
-)
+from typestats.dashboard import DetailPage, DiffPage, IndexPage, build_site
 from typestats.index import PyTyped
-from typestats.report import (
-    ModuleReport,
-    PackageReport,
-    PypiInfo,
-    StubsOnly,
-)
+from typestats.report import ModuleReport, PackageReport, PypiInfo, StubsOnly
 
 if TYPE_CHECKING:
-    from pathlib import Path
+    from _typeshed import StrPath
 
 
 def _make_symbol_reports(
@@ -103,9 +94,39 @@ def _minimal_report(  # noqa: PLR0913
     )
 
 
-def _write_report(data_dir: Path, report: PackageReport) -> Path:
+class _SiteDirs(NamedTuple):
+    base: anyio.Path
+    data: anyio.Path
+    site: anyio.Path
+    docs: anyio.Path
+    projects_toml: anyio.Path
+
+    async def build_site(
+        self,
+        **kwargs: Any,
+    ) -> tuple[list[PackageReport], dict[str, list[PackageReport]]]:
+        return await build_site(
+            self.data,
+            self.site,
+            self.projects_toml,
+            **kwargs,
+        )
+
+
+@pytest.fixture
+async def site_dirs(tmp_path: Path) -> _SiteDirs:
+    base = anyio.Path(tmp_path)
+    data = base / "data"
+    site = base / "site"
+    docs = base / "docs"
+    await data.mkdir()
+    await docs.mkdir()
+    return _SiteDirs(base, data, site, docs, base / "projects.toml")
+
+
+def _write_report(data_dir: StrPath, report: PackageReport) -> Path:
     """Serialize *report* to `{data_dir}/{package}/{version}.json`."""
-    pkg_dir = data_dir / report.package
+    pkg_dir = Path(data_dir) / report.package
     pkg_dir.mkdir(parents=True, exist_ok=True)
     out = pkg_dir / f"{report.version}.json"
     out.write_text(report.model_dump_json())
@@ -117,10 +138,7 @@ def _table_rows(md: str) -> list[str]:
     return [m for m in re.findall(r"<tr>.*?</tr>", md, re.DOTALL) if "<td" in m]
 
 
-def _rich_report(
-    package: str = "mypkg",
-    version: str = "1.0.0",
-) -> PackageReport:
+def _rich_report(package: str = "mypkg", version: str = "1.0.0") -> PackageReport:
     """Build a report with functions, a class, and mixed annotation status."""
     module_a = ModuleReport.model_validate({
         "path": f"{package}/__init__.py",
@@ -226,13 +244,7 @@ def _rich_report(
 
 class TestRenderIndex:
     def test_single_report(self) -> None:
-        report = _minimal_report(
-            "numpy",
-            "2.4.2",
-            n_typed=90,
-            n_any=5,
-            n_untyped=5,
-        )
+        report = _minimal_report("numpy", "2.4.2", n_typed=90, n_any=5, n_untyped=5)
         md = IndexPage([report]).render()
         rows = _table_rows(md)
         assert len(rows) == 1
@@ -300,13 +312,7 @@ class TestRenderIndex:
         assert "Released" in md
 
     def test_coverage_values(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            n_typed=8,
-            n_any=2,
-            n_untyped=10,
-        )
+        report = _minimal_report("pkg", "1.0.0", n_typed=8, n_any=2, n_untyped=10)
         md = IndexPage([report]).render()
         data_row = _table_rows(md)[0]
         # naive: (8+2)/20 = 50.0%
@@ -329,13 +335,7 @@ class TestRenderDetail:  # noqa: PLR0904
         assert "# numpy 2.4.2" in md
 
     def test_summary_section(self) -> None:
-        report = _minimal_report(
-            "pkg",
-            "1.0.0",
-            n_typed=8,
-            n_any=2,
-            n_untyped=10,
-        )
+        report = _minimal_report("pkg", "1.0.0", n_typed=8, n_any=2, n_untyped=10)
         md = DetailPage(report).render()
         # coverage = (8+2)/20 = 50.0%
         assert "50.0%" in md
@@ -468,13 +468,7 @@ class TestRenderDetail:  # noqa: PLR0904
         assert cells == ["1", "0", "0"]
 
     def test_full_coverage_no_missing(self) -> None:
-        report = _minimal_report(
-            "perfect",
-            "1.0.0",
-            n_typed=10,
-            n_any=0,
-            n_untyped=0,
-        )
+        report = _minimal_report("perfect", "1.0.0", n_typed=10, n_any=0, n_untyped=0)
         md = DetailPage(report).render()
         assert "All symbols are fully typed" in md
 
@@ -502,13 +496,7 @@ class TestRenderDetail:  # noqa: PLR0904
 
     def test_module_no_icon_when_fully_typed(self) -> None:
         """Fully typed modules should not have an icon."""
-        report = _minimal_report(
-            "perfect",
-            "1.0.0",
-            n_typed=10,
-            n_any=0,
-            n_untyped=0,
-        )
+        report = _minimal_report("perfect", "1.0.0", n_typed=10, n_any=0, n_untyped=0)
         md = DetailPage(report).render()
         assert "<code>perfect</code>" in md
 
@@ -579,81 +567,53 @@ class TestRenderDetail:  # noqa: PLR0904
 class TestBuildSite:
     pytestmark = pytest.mark.anyio
 
-    async def test_creates_index_md(self, tmp_path: Path) -> None:
-        data_dir = tmp_path / "data"
-        data_dir.mkdir()
-        site_dir = tmp_path / "site"
-        (tmp_path / "docs").mkdir()
+    async def test_creates_index_md(self, site_dirs: _SiteDirs) -> None:
+        await site_dirs.projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"))
 
-        projects_toml = tmp_path / "projects.toml"
-        projects_toml.write_text(
-            'projects = [{ "name" = "mypkg" }]\n',
-        )
-        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
-
-        out = await build_site(
-            anyio.Path(data_dir),
-            anyio.Path(site_dir),
-            projects_toml,
-        )
+        out = await site_dirs.build_site()
 
         reports, _ = out
         assert isinstance(reports, list)
         assert len(reports) == 1
-        content = (site_dir / "docs" / "index.md").read_text()
+        content = await (site_dirs.site / "docs" / "index.md").read_text()
         assert '<a href="mypkg/">mypkg</a>' in content
 
-    async def test_creates_detail_pages(self, tmp_path: Path) -> None:
-        data_dir = tmp_path / "data"
-        data_dir.mkdir()
-        site_dir = tmp_path / "site"
+    async def test_creates_detail_pages(self, site_dirs: _SiteDirs) -> None:
+        docs_dir = site_dirs.site / "docs"
 
         # Committed docs/ with an existing file
-        committed_docs = tmp_path / "docs"
-        committed_docs.mkdir()
-        (committed_docs / "index.md").write_text("# Index\n")
+        await (site_dirs.docs / "index.md").write_text("# Index\n")
 
-        projects_toml = tmp_path / "projects.toml"
-        projects_toml.write_text(
-            'projects = [{ "name" = "alpha" }, { "name" = "beta" }]\n',
+        await site_dirs.projects_toml.write_text(
+            'projects = [{"name"="alpha"}, {"name"="beta"}]\n',
         )
-        _write_report(data_dir, _minimal_report("alpha", "1.0.0"))
-        _write_report(data_dir, _minimal_report("beta", "2.0.0"))
+        _write_report(site_dirs.data, _minimal_report("alpha", "1.0.0"))
+        _write_report(site_dirs.data, _minimal_report("beta", "2.0.0"))
 
-        await build_site(
-            anyio.Path(data_dir),
-            anyio.Path(site_dir),
-            projects_toml,
-        )
+        await site_dirs.build_site()
 
         # Detail pages written directly to docs/{pkg}/index.md
-        docs = site_dir / "docs"
-        assert (docs / "alpha" / "index.md").is_file()
-        assert (docs / "beta" / "index.md").is_file()
-        alpha_content = (docs / "alpha" / "index.md").read_text()
+        assert await (docs_dir / "alpha" / "index.md").is_file()
+        assert await (docs_dir / "beta" / "index.md").is_file()
+
+        alpha_content = await (docs_dir / "alpha" / "index.md").read_text()
         assert "# alpha 1.0.0" in alpha_content
         assert "hide:" in alpha_content
-        beta_content = (docs / "beta" / "index.md").read_text()
+
+        beta_content = await (docs_dir / "beta" / "index.md").read_text()
         assert "# beta 2.0.0" in beta_content
 
         # Index page generated (overwrites committed placeholder)
-        assert (docs / "index.md").is_file()
-        assert "# Overview" in (docs / "index.md").read_text()
+        assert await (docs_dir / "index.md").is_file()
+        assert "# Overview" in await (docs_dir / "index.md").read_text()
 
-    async def test_raises_on_no_reports(self, tmp_path: Path) -> None:
-        data_dir = tmp_path / "data"
-        data_dir.mkdir()
-        site_dir = tmp_path / "nested" / "site"
-
-        projects_toml = tmp_path / "projects.toml"
-        projects_toml.write_text("projects = []\n")
+    async def test_raises_on_no_reports(self, site_dirs: _SiteDirs) -> None:
+        site_dir = site_dirs.base / "nested" / "site"
+        await site_dirs.projects_toml.write_text("projects = []\n")
 
         with pytest.raises(RuntimeError, match="No reports loaded"):
-            await build_site(
-                anyio.Path(data_dir),
-                anyio.Path(site_dir),
-                projects_toml,
-            )
+            await build_site(site_dirs.data, site_dir, site_dirs.projects_toml)
 
 
 class TestExtractProjectUrls:
@@ -667,12 +627,14 @@ class TestExtractProjectUrls:
 
     def test_pypi_always_present(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
+
         urls = report.project_urls()
         assert urls["pypi"] == "https://pypi.org/project/numpy/"
 
     def test_no_metadata(self) -> None:
         report = _minimal_report("numpy", "2.0.0")
         assert report.metadata is None
+
         urls = report.project_urls()
         assert "repo" not in urls
 
@@ -735,7 +697,9 @@ class TestExtractProjectUrls:
         ],
     )
     def test_url_normalized(
-        self, metadata: dict[str, list[str]], expected: str
+        self,
+        metadata: dict[str, list[str]],
+        expected: str,
     ) -> None:
         assert self._repo(metadata) == expected
 
@@ -1015,82 +979,73 @@ class TestRenderDiff:
 class TestBuildSiteDiff:
     pytestmark = pytest.mark.anyio
 
-    async def test_diff_page_created_for_multiple_versions(
-        self, tmp_path: Path
-    ) -> None:
-        data_dir = tmp_path / "data"
-        data_dir.mkdir()
-        site_dir = tmp_path / "site"
-        (tmp_path / "docs").mkdir()
+    async def test_diff_page_create_multiple(self, site_dirs: _SiteDirs) -> None:
+        await site_dirs.projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
 
-        projects_toml = tmp_path / "projects.toml"
-        projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"))
+        _write_report(site_dirs.data, _minimal_report("mypkg", "2.0.0"))
 
-        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
-        _write_report(data_dir, _minimal_report("mypkg", "2.0.0"))
-
-        reports, all_reports = await build_site(
-            anyio.Path(data_dir),
-            anyio.Path(site_dir),
-            projects_toml,
-        )
+        reports, all_reports = await site_dirs.build_site()
 
         assert isinstance(reports, list)
         assert isinstance(all_reports, dict)
 
         # Diff page in docs/mypkg/
-        diff_page = site_dir / "docs" / "mypkg" / "diff.md"
-        assert diff_page.is_file()
-        content = diff_page.read_text()
+        diff_page = site_dirs.site / "docs" / "mypkg" / "diff.md"
+        assert await diff_page.is_file()
+
+        content = await diff_page.read_text()
         assert "# mypkg Version History" in content
         assert "1.0.0" in content
         assert "2.0.0" in content
 
         # Detail page links to diff page
-        detail = (site_dir / "docs" / "mypkg" / "index.md").read_text()
+        detail = await (site_dirs.site / "docs" / "mypkg" / "index.md").read_text()
         assert "Version history" in detail
         assert "diff.md" in detail
 
-    async def test_no_diff_page_for_single_version(self, tmp_path: Path) -> None:
-        data_dir = tmp_path / "data"
-        data_dir.mkdir()
-        site_dir = tmp_path / "site"
-        (tmp_path / "docs").mkdir()
+    async def test_no_diff_page_for_single_version(self, site_dirs: _SiteDirs) -> None:
+        await site_dirs.projects_toml.write_text('projects = [{"name"="mypkg"}]')
 
-        projects_toml = tmp_path / "projects.toml"
-        projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"))
 
-        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
+        await site_dirs.build_site()
 
-        await build_site(
-            anyio.Path(data_dir),
-            anyio.Path(site_dir),
-            projects_toml,
-        )
-
-        assert not (site_dir / "docs" / "mypkg" / "diff.md").is_file()
-        detail = (site_dir / "docs" / "mypkg" / "index.md").read_text()
+        assert not await (site_dirs.site / "docs" / "mypkg" / "diff.md").is_file()
+        detail = await (site_dirs.site / "docs" / "mypkg" / "index.md").read_text()
         assert "Version history" not in detail
 
-    async def test_build_site_returns_tuple(self, tmp_path: Path) -> None:
-        data_dir = tmp_path / "data"
-        data_dir.mkdir()
-        site_dir = tmp_path / "site"
-        (tmp_path / "docs").mkdir()
+    async def test_build_site_returns_tuple(self, site_dirs: _SiteDirs) -> None:
+        await site_dirs.projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"))
 
-        projects_toml = tmp_path / "projects.toml"
-        projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
-        _write_report(data_dir, _minimal_report("mypkg", "1.0.0"))
+        reports, all_reports = await site_dirs.build_site()
 
-        result = await build_site(
-            anyio.Path(data_dir),
-            anyio.Path(site_dir),
-            projects_toml,
-        )
-
-        reports, all_reports = result
         assert isinstance(reports, list)
         assert len(reports) == 1
         assert isinstance(all_reports, dict)
         assert "mypkg" in all_reports
         assert len(all_reports["mypkg"]) == 1
+
+    async def test_stale_files_pruned_on_rebuild(self, site_dirs: _SiteDirs) -> None:
+        await site_dirs.projects_toml.write_text(
+            'projects = [{"name"="alpha"}, {"name"="beta"}]',
+        )
+        _write_report(site_dirs.data, _minimal_report("alpha", "1.0.0"))
+        _write_report(site_dirs.data, _minimal_report("beta", "1.0.0"))
+
+        _, _ = await site_dirs.build_site()
+
+        docs_dir = site_dirs.site / "docs"
+        assert await (docs_dir / "alpha" / "index.md").is_file()
+        assert await (docs_dir / "beta" / "index.md").is_file()
+
+        # Remove "beta" from projects and rebuild; its page should be pruned.
+        await site_dirs.projects_toml.write_text(
+            'projects = [{ "name" = "alpha" }]\n',
+        )
+        await site_dirs.build_site()
+
+        assert await (docs_dir / "alpha" / "index.md").is_file()
+        assert not await (docs_dir / "beta" / "index.md").exists()
+        assert not await (docs_dir / "beta").exists()

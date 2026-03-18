@@ -614,12 +614,41 @@ def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
     Only the `.md` files directly in `site_dir` and the `docs/` subtree are replaced.
     Other files (e.g. `.preview_sha`, `.reports/`) are left intact.
     This ensures stale package pages are removed when projects are renamed or deleted.
+
+    The `docs/` subtree is updated in-place (not removed and recreated) so that
+    inotify-based watchers such as `zensical serve` keep their watches intact.
     """
     site_dir = Path(site_dir_str)
+    tmp_dir = Path(tmp_str)
+
     for f in site_dir.glob("*.md"):
         f.unlink()
-    shutil.rmtree(site_dir / "docs", ignore_errors=True)
+
+    _prune_stale(site_dir / "docs", tmp_dir / "docs")
     shutil.copytree(tmp_str, site_dir_str, dirs_exist_ok=True)
+
+
+def _prune_stale(dest: Path, source: Path) -> None:
+    """Remove entries in `dest` absent from `source`, then empty directories.
+
+    Iterates children-before-parents so that empty parent directories are cleaned up
+    after their children are removed.
+    """
+    if not dest.is_dir():
+        return
+
+    keep = (
+        {p.relative_to(source) for p in source.rglob("*")} if source.is_dir() else set()
+    )
+    for entry in sorted(dest.rglob("*"), key=lambda p: len(p.parts), reverse=True):
+        rel = entry.relative_to(dest)
+        try:
+            if entry.is_file() and rel not in keep:
+                entry.unlink()
+            elif entry.is_dir() and not any(entry.iterdir()):
+                entry.rmdir()
+        except OSError:
+            pass
 
 
 async def build_site(
