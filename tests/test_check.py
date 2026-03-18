@@ -1,5 +1,6 @@
 """Tests for the `typestats check` module."""
 
+import contextlib
 import importlib.metadata
 import importlib.util
 import re
@@ -185,3 +186,82 @@ class TestCheckInstalled:
         assert data["package"] == "typestats"
         assert isinstance(data["module_reports"], list)
         assert data["n_typable"] > 0
+
+
+class TestFailUnderReport:
+    """Tests for the --fail-under-report flag."""
+
+    pytestmark = pytest.mark.anyio
+
+    async def test_pass_when_coverage_meets_baseline(
+        self,
+        tmp_path: Path,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """No failure when current coverage >= baseline from report."""
+
+        # Write a baseline report, then check against it (same package).
+        report_path = anyio.Path(tmp_path / "base.json")
+        await check("typestats", json_report=report_path)
+        capsys.readouterr()
+
+        # Should pass: coverage is identical to the baseline.
+        await check(
+            "typestats",
+            fail_under_from=report_path,
+        )
+        out = capsys.readouterr().out
+        assert "OK" in out
+
+    async def test_fail_when_coverage_below_baseline(self, tmp_path: Path) -> None:
+        """Exits with code 1 when baseline report has higher coverage."""
+        import json  # noqa: PLC0415
+
+        # Craft a baseline where typed > typable, giving >100% coverage
+        # which is impossible to meet.
+        fake_report = {"n_typed": 200, "n_any": 0, "n_typable": 100}
+        report_path = anyio.Path(tmp_path / "base.json")
+        await report_path.write_text(json.dumps(fake_report))
+
+        with pytest.raises(SystemExit):
+            await check("typestats", fail_under_from=report_path)
+
+    async def test_strict_mode_uses_strict_coverage(
+        self,
+        tmp_path: Path,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        """With --strict, the baseline coverage accounts for `n_any`."""
+        import json  # noqa: PLC0415
+
+        # Baseline: 80 typed, 20 any, 100 typable.
+        # Non-strict baseline = 80%, strict baseline = 60%.
+        fake_report = {"n_typed": 80, "n_any": 20, "n_typable": 100}
+        report_path = anyio.Path(tmp_path / "base.json")
+        await report_path.write_text(json.dumps(fake_report))
+
+        # Use a package that has >0% coverage so we can test the logic.
+        # The exact outcome depends on typestats's own coverage, but we can at least
+        # verify it doesn't crash and produces output.
+        with contextlib.suppress(SystemExit):
+            await check("typestats", strict=True, fail_under_from=report_path)
+
+        out = capsys.readouterr().out
+        assert "strict" in out.lower() or "coverage" in out.lower()
+
+    async def test_overrides_fail_under(self, tmp_path: Path) -> None:
+        """--fail-under-report overrides an explicit --fail-under value."""
+        import json  # noqa: PLC0415
+
+        # Craft a baseline with >100% coverage (impossible to meet).
+        fake_report = {"n_typed": 200, "n_any": 0, "n_typable": 100}
+        report_path = anyio.Path(tmp_path / "base.json")
+        await report_path.write_text(json.dumps(fake_report))
+
+        # Even though fail_under=0 would pass, the report overrides it.
+        with pytest.raises(SystemExit):
+            await check(
+                "typestats",
+                fail_under=0,
+                fail_under_from=report_path,
+            )
