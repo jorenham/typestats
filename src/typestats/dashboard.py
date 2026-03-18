@@ -642,10 +642,13 @@ def _prune_stale(dest: Path, source: Path) -> None:
     )
     for entry in sorted(dest.rglob("*"), key=lambda p: len(p.parts), reverse=True):
         rel = entry.relative_to(dest)
-        if entry.is_file() and rel not in keep:
-            entry.unlink()
-        elif entry.is_dir() and not any(entry.iterdir()):
-            entry.rmdir()
+        try:
+            if entry.is_file() and rel not in keep:
+                entry.unlink()
+            elif entry.is_dir() and not any(entry.iterdir()):
+                entry.rmdir()
+        except OSError:
+            pass
 
 
 async def build_site(
