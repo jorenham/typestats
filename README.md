@@ -55,4 +55,4 @@ stubs overlay merging, and async IO design.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and workflow.
+See [CONTRIBUTING.md](https://github.com/jorenham/typestats/blob/main/CONTRIBUTING.md) for development setup and workflow.

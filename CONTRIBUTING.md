@@ -82,7 +82,7 @@ For alternative ways of installing lefthook, see
 
 ### Previewing the documentation locally
 
-`scripts/preview.py` provides a live-reloading preview of the generated dashboard site:
+`scripts/preview.py` provides a live-reloading preview of the documentation site:
 
 ```bash
 uv run scripts/preview.py
