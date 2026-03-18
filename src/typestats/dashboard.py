@@ -614,11 +614,33 @@ def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
     Only the `.md` files directly in `site_dir` and the `docs/` subtree are replaced.
     Other files (e.g. `.preview_sha`, `.reports/`) are left intact.
     This ensures stale package pages are removed when projects are renamed or deleted.
+
+    The `docs/` directory itself is preserved (not removed and recreated) so that
+    external tools watching it via inotify keep their watches intact.
     """
     site_dir = Path(site_dir_str)
+    tmp_dir = Path(tmp_str)
+
     for f in site_dir.glob("*.md"):
         f.unlink()
-    shutil.rmtree(site_dir / "docs", ignore_errors=True)
+
+    # Remove stale files and empty dirs from docs/ without deleting the
+    # directory tree itself (which would break inotify-based watchers).
+    docs_dir = site_dir / "docs"
+    tmp_docs = tmp_dir / "docs"
+    if docs_dir.is_dir():
+        new_files: set[Path] = set()
+        if tmp_docs.is_dir():
+            new_files = {
+                p.relative_to(tmp_docs) for p in tmp_docs.rglob("*") if p.is_file()
+            }
+        for existing in sorted(docs_dir.rglob("*"), reverse=True):
+            rel = existing.relative_to(docs_dir)
+            if existing.is_file() and rel not in new_files:
+                existing.unlink()
+            elif existing.is_dir() and not any(existing.iterdir()):
+                existing.rmdir()
+
     shutil.copytree(tmp_str, site_dir_str, dirs_exist_ok=True)
 
 

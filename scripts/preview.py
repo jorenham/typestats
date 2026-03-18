@@ -104,20 +104,23 @@ async def _watch_and_rebuild(
         changed = sorted({anyio.Path(str(c[1])).name for c in changes})
         log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
 
-        dashboard_changed = "dashboard.py" in changed
-        if dashboard_changed:
-            importlib.reload(typestats.dashboard)
+        try:
+            dashboard_changed = "dashboard.py" in changed
+            if dashboard_changed:
+                importlib.reload(typestats.dashboard)
 
-        projects_changed = "projects.toml" in changed
-        t0 = time.perf_counter()
-        cached_reports, cached_all_reports = await typestats.dashboard.build_site(
-            reports_dir,
-            _SITE_DIR,
-            ROOT / "projects.toml",
-            reports=None if projects_changed else cached_reports,
-            all_reports=None if projects_changed else cached_all_reports,
-        )
-        log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
+            projects_changed = "projects.toml" in changed
+            t0 = time.perf_counter()
+            cached_reports, cached_all_reports = await typestats.dashboard.build_site(
+                reports_dir,
+                _SITE_DIR,
+                ROOT / "projects.toml",
+                reports=None if projects_changed else cached_reports,
+                all_reports=None if projects_changed else cached_all_reports,
+            )
+            log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
+        except Exception:
+            log.exception("Rebuild failed")
 
 
 async def _serve(*args: str) -> None:
