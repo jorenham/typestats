@@ -62,6 +62,7 @@ def _minimal_report(  # noqa: PLR0913
     package: str = "mypkg",
     version: str = "1.0.0",
     *,
+    base_version: str | None = None,
     stubs_only: StubsOnly = StubsOnly.NO,
     py_typed: PyTyped = PyTyped.YES,
     n_typed: int = 8,
@@ -86,6 +87,7 @@ def _minimal_report(  # noqa: PLR0913
     return PackageReport(
         package=package,
         version=version,
+        base_version=base_version,
         stubs_only=stubs_only,
         py_typed=py_typed,
         module_reports=(module,),
@@ -327,12 +329,39 @@ class TestRenderIndex:
         assert 'class="pypi-downloads"' in data_row
         assert 'data-package="numpy"' in data_row
 
+    def test_base_version_shown(self) -> None:
+        report = _minimal_report(
+            "scipy-stubs",
+            "1.15.0",
+            base_version="1.15.1",
+        )
+        md = IndexPage([report]).render()
+        data_row = _table_rows(md)[0]
+        assert "1.15.0" in data_row
+        assert "(1.15.1)" in data_row
+
+    def test_base_version_absent(self) -> None:
+        report = _minimal_report("numpy", "2.4.2")
+        md = IndexPage([report]).render()
+        data_row = _table_rows(md)[0]
+        assert "2.4.2" in data_row
+        assert "(" not in data_row.split("2.4.2")[1].split("</td>")[0]
+
 
 class TestRenderDetail:  # noqa: PLR0904
     def test_heading_and_backlink(self) -> None:
         report = _minimal_report("numpy", "2.4.2")
         md = DetailPage(report).render()
         assert "# numpy 2.4.2" in md
+
+    def test_heading_with_base_version(self) -> None:
+        report = _minimal_report(
+            "scipy-stubs",
+            "1.15.0",
+            base_version="1.15.1",
+        )
+        md = DetailPage(report).render()
+        assert "# scipy-stubs 1.15.0 (1.15.1)" in md
 
     def test_summary_section(self) -> None:
         report = _minimal_report("pkg", "1.0.0", n_typed=8, n_any=2, n_untyped=10)
@@ -787,6 +816,28 @@ class TestRenderDiff:
         assert "Coverage" in md
         # Latest version links to detail page
         assert '<a href="../">2.0.0</a>' in md
+
+    def test_base_version_in_rows(self) -> None:
+        r1 = _minimal_report(
+            "scipy-stubs",
+            "1.14.0",
+            base_version="1.14.1",
+            n_typed=5,
+            n_any=0,
+            n_untyped=5,
+        )
+        r2 = _minimal_report(
+            "scipy-stubs",
+            "1.15.0",
+            base_version="1.15.1",
+            n_typed=8,
+            n_any=0,
+            n_untyped=2,
+        )
+        md = DiffPage([r1, r2]).render()
+        rows = _table_rows(md)
+        assert "(1.15.1)" in rows[0]
+        assert "(1.14.1)" in rows[1]
 
     def test_version_rows_newest_first(self) -> None:
         r1 = _minimal_report("pkg", "1.0.0", n_typed=4, n_any=0, n_untyped=6)
