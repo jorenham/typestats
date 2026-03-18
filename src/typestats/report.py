@@ -22,7 +22,6 @@ from typing import (
 
 if TYPE_CHECKING:
     import httpx
-    from _typeshed import StrPath
 
     from typestats._pypi import FileDetail
     from typestats.projects import Project
@@ -41,6 +40,7 @@ from pydantic import (
 )
 
 from typestats import analyze
+from typestats._type import StrPath, StrPaths
 from typestats.index import PublicSymbols, PyTyped
 from typestats.typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
@@ -72,7 +72,7 @@ class _CollectResult(NamedTuple):
 
 
 class _BuildResult(NamedTuple):
-    module_reports: tuple[ModuleReport, ...]
+    module_reports: tuple["ModuleReport", ...]
     had_stubs_dir: bool
 
 
@@ -562,7 +562,7 @@ class PypiInfo(BaseModel):
     """SHA-256 hash of the distribution file."""
 
     @classmethod
-    def from_file_detail(cls, file: FileDetail, /) -> Self:
+    def from_file_detail(cls, file: "FileDetail", /) -> Self:
         """Construct from a PyPI Simple API `FileDetail` record."""
         return cls(
             upload_time=file.get("upload-time"),
@@ -749,8 +749,8 @@ class PackageReport(BaseModel):  # noqa: PLR0904
     @classmethod
     async def from_project(
         cls,
-        project: Project,
-        client: httpx.AsyncClient,
+        project: "Project",
+        client: "httpx.AsyncClient",
         out_dir: StrPath,
         /,
     ) -> Self:
@@ -822,13 +822,13 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         version: str,
         /,
         *,
-        stubs_path: StrPath | None = None,
+        stubs_path: "StrPath | None" = None,
         project: str | None = None,
         base_version: str | None = None,
         exclude: Sequence[str] = (),
         pypi: PypiInfo | None = None,
-        sources: Sequence[StrPath] = (),
-        stubs_sources: Sequence[StrPath] = (),
+        sources: StrPaths = (),
+        stubs_sources: StrPaths = (),
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
@@ -892,8 +892,8 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         stubs_path: anyio.Path | None,
         exclude: Sequence[str],
         *,
-        sources: Sequence[StrPath] = (),
-        stubs_sources: Sequence[StrPath] = (),
+        sources: StrPaths = (),
+        stubs_sources: StrPaths = (),
     ) -> _CollectResult:
         """Run analysis coroutines and return merged results."""
         from typestats._metadata import read_pkg_metadata

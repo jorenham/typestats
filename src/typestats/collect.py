@@ -1,24 +1,23 @@
 """Batch collection of type-coverage data for curated projects."""
 
 import contextlib
+import datetime as dt
 import logging
 import subprocess  # noqa: S404
 from typing import TYPE_CHECKING, Final
 
 import anyio
 
-from typestats._http import retry_client
-from typestats._pypi import available_versions, match_version, versions_since
-from typestats._stubs import find_stubs_dir, stubs_base_name
-from typestats._uv import install_to_venv
-from typestats.projects import load_projects
-from typestats.report import PackageReport, PypiInfo
+from ._http import retry_client
+from ._pypi import available_versions, match_version, versions_since
+from ._stubs import find_stubs_dir, stubs_base_name
+from ._type import StrPath
+from ._uv import install_to_venv
+from .projects import load_projects
+from .report import PackageReport, PypiInfo
 
 if TYPE_CHECKING:
-    import datetime as dt
-
     import httpx
-    from _typeshed import StrPath
     from packaging.version import Version
 
     from typestats._pypi import FileDetail
@@ -71,8 +70,8 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
 
 
 async def collect_project(  # noqa: PLR0913
-    project: Project,
-    client: httpx.AsyncClient,
+    project: "Project",
+    client: "httpx.AsyncClient",
     data_dir: anyio.Path,
     work_dir: anyio.Path,
     /,
@@ -171,7 +170,7 @@ async def collect_project(  # noqa: PLR0913
 
 
 async def collect_all(
-    data_dir: anyio.Path,
+    data_dir: StrPath,
     projects_path: StrPath | None = None,
     /,
     *,
@@ -184,6 +183,8 @@ async def collect_all(
     constrained to max `backfill_limit` versions per project, and at least the latest
     version.
     """
+
+    data_dir = anyio.Path(data_dir)
 
     if projects_path is None:
         projects_path = _DEFAULT_PROJECTS
@@ -203,7 +204,7 @@ async def collect_all(
     async with anyio.TemporaryDirectory() as tmp, retry_client() as client:
         work_dir = anyio.Path(tmp)
 
-        async def _collect(project: Project) -> None:
+        async def _collect(project: "Project") -> None:
             try:
                 written.extend(
                     await collect_project(

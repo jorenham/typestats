@@ -1,11 +1,9 @@
 import email.parser
 import logging
-from typing import TYPE_CHECKING
 
 import anyio
 
-if TYPE_CHECKING:
-    from _typeshed import StrPath
+from typestats._type import StrPath
 
 __all__ = ("read_pkg_metadata",)
 

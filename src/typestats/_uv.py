@@ -1,12 +1,10 @@
 import contextlib
-from typing import TYPE_CHECKING, Final
+from typing import Final
 
 import anyio
 
 from typestats import _subprocess
-
-if TYPE_CHECKING:
-    from _typeshed import StrPath
+from typestats._type import StrPath
 
 __all__ = (
     "PYTHON_VERSION",
@@ -22,6 +20,7 @@ PYTHON_VERSION: Final = "3.13"
 
 
 async def create_venv(path: StrPath, /) -> anyio.Path:
+    path = anyio.Path(path)
     await _subprocess.run(
         "uv",
         "venv",
@@ -31,7 +30,7 @@ async def create_venv(path: StrPath, /) -> anyio.Path:
         PYTHON_VERSION,
         str(path),
     )
-    return anyio.Path(path) / "bin" / "python"
+    return path / "bin" / "python"
 
 
 async def install(python: StrPath, project: str, version: str, /) -> None:
@@ -43,7 +42,7 @@ async def install(python: StrPath, project: str, version: str, /) -> None:
         "--no-config",
         "--no-cache",
         "--python",
-        str(python),
+        str(anyio.Path(python)),
         f"{project}=={version}",
     )
 

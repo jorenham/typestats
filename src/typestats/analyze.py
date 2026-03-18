@@ -2,9 +2,10 @@ import logging
 import re
 import sys
 from collections import defaultdict, deque
+from collections.abc import Callable, Collection, Mapping
 from dataclasses import dataclass
 from enum import IntEnum, StrEnum
-from typing import TYPE_CHECKING, Final, Literal, NamedTuple, Self, override
+from typing import Final, Literal, NamedTuple, Self, override
 from typing import TypeAlias as _TypeAlias
 
 import libcst as cst
@@ -12,9 +13,6 @@ from libcst.helpers import (
     get_absolute_module_from_package_for_import,
     get_full_name_for_node,
 )
-
-if TYPE_CHECKING:
-    from collections.abc import Callable, Collection, Mapping
 
 __all__ = (
     "ANY",
@@ -148,7 +146,7 @@ class _TypeMarker(StrEnum):
     def is_typed(self) -> bool:
         return self is not self.UNTYPED
 
-    def to_unknown(self) -> _TypeMarker:  # noqa: PLR6301
+    def to_unknown(self) -> "_TypeMarker":  # noqa: PLR6301
         return _TypeMarker.UNTYPED
 
 
@@ -279,7 +277,7 @@ class _SlotRank(IntEnum):
     SKIP = 3
 
     @classmethod
-    def from_typeform(cls, ty: TypeForm) -> _SlotRank:
+    def from_typeform(cls, ty: TypeForm) -> "_SlotRank":
         if isinstance(ty, Expr):
             return cls.TYPED
         if ty is ANY:
@@ -425,6 +423,16 @@ class Property:
 
 
 @dataclass(frozen=True, slots=True)
+class Symbol:
+    name: str
+    type_: TypeForm
+
+    @override
+    def __str__(self) -> str:
+        return f"{self.name}: {self.type_}"
+
+
+@dataclass(frozen=True, slots=True)
 class Class:
     name: str
     members: tuple[Symbol, ...] = ()
@@ -472,16 +480,6 @@ def type_counts(type_: TypeForm, /) -> _TypeCounts:
             return _TypeCounts(0, 0, 1)
         case _:
             return _TypeCounts(0, 0, 0)
-
-
-@dataclass(frozen=True, slots=True)
-class Symbol:
-    name: str
-    type_: TypeForm
-
-    @override
-    def __str__(self) -> str:
-        return f"{self.name}: {self.type_}"
 
 
 @dataclass(frozen=True, slots=True)

@@ -5,10 +5,8 @@ import importlib.util
 import json
 import re
 import sys
-from typing import TYPE_CHECKING, NamedTuple
-
-if TYPE_CHECKING:
-    from collections.abc import Sequence
+from collections.abc import Sequence
+from typing import NamedTuple
 
 import anyio
 

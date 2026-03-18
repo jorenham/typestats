@@ -1,4 +1,5 @@
 import logging
+import sys
 import textwrap
 
 import libcst as cst
@@ -1723,7 +1724,11 @@ class TestVersionGuards:
         module = collect_symbols(src)
         imports = dict(module.imports)
         assert "TypeIs" in imports
-        assert imports["TypeIs"] == "typing.TypeIs"
+
+        if sys.version_info >= (3, 13):
+            assert imports["TypeIs"] == "typing.TypeIs"
+        else:
+            assert imports["TypeIs"] == "typing_extensions.TypeIs"
 
     def test_from_sys_import_version_info(self) -> None:
         """Handle `from sys import version_info`."""

@@ -160,6 +160,13 @@ async def _run(cmd: Collect | Dashboard | Check) -> None:
 
 @mainpy.main
 def app() -> None:
+
+    logging.basicConfig(
+        format="%(asctime)s :: %(name)s :: %(levelname)s :: %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
+        level=logging.WARNING,
+    )
+
     prog = "typestats"
     desc = "Type annotation coverage statistics for Python packages."
 

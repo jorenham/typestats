@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
     from pytest_httpx import HTTPXMock
 
-    type MockUv = Callable[..., None]
+type MockUv = Callable[..., None]
 
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 _FIXTURES = Path(__file__).parent / "fixtures"
@@ -54,7 +54,7 @@ class TestCollectProject:
     async def test_writes_json(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """A new version produces a JSON file."""
@@ -93,7 +93,7 @@ class TestCollectProject:
     async def test_skips_existing(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """When the JSON already exists, the project is skipped."""
@@ -109,10 +109,7 @@ class TestCollectProject:
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=_pypi_detail_json(name, version),
         )
-        mock_uv(
-            {},
-            target="typestats.collect.install_to_venv",
-        )
+        mock_uv({}, target="typestats.collect.install_to_venv")
 
         project = Project(name=name)
 
@@ -134,7 +131,7 @@ class TestCollectProject:
     async def test_skips_on_install_failure(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """When install fails (e.g. no compatible wheels), the version is skipped."""
@@ -170,7 +167,7 @@ class TestCollectAll:
     async def test_collects_projects(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Integration test: collect_all processes projects from a TOML file."""
@@ -203,7 +200,7 @@ class TestCollectAll:
     async def test_skips_already_collected(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Projects with existing data files are skipped."""
@@ -219,10 +216,7 @@ class TestCollectAll:
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=_pypi_detail_json(name, version),
         )
-        mock_uv(
-            {},
-            target="typestats.collect.install_to_venv",
-        )
+        mock_uv({}, target="typestats.collect.install_to_venv")
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
@@ -238,7 +232,7 @@ class TestCollectAll:
     async def test_removes_unlisted_projects(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Data directories for projects not in the TOML file are removed."""
@@ -280,7 +274,7 @@ class TestBackfillCutoff:
     async def test_skips_old_versions(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Versions uploaded before BACKFILL_SINCE are not collected."""
@@ -335,7 +329,7 @@ class TestBackfillCutoff:
     async def test_collects_multiple_versions(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Multiple eligible versions are all collected."""
@@ -365,10 +359,7 @@ class TestBackfillCutoff:
                 },
             ],
         }
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=detail,
-        )
+        httpx_mock.add_response(url=_PYPI_HOST.join(f"/simple/{name}/"), json=detail)
         mock_uv(
             {
                 (name, "1.0.0"): _FIXTURES / "stubs_base",
@@ -396,7 +387,7 @@ class TestBackfillCutoff:
     async def test_collects_stubs_project(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Stubs projects install base + stubs and produce correct metadata."""
@@ -469,7 +460,7 @@ class TestBackfillCutoff:
     async def test_collects_stubs_lite_project(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """A *-stubs-lite project installs base via directory detection."""
@@ -537,7 +528,7 @@ class TestBackfillCutoff:
     async def test_skips_stubs_version_without_matching_base(
         self,
         tmp_path: Path,
-        httpx_mock: HTTPXMock,
+        httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
         """Stubs versions with no matching base major.minor are skipped."""

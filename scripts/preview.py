@@ -40,6 +40,8 @@ import typestats.dashboard
 if TYPE_CHECKING:
     from typestats.report import PackageReport
 
+type _PackageReports = list[PackageReport]
+
 ROOT: Final = anyio.Path(__file__).parent.parent
 _SITE_DIR: Final = ROOT / "_site"
 _SITE_SHA: Final = _SITE_DIR / ".preview_sha"
@@ -88,8 +90,8 @@ async def _extract_into(into: anyio.Path, sha: str) -> None:
 
 async def _watch_and_rebuild(
     reports_dir: anyio.Path,
-    initial_reports: list[PackageReport] | None = None,
-    initial_all_reports: dict[str, list[PackageReport]] | None = None,
+    initial_reports: _PackageReports | None = None,
+    initial_all_reports: dict[str, _PackageReports] | None = None,
 ) -> None:
     watch_paths = (
         ROOT / "docs",
@@ -151,8 +153,8 @@ async def main() -> None:
     sha = await _resolve_hash()
     sha_cached = await _SITE_SHA.read_text() if await _SITE_SHA.exists() else None
 
-    initial_reports: list[PackageReport] | None = None
-    initial_all_reports: dict[str, list[PackageReport]] | None = None
+    initial_reports: _PackageReports | None = None
+    initial_all_reports: dict[str, _PackageReports] | None = None
     if not clean and sha == sha_cached and await _REPORTS_DIR.exists():
         log.info("Data unchanged (%s), skipping extraction.", sha[:12])
     else:

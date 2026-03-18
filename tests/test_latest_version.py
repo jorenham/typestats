@@ -1,19 +1,15 @@
 """Tests for `typestats._pypi.latest_version`."""
 
-from typing import TYPE_CHECKING
-
 import httpx
 import pytest
 from packaging.version import Version
+from pytest_httpx import HTTPXMock
 
 from typestats._pypi import (
     FileDetail,
     ProjectDetail,
     latest_version,
 )
-
-if TYPE_CHECKING:
-    from pytest_httpx import HTTPXMock
 
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 

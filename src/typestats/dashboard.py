@@ -17,18 +17,19 @@ import anyio
 import anyio.to_thread
 from packaging.version import Version
 
-from typestats.index import PyTyped
-from typestats.projects import load_projects
-from typestats.report import ClassReport, ModuleReport, PackageReport, StubsOnly
+from ._type import StrPath
+from .index import PyTyped
+from .projects import load_projects
+from .report import ClassReport, ModuleReport, PackageReport, StubsOnly
 
 if TYPE_CHECKING:
-    from _typeshed import StrPath
     from jinja2 import Environment
 
     from typestats import analyze
 
 __all__ = ("build_site",)
 
+type _PackageReports = list[PackageReport]
 
 _logger: Final = logging.getLogger(__name__)
 
@@ -122,7 +123,7 @@ class _SymbolsByKind(NamedTuple):
 
 
 @functools.cache
-def _get_env() -> Environment:
+def _get_env() -> "Environment":
     from jinja2 import ChoiceLoader, Environment, PackageLoader  # noqa: PLC0415
 
     return Environment(
@@ -149,7 +150,7 @@ class IndexPage:
         PyTyped.NO: 3,
     }
 
-    def __init__(self, reports: list[PackageReport], /) -> None:
+    def __init__(self, reports: _PackageReports, /) -> None:
         self._reports = reports
 
     def render(self) -> str:
@@ -188,7 +189,7 @@ class DiffPage:
         "yAxisLineColor",
     )
 
-    def __init__(self, reports: list[PackageReport], /) -> None:
+    def __init__(self, reports: _PackageReports, /) -> None:
         if len(reports) < _MIN_VERSIONS_FOR_DIFF:
             msg = (
                 f"DiffPage requires at least {_MIN_VERSIONS_FOR_DIFF} reports, "
@@ -454,7 +455,7 @@ class DetailPage:
     def _type_ignore_data(self) -> list[tuple[str, int]]:
         """Return sorted (flavor, count) pairs for type-ignore comments."""
 
-        def _ignore_label(ic: analyze.IgnoreComment) -> str:
+        def _ignore_label(ic: "analyze.IgnoreComment") -> str:
             out = f"{ic.kind}: ignore"
             if ic.rules:
                 out += f"[{', '.join(sorted(ic.rules))}]"
@@ -523,7 +524,7 @@ async def _load_all_version_reports(
     data_dir: anyio.Path,
     projects_path: StrPath,
     /,
-) -> dict[str, list[PackageReport]]:
+) -> dict[str, _PackageReports]:
     """Load all available version reports for every project.
 
     Returns a dict keyed by project name. Each value is a list of
@@ -554,7 +555,7 @@ async def _load_all_version_reports(
     raws = await asyncio.gather(*(p.read_bytes() for p in flat_paths))
 
     # Reconstruct per-project lists in the original sorted order.
-    result: dict[str, list[PackageReport]] = {}
+    result: dict[str, _PackageReports] = {}
     i = 0
     for name, paths in per_project:
         result[name] = [
@@ -566,8 +567,8 @@ async def _load_all_version_reports(
 
 def _pkg_page_entries(
     docs_dir: anyio.Path,
-    reports: list[PackageReport],
-    all_reports: dict[str, list[PackageReport]],
+    reports: _PackageReports,
+    all_reports: dict[str, _PackageReports],
     /,
 ) -> list[tuple[str, str]]:
     """Build per-package `(path, content)` entries for `docs_dir`."""
@@ -661,9 +662,9 @@ async def build_site(
     projects_path: StrPath = _DEFAULT_PROJECTS,
     /,
     *,
-    reports: list[PackageReport] | None = None,
-    all_reports: dict[str, list[PackageReport]] | None = None,
-) -> tuple[list[PackageReport], dict[str, list[PackageReport]]]:
+    reports: _PackageReports | None = None,
+    all_reports: dict[str, _PackageReports] | None = None,
+) -> tuple[_PackageReports, dict[str, _PackageReports]]:
     """Build the markdown pages and write them to `site_dir`.
 
     All pages are written directly into `site_dir/docs/` with MkDocs frontmatter

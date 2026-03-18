@@ -10,7 +10,7 @@ if TYPE_CHECKING:
 
 
 def mock_uv(
-    monkeypatch: pytest.MonkeyPatch,
+    monkeypatch: "pytest.MonkeyPatch",
     fixture_map: dict[tuple[str, str], Path],
     *,
     target: str = "typestats._uv.install_to_venv",

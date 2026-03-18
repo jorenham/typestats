@@ -1,7 +1,7 @@
 """Tests for `typestats._uv`."""
 
 import subprocess  # noqa: S404
-from typing import TYPE_CHECKING
+from pathlib import Path
 from unittest.mock import AsyncMock
 
 import anyio
@@ -14,9 +14,6 @@ from typestats._uv import (
     install_to_venv,
     site_packages_dir,
 )
-
-if TYPE_CHECKING:
-    from pathlib import Path
 
 
 class TestCreateVenv:
