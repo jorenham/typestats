@@ -615,8 +615,8 @@ def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
     Other files (e.g. `.preview_sha`, `.reports/`) are left intact.
     This ensures stale package pages are removed when projects are renamed or deleted.
 
-    The `docs/` directory itself is preserved (not removed and recreated) so that
-    external tools watching it via inotify keep their watches intact.
+    The `docs/` subtree is updated in-place (not removed and recreated) so that
+    inotify-based watchers such as `zensical serve` keep their watches intact.
     """
     site_dir = Path(site_dir_str)
     tmp_dir = Path(tmp_str)
@@ -624,24 +624,30 @@ def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
     for f in site_dir.glob("*.md"):
         f.unlink()
 
-    # Remove stale files and empty dirs from docs/ without deleting the
-    # directory tree itself (which would break inotify-based watchers).
-    docs_dir = site_dir / "docs"
-    tmp_docs = tmp_dir / "docs"
-    if docs_dir.is_dir():
-        new_files: set[Path] = set()
-        if tmp_docs.is_dir():
-            new_files = {
-                p.relative_to(tmp_docs) for p in tmp_docs.rglob("*") if p.is_file()
-            }
-        for existing in sorted(docs_dir.rglob("*"), reverse=True):
-            rel = existing.relative_to(docs_dir)
-            if existing.is_file() and rel not in new_files:
-                existing.unlink()
-            elif existing.is_dir() and not any(existing.iterdir()):
-                existing.rmdir()
-
+    _prune_stale(site_dir / "docs", tmp_dir / "docs")
     shutil.copytree(tmp_str, site_dir_str, dirs_exist_ok=True)
+
+
+def _prune_stale(dest: Path, source: Path) -> None:
+    """Remove files in `dest` absent from `source`, then empty directories.
+
+    Iterates deepest-first so that empty parent directories are cleaned up after their
+    children are removed.
+    """
+    if not dest.is_dir():
+        return
+
+    keep = (
+        {p.relative_to(source) for p in source.rglob("*") if p.is_file()}
+        if source.is_dir()
+        else set()
+    )
+    for entry in sorted(dest.rglob("*"), reverse=True):
+        rel = entry.relative_to(dest)
+        if entry.is_file() and rel not in keep:
+            entry.unlink()
+        elif entry.is_dir() and not any(entry.iterdir()):
+            entry.rmdir()
 
 
 async def build_site(

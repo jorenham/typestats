@@ -101,22 +101,21 @@ async def _watch_and_rebuild(
     cached_reports = initial_reports
     cached_all_reports = initial_all_reports
     async for changes in watchfiles.awatch(*map(str, watch_paths)):
-        changed = sorted({anyio.Path(str(c[1])).name for c in changes})
+        changed = sorted({anyio.Path(c[1]).name for c in changes})
         log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
 
         try:
-            dashboard_changed = "dashboard.py" in changed
-            if dashboard_changed:
+            if "dashboard.py" in changed:
                 importlib.reload(typestats.dashboard)
 
-            projects_changed = "projects.toml" in changed
+            invalidate = "projects.toml" in changed
             t0 = time.perf_counter()
             cached_reports, cached_all_reports = await typestats.dashboard.build_site(
                 reports_dir,
                 _SITE_DIR,
                 ROOT / "projects.toml",
-                reports=None if projects_changed else cached_reports,
-                all_reports=None if projects_changed else cached_all_reports,
+                reports=None if invalidate else cached_reports,
+                all_reports=None if invalidate else cached_all_reports,
             )
             log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
         except Exception:
