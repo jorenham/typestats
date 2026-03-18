@@ -21,21 +21,23 @@ usage: typestats check [-h] [CHECK OPTIONS]
 
 Check type-annotation coverage for an installed package.
 
-╭─ positional arguments ───────────────────────────────────────────────────────────────────────────────────╮
-│ STR                    Package name (must be installed in the current environment). (required)           │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ options ────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ -h, --help             show this help message and exit                                                   │
-│ --strict, --no-strict  Count `Any` annotations as untyped. (default: False)                              │
-│ -f {None}|FLOAT, --fail-under {None}|FLOAT                                                               │
-│                        Minimum coverage percentage (0-100). Exit with code 1 when below. (default: None) │
-│ --exclude [STR [STR ...]]                                                                                │
-│                        Glob patterns for modules to exclude from analysis. (default: )                   │
-│ --json-report {None}|PATH                                                                                │
-│                        Write the full JSON report to this path. (default: None)                          │
-│ -v, --verbose, --no-verbose                                                                              │
-│                        Enable verbose (INFO-level) logging. (default: False)                             │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ positional arguments ─────────────────────────────────────────────────────────────────────────────────────╮
+│ STR                    Package name (must be installed in the current environment). (required)             │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ options ──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ -h, --help             show this help message and exit                                                     │
+│ --strict, --no-strict  Count `Any` annotations as untyped. (default: False)                                │
+│ -f {None}|FLOAT, --fail-under {None}|FLOAT                                                                 │
+│                        Minimum coverage percentage (0-100). Exit with code 1 when below. (default: None)   │
+│ --fail-under-from {None}|PATH                                                                              │
+│                        Read a previous JSON report and use its coverage as `--fail-under`. (default: None) │
+│ --exclude [STR [STR ...]]                                                                                  │
+│                        Glob patterns for modules to exclude from analysis. (default: )                     │
+│ --json-report {None}|PATH                                                                                  │
+│                        Write the full JSON report to this path. (default: None)                            │
+│ -v, --verbose, --no-verbose                                                                                │
+│                        Enable verbose (INFO-level) logging. (default: False)                               │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 ### Stubs packages

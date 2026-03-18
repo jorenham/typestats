@@ -101,6 +101,9 @@ class Check:
     fail_under: Annotated[float | None, arg(aliases=["-f"])] = None
     """Minimum coverage percentage (0-100). Exit with code 1 when below."""
 
+    fail_under_from: Path | None = None
+    """Read a previous JSON report and use its coverage as `--fail-under`."""
+
     exclude: tuple[str, ...] = ()
     """Glob patterns for modules to exclude from analysis."""
 
@@ -147,6 +150,9 @@ async def _run(cmd: Collect | Dashboard | Check) -> None:
                 cmd.package,
                 strict=cmd.strict,
                 fail_under=cmd.fail_under,
+                fail_under_from=(
+                    anyio.Path(cmd.fail_under_from) if cmd.fail_under_from else None
+                ),
                 exclude=cmd.exclude,
                 json_report=anyio.Path(cmd.json_report) if cmd.json_report else None,
             )

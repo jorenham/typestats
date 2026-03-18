@@ -2,6 +2,7 @@
 
 import importlib.metadata
 import importlib.util
+import json
 import re
 import sys
 from typing import TYPE_CHECKING, NamedTuple
@@ -12,7 +13,7 @@ if TYPE_CHECKING:
 import anyio
 
 from typestats._stubs import stubs_base_name
-from typestats.report import PackageReport
+from typestats.report import PackageReport, _coverage
 
 __all__ = ("check",)
 
@@ -174,18 +175,25 @@ async def _resolve(package: str) -> _Resolved:
     )
 
 
-async def check(
+async def check(  # noqa: PLR0913
     package: str,
     /,
     *,
     strict: bool = False,
     fail_under: float | None = None,
+    fail_under_from: anyio.Path | None = None,
     exclude: Sequence[str] = (),
     json_report: anyio.Path | None = None,
 ) -> None:
     """Print type-annotation coverage for *package*.
 
     Exits with code 1 when *fail_under* is set and coverage is below it.
+    When *fail_under_from* is given, the coverage from that JSON report
+    is used as the threshold (overrides *fail_under*).
+
+    Raises:
+        SystemExit: If the package is not installed, its sources cannot
+            be found, or *fail_under_from* cannot be read or is malformed.
     """
     resolved = await _resolve(package)
 
@@ -216,6 +224,21 @@ async def check(
         await json_report.parent.mkdir(parents=True, exist_ok=True)
         await json_report.write_bytes(json_bytes)
         print(f"\nreport:     {json_report}")  # noqa: T201
+
+    if fail_under_from is not None:
+        try:
+            data = json.loads(await fail_under_from.read_bytes())
+            n_typed_base: int = data["n_typed"]
+            n_any_base: int = data["n_any"]
+            n_typable_base: int = data["n_typable"]
+        except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+            msg = (
+                f"failed to read baseline from {fail_under_from}: {exc}\n"
+                "expected a JSON report with"
+                " 'n_typed', 'n_any', and 'n_typable' fields"
+            )
+            raise SystemExit(msg) from None
+        fail_under = _coverage(n_typed_base, n_any_base, n_typable_base, strict) * 100
 
     if fail_under is not None:
         label = "strict coverage" if strict else "coverage"
