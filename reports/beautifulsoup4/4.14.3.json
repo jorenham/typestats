@@ -1,6 +1,7 @@
 {
   "package": "beautifulsoup4",
   "version": "4.14.3",
+  "base_version": null,
   "stubs_only": "no",
   "py_typed": "YES",
   "pypi": {
@@ -75,27 +76,27 @@
   },
   "module_reports": [
     {
-      "path": "bs4/css.py",
+      "path": "bs4/dammit.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "bs4.css.CSS",
+          "name": "bs4.dammit.UnicodeDammit",
           "methods": [
             {
               "kind": "function",
-              "name": "CSS.__init__",
-              "n_typed": 2,
+              "name": "UnicodeDammit.__init__",
+              "n_typed": 7,
               "n_any": 0,
               "n_untyped": 1,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 8,
+              "n_params": 7,
               "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_function_params": 7
             },
             {
               "kind": "function",
-              "name": "CSS.escape",
+              "name": "UnicodeDammit._sub_ms_char",
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -107,7 +108,7 @@
             },
             {
               "kind": "function",
-              "name": "CSS._ns",
+              "name": "UnicodeDammit._convert_from",
               "n_typed": 3,
               "n_any": 0,
               "n_untyped": 0,
@@ -119,7 +120,19 @@
             },
             {
               "kind": "function",
-              "name": "CSS._rs",
+              "name": "UnicodeDammit._to_unicode",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "UnicodeDammit.find_codec",
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -131,94 +144,456 @@
             },
             {
               "kind": "function",
-              "name": "CSS.compile",
+              "name": "UnicodeDammit._codec",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UnicodeDammit.numeric_character_reference",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UnicodeDammit.detwingle",
               "n_typed": 4,
-              "n_any": 1,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "UnicodeDammit.declared_html_encoding",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.smart_quotes_to",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.tried_encodings",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.contains_replacement_characters",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.is_html",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.log",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.detector",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.markup",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.unicode_markup",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.original_encoding",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.markup",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.unicode_markup",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.contains_replacement_characters",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.original_encoding",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.smart_quotes_to",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.tried_encodings",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.log",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.CHARSET_ALIASES",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.ENCODINGS_WITH_SMART_QUOTES",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.MS_CHARS",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.MS_CHARS_TO_ASCII",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.WINDOWS_1252_TO_UTF8",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.ENUMERATED_NONCHARACTERS",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.MULTIBYTE_MARKERS_AND_SIZES",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.FIRST_MULTIBYTE_MARKER",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnicodeDammit.LAST_MULTIBYTE_MARKER",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 53,
+          "n_typed": 43,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 8,
+          "n_method_overloads": 8,
+          "n_method_params": 19,
+          "n_attrs": 25,
+          "n_properties": 1
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.dammit.__license__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.dammit.EntitySubstitution",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EntitySubstitution._populate_class_variables",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
             },
             {
               "kind": "function",
-              "name": "CSS.select_one",
-              "n_typed": 4,
-              "n_any": 1,
+              "name": "EntitySubstitution._substitute_html_entity",
+              "n_typed": 2,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 1
             },
             {
               "kind": "function",
-              "name": "CSS.select",
-              "n_typed": 5,
-              "n_any": 1,
+              "name": "EntitySubstitution._substitute_xml_entity",
+              "n_typed": 2,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 5
+              "n_function_params": 1
             },
             {
               "kind": "function",
-              "name": "CSS.iselect",
-              "n_typed": 5,
-              "n_any": 1,
+              "name": "EntitySubstitution._escape_entity_name",
+              "n_typed": 2,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 5
+              "n_function_params": 1
             },
             {
               "kind": "function",
-              "name": "CSS.closest",
-              "n_typed": 4,
-              "n_any": 1,
+              "name": "EntitySubstitution._escape_unrecognized_entity_name",
+              "n_typed": 2,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 1
             },
             {
               "kind": "function",
-              "name": "CSS.match",
-              "n_typed": 4,
-              "n_any": 1,
+              "name": "EntitySubstitution.quoted_attribute_value",
+              "n_typed": 2,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 1
             },
             {
               "kind": "function",
-              "name": "CSS.filter",
-              "n_typed": 4,
-              "n_any": 1,
+              "name": "EntitySubstitution.substitute_xml",
+              "n_typed": 3,
+              "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EntitySubstitution.substitute_xml_containing_entities",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EntitySubstitution.substitute_html",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EntitySubstitution.substitute_html5",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EntitySubstitution.substitute_html5_raw",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "CSS.api",
+              "name": "EntitySubstitution.HTML_ENTITY_TO_CHARACTER",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EntitySubstitution.CHARACTER_TO_HTML_ENTITY",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EntitySubstitution.CHARACTER_TO_HTML_ENTITY_RE",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EntitySubstitution.CHARACTER_TO_HTML_ENTITY_WITH_AMPERSAND_RE",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EntitySubstitution.CHARACTER_TO_XML_ENTITY",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EntitySubstitution.ANY_ENTITY_RE",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -226,84 +601,304 @@
             },
             {
               "kind": "attr",
-              "name": "CSS.tag",
-              "n_typed": 0,
+              "name": "EntitySubstitution.BARE_AMPERSAND_OR_BRACKET",
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EntitySubstitution.AMPERSAND_OR_BRACKET",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
               "n_typable": 1
             }
           ],
-          "n_typable": 49,
-          "n_typed": 39,
-          "n_any": 7,
-          "n_untyped": 3,
+          "n_typable": 31,
+          "n_typed": 30,
+          "n_any": 0,
+          "n_untyped": 1,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 11,
           "n_method_overloads": 11,
-          "n_method_params": 36,
-          "n_attrs": 2,
+          "n_method_params": 12,
+          "n_attrs": 8,
           "n_properties": 0
         },
         {
           "kind": "attr",
-          "name": "bs4.css.soupsieve",
+          "name": "bs4.dammit.encoding_res",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.dammit.xml_encoding",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "bs4.dammit.EncodingDetector",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EncodingDetector.__init__",
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 7,
+              "n_params": 6,
+              "n_function_overloads": 1,
+              "n_function_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "EncodingDetector._usable",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EncodingDetector.strip_byte_order_mark",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EncodingDetector.find_declared_encoding",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "EncodingDetector.encodings",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.known_definite_encodings",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.user_encodings",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.exclude_encodings",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.chardet_encoding",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.is_html",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.declared_encoding",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.known_definite_encodings",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.user_encodings",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.exclude_encodings",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.chardet_encoding",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.is_html",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.declared_encoding",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.markup",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingDetector.sniffed_encoding",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 25,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 12,
+          "n_attrs": 14,
+          "n_properties": 1
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.dammit.chardet_module",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.dammit.html_meta",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
         }
       ],
-      "type_ignores": [],
-      "name": "bs4.css",
-      "names": [
-        "bs4.css.CSS",
-        "bs4.css.soupsieve"
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
       ],
-      "n_typable": 50,
-      "n_typed": 40,
-      "n_any": 7,
-      "n_untyped": 3,
+      "name": "bs4.dammit",
+      "names": [
+        "bs4.dammit.EncodingDetector",
+        "bs4.dammit.EntitySubstitution",
+        "bs4.dammit.UnicodeDammit",
+        "bs4.dammit.__license__",
+        "bs4.dammit.chardet_module",
+        "bs4.dammit.encoding_res",
+        "bs4.dammit.html_meta",
+        "bs4.dammit.xml_encoding"
+      ],
+      "n_typable": 119,
+      "n_typed": 102,
+      "n_any": 0,
+      "n_untyped": 17,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 11,
-      "n_method_overloads": 11,
-      "n_method_params": 36,
-      "n_classes": 1,
-      "n_attrs": 3,
-      "n_properties": 0,
-      "n_type_ignores": 0
+      "n_methods": 23,
+      "n_method_overloads": 23,
+      "n_method_params": 43,
+      "n_classes": 3,
+      "n_attrs": 52,
+      "n_properties": 2,
+      "n_type_ignores": 2
     },
     {
       "path": "bs4/element.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "bs4.element.CData",
+          "name": "bs4.element.Stylesheet",
           "methods": [],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CData.PREFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "CData.SUFFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 2,
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
@@ -312,79 +907,7 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.ProcessingInstruction",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ProcessingInstruction.PREFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ProcessingInstruction.SUFFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.Comment",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Comment.PREFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Comment.SUFFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
+          "n_attrs": 0,
           "n_properties": 0
         },
         {
@@ -450,7 +973,43 @@
         },
         {
           "kind": "class",
-          "name": "bs4.element.Stylesheet",
+          "name": "bs4.element.CData",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CData.PREFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CData.SUFFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.TemplateString",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -465,6 +1024,186 @@
           "n_method_overloads": 0,
           "n_method_params": 0,
           "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.Declaration",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Declaration.PREFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Declaration.SUFFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.Comment",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Comment.PREFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Comment.SUFFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.Script",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.ResultSet",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ResultSet.__init__",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ResultSet.__getattr__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ResultSet.source",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.ProcessingInstruction",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ProcessingInstruction.PREFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ProcessingInstruction.SUFFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
@@ -1435,281 +2174,6 @@
         },
         {
           "kind": "class",
-          "name": "bs4.element.TemplateString",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.Script",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.Declaration",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Declaration.PREFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Declaration.SUFFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.ResultSet",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ResultSet.__init__",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ResultSet.__getattr__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ResultSet.source",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.element.PYTHON_SPECIFIC_ENCODINGS",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.HTMLAttributeDict",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "HTMLAttributeDict.__setitem__",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.element.DEFAULT_OUTPUT_ENCODING",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.XMLAttributeDict",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "XMLAttributeDict.__setitem__",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.AttributeValueWithCharsetSubstitution",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AttributeValueWithCharsetSubstitution.substitute_encoding",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AttributeValueWithCharsetSubstitution.original_value",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 3,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.element.__license__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.element.AttributeValueList",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "bs4.element.CharsetMetaAttributeValue",
           "methods": [
             {
@@ -1754,52 +2218,38 @@
         },
         {
           "kind": "class",
-          "name": "bs4.element.PreformattedString",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PreformattedString.output_ready",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
+          "name": "bs4.element.RubyTextString",
+          "methods": [],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "PreformattedString.PREFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PreformattedString.SUFFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 4,
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 2,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.element.PYTHON_SPECIFIC_ENCODINGS",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.element.DEFAULT_OUTPUT_ENCODING",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -1879,38 +2329,55 @@
         },
         {
           "kind": "class",
-          "name": "bs4.element.XMLProcessingInstruction",
-          "methods": [],
+          "name": "bs4.element.ContentMetaAttributeValue",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ContentMetaAttributeValue.__new__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ContentMetaAttributeValue.substitute_encoding",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "XMLProcessingInstruction.PREFIX",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "XMLProcessingInstruction.SUFFIX",
+              "name": "ContentMetaAttributeValue.CHARSET_RE",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
               "n_typable": 1
             }
           ],
-          "n_typable": 2,
-          "n_typed": 2,
+          "n_typable": 5,
+          "n_typed": 5,
           "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
           "n_properties": 0
         },
         {
@@ -2049,23 +2516,11 @@
         },
         {
           "kind": "class",
-          "name": "bs4.element.ContentMetaAttributeValue",
+          "name": "bs4.element.PreformattedString",
           "methods": [
             {
               "kind": "function",
-              "name": "ContentMetaAttributeValue.__new__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ContentMetaAttributeValue.substitute_encoding",
+              "name": "PreformattedString.output_ready",
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -2080,24 +2535,164 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "ContentMetaAttributeValue.CHARSET_RE",
+              "name": "PreformattedString.PREFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PreformattedString.SUFFIX",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
               "n_typable": 1
             }
           ],
-          "n_typable": 5,
-          "n_typed": 5,
+          "n_typable": 4,
+          "n_typed": 4,
           "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.HTMLAttributeDict",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTMLAttributeDict.__setitem__",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
           "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.AttributeValueWithCharsetSubstitution",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AttributeValueWithCharsetSubstitution.substitute_encoding",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AttributeValueWithCharsetSubstitution.original_value",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "bs4.element.nonwhitespace_re",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.RubyParenthesisString",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.element.XMLAttributeDict",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "XMLAttributeDict.__setitem__",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
           "n_properties": 0
         },
         {
@@ -2863,13 +3458,38 @@
           "n_properties": 15
         },
         {
+          "kind": "attr",
+          "name": "bs4.element.__license__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "class",
-          "name": "bs4.element.RubyParenthesisString",
+          "name": "bs4.element.XMLProcessingInstruction",
           "methods": [],
           "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "XMLProcessingInstruction.PREFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "XMLProcessingInstruction.SUFFIX",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
@@ -2878,20 +3498,12 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 0,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "bs4.element.nonwhitespace_re",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
-          "name": "bs4.element.RubyTextString",
+          "name": "bs4.element.AttributeValueList",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -2962,27 +3574,27 @@
       "n_type_ignores": 1
     },
     {
-      "path": "bs4/dammit.py",
+      "path": "bs4/css.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "bs4.dammit.UnicodeDammit",
+          "name": "bs4.css.CSS",
           "methods": [
             {
               "kind": "function",
-              "name": "UnicodeDammit.__init__",
-              "n_typed": 7,
+              "name": "CSS.__init__",
+              "n_typed": 2,
               "n_any": 0,
               "n_untyped": 1,
               "n_overloads": 1,
-              "n_typable": 8,
-              "n_params": 7,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 7
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "UnicodeDammit._sub_ms_char",
+              "name": "CSS.escape",
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -2994,7 +3606,7 @@
             },
             {
               "kind": "function",
-              "name": "UnicodeDammit._convert_from",
+              "name": "CSS._ns",
               "n_typed": 3,
               "n_any": 0,
               "n_untyped": 0,
@@ -3006,472 +3618,106 @@
             },
             {
               "kind": "function",
-              "name": "UnicodeDammit._to_unicode",
+              "name": "CSS._rs",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CSS.compile",
               "n_typed": 4,
-              "n_any": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_function_params": 4
             },
             {
               "kind": "function",
-              "name": "UnicodeDammit.find_codec",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "UnicodeDammit._codec",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "UnicodeDammit.numeric_character_reference",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "UnicodeDammit.detwingle",
+              "name": "CSS.select_one",
               "n_typed": 4,
-              "n_any": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "UnicodeDammit.declared_html_encoding",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.smart_quotes_to",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.tried_encodings",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.contains_replacement_characters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.is_html",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.log",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.detector",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.markup",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.unicode_markup",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.original_encoding",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.markup",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.unicode_markup",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.contains_replacement_characters",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.original_encoding",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.smart_quotes_to",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.tried_encodings",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.log",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.CHARSET_ALIASES",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.ENCODINGS_WITH_SMART_QUOTES",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.MS_CHARS",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.MS_CHARS_TO_ASCII",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.WINDOWS_1252_TO_UTF8",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.ENUMERATED_NONCHARACTERS",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.MULTIBYTE_MARKERS_AND_SIZES",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.FIRST_MULTIBYTE_MARKER",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UnicodeDammit.LAST_MULTIBYTE_MARKER",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 53,
-          "n_typed": 43,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 8,
-          "n_method_overloads": 8,
-          "n_method_params": 19,
-          "n_attrs": 25,
-          "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "bs4.dammit.EntitySubstitution",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EntitySubstitution._populate_class_variables",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 4
             },
             {
               "kind": "function",
-              "name": "EntitySubstitution._substitute_html_entity",
-              "n_typed": 2,
-              "n_any": 0,
+              "name": "CSS.select",
+              "n_typed": 5,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 6,
+              "n_params": 5,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 5
             },
             {
               "kind": "function",
-              "name": "EntitySubstitution._substitute_xml_entity",
-              "n_typed": 2,
-              "n_any": 0,
+              "name": "CSS.iselect",
+              "n_typed": 5,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 6,
+              "n_params": 5,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 5
             },
             {
               "kind": "function",
-              "name": "EntitySubstitution._escape_entity_name",
-              "n_typed": 2,
-              "n_any": 0,
+              "name": "CSS.closest",
+              "n_typed": 4,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 4
             },
             {
               "kind": "function",
-              "name": "EntitySubstitution._escape_unrecognized_entity_name",
-              "n_typed": 2,
-              "n_any": 0,
+              "name": "CSS.match",
+              "n_typed": 4,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 4
             },
             {
               "kind": "function",
-              "name": "EntitySubstitution.quoted_attribute_value",
-              "n_typed": 2,
-              "n_any": 0,
+              "name": "CSS.filter",
+              "n_typed": 4,
+              "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "EntitySubstitution.substitute_xml",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "EntitySubstitution.substitute_xml_containing_entities",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "EntitySubstitution.substitute_html",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "EntitySubstitution.substitute_html5",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "EntitySubstitution.substitute_html5_raw",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 4
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "EntitySubstitution.HTML_ENTITY_TO_CHARACTER",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EntitySubstitution.CHARACTER_TO_HTML_ENTITY",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EntitySubstitution.CHARACTER_TO_HTML_ENTITY_RE",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EntitySubstitution.CHARACTER_TO_HTML_ENTITY_WITH_AMPERSAND_RE",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EntitySubstitution.CHARACTER_TO_XML_ENTITY",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EntitySubstitution.ANY_ENTITY_RE",
+              "name": "CSS.api",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3479,300 +3725,55 @@
             },
             {
               "kind": "attr",
-              "name": "EntitySubstitution.BARE_AMPERSAND_OR_BRACKET",
-              "n_typed": 1,
+              "name": "CSS.tag",
+              "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EntitySubstitution.AMPERSAND_OR_BRACKET",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
+              "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 31,
-          "n_typed": 30,
-          "n_any": 0,
-          "n_untyped": 1,
+          "n_typable": 49,
+          "n_typed": 39,
+          "n_any": 7,
+          "n_untyped": 3,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 11,
           "n_method_overloads": 11,
-          "n_method_params": 12,
-          "n_attrs": 8,
+          "n_method_params": 36,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
           "kind": "attr",
-          "name": "bs4.dammit.__license__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.dammit.html_meta",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.dammit.chardet_module",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "bs4.dammit.EncodingDetector",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EncodingDetector.__init__",
-              "n_typed": 6,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "EncodingDetector._usable",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "EncodingDetector.strip_byte_order_mark",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "EncodingDetector.find_declared_encoding",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "EncodingDetector.encodings",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.known_definite_encodings",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.user_encodings",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.exclude_encodings",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.chardet_encoding",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.is_html",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.declared_encoding",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.known_definite_encodings",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.user_encodings",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.exclude_encodings",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.chardet_encoding",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.is_html",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.declared_encoding",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.markup",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EncodingDetector.sniffed_encoding",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 31,
-          "n_typed": 25,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 12,
-          "n_attrs": 14,
-          "n_properties": 1
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.dammit.encoding_res",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.dammit.xml_encoding",
+          "name": "bs4.css.soupsieve",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
         }
       ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": null
-        },
-        {
-          "kind": "type",
-          "rules": null
-        }
-      ],
-      "name": "bs4.dammit",
+      "type_ignores": [],
+      "name": "bs4.css",
       "names": [
-        "bs4.dammit.EncodingDetector",
-        "bs4.dammit.EntitySubstitution",
-        "bs4.dammit.UnicodeDammit",
-        "bs4.dammit.__license__",
-        "bs4.dammit.chardet_module",
-        "bs4.dammit.encoding_res",
-        "bs4.dammit.html_meta",
-        "bs4.dammit.xml_encoding"
+        "bs4.css.CSS",
+        "bs4.css.soupsieve"
       ],
-      "n_typable": 119,
-      "n_typed": 102,
-      "n_any": 0,
-      "n_untyped": 17,
+      "n_typable": 50,
+      "n_typed": 40,
+      "n_any": 7,
+      "n_untyped": 3,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 23,
-      "n_method_overloads": 23,
-      "n_method_params": 43,
-      "n_classes": 3,
-      "n_attrs": 52,
-      "n_properties": 2,
-      "n_type_ignores": 2
+      "n_methods": 11,
+      "n_method_overloads": 11,
+      "n_method_params": 36,
+      "n_classes": 1,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
     },
     {
       "path": "bs4/__init__.py",
@@ -4260,6 +4261,102 @@
       "n_type_ignores": 0
     },
     {
+      "path": "bs4/exceptions.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "bs4.exceptions.ParserRejectedMarkup",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ParserRejectedMarkup.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.exceptions.StopParsing",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.exceptions.FeatureNotFound",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bs4.exceptions",
+      "names": [
+        "bs4.exceptions.FeatureNotFound",
+        "bs4.exceptions.ParserRejectedMarkup",
+        "bs4.exceptions.StopParsing"
+      ],
+      "n_typable": 2,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 1,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "bs4/_warnings.py",
       "symbol_reports": [
         {
@@ -4308,13 +4405,32 @@
         },
         {
           "kind": "class",
-          "name": "bs4._warnings.XMLParsedAsHTMLWarning",
+          "name": "bs4._warnings.UnusualUsageWarning",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4._warnings.AttributeResemblesVariableWarning",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "XMLParsedAsHTMLWarning.MESSAGE",
+              "name": "AttributeResemblesVariableWarning.MESSAGE",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -4336,13 +4452,13 @@
         },
         {
           "kind": "class",
-          "name": "bs4._warnings.AttributeResemblesVariableWarning",
+          "name": "bs4._warnings.XMLParsedAsHTMLWarning",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "AttributeResemblesVariableWarning.MESSAGE",
+              "name": "XMLParsedAsHTMLWarning.MESSAGE",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -4388,25 +4504,6 @@
           "n_method_overloads": 0,
           "n_method_params": 0,
           "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4._warnings.UnusualUsageWarning",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
           "n_properties": 0
         }
       ],
@@ -4566,6 +4663,75 @@
           "n_method_params": 11,
           "n_attrs": 1,
           "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "bs4.filter.TagNameMatchRule",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TagNameMatchRule.matches_tag",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TagNameMatchRule.function",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.filter.AttributeValueMatchRule",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AttributeValueMatchRule.function",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4779,34 +4945,6 @@
         },
         {
           "kind": "class",
-          "name": "bs4.filter.StringMatchRule",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "StringMatchRule.function",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 1,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "bs4.filter.MatchRule",
           "methods": [
             {
@@ -4928,13 +5066,13 @@
         },
         {
           "kind": "class",
-          "name": "bs4.filter.AttributeValueMatchRule",
+          "name": "bs4.filter.StringMatchRule",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "AttributeValueMatchRule.function",
+              "name": "StringMatchRule.function",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -4951,47 +5089,6 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.filter.TagNameMatchRule",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TagNameMatchRule.matches_tag",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TagNameMatchRule.function",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 3,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
           "n_attrs": 1,
           "n_properties": 0
         }
@@ -5022,250 +5119,8 @@
       "n_type_ignores": 0
     },
     {
-      "path": "bs4/exceptions.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "bs4.exceptions.FeatureNotFound",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.exceptions.ParserRejectedMarkup",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ParserRejectedMarkup.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.exceptions.StopParsing",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "bs4.exceptions",
-      "names": [
-        "bs4.exceptions.FeatureNotFound",
-        "bs4.exceptions.ParserRejectedMarkup",
-        "bs4.exceptions.StopParsing"
-      ],
-      "n_typable": 2,
-      "n_typed": 1,
-      "n_any": 0,
-      "n_untyped": 1,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 1,
-      "n_classes": 3,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "bs4/builder/__init__.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "bs4.builder.HTMLTreeBuilder",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "HTMLTreeBuilder.set_up_substitutions",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "HTMLTreeBuilder.DEFAULT_EMPTY_ELEMENT_TAGS",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "HTMLTreeBuilder.DEFAULT_BLOCK_ELEMENTS",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "HTMLTreeBuilder.DEFAULT_STRING_CONTAINERS",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "HTMLTreeBuilder.DEFAULT_CDATA_LIST_ATTRIBUTES",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "HTMLTreeBuilder.DEFAULT_PRESERVE_WHITESPACE_TAGS",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 7,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.builder.TreeBuilderRegistry",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TreeBuilderRegistry.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TreeBuilderRegistry.register",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TreeBuilderRegistry.lookup",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TreeBuilderRegistry.builders_for_feature",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TreeBuilderRegistry.builders",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 7,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 2,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "bs4.builder.DetectsXMLParsedAsHTML",
@@ -5397,23 +5252,11 @@
         },
         {
           "kind": "class",
-          "name": "bs4.builder.SAXTreeBuilder",
+          "name": "bs4.builder.HTMLTreeBuilder",
           "methods": [
             {
               "kind": "function",
-              "name": "SAXTreeBuilder.__init__",
-              "n_typed": 1,
-              "n_any": 2,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.feed",
+              "name": "HTMLTreeBuilder.set_up_substitutions",
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -5422,141 +5265,62 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.close",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.startElement",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.endElement",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.startElementNS",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.endElementNS",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.startPrefixMapping",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.endPrefixMapping",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.characters",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.startDocument",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SAXTreeBuilder.endDocument",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 27,
-          "n_typed": 25,
-          "n_any": 2,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HTMLTreeBuilder.DEFAULT_EMPTY_ELEMENT_TAGS",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HTMLTreeBuilder.DEFAULT_BLOCK_ELEMENTS",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HTMLTreeBuilder.DEFAULT_STRING_CONTAINERS",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HTMLTreeBuilder.DEFAULT_CDATA_LIST_ATTRIBUTES",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HTMLTreeBuilder.DEFAULT_PRESERVE_WHITESPACE_TAGS",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 7,
+          "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 12,
-          "n_method_overloads": 12,
-          "n_method_params": 15,
-          "n_attrs": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 5,
           "n_properties": 0
         },
         {
@@ -5887,6 +5651,243 @@
           "n_method_params": 18,
           "n_attrs": 25,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.builder.SAXTreeBuilder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.__init__",
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.feed",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.close",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.startElement",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.endElement",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.startElementNS",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.endElementNS",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.startPrefixMapping",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.endPrefixMapping",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.characters",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.startDocument",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SAXTreeBuilder.endDocument",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 27,
+          "n_typed": 25,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 12,
+          "n_method_overloads": 12,
+          "n_method_params": 15,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.builder.TreeBuilderRegistry",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TreeBuilderRegistry.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TreeBuilderRegistry.register",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TreeBuilderRegistry.lookup",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TreeBuilderRegistry.builders_for_feature",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TreeBuilderRegistry.builders",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
         }
       ],
       "type_ignores": [
@@ -5926,6 +5927,26 @@
       "path": "bs4/diagnose.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "bs4.diagnose.__license__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "bs4.diagnose.rsentence",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
           "kind": "function",
           "name": "bs4.diagnose.benchmark_parsers",
           "n_typed": 2,
@@ -5939,7 +5960,7 @@
         },
         {
           "kind": "function",
-          "name": "bs4.diagnose.htmlparser_trace",
+          "name": "bs4.diagnose.rdoc",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -5975,19 +5996,7 @@
         },
         {
           "kind": "function",
-          "name": "bs4.diagnose.rdoc",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "bs4.diagnose.rsentence",
+          "name": "bs4.diagnose.htmlparser_trace",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -6008,26 +6017,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "bs4.diagnose.__license__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "bs4.diagnose.lxml_trace",
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -6168,6 +6157,18 @@
           "n_method_params": 13,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "bs4.diagnose.lxml_trace",
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -6224,47 +6225,6 @@
             {
               "kind": "attr",
               "name": "XMLFormatter.REGISTRY",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 5,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "bs4.formatter.HTMLFormatter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "HTMLFormatter.__init__",
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "HTMLFormatter.REGISTRY",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -6435,6 +6395,47 @@
           "n_method_overloads": 5,
           "n_method_params": 12,
           "n_attrs": 9,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "bs4.formatter.HTMLFormatter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTMLFormatter.__init__",
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HTMLFormatter.REGISTRY",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 5,
+          "n_attrs": 1,
           "n_properties": 0
         }
       ],

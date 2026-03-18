@@ -1,6 +1,7 @@
 {
   "package": "structlog",
   "version": "25.4.0",
+  "base_version": null,
   "stubs_only": "no",
   "py_typed": "YES",
   "pypi": {
@@ -72,11 +73,11 @@
   },
   "module_reports": [
     {
-      "path": "structlog/_native.py",
+      "path": "structlog/_base.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "structlog._native.make_filtering_bound_logger",
+          "name": "structlog._base.get_context",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -85,145 +86,7 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "structlog._native",
-      "names": [
-        "structlog._native.make_filtering_bound_logger"
-      ],
-      "n_typable": 2,
-      "n_typed": 2,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 1,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/_config.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "structlog._config.configure",
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         },
-        {
-          "kind": "function",
-          "name": "structlog._config.get_config",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog._config.get_logger",
-          "n_typed": 0,
-          "n_any": 3,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "structlog._config.wrap_logger",
-          "n_typed": 6,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "structlog._config.is_configured",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog._config.reset_defaults",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog._config.configure_once",
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        }
-      ],
-      "type_ignores": [],
-      "name": "structlog._config",
-      "names": [
-        "structlog._config.configure",
-        "structlog._config.configure_once",
-        "structlog._config.get_config",
-        "structlog._config.get_logger",
-        "structlog._config.is_configured",
-        "structlog._config.reset_defaults",
-        "structlog._config.wrap_logger"
-      ],
-      "n_typable": 26,
-      "n_typed": 21,
-      "n_any": 5,
-      "n_untyped": 0,
-      "n_functions": 7,
-      "n_function_overloads": 7,
-      "n_function_params": 19,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/_base.py",
-      "symbol_reports": [
         {
           "kind": "class",
           "name": "structlog._base.BoundLoggerBase",
@@ -372,18 +235,6 @@
           "n_method_params": 15,
           "n_attrs": 1,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog._base.get_context",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -408,15 +259,523 @@
       "n_type_ignores": 0
     },
     {
+      "path": "structlog/testing.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "structlog.testing.ReturnLogger",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ReturnLogger.msg",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.log",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.debug",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.info",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.warn",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.warning",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.fatal",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.failure",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.err",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.error",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.critical",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLogger.exception",
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 36,
+          "n_typed": 0,
+          "n_any": 36,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 12,
+          "n_method_overloads": 12,
+          "n_method_params": 24,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.testing.ReturnLoggerFactory",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ReturnLoggerFactory.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLoggerFactory.__call__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.testing.LogCapture",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LogCapture.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LogCapture.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LogCapture.entries",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.testing.CapturingLogger",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CapturingLogger.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CapturingLogger.__repr__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CapturingLogger.__getattr__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CapturingLogger.calls",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "structlog.testing.capture_logs",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.testing.CapturedCall",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CapturedCall.method_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CapturedCall.args",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CapturedCall.kwargs",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.testing.CapturingLoggerFactory",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CapturingLoggerFactory.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CapturingLoggerFactory.__call__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CapturingLoggerFactory.logger",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "structlog.testing",
+      "names": [
+        "structlog.testing.CapturedCall",
+        "structlog.testing.CapturingLogger",
+        "structlog.testing.CapturingLoggerFactory",
+        "structlog.testing.LogCapture",
+        "structlog.testing.ReturnLogger",
+        "structlog.testing.ReturnLoggerFactory",
+        "structlog.testing.capture_logs"
+      ],
+      "n_typable": 55,
+      "n_typed": 16,
+      "n_any": 39,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 0,
+      "n_methods": 21,
+      "n_method_overloads": 21,
+      "n_method_params": 30,
+      "n_classes": 6,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "structlog/exceptions.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "structlog.exceptions.DropEvent",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "structlog.exceptions",
+      "names": [
+        "structlog.exceptions.DropEvent"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "structlog/_output.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "structlog._output.WriteLoggerFactory",
+          "name": "structlog._output.PrintLogger",
           "methods": [
             {
               "kind": "function",
-              "name": "WriteLoggerFactory.__init__",
+              "name": "PrintLogger.__init__",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 1,
@@ -428,7 +787,455 @@
             },
             {
               "kind": "function",
-              "name": "WriteLoggerFactory.__call__",
+              "name": "PrintLogger.__getstate__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.__setstate__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.__deepcopy__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.__repr__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.msg",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.log",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.debug",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.info",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.warn",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.warning",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.fatal",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.failure",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.err",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.error",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.critical",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLogger.exception",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 32,
+          "n_typed": 30,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 17,
+          "n_method_overloads": 17,
+          "n_method_params": 15,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog._output.BytesLogger",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BytesLogger.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.__getstate__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.__setstate__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.__deepcopy__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.__repr__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.msg",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.log",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.debug",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.info",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.warn",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.warning",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.fatal",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.failure",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.err",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.error",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.critical",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesLogger.exception",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 32,
+          "n_typed": 30,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 17,
+          "n_method_overloads": 17,
+          "n_method_params": 15,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog._output.PrintLoggerFactory",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PrintLoggerFactory.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PrintLoggerFactory.__call__",
               "n_typed": 1,
               "n_any": 1,
               "n_untyped": 0,
@@ -680,6 +1487,50 @@
         },
         {
           "kind": "class",
+          "name": "structlog._output.WriteLoggerFactory",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WriteLoggerFactory.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WriteLoggerFactory.__call__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "structlog._output.BytesLoggerFactory",
           "methods": [
             {
@@ -721,498 +1572,6 @@
           "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog._output.PrintLoggerFactory",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PrintLoggerFactory.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLoggerFactory.__call__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog._output.BytesLogger",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BytesLogger.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.__getstate__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.__setstate__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.__deepcopy__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.__repr__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.msg",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.log",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.debug",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.info",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.warn",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.warning",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.fatal",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.failure",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.err",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.error",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.critical",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesLogger.exception",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 32,
-          "n_typed": 30,
-          "n_any": 1,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 17,
-          "n_method_overloads": 17,
-          "n_method_params": 15,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog._output.PrintLogger",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PrintLogger.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.__getstate__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.__setstate__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.__deepcopy__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.__repr__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.msg",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.log",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.debug",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.info",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.warn",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.warning",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.fatal",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.failure",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.err",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.error",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.critical",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PrintLogger.exception",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 32,
-          "n_typed": 30,
-          "n_any": 1,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 17,
-          "n_method_overloads": 17,
-          "n_method_params": 15,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1241,272 +1600,35 @@
       "n_type_ignores": 0
     },
     {
-      "path": "structlog/testing.py",
+      "path": "structlog/_config.py",
       "symbol_reports": [
         {
-          "kind": "class",
-          "name": "structlog.testing.ReturnLogger",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ReturnLogger.msg",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.log",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.debug",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.info",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.warn",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.warning",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.fatal",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.failure",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.err",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.error",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.critical",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLogger.exception",
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 36,
-          "n_typed": 0,
-          "n_any": 36,
+          "kind": "function",
+          "name": "structlog._config.wrap_logger",
+          "n_typed": 6,
+          "n_any": 2,
           "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 12,
-          "n_method_overloads": 12,
-          "n_method_params": 24,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.testing.ReturnLoggerFactory",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ReturnLoggerFactory.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLoggerFactory.__call__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.testing.CapturingLoggerFactory",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CapturingLoggerFactory.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "CapturingLoggerFactory.__call__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CapturingLoggerFactory.logger",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_attrs": 1,
-          "n_properties": 0
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
         },
         {
           "kind": "function",
-          "name": "structlog.testing.capture_logs",
+          "name": "structlog._config.get_logger",
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "structlog._config.is_configured",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1517,191 +1639,77 @@
           "n_function_params": 0
         },
         {
-          "kind": "class",
-          "name": "structlog.testing.LogCapture",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LogCapture.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "LogCapture.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "LogCapture.entries",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
+          "kind": "function",
+          "name": "structlog._config.reset_defaults",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "structlog._config.configure",
           "n_typed": 6,
           "n_any": 0,
           "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 1,
-          "n_properties": 0
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
         },
         {
-          "kind": "class",
-          "name": "structlog.testing.CapturedCall",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CapturedCall.method_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "CapturedCall.args",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "CapturedCall.kwargs",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
+          "kind": "function",
+          "name": "structlog._config.get_config",
+          "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 3,
-          "n_properties": 0
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
-          "kind": "class",
-          "name": "structlog.testing.CapturingLogger",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CapturingLogger.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "CapturingLogger.__repr__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "CapturingLogger.__getattr__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CapturingLogger.calls",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 1,
+          "kind": "function",
+          "name": "structlog._config.configure_once",
+          "n_typed": 6,
+          "n_any": 0,
           "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 1,
-          "n_attrs": 1,
-          "n_properties": 0
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
         }
       ],
       "type_ignores": [],
-      "name": "structlog.testing",
+      "name": "structlog._config",
       "names": [
-        "structlog.testing.CapturedCall",
-        "structlog.testing.CapturingLogger",
-        "structlog.testing.CapturingLoggerFactory",
-        "structlog.testing.LogCapture",
-        "structlog.testing.ReturnLogger",
-        "structlog.testing.ReturnLoggerFactory",
-        "structlog.testing.capture_logs"
+        "structlog._config.configure",
+        "structlog._config.configure_once",
+        "structlog._config.get_config",
+        "structlog._config.get_logger",
+        "structlog._config.is_configured",
+        "structlog._config.reset_defaults",
+        "structlog._config.wrap_logger"
       ],
-      "n_typable": 55,
-      "n_typed": 16,
-      "n_any": 39,
+      "n_typable": 26,
+      "n_typed": 21,
+      "n_any": 5,
       "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 0,
-      "n_methods": 21,
-      "n_method_overloads": 21,
-      "n_method_params": 30,
-      "n_classes": 6,
-      "n_attrs": 6,
+      "n_functions": 7,
+      "n_function_overloads": 7,
+      "n_function_params": 19,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -1786,44 +1794,37 @@
       "n_type_ignores": 0
     },
     {
-      "path": "structlog/exceptions.py",
+      "path": "structlog/_native.py",
       "symbol_reports": [
         {
-          "kind": "class",
-          "name": "structlog.exceptions.DropEvent",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
+          "kind": "function",
+          "name": "structlog._native.make_filtering_bound_logger",
+          "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
-      "name": "structlog.exceptions",
+      "name": "structlog._native",
       "names": [
-        "structlog.exceptions.DropEvent"
+        "structlog._native.make_filtering_bound_logger"
       ],
-      "n_typable": 0,
-      "n_typed": 0,
+      "n_typable": 2,
+      "n_typed": 2,
       "n_any": 0,
       "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 1,
       "n_methods": 0,
       "n_method_overloads": 0,
       "n_method_params": 0,
-      "n_classes": 1,
+      "n_classes": 0,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
@@ -1872,7 +1873,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "structlog.contextvars.unbind_contextvars",
+          "name": "structlog.contextvars.reset_contextvars",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -1883,24 +1884,16 @@
           "n_function_params": 1
         },
         {
-          "kind": "attr",
-          "name": "structlog.contextvars.STRUCTLOG_KEY_PREFIX",
-          "n_typed": 0,
+          "kind": "function",
+          "name": "structlog.contextvars.clear_contextvars",
+          "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog.contextvars.bound_contextvars",
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
+          "n_typable": 1,
+          "n_params": 0,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 0
         },
         {
           "kind": "attr",
@@ -1909,6 +1902,18 @@
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "structlog.contextvars.bind_contextvars",
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -1924,19 +1929,19 @@
         },
         {
           "kind": "function",
-          "name": "structlog.contextvars.clear_contextvars",
-          "n_typed": 1,
+          "name": "structlog.contextvars.unbind_contextvars",
+          "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_function_params": 1
         },
         {
           "kind": "function",
-          "name": "structlog.contextvars.bind_contextvars",
+          "name": "structlog.contextvars.bound_contextvars",
           "n_typed": 1,
           "n_any": 1,
           "n_untyped": 0,
@@ -1960,18 +1965,6 @@
         },
         {
           "kind": "function",
-          "name": "structlog.contextvars.reset_contextvars",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "structlog.contextvars.merge_contextvars",
           "n_typed": 4,
           "n_any": 0,
@@ -1981,6 +1974,14 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "structlog.contextvars.STRUCTLOG_KEY_PREFIX",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -2015,98 +2016,6 @@
     {
       "path": "structlog/dev.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "structlog.dev.better_traceback",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "structlog.dev.plain_traceback",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "structlog.dev.ConsoleRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer.__init__",
-              "n_typed": 11,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 12,
-              "n_params": 11,
-              "n_function_overloads": 1,
-              "n_function_params": 11
-            },
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer._repr",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer.get_default_level_styles",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 20,
-          "n_typed": 18,
-          "n_any": 1,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 16,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "structlog.dev.RichTracebackFormatter",
@@ -2245,6 +2154,98 @@
           "n_properties": 0
         },
         {
+          "kind": "class",
+          "name": "structlog.dev.ConsoleRenderer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer.__init__",
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 12,
+              "n_params": 11,
+              "n_function_overloads": 1,
+              "n_function_params": 11
+            },
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer._repr",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer.get_default_level_styles",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 20,
+          "n_typed": 18,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 16,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "structlog.dev.better_traceback",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "structlog.dev.plain_traceback",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
           "kind": "attr",
           "name": "structlog.dev.rich_traceback",
           "n_typed": 0,
@@ -2287,126 +2288,6 @@
     {
       "path": "structlog/processors.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "structlog.processors.KeyValueRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "KeyValueRenderer.__init__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "KeyValueRenderer.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 9,
-          "n_typed": 8,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "structlog.processors.dict_tracebacks",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "structlog.processors.TimeStamper",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TimeStamper.__init__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "TimeStamper.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "TimeStamper.__getstate__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TimeStamper.__setstate__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 11,
-          "n_typed": 11,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 7,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "structlog.processors.UnicodeDecoder",
@@ -2470,23 +2351,23 @@
         },
         {
           "kind": "class",
-          "name": "structlog.processors.ExceptionPrettyPrinter",
+          "name": "structlog.processors.LogfmtRenderer",
           "methods": [
             {
               "kind": "function",
-              "name": "ExceptionPrettyPrinter.__init__",
-              "n_typed": 3,
+              "name": "LogfmtRenderer.__init__",
+              "n_typed": 4,
               "n_any": 0,
-              "n_untyped": 0,
+              "n_untyped": 1,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_function_params": 4
             },
             {
               "kind": "function",
-              "name": "ExceptionPrettyPrinter.__call__",
+              "name": "LogfmtRenderer.__call__",
               "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
@@ -2501,112 +2382,24 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "ExceptionPrettyPrinter.format_exception",
+              "name": "LogfmtRenderer.bool_as_flag",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 8,
-          "n_typed": 7,
+          "n_typable": 10,
+          "n_typed": 8,
           "n_any": 0,
-          "n_untyped": 1,
+          "n_untyped": 2,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 2,
           "n_method_overloads": 2,
-          "n_method_params": 5,
+          "n_method_params": 7,
           "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.processors.StackInfoRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "StackInfoRenderer.__init__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "StackInfoRenderer.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 6,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.processors.JSONRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONRenderer.__init__",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "JSONRenderer.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 6,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_attrs": 0,
           "n_properties": 0
         },
         {
@@ -2679,6 +2472,14 @@
           "n_properties": 0
         },
         {
+          "kind": "attr",
+          "name": "structlog.processors.format_exc_info",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
           "name": "structlog.processors.EventRenamer",
           "methods": [
@@ -2740,12 +2541,48 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "structlog.processors.format_exc_info",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "kind": "class",
+          "name": "structlog.processors.JSONRenderer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JSONRenderer.__init__",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "JSONRenderer.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 6,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -2806,6 +2643,103 @@
           "n_method_overloads": 2,
           "n_method_params": 5,
           "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.processors.KeyValueRenderer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KeyValueRenderer.__init__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "KeyValueRenderer.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.processors.ExceptionPrettyPrinter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ExceptionPrettyPrinter.__init__",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ExceptionPrettyPrinter.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ExceptionPrettyPrinter.format_exception",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_attrs": 1,
           "n_properties": 0
         },
         {
@@ -2902,23 +2836,23 @@
         },
         {
           "kind": "class",
-          "name": "structlog.processors.LogfmtRenderer",
+          "name": "structlog.processors.StackInfoRenderer",
           "methods": [
             {
               "kind": "function",
-              "name": "LogfmtRenderer.__init__",
-              "n_typed": 4,
+              "name": "StackInfoRenderer.__init__",
+              "n_typed": 2,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 1
             },
             {
               "kind": "function",
-              "name": "LogfmtRenderer.__call__",
+              "name": "StackInfoRenderer.__call__",
               "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
@@ -2930,27 +2864,94 @@
             }
           ],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "LogfmtRenderer.bool_as_flag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 10,
-          "n_typed": 8,
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
           "n_any": 0,
-          "n_untyped": 2,
+          "n_untyped": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 2,
           "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "structlog.processors.dict_tracebacks",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "structlog.processors.TimeStamper",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TimeStamper.__init__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TimeStamper.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TimeStamper.__getstate__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TimeStamper.__setstate__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
           "n_method_params": 7,
-          "n_attrs": 1,
+          "n_attrs": 0,
           "n_properties": 0
         }
       ],
@@ -2990,14 +2991,6 @@
       "path": "structlog/_log_levels.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "structlog._log_levels.NAME_TO_LEVEL",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "function",
           "name": "structlog._log_levels.add_log_level",
           "n_typed": 3,
@@ -3008,6 +3001,14 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "structlog._log_levels.NAME_TO_LEVEL",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -3034,98 +3035,6 @@
     {
       "path": "structlog/stdlib.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "structlog.stdlib.ExtraAdder",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ExtraAdder.__init__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ExtraAdder.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ExtraAdder._copy_all",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ExtraAdder._copy_allowed",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 13,
-          "n_typed": 13,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 9,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog.stdlib.add_logger_name",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "structlog.stdlib.filter_by_level",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
         {
           "kind": "function",
           "name": "structlog.stdlib.recreate_defaults",
@@ -3202,6 +3111,18 @@
           "n_method_params": 4,
           "n_attrs": 1,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "structlog.stdlib.add_logger_name",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -3816,18 +3737,6 @@
         },
         {
           "kind": "function",
-          "name": "structlog.stdlib.get_logger",
-          "n_typed": 1,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "structlog.stdlib.render_to_log_kwargs",
           "n_typed": 4,
           "n_any": 0,
@@ -3893,6 +3802,98 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "structlog.stdlib.filter_by_level",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "structlog.stdlib.get_logger",
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "structlog.stdlib.ExtraAdder",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ExtraAdder.__init__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ExtraAdder.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ExtraAdder._copy_all",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ExtraAdder._copy_allowed",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 13,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [
@@ -3946,9 +3947,101 @@
         },
         {
           "kind": "function",
+          "name": "structlog.threadlocal.unbind_threadlocal",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "structlog.threadlocal.tmp_bind",
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "structlog.threadlocal.get_merged_threadlocal",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "structlog.threadlocal.get_threadlocal",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
           "name": "structlog.threadlocal.bind_threadlocal",
           "n_typed": 1,
           "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "structlog.threadlocal.ThreadLocal",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "structlog.threadlocal.clear_threadlocal",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "structlog.threadlocal.wrap_dict",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "structlog.threadlocal.as_immutable",
+          "n_typed": 2,
+          "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
           "n_typable": 2,
@@ -3970,86 +4063,6 @@
         },
         {
           "kind": "function",
-          "name": "structlog.threadlocal.wrap_dict",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "structlog.threadlocal.clear_threadlocal",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog.threadlocal.get_threadlocal",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog.threadlocal.tmp_bind",
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "structlog.threadlocal.as_immutable",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "structlog.threadlocal.ThreadLocal",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "structlog.threadlocal.get_merged_threadlocal",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "structlog.threadlocal.merge_threadlocal",
           "n_typed": 4,
           "n_any": 0,
@@ -4059,18 +4072,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "structlog.threadlocal.unbind_threadlocal",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -4109,6 +4110,30 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "structlog.tracebacks.to_repr",
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "structlog.tracebacks.extract",
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 1,
+          "n_function_params": 9
+        },
+        {
+          "kind": "function",
           "name": "structlog.tracebacks.safe_str",
           "n_typed": 1,
           "n_any": 1,
@@ -4118,6 +4143,66 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "structlog.tracebacks.SyntaxError_",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.offset",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.filename",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.line",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.lineno",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.msg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 5,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4242,46 +4327,6 @@
         },
         {
           "kind": "class",
-          "name": "structlog.tracebacks.Trace",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Trace.stacks",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog.tracebacks.to_repr",
-          "n_typed": 4,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "class",
           "name": "structlog.tracebacks.Stack",
           "methods": [],
           "properties": [],
@@ -4366,45 +4411,13 @@
         },
         {
           "kind": "class",
-          "name": "structlog.tracebacks.SyntaxError_",
+          "name": "structlog.tracebacks.Trace",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "SyntaxError_.offset",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.filename",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.line",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.lineno",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.msg",
+              "name": "Trace.stacks",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4421,20 +4434,8 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 5,
+          "n_attrs": 1,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "structlog.tracebacks.extract",
-          "n_typed": 10,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
         },
         {
           "kind": "class",
@@ -4526,94 +4527,6 @@
     {
       "path": "structlog/twisted.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "structlog.twisted.plainJSONStdOutLogger",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.twisted.PlainFileLogObserver",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PlainFileLogObserver.__init__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "PlainFileLogObserver.__call__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.twisted.JSONRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONRenderer.__call__",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "structlog.twisted.ReprWrapper",
@@ -4725,6 +4638,114 @@
         },
         {
           "kind": "class",
+          "name": "structlog.twisted.LoggerFactory",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LoggerFactory.__call__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.twisted.JSONRenderer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JSONRenderer.__call__",
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "structlog.twisted.PlainFileLogObserver",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PlainFileLogObserver.__init__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PlainFileLogObserver.__call__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "structlog.twisted.JSONLogObserverWrapper",
           "methods": [
             {
@@ -4766,6 +4787,18 @@
           "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "structlog.twisted.plainJSONStdOutLogger",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
           "kind": "class",
@@ -4810,38 +4843,6 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "structlog.twisted.LoggerFactory",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LoggerFactory.__call__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -4875,27 +4876,8 @@
       "path": "structlog/typing.py",
       "symbol_reports": [
         {
-          "kind": "class",
-          "name": "structlog.typing.BindableLogger",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
           "kind": "attr",
-          "name": "structlog.typing.Processor",
+          "name": "structlog.typing.EventDict",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -4922,14 +4904,6 @@
         },
         {
           "kind": "attr",
-          "name": "structlog.typing.ExceptionRenderer",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
           "name": "structlog.typing.ExcInfo",
           "n_typed": 1,
           "n_any": 0,
@@ -4938,11 +4912,38 @@
         },
         {
           "kind": "attr",
-          "name": "structlog.typing.EventDict",
+          "name": "structlog.typing.ExceptionRenderer",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "structlog.typing.Processor",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "structlog.typing.ExceptionTransformer",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         },
         {
           "kind": "attr",
@@ -4954,7 +4955,7 @@
         },
         {
           "kind": "class",
-          "name": "structlog.typing.ExceptionTransformer",
+          "name": "structlog.typing.BindableLogger",
           "methods": [],
           "properties": [],
           "attrs": [],

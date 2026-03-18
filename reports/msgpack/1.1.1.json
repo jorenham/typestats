@@ -1,6 +1,7 @@
 {
   "package": "msgpack",
   "version": "1.1.1",
+  "base_version": null,
   "stubs_only": "no",
   "py_typed": "NO",
   "pypi": {
@@ -72,27 +73,19 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "msgpack.pack",
+          "name": "msgpack.unpack",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "attr",
-          "name": "msgpack.__version__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_function_params": 2
         },
         {
           "kind": "function",
-          "name": "msgpack.unpack",
+          "name": "msgpack.packb",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -112,15 +105,23 @@
         },
         {
           "kind": "function",
-          "name": "msgpack.packb",
+          "name": "msgpack.pack",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.__version__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -212,12 +213,23 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "msgpack.exceptions.UnpackValueError",
+          "kind": "class",
+          "name": "msgpack.exceptions.StackError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 0
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -239,6 +251,22 @@
           "n_properties": 0
         },
         {
+          "kind": "attr",
+          "name": "msgpack.exceptions.PackOverflowError",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.exceptions.PackException",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "class",
           "name": "msgpack.exceptions.BufferFull",
           "methods": [],
@@ -258,16 +286,8 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "msgpack.exceptions.PackValueError",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "class",
-          "name": "msgpack.exceptions.StackError",
+          "name": "msgpack.exceptions.UnpackException",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -305,34 +325,15 @@
         },
         {
           "kind": "attr",
-          "name": "msgpack.exceptions.PackOverflowError",
+          "name": "msgpack.exceptions.UnpackValueError",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
         },
         {
-          "kind": "class",
-          "name": "msgpack.exceptions.UnpackException",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
           "kind": "attr",
-          "name": "msgpack.exceptions.PackException",
+          "name": "msgpack.exceptions.PackValueError",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -371,38 +372,6 @@
     {
       "path": "msgpack/ext.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "msgpack.ext.ExtType",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ExtType.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "msgpack.ext.Timestamp",
@@ -595,6 +564,38 @@
           "n_method_params": 8,
           "n_attrs": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "msgpack.ext.ExtType",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ExtType.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -621,143 +622,6 @@
     {
       "path": "msgpack/fallback.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "msgpack.fallback.TYPE_RAW",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "msgpack.fallback.newlist_hint",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "msgpack.fallback.DEFAULT_RECURSE_LIMIT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "msgpack.fallback.unpackb",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "msgpack.fallback.BytesIO",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BytesIO.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesIO.write",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BytesIO.getvalue",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "BytesIO.builder",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 2,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "msgpack.fallback.EX_READ_ARRAY_HEADER",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "msgpack.fallback.EX_READ_MAP_HEADER",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "msgpack.fallback.TYPE_BIN",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "msgpack.fallback.TYPE_ARRAY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "msgpack.fallback.Packer",
@@ -960,7 +824,7 @@
         },
         {
           "kind": "attr",
-          "name": "msgpack.fallback.EX_CONSTRUCT",
+          "name": "msgpack.fallback.DEFAULT_RECURSE_LIMIT",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -968,7 +832,88 @@
         },
         {
           "kind": "attr",
-          "name": "msgpack.fallback.TYPE_MAP",
+          "name": "msgpack.fallback.EX_SKIP",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "msgpack.fallback.BytesIO",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BytesIO.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesIO.write",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BytesIO.getvalue",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BytesIO.builder",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.fallback.TYPE_IMMEDIATE",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.fallback.TYPE_ARRAY",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -984,7 +929,7 @@
         },
         {
           "kind": "attr",
-          "name": "msgpack.fallback.EX_SKIP",
+          "name": "msgpack.fallback.TYPE_BIN",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1237,7 +1182,63 @@
         },
         {
           "kind": "attr",
-          "name": "msgpack.fallback.TYPE_IMMEDIATE",
+          "name": "msgpack.fallback.EX_CONSTRUCT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.fallback.TYPE_MAP",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.fallback.TYPE_RAW",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "msgpack.fallback.newlist_hint",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.fallback.EX_READ_ARRAY_HEADER",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "msgpack.fallback.unpackb",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "msgpack.fallback.EX_READ_MAP_HEADER",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,

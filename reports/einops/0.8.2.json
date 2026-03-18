@@ -1,6 +1,7 @@
 {
   "package": "einops",
   "version": "0.8.2",
+  "base_version": null,
   "stubs_only": "no",
   "py_typed": "YES",
   "pypi": {
@@ -55,18 +56,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "einops.einops.reduce",
-          "n_typed": 4,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 2,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
           "name": "einops.einops.repeat",
           "n_typed": 3,
           "n_any": 1,
@@ -79,15 +68,15 @@
         },
         {
           "kind": "function",
-          "name": "einops.einops.rearrange",
-          "n_typed": 3,
+          "name": "einops.einops.reduce",
+          "n_typed": 4,
           "n_any": 1,
           "n_untyped": 0,
           "n_overloads": 2,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 2,
-          "n_function_params": 3
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -103,18 +92,6 @@
         },
         {
           "kind": "function",
-          "name": "einops.einops.einsum",
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 4,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 4,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
           "name": "einops.einops.parse_shape",
           "n_typed": 3,
           "n_any": 0,
@@ -126,16 +103,32 @@
           "n_function_params": 2
         },
         {
-          "kind": "attr",
-          "name": "einops.einops.Reduction",
-          "n_typed": 1,
+          "kind": "function",
+          "name": "einops.einops.rearrange",
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 2,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "einops.einops.einsum",
+          "n_typed": 6,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 1
+          "n_overloads": 4,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 4,
+          "n_function_params": 5
         },
         {
           "kind": "attr",
-          "name": "einops.einops.CookedRecipe",
+          "name": "einops.einops.HashableAxesLengths",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -148,6 +141,14 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.Reduction",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -240,7 +241,7 @@
         },
         {
           "kind": "attr",
-          "name": "einops.einops.HashableAxesLengths",
+          "name": "einops.einops.ReductionCallable",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -248,7 +249,7 @@
         },
         {
           "kind": "attr",
-          "name": "einops.einops.ReductionCallable",
+          "name": "einops.einops.CookedRecipe",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -300,6 +301,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "einops.packing.unpack",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
           "name": "einops.packing.pack",
           "n_typed": 3,
           "n_any": 0,
@@ -311,16 +324,12 @@
           "n_function_params": 2
         },
         {
-          "kind": "function",
-          "name": "einops.packing.unpack",
-          "n_typed": 4,
+          "kind": "attr",
+          "name": "einops.packing.Tensor",
+          "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_typable": 0
         },
         {
           "kind": "function",
@@ -335,6 +344,14 @@
           "n_function_params": 2
         },
         {
+          "kind": "attr",
+          "name": "einops.packing.Shape",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "function",
           "name": "einops.packing.prod",
           "n_typed": 2,
@@ -345,22 +362,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.packing.Tensor",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.packing.Shape",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -436,30 +437,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "einops.array_api.reduce",
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "einops.array_api.pack",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "einops.array_api.repeat",
           "n_typed": 3,
           "n_any": 0,
@@ -472,22 +449,22 @@
         },
         {
           "kind": "function",
+          "name": "einops.array_api.reduce",
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
           "name": "einops.array_api.unpack",
           "n_typed": 4,
           "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "einops.array_api.rearrange",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 1,
           "n_overloads": 1,
           "n_typable": 4,
           "n_params": 3,
@@ -505,6 +482,30 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "einops.array_api.rearrange",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "einops.array_api.pack",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -535,14 +536,6 @@
     {
       "path": "einops/layers/__init__.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "einops.layers.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "einops.layers.RearrangeMixin",
@@ -768,6 +761,14 @@
           "n_method_params": 5,
           "n_attrs": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -795,14 +796,6 @@
     {
       "path": "einops/layers/flax.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "einops.layers.flax.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "einops.layers.flax.Rearrange",
@@ -863,6 +856,83 @@
           "n_method_params": 1,
           "n_attrs": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.flax.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.setup",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Reduce.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Reduce.pattern",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Reduce.reduction",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Reduce.sizes",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.flax.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -964,75 +1034,6 @@
           "n_method_params": 9,
           "n_attrs": 4,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.flax.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.setup",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Reduce.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Reduce.pattern",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Reduce.reduction",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Reduce.sizes",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_attrs": 3,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1103,14 +1104,6 @@
       "path": "einops/layers/oneflow.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "einops.layers.oneflow.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "class",
           "name": "einops.layers.oneflow.Rearrange",
           "methods": [
@@ -1141,6 +1134,46 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.oneflow.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.oneflow.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1197,38 +1230,6 @@
           "n_method_params": 9,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.oneflow.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1257,14 +1258,6 @@
     {
       "path": "einops/layers/paddle.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "einops.layers.paddle.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "einops.layers.paddle.Rearrange",
@@ -1296,6 +1289,46 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.paddle.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.paddle.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1352,38 +1385,6 @@
           "n_method_params": 9,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.paddle.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1412,14 +1413,6 @@
     {
       "path": "einops/layers/tensorflow.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "einops.layers.tensorflow.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "einops.layers.tensorflow.Rearrange",
@@ -1475,6 +1468,70 @@
           "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.tensorflow.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.build",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Reduce.call",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Reduce.get_config",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.tensorflow.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1555,62 +1612,6 @@
           "n_method_params": 10,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.tensorflow.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.build",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Reduce.call",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Reduce.get_config",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1639,14 +1640,6 @@
     {
       "path": "einops/layers/torch.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "einops.layers.torch.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "einops.layers.torch.Rearrange",
@@ -1690,6 +1683,58 @@
           "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.torch.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Reduce._apply_recipe",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.torch.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1746,50 +1791,6 @@
           "n_method_params": 9,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.torch.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Reduce._apply_recipe",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1818,6 +1819,59 @@
     {
       "path": "einops/parsing.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "einops.parsing.AnonymousAxis",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnonymousAxis.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AnonymousAxis.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AnonymousAxis.value",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "einops.parsing.ParsedExpression",
@@ -1937,59 +1991,6 @@
           "n_method_overloads": 5,
           "n_method_params": 6,
           "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.parsing.AnonymousAxis",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AnonymousAxis.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AnonymousAxis.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AnonymousAxis.value",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_attrs": 1,
           "n_properties": 0
         }
       ],
