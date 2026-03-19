@@ -21,9 +21,7 @@
 </p>
 
 <p align="center">
-  <code>typestats</code> computes type-coverage metrics &mdash; the percentage
-  of public symbols that carry meaningful type annotations &mdash;
-  so maintainers and contributors can prioritize effort where it matters most.
+  <code>typestats</code> computes type-coverage metrics so maintainers and contributors can prioritize effort where it matters most.
 </p>
 
 <p align="center">
