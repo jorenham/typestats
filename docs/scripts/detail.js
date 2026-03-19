@@ -4,7 +4,7 @@ document$.subscribe(async () => {
 
   const pkg = getPackageFromHash()
   if (!pkg) {
-    showError(root, "No package specified. Use a URL like <code>detail/#numpy</code>.")
+    showUploadZone(root)
     return
   }
 
@@ -23,10 +23,70 @@ document$.subscribe(async () => {
   }
 })
 
+function showUploadZone(root) {
+  const pageH1 = document.querySelector("h1")
+  if (pageH1) pageH1.textContent = "View report"
+
+  root.innerHTML = `<div class="upload-zone" tabindex="0">
+    <p>Drop a <code>.json</code> report here, or click to select a file.</p>
+    <p class="upload-hint">Generate one with <code>typestats check --json-report report.json &lt;package&gt;</code></p>
+    <input type="file" accept=".json,application/json" hidden>
+  </div>`
+
+  const zone = root.querySelector(".upload-zone")
+  const input = zone.querySelector("input[type=file]")
+
+  zone.addEventListener("click", () => input.click())
+  zone.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); input.click() }
+  })
+  input.addEventListener("change", () => {
+    if (input.files.length) handleUpload(root, input.files[0])
+  })
+
+  zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("upload-zone--hover") })
+  zone.addEventListener("dragleave", () => zone.classList.remove("upload-zone--hover"))
+  zone.addEventListener("drop", (e) => {
+    e.preventDefault()
+    zone.classList.remove("upload-zone--hover")
+    const file = e.dataTransfer.files[0]
+    if (file) handleUpload(root, file)
+  })
+}
+
+async function handleUpload(root, file) {
+  root.innerHTML = "<p>Loading report...</p>"
+  try {
+    const text = await file.text()
+    let report
+    try {
+      report = JSON.parse(text)
+    } catch {
+      showUploadError(root, `<code>${escapeHtml(file.name)}</code> is not valid JSON.`)
+      return
+    }
+    if (!report.package || !report.version || !report.module_reports) {
+      showUploadError(root, `<code>${escapeHtml(file.name)}</code> is not a valid typestats report (missing required fields).`)
+      return
+    }
+    await renderDetail(root, report, null, report.version)
+  } catch (err) {
+    showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
+  }
+}
+
+function showUploadError(root, message) {
+  showError(root, message)
+  const retry = document.createElement("p")
+  retry.innerHTML = `<a href="#" class="upload-retry">Try another file</a>`
+  retry.querySelector("a").addEventListener("click", (e) => { e.preventDefault(); showUploadZone(root) })
+  root.appendChild(retry)
+}
+
 async function renderDetail(root, report, manifestEntry, version) {
   const pkg = report.package
   const baseVer = report.base_version
-  const hasDiff = manifestEntry.versions.length >= 2
+  const hasDiff = manifestEntry && manifestEntry.versions.length >= 2
 
   document.title = `${pkg} ${version} - typestats`
 
@@ -40,9 +100,11 @@ async function renderDetail(root, report, manifestEntry, version) {
   const parts = []
   const navLinks = []
   if (hasDiff) navLinks.push(`<a href="../diff/#${encodeURIComponent(pkg)}">Version history</a>`)
-  const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`
-  navLinks.push(`<a href="${jsonUrl}">Download JSON</a>`)
-  parts.push(`<p>${navLinks.join(" | ")}</p>`)
+  if (manifestEntry) {
+    const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`
+    navLinks.push(`<a href="${jsonUrl}">Download JSON</a>`)
+  }
+  if (navLinks.length) parts.push(`<p>${navLinks.join(" | ")}</p>`)
   parts.push(renderGridCards(report))
   parts.push(renderModulesTable(report))
   parts.push(renderIncompleteAnnotations(report))
