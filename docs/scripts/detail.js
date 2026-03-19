@@ -49,6 +49,15 @@ async function renderDetail(root, report, manifestEntry, version) {
   parts.push(renderTypeIgnores(report))
 
   root.innerHTML = parts.join("\n")
+
+  const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches
+  for (const a of root.querySelectorAll("[data-scroll-to]")) {
+    a.addEventListener("click", () => {
+      const el = document.getElementById(a.dataset.scrollTo)
+      if (el) el.scrollIntoView({ behavior: smooth ? "smooth" : "auto" })
+    })
+  }
+
   buildToc(root)
   await renderMermaidIn(root)
 

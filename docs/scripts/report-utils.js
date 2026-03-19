@@ -90,7 +90,7 @@ function ignoreLabel(ic) {
   return out
 }
 
-const STUBS_ONLY_LABEL = { NO: "", THIRD_PARTY: "third-party", TYPESHED: "typeshed" }
+const STUBS_ONLY_LABEL = { no: "", "yes (third party)": "third-party", "yes (typeshed)": "typeshed" }
 
 function iconPyTyped(pyTyped) {
   const val = pyTyped.toLowerCase()
