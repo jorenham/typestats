@@ -2,7 +2,8 @@
 
 ## Installation
 
-Run typestats directly without installing it using [uv][uv]:
+Run typestats directly without installing it using [uv][uv] in the current environment
+where the target package is installed:
 
 ```bash
 uvx typestats check <package>
@@ -12,7 +13,7 @@ Or install it into the current environment and run it via `uv run`:
 
 ```bash
 uv pip install typestats
-uv run typestats check <package>
+typestats check <package>
 ```
 
 ## Commands
