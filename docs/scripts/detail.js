@@ -34,7 +34,8 @@ function showUploadZone(root) {
   </div>
   <details class="paste-section">
     <summary>Or paste JSON directly</summary>
-    <textarea class="paste-area" placeholder="Paste typestats JSON report here..."></textarea>
+    <label for="paste-json" class="sr-only">Paste typestats JSON report</label>
+    <textarea id="paste-json" class="paste-area" placeholder="Paste typestats JSON report here..."></textarea>
     <button class="paste-btn" type="button">Load report</button>
   </details>`
 
