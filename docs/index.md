@@ -29,7 +29,7 @@ Browse type-coverage reports for popular Python packages, or view your own
 
 Learn how to use typestats in your projects and CI pipelines
 
-[:octicons-arrow-right-24: Get started](guides/ci/)
+[:octicons-arrow-right-24: Get started](guides/getting-started/)
 
 </div>
 
