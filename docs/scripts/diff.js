@@ -32,7 +32,7 @@ document$.subscribe(async () => {
 
     renderDiff(root, pkg, reports)
   } catch (err) {
-    showError(root, `Failed to load version history: ${escapeHtml(err.message)}`)
+    showError(root, `Failed to load version history: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
 })
 

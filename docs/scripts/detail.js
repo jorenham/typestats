@@ -19,7 +19,7 @@ document$.subscribe(async () => {
     const report = await fetchReport(pkg, version)
     await renderDetail(root, report, entry, version)
   } catch (err) {
-    showError(root, `Failed to load report: ${escapeHtml(err.message)}`)
+    showError(root, `Failed to load report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
 })
 
@@ -179,7 +179,7 @@ function renderModulesTable(report) {
 
     let nameCell = `<code>${displayName}</code>`
     if (slug) {
-      nameCell += ` <a href="#${slug}" title="Incomplete annotations">${iconIncomplete()}</a>`
+      nameCell += ` <a data-scroll-to="${slug}" title="Incomplete annotations" style="cursor:pointer">${iconIncomplete()}</a>`
     }
 
     html += `<tr>
