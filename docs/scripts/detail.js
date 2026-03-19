@@ -29,12 +29,20 @@ function showUploadZone(root) {
 
   root.innerHTML = `<div class="upload-zone" tabindex="0" role="button" aria-label="Upload a JSON report file">
     <p>Drop a <code>.json</code> report here, or click to select a file.</p>
-    <p class="upload-hint">Generate one with <code>typestats check --json-report report.json &lt;package&gt;</code></p>
+    <p class="upload-hint">Generate one with <code>typestats report &lt;package&gt; &gt; report.json</code></p>
     <input type="file" accept=".json,application/json" hidden>
-  </div>`
+  </div>
+  <details class="paste-section">
+    <summary>Or paste JSON directly</summary>
+    <label for="paste-json" class="sr-only">Paste typestats JSON report</label>
+    <textarea id="paste-json" class="paste-area" placeholder="Paste typestats JSON report here..."></textarea>
+    <button class="paste-btn" type="button">Load report</button>
+  </details>`
 
   const zone = root.querySelector(".upload-zone")
   const input = zone.querySelector("input[type=file]")
+  const pasteBtn = root.querySelector(".paste-btn")
+  const pasteArea = root.querySelector(".paste-area")
 
   zone.addEventListener("click", () => input.click())
   zone.addEventListener("keydown", (e) => {
@@ -60,6 +68,10 @@ function showUploadZone(root) {
     const file = e.dataTransfer.files[0]
     if (file) handleUpload(root, file)
   })
+
+  pasteBtn.addEventListener("click", () => {
+    handlePaste(root, pasteArea.value)
+  })
 }
 
 async function handleUpload(root, file) {
@@ -83,10 +95,31 @@ async function handleUpload(root, file) {
   }
 }
 
+async function handlePaste(root, text) {
+  if (!text.trim()) return
+  root.innerHTML = "<p>Loading report...</p>"
+  try {
+    let report
+    try {
+      report = JSON.parse(text)
+    } catch {
+      showUploadError(root, "Pasted text is not valid JSON.")
+      return
+    }
+    if (!report.package || !report.version || !report.module_reports) {
+      showUploadError(root, "Pasted JSON is not a valid typestats report (missing required fields).")
+      return
+    }
+    await renderDetail(root, report, null, report.version)
+  } catch (err) {
+    showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
+  }
+}
+
 function showUploadError(root, message) {
   showError(root, message)
   const retry = document.createElement("p")
-  retry.innerHTML = `<a href="#" class="upload-retry">Try another file</a>`
+  retry.innerHTML = `<a href="#" class="upload-retry">Try again</a>`
   retry.querySelector("a").addEventListener("click", (e) => {
     e.preventDefault()
     showUploadZone(root)

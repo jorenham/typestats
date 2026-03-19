@@ -47,8 +47,8 @@ Instead of a fixed number, you can compare the PR's coverage against the base br
 fail when it drops. This prevents backslides without requiring you to manually bump a
 threshold every time coverage improves.
 
-The workflow runs `typestats check` on the base branch first (writing a JSON report via
-`--json-report`), then checks the PR branch with `--fail-under-from` pointed at that
+The workflow runs `typestats report` on the base branch first to generate a JSON report,
+then checks the PR branch with `--fail-under-from` pointed at that
 JSON report file. The flag reads the base coverage from the report and uses it as the
 threshold automatically.
 
@@ -73,11 +73,11 @@ jobs:
           fetch-depth: 0
       - uses: astral-sh/setup-uv@v7
 
-      - name: typestats check (base)
+      - name: typestats report (base)
         run: |
           git checkout "${{ github.event.pull_request.base.sha }}"
           uv sync --no-dev
-          uv run typestats check --strict --json-report base-report.json your-package
+          uv run typestats report your-package > base-report.json
           git checkout "${{ github.event.pull_request.head.sha }}"
 
       - name: uv sync
