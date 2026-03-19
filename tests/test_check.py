@@ -11,7 +11,13 @@ from unittest.mock import MagicMock, patch
 import anyio
 import pytest
 
-from typestats.check import _is_package_dir_name, _resolve, _top_level_names, check
+from typestats.check import (
+    _is_package_dir_name,
+    _resolve,
+    _top_level_names,
+    check,
+    report,
+)
 from typestats.report import PackageReport
 
 _OUTPUT_RE = re.compile(
@@ -193,19 +199,16 @@ class TestCheckInstalled:
         assert m is not None, f"unexpected output: {out!r}"
         assert int(m["typable"]) > 0
 
-    async def test_check_report_writes_json(
+    async def test_report_writes_json_to_stdout(
         self,
-        tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """The `--json-report` flag writes valid JSON and prints the path."""
+        """`typestats report` writes valid JSON to stdout."""
 
-        report_path = anyio.Path(tmp_path / "report.json")
-        await check("typestats", json_report=report_path)
+        await report("typestats")
         out = capsys.readouterr().out
-        assert "report:" in out
 
-        data = json.loads(await report_path.read_text())
+        data = json.loads(out)
         assert data["package"] == "typestats"
         assert isinstance(data["module_reports"], list)
         assert data["n_typable"] > 0
@@ -223,10 +226,11 @@ class TestFailUnderFrom:
     ) -> None:
         """No failure when current coverage >= baseline from report."""
 
-        # Write a baseline report, then check against it (same package).
+        # Generate a baseline report, then check against it (same package).
+        await report("typestats")
+        report_json = capsys.readouterr().out
         report_path = anyio.Path(tmp_path / "base.json")
-        await check("typestats", json_report=report_path)
-        capsys.readouterr()
+        await report_path.write_text(report_json)
 
         # Should pass: coverage is identical to the baseline.
         await check("typestats", fail_under_from=report_path)

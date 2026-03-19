@@ -13,7 +13,7 @@ import anyio
 from typestats._stubs import stubs_base_name
 from typestats.report import PackageReport, _coverage
 
-__all__ = ("check",)
+__all__ = ("check", "report")
 
 
 class _Resolved(NamedTuple):
@@ -176,7 +176,36 @@ async def _resolve(package: str) -> _Resolved:
     )
 
 
-async def check(  # noqa: PLR0913
+async def report(
+    package: str,
+    /,
+    *,
+    exclude: Sequence[str] = (),
+) -> None:
+    """Generate a JSON type-coverage report for *package* and write it to stdout.
+
+    Only the JSON is written to stdout; all other output (logging, warnings)
+    goes to stderr.
+    """
+    resolved = await _resolve(package)
+
+    pkg_report = await PackageReport.from_path(
+        resolved.pkg,
+        resolved.path,
+        resolved.version,
+        stubs_path=resolved.stubs_path,
+        project=resolved.project,
+        base_version=resolved.base_version,
+        exclude=exclude,
+        sources=resolved.sources,
+        stubs_sources=resolved.stubs_sources,
+    )
+
+    sys.stdout.write(pkg_report.model_dump_json(indent=2))
+    sys.stdout.write("\n")
+
+
+async def check(
     package: str,
     /,
     *,
@@ -184,7 +213,6 @@ async def check(  # noqa: PLR0913
     fail_under: float | None = None,
     fail_under_from: anyio.Path | None = None,
     exclude: Sequence[str] = (),
-    json_report: anyio.Path | None = None,
 ) -> None:
     """Print type-annotation coverage for *package*.
 
@@ -198,7 +226,7 @@ async def check(  # noqa: PLR0913
     """
     resolved = await _resolve(package)
 
-    report = await PackageReport.from_path(
+    pkg_report = await PackageReport.from_path(
         resolved.pkg,
         resolved.path,
         resolved.version,
@@ -210,22 +238,16 @@ async def check(  # noqa: PLR0913
         stubs_sources=resolved.stubs_sources,
     )
 
-    cov = report.coverage(strict) * 100
-    w = len(str(report.n_typable))
+    cov = pkg_report.coverage(strict) * 100
+    w = len(str(pkg_report.n_typable))
     strict_suffix = " (strict)" if strict else ""
 
     print(  # noqa: T201
         f"coverage:   {cov:.2f}%{strict_suffix}\n"
-        f"typable:    {report.n_typable:>{w}}\n"
-        f"typed:      {report.n_typed:>{w}}\n"
-        f"any:        {report.n_any:>{w}}",
+        f"typable:    {pkg_report.n_typable:>{w}}\n"
+        f"typed:      {pkg_report.n_typed:>{w}}\n"
+        f"any:        {pkg_report.n_any:>{w}}",
     )
-
-    if json_report is not None:
-        json_bytes = report.model_dump_json(indent=2).encode()
-        await json_report.parent.mkdir(parents=True, exist_ok=True)
-        await json_report.write_bytes(json_bytes)
-        print(f"\nreport:     {json_report}")  # noqa: T201
 
     if fail_under_from is not None:
         try:
