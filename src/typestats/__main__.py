@@ -108,7 +108,8 @@ class Check:
     """Glob patterns for modules to exclude from analysis."""
 
     json_report: Path | None = None
-    """Write the full JSON report to this path."""
+    """Write the full JSON report to this path.
+    View it at https://jorenham.github.io/typestats/detail/."""
 
     verbose: Annotated[bool, arg(aliases=["-v"])] = False
     """Enable verbose (INFO-level) logging."""
