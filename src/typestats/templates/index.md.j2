@@ -9,7 +9,7 @@ hide:
 # Overview
 
 <p style="margin-top: -0.5em; font-size: 0.9em; opacity: 0.7">
-  Or <a href="detail/">view your own report</a>
+  Or <a href="report/">view your own report</a>
 </p>
 
 <table>
@@ -18,9 +18,9 @@ hide:
       <th><abbr title="PyPI package name">Package</abbr></th>
       <th><abbr title="Latest release version">Version</abbr></th>
       <th><abbr title="Release date on PyPI">Released</abbr></th>
-      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr> {{ help_link("metrics/", "What is coverage?") }}</th>
-      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr> {{ help_link("metrics/", "What is strict coverage?") }}</th>
-      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr> {{ help_link("metrics/", "What are typables?") }}</th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols">Coverage</abbr> {{ help_link("../reference/metrics/", "What is coverage?") }}</th>
+      <th style="text-align: right"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr> {{ help_link("../reference/metrics/", "What is strict coverage?") }}</th>
+      <th style="text-align: right"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr> {{ help_link("../reference/metrics/", "What are typables?") }}</th>
       <th><abbr title="PEP 561 py.typed marker">py.typed</abbr></th>
       <th><abbr title="Type info from a standalone stubs package">Stubs-only</abbr></th>
       <th style="text-align: right" data-sort-method="number"><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>
@@ -29,7 +29,7 @@ hide:
   <tbody>
     {% for r in rows %}
       <tr>
-        <td><a href="detail/#{{ r.package }}">{{ r.package }}</a></td>
+        <td><a href="report/#{{ r.package }}">{{ r.package }}</a></td>
         <td>{{ r.version }}{% if r.base_version %} ({{ r.base_version }}){% endif %}</td>
         <td>{{ r.release_date }}</td>
         <td style="text-align: right">{{ r.coverage }}</td>

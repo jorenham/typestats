@@ -257,10 +257,13 @@ async def build_site(
         if await committed_docs.exists():
             await _copy_tree(committed_docs, tmp_docs)
 
-        pages = [(str(tmp_docs / "index.md"), IndexPage(reports).render())]
+        dashboard_dir = tmp_docs / "dashboard"
+        await dashboard_dir.mkdir(parents=True, exist_ok=True)
+
+        pages = [(str(dashboard_dir / "index.md"), IndexPage(reports).render())]
         await _write_pages(pages)
 
-        manifest_path = tmp_docs / "manifest.json"
+        manifest_path = dashboard_dir / "manifest.json"
         await manifest_path.write_text(_build_manifest(all_reports))
 
         await anyio.to_thread.run_sync(_install_site_dir, tmp_str, str(site_dir))

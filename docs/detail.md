@@ -1,9 +1,1 @@
----
-hide:
-  - navigation
-  - path
----
-
-<div id="detail-root">
-  <p>Loading package report...</p>
-</div>
+<!-- This file has moved to docs/dashboard/report.md -- delete this file. -->

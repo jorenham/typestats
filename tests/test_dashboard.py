@@ -142,7 +142,7 @@ class TestRenderIndex:
         assert len(rows) == 1
 
         data_row = rows[0]
-        assert '<a href="detail/#numpy">numpy</a>' in data_row
+        assert '<a href="report/#numpy">numpy</a>' in data_row
         assert "2.4.2" in data_row
         assert ":material-check-circle:" not in data_row
         assert '<span class="twemoji"' in data_row  # SVG icon
@@ -186,7 +186,7 @@ class TestRenderIndex:
         md = IndexPage([report]).render()
         data_row = _table_rows(md)[0]
         assert "third-party" in data_row
-        assert '<a href="detail/#pandas-stubs">pandas-stubs</a>' in data_row
+        assert '<a href="report/#pandas-stubs">pandas-stubs</a>' in data_row
 
     def test_released_column(self) -> None:
         report = _minimal_report(
@@ -246,8 +246,8 @@ class TestBuildSite:
         reports, _ = out
         assert isinstance(reports, list)
         assert len(reports) == 1
-        content = await (site_dirs.site / "docs" / "index.md").read_text()
-        assert '<a href="detail/#mypkg">mypkg</a>' in content
+        content = await (site_dirs.site / "docs" / "dashboard" / "index.md").read_text()
+        assert '<a href="report/#mypkg">mypkg</a>' in content
 
     async def test_creates_manifest(self, site_dirs: _SiteDirs) -> None:
         docs_dir = site_dirs.site / "docs"
@@ -260,7 +260,7 @@ class TestBuildSite:
 
         await site_dirs.build_site()
 
-        manifest_path = docs_dir / "manifest.json"
+        manifest_path = docs_dir / "dashboard" / "manifest.json"
         assert await manifest_path.is_file()
         manifest = json.loads(await manifest_path.read_text())
         assert "alpha" in manifest
@@ -281,9 +281,9 @@ class TestBuildSite:
 
         await site_dirs.build_site()
 
-        # Index page generated (overwrites committed placeholder)
-        assert await (docs_dir / "index.md").is_file()
-        assert "# Overview" in await (docs_dir / "index.md").read_text()
+        # Index page generated in dashboard/ subdirectory
+        assert await (docs_dir / "dashboard" / "index.md").is_file()
+        assert "# Overview" in await (docs_dir / "dashboard" / "index.md").read_text()
 
     async def test_raises_on_no_reports(self, site_dirs: _SiteDirs) -> None:
         site_dir = site_dirs.base / "nested" / "site"

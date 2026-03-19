@@ -1,5 +1,6 @@
-<!-- This file has moved to docs/reference/metrics.md -- delete this file. -->
+# Coverage metrics
 
+Python type annotations are optional: unannotated code runs fine.
 As projects grow, missing annotations make it harder for type checkers to catch bugs,
 for IDEs to give accurate completions, and for contributors to read the code.
 

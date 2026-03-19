@@ -110,7 +110,7 @@ async function renderDetail(root, report, manifestEntry, version) {
 
   const parts = []
   const navLinks = []
-  if (hasDiff) navLinks.push(`<a href="../diff/#${encodeURIComponent(pkg)}">Version history</a>`)
+  if (hasDiff) navLinks.push(`<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`)
   if (manifestEntry) {
     const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`
     navLinks.push(`<a href="${jsonUrl}">Download JSON</a>`)
@@ -164,7 +164,7 @@ function renderGridCards(report) {
     { label: "Any", value: report.n_any },
     { label: "Untyped", value: report.n_untyped },
   ])
-  const metricsBase = "../metrics/"
+  const metricsBase = "../../reference/metrics/"
   const card3 = `<strong>Coverage</strong><hr>${covPie}
     <ul>
       <li>${fmtPct(cov)} <abbr title="Percentage of typed symbols">coverage</abbr> ${helpLink(metricsBase, "What is coverage?")}</li>
@@ -241,7 +241,7 @@ function renderModulesTable(report) {
     }
   }
 
-  const metricsBase = "../metrics/"
+  const metricsBase = "../../reference/metrics/"
   let html = `<h2>Modules</h2>
   <table>
     <thead><tr>

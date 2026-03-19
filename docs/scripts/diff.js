@@ -9,7 +9,7 @@ document$.subscribe(async () => {
 
   const pkg = getPackageFromHash()
   if (!pkg) {
-    showError(root, "No package specified. Use a URL like <code>diff/#numpy</code>.")
+    showError(root, "No package specified. Use a URL like <code>history/#numpy</code>.")
     return
   }
 
@@ -205,7 +205,7 @@ function renderVersionTable(reports) {
     let verCell = row.version
     if (row.baseVersion) verCell += ` (${row.baseVersion})`
     if (i === 0) {
-      verCell = `<a href="../detail/#${encodeURIComponent(pkg)}">${verCell}</a>`
+      verCell = `<a href="../report/#${encodeURIComponent(pkg)}">${verCell}</a>`
     }
 
     html += `<tr>

@@ -1,9 +1,1 @@
----
-hide:
-  - navigation
-  - toc
----
-
-<div id="diff-root">
-  <p>Loading version history...</p>
-</div>
+<!-- This file has moved to docs/dashboard/history.md -- delete this file. -->

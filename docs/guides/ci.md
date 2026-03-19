@@ -1,4 +1,15 @@
-<!-- This file has moved to docs/guides/ci.md -- delete this file. -->
+# CI integration
+
+`typestats check` can be used in CI to enforce type-annotation coverage on every pull
+request.
+Below are two GitHub Actions workflow examples: one with a fixed coverage threshold, and
+one that prevents coverage from dropping below the base branch level.
+
+## Fixed threshold
+
+The simplest approach is to set a fixed `--fail-under` value.
+The workflow installs your package using [uv](https://docs.astral.sh/uv/) and runs
+`typestats check` with the desired minimum coverage percentage.
 
 ```yaml title=".github/workflows/typestats.yml" hl_lines="23 24"
 name: typestats

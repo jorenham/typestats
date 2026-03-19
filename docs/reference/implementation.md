@@ -1,4 +1,6 @@
-<!-- This file has moved to docs/reference/implementation.md -- delete this file. -->
+# Implementation details
+
+## Pipeline
 
 The analysis pipeline is shared between two commands:
 
