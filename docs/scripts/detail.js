@@ -94,7 +94,7 @@ async function handleUpload(root, file) {
   }
 }
 
-function handlePaste(root, text) {
+async function handlePaste(root, text) {
   if (!text.trim()) return
   root.innerHTML = "<p>Loading report...</p>"
   try {
@@ -109,7 +109,7 @@ function handlePaste(root, text) {
       showUploadError(root, "Pasted JSON is not a valid typestats report (missing required fields).")
       return
     }
-    renderDetail(root, report, null, report.version)
+    await renderDetail(root, report, null, report.version)
   } catch (err) {
     showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
