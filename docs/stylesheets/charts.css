@@ -1,15 +1,3 @@
-/* Smooth scrolling for anchor links */
-html {
-    scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-}
-
-/* Stretch chart to fill container width */
 .mermaid {
     width: 100%;
 }
@@ -21,7 +9,37 @@ html {
     min-height: 320px;
 }
 
-/* Legend styling */
+.mermaid .legend text {
+    fill: var(--md-default-fg-color, #ccc) !important;
+}
+
+.mermaid .pieCircle {
+    stroke-width: 0.5px !important;
+}
+
+.line-chart {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 160px;
+}
+
+.line-chart text {
+    font-size: 9px;
+    fill: var(--md-default-fg-color, #666);
+    opacity: 0.6;
+}
+
+.line-chart line {
+    stroke: currentColor;
+    stroke-opacity: 0.15;
+}
+
+.line-chart polyline {
+    fill: none;
+    stroke-width: 1.5;
+}
+
 .chart-legend {
     display: flex;
     justify-content: center;
@@ -46,14 +64,23 @@ html {
 }
 
 .chart-legend-swatch--cov {
-    background: #4caf50;
+    background: #81c784;
 }
 
 .chart-legend-swatch--strict {
-    background: #fb8c00;
+    background: #ffb74d;
 }
 
-/* Symbol kind badges (mkdocstrings-style) */
+.help-link {
+    text-decoration: none;
+    opacity: 0.6;
+    font-size: 0.75em;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    padding: 0 0.3em;
+    color: inherit;
+}
+
 .md-typeset code.sym-attr,
 .md-typeset code.sym-func,
 .md-typeset code.sym-meth,
@@ -80,3 +107,4 @@ html {
 .md-typeset code.sym-return {
     color: #98c379;
 }
+
