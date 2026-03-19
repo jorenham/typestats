@@ -133,9 +133,17 @@ async function fetchReport(pkg, version) {
   return resp.json()
 }
 
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+}
+
 function getPackageFromHash() {
   const hash = location.hash.replace(/^#/, "")
-  return decodeURIComponent(hash) || null
+  try {
+    return decodeURIComponent(hash) || null
+  } catch {
+    return null
+  }
 }
 
 function showError(root, message) {
@@ -174,7 +182,10 @@ function buildToc(root) {
     a.className = "md-nav__link"
     a.textContent = h.textContent.trim()
     a.style.cursor = "pointer"
-    a.addEventListener("click", () => h.scrollIntoView({ behavior: "smooth" }))
+    a.addEventListener("click", () => {
+      const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches
+      h.scrollIntoView({ behavior: smooth ? "smooth" : "auto" })
+    })
     li.appendChild(a)
     list.appendChild(li)
   }

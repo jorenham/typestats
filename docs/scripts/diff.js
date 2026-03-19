@@ -17,12 +17,12 @@ document$.subscribe(async () => {
     const manifest = await fetchManifest()
     const entry = manifest[pkg]
     if (!entry) {
-      showError(root, `Package <code>${pkg}</code> not found in manifest.`)
+      showError(root, `Package <code>${escapeHtml(pkg)}</code> not found in manifest.`)
       return
     }
 
     if (entry.versions.length < 2) {
-      showError(root, `Only one version available for <code>${pkg}</code>. Version history requires at least two versions.`)
+      showError(root, `Only one version available for <code>${escapeHtml(pkg)}</code>. Version history requires at least two versions.`)
       return
     }
 
@@ -32,7 +32,7 @@ document$.subscribe(async () => {
 
     renderDiff(root, pkg, reports)
   } catch (err) {
-    showError(root, `Failed to load version history: ${err.message}`)
+    showError(root, `Failed to load version history: ${escapeHtml(err.message)}`)
   }
 })
 

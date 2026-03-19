@@ -12,14 +12,14 @@ document$.subscribe(async () => {
     const manifest = await fetchManifest()
     const entry = manifest[pkg]
     if (!entry) {
-      showError(root, `Package <code>${pkg}</code> not found in manifest.`)
+      showError(root, `Package <code>${escapeHtml(pkg)}</code> not found in manifest.`)
       return
     }
     const version = entry.latest
     const report = await fetchReport(pkg, version)
     await renderDetail(root, report, entry, version)
   } catch (err) {
-    showError(root, `Failed to load report: ${err.message}`)
+    showError(root, `Failed to load report: ${escapeHtml(err.message)}`)
   }
 })
 
