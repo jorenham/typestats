@@ -158,7 +158,7 @@ def _build_manifest(
 ) -> str:
     """Build a JSON manifest listing all packages and their versions.
 
-    The manifest is consumed by the client-side detail and diff pages
+    The manifest is consumed by the client-side report and history pages
     to resolve which report JSON files to fetch.
 
     Returns a JSON string of the form:
@@ -224,8 +224,8 @@ async def build_site(
 
     The committed `docs/` directory (next to `site_dir`) is copied into
     `site_dir/docs/` first so that static assets (scripts, stylesheets) and
-    the client-side detail/diff pages are preserved. A `manifest.json` file
-    listing all packages and their versions is written to `site_dir/docs/`.
+    the client-side report/history pages are preserved. The generated dashboard
+    index and `manifest.json` are written to `site_dir/docs/dashboard/`.
 
     If `all_reports` is provided, it is used as-is (incremental rebuild). When
     absent, all version JSON files are loaded from disk and `reports` (the latest
