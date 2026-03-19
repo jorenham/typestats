@@ -1,7 +1,6 @@
 ---
 hide:
   - navigation
-  - path
 ---
 
 <div id="detail-root">

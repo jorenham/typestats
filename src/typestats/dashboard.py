@@ -158,7 +158,7 @@ def _build_manifest(
 ) -> str:
     """Build a JSON manifest listing all packages and their versions.
 
-    The manifest is consumed by the client-side detail and diff pages
+    The manifest is consumed by the client-side report and history pages
     to resolve which report JSON files to fetch.
 
     Returns a JSON string of the form:
@@ -224,8 +224,8 @@ async def build_site(
 
     The committed `docs/` directory (next to `site_dir`) is copied into
     `site_dir/docs/` first so that static assets (scripts, stylesheets) and
-    the client-side detail/diff pages are preserved. A `manifest.json` file
-    listing all packages and their versions is written to `site_dir/docs/`.
+    the client-side report/history pages are preserved. The generated dashboard
+    index and `manifest.json` are written to `site_dir/docs/dashboard/`.
 
     If `all_reports` is provided, it is used as-is (incremental rebuild). When
     absent, all version JSON files are loaded from disk and `reports` (the latest
@@ -257,10 +257,13 @@ async def build_site(
         if await committed_docs.exists():
             await _copy_tree(committed_docs, tmp_docs)
 
-        pages = [(str(tmp_docs / "index.md"), IndexPage(reports).render())]
+        dashboard_dir = tmp_docs / "dashboard"
+        await dashboard_dir.mkdir(parents=True, exist_ok=True)
+
+        pages = [(str(dashboard_dir / "index.md"), IndexPage(reports).render())]
         await _write_pages(pages)
 
-        manifest_path = tmp_docs / "manifest.json"
+        manifest_path = dashboard_dir / "manifest.json"
         await manifest_path.write_text(_build_manifest(all_reports))
 
         await anyio.to_thread.run_sync(_install_site_dir, tmp_str, str(site_dir))

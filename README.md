@@ -1,6 +1,39 @@
-# typestats
+<h1 align="center">typestats</h1>
 
-Type annotation coverage statistics for Python packages.
+<p align="center">
+  <strong>Type annotation coverage statistics for Python packages</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/jorenham/typestats"><img alt="GitHub License" src="https://img.shields.io/github/license/jorenham/typestats?style=flat-square&color=121d2f&labelColor=3d444d"></a>
+  <a href="https://pypi.org/project/typestats"><img alt="PyPI Version" src="https://img.shields.io/pypi/v/typestats?style=flat-square&color=121d2f&labelColor=3d444d"></a>
+  <a href="https://github.com/jorenham/typestats"><img alt="Python Versions" src="https://img.shields.io/pypi/pyversions/typestats?style=flat-square&color=121d2f&labelColor=3d444d"></a>
+</p>
+
+<p align="center">
+  <a href="https://jorenham.github.io/typestats/dashboard/"><strong>Dashboard</strong></a>
+  &middot;
+  <a href="https://jorenham.github.io/typestats/guides/"><strong>Guides</strong></a>
+  &middot;
+  <a href="https://jorenham.github.io/typestats/reference/"><strong>Reference</strong></a>
+  &middot;
+  <a href="https://github.com/jorenham/typestats/blob/main/CONTRIBUTING.md"><strong>Contributing</strong></a>
+</p>
+
+<p align="center">
+  <code>typestats</code> computes type-coverage metrics &mdash; the percentage
+  of public symbols that carry meaningful type annotations &mdash;
+  so maintainers and contributors can prioritize effort where it matters most.
+</p>
+
+<p align="center">
+  <em>
+    Visit the dashboard at
+    <a href="https://jorenham.github.io/typestats/dashboard/">jorenham.github.io/typestats</a>.
+  </em>
+</p>
+
+---
 
 ## Quick start
 
@@ -13,45 +46,6 @@ typable:    13589
 typed:      13554
 any:           35
 ```
-
-### Options
-
-```
-usage: typestats check [-h] [CHECK OPTIONS]
-
-Check type-annotation coverage for an installed package.
-
-╭─ positional arguments ─────────────────────────────────────────────────────────────────────────────────────╮
-│ STR                    Package name (must be installed in the current environment). (required)             │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ options ──────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ -h, --help             show this help message and exit                                                     │
-│ --strict, --no-strict  Count `Any` annotations as untyped. (default: False)                                │
-│ -f {None}|FLOAT, --fail-under {None}|FLOAT                                                                 │
-│                        Minimum coverage percentage (0-100). Exit with code 1 when below. (default: None)   │
-│ --fail-under-from {None}|PATH                                                                              │
-│                        Read a previous JSON report and use its coverage as `--fail-under`. (default: None) │
-│ --exclude [STR [STR ...]]                                                                                  │
-│                        Glob patterns for modules to exclude from analysis. (default: )                     │
-│ --json-report {None}|PATH                                                                                  │
-│                        Write the full JSON report to this path. (default: None)                            │
-│ -v, --verbose, --no-verbose                                                                                │
-│                        Enable verbose (INFO-level) logging. (default: False)                               │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
-
-### Stubs packages
-
-When checking a stubs package (e.g. `scipy-stubs`), the base package (`scipy`) is automatically
-merged with the stubs overlay -- matching the behavior of type-checkers.
-Checking the base package directly (e.g. `scipy`) analyzes only the base package without merging
-stubs.
-
-## Implementation details
-
-See the [implementation details](https://jorenham.github.io/typestats/implementation/)
-documentation for a full description of the analysis pipeline, symbol collection rules,
-stubs overlay merging, and async IO design.
 
 ## Contributing
 

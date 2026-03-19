@@ -1,10 +1,3 @@
----
-hide:
-  - navigation
-  - path
-  - toc
----
-
 # Coverage metrics
 
 Python type annotations are optional: unannotated code runs fine.
