@@ -27,7 +27,7 @@ function showUploadZone(root) {
   const pageH1 = document.querySelector("h1")
   if (pageH1) pageH1.textContent = "View report"
 
-  root.innerHTML = `<div class="upload-zone" tabindex="0">
+  root.innerHTML = `<div class="upload-zone" tabindex="0" role="button" aria-label="Upload a JSON report file">
     <p>Drop a <code>.json</code> report here, or click to select a file.</p>
     <p class="upload-hint">Generate one with <code>typestats check --json-report report.json &lt;package&gt;</code></p>
     <input type="file" accept=".json,application/json" hidden>
@@ -38,14 +38,22 @@ function showUploadZone(root) {
 
   zone.addEventListener("click", () => input.click())
   zone.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); input.click() }
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault()
+      input.click()
+    }
   })
   input.addEventListener("change", () => {
     if (input.files.length) handleUpload(root, input.files[0])
   })
 
-  zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("upload-zone--hover") })
-  zone.addEventListener("dragleave", () => zone.classList.remove("upload-zone--hover"))
+  zone.addEventListener("dragover", (e) => {
+    e.preventDefault()
+    zone.classList.add("upload-zone--hover")
+  })
+  zone.addEventListener("dragleave", () => {
+    zone.classList.remove("upload-zone--hover")
+  })
   zone.addEventListener("drop", (e) => {
     e.preventDefault()
     zone.classList.remove("upload-zone--hover")
@@ -79,7 +87,10 @@ function showUploadError(root, message) {
   showError(root, message)
   const retry = document.createElement("p")
   retry.innerHTML = `<a href="#" class="upload-retry">Try another file</a>`
-  retry.querySelector("a").addEventListener("click", (e) => { e.preventDefault(); showUploadZone(root) })
+  retry.querySelector("a").addEventListener("click", (e) => {
+    e.preventDefault()
+    showUploadZone(root)
+  })
   root.appendChild(retry)
 }
 
