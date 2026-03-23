@@ -7,9 +7,9 @@ import anyio
 import pytest
 
 from typestats._type import StrPath
-from typestats.dashboard import IndexPage, _build_manifest, build_site
 from typestats.index import PyTyped
 from typestats.report import ModuleReport, PackageReport, PypiInfo, StubsOnly
+from typestats_site.dashboard import IndexPage, _build_manifest, build_site
 
 
 def _make_symbol_reports(

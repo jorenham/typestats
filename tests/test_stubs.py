@@ -3,7 +3,7 @@ from pathlib import Path
 import anyio
 import pytest
 
-from typestats._stubs import find_stubs_dir, stubs_base_name
+from typestats.stubs import find_stubs_dir, stubs_base_name
 
 
 class TestStubsBaseName:

@@ -6,7 +6,7 @@ on:
     - cron: "0 6 * * *"
   push:
     branches: [main]
-    paths: [projects.toml]
+    paths: [packages/typestats-site/projects.toml]
   pull_request:
     branches: [main]
     types: [closed]
@@ -44,7 +44,7 @@ jobs:
       - name: collect type-coverage data
         id: collect
         run: >-
-          uv run -m typestats collect --data-dir _data/reports --backfill-limit 10
+          uv run -m typestats_site collect --data-dir _data/reports --backfill-limit 10
           ${{ github.event_name == 'pull_request' && '--clean' || '' }}
 
       - name: Commit and push new data

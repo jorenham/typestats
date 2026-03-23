@@ -2,9 +2,8 @@ import json
 
 import anyio
 
-from typestats import _subprocess
-
 from ._type import StrPath, StrPaths
+from .subprocess import run
 
 __all__ = ("analyze_graph",)
 
@@ -39,7 +38,7 @@ async def analyze_graph(
     if sources:
         return await _walk_sources(sources)
 
-    result = await _subprocess.run(
+    result = await run(
         "ruff",
         "analyze",
         "graph",

@@ -8,19 +8,17 @@ import operator
 import shutil
 import tempfile
 from pathlib import Path
-from typing import TYPE_CHECKING, ClassVar, Final, NamedTuple
+from typing import ClassVar, Final, NamedTuple
 
 import anyio
 import anyio.to_thread
+from jinja2 import ChoiceLoader, Environment, PackageLoader
 from packaging.version import Version
 
-from ._type import StrPath
-from .index import PyTyped
-from .projects import load_projects
-from .report import PackageReport, StubsOnly
-
-if TYPE_CHECKING:
-    from jinja2 import Environment
+from typestats._type import StrPath
+from typestats.index import PyTyped
+from typestats.projects import load_projects
+from typestats.report import PackageReport, StubsOnly
 
 __all__ = ("build_site",)
 
@@ -57,11 +55,10 @@ class _IndexRow(NamedTuple):
 
 @functools.cache
 def _get_env() -> "Environment":
-    from jinja2 import ChoiceLoader, Environment, PackageLoader  # noqa: PLC0415
 
     return Environment(
         loader=ChoiceLoader([
-            PackageLoader("typestats", "templates"),
+            PackageLoader("typestats_site", "templates"),
             PackageLoader("zensical", "templates"),
         ]),
         keep_trailing_newline=True,
@@ -152,10 +149,7 @@ async def _load_all_version_reports(
     return result
 
 
-def _build_manifest(
-    all_reports: dict[str, _PackageReports],
-    /,
-) -> str:
+def _build_manifest(all_reports: dict[str, _PackageReports], /) -> str:
     """Build a JSON manifest listing all packages and their versions.
 
     The manifest is consumed by the client-side report and history pages

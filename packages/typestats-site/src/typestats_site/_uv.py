@@ -3,8 +3,8 @@ from typing import Final
 
 import anyio
 
-from typestats import _subprocess
 from typestats._type import StrPath
+from typestats.subprocess import run as _subprocess_run
 
 __all__ = (
     "PYTHON_VERSION",
@@ -14,14 +14,14 @@ __all__ = (
     "site_packages_dir",
 )
 
-# Use 3.13 instead of the host Python: many packages lack 3.14 wheels,
-# causing slow source builds or outright failures.
+# Use 3.13 instead of the host Python to maximize wheel availability and
+# avoid slow source builds or installation failures.
 PYTHON_VERSION: Final = "3.13"
 
 
 async def create_venv(path: StrPath, /) -> anyio.Path:
     path = anyio.Path(path)
-    await _subprocess.run(
+    await _subprocess_run(
         "uv",
         "venv",
         "--no-project",
@@ -34,7 +34,7 @@ async def create_venv(path: StrPath, /) -> anyio.Path:
 
 
 async def install(python: StrPath, project: str, version: str, /) -> None:
-    await _subprocess.run(
+    await _subprocess_run(
         "uv",
         "pip",
         "install",

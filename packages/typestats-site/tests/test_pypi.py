@@ -1,4 +1,4 @@
-"""Tests for `typestats._pypi`, focusing on wheel support."""
+"""Tests for `typestats_site._pypi`, focusing on wheel support."""
 
 import sys
 from datetime import date
@@ -8,7 +8,7 @@ import pytest
 from packaging.version import Version
 from pytest_httpx import HTTPXMock
 
-from typestats._pypi import (
+from typestats_site._pypi import (
     FileDetail,
     ProjectDetail,
     _best_distribution,

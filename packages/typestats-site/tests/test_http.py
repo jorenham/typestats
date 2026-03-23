@@ -1,7 +1,7 @@
 import httpx
 import pytest
 
-from typestats._http import retry_client
+from typestats_site._http import retry_client
 
 pytestmark = pytest.mark.anyio
 

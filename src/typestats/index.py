@@ -13,8 +13,9 @@ from typing import Final
 import anyio
 from libcst.helpers import get_full_name_for_node
 
-from typestats import _ruff, analyze
-from typestats._type import StrPath, StrPaths
+from . import analyze
+from ._ruff import analyze_graph
+from ._type import StrPath, StrPaths
 
 __all__ = (
     "PublicSymbols",
@@ -96,7 +97,7 @@ async def _analyze_graph(
     sources: StrPaths = (),
 ) -> dict[str, list[str]]:
     """Run `ruff analyze graph` and clean self/parent-package dependencies."""
-    raw_graph = await _ruff.analyze_graph(project_dir, *opts, sources=sources)
+    raw_graph = await analyze_graph(project_dir, *opts, sources=sources)
 
     # Normalize all paths to forward slashes (ruff uses OS-native separators).
     graph = {
@@ -121,7 +122,7 @@ async def _analyze_graph(
         exclude_re = re.compile("|".join(fnmatch.translate(pat) for pat in exclude))
 
     def _is_absolute(path: str) -> bool:
-        return path.startswith("/") or (len(path) >= 3 and path[1] == ":")  # noqa: PLR2004
+        return path.startswith("/") or (len(path) >= 3 and path[1] == ":")
 
     def _excluded(path: str) -> bool:
         prefix = abs_prefix if _is_absolute(path) else rel_prefix
@@ -203,7 +204,10 @@ async def list_sources(
     """
     project_dir = anyio.Path(path)
     graph = await _analyze_graph(
-        project_dir, "--type-checking-imports", exclude=exclude, sources=sources
+        project_dir,
+        "--type-checking-imports",
+        exclude=exclude,
+        sources=sources,
     )
     found = list(map(anyio.Path, graph))
 

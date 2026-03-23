@@ -1,7 +1,7 @@
-"""Tests for `typestats.collect`."""
+"""Tests for `typestats_site.collect`."""
 
 import json
-import subprocess  # noqa: S404
+import subprocess
 from datetime import date
 from pathlib import Path
 from typing import TYPE_CHECKING, Never
@@ -10,8 +10,8 @@ import anyio
 import httpx
 import pytest
 
-from typestats.collect import clean_data, collect_all, collect_project
 from typestats.projects import Project
+from typestats_site.collect import clean_data, collect_all, collect_project
 
 if TYPE_CHECKING:
     from collections.abc import Callable
@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 type MockUv = Callable[..., None]
 
 _PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
-_FIXTURES = Path(__file__).parent / "fixtures"
+_FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "fixtures"
 _BACKFILL_SINCE = date(2025, 1, 1)
 _BACKFILL_LIMIT = 10
 
@@ -65,7 +65,7 @@ class TestCollectProject:
         )
         mock_uv(
             {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         project = Project(name=name)
@@ -109,7 +109,7 @@ class TestCollectProject:
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=_pypi_detail_json(name, version),
         )
-        mock_uv({}, target="typestats.collect.install_to_venv")
+        mock_uv({}, target="typestats_site.collect.install_to_venv")
 
         project = Project(name=name)
 
@@ -144,7 +144,7 @@ class TestCollectProject:
         async def _fail(*_args: object) -> Never:  # noqa: RUF029
             raise subprocess.CalledProcessError(1, ["uv", "pip", "install"])
 
-        monkeypatch.setattr("typestats.collect.install_to_venv", _fail)
+        monkeypatch.setattr("typestats_site.collect.install_to_venv", _fail)
 
         project = Project(name=name)
         data_dir = anyio.Path(tmp_path)
@@ -178,7 +178,7 @@ class TestCollectAll:
         )
         mock_uv(
             {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         projects_toml = tmp_path / "projects.toml"
@@ -216,7 +216,7 @@ class TestCollectAll:
             url=_PYPI_HOST.join(f"/simple/{name}/"),
             json=_pypi_detail_json(name, version),
         )
-        mock_uv({}, target="typestats.collect.install_to_venv")
+        mock_uv({}, target="typestats_site.collect.install_to_venv")
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
@@ -243,7 +243,7 @@ class TestCollectAll:
         )
         mock_uv(
             {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         # Pre-create data for an unlisted project
@@ -307,7 +307,7 @@ class TestBackfillCutoff:
         httpx_mock.add_response(url=_PYPI_HOST.join(f"/simple/{name}/"), json=detail)
         mock_uv(
             {(name, "1.0.0"): _FIXTURES / "stubs_base"},
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         project = Project(name=name)
@@ -365,7 +365,7 @@ class TestBackfillCutoff:
                 (name, "1.0.0"): _FIXTURES / "stubs_base",
                 (name, "1.1.0"): _FIXTURES / "stubs_base",
             },
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         project = Project(name=name)
@@ -432,7 +432,7 @@ class TestBackfillCutoff:
                 (base_name, base_version): _FIXTURES / "stubs_base",
                 (stubs_name, stubs_version): _FIXTURES / "stubs_overlay",
             },
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         project = Project(name=stubs_name)
@@ -505,7 +505,7 @@ class TestBackfillCutoff:
                 (stubs_lite_name, stubs_version): _FIXTURES / "stubs_overlay",
                 (base_name, base_version): _FIXTURES / "stubs_base",
             },
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         project = Project(name=stubs_lite_name)
@@ -547,7 +547,7 @@ class TestBackfillCutoff:
         )
         mock_uv(
             {(stubs_name, stubs_version): _FIXTURES / "stubs_overlay"},
-            target="typestats.collect.install_to_venv",
+            target="typestats_site.collect.install_to_venv",
         )
 
         project = Project(name=stubs_name)

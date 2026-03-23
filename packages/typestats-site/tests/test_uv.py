@@ -1,13 +1,13 @@
-"""Tests for `typestats._uv`."""
+"""Tests for `typestats_site._uv`."""
 
-import subprocess  # noqa: S404
+import subprocess
 from pathlib import Path
 from unittest.mock import AsyncMock
 
 import anyio
 import pytest
 
-from typestats._uv import (
+from typestats_site._uv import (
     PYTHON_VERSION,
     create_venv,
     install,
@@ -27,7 +27,7 @@ class TestCreateVenv:
         mock = AsyncMock(
             return_value=subprocess.CompletedProcess(args=[], returncode=0),
         )
-        monkeypatch.setattr("typestats._subprocess.anyio.run_process", mock)
+        monkeypatch.setattr("anyio.run_process", mock)
 
         venv = tmp_path / "venv"
         result = await create_venv(venv)
@@ -57,7 +57,7 @@ class TestCreateVenv:
                 stderr=b"error",
             ),
         )
-        monkeypatch.setattr("typestats._subprocess.anyio.run_process", mock)
+        monkeypatch.setattr("anyio.run_process", mock)
 
         with pytest.raises(subprocess.CalledProcessError):
             await create_venv(tmp_path / "bad")
@@ -74,7 +74,7 @@ class TestInstall:
         mock = AsyncMock(
             return_value=subprocess.CompletedProcess(args=[], returncode=0),
         )
-        monkeypatch.setattr("typestats._subprocess.anyio.run_process", mock)
+        monkeypatch.setattr("anyio.run_process", mock)
 
         python = tmp_path / "venv" / "bin" / "python"
         await install(python, "mypkg", "1.0.0")
@@ -121,13 +121,14 @@ class TestInstallToVenv:
         sp = venv / "lib" / "python3.12" / "site-packages"
 
         def create_dirs(
-            *_args: object, **_kwargs: object
+            *_args: object,
+            **_kwargs: object,
         ) -> subprocess.CompletedProcess[bytes]:
             sp.mkdir(parents=True, exist_ok=True)
             return subprocess.CompletedProcess(args=[], returncode=0)
 
         mock = AsyncMock(side_effect=create_dirs)
-        monkeypatch.setattr("typestats._subprocess.anyio.run_process", mock)
+        monkeypatch.setattr("anyio.run_process", mock)
 
         result = await install_to_venv(tmp_path, "mypkg", "1.0.0")
 
@@ -141,7 +142,7 @@ class TestInstallToVenv:
     ) -> None:
         """Skips create_venv + install when site-packages already exists."""
         mock = AsyncMock()
-        monkeypatch.setattr("typestats._subprocess.anyio.run_process", mock)
+        monkeypatch.setattr("anyio.run_process", mock)
 
         # Pre-create the site-packages dir
         venv = tmp_path / "mypkg-1.0.0"

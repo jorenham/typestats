@@ -10,8 +10,8 @@ from typing import NamedTuple
 
 import anyio
 
-from typestats._stubs import stubs_base_name
-from typestats.report import PackageReport, _coverage
+from .report import PackageReport, _coverage
+from .stubs import stubs_base_name
 
 __all__ = ("check", "report")
 
@@ -53,7 +53,7 @@ def _top_level_names(dist: importlib.metadata.Distribution) -> _TopLevel:
     modules: set[str] = set()
     for f in dist.files:
         parts = f.parts
-        if len(parts) >= 2 and _is_package_dir_name(parts[0]):  # noqa: PLR2004
+        if len(parts) >= 2 and _is_package_dir_name(parts[0]):
             packages.add(parts[0])
         elif len(parts) == 1 and re.fullmatch(r"[^_].*\.pyi?", parts[0]):
             modules.add(parts[0])

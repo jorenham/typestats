@@ -11,7 +11,5 @@ def retry_client() -> httpx.AsyncClient:
     underlying transport.
     """
     return httpx.AsyncClient(
-        transport=RetryTransport(
-            transport=httpx.AsyncHTTPTransport(http2=True),
-        ),
+        transport=RetryTransport(transport=httpx.AsyncHTTPTransport(http2=True)),
     )

@@ -4,7 +4,7 @@ import re
 
 import anyio
 
-from typestats._type import StrPath
+from ._type import StrPath
 
 __all__ = ("read_pkg_metadata",)
 
