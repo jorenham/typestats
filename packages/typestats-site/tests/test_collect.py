@@ -101,9 +101,10 @@ class TestCollectProject:
         name, version = "mypkg", "2.5.0"
 
         # Pre-create the output file with current schema_version
+        schema_ver = ".".join(map(str, SCHEMA_VERSION))
         out = tmp_path / name / f"{version}.json"
         out.parent.mkdir(parents=True)
-        out.write_text(json.dumps({"schema_version": SCHEMA_VERSION}))
+        out.write_text(json.dumps({"schema_version": schema_ver}))
 
         # Mock only the version check (no install should happen)
         httpx_mock.add_response(
@@ -128,7 +129,7 @@ class TestCollectProject:
         assert results == []
         # The file content should be unchanged
         data = json.loads(out.read_text())
-        assert data["schema_version"] == SCHEMA_VERSION
+        assert data["schema_version"] == schema_ver
 
     async def test_recollects_outdated_schema(
         self,
@@ -167,7 +168,7 @@ class TestCollectProject:
 
         assert len(results) == 1
         data = json.loads(out.read_text())
-        assert data["schema_version"] == SCHEMA_VERSION
+        assert data["schema_version"] == ".".join(map(str, SCHEMA_VERSION))
         assert data["package"] == name
 
     async def test_skips_on_install_failure(
