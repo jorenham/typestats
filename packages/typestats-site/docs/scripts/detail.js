@@ -19,7 +19,10 @@ document$.subscribe(async () => {
     const report = await fetchReport(pkg, version)
     await renderDetail(root, report, entry, version)
   } catch (err) {
-    showError(root, `Failed to load report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
+    showError(
+      root,
+      `Failed to load report: ${escapeHtml(err instanceof Error ? err.message : err)}`,
+    )
   }
 })
 
@@ -45,7 +48,7 @@ function showUploadZone(root) {
   const pasteArea = root.querySelector(".paste-area")
 
   zone.addEventListener("click", () => input.click())
-  zone.addEventListener("keydown", (e) => {
+  zone.addEventListener("keydown", e => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault()
       input.click()
@@ -55,14 +58,14 @@ function showUploadZone(root) {
     if (input.files.length) handleUpload(root, input.files[0])
   })
 
-  zone.addEventListener("dragover", (e) => {
+  zone.addEventListener("dragover", e => {
     e.preventDefault()
     zone.classList.add("upload-zone--hover")
   })
   zone.addEventListener("dragleave", () => {
     zone.classList.remove("upload-zone--hover")
   })
-  zone.addEventListener("drop", (e) => {
+  zone.addEventListener("drop", e => {
     e.preventDefault()
     zone.classList.remove("upload-zone--hover")
     const file = e.dataTransfer.files[0]
@@ -86,13 +89,19 @@ async function handleUpload(root, file) {
       return
     }
     if (!report.package || !report.version || !report.module_reports) {
-      showUploadError(root, `<code>${escapeHtml(file.name)}</code> is not a valid typestats report (missing required fields).`)
+      showUploadError(
+        root,
+        `<code>${escapeHtml(file.name)}</code> is not a valid typestats report (missing required fields).`,
+      )
       return
     }
     const warn = schemaWarning(root, report)
     await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
-    showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
+    showUploadError(
+      root,
+      `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`,
+    )
   }
 }
 
@@ -108,13 +117,19 @@ async function handlePaste(root, text) {
       return
     }
     if (!report.package || !report.version || !report.module_reports) {
-      showUploadError(root, "Pasted JSON is not a valid typestats report (missing required fields).")
+      showUploadError(
+        root,
+        "Pasted JSON is not a valid typestats report (missing required fields).",
+      )
       return
     }
     const warn = schemaWarning(root, report)
     await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
-    showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
+    showUploadError(
+      root,
+      `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`,
+    )
   }
 }
 
@@ -122,7 +137,7 @@ function showUploadError(root, message) {
   showError(root, message)
   const retry = document.createElement("p")
   retry.innerHTML = `<a href="#" class="upload-retry">Try again</a>`
-  retry.querySelector("a").addEventListener("click", (e) => {
+  retry.querySelector("a").addEventListener("click", e => {
     e.preventDefault()
     showUploadZone(root)
   })
@@ -138,11 +153,15 @@ function schemaWarning(root, report) {
   const [wantMajor, wantMinor] = schemaVersion.split(".").map(Number)
   if (major === wantMajor && minor >= wantMinor) return null
   if (major > wantMajor) {
-    return "This report uses a newer schema than this page supports. "
-      + "Try clearing your browser cache and reloading."
+    return (
+      "This report uses a newer schema than this page supports. " +
+      "Try clearing your browser cache and reloading."
+    )
   }
-  return `This report was generated with an older version of <code>typestats</code>. `
-    + `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
+  return (
+    `This report was generated with an older version of <code>typestats</code>. ` +
+    `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
+  )
 }
 
 async function renderDetail(root, report, manifestEntry, version, warning = null) {
@@ -161,10 +180,15 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
 
   const parts = []
   if (warning) {
-    parts.push(`<div class="admonition warning"><p class="admonition-title">Report compatibility warning</p><p>${warning}</p></div>`)
+    parts.push(
+      `<div class="admonition warning"><p class="admonition-title">Report compatibility warning</p><p>${warning}</p></div>`,
+    )
   }
   const navLinks = []
-  if (hasDiff) navLinks.push(`<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`)
+  if (hasDiff)
+    navLinks.push(
+      `<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`,
+    )
   if (manifestEntry) {
     const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`
     navLinks.push(`<a href="${jsonUrl}">Download JSON</a>`)
@@ -401,7 +425,11 @@ function incompleteRows(moduleReport) {
       : s.name
 
     if (s.kind === "class") {
-      for (const member of [...(s.methods || []), ...(s.properties || []), ...(s.attrs || [])]) {
+      for (const member of [
+        ...(s.methods || []),
+        ...(s.properties || []),
+        ...(s.attrs || []),
+      ]) {
         if (member.n_untyped === 0 && member.n_any === 0) continue
         rows.push({
           name: member.name,
@@ -448,7 +476,9 @@ function renderTypeIgnores(report) {
     return html
   }
 
-  const sorted = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  const sorted = [...counts.entries()].sort(
+    (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+  )
 
   html += `<table>
     <thead><tr>

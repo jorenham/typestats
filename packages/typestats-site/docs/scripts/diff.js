@@ -1,6 +1,17 @@
 const MONTH_ABBR = [
-  "", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  "",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
 ]
 
 document$.subscribe(async () => {
@@ -22,17 +33,21 @@ document$.subscribe(async () => {
     }
 
     if (entry.versions.length < 2) {
-      showError(root, `Only one version available for <code>${escapeHtml(pkg)}</code>. Version history requires at least two versions.`)
+      showError(
+        root,
+        `Only one version available for <code>${escapeHtml(pkg)}</code>. Version history requires at least two versions.`,
+      )
       return
     }
 
-    const reports = await Promise.all(
-      entry.versions.map((v) => fetchReport(pkg, v))
-    )
+    const reports = await Promise.all(entry.versions.map(v => fetchReport(pkg, v)))
 
     renderDiff(root, pkg, reports)
   } catch (err) {
-    showError(root, `Failed to load version history: ${escapeHtml(err instanceof Error ? err.message : err)}`)
+    showError(
+      root,
+      `Failed to load version history: ${escapeHtml(err instanceof Error ? err.message : err)}`,
+    )
   }
 })
 
@@ -52,8 +67,10 @@ function renderDiff(root, pkg, reports) {
 }
 
 function renderChart(reports) {
-  const covRaw = reports.map((r) => coverage(r.n_typed, r.n_any, r.n_typable) * 100)
-  const strictRaw = reports.map((r) => coverage(r.n_typed, r.n_any, r.n_typable, true) * 100)
+  const covRaw = reports.map(r => coverage(r.n_typed, r.n_any, r.n_typable) * 100)
+  const strictRaw = reports.map(
+    r => coverage(r.n_typed, r.n_any, r.n_typable, true) * 100,
+  )
 
   const dates = []
   for (const r of reports) {
@@ -66,9 +83,9 @@ function renderChart(reports) {
   if (dates.length === reports.length && reports.length >= 2) {
     ;[labels, covData, strictData] = monthlySeries(dates, covRaw, strictRaw)
   } else {
-    labels = reports.map((r) => r.version)
-    covData = covRaw.map((v) => round1(v))
-    strictData = strictRaw.map((v) => round1(v))
+    labels = reports.map(r => r.version)
+    covData = covRaw.map(round1)
+    strictData = strictRaw.map(round1)
   }
 
   if (labels.length < 2) return ""
@@ -90,8 +107,12 @@ function svgLineChart(labels, covData, strictData) {
   const plotH = H - pad.top - pad.bottom
   const n = labels.length
 
-  function x(i) { return pad.left + (i / (n - 1)) * plotW }
-  function y(v) { return pad.top + plotH - (v / 100) * plotH }
+  function x(i) {
+    return pad.left + (i / (n - 1)) * plotW
+  }
+  function y(v) {
+    return pad.top + plotH - (v / 100) * plotH
+  }
 
   function polyline(data, color) {
     const points = data.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ")
@@ -177,12 +198,16 @@ function renderVersionTable(reports) {
     rows.push({
       version: r.version,
       baseVersion: r.base_version,
-      releaseDate: (r.pypi && r.pypi.upload_time) ? r.pypi.upload_time.slice(0, 10) : "",
+      releaseDate: r.pypi && r.pypi.upload_time ? r.pypi.upload_time.slice(0, 10) : "",
       coverage: covDelta(r, prev, false),
       coverageStrict: covDelta(r, prev, true),
       typables: intDelta(r.n_typable, prev ? prev.n_typable : null, { neutral: true }),
-      untyped: intDelta(r.n_untyped, prev ? prev.n_untyped : null, { preferLower: true }),
-      ignores: intDelta(r.n_type_ignores, prev ? prev.n_type_ignores : null, { preferLower: true }),
+      untyped: intDelta(r.n_untyped, prev ? prev.n_untyped : null, {
+        preferLower: true,
+      }),
+      ignores: intDelta(r.n_type_ignores, prev ? prev.n_type_ignores : null, {
+        preferLower: true,
+      }),
     })
   }
   rows.reverse()
@@ -244,7 +269,7 @@ function intDelta(val, prevVal, { preferLower = false, neutral = false } = {}) {
   const sign = delta > 0 ? "+" : ""
   let color = null
   if (!neutral) {
-    color = (delta < 0) === preferLower ? "green" : "red"
+    color = delta < 0 === preferLower ? "green" : "red"
   }
   return { value: String(val), delta: `(${sign}${delta})`, color }
 }

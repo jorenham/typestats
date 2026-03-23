@@ -39,7 +39,9 @@ function extractProjectUrls(pkg, metadata) {
         const parts = parsed.pathname.split("/").slice(0, 3)
         urls.repo = `https://${parsed.hostname}${parts.join("/")}`
         return urls
-      } catch { /* malformed URL */ }
+      } catch {
+        /* malformed URL */
+      }
     }
   }
   return urls
@@ -90,7 +92,11 @@ function ignoreLabel(ic) {
   return out
 }
 
-const STUBS_ONLY_LABEL = { no: "", "yes (third party)": "third-party", "yes (typeshed)": "typeshed" }
+const STUBS_ONLY_LABEL = {
+  no: "",
+  "yes (third party)": "third-party",
+  "yes (typeshed)": "typeshed",
+}
 
 function iconPyTyped(pyTyped) {
   const val = pyTyped.toLowerCase()
@@ -128,13 +134,20 @@ async function fetchManifest() {
 }
 
 async function fetchReport(pkg, version) {
-  const resp = await fetch(`${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`)
-  if (!resp.ok) throw new Error(`Failed to fetch report for ${pkg}@${version}: ${resp.status}`)
+  const resp = await fetch(
+    `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`,
+  )
+  if (!resp.ok)
+    throw new Error(`Failed to fetch report for ${pkg}@${version}: ${resp.status}`)
   return resp.json()
 }
 
 function escapeHtml(s) {
-  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
 }
 
 function getPackageFromHash() {
@@ -152,16 +165,16 @@ function showError(root, message) {
 
 function initTablesort(root) {
   if (typeof Tablesort === "undefined") return
-  root.querySelectorAll("table:not([class]):not([data-no-sort])").forEach((t) => {
+  root.querySelectorAll("table:not([class]):not([data-no-sort])").forEach(t => {
     const noSort = []
-    t.querySelectorAll("th").forEach((th) => {
+    t.querySelectorAll("th").forEach(th => {
       if (th.textContent.trim() === "Version") {
         th.setAttribute("data-sort-method", "none")
         noSort.push(th)
       }
     })
     new Tablesort(t)
-    noSort.forEach((th) => th.removeAttribute("role"))
+    noSort.forEach(th => th.removeAttribute("role"))
   })
 }
 
