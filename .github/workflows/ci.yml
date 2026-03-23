@@ -57,8 +57,10 @@ jobs:
       - uses: astral-sh/setup-uv@v7.3.1
         with:
           python-version: "3.12"
-      - name: pytest
+      - name: pytest typestats
         run: uv run pytest
+      - name: pytest typestats-site
+        run: uv run --directory packages/typestats-site pytest
 
   typestats:
     runs-on: ubuntu-latest
@@ -68,5 +70,7 @@ jobs:
       - uses: astral-sh/setup-uv@v7.3.1
         with:
           python-version: "3.12"
-      - name: typestats check
+      - name: typestats check typestats
         run: uv run typestats check typestats --strict --fail-under=100
+      - name: typestats check typestats-site
+        run: uv run typestats check typestats-site --strict --fail-under=100
