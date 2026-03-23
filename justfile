@@ -27,7 +27,7 @@ update:
     uv run dprint config update
 
 preview *args:
-    uv run packages/typestats-site/scripts/preview.py {{ args }}
+    uv run --directory packages/typestats-site python scripts/preview.py {{ args }}
 
 [unix]
 clean:
