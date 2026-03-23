@@ -45,7 +45,7 @@ def _cache_expensive_calls() -> Any:
         path=anyio.Path(_FIXTURES),
         version="0.0.0",
         stubs_path=None,
-        project="typestats",
+        project=None,
         sources=(anyio.Path(_PKG_DIR),),
     )
 
@@ -55,7 +55,7 @@ def _cache_expensive_calls() -> Any:
         return _from_path_cache[pkg]
 
     async def mock_resolve(package: str) -> _Resolved:
-        if package == "typestats":
+        if package == "pkg":
             return fixture_resolved
         return await _resolve(package)
 
@@ -333,8 +333,8 @@ class TestResolveStubs:
 class TestCheckInstalled:
     pytestmark = pytest.mark.anyio
 
-    async def test_check_typestats(self, capsys: pytest.CaptureFixture[str]) -> None:
-        await check("typestats")
+    async def test_check_pkg(self, capsys: pytest.CaptureFixture[str]) -> None:
+        await check("pkg")
         out = capsys.readouterr().out.strip()
         m = _OUTPUT_RE.search(out)
         assert m is not None, f"unexpected output: {out!r}"
@@ -344,11 +344,11 @@ class TestCheckInstalled:
         self,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        await report("typestats")
+        await report("pkg")
         out = capsys.readouterr().out
 
         data = json.loads(out)
-        assert data["package"] == "typestats"
+        assert data["package"] == "pkg"
         assert isinstance(data["module_reports"], list)
         assert data["n_typable"] > 0
 
@@ -361,12 +361,12 @@ class TestFailUnderFrom:
         tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        await report("typestats")
+        await report("pkg")
         report_json = capsys.readouterr().out
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(report_json)
 
-        await check("typestats", fail_under_from=report_path)
+        await check("pkg", fail_under_from=report_path)
         out = capsys.readouterr().out
         assert "OK" in out
 
@@ -377,7 +377,7 @@ class TestFailUnderFrom:
         await report_path.write_text(json.dumps(fake_report))
 
         with pytest.raises(SystemExit):
-            await check("typestats", fail_under_from=report_path)
+            await check("pkg", fail_under_from=report_path)
 
     async def test_strict_mode_uses_strict_coverage(
         self,
@@ -389,7 +389,7 @@ class TestFailUnderFrom:
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
 
-        await check("typestats", strict=True, fail_under_from=report_path)
+        await check("pkg", strict=True, fail_under_from=report_path)
         out = capsys.readouterr().out
         assert "OK" in out
         assert "1.00%" in out
@@ -401,4 +401,4 @@ class TestFailUnderFrom:
         await report_path.write_text(json.dumps(fake_report))
 
         with pytest.raises(SystemExit):
-            await check("typestats", fail_under=0, fail_under_from=report_path)
+            await check("pkg", fail_under=0, fail_under_from=report_path)
