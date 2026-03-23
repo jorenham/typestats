@@ -26,6 +26,9 @@ update:
     uv sync --upgrade
     uv run dprint config update
 
+preview *args:
+    uv run packages/typestats-site/scripts/preview.py {{ args }}
+
 [unix]
 clean:
     find . -type d \( \
@@ -41,15 +44,4 @@ clean:
 
 [windows]
 clean:
-    powershell -NoProfile -Command " \
-        Get-ChildItem -Directory -Recurse -Include \
-            __pycache__, \
-            .cache, \
-            .pytest_cache, \
-            .ruff_cache, \
-            _site, \
-            site, \
-            dist, \
-            *.egg-info \
-        | Remove-Item -Recurse -Force \
-    "
+    powershell -NoProfile -Command "Get-ChildItem -Directory -Recurse -Include __pycache__,.cache,.pytest_cache,.ruff_cache,_site,site,dist,*.egg-info | Remove-Item -Recurse -Force"
