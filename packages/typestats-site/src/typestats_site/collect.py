@@ -119,13 +119,14 @@ async def collect_project(  # noqa: PLR0913
                     project.name,
                     version,
                 )
-            else:
-                _logger.info(
-                    "  %s %s - outdated schema, re-collecting",
-                    project.name,
-                    version,
-                )
-                await out.unlink()
+                continue
+
+            _logger.info(
+                "  %s %s - outdated schema, re-collecting",
+                project.name,
+                version,
+            )
+            await out.unlink()
 
         _logger.info("  %s %s - analyzing...", project.name, version)
         file_detail = eligible[version]
