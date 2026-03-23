@@ -1,4 +1,5 @@
 {
+  "schema_version": "0.1",
   "package": "aiofiles",
   "version": "25.1.0",
   "base_version": null,
@@ -65,6 +66,14 @@
       "symbol_reports": [
         {
           "kind": "attr",
+          "name": "aiofiles.threadpool.stdin",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
           "name": "aiofiles.threadpool.stdout",
           "n_typed": 0,
           "n_any": 0,
@@ -73,7 +82,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.threadpool.stderr",
+          "name": "aiofiles.threadpool.stderr_bytes",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -82,6 +91,14 @@
         {
           "kind": "attr",
           "name": "aiofiles.threadpool.stdout_bytes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.threadpool.stderr",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -106,22 +123,6 @@
           "n_params": 10,
           "n_function_overloads": 1,
           "n_function_params": 10
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.threadpool.stderr_bytes",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.threadpool.stdin",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -153,6 +154,74 @@
     {
       "path": "aiofiles/base.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "aiofiles.base.AiofilesContextManager",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AiofilesContextManager.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AiofilesContextManager.__await__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AiofilesContextManager.__aenter__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AiofilesContextManager.__aexit__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "aiofiles.base.AsyncIndirectBase",
@@ -193,6 +262,18 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 1
+        },
+        {
+          "kind": "function",
+          "name": "aiofiles.base.wrap",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -270,86 +351,6 @@
           "n_method_params": 3,
           "n_attrs": 0,
           "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "aiofiles.base.AiofilesContextManager",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AiofilesContextManager.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AiofilesContextManager.__await__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AiofilesContextManager.__aenter__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AiofilesContextManager.__aexit__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "aiofiles.base.wrap",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -380,14 +381,6 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "aiofiles.os.replace",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
           "name": "aiofiles.os.rename",
           "n_typed": 0,
           "n_any": 0,
@@ -396,7 +389,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.os.stat",
+          "name": "aiofiles.os.unlink",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -404,7 +397,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.os.removedirs",
+          "name": "aiofiles.os.listdir",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -420,7 +413,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.os.symlink",
+          "name": "aiofiles.os.remove",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -428,7 +421,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.os.remove",
+          "name": "aiofiles.os.stat",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -452,55 +445,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.os.rmdir",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
           "name": "aiofiles.os.renames",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.os.makedirs",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.os.unlink",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.os.sendfile",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.os.link",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.os.scandir",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -516,7 +461,55 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.os.listdir",
+          "name": "aiofiles.os.sendfile",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.replace",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.link",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.removedirs",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.scandir",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.makedirs",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.rmdir",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -525,6 +518,14 @@
         {
           "kind": "attr",
           "name": "aiofiles.os.getcwd",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.os.symlink",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -574,7 +575,7 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "aiofiles.ospath.isfile",
+          "name": "aiofiles.ospath.isdir",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -582,7 +583,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.ospath.islink",
+          "name": "aiofiles.ospath.isfile",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -598,31 +599,15 @@
         },
         {
           "kind": "attr",
+          "name": "aiofiles.ospath.getctime",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
           "name": "aiofiles.ospath.getsize",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.ospath.sameopenfile",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.ospath.abspath",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.ospath.samefile",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -638,7 +623,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.ospath.getmtime",
+          "name": "aiofiles.ospath.samefile",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -646,15 +631,7 @@
         },
         {
           "kind": "attr",
-          "name": "aiofiles.ospath.isdir",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "aiofiles.ospath.getctime",
+          "name": "aiofiles.ospath.islink",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -663,6 +640,30 @@
         {
           "kind": "attr",
           "name": "aiofiles.ospath.exists",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.ospath.abspath",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.ospath.sameopenfile",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "aiofiles.ospath.getmtime",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -705,18 +706,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "aiofiles.tempfile.SpooledTemporaryFile",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_overloads": 1,
-          "n_typable": 11,
-          "n_params": 10,
-          "n_function_overloads": 1,
-          "n_function_params": 10
-        },
-        {
-          "kind": "function",
           "name": "aiofiles.tempfile.NamedTemporaryFile",
           "n_typed": 0,
           "n_any": 0,
@@ -750,6 +739,18 @@
           "n_params": 5,
           "n_function_overloads": 1,
           "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "aiofiles.tempfile.SpooledTemporaryFile",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_overloads": 1,
+          "n_typable": 11,
+          "n_params": 10,
+          "n_function_overloads": 1,
+          "n_function_params": 10
         }
       ],
       "type_ignores": [],
@@ -943,25 +944,6 @@
         },
         {
           "kind": "class",
-          "name": "aiofiles.threadpool.binary.AsyncIndirectBufferedIOBase",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "aiofiles.threadpool.binary.AsyncBufferedIOBase",
           "methods": [],
           "properties": [],
@@ -981,7 +963,7 @@
         },
         {
           "kind": "class",
-          "name": "aiofiles.threadpool.binary.AsyncFileIO",
+          "name": "aiofiles.threadpool.binary.AsyncIndirectBufferedIOBase",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -1001,6 +983,25 @@
         {
           "kind": "class",
           "name": "aiofiles.threadpool.binary.AsyncIndirectFileIO",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "aiofiles.threadpool.binary.AsyncFileIO",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -1111,19 +1112,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "aiofiles.threadpool.utils.cond_delegate_to_executor",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "aiofiles.threadpool.utils.proxy_method_directly",
+          "name": "aiofiles.threadpool.utils.proxy_property_directly",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1147,7 +1136,19 @@
         },
         {
           "kind": "function",
-          "name": "aiofiles.threadpool.utils.proxy_property_directly",
+          "name": "aiofiles.threadpool.utils.proxy_method_directly",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "aiofiles.threadpool.utils.cond_delegate_to_executor",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,

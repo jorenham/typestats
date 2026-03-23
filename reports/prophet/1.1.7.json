@@ -1,4 +1,5 @@
 {
+  "schema_version": "0.1",
   "package": "prophet",
   "version": "1.1.7",
   "base_version": null,
@@ -86,19 +87,19 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "prophet.about",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
           "name": "prophet.here",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.about",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -138,48 +139,32 @@
           "n_function_params": 1
         },
         {
-          "kind": "attr",
-          "name": "prophet.diagnostics.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
-          "name": "prophet.diagnostics.mdape",
+          "name": "prophet.diagnostics.single_cutoff_forecast",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 6,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 5
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.prophet_copy",
+          "name": "prophet.diagnostics.rolling_mean_by_h",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.diagnostics.PERFORMANCE_METRICS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_function_params": 4
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.mse",
+          "name": "prophet.diagnostics.coverage",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -203,7 +188,7 @@
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.coverage",
+          "name": "prophet.diagnostics.mae",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -215,7 +200,19 @@
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.mae",
+          "name": "prophet.diagnostics.generate_cutoffs",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "prophet.diagnostics.prophet_copy",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -239,43 +236,27 @@
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.generate_cutoffs",
+          "name": "prophet.diagnostics.mse",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.diagnostics.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.single_cutoff_forecast",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "prophet.diagnostics.rolling_median_by_h",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "prophet.diagnostics.mape",
+          "name": "prophet.diagnostics.smape",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -299,7 +280,7 @@
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.smape",
+          "name": "prophet.diagnostics.mape",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -311,7 +292,27 @@
         },
         {
           "kind": "function",
-          "name": "prophet.diagnostics.rolling_mean_by_h",
+          "name": "prophet.diagnostics.mdape",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.diagnostics.PERFORMANCE_METRICS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "prophet.diagnostics.rolling_median_by_h",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -361,14 +362,6 @@
     {
       "path": "prophet/forecaster.py",
       "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "prophet.forecaster.NANOSECONDS_TO_SECONDS",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
         {
           "kind": "class",
           "name": "prophet.forecaster.Prophet",
@@ -1237,6 +1230,14 @@
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.forecaster.NANOSECONDS_TO_SECONDS",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1266,18 +1267,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "prophet.make_holidays.make_holidays_df",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
           "name": "prophet.make_holidays.get_country_holidays_class",
           "n_typed": 0,
           "n_any": 0,
@@ -1287,6 +1276,18 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "prophet.make_holidays.make_holidays_df",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -1326,291 +1327,6 @@
     {
       "path": "prophet/models.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "prophet.models.ModelInputData",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ModelInputData.T",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.S",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.K",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.tau",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.trend_indicator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.y",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.t",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.cap",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.t_change",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.s_a",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.s_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.X",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelInputData.sigmas",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 13,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "prophet.models.ModelParams",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ModelParams.k",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelParams.m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelParams.delta",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelParams.beta",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModelParams.sigma_obs",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.models.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "prophet.models.TrendIndicator",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TrendIndicator.LINEAR",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "TrendIndicator.LOGISTIC",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "TrendIndicator.FLAT",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "prophet.models.StanBackendEnum",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "StanBackendEnum.get_backend_class",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "StanBackendEnum.CMDSTANPY",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.models.PLATFORM",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "prophet.models.IStanBackend",
@@ -1738,6 +1454,190 @@
           "n_method_overloads": 7,
           "n_method_params": 8,
           "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "prophet.models.ModelParams",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelParams.k",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelParams.m",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelParams.delta",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelParams.beta",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelParams.sigma_obs",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "prophet.models.ModelInputData",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelInputData.T",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.S",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.K",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.tau",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.trend_indicator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.y",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.t",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.cap",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.t_change",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.s_a",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.s_m",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.X",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelInputData.sigmas",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 13,
           "n_properties": 0
         },
         {
@@ -1876,6 +1776,107 @@
           "n_method_params": 13,
           "n_attrs": 1,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "prophet.models.StanBackendEnum",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StanBackendEnum.get_backend_class",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "StanBackendEnum.CMDSTANPY",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.models.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.models.PLATFORM",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "prophet.models.TrendIndicator",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TrendIndicator.LINEAR",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TrendIndicator.LOGISTIC",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TrendIndicator.FLAT",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 3,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1910,62 +1911,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "prophet.plot.plot_seasonality",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.get_forecast_component_plotly_props",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.plot.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.plot_forecast_component",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.plot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
-        },
-        {
-          "kind": "function",
           "name": "prophet.plot.plot_yearly",
           "n_typed": 0,
           "n_any": 0,
@@ -1978,27 +1923,15 @@
         },
         {
           "kind": "function",
-          "name": "prophet.plot.plot_components",
+          "name": "prophet.plot.get_forecast_component_plotly_props",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 6,
           "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
+          "n_typable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.add_changepoints_to_plot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
+          "n_function_params": 5
         },
         {
           "kind": "function",
@@ -2014,63 +1947,27 @@
         },
         {
           "kind": "function",
-          "name": "prophet.plot.seasonality_plot_df",
+          "name": "prophet.plot.plot_weekly",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 7,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 7,
+          "n_params": 6,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 6
         },
         {
           "kind": "function",
-          "name": "prophet.plot.plot_components_plotly",
+          "name": "prophet.plot.plot",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 6,
+          "n_untyped": 10,
           "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
+          "n_typable": 10,
+          "n_params": 9,
           "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.set_y_as_percent",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.plot_cross_validation_metric",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "prophet.plot.plot_seasonality_plotly",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 9
         },
         {
           "kind": "function",
@@ -2086,15 +1983,83 @@
         },
         {
           "kind": "function",
-          "name": "prophet.plot.plot_weekly",
+          "name": "prophet.plot.plot_forecast_component",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
+          "n_untyped": 8,
           "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
+          "n_typable": 8,
+          "n_params": 7,
           "n_function_overloads": 1,
-          "n_function_params": 6
+          "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.seasonality_plot_df",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.plot_seasonality_plotly",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.plot.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.set_y_as_percent",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.plot_seasonality",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.plot_components_plotly",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
         },
         {
           "kind": "function",
@@ -2107,6 +2072,42 @@
           "n_params": 6,
           "n_function_overloads": 1,
           "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.add_changepoints_to_plot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.plot_components",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "prophet.plot.plot_cross_validation_metric",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
         }
       ],
       "type_ignores": [],
@@ -2150,27 +2151,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "prophet.serialize.model_to_dict",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.serialize.PD_TIMEDELTA",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "prophet.serialize.model_from_json",
+          "name": "prophet.serialize.model_from_dict",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2190,22 +2171,6 @@
         },
         {
           "kind": "attr",
-          "name": "prophet.serialize.PD_TIMESTAMP",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.serialize.here",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
           "name": "prophet.serialize.PD_DATAFRAME",
           "n_typed": 0,
           "n_any": 0,
@@ -2213,8 +2178,16 @@
           "n_typable": 0
         },
         {
+          "kind": "attr",
+          "name": "prophet.serialize.PD_TIMEDELTA",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "function",
-          "name": "prophet.serialize.model_from_dict",
+          "name": "prophet.serialize.model_to_dict",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2226,31 +2199,7 @@
         },
         {
           "kind": "attr",
-          "name": "prophet.serialize.about",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.serialize.NP_ARRAY",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.serialize.SIMPLE_ATTRIBUTES",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "prophet.serialize.ORDEREDDICT",
+          "name": "prophet.serialize.PD_TIMESTAMP",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -2267,6 +2216,58 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "prophet.serialize.model_from_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.serialize.here",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.serialize.ORDEREDDICT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.serialize.SIMPLE_ATTRIBUTES",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.serialize.about",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "prophet.serialize.NP_ARRAY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -2306,18 +2307,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "prophet.utilities.regressor_coefficients",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "prophet.utilities.regressor_index",
           "n_typed": 0,
           "n_any": 0,
@@ -2327,6 +2316,18 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "prophet.utilities.regressor_coefficients",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "function",
