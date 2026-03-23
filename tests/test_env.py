@@ -1,7 +1,9 @@
 # ruff: noqa: ARG002
 
 import importlib.metadata
+import os
 import sys
+import sysconfig
 from pathlib import Path
 
 import pytest
@@ -12,7 +14,7 @@ from typestats._env import (
     find_distribution,
 )
 
-PYVER = f"python{sys.version_info.major}.{sys.version_info.minor}"
+_SCRIPTS_DIR = "Scripts" if sys.platform == "win32" else "bin"
 
 
 @pytest.fixture(autouse=True)
@@ -27,14 +29,16 @@ def no_env_vars(monkeypatch: pytest.MonkeyPatch) -> None:
 
 
 def _make_site_packages(root: Path) -> Path:
-    sp = root / "lib" / PYVER / "site-packages"
-    sp.mkdir(parents=True)
+    raw = sysconfig.get_path("purelib", vars={"base": str(root), "platbase": str(root)})
+    assert raw is not None
+    sp = Path(raw)
+    sp.mkdir(parents=True, exist_ok=True)
     return sp
 
 
 def _build_fake_venv(root: Path, pkg_name: str, version: str) -> None:
     """Create a minimal venv-like directory with a dist-info package."""
-    (root / "bin").mkdir(parents=True)
+    (root / _SCRIPTS_DIR).mkdir(parents=True)
     (root / "pyvenv.cfg").write_text("home = /usr/bin\n")
     sp = _make_site_packages(root)
     dist_info = sp / f"{pkg_name}-{version}.dist-info"
@@ -98,11 +102,12 @@ class TestExternalSitePackages:
         no_env_vars: None,
     ) -> None:
         venv = tmp_path / (".venv" if via == "cwd" else "fakevenv")
-        (venv / "bin").mkdir(parents=True)
+        (venv / _SCRIPTS_DIR).mkdir(parents=True)
         (venv / "pyvenv.cfg").write_text("home = /usr/bin\n")
         sp = _make_site_packages(venv)
 
-        path = "/usr/bin" if via == "cwd" else f"{venv / 'bin'}:/usr/bin"
+        scripts = str(venv / _SCRIPTS_DIR)
+        path = "/usr/bin" if via == "cwd" else f"{scripts}{os.pathsep}/usr/bin"
         monkeypatch.setenv("PATH", path)
         monkeypatch.chdir(tmp_path)
 
@@ -163,7 +168,8 @@ class TestUvxIntegration:
         else:
             venv = tmp_path / "outer"
             _build_fake_venv(venv, "mypkg", "2.5.0")
-            monkeypatch.setenv("PATH", f"{venv / 'bin'}:/usr/bin")
+            scripts = str(venv / _SCRIPTS_DIR)
+            monkeypatch.setenv("PATH", f"{scripts}{os.pathsep}/usr/bin")
         monkeypatch.chdir(tmp_path)
 
         found = await find_distribution("mypkg")
@@ -176,7 +182,7 @@ class TestUvxIntegration:
         monkeypatch: pytest.MonkeyPatch,
         no_env_vars: None,
     ) -> None:
-        monkeypatch.setenv("PATH", f"{sys.prefix}/bin:/usr/bin")
+        monkeypatch.setenv("PATH", f"{sys.prefix}/{_SCRIPTS_DIR}{os.pathsep}/usr/bin")
         monkeypatch.chdir(tmp_path)
 
         with pytest.raises(importlib.metadata.PackageNotFoundError):
