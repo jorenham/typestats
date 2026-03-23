@@ -14,6 +14,7 @@ import pytest
 from typestats.check import (
     _is_package_dir_name,
     _resolve,
+    _Resolved,
     _source_paths,
     _top_level_names,
     check,
@@ -28,21 +29,40 @@ _OUTPUT_RE = re.compile(
     r"any:\s+(?P<any>\d+)",
 )
 
+# Use the small fixture package instead of analysing the real installed package.
+_FIXTURES = Path(__file__).parent / "fixtures" / "project"
+_PKG_DIR = _FIXTURES / "pkg"
+
 _from_path_cache: dict[str, PackageReport] = {}
 _original_from_path = PackageReport.from_path
 
 
 @pytest.fixture(autouse=True, scope="module")
-def _cache_from_path() -> Any:
-    """Avoid re-parsing source for every `check()` call."""  # noqa: DOC402
+def _cache_expensive_calls() -> Any:
+    """Use a tiny fixture package and cache results across the module."""  # noqa: DOC402
+    fixture_resolved = _Resolved(
+        pkg="pkg",
+        path=anyio.Path(_FIXTURES),
+        version="0.0.0",
+        stubs_path=None,
+        project="typestats",
+        sources=(anyio.Path(_PKG_DIR),),
+    )
 
-    async def cached(pkg: str, /, *args: Any, **kwargs: Any) -> PackageReport:
+    async def cached_from_path(pkg: str, /, *args: Any, **kwargs: Any) -> PackageReport:
         if pkg not in _from_path_cache:
             _from_path_cache[pkg] = await _original_from_path(pkg, *args, **kwargs)
-
         return _from_path_cache[pkg]
 
-    with patch.object(PackageReport, "from_path", cached):
+    async def mock_resolve(package: str) -> _Resolved:
+        if package == "typestats":
+            return fixture_resolved
+        return await _resolve(package)
+
+    with (
+        patch.object(PackageReport, "from_path", cached_from_path),
+        patch("typestats.check._resolve", mock_resolve),
+    ):
         yield
 
 
@@ -313,13 +333,6 @@ class TestResolveStubs:
 class TestCheckInstalled:
     pytestmark = pytest.mark.anyio
 
-    async def test_check_pytest(self, capsys: pytest.CaptureFixture[str]) -> None:
-        await check("pytest")
-        out = capsys.readouterr().out.strip()
-        m = _OUTPUT_RE.search(out)
-        assert m is not None, f"unexpected output: {out!r}"
-        assert int(m["typable"]) > 0
-
     async def test_check_typestats(self, capsys: pytest.CaptureFixture[str]) -> None:
         await check("typestats")
         out = capsys.readouterr().out.strip()
@@ -371,15 +384,15 @@ class TestFailUnderFrom:
         tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        # Non-strict = (80+20)/100 = 100%; strict = 80/100 = 80%.
-        fake_report = {"n_typed": 80, "n_any": 20, "n_typable": 100}
+        # Non-strict = (1+1)/100 = 2%; strict = 1/100 = 1%.
+        fake_report = {"n_typed": 1, "n_any": 1, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
 
         await check("typestats", strict=True, fail_under_from=report_path)
         out = capsys.readouterr().out
         assert "OK" in out
-        assert "80.00%" in out
+        assert "1.00%" in out
 
     async def test_overrides_fail_under(self, tmp_path: Path) -> None:
         # >100% baseline overrides the explicit fail_under=0.
