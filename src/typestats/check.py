@@ -7,6 +7,7 @@ import logging
 import re
 import sys
 import urllib.parse
+import urllib.request
 from collections.abc import Sequence
 from typing import NamedTuple
 
@@ -172,7 +173,7 @@ def _read_direct_url(dist: _Dist) -> anyio.Path | None:
     if not data.get("dir_info", {}).get("editable", False):
         return None
     parsed = urllib.parse.urlparse(url)
-    return anyio.Path(urllib.parse.unquote(parsed.path))
+    return anyio.Path(urllib.request.url2pathname(parsed.path))
 
 
 async def _find_package_in_root(root: anyio.Path, names: _Names) -> anyio.Path | None:

@@ -181,7 +181,7 @@ class TestSourcePaths:
         sp, project_root, pkg_dir = self._editable_layout(tmp_path, "scipy-stubs")
 
         direct_url = json.dumps({
-            "url": f"file://{project_root}",
+            "url": project_root.as_uri(),
             "dir_info": {"editable": True},
         })
         dist = self._mock_dist(
@@ -209,7 +209,7 @@ class TestSourcePaths:
         )
 
         direct_url = json.dumps({
-            "url": f"file://{project_root}",
+            "url": project_root.as_uri(),
             "dir_info": {"editable": True},
         })
         dist = self._mock_dist(
