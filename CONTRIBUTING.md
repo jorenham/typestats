@@ -81,6 +81,11 @@ uvx lefthook validate
 For alternative ways of installing lefthook, see
 <https://github.com/evilmartians/lefthook#install>
 
+### just
+
+Common tasks are defined in the [justfile](justfile) and can be run with
+[just](https://github.com/casey/just).
+
 ### Previewing the documentation locally
 
 `packages/typestats-site/scripts/preview.py` provides a live-reloading preview of the
