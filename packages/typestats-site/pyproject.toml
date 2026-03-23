@@ -44,8 +44,9 @@ dev = [
 
 [tool.pytest]
 minversion = "9.0"
-testpaths = ["tests"]
-addopts = ["-ra"]
+testpaths = ["src", "tests"]
+addopts = ["-ra", "--doctest-modules"]
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL", "ELLIPSIS"]
 filterwarnings = ["error"]
 log_level = "INFO"
 strict = true
