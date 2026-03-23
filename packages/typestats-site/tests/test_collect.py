@@ -141,7 +141,7 @@ class TestCollectProject:
 
         out = tmp_path / name / f"{version}.json"
         out.parent.mkdir(parents=True)
-        out.write_text(json.dumps({"schema_version": 0}))
+        out.write_text(json.dumps({"schema_version": "0.0"}))
 
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),

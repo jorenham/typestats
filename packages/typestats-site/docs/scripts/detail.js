@@ -131,11 +131,13 @@ function showUploadError(root, message) {
 
 function schemaWarning(report) {
   const root = document.getElementById("detail-root")
-  const schemaVersion = Number(root.dataset.schemaVersion)
+  const schemaVersion = root.dataset.schemaVersion || "0.0"
   const minVersion = root.dataset.minTypestatsVersion
-  const v = report.schema_version ?? schemaVersion
-  if (v === schemaVersion) return null
-  if (v > schemaVersion) {
+  const v = String(report.schema_version ?? "0.0")
+  const [major, minor] = v.split(".").map(Number)
+  const [wantMajor, wantMinor] = schemaVersion.split(".").map(Number)
+  if (major === wantMajor && minor >= wantMinor) return null
+  if (major > wantMajor) {
     return "This report uses a newer schema than this page supports. "
       + "Try clearing your browser cache and reloading."
   }

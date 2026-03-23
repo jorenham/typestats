@@ -255,10 +255,11 @@ async def build_site(
         dashboard_dir = tmp_docs / "dashboard"
         await dashboard_dir.mkdir(parents=True, exist_ok=True)
 
+        schema_ver = ".".join(map(str, SCHEMA_VERSION))
         report_md = (
             "---\nhide:\n  - navigation\n---\n\n"
             '<div id="detail-root"'
-            f' data-schema-version="{SCHEMA_VERSION}"'
+            f' data-schema-version="{schema_ver}"'
             f' data-min-typestats-version="{MIN_TYPESTATS_VERSION}">\n'
             "  <p>Loading package report...</p>\n"
             "</div>\n"
