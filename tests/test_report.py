@@ -640,23 +640,41 @@ class TestPackageReportJson:
 
     def test_schema_version_in_json(self) -> None:
         """JSON output includes schema_version with the current value."""
-        report = self._pkg(Symbol("x", _INT))
+        schema_ver = ".".join(map(str, SCHEMA_VERSION))
+        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        report = PackageReport(
+            schema_version=schema_ver,
+            package="pkg",
+            module_reports=(mod,),
+            version="1.0.0",
+            py_typed=PyTyped.YES,
+        )
         data = report.model_dump(mode="json")
-        assert data["schema_version"] == ".".join(map(str, SCHEMA_VERSION))
+        assert data["schema_version"] == schema_ver
 
     def test_schema_version_round_trip(self) -> None:
         """schema_version survives JSON serialization round-trip."""
-        report = self._pkg(Symbol("x", _INT))
+        schema_ver = ".".join(map(str, SCHEMA_VERSION))
+        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        report = PackageReport(
+            schema_version=schema_ver,
+            package="pkg",
+            module_reports=(mod,),
+            version="1.0.0",
+            py_typed=PyTyped.YES,
+        )
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
-        assert restored.schema_version == ".".join(map(str, SCHEMA_VERSION))
+        assert restored.schema_version == schema_ver
 
-    def test_schema_version_missing_treated_as_current(self) -> None:
-        """JSON without schema_version defaults to '0.0' by consumers."""
+    def test_schema_version_missing_treated_as_old(self) -> None:
+        """JSON without schema_version is interpreted as schema '0.0'."""
         report = self._pkg(Symbol("x", _INT))
         data = report.model_dump(mode="json")
         del data["schema_version"]
-        assert data.get("schema_version", "0.0") == "0.0"
+        json_str = json.dumps(data)
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.schema_version == "0.0"
 
     def test_schema_version_is_first_field(self) -> None:
         """schema_version appears first in JSON output."""

@@ -33,12 +33,10 @@ from pydantic import (
 from . import analyze
 from ._type import StrPath, StrPaths
 from .index import PublicSymbols, PyTyped
-from .schema import MIN_TYPESTATS_VERSION, SCHEMA_VERSION
+from .schema import SCHEMA_VERSION
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
 __all__ = (
-    "MIN_TYPESTATS_VERSION",
-    "SCHEMA_VERSION",
     "AttrReport",
     "ClassReport",
     "FunctionReport",
@@ -573,7 +571,7 @@ class _ProjectUrls(TypedDict):
 class PackageReport(BaseModel):
     model_config: ClassVar = ConfigDict(frozen=True)
 
-    schema_version: str = ".".join(map(str, SCHEMA_VERSION))
+    schema_version: str = "0.0"
     package: str
     version: str
     base_version: str | None = None
@@ -792,6 +790,7 @@ class PackageReport(BaseModel):
             )
 
         return cls(
+            schema_version=".".join(map(str, SCHEMA_VERSION)),
             package=display,
             stubs_only=stubs_only,
             module_reports=built.module_reports,
