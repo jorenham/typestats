@@ -133,8 +133,12 @@ function schemaWarning(report) {
   const root = document.getElementById("detail-root")
   const schemaVersion = Number(root.dataset.schemaVersion)
   const minVersion = root.dataset.minTypestatsVersion
-  const v = report.schema_version
-  if ((v ?? schemaVersion) >= schemaVersion) return null
+  const v = report.schema_version ?? schemaVersion
+  if (v === schemaVersion) return null
+  if (v > schemaVersion) {
+    return "This report uses a newer schema than this page supports. "
+      + "Try clearing your browser cache and reloading."
+  }
   return `This report was generated with an older version of <code>typestats</code>. `
     + `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
 }
