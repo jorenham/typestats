@@ -687,11 +687,14 @@ name = "typestats-site"
 version = "0.0.0.dev0"
 source = { editable = "packages/typestats-site" }
 dependencies = [
+    { name = "anyio" },
     { name = "httpx", extra = ["http2"] },
     { name = "httpx-retries" },
     { name = "jinja2" },
+    { name = "mainpy" },
     { name = "packaging" },
     { name = "typestats" },
+    { name = "tyro" },
     { name = "zensical" },
 ]
 
@@ -709,11 +712,14 @@ test = [
 
 [package.metadata]
 requires-dist = [
+    { name = "anyio", specifier = ">=4.12.1,<5" },
     { name = "httpx", extras = ["http2"], specifier = ">=0.28.1,<1" },
     { name = "httpx-retries", specifier = ">=0.4.6" },
     { name = "jinja2", specifier = ">=3.1.6,<4" },
+    { name = "mainpy", specifier = ">=1.5,<2" },
     { name = "packaging", specifier = ">=26.0" },
     { name = "typestats", editable = "." },
+    { name = "tyro", specifier = ">=1.0.10" },
     { name = "zensical", specifier = ">=0.0.28" },
 ]
 
