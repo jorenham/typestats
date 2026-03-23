@@ -67,7 +67,7 @@ async def find_distribution(name: str) -> FoundDist:
             path=external_paths,
         ):
             _logger.info("found %r in external site-packages", name)
-            return FoundDist(dist, anyio.Path(external_paths[0]))
+            return FoundDist(dist, anyio.Path(str(dist.locate_file(""))))
 
     _logger.info("%r not found in any environment", name)
     raise importlib.metadata.PackageNotFoundError(name)
@@ -115,7 +115,7 @@ async def _try_path_venvs(real_prefix: anyio.Path) -> list[str]:
         if venv_root in seen:
             continue
         seen.add(venv_root)
-        if await anyio.Path(venv_root + "/pyvenv.cfg").is_file():
+        if await (anyio.Path(venv_root) / "pyvenv.cfg").is_file():
             resolved = await anyio.Path(venv_root).resolve()
             if resolved == real_prefix:
                 continue
