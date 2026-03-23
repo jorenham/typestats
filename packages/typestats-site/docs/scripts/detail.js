@@ -89,7 +89,8 @@ async function handleUpload(root, file) {
       showUploadError(root, `<code>${escapeHtml(file.name)}</code> is not a valid typestats report (missing required fields).`)
       return
     }
-    await renderDetail(root, report, null, report.version)
+    const warn = schemaWarning(root, report)
+    await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
     showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
@@ -110,7 +111,8 @@ async function handlePaste(root, text) {
       showUploadError(root, "Pasted JSON is not a valid typestats report (missing required fields).")
       return
     }
-    await renderDetail(root, report, null, report.version)
+    const warn = schemaWarning(root, report)
+    await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
     showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
@@ -127,7 +129,23 @@ function showUploadError(root, message) {
   root.appendChild(retry)
 }
 
-async function renderDetail(root, report, manifestEntry, version) {
+function schemaWarning(root, report) {
+  if (!root) return null
+  const schemaVersion = root.dataset.schemaVersion || "0.0"
+  const minVersion = root.dataset.minTypestatsVersion
+  const v = String(report.schema_version ?? "0.0")
+  const [major, minor] = v.split(".").map(Number)
+  const [wantMajor, wantMinor] = schemaVersion.split(".").map(Number)
+  if (major === wantMajor && minor >= wantMinor) return null
+  if (major > wantMajor) {
+    return "This report uses a newer schema than this page supports. "
+      + "Try clearing your browser cache and reloading."
+  }
+  return `This report was generated with an older version of <code>typestats</code>. `
+    + `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
+}
+
+async function renderDetail(root, report, manifestEntry, version, warning = null) {
   const pkg = report.package
   const baseVer = report.base_version
   const hasDiff = manifestEntry && manifestEntry.versions.length >= 2
@@ -142,6 +160,9 @@ async function renderDetail(root, report, manifestEntry, version) {
   }
 
   const parts = []
+  if (warning) {
+    parts.push(`<div class="admonition warning"><p class="admonition-title">Report compatibility warning</p><p>${warning}</p></div>`)
+  }
   const navLinks = []
   if (hasDiff) navLinks.push(`<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`)
   if (manifestEntry) {

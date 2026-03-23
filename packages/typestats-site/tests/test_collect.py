@@ -11,6 +11,7 @@ import httpx
 import pytest
 
 from typestats.projects import Project
+from typestats.report import SCHEMA_VERSION
 from typestats_site.collect import clean_data, collect_all, collect_project
 
 if TYPE_CHECKING:
@@ -96,13 +97,14 @@ class TestCollectProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """When the JSON already exists, the project is skipped."""
+        """When the JSON already exists with current schema, the project is skipped."""
         name, version = "mypkg", "2.5.0"
 
-        # Pre-create the output file
+        # Pre-create the output file with current schema_version
+        schema_ver = ".".join(map(str, SCHEMA_VERSION))
         out = tmp_path / name / f"{version}.json"
         out.parent.mkdir(parents=True)
-        out.write_text("{}")
+        out.write_text(json.dumps({"schema_version": schema_ver}))
 
         # Mock only the version check (no install should happen)
         httpx_mock.add_response(
@@ -125,8 +127,49 @@ class TestCollectProject:
             )
 
         assert results == []
-        # The file content should be unchanged (still the pre-created one)
-        assert out.read_text() == "{}"
+        # The file content should be unchanged
+        data = json.loads(out.read_text())
+        assert data["schema_version"] == schema_ver
+
+    async def test_recollects_outdated_schema(
+        self,
+        tmp_path: Path,
+        httpx_mock: "HTTPXMock",
+        mock_uv: MockUv,
+    ) -> None:
+        """When the JSON exists but has an outdated schema, it is re-collected."""
+        name, version = "mypkg", "2.5.0"
+
+        out = tmp_path / name / f"{version}.json"
+        out.parent.mkdir(parents=True)
+        out.write_text(json.dumps({"schema_version": "0.0"}))
+
+        httpx_mock.add_response(
+            url=_PYPI_HOST.join(f"/simple/{name}/"),
+            json=_pypi_detail_json(name, version),
+        )
+        mock_uv(
+            {(name, version): _FIXTURES / "stubs_base"},
+            target="typestats_site.collect.install_to_venv",
+        )
+
+        project = Project(name=name)
+
+        data_dir = anyio.Path(tmp_path)
+        async with httpx.AsyncClient() as client:
+            results = await collect_project(
+                project,
+                client,
+                data_dir,
+                anyio.Path(tmp_path / "_work"),
+                backfill_since=_BACKFILL_SINCE,
+                backfill_limit=_BACKFILL_LIMIT,
+            )
+
+        assert len(results) == 1
+        data = json.loads(out.read_text())
+        assert data["schema_version"] == ".".join(map(str, SCHEMA_VERSION))
+        assert data["package"] == name
 
     async def test_skips_on_install_failure(
         self,
