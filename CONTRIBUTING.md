@@ -2,10 +2,11 @@
 
 ## Ways to contribute
 
-- **Adding a package to `projects.toml`:**
+- **Adding a package to the dashboard:**
   To be included in the [dashboard](https://jorenham.github.io/typestats/), a package must
   be in the top 15,000 most-downloaded packages on PyPI over the last 30 days.
   You can check the current rankings at <https://hugovk.github.io/top-pypi-packages/>.
+  Add the package to `packages/typestats-site/projects.toml`.
 - **Reporting bugs:**
   If you find incorrect coverage numbers, missing symbols, or crashes, please
   [open an issue](https://github.com/jorenham/typestats/issues/new) with the package name
@@ -82,17 +83,19 @@ For alternative ways of installing lefthook, see
 
 ### Previewing the documentation locally
 
-`scripts/preview.py` provides a live-reloading preview of the documentation site:
+`packages/typestats-site/scripts/preview.py` provides a live-reloading preview of the
+documentation site:
 
 ```bash
-uv run scripts/preview.py
+uv run packages/typestats-site/scripts/preview.py
 ```
 
 On first run it extracts report data from `origin/data`, builds the `_site/` pages, and
 starts `zensical serve`. Subsequent runs reuse cached data if the `origin/data` SHA is
 unchanged.
 
-While running, changes to `docs/`, `src/typestats/templates/`, `dashboard.py`, and
+While running, changes to `packages/typestats-site/docs/`,
+`packages/typestats-site/src/typestats_site/templates/`, `dashboard.py`, and
 `projects.toml` trigger an automatic rebuild. Changes to `dashboard.py` are hot-reloaded;
 other Python source changes require a restart.
 

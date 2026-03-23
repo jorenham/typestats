@@ -31,29 +31,20 @@ dependencies = [
   "ruff>=0.15.7",
 ]
 
-[project.optional-dependencies]
-pypi = [
-  "httpx[http2]>=0.28.1,<1", # like requests but modern and with async support
-  "httpx-retries>=0.4.6",
-  "packaging>=26.0",
-]
-docs = [
-  "jinja2>=3.1.6,<4",
-  "packaging>=26.0",
-  "zensical>=0.0.28",
-]
-
 [project.scripts]
 typestats = "typestats:__main__.app"
 
 [dependency-groups]
+site = [
+  "typestats-site",
+]
 test = [
-  "typestats[pypi,docs]",
+  "typestats",
   "pytest>=9.0.2",
   "pytest-httpx>=0.36.0,<1",
-  "test-project",
 ]
 dev = [
+  { include-group = "site" },
   { include-group = "test" },
   "dprint-py>=0.52.0.0",
   "pyrefly==0.57.1",
@@ -62,12 +53,10 @@ dev = [
 ]
 
 [tool.uv.sources]
-test-project = { workspace = true }
+typestats-site = { workspace = true }
 
 [tool.uv.workspace]
-members = [
-  "tests/fixtures/project",
-]
+members = ["packages/*"]
 
 # pytest
 
@@ -76,17 +65,14 @@ minversion = "9.0"
 testpaths = ["src", "tests"]
 addopts = ["-ra", "--doctest-modules", "--ignore=tests/fixtures"]
 doctest_optionflags = ["NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL", "ELLIPSIS"]
-filterwarnings = [
-  "error",
-  "ignore:The global interpreter lock .GIL. has been enabled:RuntimeWarning",
-]
+filterwarnings = ["error"]
 log_level = "INFO"
 strict = true
 
 # pyrefly
 
 [tool.pyrefly]
-project-excludes = ["tests/fixtures/stubs_base"]
+project-excludes = ["tests/fixtures/**"]
 enabled-ignores = ["pyrefly"]
 
 [tool.pyrefly.errors]
@@ -123,8 +109,17 @@ reportPrivateUsage = false
 # ruff
 
 [tool.ruff]
-src = ["src", "tests"]
-extend-exclude = [".git", ".mypy_cache", ".tox", ".venv"]
+src = [
+  "src",
+  "tests",
+  "packages/typestats-site/src",
+  "packages/typestats-site/tests",
+]
+extend-exclude = [
+  ".cache",
+  ".pytest_cache",
+  "tests/fixtures",
+]
 force-exclude = true
 show-fixes = true
 preview = true
@@ -138,6 +133,7 @@ ignore = [
   "ANN401", # flake8-annotations - any-type
   "COM812", # missing-trailing-comma - conflicts with formatter
   "S101", # flake8-bandit - assert
+  "S404", # flake8-bandit - suspicious-subprocess-import
   "FBT", # flake8-boolean-trap
   "CPY", # flake8-copyright
   "FIX", # flake8-fixme
@@ -148,8 +144,14 @@ ignore = [
   "RUF067", # ruff - non-empty-init-module
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"packages/typestats-site/tests/**" = [
+  "PLC2701", # pylint - import-private-name
+  "PLR6301", # pylint - no-self-use
+]
+
+[tool.ruff.lint.pylint]
+allow-magic-value-types = ["int", "str"]
+
 [tool.ruff.lint.flake8-type-checking]
 runtime-evaluated-base-classes = ["pydantic.BaseModel"]
-
-[tool.ruff.lint.per-file-ignores]
-"tests/fixtures/**" = ["ALL"]

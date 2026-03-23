@@ -1,89 +1,12 @@
-import contextlib
 import dataclasses
-import datetime as dt
-import importlib.util
 import logging
 from pathlib import Path
-from typing import Annotated, Final
+from typing import Annotated
 
 import anyio
 import mainpy
 import tyro
-from tyro.conf import Positional, Suppress, arg
-
-_DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
-
-
-def _has_modules(*names: str) -> bool:
-    return all(importlib.util.find_spec(n) is not None for n in names)
-
-
-_HAS_PYPI: Final = _has_modules("httpx", "httpx_retries", "packaging")
-_HAS_DOCS: Final = _has_modules("jinja2", "packaging", "zensical")
-
-
-def _parse_positive_int(s: str) -> int:
-    n = int(s)
-    if n < 1:
-        msg = f"must be >= 1, got {n}"
-        raise ValueError(msg)
-    return n
-
-
-def _relative_default(p: str) -> str:
-    path = Path(p)
-    with contextlib.suppress(ValueError):
-        path = path.relative_to(Path.cwd())
-    return f"(default: {path})"
-
-
-type _PositiveInt = Annotated[
-    int,
-    tyro.constructors.PrimitiveConstructorSpec(
-        nargs=1,
-        metavar="N",
-        instance_from_str=lambda args: _parse_positive_int(args[0]),
-        is_instance=lambda v: isinstance(v, int) and v >= 1,
-        str_from_instance=lambda v: [str(v)],
-    ),
-]
-
-
-type _ProjectsArg = Annotated[Path, tyro.conf.arg(help_behavior_hint=_relative_default)]
-
-
-@dataclasses.dataclass
-class Collect:
-    """Collect type-coverage report data for curated projects."""
-
-    data_dir: Path
-    """Directory to write `{package}/{version}.json` files into."""
-
-    projects: _ProjectsArg = _DEFAULT_PROJECTS
-    """Path to projects TOML file."""
-
-    clean: bool = False
-    """Remove all previously collected JSON files before collecting."""
-
-    backfill_since: dt.date = dt.date(2025, 1, 1)
-    """Collect versions uploaded on or after this date."""
-
-    backfill_limit: _PositiveInt = 1
-    """Maximum number of versions to backfill per project."""
-
-
-@dataclasses.dataclass
-class Dashboard:
-    """Build the markdown dashboard pages from collected data."""
-
-    data_dir: Path
-    """Directory containing collected `{package}/{version}.json` files."""
-
-    site_dir: Path
-    """Output directory for generated markdown pages."""
-
-    projects: _ProjectsArg = _DEFAULT_PROJECTS
-    """Path to projects TOML file."""
+from tyro.conf import Positional, arg
 
 
 @dataclasses.dataclass
@@ -131,32 +54,8 @@ class Check:
     """Enable verbose (INFO-level) logging."""
 
 
-async def _run(cmd: Collect | Dashboard | Report | Check) -> None:
+async def _run(cmd: Report | Check) -> None:
     match cmd:
-        case Collect():
-            from typestats.collect import clean_data, collect_all  # noqa: PLC0415
-
-            logging.getLogger().setLevel(logging.INFO)
-
-            if cmd.clean:
-                await clean_data(anyio.Path(cmd.data_dir))
-
-            await collect_all(
-                anyio.Path(cmd.data_dir),
-                cmd.projects,
-                backfill_since=cmd.backfill_since,
-                backfill_limit=cmd.backfill_limit,
-            )
-
-        case Dashboard():
-            from typestats.dashboard import build_site  # noqa: PLC0415
-
-            logging.getLogger().setLevel(logging.INFO)
-
-            await build_site(
-                anyio.Path(cmd.data_dir), anyio.Path(cmd.site_dir), cmd.projects
-            )
-
         case Report():
             from typestats.check import report  # noqa: PLC0415
 
@@ -197,21 +96,6 @@ def app() -> None:
     prog = "typestats"
     desc = "Type annotation coverage statistics for Python packages."
 
-    if _HAS_PYPI and _HAS_DOCS:
-        cmd = tyro.cli(
-            Collect | Dashboard | Report | Check, prog=prog, description=desc
-        )
-    elif _HAS_PYPI:
-        cmd = tyro.cli(Collect | Report | Check, prog=prog, description=desc)
-    elif _HAS_DOCS:
-        cmd = tyro.cli(Dashboard | Report | Check, prog=prog, description=desc)
-    else:
-        # pad with suppressed None so tyro still renders subcommands.
-        cmd = tyro.cli(
-            Report | Check | Annotated[None, Suppress],
-            prog=prog,
-            description=desc,
-        )
-        assert cmd is not None
+    cmd = tyro.cli(Report | Check, prog=prog, description=desc)
 
     anyio.run(_run, cmd)

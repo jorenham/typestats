@@ -1,11 +1,11 @@
-"""Tests for `typestats._pypi.latest_version`."""
+"""Tests for `typestats_site._pypi.latest_version`."""
 
 import httpx
 import pytest
 from packaging.version import Version
 from pytest_httpx import HTTPXMock
 
-from typestats._pypi import (
+from typestats_site._pypi import (
     FileDetail,
     ProjectDetail,
     latest_version,

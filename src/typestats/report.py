@@ -2,11 +2,9 @@
 
 import asyncio
 import enum
-import sys
 from collections.abc import Coroutine, Mapping, Sequence
 from pathlib import PurePosixPath
 from typing import (
-    TYPE_CHECKING,
     Annotated,
     Any,
     ClassVar,
@@ -20,14 +18,7 @@ from typing import (
     cast,
 )
 
-if TYPE_CHECKING:
-    import httpx
-
-    from typestats._pypi import FileDetail
-    from typestats.projects import Project
-
 import anyio
-import mainpy
 from pydantic import (
     BaseModel,
     ConfigDict,
@@ -39,10 +30,10 @@ from pydantic import (
     field_validator,
 )
 
-from typestats import analyze
-from typestats._type import StrPath, StrPaths
-from typestats.index import PublicSymbols, PyTyped
-from typestats.typecheckers import TypeCheckerConfigDict, TypeCheckerName
+from . import analyze
+from ._type import StrPath, StrPaths
+from .index import PublicSymbols, PyTyped
+from .typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
 __all__ = (
     "AttrReport",
@@ -561,16 +552,6 @@ class PypiInfo(BaseModel):
     sha256: str | None = None
     """SHA-256 hash of the distribution file."""
 
-    @classmethod
-    def from_file_detail(cls, file: "FileDetail", /) -> Self:
-        """Construct from a PyPI Simple API `FileDetail` record."""
-        return cls(
-            upload_time=file.get("upload-time"),
-            requires_python=file.get("requires-python"),
-            size=file.get("size"),
-            sha256=file["hashes"].get("sha256"),
-        )
-
 
 _REPO_HOSTS: Final = {
     "github.com",
@@ -586,7 +567,7 @@ class _ProjectUrls(TypedDict):
     repo: NotRequired[str]
 
 
-class PackageReport(BaseModel):  # noqa: PLR0904
+class PackageReport(BaseModel):
     model_config: ClassVar = ConfigDict(frozen=True)
 
     package: str
@@ -745,74 +726,6 @@ class PackageReport(BaseModel):  # noqa: PLR0904
         )
         print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
         print(f"   py.typed: {self.py_typed.name}")  # noqa: T201
-
-    @classmethod
-    async def from_project(
-        cls,
-        project: "Project",
-        client: "httpx.AsyncClient",
-        out_dir: StrPath,
-        /,
-    ) -> Self:
-        """
-        Install `project` from PyPI into a temporary venv and build a `PackageReport`.
-
-        Handles both regular packages and stubs packages (installing base +
-        stubs in separate venvs for the latter).  Recognized stubs patterns:
-        `{name}-stubs` (third-party) and `types-{name}` (typeshed).
-
-        When the project name doesn't match a known stubs pattern, the
-        installed site-packages is scanned for `*-stubs/` directories (e.g.
-        `boto3-stubs-lite` ships a `boto3-stubs/` directory).
-
-        For stubs packages, the base package version is required to match the
-        stubs version in the first two release components (major.minor).
-
-        Raises:
-            RuntimeError: If no base package version matches the stubs version.
-        """
-        from typestats import _pypi, _uv
-        from typestats._stubs import find_stubs_dir, stubs_base_name
-
-        ver, dist_file = await _pypi.latest_distribution(client, project.name)
-
-        # Install the project into a venv.
-        sp = await _uv.install_to_venv(out_dir, project.name, str(ver))
-
-        # Detect stubs pattern from the project name.
-        base_name = stubs_base_name(project.name)
-
-        # Scan for a *-stubs/ directory (e.g. boto3-stubs-lite).
-        if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
-            base_name = detected
-
-        if base_name is not None:
-            base_available = await _pypi.available_versions(client, base_name)
-            base_ver = _pypi.match_version(base_available, ver)
-            if base_ver is None:
-                prefix = ".".join(str(c) for c in ver.release[:2])
-                msg = f"no {base_name} version matching {prefix}.* found"
-                raise RuntimeError(msg)
-            base_sp = await _uv.install_to_venv(out_dir, base_name, str(base_ver))
-
-            return await cls.from_path(
-                base_name,
-                base_sp,
-                str(ver),
-                stubs_path=sp,
-                project=project.name,
-                base_version=str(base_ver),
-                exclude=project.exclude,
-                pypi=PypiInfo.from_file_detail(dist_file),
-            )
-
-        return await cls.from_path(
-            project.name,
-            sp,
-            str(ver),
-            exclude=project.exclude,
-            pypi=PypiInfo.from_file_detail(dist_file),
-        )
 
     @classmethod
     async def from_path(  # noqa: PLR0913
@@ -980,19 +893,3 @@ class PackageReport(BaseModel):  # noqa: PLR0904
             )
 
         return _BuildResult(tuple(reports), had_stubs_dir)
-
-
-@mainpy.main
-async def main() -> None:
-    from typestats._http import retry_client
-    from typestats.projects import Project
-
-    if not sys.argv[1:] or not sys.argv[1].strip():
-        print("Usage: report.py <project-name-or-path>", file=sys.stderr)  # noqa: T201
-        sys.exit(1)
-
-    project = Project(name=sys.argv[1])
-
-    async with anyio.TemporaryDirectory() as temp_dir, retry_client() as client:
-        report = await PackageReport.from_project(project, client, temp_dir)
-        report.print()

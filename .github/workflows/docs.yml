@@ -4,13 +4,13 @@ on:
   push:
     branches: [main]
     paths:
-      - docs/**
+      - packages/typestats-site/docs/**
       - .github/workflows/docs.yml
-      - projects.toml
+      - packages/typestats-site/projects.toml
       - uv.lock
-      - zensical.toml
-      - src/typestats/dashboard.py
-      - src/typestats/templates/**
+      - packages/typestats-site/zensical.toml
+      - packages/typestats-site/src/typestats_site/dashboard.py
+      - packages/typestats-site/src/typestats_site/templates/**
   workflow_run:
     workflows: [Collect]
     types: [completed]
@@ -55,18 +55,18 @@ jobs:
 
       - name: build dashboard pages
         run: >-
-          uv run -m typestats
+          uv run -m typestats_site
           dashboard
           --data-dir _data/reports
-          --site-dir _site
-          --projects projects.toml
+          --site-dir packages/typestats-site/_site
+          --projects packages/typestats-site/projects.toml
 
       - name: build site
-        run: uv run zensical build --clean
+        run: uv run zensical build --config packages/typestats-site/zensical.toml --clean
 
       - uses: actions/upload-pages-artifact@v4.0.0
         with:
-          path: site
+          path: packages/typestats-site/site
 
       - id: deployment
         uses: actions/deploy-pages@v4.0.5

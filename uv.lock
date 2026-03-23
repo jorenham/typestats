@@ -9,8 +9,8 @@ resolution-markers = [
 
 [manifest]
 members = [
-    "test-project",
     "typestats",
+    "typestats-site",
 ]
 
 [[package]]
@@ -610,11 +610,6 @@ wheels = [
 ]
 
 [[package]]
-name = "test-project"
-version = "0.1.0"
-source = { editable = "tests/fixtures/project" }
-
-[[package]]
 name = "typeguard"
 version = "4.5.1"
 source = { registry = "https://pypi.org/simple" }
@@ -639,52 +634,35 @@ dependencies = [
     { name = "tyro" },
 ]
 
-[package.optional-dependencies]
-docs = [
-    { name = "jinja2" },
-    { name = "packaging" },
-    { name = "zensical" },
-]
-pypi = [
-    { name = "httpx", extra = ["http2"] },
-    { name = "httpx-retries" },
-    { name = "packaging" },
-]
-
 [package.dev-dependencies]
 dev = [
     { name = "dprint-py" },
     { name = "pyrefly" },
     { name = "pytest" },
     { name = "pytest-httpx" },
-    { name = "test-project" },
-    { name = "typestats", extra = ["docs", "pypi"] },
+    { name = "typestats" },
+    { name = "typestats-site" },
     { name = "uvloop", marker = "sys_platform != 'win32'" },
     { name = "watchfiles" },
+]
+site = [
+    { name = "typestats-site" },
 ]
 test = [
     { name = "pytest" },
     { name = "pytest-httpx" },
-    { name = "test-project" },
-    { name = "typestats", extra = ["docs", "pypi"] },
+    { name = "typestats" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "anyio", specifier = ">=4.12.1,<5" },
-    { name = "httpx", extras = ["http2"], marker = "extra == 'pypi'", specifier = ">=0.28.1,<1" },
-    { name = "httpx-retries", marker = "extra == 'pypi'", specifier = ">=0.4.6" },
-    { name = "jinja2", marker = "extra == 'docs'", specifier = ">=3.1.6,<4" },
     { name = "libcst", specifier = ">=1.8.6,<2" },
     { name = "mainpy", specifier = ">=1.5,<2" },
-    { name = "packaging", marker = "extra == 'docs'", specifier = ">=26.0" },
-    { name = "packaging", marker = "extra == 'pypi'", specifier = ">=26.0" },
     { name = "pydantic", specifier = ">=2.12.5" },
     { name = "ruff", specifier = ">=0.15.7" },
     { name = "tyro", specifier = ">=1.0.10" },
-    { name = "zensical", marker = "extra == 'docs'", specifier = ">=0.0.28" },
 ]
-provides-extras = ["pypi", "docs"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -692,16 +670,69 @@ dev = [
     { name = "pyrefly", specifier = "==0.57.1" },
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-httpx", specifier = ">=0.36.0,<1" },
-    { name = "test-project", editable = "tests/fixtures/project" },
-    { name = "typestats", extras = ["pypi", "docs"] },
+    { name = "typestats" },
+    { name = "typestats-site", editable = "packages/typestats-site" },
+    { name = "uvloop", marker = "sys_platform != 'win32'", specifier = ">=0.22.1,<1" },
+    { name = "watchfiles", specifier = ">=1.1.1,<2" },
+]
+site = [{ name = "typestats-site", editable = "packages/typestats-site" }]
+test = [
+    { name = "pytest", specifier = ">=9.0.2" },
+    { name = "pytest-httpx", specifier = ">=0.36.0,<1" },
+    { name = "typestats" },
+]
+
+[[package]]
+name = "typestats-site"
+version = "0.0.0.dev0"
+source = { editable = "packages/typestats-site" }
+dependencies = [
+    { name = "anyio" },
+    { name = "httpx", extra = ["http2"] },
+    { name = "httpx-retries" },
+    { name = "jinja2" },
+    { name = "mainpy" },
+    { name = "packaging" },
+    { name = "typestats" },
+    { name = "tyro" },
+    { name = "zensical" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "pytest-httpx" },
+    { name = "uvloop", marker = "sys_platform != 'win32'" },
+    { name = "watchfiles" },
+]
+test = [
+    { name = "pytest" },
+    { name = "pytest-httpx" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "anyio", specifier = ">=4.12.1,<5" },
+    { name = "httpx", extras = ["http2"], specifier = ">=0.28.1,<1" },
+    { name = "httpx-retries", specifier = ">=0.4.6" },
+    { name = "jinja2", specifier = ">=3.1.6,<4" },
+    { name = "mainpy", specifier = ">=1.5,<2" },
+    { name = "packaging", specifier = ">=26.0" },
+    { name = "typestats", editable = "." },
+    { name = "tyro", specifier = ">=1.0.10" },
+    { name = "zensical", specifier = ">=0.0.28" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = ">=9.0.2" },
+    { name = "pytest-httpx", specifier = ">=0.36.0,<1" },
     { name = "uvloop", marker = "sys_platform != 'win32'", specifier = ">=0.22.1,<1" },
     { name = "watchfiles", specifier = ">=1.1.1,<2" },
 ]
 test = [
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-httpx", specifier = ">=0.36.0,<1" },
-    { name = "test-project", editable = "tests/fixtures/project" },
-    { name = "typestats", extras = ["pypi", "docs"] },
 ]
 
 [[package]]

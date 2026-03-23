@@ -1,5 +1,5 @@
 import logging
-import subprocess  # noqa: S404
+import subprocess
 from typing import Final
 
 import anyio

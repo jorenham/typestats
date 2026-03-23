@@ -3,25 +3,24 @@
 import contextlib
 import datetime as dt
 import logging
-import subprocess  # noqa: S404
+import subprocess
 from typing import TYPE_CHECKING, Final
 
 import anyio
+import httpx
+
+from typestats._type import StrPath
+from typestats.projects import Project, load_projects
+from typestats.report import PackageReport
+from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from ._http import retry_client
-from ._pypi import available_versions, match_version, versions_since
-from ._stubs import find_stubs_dir, stubs_base_name
-from ._type import StrPath
+from ._pypi import FileDetail, available_versions, match_version, versions_since
+from ._report import PypiInfo
 from ._uv import install_to_venv
-from .projects import load_projects
-from .report import PackageReport, PypiInfo
 
 if TYPE_CHECKING:
-    import httpx
     from packaging.version import Version
-
-    from typestats._pypi import FileDetail
-    from typestats.projects import Project
 
 __all__ = "clean_data", "collect_all"
 
@@ -70,8 +69,8 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
 
 
 async def collect_project(  # noqa: PLR0913
-    project: "Project",
-    client: "httpx.AsyncClient",
+    project: Project,
+    client: httpx.AsyncClient,
     data_dir: anyio.Path,
     work_dir: anyio.Path,
     /,

@@ -128,8 +128,8 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
     ]
 
     # Current CPython interpreter tag, e.g. "cp314".
-    vi = sys.implementation.version
-    cp_tag = f"cp{vi.major}{vi.minor}"
+    version_info = sys.implementation.version
+    cp_tag = f"cp{version_info.major}{version_info.minor}"
 
     def _rank(f: FileDetail, /) -> tuple[int, int, int]:
         filename = f["filename"]

@@ -29,13 +29,13 @@ import os
 import shutil
 import sys
 import time
-from subprocess import PIPE  # noqa: S404
+from subprocess import PIPE
 from typing import TYPE_CHECKING, Final
 
 import anyio
 import watchfiles
 
-import typestats.dashboard
+import typestats_site.dashboard
 
 if TYPE_CHECKING:
     from typestats.report import PackageReport
@@ -95,8 +95,8 @@ async def _watch_and_rebuild(
 ) -> None:
     watch_paths = (
         ROOT / "docs",
-        ROOT / "src" / "typestats" / "templates",
-        ROOT / "src" / "typestats" / "dashboard.py",
+        ROOT / "src" / "typestats_site" / "templates",
+        ROOT / "src" / "typestats_site" / "dashboard.py",
         ROOT / "projects.toml",
     )
     log.info("Watching %s ...", ", ".join(p.name for p in watch_paths))
@@ -108,11 +108,14 @@ async def _watch_and_rebuild(
 
         try:
             if "dashboard.py" in changed:
-                importlib.reload(typestats.dashboard)
+                importlib.reload(typestats_site.dashboard)
 
             invalidate = "projects.toml" in changed
             t0 = time.perf_counter()
-            cached_reports, cached_all_reports = await typestats.dashboard.build_site(
+            (
+                cached_reports,
+                cached_all_reports,
+            ) = await typestats_site.dashboard.build_site(
                 reports_dir,
                 _SITE_DIR,
                 ROOT / "projects.toml",
@@ -162,8 +165,10 @@ async def main() -> None:
 
         log.info("Building dashboard pages ...")
         (initial_reports, initial_all_reports), _ = await asyncio.gather(
-            typestats.dashboard.build_site(
-                _REPORTS_DIR / "reports", _SITE_DIR, ROOT / "projects.toml"
+            typestats_site.dashboard.build_site(
+                _REPORTS_DIR / "reports",
+                _SITE_DIR,
+                ROOT / "projects.toml",
             ),
             _SITE_SHA.write_text(sha),
         )

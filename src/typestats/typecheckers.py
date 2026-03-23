@@ -9,7 +9,7 @@ from typing import Any, Literal, TypeGuard, override
 
 import anyio
 
-from typestats._type import StrPath
+from ._type import StrPath
 
 __all__ = (
     "TypeCheckerConfigDict",

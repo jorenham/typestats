@@ -69,8 +69,10 @@ projects = [
             load_projects(toml_path)
 
     def test_load_repo_projects_toml(self) -> None:
-        """Smoke-test: the real projects.toml at the repo root is valid."""
+        """Smoke-test: the real projects.toml is valid."""
         repo_root = Path(__file__).resolve().parents[1]
-        projects = load_projects(repo_root / "projects.toml")
+        projects = load_projects(
+            repo_root / "packages" / "typestats-site" / "projects.toml"
+        )
         assert len(projects) >= 1
         assert all(p.name for p in projects)
