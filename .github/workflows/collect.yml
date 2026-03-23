@@ -41,8 +41,8 @@ jobs:
         id: collect
         run: >-
           uv run -m typestats_site collect
-           --data-dir _data/reports
-           --backfill-limit 10
+          --data-dir _data/reports
+          --backfill-limit 10
 
       - name: Commit and push new data
         if: always() && steps.collect.outcome != 'cancelled'
