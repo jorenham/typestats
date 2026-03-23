@@ -1,3 +1,5 @@
+# ruff: noqa: T201, PLC0415
+
 import dataclasses
 import logging
 from pathlib import Path
@@ -7,6 +9,11 @@ import anyio
 import mainpy
 import tyro
 from tyro.conf import Positional, arg
+
+
+@dataclasses.dataclass
+class Version:
+    """Print the typestats version."""
 
 
 @dataclasses.dataclass
@@ -54,10 +61,18 @@ class Check:
     """Enable verbose (INFO-level) logging."""
 
 
-async def _run(cmd: Report | Check) -> None:
+type _Command = Version | Report | Check
+
+
+async def _run(cmd: _Command) -> None:
     match cmd:
+        case Version():
+            from importlib.metadata import version
+
+            print(version("typestats"))
+
         case Report():
-            from typestats.check import report  # noqa: PLC0415
+            from typestats.check import report
 
             if cmd.verbose:
                 logging.getLogger().setLevel(logging.INFO)
@@ -68,7 +83,7 @@ async def _run(cmd: Report | Check) -> None:
             )
 
         case Check():
-            from typestats.check import check  # noqa: PLC0415
+            from typestats.check import check
 
             if cmd.verbose:
                 logging.getLogger().setLevel(logging.INFO)
@@ -96,6 +111,5 @@ def app() -> None:
     prog = "typestats"
     desc = "Type annotation coverage statistics for Python packages."
 
-    cmd = tyro.cli(Report | Check, prog=prog, description=desc)
-
+    cmd = tyro.cli(Version | Report | Check, prog=prog, description=desc)
     anyio.run(_run, cmd)
