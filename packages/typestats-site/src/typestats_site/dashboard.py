@@ -255,14 +255,10 @@ async def build_site(
         dashboard_dir = tmp_docs / "dashboard"
         await dashboard_dir.mkdir(parents=True, exist_ok=True)
 
-        schema_ver = ".".join(map(str, SCHEMA_VERSION))
-        report_md = (
-            "---\nhide:\n  - navigation\n---\n\n"
-            '<div id="detail-root"'
-            f' data-schema-version="{schema_ver}"'
-            f' data-min-typestats-version="{MIN_TYPESTATS_VERSION}">\n'
-            "  <p>Loading package report...</p>\n"
-            "</div>\n"
+        report_template = _get_env().get_template("report.md.j2")
+        report_md = report_template.render(
+            schema_version=".".join(map(str, SCHEMA_VERSION)),
+            min_typestats_version=MIN_TYPESTATS_VERSION,
         )
         pages = [
             (str(dashboard_dir / "index.md"), IndexPage(reports).render()),
