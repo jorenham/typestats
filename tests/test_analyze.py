@@ -41,7 +41,6 @@ class TestEmptySource:
 
 class TestRecursionError:
     def test_deeply_nested_source_returns_empty(self) -> None:
-        """Deeply nested expressions should not crash; return empty symbols."""
         from unittest.mock import patch  # noqa: PLC0415
 
         source = "x = 1"
@@ -49,6 +48,37 @@ class TestRecursionError:
             result = collect_symbols(source)
         assert result.symbols == ()
         assert result.type_aliases == ()
+
+    def test_deeply_nested_dict_does_not_recurse(self) -> None:
+        depth = 200
+        inner = "1"
+        for _ in range(depth):
+            inner = f"{{'k': {inner}}}"
+        source = f"X = {inner}\n"
+        result = collect_symbols(source)
+        assert len(result.symbols) == 1
+        assert result.symbols[0].name == "X"
+        assert result.symbols[0].type_ is IMPLICIT
+
+    def test_deeply_nested_list_does_not_recurse(self) -> None:
+        depth = 200
+        inner = "1"
+        for _ in range(depth):
+            inner = f"[{inner}]"
+        source = f"X = {inner}\n"
+        result = collect_symbols(source)
+        assert len(result.symbols) == 1
+        assert result.symbols[0].name == "X"
+
+    def test_deeply_nested_lambda_does_not_recurse(self) -> None:
+        depth = 200
+        inner = "1"
+        for _ in range(depth):
+            inner = f"lambda: {inner}"
+        source = f"X = {inner}\n"
+        result = collect_symbols(source)
+        assert len(result.symbols) == 1
+        assert result.symbols[0].name == "X"
 
 
 class TestParserSyntaxError:

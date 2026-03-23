@@ -1003,7 +1003,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     def _visit_container(self, node: _Container) -> bool:
         if node in self._is_assigned_export:
             self._in_assigned_export.add(node)
-        return True
+            return True
+        return False
 
     @override
     def visit_List(self, node: cst.List) -> bool:
@@ -1016,6 +1017,14 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     @override
     def visit_Set(self, node: cst.Set) -> bool:
         return self._visit_container(node)
+
+    @override
+    def visit_Dict(self, node: cst.Dict) -> bool:
+        return False
+
+    @override
+    def visit_Lambda(self, node: cst.Lambda) -> bool:
+        return False
 
     def _leave_container(self, node: _Container) -> None:
         self._is_assigned_export.discard(node)
