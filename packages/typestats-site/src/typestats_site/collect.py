@@ -2,6 +2,7 @@
 
 import contextlib
 import datetime as dt
+import json
 import logging
 import subprocess
 from typing import TYPE_CHECKING, Final
@@ -11,7 +12,7 @@ import httpx
 
 from typestats._type import StrPath
 from typestats.projects import Project, load_projects
-from typestats.report import PackageReport
+from typestats.report import SCHEMA_VERSION, PackageReport
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from ._http import retry_client
@@ -51,7 +52,6 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
         removed += 1
         _logger.debug("  removed %s", json_file)
 
-    # remove empty subdirectories
     async for child in data_dir.iterdir():
         if await child.is_dir():
             with contextlib.suppress(OSError):
@@ -66,6 +66,14 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
         )
 
     return removed
+
+
+async def _is_current_schema(path: anyio.Path) -> bool:
+    try:
+        data = json.loads(await path.read_bytes())
+        return data.get("schema_version", 0) >= SCHEMA_VERSION
+    except (json.JSONDecodeError, OSError):
+        return False
 
 
 async def collect_project(  # noqa: PLR0913
@@ -93,7 +101,6 @@ async def collect_project(  # noqa: PLR0913
     )
     base_name = stubs_base_name(project.name)
 
-    # Pre-fetch available base versions once (used for per-version matching).
     base_available: dict[Version, FileDetail] | None = None
     if base_name is not None:
         base_available = await available_versions(client, base_name)
@@ -103,8 +110,19 @@ async def collect_project(  # noqa: PLR0913
     for version in sorted(eligible):
         out = data_dir / project.name / f"{version}.json"
         if await out.exists():
-            _logger.info("  %s %s - already collected, skipping", project.name, version)
-            continue
+            if await _is_current_schema(out):
+                _logger.info(
+                    "  %s %s - already collected, skipping",
+                    project.name,
+                    version,
+                )
+            else:
+                _logger.info(
+                    "  %s %s - outdated schema, re-collecting",
+                    project.name,
+                    version,
+                )
+                await out.unlink()
 
         _logger.info("  %s %s - analyzing...", project.name, version)
         file_detail = eligible[version]
@@ -115,13 +133,11 @@ async def collect_project(  # noqa: PLR0913
             _logger.warning("  %s %s - install failed, skipping", project.name, version)
             continue
 
-        # On first install, scan site-packages for *-stubs/ dirs if not already
-        # detected from the project name (handles e.g. boto3-stubs-lite).
+        # detect *-stubs/ dirs not derivable from the project name
         if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
             base_name = detected
             base_available = await available_versions(client, base_name)
 
-        # Find a base version whose major.minor matches this stubs version.
         if base_name is not None:
             assert base_available is not None
             base_ver = match_version(base_available, version)
@@ -191,7 +207,7 @@ async def collect_all(
     projects = load_projects(projects_path)
     _logger.info("Collecting data for %d projects...", len(projects))
 
-    # Remove data directories for projects no longer in the projects list
+    # prune data for unlisted projects
     project_names = {p.name for p in projects}
     if await data_dir.is_dir():
         async for child in data_dir.iterdir():

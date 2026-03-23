@@ -23,6 +23,7 @@ from typestats.analyze import (
 )
 from typestats.index import PyTyped
 from typestats.report import (
+    SCHEMA_VERSION,
     AttrReport,
     ClassReport,
     FunctionReport,
@@ -636,6 +637,35 @@ class TestPackageReportJson:
         assert restored.pypi.upload_time == "2025-01-01T00:00:00Z"
         assert restored.pypi.requires_python is None
         assert restored.pypi.size is None
+
+    def test_schema_version_in_json(self) -> None:
+        """JSON output includes schema_version with the current value."""
+        report = self._pkg(Symbol("x", _INT))
+        data = report.model_dump(mode="json")
+        assert data["schema_version"] == SCHEMA_VERSION
+
+    def test_schema_version_round_trip(self) -> None:
+        """schema_version survives JSON serialization round-trip."""
+        report = self._pkg(Symbol("x", _INT))
+        json_str = report.model_dump_json()
+        restored = PackageReport.model_validate_json(json_str)
+        assert restored.schema_version == SCHEMA_VERSION
+
+    def test_schema_version_missing_treated_as_zero(self) -> None:
+        """JSON without schema_version is treated as version 0 by consumers."""
+        report = self._pkg(Symbol("x", _INT))
+        data = report.model_dump(mode="json")
+        del data["schema_version"]
+        # The collector uses json.loads + .get("schema_version", 0)
+        assert data.get("schema_version", 0) == 0
+
+    def test_schema_version_is_first_field(self) -> None:
+        """schema_version appears first in JSON output."""
+        report = self._pkg(Symbol("x", _INT))
+        json_str = report.model_dump_json()
+        data = json.loads(json_str)
+        first_key = next(iter(data))
+        assert first_key == "schema_version"
 
 
 class TestPackageReportFromPath:

@@ -36,6 +36,8 @@ from .index import PublicSymbols, PyTyped
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
 __all__ = (
+    "MIN_TYPESTATS_VERSION",
+    "SCHEMA_VERSION",
     "AttrReport",
     "ClassReport",
     "FunctionReport",
@@ -46,6 +48,11 @@ __all__ = (
     "Report",
     "StubsOnly",
 )
+
+SCHEMA_VERSION: Final = 1
+"""Current report JSON schema version."""
+MIN_TYPESTATS_VERSION: Final = "0.2.0"
+"""Minimum `typestats` version that produces schema version `SCHEMA_VERSION`."""
 
 type _Symbols = Sequence[analyze.Symbol]
 type _SymbolMap = Mapping[anyio.Path, _Symbols]
@@ -570,6 +577,7 @@ class _ProjectUrls(TypedDict):
 class PackageReport(BaseModel):
     model_config: ClassVar = ConfigDict(frozen=True)
 
+    schema_version: int = SCHEMA_VERSION
     package: str
     version: str
     base_version: str | None = None

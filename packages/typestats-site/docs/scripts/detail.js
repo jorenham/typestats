@@ -89,7 +89,8 @@ async function handleUpload(root, file) {
       showUploadError(root, `<code>${escapeHtml(file.name)}</code> is not a valid typestats report (missing required fields).`)
       return
     }
-    await renderDetail(root, report, null, report.version)
+    const warn = schemaWarning(report)
+    await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
     showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
@@ -110,7 +111,8 @@ async function handlePaste(root, text) {
       showUploadError(root, "Pasted JSON is not a valid typestats report (missing required fields).")
       return
     }
-    await renderDetail(root, report, null, report.version)
+    const warn = schemaWarning(report)
+    await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
     showUploadError(root, `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`)
   }
@@ -127,7 +129,14 @@ function showUploadError(root, message) {
   root.appendChild(retry)
 }
 
-async function renderDetail(root, report, manifestEntry, version) {
+function schemaWarning(report) {
+  const v = report.schema_version
+  if (v != null && v >= REPORT_SCHEMA_VERSION) return null
+  return `This report was generated with an older version of <code>typestats</code>. `
+    + `Please upgrade to <code>typestats>=${MIN_TYPESTATS_VERSION}</code> and regenerate it.`
+}
+
+async function renderDetail(root, report, manifestEntry, version, warning = null) {
   const pkg = report.package
   const baseVer = report.base_version
   const hasDiff = manifestEntry && manifestEntry.versions.length >= 2
@@ -142,6 +151,9 @@ async function renderDetail(root, report, manifestEntry, version) {
   }
 
   const parts = []
+  if (warning) {
+    parts.push(`<div class="admonition warning"><p class="admonition-title">Outdated report</p><p>${warning}</p></div>`)
+  }
   const navLinks = []
   if (hasDiff) navLinks.push(`<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`)
   if (manifestEntry) {

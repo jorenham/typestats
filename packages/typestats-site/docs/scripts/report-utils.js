@@ -1,6 +1,9 @@
 const DATA_BASE_URL =
   "https://raw.githubusercontent.com/jorenham/typestats/data/reports"
 
+const REPORT_SCHEMA_VERSION = 1
+const MIN_TYPESTATS_VERSION = "0.2.0"
+
 const REPO_HOSTS = new Set([
   "github.com",
   "gitlab.com",
