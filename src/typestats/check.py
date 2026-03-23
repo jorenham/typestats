@@ -150,7 +150,9 @@ async def _resolve_editable_source(
             entry = raw_line.strip()
             if not entry or entry.startswith("#"):
                 continue
-            candidate = anyio.Path(entry)
+            entry_path = anyio.Path(entry)
+            candidate = entry_path if entry_path.is_absolute() else (sp / entry_path)
+            candidate = await candidate.resolve()
             if await candidate.is_dir() and (
                 result := await _find_package_in_root(candidate, names)
             ):
@@ -173,7 +175,11 @@ def _read_direct_url(dist: _Dist) -> anyio.Path | None:
     if not data.get("dir_info", {}).get("editable", False):
         return None
     parsed = urllib.parse.urlparse(url)
-    return anyio.Path(urllib.request.url2pathname(parsed.path))
+    base_path = anyio.Path(urllib.request.url2pathname(parsed.path))
+    subdirectory = data.get("subdirectory")
+    if isinstance(subdirectory, str) and subdirectory:
+        base_path /= subdirectory
+    return base_path
 
 
 async def _find_package_in_root(root: anyio.Path, names: _Names) -> anyio.Path | None:
@@ -182,9 +188,10 @@ async def _find_package_in_root(root: anyio.Path, names: _Names) -> anyio.Path |
         for variant in (name, name.replace("_", "-")):
             for base in (root, root / "src"):
                 candidate = base / variant
-                if await candidate.is_dir():
-                    _logger.debug("editable source: %s -> %s", name, candidate)
-                    return candidate
+                for marker in ("__init__.py", "__init__.pyi"):
+                    if await (candidate / marker).is_file():
+                        _logger.debug("editable source: %s -> %s", name, candidate)
+                        return candidate
     return None
 
 

@@ -201,6 +201,37 @@ class TestSourcePaths:
         result = await _source_paths(dist, anyio.Path(sp))
         assert result == (anyio.Path(pkg_dir),)
 
+    async def test_editable_pth_relative(self, tmp_path: Path) -> None:
+        sp, project_root, pkg_dir = self._editable_layout(tmp_path, "scipy-stubs")
+        rel = project_root.relative_to(sp, walk_up=True)
+        (sp / "scipy_stubs.pth").write_text(f"{rel}\n")
+
+        dist = self._mock_dist("scipy-stubs")
+
+        result = await _source_paths(dist, anyio.Path(sp))
+        assert result == (anyio.Path(pkg_dir),)
+
+    async def test_editable_direct_url_subdirectory(self, tmp_path: Path) -> None:
+        sp = tmp_path / "lib" / "site-packages"
+        sp.mkdir(parents=True)
+        monorepo = tmp_path / "monorepo"
+        pkg_dir = monorepo / "packages" / "mypkg" / "mypkg"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.py").touch()
+
+        direct_url = json.dumps({
+            "url": monorepo.as_uri(),
+            "dir_info": {"editable": True},
+            "subdirectory": "packages/mypkg",
+        })
+        dist = self._mock_dist(
+            "mypkg",
+            read_text=lambda name: direct_url if name == "direct_url.json" else None,
+        )
+
+        result = await _source_paths(dist, anyio.Path(sp))
+        assert result == (anyio.Path(pkg_dir),)
+
     async def test_editable_src_layout(self, tmp_path: Path) -> None:
         sp, project_root, pkg_dir = self._editable_layout(
             tmp_path,
