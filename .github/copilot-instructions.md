@@ -70,3 +70,5 @@ For a given PyPI project the tool runs an end-to-end pipeline:
   `trace_origins=False` (public import names) so FQNs match directly.
 - **Private re-exports** -- symbols re-exported from `_private` modules via `__all__` are followed
   correctly.
+- **Schema versioning** -- `SCHEMA_VERSION` in `src/typestats/schema.py` must be incremented when
+  making backwards-incompatible changes to `PackageReport` JSON serialization.
