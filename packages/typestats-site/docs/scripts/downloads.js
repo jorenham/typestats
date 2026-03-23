@@ -6,11 +6,12 @@ document$.subscribe(async () => {
 
   const now = new Date()
   // dataset updates on the 1st of each month; use previous month's key until then
-  const key = now.getDate() >= 2
-    ? `${now.getFullYear()}-${now.getMonth()}`
-    : now.getMonth() === 0
-      ? `${now.getFullYear() - 1}-11`
-      : `${now.getFullYear()}-${now.getMonth() - 1}`
+  const key =
+    now.getDate() >= 2
+      ? `${now.getFullYear()}-${now.getMonth()}`
+      : now.getMonth() === 0
+        ? `${now.getFullYear() - 1}-11`
+        : `${now.getFullYear()}-${now.getMonth() - 1}`
   const CACHE_KEY = `pypi-downloads-${key}`
 
   let downloads
@@ -26,10 +27,12 @@ document$.subscribe(async () => {
   if (!downloads) {
     try {
       const resp = await fetch(
-        "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json"
+        "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json",
       )
       if (!resp.ok) {
-        console.error(`Failed to fetch PyPI download stats: ${resp.status} ${resp.statusText}`)
+        console.error(
+          `Failed to fetch PyPI download stats: ${resp.status} ${resp.statusText}`,
+        )
         return
       }
       const json = await resp.json()
@@ -40,10 +43,7 @@ document$.subscribe(async () => {
       }
 
       try {
-        localStorage.setItem(
-          CACHE_KEY,
-          JSON.stringify(Array.from(downloads))
-        )
+        localStorage.setItem(CACHE_KEY, JSON.stringify(Array.from(downloads)))
       } catch {
         // ignore storage quota errors
       }
