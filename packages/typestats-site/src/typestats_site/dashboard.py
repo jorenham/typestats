@@ -19,6 +19,7 @@ from typestats._type import StrPath
 from typestats.index import PyTyped
 from typestats.projects import load_projects
 from typestats.report import PackageReport, StubsOnly
+from typestats.schema import MIN_TYPESTATS_VERSION, SCHEMA_VERSION
 
 __all__ = ("build_site",)
 
@@ -254,7 +255,18 @@ async def build_site(
         dashboard_dir = tmp_docs / "dashboard"
         await dashboard_dir.mkdir(parents=True, exist_ok=True)
 
-        pages = [(str(dashboard_dir / "index.md"), IndexPage(reports).render())]
+        report_md = (
+            "---\nhide:\n  - navigation\n---\n\n"
+            '<div id="detail-root"'
+            f' data-schema-version="{SCHEMA_VERSION}"'
+            f' data-min-typestats-version="{MIN_TYPESTATS_VERSION}">\n'
+            "  <p>Loading package report...</p>\n"
+            "</div>\n"
+        )
+        pages = [
+            (str(dashboard_dir / "index.md"), IndexPage(reports).render()),
+            (str(dashboard_dir / "report.md"), report_md),
+        ]
         await _write_pages(pages)
 
         manifest_path = dashboard_dir / "manifest.json"

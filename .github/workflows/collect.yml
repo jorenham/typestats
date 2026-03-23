@@ -6,10 +6,9 @@ on:
     - cron: "0 6 * * *"
   push:
     branches: [main]
-    paths: [packages/typestats-site/projects.toml]
-  pull_request:
-    branches: [main]
-    types: [closed]
+    paths:
+      - packages/typestats-site/projects.toml
+      - src/typestats/schema.py
   workflow_dispatch:
 
 permissions:
@@ -21,9 +20,6 @@ concurrency:
 
 jobs:
   collect:
-    if: >-
-      github.event_name != 'pull_request'
-      || (github.event.pull_request.merged && contains(github.event.pull_request.labels.*.name, 'cmd: recollect'))
     runs-on: ubuntu-latest
     timeout-minutes: 120
     environment: reports
@@ -44,8 +40,9 @@ jobs:
       - name: collect type-coverage data
         id: collect
         run: >-
-          uv run -m typestats_site collect --data-dir _data/reports --backfill-limit 10
-          ${{ github.event_name == 'pull_request' && '--clean' || '' }}
+          uv run -m typestats_site collect
+           --data-dir _data/reports
+           --backfill-limit 10
 
       - name: Commit and push new data
         if: always() && steps.collect.outcome != 'cancelled'

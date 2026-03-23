@@ -33,6 +33,7 @@ from pydantic import (
 from . import analyze
 from ._type import StrPath, StrPaths
 from .index import PublicSymbols, PyTyped
+from .schema import MIN_TYPESTATS_VERSION, SCHEMA_VERSION
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName
 
 __all__ = (
@@ -48,11 +49,6 @@ __all__ = (
     "Report",
     "StubsOnly",
 )
-
-SCHEMA_VERSION: Final = 1
-"""Current report JSON schema version."""
-MIN_TYPESTATS_VERSION: Final = "0.2.0"
-"""Minimum `typestats` version that produces schema version `SCHEMA_VERSION`."""
 
 type _Symbols = Sequence[analyze.Symbol]
 type _SymbolMap = Mapping[anyio.Path, _Symbols]

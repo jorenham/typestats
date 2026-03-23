@@ -130,10 +130,13 @@ function showUploadError(root, message) {
 }
 
 function schemaWarning(report) {
+  const root = document.getElementById("detail-root")
+  const schemaVersion = Number(root.dataset.schemaVersion)
+  const minVersion = root.dataset.minTypestatsVersion
   const v = report.schema_version
-  if (v != null && v >= REPORT_SCHEMA_VERSION) return null
+  if (v != null && v >= schemaVersion) return null
   return `This report was generated with an older version of <code>typestats</code>. `
-    + `Please upgrade to <code>typestats>=${MIN_TYPESTATS_VERSION}</code> and regenerate it.`
+    + `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
 }
 
 async function renderDetail(root, report, manifestEntry, version, warning = null) {
