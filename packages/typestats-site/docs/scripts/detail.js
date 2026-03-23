@@ -134,7 +134,7 @@ function schemaWarning(report) {
   const schemaVersion = Number(root.dataset.schemaVersion)
   const minVersion = root.dataset.minTypestatsVersion
   const v = report.schema_version
-  if (v != null && v >= schemaVersion) return null
+  if ((v ?? schemaVersion) >= schemaVersion) return null
   return `This report was generated with an older version of <code>typestats</code>. `
     + `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
 }

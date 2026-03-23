@@ -71,7 +71,7 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
 async def _is_current_schema(path: anyio.Path) -> bool:
     try:
         data = json.loads(await path.read_bytes())
-        return data.get("schema_version", 0) >= SCHEMA_VERSION
+        return data.get("schema_version", 1) >= SCHEMA_VERSION
     except (json.JSONDecodeError, OSError):
         return False
 

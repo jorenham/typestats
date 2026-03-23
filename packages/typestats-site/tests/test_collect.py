@@ -139,10 +139,9 @@ class TestCollectProject:
         """When the JSON exists but has an outdated schema, it is re-collected."""
         name, version = "mypkg", "2.5.0"
 
-        # Pre-create the output file without schema_version (treated as 0)
         out = tmp_path / name / f"{version}.json"
         out.parent.mkdir(parents=True)
-        out.write_text("{}")
+        out.write_text(json.dumps({"schema_version": 0}))
 
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
