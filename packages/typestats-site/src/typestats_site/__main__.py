@@ -101,7 +101,9 @@ async def _run(cmd: Collect | Dashboard) -> None:
             logging.getLogger().setLevel(logging.INFO)
 
             await build_site(
-                anyio.Path(cmd.data_dir), anyio.Path(cmd.site_dir), cmd.projects
+                anyio.Path(cmd.data_dir),
+                anyio.Path(cmd.site_dir),
+                cmd.projects,
             )
 
 
@@ -111,7 +113,7 @@ def app() -> None:
     logging.basicConfig(
         format="%(asctime)s :: %(name)s :: %(levelname)s :: %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
-        level=logging.WARNING,
+        level=logging.INFO,
     )
 
     prog = "typestats-site"
