@@ -14,6 +14,7 @@ import pytest
 from typestats.check import (
     _is_package_dir_name,
     _resolve,
+    _source_paths,
     _top_level_names,
     check,
     report,
@@ -33,11 +34,7 @@ _original_from_path = PackageReport.from_path
 
 @pytest.fixture(autouse=True, scope="module")
 def _cache_from_path() -> Any:
-    """Cache `PackageReport.from_path` results across the module.
-
-    Every `check()` call for the same package re-parses the entire codebase.
-    Since tests never mutate the source, caching the report cuts redundant work.
-    """  # noqa: DOC402
+    """Avoid re-parsing source for every `check()` call."""  # noqa: DOC402
 
     async def cached(pkg: str, /, *args: Any, **kwargs: Any) -> PackageReport:
         if pkg not in _from_path_cache:
@@ -66,14 +63,11 @@ class TestIsPackageDirName:
 class TestTopLevelNames:
     def test_single_file_module(self) -> None:
         """Detect top-level .py files from dist metadata."""
-
         dist = importlib.metadata.distribution("pytest")
-        # pytest is a package, not a single-file module
         top = _top_level_names(dist)
-        assert "pytest" not in top.modules  # it's a directory, not a .py file
+        assert "pytest" not in top.modules
 
     def test_single_file_module_detected(self) -> None:
-        """A top-level .py file in dist.files is reported as a module."""
         dist = MagicMock(spec=importlib.metadata.Distribution)
         dist.files = [PurePosixPath("six.py")]
         top = _top_level_names(dist)
@@ -81,21 +75,18 @@ class TestTopLevelNames:
         assert top.packages == frozenset()
 
     def test_pyi_module_detected(self) -> None:
-        """A top-level .pyi file is reported as a module."""
         dist = MagicMock(spec=importlib.metadata.Distribution)
         dist.files = [PurePosixPath("six.pyi")]
         top = _top_level_names(dist)
         assert "six.pyi" in top.modules
 
     def test_underscore_module_excluded(self) -> None:
-        """Top-level modules starting with _ are excluded."""
         dist = MagicMock(spec=importlib.metadata.Distribution)
         dist.files = [PurePosixPath("_internal.py")]
         top = _top_level_names(dist)
         assert top.modules == frozenset()
 
     def test_package_dir_detected(self) -> None:
-        """A multi-part path yields a package directory name."""
         dist = MagicMock(spec=importlib.metadata.Distribution)
         dist.files = [PurePosixPath("mypackage/__init__.py")]
         top = _top_level_names(dist)
@@ -103,8 +94,6 @@ class TestTopLevelNames:
         assert top.modules == frozenset()
 
     def test_no_files(self) -> None:
-        """Distribution with no files returns empty."""
-
         dist = MagicMock(spec=importlib.metadata.Distribution)
         dist.files = None
         top = _top_level_names(dist)
@@ -112,33 +101,145 @@ class TestTopLevelNames:
         assert top.modules == frozenset()
 
 
+class TestSourcePaths:
+    pytestmark = pytest.mark.anyio
+
+    @staticmethod
+    def _mock_dist(
+        name: str,
+        *,
+        files: list[PurePosixPath] | None = None,
+        read_text: Any = None,
+    ) -> MagicMock:
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.metadata = {"Name": name}
+        dist.files = files
+        if callable(read_text):
+            dist.read_text = read_text
+        else:
+            dist.read_text.return_value = read_text
+        return dist
+
+    @staticmethod
+    def _editable_layout(
+        tmp_path: Path,
+        pkg_name: str,
+        *,
+        src_layout: bool = False,
+    ) -> tuple[Path, Path, Path]:
+        """Create site-packages + project source tree. Returns (sp, root, pkg)."""
+        sp = tmp_path / "lib" / "site-packages"
+        sp.mkdir(parents=True)
+        project_root = tmp_path / "project"
+        if src_layout:
+            pkg_dir = project_root / "src" / pkg_name
+        else:
+            pkg_dir = project_root / pkg_name
+        pkg_dir.mkdir(parents=True)
+        suffix = ".pyi" if pkg_name.endswith("-stubs") else ".py"
+        (pkg_dir / f"__init__{suffix}").touch()
+        return sp, project_root, pkg_dir
+
+    async def test_direct_package_dir(self, tmp_path: Path) -> None:
+        (tmp_path / "mypkg").mkdir()
+        (tmp_path / "mypkg" / "__init__.py").touch()
+
+        dist = self._mock_dist(
+            "mypkg",
+            files=[
+                PurePosixPath("mypkg/__init__.py"),
+                PurePosixPath("mypkg/core.py"),
+            ],
+        )
+
+        result = await _source_paths(dist, anyio.Path(tmp_path))
+        assert result == (anyio.Path(tmp_path / "mypkg"),)
+
+    async def test_editable_dotdot_paths(self, tmp_path: Path) -> None:
+        sp, _, pkg_dir = self._editable_layout(tmp_path, "scipy-stubs")
+
+        dist = self._mock_dist(
+            "scipy-stubs",
+            files=[
+                PurePosixPath("../../project/scipy-stubs/__init__.pyi"),
+                PurePosixPath("scipy_stubs-1.0.dist-info/METADATA"),
+            ],
+        )
+        dist.locate_file = lambda f: sp / f
+
+        result = await _source_paths(dist, anyio.Path(sp))
+        assert result == (anyio.Path(pkg_dir),)
+
+    async def test_no_sources_found(self, tmp_path: Path) -> None:
+        dist = self._mock_dist("ghost")
+
+        with patch.object(importlib.util, "find_spec", return_value=None):
+            result = await _source_paths(dist, anyio.Path(tmp_path))
+        assert result == ()
+
+    async def test_editable_direct_url_json(self, tmp_path: Path) -> None:
+        sp, project_root, pkg_dir = self._editable_layout(tmp_path, "scipy-stubs")
+
+        direct_url = json.dumps({
+            "url": f"file://{project_root}",
+            "dir_info": {"editable": True},
+        })
+        dist = self._mock_dist(
+            "scipy-stubs",
+            read_text=lambda name: direct_url if name == "direct_url.json" else None,
+        )
+
+        result = await _source_paths(dist, anyio.Path(sp))
+        assert result == (anyio.Path(pkg_dir),)
+
+    async def test_editable_pth_file(self, tmp_path: Path) -> None:
+        sp, project_root, pkg_dir = self._editable_layout(tmp_path, "scipy-stubs")
+        (sp / "scipy_stubs.pth").write_text(f"{project_root}\n")
+
+        dist = self._mock_dist("scipy-stubs")
+
+        result = await _source_paths(dist, anyio.Path(sp))
+        assert result == (anyio.Path(pkg_dir),)
+
+    async def test_editable_src_layout(self, tmp_path: Path) -> None:
+        sp, project_root, pkg_dir = self._editable_layout(
+            tmp_path,
+            "mypkg",
+            src_layout=True,
+        )
+
+        direct_url = json.dumps({
+            "url": f"file://{project_root}",
+            "dir_info": {"editable": True},
+        })
+        dist = self._mock_dist(
+            "mypkg",
+            read_text=lambda name: direct_url if name == "direct_url.json" else None,
+        )
+
+        result = await _source_paths(dist, anyio.Path(sp))
+        assert result == (anyio.Path(pkg_dir),)
+
+
 class TestCheckNotInstalled:
     pytestmark = pytest.mark.anyio
 
     async def test_nonexistent_package(self) -> None:
-        """check() exits cleanly for a package that is not installed."""
         with pytest.raises(SystemExit, match="not installed"):
             await check("nonexistent_package_xyz_12345")
 
     async def test_stubs_missing_base(self) -> None:
-        """check() exits cleanly when a stubs package's base is not installed."""
-        # This will only trigger if the stubs package itself IS installed
-        # but the base is not. Hard to test without mocking, so we test
-        # the error path for a totally missing stubs package instead.
         with pytest.raises(SystemExit, match="not installed"):
             await check("nonexistent-stubs")
 
 
 class TestResolveStubs:
-    """Edge-case tests for _resolve with stubs packages."""
-
     pytestmark = pytest.mark.anyio
 
     async def test_stubs_base_not_installed(
         self,
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
-        """_resolve exits when the base package for a stubs dist is missing."""
         stubs_dist = MagicMock(spec=importlib.metadata.Distribution)
         stubs_dist.metadata = {"Version": "1.0", "Name": "foo-stubs"}
         stubs_dist.locate_file.return_value = "/fake/sp"
@@ -153,11 +254,11 @@ class TestResolveStubs:
             await _resolve("foo-stubs")
 
     async def test_stubs_base_no_sources(self, monkeypatch: pytest.MonkeyPatch) -> None:
-        """_resolve exits when the base package has no discoverable sources."""
         stubs_dist = MagicMock(spec=importlib.metadata.Distribution)
         stubs_dist.metadata = {"Version": "1.0", "Name": "foo-stubs"}
         stubs_dist.locate_file.return_value = "/fake/sp"
         stubs_dist.files = None
+        stubs_dist.read_text.return_value = None
 
         base_dist = MagicMock(spec=importlib.metadata.Distribution)
         base_dist.metadata = {"Version": "2.0", "Name": "foo"}
@@ -179,12 +280,9 @@ class TestResolveStubs:
 
 
 class TestCheckInstalled:
-    """Integration tests that run `check` against real installed packages."""
-
     pytestmark = pytest.mark.anyio
 
     async def test_check_pytest(self, capsys: pytest.CaptureFixture[str]) -> None:
-        """Check pytest (a regular site-packages install)."""
         await check("pytest")
         out = capsys.readouterr().out.strip()
         m = _OUTPUT_RE.search(out)
@@ -192,7 +290,6 @@ class TestCheckInstalled:
         assert int(m["typable"]) > 0
 
     async def test_check_typestats(self, capsys: pytest.CaptureFixture[str]) -> None:
-        """Check typestats (an editable install)."""
         await check("typestats")
         out = capsys.readouterr().out.strip()
         m = _OUTPUT_RE.search(out)
@@ -203,8 +300,6 @@ class TestCheckInstalled:
         self,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """`typestats report` writes valid JSON to stdout."""
-
         await report("typestats")
         out = capsys.readouterr().out
 
@@ -215,8 +310,6 @@ class TestCheckInstalled:
 
 
 class TestFailUnderFrom:
-    """Tests for the --fail-under-from flag."""
-
     pytestmark = pytest.mark.anyio
 
     async def test_pass_when_coverage_meets_baseline(
@@ -224,24 +317,17 @@ class TestFailUnderFrom:
         tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """No failure when current coverage >= baseline from report."""
-
-        # Generate a baseline report, then check against it (same package).
         await report("typestats")
         report_json = capsys.readouterr().out
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(report_json)
 
-        # Should pass: coverage is identical to the baseline.
         await check("typestats", fail_under_from=report_path)
         out = capsys.readouterr().out
         assert "OK" in out
 
     async def test_fail_when_coverage_below_baseline(self, tmp_path: Path) -> None:
-        """Exits with code 1 when baseline report has higher coverage."""
-
-        # Craft a baseline where typed > typable, giving >100% coverage
-        # which is impossible to meet.
+        # Baseline with >100% coverage -- impossible to meet.
         fake_report = {"n_typed": 200, "n_any": 0, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
@@ -254,33 +340,21 @@ class TestFailUnderFrom:
         tmp_path: Path,
         capsys: pytest.CaptureFixture[str],
     ) -> None:
-        """With `--strict`, the baseline coverage accounts for `n_any`."""
-
-        # Baseline: 80 typed, 20 any, 100 typable.
-        # Non-strict coverage = (80 + 20) / 100 = 100%.
-        # Strict coverage = 80 / 100 = 80%.
-        #
-        # Without `--strict` the derived threshold is 100%, which would
-        # fail for any package below 100%. With `--strict` the threshold
-        # is 80%, so a package above 80% passes.
+        # Non-strict = (80+20)/100 = 100%; strict = 80/100 = 80%.
         fake_report = {"n_typed": 80, "n_any": 20, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
 
-        # typestats has 100% strict coverage, so 80% threshold passes.
         await check("typestats", strict=True, fail_under_from=report_path)
         out = capsys.readouterr().out
         assert "OK" in out
         assert "80.00%" in out
 
     async def test_overrides_fail_under(self, tmp_path: Path) -> None:
-        """The `--fail-under-from` flag overrides an explicit `--fail-under` value."""
-
-        # Craft a baseline with >100% coverage (impossible to meet).
+        # >100% baseline overrides the explicit fail_under=0.
         fake_report = {"n_typed": 200, "n_any": 0, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
         await report_path.write_text(json.dumps(fake_report))
 
-        # Even though `fail_under=0` would pass, the report overrides it.
         with pytest.raises(SystemExit):
             await check("typestats", fail_under=0, fail_under_from=report_path)
