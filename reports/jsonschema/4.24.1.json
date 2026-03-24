@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "jsonschema",
   "version": "4.24.1",
   "base_version": null,
@@ -99,7 +99,7 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "jsonschema.validators.Draft6Validator",
+          "name": "jsonschema.validators.Draft3Validator",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -115,7 +115,15 @@
         },
         {
           "kind": "attr",
-          "name": "jsonschema.validators.Draft201909Validator",
+          "name": "jsonschema.validators.Draft202012Validator",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "jsonschema.validators.Draft4Validator",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -135,7 +143,7 @@
         },
         {
           "kind": "attr",
-          "name": "jsonschema.validators.Draft4Validator",
+          "name": "jsonschema.validators.Draft201909Validator",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -143,15 +151,7 @@
         },
         {
           "kind": "attr",
-          "name": "jsonschema.validators.Draft3Validator",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "jsonschema.validators.Draft202012Validator",
+          "name": "jsonschema.validators.Draft6Validator",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -171,18 +171,6 @@
         },
         {
           "kind": "function",
-          "name": "jsonschema.validators.validates",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "jsonschema.validators.validator_for",
           "n_typed": 2,
           "n_any": 0,
@@ -192,6 +180,18 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "jsonschema.validators.validates",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -244,143 +244,6 @@
       "n_type_ignores": 1
     },
     {
-      "path": "jsonschema/_format.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "jsonschema._format.FormatChecker",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FormatChecker.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "FormatChecker.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "FormatChecker.checks",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FormatChecker.cls_checks",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FormatChecker._cls_checks",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FormatChecker.check",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FormatChecker.conforms",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "FormatChecker.checkers",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 19,
-          "n_typed": 17,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 7,
-          "n_method_overloads": 7,
-          "n_method_params": 11,
-          "n_attrs": 1,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "jsonschema._format",
-      "names": [
-        "jsonschema._format.FormatChecker"
-      ],
-      "n_typable": 19,
-      "n_typed": 17,
-      "n_any": 0,
-      "n_untyped": 2,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_overloads": 7,
-      "n_method_params": 11,
-      "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "jsonschema/exceptions.py",
       "symbol_reports": [
         {
@@ -388,24 +251,7 @@
           "name": "jsonschema.exceptions.SchemaError",
           "methods": [],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "SchemaError._word_for_schema_in_error_message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SchemaError._word_for_instance_in_error_message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
+          "attrs": [],
           "n_typable": 0,
           "n_typed": 0,
           "n_any": 0,
@@ -416,7 +262,7 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 2,
+          "n_attrs": 0,
           "n_properties": 0
         },
         {
@@ -424,24 +270,7 @@
           "name": "jsonschema.exceptions.ValidationError",
           "methods": [],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ValidationError._word_for_schema_in_error_message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ValidationError._word_for_instance_in_error_message",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
+          "attrs": [],
           "n_typable": 0,
           "n_typed": 0,
           "n_any": 0,
@@ -452,8 +281,24 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 2,
+          "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "jsonschema.exceptions.STRONG_MATCHES",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "jsonschema.exceptions.WEAK_MATCHES",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -507,30 +352,6 @@
           "n_method_params": 1,
           "n_attrs": 1,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "jsonschema.exceptions.best_match",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "jsonschema.exceptions.by_relevance",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -592,14 +413,6 @@
           "n_method_params": 2,
           "n_attrs": 2,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "jsonschema.exceptions.relevance",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         },
         {
           "kind": "class",
@@ -703,14 +516,6 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "ErrorTree._instance",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
               "name": "ErrorTree.errors",
               "n_typed": 1,
               "n_any": 0,
@@ -728,8 +533,28 @@
           "n_methods": 7,
           "n_method_overloads": 7,
           "n_method_params": 5,
-          "n_attrs": 2,
+          "n_attrs": 1,
           "n_properties": 1
+        },
+        {
+          "kind": "attr",
+          "name": "jsonschema.exceptions.relevance",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "jsonschema.exceptions.best_match",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -801,20 +626,16 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "jsonschema.exceptions.WEAK_MATCHES",
-          "n_typed": 1,
+          "kind": "function",
+          "name": "jsonschema.exceptions.by_relevance",
+          "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "jsonschema.exceptions.STRONG_MATCHES",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -843,7 +664,7 @@
       "n_method_overloads": 13,
       "n_method_params": 11,
       "n_classes": 6,
-      "n_attrs": 15,
+      "n_attrs": 10,
       "n_properties": 1,
       "n_type_ignores": 0
     },
@@ -916,18 +737,9 @@
             }
           ],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TypeChecker._type_checkers",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 12,
-          "n_typed": 7,
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 6,
           "n_any": 0,
           "n_untyped": 5,
           "n_functions": 0,
@@ -936,7 +748,7 @@
           "n_methods": 5,
           "n_method_overloads": 5,
           "n_method_params": 6,
-          "n_attrs": 1,
+          "n_attrs": 0,
           "n_properties": 0
         }
       ],
@@ -945,8 +757,8 @@
       "names": [
         "jsonschema._types.TypeChecker"
       ],
-      "n_typable": 12,
-      "n_typed": 7,
+      "n_typable": 11,
+      "n_typed": 6,
       "n_any": 0,
       "n_untyped": 5,
       "n_functions": 0,
@@ -955,6 +767,131 @@
       "n_methods": 5,
       "n_method_overloads": 5,
       "n_method_params": 6,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "jsonschema/_format.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "jsonschema._format.FormatChecker",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FormatChecker.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "FormatChecker.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "FormatChecker.checks",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FormatChecker.cls_checks",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FormatChecker.check",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FormatChecker.conforms",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FormatChecker.checkers",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 16,
+          "n_typed": 14,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 9,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "jsonschema._format",
+      "names": [
+        "jsonschema._format.FormatChecker"
+      ],
+      "n_typable": 16,
+      "n_typed": 14,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_overloads": 6,
+      "n_method_params": 9,
       "n_classes": 1,
       "n_attrs": 1,
       "n_properties": 0,
@@ -965,7 +902,31 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "jsonschema.cli.run",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
           "name": "jsonschema.cli.parse_args",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "jsonschema.cli.main",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -982,30 +943,6 @@
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "jsonschema.cli.main",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "jsonschema.cli.run",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -1077,18 +1014,18 @@
   ],
   "typecheckers": {},
   "n_modules": 6,
-  "n_typable": 113,
-  "n_typed": 43,
+  "n_typable": 109,
+  "n_typed": 39,
   "n_any": 0,
   "n_untyped": 70,
   "n_functions": 10,
   "n_function_overloads": 10,
   "n_function_params": 30,
-  "n_methods": 25,
-  "n_method_params": 28,
-  "n_method_overloads": 25,
+  "n_methods": 24,
+  "n_method_params": 26,
+  "n_method_overloads": 24,
   "n_classes": 9,
-  "n_attrs": 24,
+  "n_attrs": 18,
   "n_properties": 1,
   "type_ignores": [
     {

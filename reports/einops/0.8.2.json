@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "einops",
   "version": "0.8.2",
   "base_version": null,
@@ -53,128 +53,11 @@
   },
   "module_reports": [
     {
-      "path": "einops/packing.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "einops.packing.pack",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "einops.packing.unpack",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "einops.packing.prod",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.packing.Tensor",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "einops.packing.analyze_pattern",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "einops.packing.Shape",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "einops.packing",
-      "names": [
-        "einops.packing.Shape",
-        "einops.packing.Tensor",
-        "einops.packing.analyze_pattern",
-        "einops.packing.pack",
-        "einops.packing.prod",
-        "einops.packing.unpack"
-      ],
-      "n_typable": 13,
-      "n_typed": 13,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 4,
-      "n_function_overloads": 4,
-      "n_function_params": 8,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 2,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "einops/einops.py",
       "symbol_reports": [
         {
           "kind": "function",
           "name": "einops.einops.rearrange",
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 2,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "einops.einops.parse_shape",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "einops.einops.repeat",
           "n_typed": 3,
           "n_any": 1,
           "n_untyped": 0,
@@ -210,6 +93,18 @@
         },
         {
           "kind": "function",
+          "name": "einops.einops.parse_shape",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "einops.einops.einsum",
           "n_typed": 6,
           "n_any": 0,
@@ -221,8 +116,52 @@
           "n_function_params": 5
         },
         {
+          "kind": "function",
+          "name": "einops.einops.repeat",
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 2,
+          "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.FakeHashableAxesLengths",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "attr",
           "name": "einops.einops.ReductionCallable",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.HashableAxesLengths",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.CookedRecipe",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.Reduction",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -235,22 +174,6 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.HashableAxesLengths",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.FakeHashableAxesLengths",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         },
         {
           "kind": "class",
@@ -340,22 +263,6 @@
           "n_method_params": 7,
           "n_attrs": 7,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.CookedRecipe",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.Reduction",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -387,6 +294,99 @@
       "n_method_params": 7,
       "n_classes": 1,
       "n_attrs": 13,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "einops/packing.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "einops.packing.unpack",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "einops.packing.pack",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "einops.packing.prod",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "einops.packing.analyze_pattern",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "einops.packing.Shape",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.packing.Tensor",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "einops.packing",
+      "names": [
+        "einops.packing.Shape",
+        "einops.packing.Tensor",
+        "einops.packing.analyze_pattern",
+        "einops.packing.pack",
+        "einops.packing.prod",
+        "einops.packing.unpack"
+      ],
+      "n_typable": 13,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_overloads": 4,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -438,31 +438,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "einops.array_api.pack",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "einops.array_api.rearrange",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "einops.array_api.repeat",
           "n_typed": 3,
           "n_any": 0,
           "n_untyped": 1,
@@ -483,6 +459,18 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "einops.array_api.pack",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -507,6 +495,18 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "einops.array_api.repeat",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -537,6 +537,103 @@
     {
       "path": "einops/layers/__init__.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "einops.layers.RearrangeMixin",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RearrangeMixin.__init__",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RearrangeMixin.__repr__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RearrangeMixin.multirecipe",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RearrangeMixin.__getstate__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RearrangeMixin.__setstate__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RearrangeMixin.pattern",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RearrangeMixin.axes_lengths",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 3,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
         {
           "kind": "attr",
           "name": "einops.layers.__author__",
@@ -584,18 +681,6 @@
               "n_params": 0,
               "n_function_overloads": 1,
               "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ReduceMixin._apply_recipe",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             },
             {
               "kind": "function",
@@ -649,126 +734,17 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 14,
+          "n_typable": 12,
           "n_typed": 3,
           "n_any": 1,
-          "n_untyped": 10,
+          "n_untyped": 8,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 5,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.RearrangeMixin",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RearrangeMixin.__init__",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "RearrangeMixin.__repr__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "RearrangeMixin.multirecipe",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "RearrangeMixin._apply_recipe",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "RearrangeMixin.__getstate__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "RearrangeMixin.__setstate__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "RearrangeMixin.pattern",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "RearrangeMixin.axes_lengths",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 12,
-          "n_typed": 4,
-          "n_any": 1,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
+          "n_methods": 5,
+          "n_method_overloads": 5,
           "n_method_params": 4,
-          "n_attrs": 2,
+          "n_attrs": 3,
           "n_properties": 0
         }
       ],
@@ -779,16 +755,16 @@
         "einops.layers.ReduceMixin",
         "einops.layers.__author__"
       ],
-      "n_typable": 26,
+      "n_typable": 22,
       "n_typed": 7,
       "n_any": 2,
-      "n_untyped": 17,
+      "n_untyped": 13,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 9,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 7,
       "n_classes": 2,
       "n_attrs": 6,
       "n_properties": 0,
@@ -799,11 +775,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "einops.layers.flax.EinMix",
+          "name": "einops.layers.flax.Rearrange",
           "methods": [
             {
               "kind": "function",
-              "name": "EinMix.setup",
+              "name": "Rearrange.setup",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -815,31 +791,7 @@
             },
             {
               "kind": "function",
-              "name": "EinMix._create_parameters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix._create_rearrange_layers",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.__call__",
+              "name": "Rearrange.__call__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -854,7 +806,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "EinMix.pattern",
+              "name": "Rearrange.pattern",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -862,41 +814,33 @@
             },
             {
               "kind": "attr",
-              "name": "EinMix.weight_shape",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EinMix.bias_shape",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "EinMix.sizes",
+              "name": "Rearrange.sizes",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
               "n_typable": 1
             }
           ],
-          "n_typable": 17,
-          "n_typed": 8,
+          "n_typable": 5,
+          "n_typed": 2,
           "n_any": 0,
-          "n_untyped": 9,
+          "n_untyped": 3,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 9,
-          "n_attrs": 4,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_attrs": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.flax.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -969,11 +913,11 @@
         },
         {
           "kind": "class",
-          "name": "einops.layers.flax.Rearrange",
+          "name": "einops.layers.flax.EinMix",
           "methods": [
             {
               "kind": "function",
-              "name": "Rearrange.setup",
+              "name": "EinMix.setup",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -985,7 +929,7 @@
             },
             {
               "kind": "function",
-              "name": "Rearrange.__call__",
+              "name": "EinMix.__call__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1000,7 +944,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "Rearrange.pattern",
+              "name": "EinMix.pattern",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -1008,15 +952,31 @@
             },
             {
               "kind": "attr",
-              "name": "Rearrange.sizes",
+              "name": "EinMix.weight_shape",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EinMix.bias_shape",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EinMix.sizes",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
               "n_typable": 1
             }
           ],
-          "n_typable": 5,
-          "n_typed": 2,
+          "n_typable": 7,
+          "n_typed": 4,
           "n_any": 0,
           "n_untyped": 3,
           "n_functions": 0,
@@ -1025,16 +985,8 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 1,
-          "n_attrs": 2,
+          "n_attrs": 4,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.layers.flax.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1045,16 +997,16 @@
         "einops.layers.flax.Reduce",
         "einops.layers.flax.__author__"
       ],
-      "n_typable": 28,
-      "n_typed": 13,
+      "n_typable": 18,
+      "n_typed": 9,
       "n_any": 0,
-      "n_untyped": 15,
+      "n_untyped": 9,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 8,
-      "n_method_overloads": 8,
-      "n_method_params": 11,
+      "n_methods": 6,
+      "n_method_overloads": 6,
+      "n_method_params": 3,
       "n_classes": 3,
       "n_attrs": 10,
       "n_properties": 0,
@@ -1106,94 +1058,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "einops.layers.oneflow.EinMix",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EinMix._create_parameters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix._create_rearrange_layers",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 12,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 9,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.oneflow.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "einops.layers.oneflow.Rearrange",
           "methods": [
             {
@@ -1231,93 +1095,10 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "einops.layers.oneflow",
-      "names": [
-        "einops.layers.oneflow.EinMix",
-        "einops.layers.oneflow.Rearrange",
-        "einops.layers.oneflow.Reduce",
-        "einops.layers.oneflow.__author__"
-      ],
-      "n_typable": 16,
-      "n_typed": 4,
-      "n_any": 0,
-      "n_untyped": 12,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 5,
-      "n_method_overloads": 5,
-      "n_method_params": 11,
-      "n_classes": 3,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "einops/layers/paddle.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "einops.layers.paddle.EinMix",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EinMix._create_parameters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix._create_rearrange_layers",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 12,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 9,
-          "n_attrs": 0,
-          "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "einops.layers.paddle.Reduce",
+          "name": "einops.layers.oneflow.Reduce",
           "methods": [
             {
               "kind": "function",
@@ -1347,6 +1128,65 @@
           "n_attrs": 0,
           "n_properties": 0
         },
+        {
+          "kind": "class",
+          "name": "einops.layers.oneflow.EinMix",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EinMix.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "einops.layers.oneflow",
+      "names": [
+        "einops.layers.oneflow.EinMix",
+        "einops.layers.oneflow.Rearrange",
+        "einops.layers.oneflow.Reduce",
+        "einops.layers.oneflow.__author__"
+      ],
+      "n_typable": 6,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_overloads": 3,
+      "n_method_params": 3,
+      "n_classes": 3,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "einops/layers/paddle.py",
+      "symbol_reports": [
         {
           "kind": "class",
           "name": "einops.layers.paddle.Rearrange",
@@ -1386,6 +1226,70 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.paddle.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.paddle.EinMix",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EinMix.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1396,16 +1300,16 @@
         "einops.layers.paddle.Reduce",
         "einops.layers.paddle.__author__"
       ],
-      "n_typable": 16,
-      "n_typed": 4,
+      "n_typable": 6,
+      "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 12,
+      "n_untyped": 6,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 5,
-      "n_method_overloads": 5,
-      "n_method_params": 11,
+      "n_methods": 3,
+      "n_method_overloads": 3,
+      "n_method_params": 3,
       "n_classes": 3,
       "n_attrs": 1,
       "n_properties": 0,
@@ -1414,142 +1318,6 @@
     {
       "path": "einops/layers/tensorflow.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "einops.layers.tensorflow.EinMix",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EinMix._create_parameters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix._create_rearrange_layers",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.build",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.call",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.get_config",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 15,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 10,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "einops.layers.tensorflow.Reduce",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reduce.build",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Reduce.call",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Reduce.get_config",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "einops.layers.tensorflow.Rearrange",
@@ -1613,6 +1381,118 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.tensorflow.Reduce",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Reduce.build",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Reduce.call",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Reduce.get_config",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.layers.tensorflow.EinMix",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EinMix.build",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EinMix.call",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EinMix.get_config",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1623,16 +1503,16 @@
         "einops.layers.tensorflow.Reduce",
         "einops.layers.tensorflow.__author__"
       ],
-      "n_typable": 25,
-      "n_typed": 4,
+      "n_typable": 15,
+      "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 21,
+      "n_untyped": 15,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 11,
-      "n_method_overloads": 11,
-      "n_method_params": 14,
+      "n_methods": 9,
+      "n_method_overloads": 9,
+      "n_method_params": 6,
       "n_classes": 3,
       "n_attrs": 1,
       "n_properties": 0,
@@ -1643,35 +1523,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "einops.layers.torch.EinMix",
+          "name": "einops.layers.torch.Rearrange",
           "methods": [
             {
               "kind": "function",
-              "name": "EinMix._create_parameters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix._create_rearrange_layers",
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "EinMix.forward",
+              "name": "Rearrange.forward",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1684,18 +1540,26 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 12,
-          "n_typed": 4,
+          "n_typable": 2,
+          "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 2,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 9,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.torch.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1712,54 +1576,30 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Reduce._apply_recipe",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             }
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 4,
+          "n_typable": 2,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 2,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "einops.layers.torch.Rearrange",
+          "name": "einops.layers.torch.EinMix",
           "methods": [
             {
               "kind": "function",
-              "name": "Rearrange.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Rearrange._apply_recipe",
+              "name": "EinMix.forward",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1772,26 +1612,18 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 4,
+          "n_typable": 2,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 2,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.layers.torch.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1802,16 +1634,16 @@
         "einops.layers.torch.Reduce",
         "einops.layers.torch.__author__"
       ],
-      "n_typable": 20,
-      "n_typed": 4,
+      "n_typable": 6,
+      "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 16,
+      "n_untyped": 6,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_overloads": 7,
-      "n_method_params": 13,
+      "n_methods": 3,
+      "n_method_overloads": 3,
+      "n_method_params": 3,
       "n_classes": 3,
       "n_attrs": 1,
       "n_properties": 0,
@@ -2019,16 +1851,16 @@
   ],
   "typecheckers": {},
   "n_modules": 12,
-  "n_typable": 230,
-  "n_typed": 123,
+  "n_typable": 172,
+  "n_typed": 103,
   "n_any": 6,
-  "n_untyped": 101,
+  "n_untyped": 63,
   "n_functions": 16,
   "n_function_overloads": 22,
   "n_function_params": 42,
-  "n_methods": 56,
-  "n_method_params": 83,
-  "n_method_overloads": 56,
+  "n_methods": 42,
+  "n_method_params": 39,
+  "n_method_overloads": 42,
   "n_classes": 21,
   "n_attrs": 43,
   "n_properties": 0,

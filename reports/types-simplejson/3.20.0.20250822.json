@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "types-simplejson",
   "version": "3.20.0.20250822",
   "base_version": "3.20.2",
@@ -57,6 +57,26 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "simplejson.dumps",
+          "n_typed": 20,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 22,
+          "n_params": 21,
+          "n_function_overloads": 2,
+          "n_function_params": 21
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.OrderedDict",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
           "name": "simplejson.simple_first",
           "n_typed": 2,
           "n_any": 0,
@@ -69,27 +89,15 @@
         },
         {
           "kind": "function",
-          "name": "simplejson.dumps",
-          "n_typed": 20,
+          "name": "simplejson.loads",
+          "n_typed": 10,
           "n_any": 2,
           "n_untyped": 0,
           "n_overloads": 2,
-          "n_typable": 22,
-          "n_params": 21,
+          "n_typable": 12,
+          "n_params": 11,
           "n_function_overloads": 2,
-          "n_function_params": 21
-        },
-        {
-          "kind": "function",
-          "name": "simplejson.dump",
-          "n_typed": 21,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 23,
-          "n_params": 22,
-          "n_function_overloads": 2,
-          "n_function_params": 22
+          "n_function_params": 11
         },
         {
           "kind": "function",
@@ -105,23 +113,15 @@
         },
         {
           "kind": "function",
-          "name": "simplejson.loads",
-          "n_typed": 10,
+          "name": "simplejson.dump",
+          "n_typed": 21,
           "n_any": 2,
           "n_untyped": 0,
           "n_overloads": 2,
-          "n_typable": 12,
-          "n_params": 11,
+          "n_typable": 23,
+          "n_params": 22,
           "n_function_overloads": 2,
-          "n_function_params": 11
-        },
-        {
-          "kind": "attr",
-          "name": "simplejson.OrderedDict",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_function_params": 22
         }
       ],
       "type_ignores": [],
@@ -962,65 +962,6 @@
           "n_properties": 0
         },
         {
-          "kind": "class",
-          "name": "simplejson.encoder.JSONEncoderForHTML",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "simplejson.encoder.encode_basestring_ascii",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "simplejson.encoder.encode_basestring",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "attr",
-          "name": "simplejson.encoder.FLOAT_REPR",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "simplejson.encoder.ESCAPE_DCT",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "attr",
           "name": "simplejson.encoder.ESCAPE",
           "n_typed": 1,
@@ -1030,7 +971,7 @@
         },
         {
           "kind": "attr",
-          "name": "simplejson.encoder.ESCAPE_ASCII",
+          "name": "simplejson.encoder.ESCAPE_DCT",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1258,16 +1199,71 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "simplejson.encoder.py_encode_basestring_ascii",
+          "kind": "class",
+          "name": "simplejson.encoder.JSONEncoderForHTML",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "simplejson.encoder.encode_basestring",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.encoder.ESCAPE_ASCII",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.encoder.FLOAT_REPR",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "simplejson.encoder.encode_basestring_ascii",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.encoder.c_make_encoder",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "attr",
@@ -1278,12 +1274,16 @@
           "n_typable": 1
         },
         {
-          "kind": "attr",
-          "name": "simplejson.encoder.c_make_encoder",
+          "kind": "function",
+          "name": "simplejson.encoder.py_encode_basestring_ascii",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -1456,39 +1456,7 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "simplejson.compat.PY3",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
           "name": "simplejson.compat.integer_types",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "simplejson.compat.binary_type",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "simplejson.compat.unichr",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "simplejson.compat.text_type",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1516,11 +1484,43 @@
         },
         {
           "kind": "attr",
+          "name": "simplejson.compat.binary_type",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.compat.text_type",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.compat.unichr",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
           "name": "simplejson.compat.long_type",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "simplejson.compat.PY3",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "k-diffusion",
   "version": "0.1.1.post1",
   "base_version": null,
@@ -81,18 +81,6 @@
         {
           "kind": "function",
           "name": "k_diffusion.augmentation.translate2d",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.augmentation.scale2d",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -275,6 +263,18 @@
           "n_method_params": 10,
           "n_attrs": 1,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.augmentation.scale2d",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -318,31 +318,7 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.config.load_config",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "k_diffusion.config.make_model",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.config.make_denoiser_wrapper",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -363,6 +339,30 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.config.load_config",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.config.make_denoiser_wrapper",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -392,184 +392,6 @@
     {
       "path": "k_diffusion/evaluation.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "k_diffusion.evaluation.squared_mmd",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.evaluation.InceptionV3FeatureExtractor",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "InceptionV3FeatureExtractor.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "InceptionV3FeatureExtractor.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "InceptionV3FeatureExtractor.model",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "InceptionV3FeatureExtractor.size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.evaluation.fid",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.evaluation.kid",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.evaluation.CLIPFeatureExtractor",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CLIPFeatureExtractor.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "CLIPFeatureExtractor.available_models",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "CLIPFeatureExtractor.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CLIPFeatureExtractor.model",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "CLIPFeatureExtractor.normalize",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "CLIPFeatureExtractor.size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 9,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 3,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "k_diffusion.evaluation.DINOv2FeatureExtractor",
@@ -653,6 +475,54 @@
         },
         {
           "kind": "function",
+          "name": "k_diffusion.evaluation.kid",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.evaluation.fid",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.evaluation.polynomial_kernel",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.evaluation.squared_mmd",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
           "name": "k_diffusion.evaluation.compute_features",
           "n_typed": 0,
           "n_any": 0,
@@ -676,16 +546,146 @@
           "n_function_params": 1
         },
         {
-          "kind": "function",
-          "name": "k_diffusion.evaluation.polynomial_kernel",
+          "kind": "class",
+          "name": "k_diffusion.evaluation.InceptionV3FeatureExtractor",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InceptionV3FeatureExtractor.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InceptionV3FeatureExtractor.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "InceptionV3FeatureExtractor.model",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "InceptionV3FeatureExtractor.size",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.evaluation.CLIPFeatureExtractor",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CLIPFeatureExtractor.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CLIPFeatureExtractor.available_models",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CLIPFeatureExtractor.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CLIPFeatureExtractor.model",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CLIPFeatureExtractor.normalize",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CLIPFeatureExtractor.size",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 3,
+          "n_attrs": 3,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -719,6 +719,50 @@
     {
       "path": "k_diffusion/external.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "k_diffusion.external.CompVisDenoiser",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CompVisDenoiser.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CompVisDenoiser.get_eps",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "k_diffusion.external.DiscreteVDDPMDenoiser",
@@ -927,6 +971,153 @@
         },
         {
           "kind": "class",
+          "name": "k_diffusion.external.DiscreteSchedule",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DiscreteSchedule.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DiscreteSchedule.get_sigmas",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DiscreteSchedule.sigma_to_t",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DiscreteSchedule.t_to_sigma",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "DiscreteSchedule.sigma_min",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "DiscreteSchedule.sigma_max",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DiscreteSchedule.quantize",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 6,
+          "n_attrs": 1,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.external.OpenAIDenoiser",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OpenAIDenoiser.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "OpenAIDenoiser.get_eps",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OpenAIDenoiser.has_learned_sigmas",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "k_diffusion.external.DiscreteEpsDDPMDenoiser",
           "methods": [
             {
@@ -1024,144 +1215,6 @@
         },
         {
           "kind": "class",
-          "name": "k_diffusion.external.CompVisDenoiser",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CompVisDenoiser.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "CompVisDenoiser.get_eps",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.external.DiscreteSchedule",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DiscreteSchedule.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "DiscreteSchedule.get_sigmas",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "DiscreteSchedule.sigma_to_t",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "DiscreteSchedule.t_to_sigma",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "DiscreteSchedule.sigma_min",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "DiscreteSchedule.sigma_max",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "DiscreteSchedule.quantize",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 13,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 6,
-          "n_attrs": 1,
-          "n_properties": 2
-        },
-        {
-          "kind": "class",
           "name": "k_diffusion.external.CompVisVDenoiser",
           "methods": [
             {
@@ -1202,59 +1255,6 @@
           "n_method_overloads": 2,
           "n_method_params": 7,
           "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.external.OpenAIDenoiser",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OpenAIDenoiser.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "OpenAIDenoiser.get_eps",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "OpenAIDenoiser.has_learned_sigmas",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_attrs": 1,
           "n_properties": 0
         }
       ],
@@ -1446,30 +1446,6 @@
             },
             {
               "kind": "function",
-              "name": "DDPGradientStatsHook._clear_state",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "DDPGradientStatsHook._hook_fn",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
               "name": "DDPGradientStatsHook.get_stats",
               "n_typed": 0,
               "n_any": 0,
@@ -1483,16 +1459,16 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 7,
+          "n_typable": 3,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
+          "n_untyped": 3,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 3,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
         }
@@ -1503,16 +1479,16 @@
         "k_diffusion.gns.DDPGradientStatsHook",
         "k_diffusion.gns.GradientNoiseScale"
       ],
-      "n_typable": 26,
+      "n_typable": 22,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 26,
+      "n_untyped": 22,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 10,
-      "n_method_overloads": 10,
-      "n_method_params": 10,
+      "n_methods": 8,
+      "n_method_overloads": 8,
+      "n_method_params": 8,
       "n_classes": 2,
       "n_attrs": 6,
       "n_properties": 0,
@@ -1521,18 +1497,6 @@
     {
       "path": "k_diffusion/layers.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "k_diffusion.layers.freq_weight_1d",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
         {
           "kind": "class",
           "name": "k_diffusion.layers.FourierFeatures",
@@ -1576,693 +1540,6 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.Denoiser",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Denoiser.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Denoiser._weighting_soft_min_snr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Denoiser._weighting_snr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Denoiser.get_scalings",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Denoiser.loss",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Denoiser.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Denoiser.inner_model",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Denoiser.sigma_data",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Denoiser.scales",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Denoiser.weighting",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 24,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 24,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 14,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.UnconditionedModule",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "UnconditionedModule.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "UnconditionedModule.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "UnconditionedModule.module",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.UNet",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "UNet.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "UNet.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "UNet.d_blocks",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UNet.u_blocks",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "UNet.skip_stages",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.ResidualBlock",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ResidualBlock.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ResidualBlock.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ResidualBlock.main",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ResidualBlock.skip",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.ConditionedModule",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.DenoiserWithVariance",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DenoiserWithVariance.loss",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.ConditionedSequential",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ConditionedSequential.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.AdaGN",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AdaGN.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "AdaGN.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AdaGN.num_groups",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "AdaGN.eps",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "AdaGN.cond_key",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "AdaGN.mapper",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 13,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.Upsample2d",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Upsample2d.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Upsample2d.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Upsample2d.pad_mode",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Upsample2d.pad",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.Downsample2d",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Downsample2d.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Downsample2d.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Downsample2d.pad_mode",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Downsample2d.pad",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.layers.SelfAttention2d",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SelfAttention2d.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "SelfAttention2d.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "SelfAttention2d.norm_in",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SelfAttention2d.n_head",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SelfAttention2d.qkv_proj",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SelfAttention2d.out_proj",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SelfAttention2d.dropout",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 13,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 6,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.layers.freq_weight_nd",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
         },
         {
           "kind": "class",
@@ -2327,34 +1604,63 @@
         },
         {
           "kind": "class",
-          "name": "k_diffusion.layers.SimpleLossDenoiser",
+          "name": "k_diffusion.layers.Downsample2d",
           "methods": [
             {
               "kind": "function",
-              "name": "SimpleLossDenoiser.loss",
+              "name": "Downsample2d.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 5,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Downsample2d.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 5,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Downsample2d.pad_mode",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Downsample2d.pad",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 7,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 4,
-          "n_attrs": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
@@ -2475,6 +1781,345 @@
           "n_properties": 0
         },
         {
+          "kind": "class",
+          "name": "k_diffusion.layers.ConditionedSequential",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConditionedSequential.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.AdaGN",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdaGN.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "AdaGN.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AdaGN.num_groups",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "AdaGN.eps",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "AdaGN.cond_key",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "AdaGN.mapper",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.SelfAttention2d",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SelfAttention2d.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "SelfAttention2d.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SelfAttention2d.norm_in",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SelfAttention2d.n_head",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SelfAttention2d.qkv_proj",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SelfAttention2d.out_proj",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SelfAttention2d.dropout",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 6,
+          "n_attrs": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.UNet",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UNet.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "UNet.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UNet.d_blocks",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UNet.u_blocks",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UNet.skip_stages",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.layers.freq_weight_1d",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.DenoiserWithVariance",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DenoiserWithVariance.loss",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.SimpleLossDenoiser",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SimpleLossDenoiser.loss",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
           "kind": "function",
           "name": "k_diffusion.layers.dct",
           "n_typed": 0,
@@ -2485,6 +2130,313 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.Denoiser",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Denoiser.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Denoiser.get_scalings",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Denoiser.loss",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Denoiser.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Denoiser.inner_model",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Denoiser.sigma_data",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Denoiser.scales",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Denoiser.weighting",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 20,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 12,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.ConditionedModule",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.UnconditionedModule",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UnconditionedModule.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UnconditionedModule.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UnconditionedModule.module",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.layers.freq_weight_nd",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.ResidualBlock",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ResidualBlock.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ResidualBlock.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ResidualBlock.main",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ResidualBlock.skip",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.layers.Upsample2d",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Upsample2d.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Upsample2d.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Upsample2d.pad_mode",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Upsample2d.pad",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 2,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -2509,16 +2461,16 @@
         "k_diffusion.layers.freq_weight_1d",
         "k_diffusion.layers.freq_weight_nd"
       ],
-      "n_typable": 146,
+      "n_typable": 142,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 146,
+      "n_untyped": 142,
       "n_functions": 3,
       "n_function_overloads": 3,
       "n_function_params": 9,
-      "n_methods": 29,
-      "n_method_overloads": 29,
-      "n_method_params": 71,
+      "n_methods": 27,
+      "n_method_overloads": 27,
+      "n_method_params": 69,
       "n_classes": 15,
       "n_attrs": 34,
       "n_properties": 0,
@@ -2529,7 +2481,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "k_diffusion.models.axial_rope.freqs_pixel_log",
+          "name": "k_diffusion.models.axial_rope.freqs_pixel",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2553,30 +2505,6 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.models.axial_rope.apply_rotary_emb",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.axial_rope.freqs_pixel",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "k_diffusion.models.axial_rope.rotate_half",
           "n_typed": 0,
           "n_any": 0,
@@ -2586,18 +2514,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.axial_rope.centers",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         },
         {
           "kind": "class",
@@ -2702,6 +2618,18 @@
         },
         {
           "kind": "function",
+          "name": "k_diffusion.models.axial_rope.centers",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
           "name": "k_diffusion.models.axial_rope.make_grid",
           "n_typed": 0,
           "n_any": 0,
@@ -2723,6 +2651,30 @@
           "n_params": 6,
           "n_function_overloads": 1,
           "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.axial_rope.freqs_pixel_log",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.axial_rope.apply_rotary_emb",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -2756,6 +2708,30 @@
     {
       "path": "k_diffusion/models/flags.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.flags.get_use_compile",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.flags.get_checkpointing",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
         {
           "kind": "class",
           "name": "k_diffusion.models.flags.compile_wrap",
@@ -2836,15 +2812,15 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.models.flags.get_use_flash_attention_2",
+          "name": "k_diffusion.models.flags.checkpointing",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_function_params": 1
         },
         {
           "kind": "attr",
@@ -2856,7 +2832,7 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.models.flags.get_use_compile",
+          "name": "k_diffusion.models.flags.get_use_flash_attention_2",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -2865,30 +2841,6 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.flags.get_checkpointing",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.flags.checkpointing",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -2921,233 +2873,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.Unpatching",
+          "name": "k_diffusion.models.image_transformer_v1.MappingNetwork",
           "methods": [
             {
               "kind": "function",
-              "name": "Unpatching.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Unpatching.extra_repr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Unpatching.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Unpatching.features",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpatching.patch_size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpatching.d_in",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 5,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.geglu",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.RMSNorm",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RMSNorm.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "RMSNorm.extra_repr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "RMSNorm.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "RMSNorm.eps",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "RMSNorm.scale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 3,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.scaled_dot_product_attention",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.zero_init",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.GEGLU",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "GEGLU.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.TransformerBlock",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TransformerBlock.__init__",
+              "name": "MappingNetwork.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 5,
@@ -3159,92 +2889,7 @@
             },
             {
               "kind": "function",
-              "name": "TransformerBlock.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TransformerBlock.self_attn",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TransformerBlock.ff",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 12,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 8,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.rms_norm",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.checkpoint_helper",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.MappingFeedForwardBlock",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MappingFeedForwardBlock.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "MappingFeedForwardBlock.forward",
+              "name": "MappingNetwork.forward",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3259,7 +2904,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "MappingFeedForwardBlock.norm",
+              "name": "MappingNetwork.in_norm",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3267,7 +2912,7 @@
             },
             {
               "kind": "attr",
-              "name": "MappingFeedForwardBlock.up_proj",
+              "name": "MappingNetwork.blocks",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3275,120 +2920,7 @@
             },
             {
               "kind": "attr",
-              "name": "MappingFeedForwardBlock.act",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "MappingFeedForwardBlock.dropout",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "MappingFeedForwardBlock.down_proj",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.filter_params",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.apply_wd",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.AdaRMSNorm",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AdaRMSNorm.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AdaRMSNorm.extra_repr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AdaRMSNorm.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AdaRMSNorm.eps",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "AdaRMSNorm.linear",
+              "name": "MappingNetwork.out_norm",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3402,10 +2934,10 @@
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
+          "n_methods": 2,
+          "n_method_overloads": 2,
           "n_method_params": 5,
-          "n_attrs": 2,
+          "n_attrs": 3,
           "n_properties": 0
         },
         {
@@ -3590,24 +3122,133 @@
           "n_properties": 0
         },
         {
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.scaled_dot_product_attention",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
           "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.Patching",
+          "name": "k_diffusion.models.image_transformer_v1.MappingFeedForwardBlock",
           "methods": [
             {
               "kind": "function",
-              "name": "Patching.__init__",
+              "name": "MappingFeedForwardBlock.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 3,
+              "n_untyped": 4,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_function_params": 3
             },
             {
               "kind": "function",
-              "name": "Patching.extra_repr",
+              "name": "MappingFeedForwardBlock.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MappingFeedForwardBlock.norm",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MappingFeedForwardBlock.up_proj",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MappingFeedForwardBlock.act",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MappingFeedForwardBlock.dropout",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MappingFeedForwardBlock.down_proj",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.apply_wd",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_transformer_v1.QKNorm",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QKNorm.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "QKNorm.extra_repr",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3619,22 +3260,34 @@
             },
             {
               "kind": "function",
-              "name": "Patching.forward",
+              "name": "QKNorm.proj_",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 3,
+              "n_untyped": 1,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 1,
+              "n_params": 0,
               "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QKNorm.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Patching.features",
+              "name": "QKNorm.eps",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3642,7 +3295,7 @@
             },
             {
               "kind": "attr",
-              "name": "Patching.patch_size",
+              "name": "QKNorm.max_scale",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3650,37 +3303,37 @@
             },
             {
               "kind": "attr",
-              "name": "Patching.d_out",
+              "name": "QKNorm.scale",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 10,
+          "n_typable": 11,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 10,
+          "n_untyped": 11,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
+          "n_methods": 4,
+          "n_method_overloads": 4,
           "n_method_params": 4,
           "n_attrs": 3,
           "n_properties": 0
         },
         {
           "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.tag_module",
+          "name": "k_diffusion.models.image_transformer_v1.geglu",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -3804,6 +3457,382 @@
           "n_properties": 0
         },
         {
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.filter_params",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.checkpoint_helper",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_transformer_v1.GEGLU",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GEGLU.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.tag_param",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_transformer_v1.TransformerBlock",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TransformerBlock.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "TransformerBlock.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransformerBlock.self_attn",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TransformerBlock.ff",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 8,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_transformer_v1.AdaRMSNorm",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdaRMSNorm.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AdaRMSNorm.extra_repr",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AdaRMSNorm.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AdaRMSNorm.eps",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "AdaRMSNorm.linear",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 5,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.zero_init",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_transformer_v1.Unpatching",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Unpatching.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Unpatching.extra_repr",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Unpatching.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Unpatching.features",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpatching.patch_size",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpatching.d_in",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 5,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_transformer_v1.Patching",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Patching.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Patching.extra_repr",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Patching.forward",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Patching.features",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Patching.patch_size",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Patching.d_out",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 4,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
           "kind": "class",
           "name": "k_diffusion.models.image_transformer_v1.FeedForwardBlock",
           "methods": [
@@ -3890,7 +3919,7 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.models.image_transformer_v1.tag_param",
+          "name": "k_diffusion.models.image_transformer_v1.tag_module",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -3901,105 +3930,36 @@
           "n_function_params": 2
         },
         {
-          "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.MappingNetwork",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MappingNetwork.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "MappingNetwork.forward",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "MappingNetwork.in_norm",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "MappingNetwork.blocks",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "MappingNetwork.out_norm",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 10,
+          "kind": "function",
+          "name": "k_diffusion.models.image_transformer_v1.rms_norm",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
-          "n_attrs": 3,
-          "n_properties": 0
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "class",
-          "name": "k_diffusion.models.image_transformer_v1.QKNorm",
+          "name": "k_diffusion.models.image_transformer_v1.RMSNorm",
           "methods": [
             {
               "kind": "function",
-              "name": "QKNorm.__init__",
+              "name": "RMSNorm.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 4,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "QKNorm.extra_repr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "QKNorm.proj_",
+              "name": "RMSNorm.extra_repr",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -4011,7 +3971,7 @@
             },
             {
               "kind": "function",
-              "name": "QKNorm.forward",
+              "name": "RMSNorm.forward",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -4026,7 +3986,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "QKNorm.eps",
+              "name": "RMSNorm.eps",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -4034,32 +3994,24 @@
             },
             {
               "kind": "attr",
-              "name": "QKNorm.max_scale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "QKNorm.scale",
+              "name": "RMSNorm.scale",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 11,
+          "n_typable": 8,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 11,
+          "n_untyped": 8,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 4,
-          "n_attrs": 3,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 3,
+          "n_attrs": 2,
           "n_properties": 0
         }
       ],
@@ -4108,38 +4060,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "k_diffusion.models.image_v1.MappingNet",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MappingNet.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "k_diffusion.models.image_v1.DBlock",
           "methods": [
             {
@@ -4179,38 +4099,6 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 13,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.models.image_v1.ResConvBlock",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ResConvBlock.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_overloads": 1,
-              "n_typable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 6,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -4281,6 +4169,70 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_v1.MappingNet",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MappingNet.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.models.image_v1.ResConvBlock",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ResConvBlock.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_overloads": 1,
+              "n_typable": 7,
+              "n_params": 6,
+              "n_function_overloads": 1,
+              "n_function_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4482,19 +4434,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.append_zero",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpmpp_2m_sde",
+          "name": "k_diffusion.sampling.sample_heun",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 11,
@@ -4506,200 +4446,7 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.sample_lms",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpm_adaptive",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 20,
-          "n_overloads": 1,
-          "n_typable": 20,
-          "n_params": 19,
-          "n_function_overloads": 1,
-          "n_function_params": 19
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpmpp_2s_ancestral",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.get_sigmas_vp",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.get_ancestral_step",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.log_likelihood",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.to_d",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.sampling.BatchedBrownianTree",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BatchedBrownianTree.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "BatchedBrownianTree.sort",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BatchedBrownianTree.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "BatchedBrownianTree.batched",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "BatchedBrownianTree.trees",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 14,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 9,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.get_sigmas_exponential",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.linear_multistep_coeff",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpmpp_3m_sde",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpmpp_sde",
+          "name": "k_diffusion.sampling.sample_dpmpp_2m_sde",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 11,
@@ -4723,140 +4470,31 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.sample_euler",
+          "name": "k_diffusion.sampling.sample_lms",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 11,
+          "n_untyped": 8,
           "n_overloads": 1,
-          "n_typable": 11,
-          "n_params": 10,
+          "n_typable": 8,
+          "n_params": 7,
           "n_function_overloads": 1,
-          "n_function_params": 10
+          "n_function_params": 7
         },
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.get_sigmas_karras",
+          "name": "k_diffusion.sampling.sample_dpm_fast",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 6,
+          "n_untyped": 12,
           "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
+          "n_typable": 12,
+          "n_params": 11,
           "n_function_overloads": 1,
-          "n_function_params": 5
+          "n_function_params": 11
         },
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpm_2",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_overloads": 1,
-          "n_typable": 11,
-          "n_params": 10,
-          "n_function_overloads": 1,
-          "n_function_params": 10
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpmpp_2m",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.sampling.BrownianTreeNoiseSampler",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BrownianTreeNoiseSampler.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "BrownianTreeNoiseSampler.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "BrownianTreeNoiseSampler.transform",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "BrownianTreeNoiseSampler.tree",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.get_sigmas_polyexponential",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.default_noise_sampler",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpm_2_ancestral",
+          "name": "k_diffusion.sampling.sample_dpmpp_2s_ancestral",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 10,
@@ -4981,7 +4619,80 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.sample_heun",
+          "name": "k_diffusion.sampling.log_likelihood",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.sampling.BrownianTreeNoiseSampler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BrownianTreeNoiseSampler.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "BrownianTreeNoiseSampler.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BrownianTreeNoiseSampler.transform",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BrownianTreeNoiseSampler.tree",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_euler",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 11,
@@ -4993,15 +4704,220 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.sampling.sample_dpm_fast",
+          "name": "k_diffusion.sampling.get_sigmas_polyexponential",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 12,
+          "n_untyped": 6,
           "n_overloads": 1,
-          "n_typable": 12,
-          "n_params": 11,
+          "n_typable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 11
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.default_noise_sampler",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_dpm_2_ancestral",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_overloads": 1,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 1,
+          "n_function_params": 9
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.sampling.BatchedBrownianTree",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BatchedBrownianTree.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "BatchedBrownianTree.sort",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BatchedBrownianTree.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BatchedBrownianTree.batched",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BatchedBrownianTree.trees",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 9,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.linear_multistep_coeff",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.to_d",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_dpmpp_2m",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.get_sigmas_karras",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_dpm_adaptive",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 20,
+          "n_overloads": 1,
+          "n_typable": 20,
+          "n_params": 19,
+          "n_function_overloads": 1,
+          "n_function_params": 19
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_dpm_2",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_overloads": 1,
+          "n_typable": 11,
+          "n_params": 10,
+          "n_function_overloads": 1,
+          "n_function_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.get_sigmas_vp",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.append_zero",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.get_ancestral_step",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -5163,6 +5079,42 @@
           "n_method_params": 48,
           "n_attrs": 4,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_dpmpp_3m_sde",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_overloads": 1,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 1,
+          "n_function_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.sample_dpmpp_sde",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_overloads": 1,
+          "n_typable": 11,
+          "n_params": 10,
+          "n_function_overloads": 1,
+          "n_function_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.sampling.get_sigmas_exponential",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -5215,51 +5167,87 @@
       "path": "k_diffusion/utils.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "k_diffusion.utils.ema_update_dict",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.rand_log_normal",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.download_file",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.append_dims",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
           "kind": "class",
-          "name": "k_diffusion.utils.ExponentialLR",
+          "name": "k_diffusion.utils.CSVLogger",
           "methods": [
             {
               "kind": "function",
-              "name": "ExponentialLR.__init__",
+              "name": "CSVLogger.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 8,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 8,
-              "n_params": 7,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 7
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "ExponentialLR.get_lr",
+              "name": "CSVLogger.write",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 2,
               "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
+              "n_typable": 2,
+              "n_params": 1,
               "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ExponentialLR._get_closed_form_lr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 1
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "ExponentialLR.num_steps",
+              "name": "CSVLogger.filename",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -5267,7 +5255,7 @@
             },
             {
               "kind": "attr",
-              "name": "ExponentialLR.decay",
+              "name": "CSVLogger.columns",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -5275,33 +5263,105 @@
             },
             {
               "kind": "attr",
-              "name": "ExponentialLR.warmup",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExponentialLR.min_lr",
+              "name": "CSVLogger.file",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 14,
+          "n_typable": 8,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 14,
+          "n_untyped": 8,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 7,
-          "n_attrs": 4,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.eval_mode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.to_pil_image",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.rand_split_log_normal",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.rand_cosine_interpolated",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_overloads": 1,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 1,
+          "n_function_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.tf32_mode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "k_diffusion.utils.stratified_settings",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.n_params",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -5322,18 +5382,6 @@
             {
               "kind": "function",
               "name": "InverseLR.get_lr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "InverseLR._get_closed_form_lr",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -5379,15 +5427,15 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 14,
+          "n_typable": 13,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 14,
+          "n_untyped": 13,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
+          "n_methods": 2,
+          "n_method_overloads": 2,
           "n_method_params": 7,
           "n_attrs": 4,
           "n_properties": 0
@@ -5395,6 +5443,119 @@
         {
           "kind": "function",
           "name": "k_diffusion.utils.stratified_uniform",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.hf_datasets_augs_helper",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.rand_log_logistic",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.utils.ExponentialLR",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ExponentialLR.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_overloads": 1,
+              "n_typable": 8,
+              "n_params": 7,
+              "n_function_overloads": 1,
+              "n_function_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "ExponentialLR.get_lr",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ExponentialLR.num_steps",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExponentialLR.decay",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExponentialLR.warmup",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExponentialLR.min_lr",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.rand_log_uniform",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -5418,42 +5579,6 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.utils.get_safetensors_metadata",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.download_file",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.rand_log_normal",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
           "name": "k_diffusion.utils.from_pil_image",
           "n_typed": 0,
           "n_any": 0,
@@ -5465,141 +5590,16 @@
           "n_function_params": 1
         },
         {
-          "kind": "class",
-          "name": "k_diffusion.utils.FolderOfImages",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FolderOfImages.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FolderOfImages.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "FolderOfImages.__len__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "FolderOfImages.__getitem__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "FolderOfImages.IMG_EXTENSIONS",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "FolderOfImages.root",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "FolderOfImages.transform",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "FolderOfImages.paths",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 3,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
           "kind": "function",
-          "name": "k_diffusion.utils.rand_log_logistic",
+          "name": "k_diffusion.utils.stratified_with_settings",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.rand_cosine_interpolated",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.rand_log_uniform",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -5615,15 +5615,80 @@
         },
         {
           "kind": "function",
-          "name": "k_diffusion.utils.append_dims",
+          "name": "k_diffusion.utils.get_safetensors_metadata",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "k_diffusion.utils.ConstantLRWithWarmup",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConstantLRWithWarmup.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ConstantLRWithWarmup.get_lr",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ConstantLRWithWarmup.warmup",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "k_diffusion.utils.ema_update",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -5755,76 +5820,109 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "k_diffusion.utils.stratified_settings",
+          "kind": "class",
+          "name": "k_diffusion.utils.FolderOfImages",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FolderOfImages.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FolderOfImages.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "FolderOfImages.__len__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "FolderOfImages.__getitem__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FolderOfImages.IMG_EXTENSIONS",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FolderOfImages.root",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FolderOfImages.transform",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FolderOfImages.paths",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.ema_update_dict",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.ema_update",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.rand_split_log_normal",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.to_pil_image",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 3,
+          "n_attrs": 4,
+          "n_properties": 0
         },
         {
           "kind": "function",
           "name": "k_diffusion.utils.train_mode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.tf32_mode",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -5845,188 +5943,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.eval_mode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.hf_datasets_augs_helper",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.stratified_with_settings",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "k_diffusion.utils.n_params",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.utils.ConstantLRWithWarmup",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ConstantLRWithWarmup.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ConstantLRWithWarmup.get_lr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ConstantLRWithWarmup._get_closed_form_lr",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ConstantLRWithWarmup.warmup",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 4,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "k_diffusion.utils.CSVLogger",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CSVLogger.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "CSVLogger.write",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CSVLogger.filename",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "CSVLogger.columns",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "CSVLogger.file",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 3,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -6062,15 +5978,15 @@
         "k_diffusion.utils.to_pil_image",
         "k_diffusion.utils.train_mode"
       ],
-      "n_typable": 170,
+      "n_typable": 167,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 170,
+      "n_untyped": 167,
       "n_functions": 22,
       "n_function_overloads": 22,
       "n_function_params": 75,
-      "n_methods": 20,
-      "n_method_overloads": 20,
+      "n_methods": 17,
+      "n_method_overloads": 17,
       "n_method_params": 31,
       "n_classes": 6,
       "n_attrs": 23,
@@ -6080,16 +5996,16 @@
   ],
   "typecheckers": {},
   "n_modules": 12,
-  "n_typable": 1156,
+  "n_typable": 1145,
   "n_typed": 0,
   "n_any": 0,
-  "n_untyped": 1156,
+  "n_untyped": 1145,
   "n_functions": 84,
   "n_function_overloads": 84,
   "n_function_params": 324,
-  "n_methods": 167,
-  "n_method_params": 410,
-  "n_method_overloads": 167,
+  "n_methods": 160,
+  "n_method_params": 406,
+  "n_method_overloads": 160,
   "n_classes": 58,
   "n_attrs": 169,
   "n_properties": 3,

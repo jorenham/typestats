@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "nbformat",
   "version": "5.10.4",
   "base_version": null,
@@ -83,20 +83,89 @@
   },
   "module_reports": [
     {
-      "path": "nbformat/__init__.py",
+      "path": "nbformat/notebooknode.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "nbformat.write",
+          "name": "nbformat.notebooknode.from_dict",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "nbformat.notebooknode.NotebookNode",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NotebookNode.__setitem__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NotebookNode.update",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "nbformat.notebooknode",
+      "names": [
+        "nbformat.notebooknode.NotebookNode",
+        "nbformat.notebooknode.from_dict"
+      ],
+      "n_typable": 8,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 1,
+      "n_methods": 2,
+      "n_method_overloads": 2,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "nbformat/__init__.py",
+      "symbol_reports": [
         {
           "kind": "function",
           "name": "nbformat.reads",
@@ -110,32 +179,8 @@
           "n_function_params": 4
         },
         {
-          "kind": "attr",
-          "name": "nbformat.ValidationError",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.versions",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.NO_CONVERT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
-          "name": "nbformat.writes",
+          "name": "nbformat.read",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -166,7 +211,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.read",
+          "name": "nbformat.writes",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -175,6 +220,42 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.versions",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.NO_CONVERT",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.ValidationError",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.write",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
         }
       ],
       "type_ignores": [],
@@ -205,6 +286,316 @@
       "n_type_ignores": 0
     },
     {
+      "path": "nbformat/sentinel.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "nbformat.sentinel.Sentinel",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sentinel.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Sentinel.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Sentinel.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Sentinel.module",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 3,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "nbformat.sentinel",
+      "names": [
+        "nbformat.sentinel.Sentinel"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_overloads": 2,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "nbformat/converter.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "nbformat.converter.convert",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "nbformat.converter",
+      "names": [
+        "nbformat.converter.convert"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "nbformat/_version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "nbformat._version.version_info",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat._version.__version__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "union-attr"
+          ]
+        }
+      ],
+      "name": "nbformat._version",
+      "names": [
+        "nbformat._version.__version__",
+        "nbformat._version.version_info"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "nbformat/v4/nbbase.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "nbformat.v4.nbbase.nbformat",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v4.nbbase.nbformat_minor",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.new_notebook",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v4.nbbase.nbformat_schema",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.new_markdown_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.new_output",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.new_raw_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.output_from_msg",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.new_code_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.nbbase.validate",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "nbformat.v4.nbbase",
+      "names": [
+        "nbformat.v4.nbbase.nbformat",
+        "nbformat.v4.nbbase.nbformat_minor",
+        "nbformat.v4.nbbase.nbformat_schema",
+        "nbformat.v4.nbbase.new_code_cell",
+        "nbformat.v4.nbbase.new_markdown_cell",
+        "nbformat.v4.nbbase.new_notebook",
+        "nbformat.v4.nbbase.new_output",
+        "nbformat.v4.nbbase.new_raw_cell",
+        "nbformat.v4.nbbase.output_from_msg",
+        "nbformat.v4.nbbase.validate"
+      ],
+      "n_typable": 20,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 20,
+      "n_functions": 7,
+      "n_function_overloads": 7,
+      "n_function_params": 13,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "nbformat/validator.py",
       "symbol_reports": [
         {
@@ -218,18 +609,6 @@
           "n_params": 8,
           "n_function_overloads": 1,
           "n_function_params": 8
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.validator.normalize",
-          "n_typed": 5,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         },
         {
           "kind": "class",
@@ -326,6 +705,38 @@
         },
         {
           "kind": "function",
+          "name": "nbformat.validator.get_validator",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.validator.ValidationError",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.validator.normalize",
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
           "name": "nbformat.validator.isvalid",
           "n_typed": 0,
           "n_any": 0,
@@ -347,26 +758,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.validator.ValidationError",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.validator.get_validator",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -416,397 +807,6 @@
       "n_type_ignores": 1
     },
     {
-      "path": "nbformat/sentinel.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "nbformat.sentinel.Sentinel",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Sentinel.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Sentinel.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Sentinel.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Sentinel.module",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 3,
-          "n_attrs": 2,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "nbformat.sentinel",
-      "names": [
-        "nbformat.sentinel.Sentinel"
-      ],
-      "n_typable": 7,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 7,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_overloads": 2,
-      "n_method_params": 3,
-      "n_classes": 1,
-      "n_attrs": 2,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "nbformat/notebooknode.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "nbformat.notebooknode.from_dict",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.notebooknode.NotebookNode",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NotebookNode.__setitem__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNode.update",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "nbformat.notebooknode",
-      "names": [
-        "nbformat.notebooknode.NotebookNode",
-        "nbformat.notebooknode.from_dict"
-      ],
-      "n_typable": 8,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 8,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 1,
-      "n_methods": 2,
-      "n_method_overloads": 2,
-      "n_method_params": 4,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "nbformat/_version.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "nbformat._version.version_info",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat._version.__version__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "union-attr"
-          ]
-        }
-      ],
-      "name": "nbformat._version",
-      "names": [
-        "nbformat._version.__version__",
-        "nbformat._version.version_info"
-      ],
-      "n_typable": 2,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 2,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 2,
-      "n_properties": 0,
-      "n_type_ignores": 1
-    },
-    {
-      "path": "nbformat/v4/nbbase.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "nbformat.v4.nbbase.nbformat",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.v4.nbbase.nbformat_minor",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.new_markdown_cell",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.new_code_cell",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.output_from_msg",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.v4.nbbase.nbformat_schema",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.new_raw_cell",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.new_notebook",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.new_output",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.nbbase.validate",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "nbformat.v4.nbbase",
-      "names": [
-        "nbformat.v4.nbbase.nbformat",
-        "nbformat.v4.nbbase.nbformat_minor",
-        "nbformat.v4.nbbase.nbformat_schema",
-        "nbformat.v4.nbbase.new_code_cell",
-        "nbformat.v4.nbbase.new_markdown_cell",
-        "nbformat.v4.nbbase.new_notebook",
-        "nbformat.v4.nbbase.new_output",
-        "nbformat.v4.nbbase.new_raw_cell",
-        "nbformat.v4.nbbase.output_from_msg",
-        "nbformat.v4.nbbase.validate"
-      ],
-      "n_typable": 20,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 20,
-      "n_functions": 7,
-      "n_function_overloads": 7,
-      "n_function_params": 13,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 3,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "nbformat/converter.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "nbformat.converter.convert",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "nbformat.converter",
-      "names": [
-        "nbformat.converter.convert"
-      ],
-      "n_typable": 3,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 3,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "nbformat/corpus/words.py",
       "symbol_reports": [
         {
@@ -843,27 +843,188 @@
       "n_type_ignores": 0
     },
     {
-      "path": "nbformat/v3/nbbase.py",
+      "path": "nbformat/current.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "nbformat.v3.nbbase.new_code_cell",
+          "name": "nbformat.current.reads",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 6
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.read",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "nbformat.current.NBFormatError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.writes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.parse_py",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.reads_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "attr",
-          "name": "nbformat.v3.nbbase.nbformat_minor",
+          "name": "nbformat.current.to_notebook_json",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.reads_py",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.writes_py",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.write",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.current.writes_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "nbformat.current",
+      "names": [
+        "nbformat.current.NBFormatError",
+        "nbformat.current.parse_py",
+        "nbformat.current.read",
+        "nbformat.current.reads",
+        "nbformat.current.reads_json",
+        "nbformat.current.reads_py",
+        "nbformat.current.to_notebook_json",
+        "nbformat.current.write",
+        "nbformat.current.writes",
+        "nbformat.current.writes_json",
+        "nbformat.current.writes_py"
+      ],
+      "n_typable": 34,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 34,
+      "n_functions": 9,
+      "n_function_overloads": 9,
+      "n_function_params": 25,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "nbformat/v3/nbbase.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "nbformat.v3.nbbase.new_heading_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -878,28 +1039,20 @@
           "n_function_params": 3
         },
         {
+          "kind": "function",
+          "name": "nbformat.v3.nbbase.new_worksheet",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
           "kind": "attr",
           "name": "nbformat.v3.nbbase.nbformat_schema",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v3.nbbase.new_text_cell",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.v3.nbbase.nbformat",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -931,7 +1084,27 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.nbbase.new_author",
+          "name": "nbformat.v3.nbbase.new_code_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v3.nbbase.nbformat_minor",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v3.nbbase.new_text_cell",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -940,6 +1113,14 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v3.nbbase.nbformat",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -962,7 +1143,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.nbbase.new_heading_cell",
+          "name": "nbformat.v3.nbbase.new_author",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -971,18 +1152,6 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v3.nbbase.new_worksheet",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -998,7 +1167,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.nbbase.cast_str",
+          "name": "nbformat.v3.nbbase.str_passthrough",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1010,7 +1179,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.nbbase.str_passthrough",
+          "name": "nbformat.v3.nbbase.cast_str",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1056,175 +1225,6 @@
       "n_type_ignores": 0
     },
     {
-      "path": "nbformat/current.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "nbformat.current.writes_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.write",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.current.to_notebook_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.reads",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.reads_py",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.parse_py",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.writes_py",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.writes",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.reads_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.current.NBFormatError",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.current.read",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "nbformat.current",
-      "names": [
-        "nbformat.current.NBFormatError",
-        "nbformat.current.parse_py",
-        "nbformat.current.read",
-        "nbformat.current.reads",
-        "nbformat.current.reads_json",
-        "nbformat.current.reads_py",
-        "nbformat.current.to_notebook_json",
-        "nbformat.current.write",
-        "nbformat.current.writes",
-        "nbformat.current.writes_json",
-        "nbformat.current.writes_py"
-      ],
-      "n_typable": 34,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 34,
-      "n_functions": 9,
-      "n_function_overloads": 9,
-      "n_function_params": 25,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "nbformat/v3/__init__.py",
       "symbol_reports": [
         {
@@ -1241,31 +1241,7 @@
         },
         {
           "kind": "attr",
-          "name": "nbformat.v3.writes_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
           "name": "nbformat.v3.read_py",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.v3.to_notebook_json",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.v3.reads_py",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1281,7 +1257,23 @@
         },
         {
           "kind": "attr",
+          "name": "nbformat.v3.reads_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
           "name": "nbformat.v3.to_notebook_py",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v3.to_notebook_json",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1297,7 +1289,7 @@
         },
         {
           "kind": "attr",
-          "name": "nbformat.v3.write_py",
+          "name": "nbformat.v3.reads_py",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1313,7 +1305,15 @@
         },
         {
           "kind": "attr",
-          "name": "nbformat.v3.reads_json",
+          "name": "nbformat.v3.write_py",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v3.writes_json",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -1354,89 +1354,16 @@
       "path": "nbformat/json_compat.py",
       "symbol_reports": [
         {
-          "kind": "class",
-          "name": "nbformat.json_compat.FastJsonSchemaValidator",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FastJsonSchemaValidator.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "FastJsonSchemaValidator.validate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "FastJsonSchemaValidator.iter_errors",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FastJsonSchemaValidator.error_tree",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "FastJsonSchemaValidator.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 9,
+          "kind": "function",
+          "name": "nbformat.json_compat.get_current_validator",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 5,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.json_compat.ValidationError",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
           "kind": "attr",
@@ -1524,16 +1451,89 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "nbformat.json_compat.get_current_validator",
+          "kind": "class",
+          "name": "nbformat.json_compat.FastJsonSchemaValidator",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FastJsonSchemaValidator.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "FastJsonSchemaValidator.validate",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "FastJsonSchemaValidator.iter_errors",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FastJsonSchemaValidator.error_tree",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FastJsonSchemaValidator.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 9,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_untyped": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 5,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.json_compat.ValidationError",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1565,7 +1565,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "nbformat.reader.parse_json",
+          "name": "nbformat.reader.reads",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -1577,7 +1577,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.reader.reads",
+          "name": "nbformat.reader.read",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -1608,6 +1608,18 @@
         },
         {
           "kind": "function",
+          "name": "nbformat.reader.parse_json",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "nbformat.reader.get_version",
           "n_typed": 0,
           "n_any": 0,
@@ -1617,18 +1629,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.reader.read",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -1660,175 +1660,11 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "nbformat.sign.SignatureStore",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SignatureStore.store_signature",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SignatureStore.check_signature",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SignatureStore.remove_signature",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SignatureStore.close",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "nbformat.sign.NotebookNotary",
           "methods": [
             {
               "kind": "function",
-              "name": "NotebookNotary._data_dir_default",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._store_factory_default",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._db_file_default",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._algorithm_changed",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._digestmod_default",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._secret_file_default",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._secret_default",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
               "name": "NotebookNotary.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._write_secret_file",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1889,18 +1725,6 @@
             {
               "kind": "function",
               "name": "NotebookNotary.mark_cells",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "NotebookNotary._check_cell",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -1990,34 +1814,18 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 36,
+          "n_typable": 23,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 36,
+          "n_untyped": 23,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 16,
-          "n_method_overloads": 16,
-          "n_method_params": 12,
+          "n_methods": 7,
+          "n_method_overloads": 7,
+          "n_method_params": 8,
           "n_attrs": 8,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.sign.trust_flags",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.sign.algorithms",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         },
         {
           "kind": "class",
@@ -2046,18 +1854,6 @@
               "n_params": 2,
               "n_function_overloads": 1,
               "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "MemorySignatureStore._maybe_cull",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
             },
             {
               "kind": "function",
@@ -2103,26 +1899,38 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 12,
+          "n_typable": 11,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 12,
+          "n_untyped": 11,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
+          "n_methods": 4,
+          "n_method_overloads": 4,
           "n_method_params": 6,
           "n_attrs": 2,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "nbformat.sign.TrustNotebookApp",
+          "name": "nbformat.sign.SQLiteSignatureStore",
           "methods": [
             {
               "kind": "function",
-              "name": "TrustNotebookApp._config_file_name_default",
+              "name": "SQLiteSignatureStore.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SQLiteSignatureStore.close",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -2134,7 +1942,55 @@
             },
             {
               "kind": "function",
-              "name": "TrustNotebookApp._notary_default",
+              "name": "SQLiteSignatureStore.init_db",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SQLiteSignatureStore.store_signature",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SQLiteSignatureStore.check_signature",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SQLiteSignatureStore.remove_signature",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SQLiteSignatureStore.cull_db",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -2143,7 +1999,104 @@
               "n_params": 0,
               "n_function_overloads": 1,
               "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SQLiteSignatureStore.cache_size",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
             },
+            {
+              "kind": "attr",
+              "name": "SQLiteSignatureStore.db_file",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SQLiteSignatureStore.db",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 19,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 7,
+          "n_method_overloads": 7,
+          "n_method_params": 9,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.sign.adapt_datetime_iso",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.sign.algorithms",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.sign.signature_removed",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.sign.sqlite3",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.sign.yield_code_cells",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "nbformat.sign.TrustNotebookApp",
+          "methods": [
             {
               "kind": "function",
               "name": "TrustNotebookApp.sign_notebook_file",
@@ -2244,42 +2197,98 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 11,
+          "n_typable": 9,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 11,
+          "n_untyped": 9,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
+          "n_methods": 4,
+          "n_method_overloads": 4,
           "n_method_params": 3,
           "n_attrs": 6,
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "nbformat.sign.yield_code_cells",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
           "kind": "attr",
-          "name": "nbformat.sign.sqlite3",
-          "n_typed": 0,
+          "name": "nbformat.sign.trust_flags",
+          "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 0
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "nbformat.sign.SignatureStore",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SignatureStore.store_signature",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SignatureStore.check_signature",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SignatureStore.remove_signature",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SignatureStore.close",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
         },
         {
           "kind": "function",
-          "name": "nbformat.sign.adapt_datetime_iso",
+          "name": "nbformat.sign.convert_datetime",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2292,171 +2301,6 @@
         {
           "kind": "function",
           "name": "nbformat.sign.yield_everything",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.sign.signature_removed",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.sign.SQLiteSignatureStore",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.close",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore._connect_db",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.init_db",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.store_signature",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.check_signature",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.remove_signature",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "SQLiteSignatureStore.cull_db",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "SQLiteSignatureStore.cache_size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SQLiteSignatureStore.db_file",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SQLiteSignatureStore.db",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 21,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 21,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 8,
-          "n_method_overloads": 8,
-          "n_method_params": 10,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.sign.convert_datetime",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2497,16 +2341,16 @@
         "nbformat.sign.yield_code_cells",
         "nbformat.sign.yield_everything"
       ],
-      "n_typable": 102,
+      "n_typable": 84,
       "n_typed": 1,
       "n_any": 0,
-      "n_untyped": 101,
+      "n_untyped": 83,
       "n_functions": 5,
       "n_function_overloads": 5,
       "n_function_params": 5,
-      "n_methods": 39,
-      "n_method_overloads": 39,
-      "n_method_params": 37,
+      "n_methods": 26,
+      "n_method_overloads": 26,
+      "n_method_params": 32,
       "n_classes": 5,
       "n_attrs": 22,
       "n_properties": 0,
@@ -2553,15 +2397,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "nbformat.v1.nbbase.new_code_cell",
+          "name": "nbformat.v1.nbbase.from_dict",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -2577,7 +2421,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v1.nbbase.from_dict",
+          "name": "nbformat.v1.nbbase.new_text_cell",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2608,15 +2452,15 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v1.nbbase.new_text_cell",
+          "name": "nbformat.v1.nbbase.new_code_cell",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -2646,6 +2490,38 @@
     {
       "path": "nbformat/v1/nbjson.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "nbformat.v1.nbjson.JSONWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JSONWriter.writes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "nbformat.v1.nbjson.JSONReader",
@@ -2687,38 +2563,6 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.v1.nbjson.JSONWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONWriter.writes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
         }
@@ -2861,14 +2705,6 @@
       "path": "nbformat/v2/__init__.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "nbformat.v2.nbformat_minor",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "function",
           "name": "nbformat.v2.parse_filename",
           "n_typed": 0,
@@ -2883,6 +2719,14 @@
         {
           "kind": "attr",
           "name": "nbformat.v2.nbformat",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "nbformat.v2.nbformat_minor",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -2965,39 +2809,27 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "nbformat.v2.nbbase.new_code_cell",
+          "name": "nbformat.v2.nbbase.from_dict",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 6,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 5
+          "n_function_params": 1
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.nbbase.new_output",
+          "name": "nbformat.v2.nbbase.new_worksheet",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 14,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 14,
-          "n_params": 13,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 13
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v2.nbbase.new_author",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -3013,15 +2845,39 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.nbbase.from_dict",
+          "name": "nbformat.v2.nbbase.new_text_cell",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v2.nbbase.new_metadata",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v2.nbbase.new_output",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_overloads": 1,
+          "n_typable": 14,
+          "n_params": 13,
+          "n_function_overloads": 1,
+          "n_function_params": 13
         },
         {
           "kind": "class",
@@ -3044,39 +2900,27 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.nbbase.new_text_cell",
+          "name": "nbformat.v2.nbbase.new_code_cell",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 6,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 5
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.nbbase.new_worksheet",
+          "name": "nbformat.v2.nbbase.new_author",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v2.nbbase.new_metadata",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -3110,6 +2954,38 @@
     {
       "path": "nbformat/v2/nbjson.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "nbformat.v2.nbjson.JSONWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JSONWriter.writes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "nbformat.v2.nbjson.BytesEncoder",
@@ -3185,38 +3061,6 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.v2.nbjson.JSONWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONWriter.writes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -3244,6 +3088,38 @@
     {
       "path": "nbformat/v2/nbpy.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "nbformat.v2.nbpy.PyWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PyWriter.writes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "nbformat.v2.nbpy.PyReader",
@@ -3286,18 +3162,6 @@
             },
             {
               "kind": "function",
-              "name": "PyReader._remove_comments",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
               "name": "PyReader.split_lines_into_blocks",
               "n_typed": 0,
               "n_any": 0,
@@ -3311,16 +3175,16 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 13,
+          "n_typable": 11,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 13,
+          "n_untyped": 11,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 8,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 7,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -3342,38 +3206,6 @@
           "n_method_params": 0,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.v2.nbpy.PyWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PyWriter.writes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -3383,16 +3215,16 @@
         "nbformat.v2.nbpy.PyReaderError",
         "nbformat.v2.nbpy.PyWriter"
       ],
-      "n_typable": 16,
+      "n_typable": 14,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 16,
+      "n_untyped": 14,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 6,
-      "n_method_overloads": 6,
-      "n_method_params": 10,
+      "n_methods": 5,
+      "n_method_overloads": 5,
+      "n_method_params": 9,
       "n_classes": 3,
       "n_attrs": 0,
       "n_properties": 0,
@@ -3402,8 +3234,16 @@
       "path": "nbformat/v2/nbxml.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "nbformat.v2.nbxml.REMOVED_MSG",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "function",
-          "name": "nbformat.v2.nbxml.reads",
+          "name": "nbformat.v2.nbxml.read",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -3412,14 +3252,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "nbformat.v2.nbxml.REMOVED_MSG",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "function",
@@ -3435,7 +3267,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.nbxml.read",
+          "name": "nbformat.v2.nbxml.reads",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -3472,6 +3304,30 @@
     {
       "path": "nbformat/v2/rwbase.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "nbformat.v2.rwbase.rejoin_lines",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v2.rwbase.restore_bytes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
         {
           "kind": "class",
           "name": "nbformat.v2.rwbase.NotebookWriter",
@@ -3515,6 +3371,18 @@
           "n_method_params": 5,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v2.rwbase.base64_encode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -3562,30 +3430,6 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.rwbase.restore_bytes",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v2.rwbase.base64_decode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "nbformat.v2.rwbase.split_lines",
           "n_typed": 0,
           "n_any": 0,
@@ -3598,19 +3442,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v2.rwbase.base64_encode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v2.rwbase.rejoin_lines",
+          "name": "nbformat.v2.rwbase.base64_decode",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -3727,6 +3559,38 @@
       "symbol_reports": [
         {
           "kind": "class",
+          "name": "nbformat.v3.nbjson.JSONWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JSONWriter.writes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "nbformat.v3.nbjson.BytesEncoder",
           "methods": [
             {
@@ -3800,38 +3664,6 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.v3.nbjson.JSONWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONWriter.writes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -3859,6 +3691,38 @@
     {
       "path": "nbformat/v3/nbpy.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "nbformat.v3.nbpy.PyWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PyWriter.writes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "nbformat.v3.nbpy.PyReader",
@@ -3901,18 +3765,6 @@
             },
             {
               "kind": "function",
-              "name": "PyReader._remove_comments",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
               "name": "PyReader.split_lines_into_blocks",
               "n_typed": 0,
               "n_any": 0,
@@ -3926,16 +3778,16 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 14,
+          "n_typable": 12,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 14,
+          "n_untyped": 12,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 9,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 8,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -3957,38 +3809,6 @@
           "n_method_params": 0,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.v3.nbpy.PyWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PyWriter.writes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -3998,16 +3818,16 @@
         "nbformat.v3.nbpy.PyReaderError",
         "nbformat.v3.nbpy.PyWriter"
       ],
-      "n_typable": 17,
+      "n_typable": 15,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 17,
+      "n_untyped": 15,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 6,
-      "n_method_overloads": 6,
-      "n_method_params": 11,
+      "n_methods": 5,
+      "n_method_overloads": 5,
+      "n_method_params": 10,
       "n_classes": 3,
       "n_attrs": 0,
       "n_properties": 0,
@@ -4016,6 +3836,30 @@
     {
       "path": "nbformat/v3/rwbase.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "nbformat.v3.rwbase.rejoin_lines",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v3.rwbase.restore_bytes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
         {
           "kind": "class",
           "name": "nbformat.v3.rwbase.NotebookWriter",
@@ -4059,6 +3903,18 @@
           "n_method_params": 5,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v3.rwbase.base64_encode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -4106,42 +3962,6 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.rwbase.strip_transient",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v3.rwbase.restore_bytes",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v3.rwbase.base64_decode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "nbformat.v3.rwbase.split_lines",
           "n_typed": 0,
           "n_any": 0,
@@ -4154,7 +3974,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.rwbase.base64_encode",
+          "name": "nbformat.v3.rwbase.strip_transient",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -4166,7 +3986,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v3.rwbase.rejoin_lines",
+          "name": "nbformat.v3.rwbase.base64_decode",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -4200,159 +4020,6 @@
       "n_method_overloads": 4,
       "n_method_params": 9,
       "n_classes": 2,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "nbformat/v4/convert.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.upgrade",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.downgrade",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.upgrade_cell",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.downgrade_outputs",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.upgrade_outputs",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.downgrade_cell",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.to_mime_key",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.from_mime_key",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.downgrade_output",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "nbformat.v4.convert.upgrade_output",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "nbformat.v4.convert",
-      "names": [
-        "nbformat.v4.convert.downgrade",
-        "nbformat.v4.convert.downgrade_cell",
-        "nbformat.v4.convert.downgrade_output",
-        "nbformat.v4.convert.downgrade_outputs",
-        "nbformat.v4.convert.from_mime_key",
-        "nbformat.v4.convert.to_mime_key",
-        "nbformat.v4.convert.upgrade",
-        "nbformat.v4.convert.upgrade_cell",
-        "nbformat.v4.convert.upgrade_output",
-        "nbformat.v4.convert.upgrade_outputs"
-      ],
-      "n_typable": 22,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 22,
-      "n_functions": 10,
-      "n_function_overloads": 10,
-      "n_function_params": 12,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
@@ -4408,8 +4075,193 @@
       "n_type_ignores": 0
     },
     {
+      "path": "nbformat/v4/convert.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.upgrade",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.downgrade",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.to_mime_key",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.downgrade_output",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.upgrade_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.from_mime_key",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.upgrade_outputs",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.downgrade_outputs",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.downgrade_cell",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "nbformat.v4.convert.upgrade_output",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "nbformat.v4.convert",
+      "names": [
+        "nbformat.v4.convert.downgrade",
+        "nbformat.v4.convert.downgrade_cell",
+        "nbformat.v4.convert.downgrade_output",
+        "nbformat.v4.convert.downgrade_outputs",
+        "nbformat.v4.convert.from_mime_key",
+        "nbformat.v4.convert.to_mime_key",
+        "nbformat.v4.convert.upgrade",
+        "nbformat.v4.convert.upgrade_cell",
+        "nbformat.v4.convert.upgrade_output",
+        "nbformat.v4.convert.upgrade_outputs"
+      ],
+      "n_typable": 22,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 22,
+      "n_functions": 10,
+      "n_function_overloads": 10,
+      "n_function_params": 12,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "nbformat/v4/nbjson.py",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "nbformat.v4.nbjson.JSONWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JSONWriter.writes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "nbformat.v4.nbjson.BytesEncoder",
@@ -4485,38 +4337,6 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "nbformat.v4.nbjson.JSONWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONWriter.writes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -4544,6 +4364,18 @@
     {
       "path": "nbformat/v4/rwbase.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "nbformat.v4.rwbase.rejoin_lines",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
         {
           "kind": "class",
           "name": "nbformat.v4.rwbase.NotebookWriter",
@@ -4634,18 +4466,6 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v4.rwbase.strip_transient",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "nbformat.v4.rwbase.split_lines",
           "n_typed": 0,
           "n_any": 0,
@@ -4658,7 +4478,7 @@
         },
         {
           "kind": "function",
-          "name": "nbformat.v4.rwbase.rejoin_lines",
+          "name": "nbformat.v4.rwbase.strip_transient",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -4759,16 +4579,16 @@
   ],
   "typecheckers": {},
   "n_modules": 34,
-  "n_typable": 596,
+  "n_typable": 574,
   "n_typed": 13,
   "n_any": 3,
-  "n_untyped": 580,
+  "n_untyped": 558,
   "n_functions": 98,
   "n_function_overloads": 98,
   "n_function_params": 235,
-  "n_methods": 98,
-  "n_method_params": 141,
-  "n_method_overloads": 98,
+  "n_methods": 83,
+  "n_method_params": 134,
+  "n_method_overloads": 83,
   "n_classes": 43,
   "n_attrs": 60,
   "n_properties": 0,
@@ -4776,13 +4596,13 @@
     {
       "kind": "type",
       "rules": [
-        "misc"
+        "union-attr"
       ]
     },
     {
       "kind": "type",
       "rules": [
-        "union-attr"
+        "misc"
       ]
     },
     {

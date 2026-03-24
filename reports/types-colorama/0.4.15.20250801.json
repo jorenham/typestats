@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "types-colorama",
   "version": "0.4.15.20250801",
   "base_version": "0.4.6",
@@ -57,15 +57,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "colorama.reinit",
-          "n_typed": 1,
+          "name": "colorama.init",
+          "n_typed": 5,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -81,7 +81,7 @@
         },
         {
           "kind": "function",
-          "name": "colorama.deinit",
+          "name": "colorama.reinit",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -105,7 +105,19 @@
         },
         {
           "kind": "function",
-          "name": "colorama.init",
+          "name": "colorama.deinit",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "colorama.initialise.init",
           "n_typed": 5,
           "n_any": 0,
           "n_untyped": 0,
@@ -117,23 +129,19 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.initialise.atexit_done",
+          "name": "colorama.initialise.wrapped_stderr",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
         },
         {
-          "kind": "function",
-          "name": "colorama.initialise.reinit",
+          "kind": "attr",
+          "name": "colorama.initialise.orig_stderr",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
+          "n_typable": 1
         },
         {
           "kind": "function",
@@ -156,64 +164,8 @@
           "n_typable": 1
         },
         {
-          "kind": "attr",
-          "name": "colorama.initialise.wrapped_stderr",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.initialise.orig_stderr",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
-          "name": "colorama.initialise.deinit",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.initialise.fixed_windows_console",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.initialise.orig_stdout",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "colorama.initialise.wrap_stream",
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "colorama.initialise.reset_all",
+          "name": "colorama.initialise.reinit",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -236,16 +188,64 @@
           "n_function_params": 0
         },
         {
+          "kind": "attr",
+          "name": "colorama.initialise.orig_stdout",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "colorama.initialise.fixed_windows_console",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "function",
-          "name": "colorama.initialise.init",
-          "n_typed": 5,
+          "name": "colorama.initialise.wrap_stream",
+          "n_typed": 6,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 5
+        },
+        {
+          "kind": "attr",
+          "name": "colorama.initialise.atexit_done",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "colorama.initialise.reset_all",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "colorama.initialise.deinit",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
         },
         {
           "kind": "attr",
@@ -299,7 +299,7 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "colorama.Style",
+          "name": "colorama.Back",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -307,7 +307,7 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.Cursor",
+          "name": "colorama.Style",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -323,71 +323,7 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.Back",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "colorama.ansi.set_title",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "colorama.ansi.clear_screen",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "colorama.ansi.AnsiCodes",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AnsiCodes.__init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 1,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.ansi.OSC",
+          "name": "colorama.Cursor",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -395,91 +331,11 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.ansi.Style",
+          "name": "colorama.ansi.Back",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "colorama.ansi.AnsiCursor",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AnsiCursor.UP",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AnsiCursor.DOWN",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AnsiCursor.FORWARD",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AnsiCursor.BACK",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AnsiCursor.POS",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 11,
-          "n_typed": 11,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 0
         },
         {
           "kind": "class",
@@ -638,6 +494,26 @@
           "n_properties": 0
         },
         {
+          "kind": "attr",
+          "name": "colorama.ansi.Style",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "colorama.ansi.code_to_chars",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
           "kind": "function",
           "name": "colorama.ansi.clear_line",
           "n_typed": 2,
@@ -700,26 +576,6 @@
           "n_method_params": 0,
           "n_attrs": 4,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.ansi.Cursor",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "colorama.ansi.code_to_chars",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -879,11 +735,35 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.ansi.Fore",
+          "name": "colorama.ansi.CSI",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "colorama.ansi.set_title",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "colorama.ansi.clear_screen",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "attr",
@@ -895,7 +775,7 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.ansi.CSI",
+          "name": "colorama.ansi.Fore",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -903,11 +783,131 @@
         },
         {
           "kind": "attr",
-          "name": "colorama.ansi.Back",
+          "name": "colorama.ansi.OSC",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "colorama.ansi.Cursor",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "colorama.ansi.AnsiCursor",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnsiCursor.UP",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AnsiCursor.DOWN",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AnsiCursor.FORWARD",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AnsiCursor.BACK",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AnsiCursor.POS",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "colorama.ansi.AnsiCodes",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnsiCodes.__init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1190,6 +1190,115 @@
           "n_properties": 0
         },
         {
+          "kind": "attr",
+          "name": "colorama.ansitowin32.winterm",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "colorama.ansitowin32.StreamWrapper",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamWrapper.__init__",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "StreamWrapper.__getattr__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "StreamWrapper.__enter__",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "StreamWrapper.__exit__",
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "StreamWrapper.write",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "StreamWrapper.isatty",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "StreamWrapper.closed",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 15,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
           "kind": "class",
           "name": "colorama.ansitowin32.AnsiToWin32",
           "methods": [
@@ -1425,115 +1534,6 @@
           "n_method_params": 16,
           "n_attrs": 9,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "colorama.ansitowin32.StreamWrapper",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "StreamWrapper.__init__",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "StreamWrapper.__getattr__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "StreamWrapper.__enter__",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "StreamWrapper.__exit__",
-              "n_typed": 4,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "StreamWrapper.write",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "StreamWrapper.isatty",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "StreamWrapper.closed",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 17,
-          "n_typed": 15,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 10,
-          "n_attrs": 0,
-          "n_properties": 1
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.ansitowin32.winterm",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -1563,42 +1563,6 @@
       "path": "colorama-stubs/win32.pyi",
       "symbol_reports": [
         {
-          "kind": "function",
-          "name": "colorama.win32.FillConsoleOutputAttribute",
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "colorama.win32.GetConsoleMode",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "colorama.win32.SetConsoleMode",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
           "kind": "attr",
           "name": "colorama.win32.STDOUT",
           "n_typed": 1,
@@ -1607,36 +1571,8 @@
           "n_typable": 1
         },
         {
-          "kind": "function",
-          "name": "colorama.win32.SetConsoleCursorPosition",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
           "kind": "attr",
           "name": "colorama.win32.windll",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.win32.ENABLE_VIRTUAL_TERMINAL_PROCESSING",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "colorama.win32.STDERR",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1656,6 +1592,18 @@
         },
         {
           "kind": "function",
+          "name": "colorama.win32.FillConsoleOutputCharacter",
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
           "name": "colorama.win32.winapi_test",
           "n_typed": 1,
           "n_any": 0,
@@ -1668,15 +1616,15 @@
         },
         {
           "kind": "function",
-          "name": "colorama.win32.FillConsoleOutputCharacter",
-          "n_typed": 5,
+          "name": "colorama.win32.SetConsoleCursorPosition",
+          "n_typed": 4,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -1740,7 +1688,7 @@
         },
         {
           "kind": "function",
-          "name": "colorama.win32.SetConsoleTextAttribute",
+          "name": "colorama.win32.SetConsoleMode",
           "n_typed": 3,
           "n_any": 0,
           "n_untyped": 0,
@@ -1749,6 +1697,14 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "colorama.win32.STDERR",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "function",
@@ -1761,6 +1717,50 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "colorama.win32.FillConsoleOutputAttribute",
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "colorama.win32.SetConsoleTextAttribute",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "colorama.win32.GetConsoleMode",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "colorama.win32.ENABLE_VIRTUAL_TERMINAL_PROCESSING",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
@@ -1799,6 +1799,90 @@
     {
       "path": "colorama-stubs/winterm.pyi",
       "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "colorama.winterm.WinColor",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "WinColor.BLACK",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.BLUE",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.GREEN",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.CYAN",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.RED",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.MAGENTA",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.YELLOW",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WinColor.GREY",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 8,
+          "n_properties": 0
+        },
         {
           "kind": "class",
           "name": "colorama.winterm.WinStyle",
@@ -1842,6 +1926,18 @@
           "n_method_params": 0,
           "n_attrs": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "colorama.winterm.enable_vt_processing",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -2030,102 +2126,6 @@
           "n_method_params": 23,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "colorama.winterm.WinColor",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "WinColor.BLACK",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.BLUE",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.GREEN",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.CYAN",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.RED",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.MAGENTA",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.YELLOW",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "WinColor.GREY",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 8,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 8,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "colorama.winterm.enable_vt_processing",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         },
         {
           "kind": "function",

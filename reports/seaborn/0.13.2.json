@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "seaborn",
   "version": "0.13.2",
   "base_version": null,
@@ -153,48 +153,36 @@
       "path": "seaborn/axisgrid.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "seaborn.axisgrid.pairplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 19,
+          "n_overloads": 1,
+          "n_typable": 19,
+          "n_params": 18,
+          "n_function_overloads": 1,
+          "n_function_params": 18
+        },
+        {
           "kind": "class",
-          "name": "seaborn.axisgrid.JointGrid",
+          "name": "seaborn.axisgrid.PairGrid",
           "methods": [
             {
               "kind": "function",
-              "name": "JointGrid.__init__",
+              "name": "PairGrid.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 15,
+              "n_untyped": 16,
               "n_overloads": 1,
-              "n_typable": 15,
-              "n_params": 14,
+              "n_typable": 16,
+              "n_params": 15,
               "n_function_overloads": 1,
-              "n_function_params": 14
+              "n_function_params": 15
             },
             {
               "kind": "function",
-              "name": "JointGrid._inject_kwargs",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JointGrid.plot",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JointGrid.plot_joint",
+              "name": "PairGrid.map",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -206,7 +194,7 @@
             },
             {
               "kind": "function",
-              "name": "JointGrid.plot_marginals",
+              "name": "PairGrid.map_lower",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -218,34 +206,46 @@
             },
             {
               "kind": "function",
-              "name": "JointGrid.refline",
+              "name": "PairGrid.map_upper",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 8,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 8,
-              "n_params": 7,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 7
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "JointGrid.set_axis_labels",
+              "name": "PairGrid.map_offdiag",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 4,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "PairGrid.map_diag",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "JointGrid.ax_joint",
+              "name": "PairGrid.x_vars",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -253,7 +253,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.ax_marg_x",
+              "name": "PairGrid.y_vars",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -261,7 +261,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.ax_marg_y",
+              "name": "PairGrid.square_grid",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -269,7 +269,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.x",
+              "name": "PairGrid.axes",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -277,7 +277,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.y",
+              "name": "PairGrid.data",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -285,24 +285,72 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.hue",
+              "name": "PairGrid.diag_sharey",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.diag_vars",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.diag_axes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.hue_kws",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.palette",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.hue_names",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.hue_vals",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 47,
+          "n_typable": 43,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 47,
+          "n_untyped": 43,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 7,
-          "n_method_overloads": 7,
-          "n_method_params": 34,
-          "n_attrs": 6,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 25,
+          "n_attrs": 12,
           "n_properties": 0
         },
         {
@@ -368,42 +416,6 @@
               "n_params": 3,
               "n_function_overloads": 1,
               "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "FacetGrid._facet_color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FacetGrid._facet_plot",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "FacetGrid._finalize_grid",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             },
             {
               "kind": "function",
@@ -538,46 +550,6 @@
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "FacetGrid._inner_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "FacetGrid._left_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "FacetGrid._not_left_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "FacetGrid._bottom_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "FacetGrid._not_bottom_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
             }
           ],
           "attrs": [
@@ -622,122 +594,38 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 92,
+          "n_typable": 77,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 92,
+          "n_untyped": 77,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 16,
-          "n_method_overloads": 16,
-          "n_method_params": 63,
+          "n_methods": 13,
+          "n_method_overloads": 13,
+          "n_method_params": 56,
           "n_attrs": 5,
-          "n_properties": 8
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.axisgrid.pairplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 19,
-          "n_overloads": 1,
-          "n_typable": 19,
-          "n_params": 18,
-          "n_function_overloads": 1,
-          "n_function_params": 18
+          "n_properties": 3
         },
         {
           "kind": "class",
-          "name": "seaborn.axisgrid.PairGrid",
+          "name": "seaborn.axisgrid.JointGrid",
           "methods": [
             {
               "kind": "function",
-              "name": "PairGrid.__init__",
+              "name": "JointGrid.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 16,
+              "n_untyped": 15,
               "n_overloads": 1,
-              "n_typable": 16,
-              "n_params": 15,
+              "n_typable": 15,
+              "n_params": 14,
               "n_function_overloads": 1,
-              "n_function_params": 15
+              "n_function_params": 14
             },
             {
               "kind": "function",
-              "name": "PairGrid.map",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid.map_lower",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid.map_upper",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid.map_offdiag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid.map_diag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid._map_diag_iter_hue",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid._map_bivariate",
+              "name": "JointGrid.plot",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -749,58 +637,58 @@
             },
             {
               "kind": "function",
-              "name": "PairGrid._plot_bivariate",
+              "name": "JointGrid.plot_joint",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 6,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 5
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "PairGrid._plot_bivariate_iter_hue",
+              "name": "JointGrid.plot_marginals",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 6,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 5
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "PairGrid._add_axis_labels",
+              "name": "JointGrid.refline",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 8,
               "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
+              "n_typable": 8,
+              "n_params": 7,
               "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 7
             },
             {
               "kind": "function",
-              "name": "PairGrid._find_numeric_cols",
+              "name": "JointGrid.set_axis_labels",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 2,
+              "n_untyped": 4,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 3
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "PairGrid.x_vars",
+              "name": "JointGrid.ax_joint",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -808,7 +696,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.y_vars",
+              "name": "JointGrid.ax_marg_x",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -816,7 +704,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.square_grid",
+              "name": "JointGrid.ax_marg_y",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -824,7 +712,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.axes",
+              "name": "JointGrid.x",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -832,7 +720,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.data",
+              "name": "JointGrid.y",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -840,72 +728,24 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.diag_sharey",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.diag_vars",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.diag_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.hue_kws",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.palette",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.hue_names",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.hue_vals",
+              "name": "JointGrid.hue",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 65,
+          "n_typable": 43,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 65,
+          "n_untyped": 43,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 12,
-          "n_method_overloads": 12,
-          "n_method_params": 41,
-          "n_attrs": 12,
+          "n_methods": 6,
+          "n_method_overloads": 6,
+          "n_method_params": 31,
+          "n_attrs": 6,
           "n_properties": 0
         }
       ],
@@ -918,36 +758,24 @@
         "seaborn.axisgrid.jointplot",
         "seaborn.axisgrid.pairplot"
       ],
-      "n_typable": 243,
+      "n_typable": 202,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 243,
+      "n_untyped": 202,
       "n_functions": 2,
       "n_function_overloads": 2,
       "n_function_params": 37,
-      "n_methods": 35,
-      "n_method_overloads": 35,
-      "n_method_params": 138,
+      "n_methods": 25,
+      "n_method_overloads": 25,
+      "n_method_params": 112,
       "n_classes": 3,
       "n_attrs": 23,
-      "n_properties": 8,
+      "n_properties": 3,
       "n_type_ignores": 0
     },
     {
       "path": "seaborn/categorical.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "seaborn.categorical.countplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 23,
-          "n_overloads": 1,
-          "n_typable": 23,
-          "n_params": 22,
-          "n_function_overloads": 1,
-          "n_function_params": 22
-        },
         {
           "kind": "function",
           "name": "seaborn.categorical.swarmplot",
@@ -974,18 +802,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.categorical.pointplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 32,
-          "n_overloads": 1,
-          "n_typable": 32,
-          "n_params": 31,
-          "n_function_overloads": 1,
-          "n_function_params": 31
-        },
-        {
-          "kind": "function",
           "name": "seaborn.categorical.boxenplot",
           "n_typed": 0,
           "n_any": 0,
@@ -995,30 +811,6 @@
           "n_params": 32,
           "n_function_overloads": 1,
           "n_function_params": 32
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.categorical.catplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 36,
-          "n_overloads": 1,
-          "n_typable": 36,
-          "n_params": 35,
-          "n_function_overloads": 1,
-          "n_function_params": 35
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.categorical.boxplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 26,
-          "n_overloads": 1,
-          "n_typable": 26,
-          "n_params": 25,
-          "n_function_overloads": 1,
-          "n_function_params": 25
         },
         {
           "kind": "function",
@@ -1034,6 +826,18 @@
         },
         {
           "kind": "function",
+          "name": "seaborn.categorical.boxplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 26,
+          "n_overloads": 1,
+          "n_typable": 26,
+          "n_params": 25,
+          "n_function_overloads": 1,
+          "n_function_params": 25
+        },
+        {
+          "kind": "function",
           "name": "seaborn.categorical.violinplot",
           "n_typed": 0,
           "n_any": 0,
@@ -1043,6 +847,42 @@
           "n_params": 35,
           "n_function_overloads": 1,
           "n_function_params": 35
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.categorical.catplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 36,
+          "n_overloads": 1,
+          "n_typable": 36,
+          "n_params": 35,
+          "n_function_overloads": 1,
+          "n_function_params": 35
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.categorical.pointplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 32,
+          "n_overloads": 1,
+          "n_typable": 32,
+          "n_params": 31,
+          "n_function_overloads": 1,
+          "n_function_params": 31
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.categorical.countplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 23,
+          "n_overloads": 1,
+          "n_typable": 23,
+          "n_params": 22,
+          "n_function_overloads": 1,
+          "n_function_params": 22
         }
       ],
       "type_ignores": [],
@@ -1142,6 +982,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "seaborn.distributions.kdeplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 30,
+          "n_overloads": 1,
+          "n_typable": 30,
+          "n_params": 29,
+          "n_function_overloads": 1,
+          "n_function_params": 29
+        },
+        {
+          "kind": "function",
           "name": "seaborn.distributions.displot",
           "n_typed": 0,
           "n_any": 0,
@@ -1154,15 +1006,15 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.distributions.kdeplot",
+          "name": "seaborn.distributions.distplot",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 30,
+          "n_untyped": 18,
           "n_overloads": 1,
-          "n_typable": 30,
-          "n_params": 29,
+          "n_typable": 18,
+          "n_params": 17,
           "n_function_overloads": 1,
-          "n_function_params": 29
+          "n_function_params": 17
         },
         {
           "kind": "function",
@@ -1199,18 +1051,6 @@
           "n_params": 34,
           "n_function_overloads": 1,
           "n_function_params": 34
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.distributions.distplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 18,
-          "n_overloads": 1,
-          "n_typable": 18,
-          "n_params": 17,
-          "n_function_overloads": 1,
-          "n_function_params": 17
         }
       ],
       "type_ignores": [],
@@ -1341,55 +1181,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.palettes.husl_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.color_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.diverging_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_overloads": 1,
-          "n_typable": 9,
-          "n_params": 8,
-          "n_function_overloads": 1,
-          "n_function_params": 8
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.blend_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.set_color_codes",
+          "name": "seaborn.palettes.crayon_palette",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1410,6 +1202,102 @@
           "n_params": 5,
           "n_function_overloads": 1,
           "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.cubehelix_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_overloads": 1,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 1,
+          "n_function_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.diverging_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_overloads": 1,
+          "n_typable": 9,
+          "n_params": 8,
+          "n_function_overloads": 1,
+          "n_function_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.set_color_codes",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.blend_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.color_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.husl_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.hls_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.mpl_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -1434,54 +1322,6 @@
           "n_params": 5,
           "n_function_overloads": 1,
           "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.mpl_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.hls_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.crayon_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.cubehelix_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
         }
       ],
       "type_ignores": [],
@@ -1520,15 +1360,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.rcmod.set_theme",
+          "name": "seaborn.rcmod.plotting_context",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 7
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -1544,30 +1384,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.rcmod.plotting_context",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.rcmod.set_style",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "seaborn.rcmod.set_palette",
           "n_typed": 0,
           "n_any": 0,
@@ -1580,7 +1396,19 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.rcmod.set",
+          "name": "seaborn.rcmod.set_theme",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.rcmod.set_style",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -1604,6 +1432,18 @@
         },
         {
           "kind": "function",
+          "name": "seaborn.rcmod.set_context",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
           "name": "seaborn.rcmod.axes_style",
           "n_typed": 0,
           "n_any": 0,
@@ -1616,15 +1456,15 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.rcmod.set_context",
+          "name": "seaborn.rcmod.set",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -1660,15 +1500,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.regression.residplot",
+          "name": "seaborn.regression.lmplot",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 15,
+          "n_untyped": 41,
           "n_overloads": 1,
-          "n_typable": 15,
-          "n_params": 14,
+          "n_typable": 41,
+          "n_params": 40,
           "n_function_overloads": 1,
-          "n_function_params": 14
+          "n_function_params": 40
         },
         {
           "kind": "function",
@@ -1684,15 +1524,15 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.regression.lmplot",
+          "name": "seaborn.regression.residplot",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 41,
+          "n_untyped": 15,
           "n_overloads": 1,
-          "n_typable": 41,
-          "n_params": 40,
+          "n_typable": 15,
+          "n_params": 14,
           "n_function_overloads": 1,
-          "n_function_params": 40
+          "n_function_params": 14
         }
       ],
       "type_ignores": [],
@@ -1734,18 +1574,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.relational.scatterplot",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 18,
-          "n_overloads": 1,
-          "n_typable": 18,
-          "n_params": 17,
-          "n_function_overloads": 1,
-          "n_function_params": 17
-        },
-        {
-          "kind": "function",
           "name": "seaborn.relational.relplot",
           "n_typed": 0,
           "n_any": 0,
@@ -1755,6 +1583,18 @@
           "n_params": 28,
           "n_function_overloads": 1,
           "n_function_params": 28
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.relational.scatterplot",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 18,
+          "n_overloads": 1,
+          "n_typable": 18,
+          "n_params": 17,
+          "n_function_overloads": 1,
+          "n_function_params": 17
         }
       ],
       "type_ignores": [],
@@ -1796,54 +1636,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.utils.set_hls_values",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.utils.get_dataset_names",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.utils.saturate",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.utils.load_dataset",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
           "name": "seaborn.utils.get_data_home",
           "n_typed": 0,
           "n_any": 0,
@@ -1853,6 +1645,18 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.desaturate",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -1868,15 +1672,51 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.utils.desaturate",
+          "name": "seaborn.utils.load_dataset",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.saturate",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.get_dataset_names",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.set_hls_values",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -1911,30 +1751,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.widgets.choose_colorbrewer_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.widgets.choose_cubehelix_palette",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "seaborn.widgets.choose_light_palette",
           "n_typed": 0,
           "n_any": 0,
@@ -1947,7 +1763,31 @@
         },
         {
           "kind": "function",
+          "name": "seaborn.widgets.choose_colorbrewer_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "seaborn.widgets.choose_diverging_palette",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.widgets.choose_cubehelix_palette",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1997,19 +1837,19 @@
   ],
   "typecheckers": {},
   "n_modules": 15,
-  "n_typable": 994,
+  "n_typable": 953,
   "n_typed": 0,
   "n_any": 0,
-  "n_untyped": 994,
+  "n_untyped": 953,
   "n_functions": 62,
   "n_function_overloads": 62,
   "n_function_params": 728,
-  "n_methods": 35,
-  "n_method_params": 138,
-  "n_method_overloads": 35,
+  "n_methods": 25,
+  "n_method_params": 112,
+  "n_method_overloads": 25,
   "n_classes": 3,
   "n_attrs": 26,
-  "n_properties": 8,
+  "n_properties": 3,
   "type_ignores": [],
   "n_type_ignores": 0
 }

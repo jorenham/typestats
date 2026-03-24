@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "boto3",
   "version": "1.42.73",
   "base_version": null,
@@ -74,6 +74,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "boto3.resource",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "boto3.set_stream_logger",
           "n_typed": 0,
           "n_any": 0,
@@ -86,27 +98,7 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.__author__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "boto3.resource",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.__version__",
+          "name": "boto3.DEFAULT_SESSION",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -125,6 +117,22 @@
           "n_function_params": 2
         },
         {
+          "kind": "attr",
+          "name": "boto3.__author__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.__version__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "function",
           "name": "boto3.setup_default_session",
           "n_typed": 0,
@@ -135,14 +143,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.DEFAULT_SESSION",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -175,22 +175,6 @@
       "path": "boto3/compat.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "boto3.compat.SOCKET_ERROR",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.compat.TRANSFER_CONFIG_SUPPORTS_CRT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
           "name": "boto3.compat.is_append_mode",
           "n_typed": 0,
@@ -203,16 +187,12 @@
           "n_function_params": 1
         },
         {
-          "kind": "function",
-          "name": "boto3.compat.rename_file",
+          "kind": "attr",
+          "name": "boto3.compat.TRANSFER_CONFIG_SUPPORTS_CRT",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "function",
@@ -225,6 +205,26 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.compat.SOCKET_ERROR",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "boto3.compat.rename_file",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -255,16 +255,20 @@
       "path": "boto3/crt.py",
       "symbol_reports": [
         {
-          "kind": "function",
-          "name": "boto3.crt.is_crt_compatible_request",
+          "kind": "attr",
+          "name": "boto3.crt.CRT_S3_CLIENT",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.crt.CLIENT_CREATION_LOCK",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "function",
@@ -277,26 +281,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "boto3.crt.compare_identity",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.crt.CLIENT_CREATION_LOCK",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         },
         {
           "kind": "class",
@@ -365,27 +349,35 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.crt.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.crt.CRT_S3_CLIENT",
+          "name": "boto3.crt.PROCESS_LOCK_NAME",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
         },
         {
-          "kind": "attr",
-          "name": "boto3.crt.BOTOCORE_CRT_SERIALIZER",
+          "kind": "function",
+          "name": "boto3.crt.is_crt_compatible_request",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "boto3.crt.compare_identity",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -401,7 +393,15 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.crt.PROCESS_LOCK_NAME",
+          "name": "boto3.crt.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.crt.BOTOCORE_CRT_SERIALIZER",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -442,242 +442,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.And",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "And.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "And.expression_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.BeginsWith",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "BeginsWith.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "BeginsWith.expression_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.ConditionAttributeBase",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ConditionAttributeBase.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ConditionAttributeBase.__eq__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ConditionAttributeBase.__ne__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.Size",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Size.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Size.expression_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.dynamodb.conditions.BuiltConditionExpression",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.AttributeType",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AttributeType.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "AttributeType.expression_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.LessThan",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "LessThan.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "boto3.dynamodb.conditions.In",
           "methods": [],
           "properties": [],
@@ -714,13 +478,13 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.AttributeExists",
+          "name": "boto3.dynamodb.conditions.Not",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "AttributeExists.expression_operator",
+              "name": "Not.expression_operator",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -728,7 +492,7 @@
             },
             {
               "kind": "attr",
-              "name": "AttributeExists.expression_format",
+              "name": "Not.expression_format",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -750,13 +514,13 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.Not",
+          "name": "boto3.dynamodb.conditions.Size",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Not.expression_operator",
+              "name": "Size.expression_operator",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -764,7 +528,7 @@
             },
             {
               "kind": "attr",
-              "name": "Not.expression_format",
+              "name": "Size.expression_format",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -890,13 +654,13 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.NotEquals",
+          "name": "boto3.dynamodb.conditions.Equals",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "NotEquals.expression_operator",
+              "name": "Equals.expression_operator",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -918,13 +682,13 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.Between",
+          "name": "boto3.dynamodb.conditions.Contains",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Between.expression_operator",
+              "name": "Contains.expression_operator",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -932,7 +696,7 @@
             },
             {
               "kind": "attr",
-              "name": "Between.expression_format",
+              "name": "Contains.expression_format",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -951,6 +715,94 @@
           "n_method_params": 0,
           "n_attrs": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.AttributeType",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AttributeType.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "AttributeType.expression_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.And",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "And.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "And.expression_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.dynamodb.conditions.ATTR_NAME_REGEX",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.dynamodb.conditions.BuiltConditionExpression",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1139,78 +991,6 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.GreaterThanEquals",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "GreaterThanEquals.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.dynamodb.conditions.ATTR_NAME_REGEX",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.Contains",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Contains.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Contains.expression_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "boto3.dynamodb.conditions.AttributeNotExists",
           "methods": [],
           "properties": [],
@@ -1247,32 +1027,77 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.Key",
-          "methods": [],
+          "name": "boto3.dynamodb.conditions.ConditionAttributeBase",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConditionAttributeBase.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConditionAttributeBase.__eq__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConditionAttributeBase.__ne__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
           "properties": [],
           "attrs": [],
-          "n_typable": 0,
+          "n_typable": 6,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 6,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 3,
           "n_attrs": 0,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.LessThanEquals",
+          "name": "boto3.dynamodb.conditions.Or",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "LessThanEquals.expression_operator",
+              "name": "Or.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Or.expression_format",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -1289,35 +1114,7 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.conditions.Equals",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Equals.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 1,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
@@ -1327,30 +1124,6 @@
             {
               "kind": "function",
               "name": "ConditionExpressionBuilder.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ConditionExpressionBuilder._get_name_placeholder",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ConditionExpressionBuilder._get_value_placeholder",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1383,80 +1156,104 @@
               "n_params": 2,
               "n_function_overloads": 1,
               "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ConditionExpressionBuilder._build_expression",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ConditionExpressionBuilder._build_expression_component",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "ConditionExpressionBuilder._build_name_placeholder",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ConditionExpressionBuilder._build_value_placeholder",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
             }
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 25,
+          "n_typable": 5,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 25,
+          "n_untyped": 5,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 9,
-          "n_method_overloads": 9,
-          "n_method_params": 16,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.GreaterThan",
+          "name": "boto3.dynamodb.conditions.AttributeExists",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "GreaterThan.expression_operator",
+              "name": "AttributeExists.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "AttributeExists.expression_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.Between",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Between.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Between.expression_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.ComparisonCondition",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ComparisonCondition.expression_format",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -1474,6 +1271,117 @@
           "n_method_overloads": 0,
           "n_method_params": 0,
           "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.GreaterThanEquals",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GreaterThanEquals.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.LessThan",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LessThan.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.Key",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.BeginsWith",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BeginsWith.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "BeginsWith.expression_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
@@ -1607,21 +1515,13 @@
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.Or",
+          "name": "boto3.dynamodb.conditions.GreaterThan",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Or.expression_operator",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Or.expression_format",
+              "name": "GreaterThan.expression_operator",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -1638,18 +1538,46 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 2,
+          "n_attrs": 1,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "boto3.dynamodb.conditions.ComparisonCondition",
+          "name": "boto3.dynamodb.conditions.NotEquals",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "ComparisonCondition.expression_format",
+              "name": "NotEquals.expression_operator",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.conditions.LessThanEquals",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LessThanEquals.expression_operator",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -1700,16 +1628,16 @@
         "boto3.dynamodb.conditions.Or",
         "boto3.dynamodb.conditions.Size"
       ],
-      "n_typable": 82,
+      "n_typable": 62,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 82,
+      "n_untyped": 62,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 39,
-      "n_method_overloads": 39,
-      "n_method_params": 41,
+      "n_methods": 33,
+      "n_method_overloads": 33,
+      "n_method_params": 27,
       "n_classes": 24,
       "n_attrs": 35,
       "n_properties": 0,
@@ -1719,152 +1647,24 @@
       "path": "boto3/dynamodb/table.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "boto3.dynamodb.table.register_table_methods",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
           "kind": "attr",
           "name": "boto3.dynamodb.table.logger",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.table.BatchWriter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BatchWriter.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter.put_item",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter.delete_item",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter._add_request_and_process",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter._remove_dup_pkeys_request_if_any",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter._extract_pkey_values",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter._flush_if_needed",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter._flush",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter.__enter__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BatchWriter.__exit__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 22,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 22,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 10,
-          "n_method_overloads": 10,
-          "n_method_params": 12,
-          "n_attrs": 0,
-          "n_properties": 0
         },
         {
           "kind": "class",
@@ -1911,16 +1711,84 @@
           "n_properties": 0
         },
         {
-          "kind": "function",
-          "name": "boto3.dynamodb.table.register_table_methods",
+          "kind": "class",
+          "name": "boto3.dynamodb.table.BatchWriter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BatchWriter.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "BatchWriter.put_item",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BatchWriter.delete_item",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BatchWriter.__enter__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BatchWriter.__exit__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 14,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_untyped": 14,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1931,16 +1799,16 @@
         "boto3.dynamodb.table.logger",
         "boto3.dynamodb.table.register_table_methods"
       ],
-      "n_typable": 31,
+      "n_typable": 23,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 31,
+      "n_untyped": 23,
       "n_functions": 1,
       "n_function_overloads": 1,
       "n_function_params": 2,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 15,
+      "n_methods": 7,
+      "n_method_overloads": 7,
+      "n_method_params": 12,
       "n_classes": 2,
       "n_attrs": 1,
       "n_properties": 0,
@@ -1949,6 +1817,18 @@
     {
       "path": "boto3/dynamodb/transform.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "boto3.dynamodb.transform.register_high_level_interface",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
         {
           "kind": "class",
           "name": "boto3.dynamodb.transform.DynamoDBHighLevelResource",
@@ -2022,6 +1902,38 @@
           "n_methods": 2,
           "n_method_overloads": 2,
           "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.transform.ParameterTransformer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ParameterTransformer.transform",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -2104,98 +2016,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "boto3.dynamodb.transform.register_high_level_interface",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "boto3.dynamodb.transform.ParameterTransformer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ParameterTransformer.transform",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ParameterTransformer._transform_parameters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ParameterTransformer._transform_structure",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ParameterTransformer._transform_map",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ParameterTransformer._transform_list",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 25,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 25,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 20,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -2208,16 +2028,16 @@
         "boto3.dynamodb.transform.copy_dynamodb_params",
         "boto3.dynamodb.transform.register_high_level_interface"
       ],
-      "n_typable": 58,
+      "n_typable": 38,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 58,
+      "n_untyped": 38,
       "n_functions": 2,
       "n_function_overloads": 2,
       "n_function_params": 4,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 40,
+      "n_methods": 8,
+      "n_method_overloads": 8,
+      "n_method_params": 24,
       "n_classes": 4,
       "n_attrs": 0,
       "n_properties": 0,
@@ -2226,6 +2046,14 @@
     {
       "path": "boto3/dynamodb/types.py",
       "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "boto3.dynamodb.types.LIST",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
         {
           "kind": "class",
           "name": "boto3.dynamodb.types.TypeDeserializer",
@@ -2241,146 +2069,42 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_null",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_bool",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_n",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_s",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_b",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_ns",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_ss",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_bs",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_l",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeDeserializer._deserialize_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             }
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 22,
+          "n_typable": 2,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 22,
+          "n_untyped": 2,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 11,
-          "n_method_overloads": 11,
-          "n_method_params": 11,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
         },
         {
           "kind": "attr",
-          "name": "boto3.dynamodb.types.STRING",
+          "name": "boto3.dynamodb.types.NULL",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.dynamodb.types.BINARY",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.dynamodb.types.STRING_SET",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -2396,22 +2120,6 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.dynamodb.types.BINARY_TYPES",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.dynamodb.types.NULL",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
           "name": "boto3.dynamodb.types.MAP",
           "n_typed": 0,
           "n_any": 0,
@@ -2420,287 +2128,23 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.dynamodb.types.LIST",
+          "name": "boto3.dynamodb.types.NUMBER_SET",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
         },
         {
-          "kind": "class",
-          "name": "boto3.dynamodb.types.TypeSerializer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TypeSerializer.serialize",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._get_dynamodb_type",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_null",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_boolean",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_number",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_string",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_binary",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_set",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_type_set",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_map",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._is_listlike",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_null",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_bool",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_n",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_s",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_b",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_ss",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_ns",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_bs",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_l",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeSerializer._serialize_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 43,
+          "kind": "attr",
+          "name": "boto3.dynamodb.types.DYNAMODB_CONTEXT",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 43,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 21,
-          "n_method_overloads": 21,
-          "n_method_params": 22,
-          "n_attrs": 0,
-          "n_properties": 0
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "attr",
-          "name": "boto3.dynamodb.types.STRING_SET",
+          "name": "boto3.dynamodb.types.BINARY_SET",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -2821,27 +2265,11 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.dynamodb.types.BINARY_SET",
+          "name": "boto3.dynamodb.types.STRING",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.dynamodb.types.NUMBER_SET",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.dynamodb.types.DYNAMODB_CONTEXT",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
         },
         {
           "kind": "attr",
@@ -2853,11 +2281,43 @@
         },
         {
           "kind": "attr",
-          "name": "boto3.dynamodb.types.BINARY",
+          "name": "boto3.dynamodb.types.BINARY_TYPES",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.dynamodb.types.TypeSerializer",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TypeSerializer.serialize",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -2879,16 +2339,16 @@
         "boto3.dynamodb.types.TypeDeserializer",
         "boto3.dynamodb.types.TypeSerializer"
       ],
-      "n_typable": 77,
+      "n_typable": 16,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 77,
+      "n_untyped": 16,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 39,
-      "n_method_overloads": 39,
-      "n_method_params": 36,
+      "n_methods": 9,
+      "n_method_overloads": 9,
+      "n_method_params": 5,
       "n_classes": 3,
       "n_attrs": 13,
       "n_properties": 0,
@@ -2897,18 +2357,6 @@
     {
       "path": "boto3/ec2/createtags.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "boto3.ec2.createtags.inject_create_tags",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
         {
           "kind": "function",
           "name": "boto3.ec2.createtags.create_tags",
@@ -2920,6 +2368,18 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "boto3.ec2.createtags.inject_create_tags",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -2997,6 +2457,25 @@
       "symbol_reports": [
         {
           "kind": "class",
+          "name": "boto3.exceptions.Boto3Error",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "boto3.exceptions.DynamoDBNeedsConditionError",
           "methods": [
             {
@@ -3029,76 +2508,6 @@
         },
         {
           "kind": "class",
-          "name": "boto3.exceptions.DynamoDBOperationNotSupportedError",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DynamoDBOperationNotSupportedError.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.exceptions.S3TransferFailedError",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.exceptions.Boto3Error",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "boto3.exceptions.PythonDeprecationWarning",
           "methods": [],
           "properties": [],
@@ -3118,67 +2527,7 @@
         },
         {
           "kind": "class",
-          "name": "boto3.exceptions.InvalidCrtTransferConfigError",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.exceptions.RetriesExceededError",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RetriesExceededError.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "RetriesExceededError.last_exception",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.exceptions.NoVersionFound",
+          "name": "boto3.exceptions.ResourceLoadException",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -3229,7 +2578,115 @@
         },
         {
           "kind": "class",
+          "name": "boto3.exceptions.NoVersionFound",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.exceptions.S3TransferFailedError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "boto3.exceptions.S3UploadFailedError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.exceptions.DynamoDBOperationNotSupportedError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DynamoDBOperationNotSupportedError.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.exceptions.DynamoDBNeedsKeyConditionError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.exceptions.InvalidCrtTransferConfigError",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -3280,40 +2737,43 @@
         },
         {
           "kind": "class",
-          "name": "boto3.exceptions.DynamoDBNeedsKeyConditionError",
-          "methods": [],
+          "name": "boto3.exceptions.RetriesExceededError",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RetriesExceededError.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 0,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RetriesExceededError.last_exception",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 4,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.exceptions.ResourceLoadException",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 1,
           "n_properties": 0
         }
       ],
@@ -3354,23 +2814,23 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "boto3.resources.action.ServiceAction",
+          "name": "boto3.resources.action.WaiterAction",
           "methods": [
             {
               "kind": "function",
-              "name": "ServiceAction.__init__",
+              "name": "WaiterAction.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 4,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "ServiceAction.__call__",
+              "name": "WaiterAction.__call__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -3383,16 +2843,16 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 8,
+          "n_typable": 7,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 7,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 2,
           "n_method_overloads": 2,
-          "n_method_params": 6,
+          "n_method_params": 5,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -3475,6 +2935,50 @@
         },
         {
           "kind": "class",
+          "name": "boto3.resources.action.ServiceAction",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ServiceAction.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ServiceAction.__call__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "boto3.resources.action.BatchAction",
           "methods": [
             {
@@ -3502,50 +3006,6 @@
           "n_methods": 1,
           "n_method_overloads": 1,
           "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.resources.action.WaiterAction",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "WaiterAction.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "WaiterAction.__call__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -3585,83 +3045,6 @@
     {
       "path": "boto3/resources/base.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "boto3.resources.base.ServiceResource",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ServiceResource.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ServiceResource.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ServiceResource.__eq__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ServiceResource.__hash__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ServiceResource.meta",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 3,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
         {
           "kind": "attr",
           "name": "boto3.resources.base.logger",
@@ -3778,6 +3161,83 @@
           "n_method_params": 6,
           "n_attrs": 5,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.resources.base.ServiceResource",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ServiceResource.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ServiceResource.__repr__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ServiceResource.__eq__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ServiceResource.__hash__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ServiceResource.meta",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -3805,82 +3265,6 @@
     {
       "path": "boto3/resources/collection.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "boto3.resources.collection.CollectionFactory",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CollectionFactory.load_from_definition",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "CollectionFactory._load_batch_actions",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "CollectionFactory._load_documented_collection_methods",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_overloads": 1,
-              "n_typable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "CollectionFactory._create_batch_action",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_overloads": 1,
-              "n_typable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 25,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 25,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 21,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.resources.collection.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
         {
           "kind": "class",
           "name": "boto3.resources.collection.ResourceCollection",
@@ -3920,18 +3304,6 @@
               "n_params": 0,
               "n_function_overloads": 1,
               "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ResourceCollection._clone",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             },
             {
               "kind": "function",
@@ -3996,18 +3368,26 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 17,
+          "n_typable": 15,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 17,
+          "n_untyped": 15,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 9,
-          "n_method_overloads": 9,
-          "n_method_params": 8,
+          "n_methods": 8,
+          "n_method_overloads": 8,
+          "n_method_params": 7,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.resources.collection.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -4111,16 +3491,7 @@
             }
           ],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CollectionManager._collection_cls",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
+          "attrs": [],
           "n_typable": 16,
           "n_typed": 0,
           "n_any": 0,
@@ -4131,7 +3502,39 @@
           "n_methods": 8,
           "n_method_overloads": 8,
           "n_method_params": 8,
-          "n_attrs": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.resources.collection.CollectionFactory",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CollectionFactory.load_from_definition",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
           "n_properties": 0
         }
       ],
@@ -4143,18 +3546,18 @@
         "boto3.resources.collection.ResourceCollection",
         "boto3.resources.collection.logger"
       ],
-      "n_typable": 59,
+      "n_typable": 37,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 59,
+      "n_untyped": 37,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 21,
-      "n_method_overloads": 21,
-      "n_method_params": 37,
+      "n_methods": 17,
+      "n_method_overloads": 17,
+      "n_method_params": 19,
       "n_classes": 3,
-      "n_attrs": 2,
+      "n_attrs": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -4188,200 +3591,20 @@
               "n_params": 3,
               "n_function_overloads": 1,
               "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._load_identifiers",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._load_actions",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._load_attributes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._load_collections",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._load_has_relations",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_available_subresources_command",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._load_waiters",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_identifier",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_identifier_alias",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_autoload_property",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_waiter",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_collection",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_reference",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_class_partial",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ResourceFactory._create_action",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
             }
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 74,
+          "n_typable": 6,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 74,
+          "n_untyped": 6,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 17,
-          "n_method_overloads": 17,
-          "n_method_params": 57,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
         },
@@ -4400,16 +3623,16 @@
         "boto3.resources.factory.ResourceFactory",
         "boto3.resources.factory.logger"
       ],
-      "n_typable": 75,
+      "n_typable": 7,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 75,
+      "n_untyped": 7,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 17,
-      "n_method_overloads": 17,
-      "n_method_params": 57,
+      "n_methods": 2,
+      "n_method_overloads": 2,
+      "n_method_params": 4,
       "n_classes": 1,
       "n_attrs": 1,
       "n_properties": 0,
@@ -4419,13 +3642,91 @@
       "path": "boto3/resources/model.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "boto3.resources.model.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
-          "name": "boto3.resources.model.Collection",
-          "methods": [],
+          "name": "boto3.resources.model.Waiter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Waiter.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Waiter.PREFIX",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Waiter.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Waiter.waiter_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.resources.model.DefinitionWithParams",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DefinitionWithParams.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
           "properties": [
             {
               "kind": "property",
-              "name": "Collection.batch_actions",
+              "name": "DefinitionWithParams.params",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -4433,18 +3734,156 @@
             }
           ],
           "attrs": [],
-          "n_typable": 1,
+          "n_typable": 3,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
+          "n_untyped": 3,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "boto3.resources.model.Action",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Action.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Action.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Action.request",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Action.resource",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Action.path",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "boto3.resources.model.Parameter",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Parameter.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_overloads": 1,
+              "n_typable": 7,
+              "n_params": 6,
+              "n_function_overloads": 1,
+              "n_function_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Parameter.target",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Parameter.source",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Parameter.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Parameter.path",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Parameter.value",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 6,
+          "n_attrs": 5,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4476,55 +3915,7 @@
             },
             {
               "kind": "function",
-              "name": "ResourceModel._load_name_with_category",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ResourceModel._get_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
               "name": "ResourceModel.get_attributes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ResourceModel._get_has_definition",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ResourceModel._get_related_resources",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -4619,18 +4010,67 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 30,
+          "n_typable": 18,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 30,
+          "n_untyped": 18,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 7,
-          "n_method_overloads": 7,
-          "n_method_params": 13,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 5,
           "n_attrs": 2,
           "n_properties": 8
+        },
+        {
+          "kind": "class",
+          "name": "boto3.resources.model.Identifier",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Identifier.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Identifier.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Identifier.member_name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4700,242 +4140,6 @@
         },
         {
           "kind": "class",
-          "name": "boto3.resources.model.Identifier",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Identifier.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Identifier.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Identifier.member_name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.resources.model.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "boto3.resources.model.Action",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Action.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Action.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Action.request",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Action.resource",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Action.path",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 3,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "boto3.resources.model.DefinitionWithParams",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DefinitionWithParams.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "DefinitionWithParams.params",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "boto3.resources.model.Parameter",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Parameter.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_overloads": 1,
-              "n_typable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Parameter.target",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Parameter.source",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Parameter.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Parameter.path",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Parameter.value",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 12,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 6,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "boto3.resources.model.Request",
           "methods": [
             {
@@ -4977,60 +4181,31 @@
         },
         {
           "kind": "class",
-          "name": "boto3.resources.model.Waiter",
-          "methods": [
+          "name": "boto3.resources.model.Collection",
+          "methods": [],
+          "properties": [
             {
-              "kind": "function",
-              "name": "Waiter.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Waiter.PREFIX",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Waiter.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Waiter.waiter_name",
+              "kind": "property",
+              "name": "Collection.batch_actions",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 5,
+          "attrs": [],
+          "n_typable": 1,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 1,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 2,
-          "n_attrs": 3,
-          "n_properties": 0
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 1
         }
       ],
       "type_ignores": [],
@@ -5047,16 +4222,16 @@
         "boto3.resources.model.Waiter",
         "boto3.resources.model.logger"
       ],
-      "n_typable": 75,
+      "n_typable": 63,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 75,
+      "n_untyped": 63,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 14,
-      "n_method_overloads": 14,
-      "n_method_params": 30,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 22,
       "n_classes": 9,
       "n_attrs": 20,
       "n_properties": 12,
@@ -5065,18 +4240,6 @@
     {
       "path": "boto3/resources/params.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "boto3.resources.params.get_data_member",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
         {
           "kind": "function",
           "name": "boto3.resources.params.create_request_parameters",
@@ -5108,6 +4271,18 @@
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "boto3.resources.params.get_data_member",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -5136,6 +4311,18 @@
     {
       "path": "boto3/resources/response.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "boto3.resources.response.build_empty_response",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
         {
           "kind": "class",
           "name": "boto3.resources.response.RawHandler",
@@ -5188,30 +4375,6 @@
           "n_method_params": 4,
           "n_attrs": 1,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "boto3.resources.response.all_not_none",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "boto3.resources.response.build_identifiers",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
         },
         {
           "kind": "class",
@@ -5312,15 +4475,27 @@
         },
         {
           "kind": "function",
-          "name": "boto3.resources.response.build_empty_response",
+          "name": "boto3.resources.response.all_not_none",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "boto3.resources.response.build_identifiers",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -5402,19 +4577,19 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "boto3.s3.inject.register_feature_id",
+          "name": "boto3.s3.inject.download_file",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
+          "n_untyped": 8,
           "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
+          "n_typable": 8,
+          "n_params": 7,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 7
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.object_summary_load",
+          "name": "boto3.s3.inject.bucket_load",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -5423,6 +4598,30 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.object_copy",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.upload_fileobj",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
         },
         {
           "kind": "function",
@@ -5438,31 +4637,19 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.object_upload_file",
+          "name": "boto3.s3.inject.bucket_download_fileobj",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 6,
+          "n_untyped": 7,
           "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
+          "n_typable": 7,
+          "n_params": 6,
           "n_function_overloads": 1,
-          "n_function_params": 5
+          "n_function_params": 6
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.download_file",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.inject.with_current_context",
+          "name": "boto3.s3.inject.register_feature_id",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -5473,16 +4660,12 @@
           "n_function_params": 1
         },
         {
-          "kind": "function",
-          "name": "boto3.s3.inject.inject_object_methods",
+          "kind": "attr",
+          "name": "boto3.s3.inject.logger",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "function",
@@ -5498,19 +4681,7 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.bucket_download_fileobj",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.inject.bucket_upload_fileobj",
+          "name": "boto3.s3.inject.bucket_upload_file",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 7,
@@ -5534,7 +4705,7 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.bucket_upload_file",
+          "name": "boto3.s3.inject.bucket_upload_fileobj",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 7,
@@ -5543,6 +4714,66 @@
           "n_params": 6,
           "n_function_overloads": 1,
           "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.disable_threading_if_append_mode",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.object_upload_file",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.object_summary_load",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.upload_file",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.inject.object_download_fileobj",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
         },
         {
           "kind": "function",
@@ -5570,18 +4801,6 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.disable_threading_if_append_mode",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "boto3.s3.inject.inject_s3_transfer_methods",
           "n_typed": 0,
           "n_any": 0,
@@ -5591,50 +4810,6 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.inject.object_copy",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.inject.download_fileobj",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.s3.inject.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.inject.object_upload_fileobj",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         },
         {
           "kind": "function",
@@ -5650,7 +4825,7 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.object_download_fileobj",
+          "name": "boto3.s3.inject.object_upload_fileobj",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -5662,7 +4837,7 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.upload_file",
+          "name": "boto3.s3.inject.download_fileobj",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 8,
@@ -5674,27 +4849,27 @@
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.upload_fileobj",
+          "name": "boto3.s3.inject.inject_object_methods",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 7
+          "n_function_params": 2
         },
         {
           "kind": "function",
-          "name": "boto3.s3.inject.bucket_load",
+          "name": "boto3.s3.inject.with_current_context",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -5745,14 +4920,6 @@
       "path": "boto3/s3/transfer.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "boto3.s3.transfer.KB",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "class",
           "name": "boto3.s3.transfer.TransferConfig",
           "methods": [
@@ -5783,18 +4950,6 @@
             {
               "kind": "function",
               "name": "TransferConfig.__getattribute__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TransferConfig._resolve_init_args",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -5840,18 +4995,50 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 19,
+          "n_typable": 17,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 19,
+          "n_untyped": 17,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 13,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 12,
           "n_attrs": 4,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.transfer.create_transfer_manager",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.s3.transfer.KB",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "boto3.s3.transfer.has_minimum_crt_version",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -5892,18 +5079,6 @@
               "n_params": 5,
               "n_function_overloads": 1,
               "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "S3Transfer._get_subscribers",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             },
             {
               "kind": "function",
@@ -5957,18 +5132,34 @@
               "n_typable": 0
             }
           ],
-          "n_typable": 22,
+          "n_typable": 20,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 22,
+          "n_untyped": 20,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 6,
-          "n_method_overloads": 6,
-          "n_method_params": 16,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 15,
           "n_attrs": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.s3.transfer.MB",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "boto3.s3.transfer.logger",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "class",
@@ -6013,46 +5204,6 @@
           "n_method_params": 3,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.s3.transfer.logger",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.transfer.has_minimum_crt_version",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "boto3.s3.transfer.MB",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "boto3.s3.transfer.create_transfer_manager",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -6067,16 +5218,16 @@
         "boto3.s3.transfer.has_minimum_crt_version",
         "boto3.s3.transfer.logger"
       ],
-      "n_typable": 53,
+      "n_typable": 49,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 53,
+      "n_untyped": 49,
       "n_functions": 2,
       "n_function_overloads": 2,
       "n_function_params": 4,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 32,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 30,
       "n_classes": 3,
       "n_attrs": 10,
       "n_properties": 0,
@@ -6104,18 +5255,6 @@
             {
               "kind": "function",
               "name": "Session.__repr__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Session._setup_loader",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -6220,30 +5359,6 @@
               "n_params": 10,
               "n_function_overloads": 1,
               "n_function_params": 10
-            },
-            {
-              "kind": "function",
-              "name": "Session._register_default_handlers",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Session._account_id_set_without_credentials",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
             }
           ],
           "properties": [
@@ -6290,16 +5405,16 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 54,
+          "n_typable": 47,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 54,
+          "n_untyped": 47,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 13,
-          "n_method_overloads": 13,
-          "n_method_params": 36,
+          "n_methods": 10,
+          "n_method_overloads": 10,
+          "n_method_params": 32,
           "n_attrs": 1,
           "n_properties": 4
         }
@@ -6309,16 +5424,16 @@
       "names": [
         "boto3.session.Session"
       ],
-      "n_typable": 54,
+      "n_typable": 47,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 54,
+      "n_untyped": 47,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 13,
-      "n_method_overloads": 13,
-      "n_method_params": 36,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 32,
       "n_classes": 1,
       "n_attrs": 1,
       "n_properties": 4,
@@ -6327,6 +5442,30 @@
     {
       "path": "boto3/utils.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "boto3.utils.inject_attribute",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "boto3.utils.lazy_call",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
         {
           "kind": "class",
           "name": "boto3.utils.ServiceContext",
@@ -6389,30 +5528,6 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "boto3.utils.inject_attribute",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "boto3.utils.lazy_call",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -6441,18 +5556,18 @@
   ],
   "typecheckers": {},
   "n_modules": 22,
-  "n_typable": 895,
+  "n_typable": 673,
   "n_typed": 0,
   "n_any": 0,
-  "n_untyped": 895,
+  "n_untyped": 673,
   "n_functions": 52,
   "n_function_overloads": 52,
   "n_function_params": 172,
-  "n_methods": 207,
-  "n_method_params": 390,
-  "n_method_overloads": 207,
+  "n_methods": 134,
+  "n_method_params": 241,
+  "n_method_overloads": 134,
   "n_classes": 74,
-  "n_attrs": 121,
+  "n_attrs": 120,
   "n_properties": 16,
   "type_ignores": [],
   "n_type_ignores": 0

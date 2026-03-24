@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "pyrender",
   "version": "0.1.45",
   "base_version": null,
@@ -80,63 +80,27 @@
   },
   "module_reports": [
     {
-      "path": "pyrender/material.py",
+      "path": "pyrender/camera.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.material.Material",
+          "name": "pyrender.camera.OrthographicCamera",
           "methods": [
             {
               "kind": "function",
-              "name": "Material.__init__",
+              "name": "OrthographicCamera.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 11,
+              "n_untyped": 6,
               "n_overloads": 1,
-              "n_typable": 11,
-              "n_params": 10,
+              "n_typable": 6,
+              "n_params": 5,
               "n_function_overloads": 1,
-              "n_function_params": 10
+              "n_function_params": 5
             },
             {
               "kind": "function",
-              "name": "Material._compute_transparency",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Material._compute_tex_flags",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Material._compute_textures",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Material._format_texture",
+              "name": "OrthographicCamera.get_projection_matrix",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -150,7 +114,7 @@
           "properties": [
             {
               "kind": "property",
-              "name": "Material.name",
+              "name": "OrthographicCamera.xmag",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -158,7 +122,7 @@
             },
             {
               "kind": "property",
-              "name": "Material.normalTexture",
+              "name": "OrthographicCamera.ymag",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -166,97 +130,17 @@
             },
             {
               "kind": "property",
-              "name": "Material.occlusionTexture",
+              "name": "OrthographicCamera.znear",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
               "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.emissiveTexture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.emissiveFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.alphaMode",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.alphaCutoff",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.doubleSided",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.smooth",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.wireframe",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Material.is_transparent",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Material.tex_flags",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Material.textures",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
             }
           ],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Material.name",
+              "name": "OrthographicCamera.xmag",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -264,147 +148,59 @@
             },
             {
               "kind": "attr",
-              "name": "Material.normalTexture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.occlusionTexture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.emissiveTexture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.emissiveFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.alphaMode",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.alphaCutoff",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.doubleSided",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.smooth",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Material.wireframe",
+              "name": "OrthographicCamera.ymag",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 50,
+          "n_typable": 17,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 50,
+          "n_untyped": 17,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 12,
-          "n_attrs": 10,
-          "n_properties": 13
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 2,
+          "n_properties": 3
         },
         {
           "kind": "class",
-          "name": "pyrender.material.MetallicRoughnessMaterial",
+          "name": "pyrender.camera.IntrinsicsCamera",
           "methods": [
             {
               "kind": "function",
-              "name": "MetallicRoughnessMaterial.__init__",
+              "name": "IntrinsicsCamera.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 16,
+              "n_untyped": 8,
               "n_overloads": 1,
-              "n_typable": 16,
-              "n_params": 15,
+              "n_typable": 8,
+              "n_params": 7,
               "n_function_overloads": 1,
-              "n_function_params": 15
+              "n_function_params": 7
             },
             {
               "kind": "function",
-              "name": "MetallicRoughnessMaterial._compute_tex_flags",
+              "name": "IntrinsicsCamera.get_projection_matrix",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "MetallicRoughnessMaterial._compute_transparency",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "MetallicRoughnessMaterial._compute_textures",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 2
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "MetallicRoughnessMaterial.baseColorFactor",
+              "name": "IntrinsicsCamera.fx",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -412,7 +208,7 @@
             },
             {
               "kind": "property",
-              "name": "MetallicRoughnessMaterial.baseColorTexture",
+              "name": "IntrinsicsCamera.fy",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -420,7 +216,7 @@
             },
             {
               "kind": "property",
-              "name": "MetallicRoughnessMaterial.metallicFactor",
+              "name": "IntrinsicsCamera.cx",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -428,15 +224,7 @@
             },
             {
               "kind": "property",
-              "name": "MetallicRoughnessMaterial.roughnessFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "MetallicRoughnessMaterial.metallicRoughnessTexture",
+              "name": "IntrinsicsCamera.cy",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -446,7 +234,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "MetallicRoughnessMaterial.baseColorFactor",
+              "name": "IntrinsicsCamera.fx",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -454,7 +242,7 @@
             },
             {
               "kind": "attr",
-              "name": "MetallicRoughnessMaterial.baseColorTexture",
+              "name": "IntrinsicsCamera.fy",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -462,7 +250,7 @@
             },
             {
               "kind": "attr",
-              "name": "MetallicRoughnessMaterial.metallicFactor",
+              "name": "IntrinsicsCamera.cx",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -470,91 +258,59 @@
             },
             {
               "kind": "attr",
-              "name": "MetallicRoughnessMaterial.roughnessFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "MetallicRoughnessMaterial.metallicRoughnessTexture",
+              "name": "IntrinsicsCamera.cy",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 34,
+          "n_typable": 23,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 34,
+          "n_untyped": 23,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 15,
-          "n_attrs": 5,
-          "n_properties": 5
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 9,
+          "n_attrs": 4,
+          "n_properties": 4
         },
         {
           "kind": "class",
-          "name": "pyrender.material.SpecularGlossinessMaterial",
+          "name": "pyrender.camera.PerspectiveCamera",
           "methods": [
             {
               "kind": "function",
-              "name": "SpecularGlossinessMaterial.__init__",
+              "name": "PerspectiveCamera.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 16,
+              "n_untyped": 6,
               "n_overloads": 1,
-              "n_typable": 16,
-              "n_params": 15,
+              "n_typable": 6,
+              "n_params": 5,
               "n_function_overloads": 1,
-              "n_function_params": 15
+              "n_function_params": 5
             },
             {
               "kind": "function",
-              "name": "SpecularGlossinessMaterial._compute_tex_flags",
+              "name": "PerspectiveCamera.get_projection_matrix",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SpecularGlossinessMaterial._compute_transparency",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "SpecularGlossinessMaterial._compute_textures",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_function_params": 2
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "SpecularGlossinessMaterial.diffuseFactor",
+              "name": "PerspectiveCamera.yfov",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -562,7 +318,7 @@
             },
             {
               "kind": "property",
-              "name": "SpecularGlossinessMaterial.diffuseTexture",
+              "name": "PerspectiveCamera.zfar",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -570,23 +326,7 @@
             },
             {
               "kind": "property",
-              "name": "SpecularGlossinessMaterial.specularFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.glossinessFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpecularGlossinessMaterial.specularGlossinessTexture",
+              "name": "PerspectiveCamera.aspectRatio",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -596,7 +336,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "SpecularGlossinessMaterial.diffuseFactor",
+              "name": "PerspectiveCamera.yfov",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -604,71 +344,142 @@
             },
             {
               "kind": "attr",
-              "name": "SpecularGlossinessMaterial.diffuseTexture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SpecularGlossinessMaterial.specularFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SpecularGlossinessMaterial.glossinessFactor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "SpecularGlossinessMaterial.specularGlossinessTexture",
+              "name": "PerspectiveCamera.aspectRatio",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 34,
+          "n_typable": 17,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 34,
+          "n_untyped": 17,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 15,
-          "n_attrs": 5,
-          "n_properties": 5
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 7,
+          "n_attrs": 2,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.camera.Camera",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Camera.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Camera.get_projection_matrix",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Camera.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Camera.znear",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Camera.zfar",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Camera.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Camera.znear",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Camera.zfar",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 16,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 5,
+          "n_attrs": 3,
+          "n_properties": 3
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.material",
+      "name": "pyrender.camera",
       "names": [
-        "pyrender.material.Material",
-        "pyrender.material.MetallicRoughnessMaterial",
-        "pyrender.material.SpecularGlossinessMaterial"
+        "pyrender.camera.Camera",
+        "pyrender.camera.IntrinsicsCamera",
+        "pyrender.camera.OrthographicCamera",
+        "pyrender.camera.PerspectiveCamera"
       ],
-      "n_typable": 118,
+      "n_typable": 73,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 118,
+      "n_untyped": 73,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 13,
-      "n_method_overloads": 13,
-      "n_method_params": 42,
-      "n_classes": 3,
-      "n_attrs": 20,
-      "n_properties": 23,
+      "n_methods": 8,
+      "n_method_overloads": 8,
+      "n_method_params": 28,
+      "n_classes": 4,
+      "n_attrs": 11,
+      "n_properties": 13,
       "n_type_ignores": 0
     },
     {
@@ -1086,53 +897,81 @@
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/light.py",
+      "path": "pyrender/offscreen.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.light.PointLight",
+          "name": "pyrender.offscreen.OffscreenRenderer",
           "methods": [
             {
               "kind": "function",
-              "name": "PointLight.__init__",
+              "name": "OffscreenRenderer.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 5,
+              "n_untyped": 4,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 3
             },
             {
               "kind": "function",
-              "name": "PointLight._generate_shadow_texture",
+              "name": "OffscreenRenderer.render",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 2,
+              "n_untyped": 4,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 3
             },
             {
               "kind": "function",
-              "name": "PointLight._get_shadow_camera",
+              "name": "OffscreenRenderer.delete",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 2,
+              "n_untyped": 1,
               "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
+              "n_typable": 1,
+              "n_params": 0,
               "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OffscreenRenderer.__del__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "PointLight.range",
+              "name": "OffscreenRenderer.viewport_width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OffscreenRenderer.viewport_height",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OffscreenRenderer.point_size",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1142,26 +981,292 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "PointLight.range",
+              "name": "OffscreenRenderer.viewport_width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "OffscreenRenderer.viewport_height",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "OffscreenRenderer.point_size",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 12,
+          "n_typable": 19,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 12,
+          "n_untyped": 19,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
+          "n_methods": 4,
+          "n_method_overloads": 4,
           "n_method_params": 6,
-          "n_attrs": 1,
-          "n_properties": 1
-        },
+          "n_attrs": 3,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.offscreen",
+      "names": [
+        "pyrender.offscreen.OffscreenRenderer"
+      ],
+      "n_typable": 19,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 19,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_overloads": 4,
+      "n_method_params": 6,
+      "n_classes": 1,
+      "n_attrs": 3,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/node.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.node.Node",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Node.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_overloads": 1,
+              "n_typable": 12,
+              "n_params": 11,
+              "n_function_overloads": 1,
+              "n_function_params": 11
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Node.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.camera",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.children",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.skin",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.mesh",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.light",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.rotation",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.translation",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.scale",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Node.matrix",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Node.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.camera",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.children",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.skin",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.mesh",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.weights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.light",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.rotation",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.translation",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.scale",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Node.matrix",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 43,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 11,
+          "n_attrs": 11,
+          "n_properties": 10
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.node",
+      "names": [
+        "pyrender.node.Node"
+      ],
+      "n_typable": 43,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 43,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 11,
+      "n_classes": 1,
+      "n_attrs": 11,
+      "n_properties": 10,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/light.py",
+      "symbol_reports": [
         {
           "kind": "class",
           "name": "pyrender.light.SpotLight",
@@ -1177,30 +1282,6 @@
               "n_params": 6,
               "n_function_overloads": 1,
               "n_function_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "SpotLight._generate_shadow_texture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "SpotLight._get_shadow_camera",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             }
           ],
           "properties": [
@@ -1255,16 +1336,16 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 20,
+          "n_typable": 16,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 20,
+          "n_untyped": 16,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 8,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 6,
           "n_attrs": 3,
           "n_properties": 3
         },
@@ -1283,30 +1364,6 @@
               "n_params": 3,
               "n_function_overloads": 1,
               "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Light._generate_shadow_texture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Light._get_shadow_camera",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             }
           ],
           "properties": [
@@ -1369,18 +1426,68 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 19,
+          "n_typable": 15,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 19,
+          "n_untyped": 15,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 5,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
           "n_attrs": 3,
           "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.light.PointLight",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PointLight.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "PointLight.range",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PointLight.range",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 1
         },
         {
           "kind": "class",
@@ -1397,44 +1504,20 @@
               "n_params": 3,
               "n_function_overloads": 1,
               "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "DirectionalLight._generate_shadow_texture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "DirectionalLight._get_shadow_camera",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             }
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 8,
+          "n_typable": 4,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 4,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 5,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 3,
           "n_attrs": 0,
           "n_properties": 0
         }
@@ -1447,31 +1530,611 @@
         "pyrender.light.PointLight",
         "pyrender.light.SpotLight"
       ],
-      "n_typable": 59,
+      "n_typable": 43,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 59,
+      "n_untyped": 43,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 24,
+      "n_methods": 4,
+      "n_method_overloads": 4,
+      "n_method_params": 16,
       "n_classes": 4,
       "n_attrs": 7,
       "n_properties": 8,
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/camera.py",
+      "path": "pyrender/material.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.camera.Camera",
+          "name": "pyrender.material.Material",
           "methods": [
             {
               "kind": "function",
-              "name": "Camera.__init__",
+              "name": "Material.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_overloads": 1,
+              "n_typable": 11,
+              "n_params": 10,
+              "n_function_overloads": 1,
+              "n_function_params": 10
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Material.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.normalTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.occlusionTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.emissiveTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.emissiveFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.alphaMode",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.alphaCutoff",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.doubleSided",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.smooth",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.wireframe",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Material.is_transparent",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Material.tex_flags",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Material.textures",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Material.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.normalTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.occlusionTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.emissiveTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.emissiveFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.alphaMode",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.alphaCutoff",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.doubleSided",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.smooth",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Material.wireframe",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 44,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 10,
+          "n_attrs": 10,
+          "n_properties": 13
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.material.MetallicRoughnessMaterial",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MetallicRoughnessMaterial.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 16,
+              "n_overloads": 1,
+              "n_typable": 16,
+              "n_params": 15,
+              "n_function_overloads": 1,
+              "n_function_params": 15
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.baseColorFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.baseColorTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.metallicFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.roughnessFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "MetallicRoughnessMaterial.metallicRoughnessTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MetallicRoughnessMaterial.baseColorFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MetallicRoughnessMaterial.baseColorTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MetallicRoughnessMaterial.metallicFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MetallicRoughnessMaterial.roughnessFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MetallicRoughnessMaterial.metallicRoughnessTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 31,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 15,
+          "n_attrs": 5,
+          "n_properties": 5
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.material.SpecularGlossinessMaterial",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SpecularGlossinessMaterial.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 16,
+              "n_overloads": 1,
+              "n_typable": 16,
+              "n_params": 15,
+              "n_function_overloads": 1,
+              "n_function_params": 15
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.diffuseFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.diffuseTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.specularFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.glossinessFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpecularGlossinessMaterial.specularGlossinessTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SpecularGlossinessMaterial.diffuseFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SpecularGlossinessMaterial.diffuseTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SpecularGlossinessMaterial.specularFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SpecularGlossinessMaterial.glossinessFactor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SpecularGlossinessMaterial.specularGlossinessTexture",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 31,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 15,
+          "n_attrs": 5,
+          "n_properties": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.material",
+      "names": [
+        "pyrender.material.Material",
+        "pyrender.material.MetallicRoughnessMaterial",
+        "pyrender.material.SpecularGlossinessMaterial"
+      ],
+      "n_typable": 106,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 106,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_overloads": 3,
+      "n_method_params": 40,
+      "n_classes": 3,
+      "n_attrs": 20,
+      "n_properties": 23,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/scene.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.scene.Scene",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Scene.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Scene.add",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Scene.get_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Scene.add_node",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Scene.has_node",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Scene.remove_node",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Scene.get_pose",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Scene.set_pose",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Scene.clear",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Scene.from_trimesh_scene",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -1480,24 +2143,12 @@
               "n_params": 3,
               "n_function_overloads": 1,
               "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Camera.get_projection_matrix",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "Camera.name",
+              "name": "Scene.name",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1505,7 +2156,15 @@
             },
             {
               "kind": "property",
-              "name": "Camera.znear",
+              "name": "Scene.nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.bg_color",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1513,17 +2172,153 @@
             },
             {
               "kind": "property",
-              "name": "Camera.zfar",
+              "name": "Scene.ambient_light",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
               "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Scene.meshes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.mesh_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.lights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.light_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.point_lights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.point_light_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.spot_lights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.spot_light_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.directional_lights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.directional_light_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.cameras",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.camera_nodes",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.main_camera_node",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Scene.bounds",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.centroid",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.extents",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Scene.scale",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
             }
           ],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Camera.name",
+              "name": "Scene.bg_color",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1531,7 +2326,7 @@
             },
             {
               "kind": "attr",
-              "name": "Camera.znear",
+              "name": "Scene.ambient_light",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1539,330 +2334,401 @@
             },
             {
               "kind": "attr",
-              "name": "Camera.zfar",
+              "name": "Scene.name",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 16,
+          "n_typable": 61,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 16,
+          "n_untyped": 61,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 5,
+          "n_methods": 10,
+          "n_method_overloads": 10,
+          "n_method_params": 23,
           "n_attrs": 3,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.camera.OrthographicCamera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OrthographicCamera.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "OrthographicCamera.get_projection_matrix",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.xmag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.ymag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.znear",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "OrthographicCamera.xmag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "OrthographicCamera.ymag",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 17,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 17,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_attrs": 2,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.camera.IntrinsicsCamera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "IntrinsicsCamera.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 8,
-              "n_overloads": 1,
-              "n_typable": 8,
-              "n_params": 7,
-              "n_function_overloads": 1,
-              "n_function_params": 7
-            },
-            {
-              "kind": "function",
-              "name": "IntrinsicsCamera.get_projection_matrix",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.fx",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.fy",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.cx",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.cy",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "IntrinsicsCamera.fx",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "IntrinsicsCamera.fy",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "IntrinsicsCamera.cx",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "IntrinsicsCamera.cy",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 23,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 23,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 9,
-          "n_attrs": 4,
-          "n_properties": 4
-        },
-        {
-          "kind": "class",
-          "name": "pyrender.camera.PerspectiveCamera",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PerspectiveCamera.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "PerspectiveCamera.get_projection_matrix",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.yfov",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.zfar",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.aspectRatio",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "PerspectiveCamera.yfov",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PerspectiveCamera.aspectRatio",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 17,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 17,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 7,
-          "n_attrs": 2,
-          "n_properties": 3
+          "n_properties": 21
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.camera",
+      "name": "pyrender.scene",
       "names": [
-        "pyrender.camera.Camera",
-        "pyrender.camera.IntrinsicsCamera",
-        "pyrender.camera.OrthographicCamera",
-        "pyrender.camera.PerspectiveCamera"
+        "pyrender.scene.Scene"
       ],
-      "n_typable": 73,
+      "n_typable": 61,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 73,
+      "n_untyped": 61,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 8,
-      "n_method_overloads": 8,
-      "n_method_params": 28,
-      "n_classes": 4,
-      "n_attrs": 11,
-      "n_properties": 13,
+      "n_methods": 10,
+      "n_method_overloads": 10,
+      "n_method_params": 23,
+      "n_classes": 1,
+      "n_attrs": 3,
+      "n_properties": 21,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "pyrender.version.__version__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.version",
+      "names": [
+        "pyrender.version.__version__"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/sampler.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.sampler.Sampler",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sampler.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Sampler.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.magFilter",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.minFilter",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.wrapS",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Sampler.wrapT",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Sampler.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Sampler.magFilter",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Sampler.minFilter",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Sampler.wrapS",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Sampler.wrapT",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 21,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 5,
+          "n_attrs": 5,
+          "n_properties": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.sampler",
+      "names": [
+        "pyrender.sampler.Sampler"
+      ],
+      "n_typable": 21,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 21,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/mesh.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.mesh.Mesh",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Mesh.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Mesh.from_points",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Mesh.from_trimesh",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_overloads": 1,
+              "n_typable": 7,
+              "n_params": 6,
+              "n_function_overloads": 1,
+              "n_function_params": 6
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Mesh.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.primitives",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.weights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.is_visible",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.bounds",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.centroid",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.extents",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.scale",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.is_transparent",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Mesh.primitives",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Mesh.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Mesh.weights",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Mesh.is_visible",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 35,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 35,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 15,
+          "n_attrs": 4,
+          "n_properties": 9
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.mesh",
+      "names": [
+        "pyrender.mesh.Mesh"
+      ],
+      "n_typable": 35,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 35,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_overloads": 3,
+      "n_method_params": 15,
+      "n_classes": 1,
+      "n_attrs": 4,
+      "n_properties": 9,
       "n_type_ignores": 0
     },
     {
@@ -2003,174 +2869,6 @@
               "n_params": 2,
               "n_function_overloads": 1,
               "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._time_event",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._reset_view",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._get_save_filename",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._save_image",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._record",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._rotate",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._render",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._init_and_start_app",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._compute_initial_camera_pose",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._create_raymond_lights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._create_direct_light",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._set_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._remove_axes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer._location_to_x_y",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
             }
           ],
           "properties": [
@@ -2240,16 +2938,16 @@
             }
           ],
           "attrs": [],
-          "n_typable": 72,
+          "n_typable": 52,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 72,
+          "n_untyped": 52,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 25,
-          "n_method_overloads": 25,
-          "n_method_params": 36,
+          "n_methods": 11,
+          "n_method_overloads": 11,
+          "n_method_params": 30,
           "n_attrs": 0,
           "n_properties": 8
         }
@@ -2259,867 +2957,19 @@
       "names": [
         "pyrender.viewer.Viewer"
       ],
-      "n_typable": 72,
+      "n_typable": 52,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 72,
+      "n_untyped": 52,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 25,
-      "n_method_overloads": 25,
-      "n_method_params": 36,
+      "n_methods": 11,
+      "n_method_overloads": 11,
+      "n_method_params": 30,
       "n_classes": 1,
       "n_attrs": 0,
       "n_properties": 8,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/texture.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.texture.Texture",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Texture.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 9,
-              "n_overloads": 1,
-              "n_typable": 9,
-              "n_params": 8,
-              "n_function_overloads": 1,
-              "n_function_params": 8
-            },
-            {
-              "kind": "function",
-              "name": "Texture.is_transparent",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Texture.delete",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._add_to_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._remove_from_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._in_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._bind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._unbind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._bind_as_depth_attachment",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Texture._bind_as_color_attachment",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Texture.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.sampler",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.source",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.source_channels",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.height",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.tex_type",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.data_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Texture.source_channels",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.sampler",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.source",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.height",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.tex_type",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Texture.data_format",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 43,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 43,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 10,
-          "n_method_overloads": 10,
-          "n_method_params": 9,
-          "n_attrs": 8,
-          "n_properties": 8
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.texture",
-      "names": [
-        "pyrender.texture.Texture"
-      ],
-      "n_typable": 43,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 43,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 10,
-      "n_method_overloads": 10,
-      "n_method_params": 9,
-      "n_classes": 1,
-      "n_attrs": 8,
-      "n_properties": 8,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/renderer.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.renderer.Renderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Renderer.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.render",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.render_text",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 9,
-              "n_overloads": 1,
-              "n_typable": 9,
-              "n_params": 8,
-              "n_function_overloads": 1,
-              "n_function_params": 8
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.read_color_buf",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.read_depth_buf",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.delete",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.__del__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._forward_pass",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._shadow_mapping_pass",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._normals_pass",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._bind_and_draw_primitive",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._bind_lighting",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._sorted_mesh_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._sorted_nodes_by_distance",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._update_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._bind_texture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._get_next_active_texture",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._reset_active_textures",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._get_camera_matrices",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._get_light_cam_matrices",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._get_text_program",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._compute_max_n_lights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._get_primitive_program",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._configure_forward_pass_viewport",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._configure_shadow_mapping_viewport",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._configure_shadow_framebuffer",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._delete_shadow_framebuffer",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._configure_main_framebuffer",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._delete_main_framebuffer",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._read_main_framebuffer",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._resize_image",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._forward_pass_no_reset",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._render_light_shadowmaps",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._get_debug_quad_program",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Renderer._render_debug_quad",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Renderer.viewport_width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Renderer.viewport_height",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Renderer.point_size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Renderer.dpscale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Renderer.viewport_width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Renderer.viewport_height",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Renderer.point_size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 105,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 105,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 35,
-          "n_method_overloads": 35,
-          "n_method_params": 60,
-          "n_attrs": 4,
-          "n_properties": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.renderer",
-      "names": [
-        "pyrender.renderer.Renderer"
-      ],
-      "n_typable": 105,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 105,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 35,
-      "n_method_overloads": 35,
-      "n_method_params": 60,
-      "n_classes": 1,
-      "n_attrs": 4,
-      "n_properties": 3,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/version.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "pyrender.version.__version__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.version",
-      "names": [
-        "pyrender.version.__version__"
-      ],
-      "n_typable": 0,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 1,
-      "n_properties": 0,
       "n_type_ignores": 0
     },
     {
@@ -3144,102 +2994,6 @@
             {
               "kind": "function",
               "name": "Primitive.delete",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._add_to_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._remove_from_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._in_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._bind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._unbind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._compute_bounds",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._compute_transparency",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Primitive._compute_buf_flags",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3510,15 +3264,15 @@
               "n_typable": 1
             }
           ],
-          "n_typable": 68,
+          "n_typable": 60,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 68,
+          "n_untyped": 60,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 10,
-          "n_method_overloads": 10,
+          "n_methods": 2,
+          "n_method_overloads": 2,
           "n_method_params": 13,
           "n_attrs": 13,
           "n_properties": 19
@@ -3529,15 +3283,15 @@
       "names": [
         "pyrender.primitive.Primitive"
       ],
-      "n_typable": 68,
+      "n_typable": 60,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 68,
+      "n_untyped": 60,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 10,
-      "n_method_overloads": 10,
+      "n_methods": 2,
+      "n_method_overloads": 2,
       "n_method_params": 13,
       "n_classes": 1,
       "n_attrs": 13,
@@ -3545,87 +3299,15 @@
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/node.py",
+      "path": "pyrender/renderer.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.node.Node",
+          "name": "pyrender.renderer.Renderer",
           "methods": [
             {
               "kind": "function",
-              "name": "Node.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 12,
-              "n_overloads": 1,
-              "n_typable": 12,
-              "n_params": 11,
-              "n_function_overloads": 1,
-              "n_function_params": 11
-            },
-            {
-              "kind": "function",
-              "name": "Node._t_from_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._r_from_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._q_from_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._s_from_m",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._r_from_q",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Node._m_from_tqs",
+              "name": "Renderer.__init__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -3634,12 +3316,84 @@
               "n_params": 3,
               "n_function_overloads": 1,
               "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.render",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.render_text",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 9,
+              "n_overloads": 1,
+              "n_typable": 9,
+              "n_params": 8,
+              "n_function_overloads": 1,
+              "n_function_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.read_color_buf",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.read_depth_buf",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.delete",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.__del__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "Node.name",
+              "name": "Renderer.viewport_width",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3647,7 +3401,7 @@
             },
             {
               "kind": "property",
-              "name": "Node.camera",
+              "name": "Renderer.viewport_height",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3655,63 +3409,7 @@
             },
             {
               "kind": "property",
-              "name": "Node.children",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.skin",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.mesh",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.light",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.rotation",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.translation",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.scale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Node.matrix",
+              "name": "Renderer.point_size",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3721,7 +3419,7 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "Node.name",
+              "name": "Renderer.dpscale",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3729,7 +3427,7 @@
             },
             {
               "kind": "attr",
-              "name": "Node.camera",
+              "name": "Renderer.viewport_width",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3737,7 +3435,7 @@
             },
             {
               "kind": "attr",
-              "name": "Node.children",
+              "name": "Renderer.viewport_height",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -3745,961 +3443,255 @@
             },
             {
               "kind": "attr",
-              "name": "Node.skin",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.mesh",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.weights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.light",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.rotation",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.translation",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.scale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Node.matrix",
+              "name": "Renderer.point_size",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 57,
+          "n_typable": 31,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 57,
+          "n_untyped": 31,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 7,
           "n_method_overloads": 7,
-          "n_method_params": 19,
-          "n_attrs": 11,
-          "n_properties": 10
+          "n_method_params": 14,
+          "n_attrs": 4,
+          "n_properties": 3
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.node",
+      "name": "pyrender.renderer",
       "names": [
-        "pyrender.node.Node"
+        "pyrender.renderer.Renderer"
       ],
-      "n_typable": 57,
+      "n_typable": 31,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 57,
+      "n_untyped": 31,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
       "n_methods": 7,
       "n_method_overloads": 7,
-      "n_method_params": 19,
-      "n_classes": 1,
-      "n_attrs": 11,
-      "n_properties": 10,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/sampler.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.sampler.Sampler",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Sampler.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Sampler.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.magFilter",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.minFilter",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.wrapS",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Sampler.wrapT",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Sampler.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Sampler.magFilter",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Sampler.minFilter",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Sampler.wrapS",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Sampler.wrapT",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 21,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 21,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 5,
-          "n_attrs": 5,
-          "n_properties": 5
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.sampler",
-      "names": [
-        "pyrender.sampler.Sampler"
-      ],
-      "n_typable": 21,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 21,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 5,
-      "n_classes": 1,
-      "n_attrs": 5,
-      "n_properties": 5,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/mesh.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.mesh.Mesh",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Mesh.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Mesh.from_points",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "Mesh.from_trimesh",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_overloads": 1,
-              "n_typable": 7,
-              "n_params": 6,
-              "n_function_overloads": 1,
-              "n_function_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "Mesh._get_trimesh_props",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Mesh.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.primitives",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.weights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.is_visible",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.bounds",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.centroid",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.extents",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.scale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.is_transparent",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Mesh.primitives",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Mesh.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Mesh.weights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Mesh.is_visible",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 39,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 39,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 18,
-          "n_attrs": 4,
-          "n_properties": 9
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.mesh",
-      "names": [
-        "pyrender.mesh.Mesh"
-      ],
-      "n_typable": 39,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 39,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 4,
-      "n_method_overloads": 4,
-      "n_method_params": 18,
+      "n_method_params": 14,
       "n_classes": 1,
       "n_attrs": 4,
-      "n_properties": 9,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/scene.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.scene.Scene",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Scene.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Scene.add",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "Scene.get_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Scene.add_node",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Scene.has_node",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Scene.remove_node",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Scene.get_pose",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Scene.set_pose",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Scene.clear",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Scene._remove_node",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Scene.from_trimesh_scene",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Scene.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Scene.nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.bg_color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Scene.ambient_light",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Scene.meshes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.mesh_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.lights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.light_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.point_lights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.point_light_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.spot_lights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.spot_light_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.directional_lights",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.directional_light_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.cameras",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.camera_nodes",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.main_camera_node",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Scene.bounds",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.centroid",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.extents",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Scene.scale",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Scene.bg_color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Scene.ambient_light",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Scene.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 63,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 63,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 11,
-          "n_method_overloads": 11,
-          "n_method_params": 24,
-          "n_attrs": 3,
-          "n_properties": 21
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.scene",
-      "names": [
-        "pyrender.scene.Scene"
-      ],
-      "n_typable": 63,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 63,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 11,
-      "n_method_overloads": 11,
-      "n_method_params": 24,
-      "n_classes": 1,
-      "n_attrs": 3,
-      "n_properties": 21,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/offscreen.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "pyrender.offscreen.OffscreenRenderer",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.render",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.delete",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer._create",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.__del__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.viewport_width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.viewport_height",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.point_size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "OffscreenRenderer.viewport_width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "OffscreenRenderer.viewport_height",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "OffscreenRenderer.point_size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 20,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 20,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 6,
-          "n_attrs": 3,
-          "n_properties": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.offscreen",
-      "names": [
-        "pyrender.offscreen.OffscreenRenderer"
-      ],
-      "n_typable": 20,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 20,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 5,
-      "n_method_overloads": 5,
-      "n_method_params": 6,
-      "n_classes": 1,
-      "n_attrs": 3,
       "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/texture.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "pyrender.texture.Texture",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Texture.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 9,
+              "n_overloads": 1,
+              "n_typable": 9,
+              "n_params": 8,
+              "n_function_overloads": 1,
+              "n_function_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Texture.is_transparent",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Texture.delete",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Texture.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.sampler",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.source",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.source_channels",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.height",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.tex_type",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.data_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Texture.source_channels",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.sampler",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.source",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.height",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.tex_type",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Texture.data_format",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 36,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 9,
+          "n_attrs": 8,
+          "n_properties": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.texture",
+      "names": [
+        "pyrender.texture.Texture"
+      ],
+      "n_typable": 36,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 36,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_overloads": 3,
+      "n_method_params": 9,
+      "n_classes": 1,
+      "n_attrs": 8,
+      "n_properties": 8,
       "n_type_ignores": 0
     },
     {
@@ -4707,127 +3699,26 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.font.Font",
+          "name": "pyrender.font.Character",
           "methods": [
             {
               "kind": "function",
-              "name": "Font.__init__",
+              "name": "Character.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 3,
+              "n_untyped": 5,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 5,
+              "n_params": 4,
               "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Font._add_to_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font._remove_from_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font._in_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font._bind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font._unbind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font.delete",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font.render_string",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
+              "n_function_params": 4
             }
           ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Font.font_file",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Font.font_pt",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
+          "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Font.font_file",
+              "name": "Character.texture",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -4835,25 +3726,41 @@
             },
             {
               "kind": "attr",
-              "name": "Font.font_pt",
+              "name": "Character.size",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Character.bearing",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Character.advance",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 21,
+          "n_typable": 9,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 21,
+          "n_untyped": 9,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 8,
-          "n_method_overloads": 8,
-          "n_method_params": 7,
-          "n_attrs": 2,
-          "n_properties": 2
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_attrs": 4,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -4922,26 +3829,67 @@
         },
         {
           "kind": "class",
-          "name": "pyrender.font.Character",
+          "name": "pyrender.font.Font",
           "methods": [
             {
               "kind": "function",
-              "name": "Character.__init__",
+              "name": "Font.__init__",
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 5,
+              "n_untyped": 3,
               "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 4
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Font.delete",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Font.render_string",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
             }
           ],
-          "properties": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Font.font_file",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Font.font_pt",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Character.texture",
+              "name": "Font.font_file",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -4949,41 +3897,25 @@
             },
             {
               "kind": "attr",
-              "name": "Character.size",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Character.bearing",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Character.advance",
+              "name": "Font.font_pt",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 9,
+          "n_typable": 16,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 9,
+          "n_untyped": 16,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 4,
-          "n_attrs": 4,
-          "n_properties": 0
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 7,
+          "n_attrs": 2,
+          "n_properties": 2
         }
       ],
       "type_ignores": [],
@@ -4993,15 +3925,15 @@
         "pyrender.font.Font",
         "pyrender.font.FontCache"
       ],
-      "n_typable": 37,
+      "n_typable": 32,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 37,
+      "n_untyped": 32,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 12,
-      "n_method_overloads": 12,
+      "n_methods": 7,
+      "n_method_overloads": 7,
       "n_method_params": 14,
       "n_classes": 3,
       "n_attrs": 7,
@@ -5523,175 +4455,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "pyrender.shader_program.ShaderProgram",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ShaderProgram.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram._add_to_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram._in_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram._remove_from_context",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram._load",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram._bind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram._unbind",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram.delete",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram.set_uniform",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ShaderProgram.vertex_shader",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ShaderProgram.fragment_shader",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ShaderProgram.geometry_shader",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ShaderProgram.defines",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ShaderProgram._FUNC_MAP",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 21,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 21,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 9,
-          "n_method_overloads": 9,
-          "n_method_params": 8,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "pyrender.shader_program.ShaderProgramCache",
           "methods": [
             {
@@ -5754,6 +4517,95 @@
           "n_method_params": 5,
           "n_attrs": 1,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "pyrender.shader_program.ShaderProgram",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ShaderProgram.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ShaderProgram.delete",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ShaderProgram.set_uniform",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.vertex_shader",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.fragment_shader",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.geometry_shader",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.defines",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 7,
+          "n_attrs": 4,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -5762,18 +4614,18 @@
         "pyrender.shader_program.ShaderProgram",
         "pyrender.shader_program.ShaderProgramCache"
       ],
-      "n_typable": 30,
+      "n_typable": 23,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 30,
+      "n_untyped": 23,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 13,
+      "n_methods": 6,
+      "n_method_overloads": 6,
+      "n_method_params": 12,
       "n_classes": 2,
-      "n_attrs": 6,
+      "n_attrs": 5,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -5952,7 +4804,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "pyrender.utils.format_color_vector",
+          "name": "pyrender.utils.format_color_array",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -5964,7 +4816,7 @@
         },
         {
           "kind": "function",
-          "name": "pyrender.utils.format_color_array",
+          "name": "pyrender.utils.format_color_vector",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -6012,18 +4864,18 @@
   ],
   "typecheckers": {},
   "n_modules": 22,
-  "n_typable": 873,
+  "n_typable": 703,
   "n_typed": 1,
   "n_any": 0,
-  "n_untyped": 872,
+  "n_untyped": 702,
   "n_functions": 3,
   "n_function_overloads": 3,
   "n_function_params": 6,
-  "n_methods": 197,
-  "n_method_params": 331,
-  "n_method_overloads": 197,
+  "n_methods": 102,
+  "n_method_params": 256,
+  "n_method_overloads": 102,
   "n_classes": 33,
-  "n_attrs": 150,
+  "n_attrs": 149,
   "n_properties": 135,
   "type_ignores": [],
   "n_type_ignores": 0

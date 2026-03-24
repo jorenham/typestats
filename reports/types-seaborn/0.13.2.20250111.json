@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "types-seaborn",
   "version": "0.13.2.20250111",
   "base_version": "0.13.2",
@@ -69,47 +69,6 @@
   },
   "module_reports": [
     {
-      "path": "seaborn-stubs/__init__.pyi",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "seaborn.cm",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.__version__",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs",
-      "names": [
-        "seaborn.__version__",
-        "seaborn.cm"
-      ],
-      "n_typable": 1,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 1,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 2,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "seaborn-stubs/colors/xkcd_rgb.pyi",
       "symbol_reports": [
         {
@@ -135,17 +94,58 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.__version__",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
       "name": "seaborn-stubs.colors.xkcd_rgb",
       "names": [
+        "seaborn.__version__",
         "seaborn.colors.xkcd_rgb",
         "seaborn.colors.xkcd_rgb.xkcd_rgb",
         "seaborn.xkcd_rgb"
       ],
-      "n_typable": 3,
+      "n_typable": 4,
       "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "seaborn.cm",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs",
+      "names": [
+        "seaborn.cm"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
       "n_any": 0,
       "n_untyped": 0,
       "n_functions": 0,
@@ -155,7 +155,7 @@
       "n_method_overloads": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_attrs": 3,
+      "n_attrs": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -249,36 +249,36 @@
       "path": "seaborn-stubs/axisgrid.pyi",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "seaborn.axisgrid.pairplot",
+          "n_typed": 19,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 19,
+          "n_params": 18,
+          "n_function_overloads": 1,
+          "n_function_params": 18
+        },
+        {
           "kind": "class",
-          "name": "seaborn.axisgrid.JointGrid",
+          "name": "seaborn.axisgrid.PairGrid",
           "methods": [
             {
               "kind": "function",
-              "name": "JointGrid.__init__",
-              "n_typed": 15,
+              "name": "PairGrid.__init__",
+              "n_typed": 16,
               "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 15,
-              "n_params": 14,
+              "n_typable": 16,
+              "n_params": 15,
               "n_function_overloads": 1,
-              "n_function_params": 14
+              "n_function_params": 15
             },
             {
               "kind": "function",
-              "name": "JointGrid.plot",
-              "n_typed": 3,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JointGrid.plot_joint",
+              "name": "PairGrid.map",
               "n_typed": 2,
               "n_any": 1,
               "n_untyped": 0,
@@ -290,7 +290,7 @@
             },
             {
               "kind": "function",
-              "name": "JointGrid.plot_marginals",
+              "name": "PairGrid.map_lower",
               "n_typed": 2,
               "n_any": 1,
               "n_untyped": 0,
@@ -302,34 +302,46 @@
             },
             {
               "kind": "function",
-              "name": "JointGrid.refline",
-              "n_typed": 7,
+              "name": "PairGrid.map_upper",
+              "n_typed": 2,
               "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 8,
-              "n_params": 7,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 7
+              "n_function_params": 2
             },
             {
               "kind": "function",
-              "name": "JointGrid.set_axis_labels",
-              "n_typed": 3,
+              "name": "PairGrid.map_offdiag",
+              "n_typed": 2,
               "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
+              "n_typable": 3,
+              "n_params": 2,
               "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "PairGrid.map_diag",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "JointGrid.ax_joint",
+              "name": "PairGrid.x_vars",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -337,7 +349,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.ax_marg_x",
+              "name": "PairGrid.y_vars",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -345,7 +357,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.ax_marg_y",
+              "name": "PairGrid.square_grid",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -353,7 +365,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.x",
+              "name": "PairGrid.axes",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -361,7 +373,7 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.y",
+              "name": "PairGrid.data",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -369,7 +381,55 @@
             },
             {
               "kind": "attr",
-              "name": "JointGrid.hue",
+              "name": "PairGrid.diag_sharey",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.diag_vars",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.diag_axes",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.hue_names",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.hue_vals",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.hue_kws",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PairGrid.palette",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -385,8 +445,8 @@
           "n_function_params": 0,
           "n_methods": 6,
           "n_method_overloads": 6,
-          "n_method_params": 31,
-          "n_attrs": 6,
+          "n_method_params": 25,
+          "n_attrs": 12,
           "n_properties": 0
         },
         {
@@ -644,36 +704,36 @@
           "n_properties": 3
         },
         {
-          "kind": "function",
-          "name": "seaborn.axisgrid.pairplot",
-          "n_typed": 19,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 19,
-          "n_params": 18,
-          "n_function_overloads": 1,
-          "n_function_params": 18
-        },
-        {
           "kind": "class",
-          "name": "seaborn.axisgrid.PairGrid",
+          "name": "seaborn.axisgrid.JointGrid",
           "methods": [
             {
               "kind": "function",
-              "name": "PairGrid.__init__",
-              "n_typed": 16,
+              "name": "JointGrid.__init__",
+              "n_typed": 15,
               "n_any": 0,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 16,
-              "n_params": 15,
+              "n_typable": 15,
+              "n_params": 14,
               "n_function_overloads": 1,
-              "n_function_params": 15
+              "n_function_params": 14
             },
             {
               "kind": "function",
-              "name": "PairGrid.map",
+              "name": "JointGrid.plot",
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "JointGrid.plot_joint",
               "n_typed": 2,
               "n_any": 1,
               "n_untyped": 0,
@@ -685,7 +745,7 @@
             },
             {
               "kind": "function",
-              "name": "PairGrid.map_lower",
+              "name": "JointGrid.plot_marginals",
               "n_typed": 2,
               "n_any": 1,
               "n_untyped": 0,
@@ -697,46 +757,34 @@
             },
             {
               "kind": "function",
-              "name": "PairGrid.map_upper",
-              "n_typed": 2,
+              "name": "JointGrid.refline",
+              "n_typed": 7,
               "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 8,
+              "n_params": 7,
               "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_function_params": 7
             },
             {
               "kind": "function",
-              "name": "PairGrid.map_offdiag",
-              "n_typed": 2,
+              "name": "JointGrid.set_axis_labels",
+              "n_typed": 3,
               "n_any": 1,
               "n_untyped": 0,
               "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
+              "n_typable": 4,
+              "n_params": 3,
               "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "PairGrid.map_diag",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_function_params": 3
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "PairGrid.x_vars",
+              "name": "JointGrid.ax_joint",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -744,7 +792,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.y_vars",
+              "name": "JointGrid.ax_marg_x",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -752,7 +800,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.square_grid",
+              "name": "JointGrid.ax_marg_y",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -760,7 +808,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.axes",
+              "name": "JointGrid.x",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -768,7 +816,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.data",
+              "name": "JointGrid.y",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -776,55 +824,7 @@
             },
             {
               "kind": "attr",
-              "name": "PairGrid.diag_sharey",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.diag_vars",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.diag_axes",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.hue_names",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.hue_vals",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.hue_kws",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "PairGrid.palette",
+              "name": "JointGrid.hue",
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -840,8 +840,8 @@
           "n_function_params": 0,
           "n_methods": 6,
           "n_method_overloads": 6,
-          "n_method_params": 25,
-          "n_attrs": 12,
+          "n_method_params": 31,
+          "n_attrs": 6,
           "n_properties": 0
         }
       ],
@@ -874,18 +874,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.categorical.countplot",
-          "n_typed": 22,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 23,
-          "n_params": 22,
-          "n_function_overloads": 1,
-          "n_function_params": 22
-        },
-        {
-          "kind": "function",
           "name": "seaborn.categorical.swarmplot",
           "n_typed": 21,
           "n_any": 1,
@@ -910,18 +898,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.categorical.pointplot",
-          "n_typed": 27,
-          "n_any": 1,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 32,
-          "n_params": 31,
-          "n_function_overloads": 1,
-          "n_function_params": 31
-        },
-        {
-          "kind": "function",
           "name": "seaborn.categorical.boxenplot",
           "n_typed": 31,
           "n_any": 1,
@@ -931,30 +907,6 @@
           "n_params": 32,
           "n_function_overloads": 1,
           "n_function_params": 32
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.categorical.catplot",
-          "n_typed": 34,
-          "n_any": 1,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 36,
-          "n_params": 35,
-          "n_function_overloads": 1,
-          "n_function_params": 35
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.categorical.boxplot",
-          "n_typed": 25,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 26,
-          "n_params": 25,
-          "n_function_overloads": 1,
-          "n_function_params": 25
         },
         {
           "kind": "function",
@@ -970,6 +922,18 @@
         },
         {
           "kind": "function",
+          "name": "seaborn.categorical.boxplot",
+          "n_typed": 25,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 26,
+          "n_params": 25,
+          "n_function_overloads": 1,
+          "n_function_params": 25
+        },
+        {
+          "kind": "function",
           "name": "seaborn.categorical.violinplot",
           "n_typed": 32,
           "n_any": 1,
@@ -979,6 +943,42 @@
           "n_params": 35,
           "n_function_overloads": 1,
           "n_function_params": 35
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.categorical.catplot",
+          "n_typed": 34,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 36,
+          "n_params": 35,
+          "n_function_overloads": 1,
+          "n_function_params": 35
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.categorical.pointplot",
+          "n_typed": 27,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 32,
+          "n_params": 31,
+          "n_function_overloads": 1,
+          "n_function_params": 31
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.categorical.countplot",
+          "n_typed": 22,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 23,
+          "n_params": 22,
+          "n_function_overloads": 1,
+          "n_function_params": 22
         }
       ],
       "type_ignores": [],
@@ -1014,31 +1014,7 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "seaborn.cm.vlag_r",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.cm.flare",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.cm.icefire_r",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.cm.vlag",
+          "name": "seaborn.cm.crest",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1054,14 +1030,6 @@
         },
         {
           "kind": "attr",
-          "name": "seaborn.cm.flare_r",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
           "name": "seaborn.cm.rocket",
           "n_typed": 1,
           "n_any": 0,
@@ -1070,23 +1038,7 @@
         },
         {
           "kind": "attr",
-          "name": "seaborn.cm.icefire",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.cm.mako_r",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.cm.rocket_r",
+          "name": "seaborn.cm.vlag",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1102,7 +1054,55 @@
         },
         {
           "kind": "attr",
-          "name": "seaborn.cm.crest",
+          "name": "seaborn.cm.vlag_r",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.cm.flare_r",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.cm.icefire_r",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.cm.mako_r",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.cm.flare",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.cm.icefire",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.cm.rocket_r",
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1145,6 +1145,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "seaborn.distributions.kdeplot",
+          "n_typed": 29,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 30,
+          "n_params": 29,
+          "n_function_overloads": 1,
+          "n_function_params": 29
+        },
+        {
+          "kind": "function",
           "name": "seaborn.distributions.displot",
           "n_typed": 23,
           "n_any": 1,
@@ -1157,15 +1169,15 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.distributions.kdeplot",
-          "n_typed": 29,
-          "n_any": 1,
+          "name": "seaborn.distributions.distplot",
+          "n_typed": 18,
+          "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 30,
-          "n_params": 29,
+          "n_typable": 18,
+          "n_params": 17,
           "n_function_overloads": 1,
-          "n_function_params": 29
+          "n_function_params": 17
         },
         {
           "kind": "function",
@@ -1202,18 +1214,6 @@
           "n_params": 34,
           "n_function_overloads": 1,
           "n_function_params": 34
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.distributions.distplot",
-          "n_typed": 18,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 18,
-          "n_params": 17,
-          "n_function_overloads": 1,
-          "n_function_params": 17
         }
       ],
       "type_ignores": [],
@@ -1261,14 +1261,6 @@
           "n_typable": 1
         },
         {
-          "kind": "attr",
-          "name": "seaborn.external.appdirs.system",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
           "kind": "function",
           "name": "seaborn.external.appdirs.user_cache_dir",
           "n_typed": 5,
@@ -1279,6 +1271,14 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.appdirs.system",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "attr",
@@ -1326,6 +1326,25 @@
       "path": "seaborn-stubs/external/docscrape.pyi",
       "symbol_reports": [
         {
+          "kind": "class",
+          "name": "seaborn.external.docscrape.ParseError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
           "kind": "function",
           "name": "seaborn.external.docscrape.indent",
           "n_typed": 3,
@@ -1336,6 +1355,280 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.docscrape.header",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.docscrape.strip_blank_lines",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.external.docscrape.FunctionDoc",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FunctionDoc.__init__",
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "FunctionDoc.get_func",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.external.docscrape.ClassDoc",
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ClassDoc.methods",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "ClassDoc.properties",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ClassDoc.extra_public_methods",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ClassDoc.show_inherited_members",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.external.docscrape.NumpyDocString",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NumpyDocString.__init__",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NumpyDocString.__getitem__",
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NumpyDocString.__setitem__",
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NumpyDocString.__iter__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NumpyDocString.__len__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "NumpyDocString.sections",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "NumpyDocString.empty_description",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 10,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 5,
+          "n_method_overloads": 5,
+          "n_method_params": 5,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.docscrape.dedent_lines",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.external.docscrape.Parameter",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Parameter.name",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Parameter.type",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Parameter.desc",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 3,
+          "n_properties": 0
         },
         {
           "kind": "class",
@@ -1476,299 +1769,6 @@
           "n_method_params": 3,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.docscrape.header",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.external.docscrape.ParseError",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.external.docscrape.ClassDoc",
-          "methods": [],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "ClassDoc.methods",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "ClassDoc.properties",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ClassDoc.extra_public_methods",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ClassDoc.show_inherited_members",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 2
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.docscrape.dedent_lines",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.external.docscrape.FunctionDoc",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FunctionDoc.__init__",
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "FunctionDoc.get_func",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 6,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.docscrape.strip_blank_lines",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.external.docscrape.Parameter",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Parameter.name",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Parameter.type",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Parameter.desc",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 3,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.external.docscrape.NumpyDocString",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NumpyDocString.__init__",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "NumpyDocString.__getitem__",
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "NumpyDocString.__setitem__",
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "NumpyDocString.__iter__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "NumpyDocString.__len__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "NumpyDocString.sections",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "NumpyDocString.empty_description",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 12,
-          "n_typed": 10,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 5,
-          "n_attrs": 2,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1805,115 +1805,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.external.husl.rgb_to_husl",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.dot_product",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.rgb_to_lch",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.external.husl.refY",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.luv_to_lch",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.external.husl.refZ",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.xyz_to_rgb",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "seaborn.external.husl.lch_to_husl",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.f_inv",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.external.husl.m",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.hex_to_rgb",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -1937,18 +1829,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.husl_to_hex",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
           "name": "seaborn.external.husl.rgb_to_huslp",
           "n_typed": 4,
           "n_any": 0,
@@ -1961,7 +1841,7 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.from_linear",
+          "name": "seaborn.external.husl.rgb_to_hex",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -1985,7 +1865,55 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.lch_to_luv",
+          "name": "seaborn.external.husl.xyz_to_rgb",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.refU",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.refX",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.to_linear",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.m",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.husl_to_lch",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -1997,7 +1925,91 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.husl_to_rgb",
+          "name": "seaborn.external.husl.huslp_to_rgb",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.luv_to_xyz",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.lch_to_huslp",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.dot_product",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.rgb_to_husl",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.f",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.rgb_to_lch",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.husl_to_hex",
           "n_typed": 4,
           "n_any": 0,
           "n_untyped": 0,
@@ -2021,50 +2033,6 @@
         },
         {
           "kind": "attr",
-          "name": "seaborn.external.husl.refU",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.luv_to_xyz",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.f",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.husl_to_lch",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
           "name": "seaborn.external.husl.lab_k",
           "n_typed": 1,
           "n_any": 0,
@@ -2073,107 +2041,7 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.to_linear",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.huslp_to_hex",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.hex_to_husl",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.max_chroma",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.rgb_prepare",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.external.husl.refX",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "seaborn.external.husl.m_inv",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.huslp_to_rgb",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.rgb_to_xyz",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.external.husl.max_chroma_pastel",
+          "name": "seaborn.external.husl.f_inv",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -2192,16 +2060,20 @@
           "n_typable": 1
         },
         {
-          "kind": "attr",
-          "name": "seaborn.external.husl.refV",
-          "n_typed": 1,
+          "kind": "function",
+          "name": "seaborn.external.husl.max_chroma",
+          "n_typed": 3,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 1
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.rgb_to_hex",
+          "name": "seaborn.external.husl.from_linear",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -2225,7 +2097,7 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.external.husl.lch_to_huslp",
+          "name": "seaborn.external.husl.hex_to_husl",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -2234,6 +2106,134 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.m_inv",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.refZ",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.refV",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.huslp_to_hex",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.rgb_to_xyz",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.rgb_prepare",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.lch_to_luv",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.max_chroma_pastel",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.husl_to_rgb",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.hex_to_rgb",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.external.husl.luv_to_lch",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "seaborn.external.husl.refY",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
         },
         {
           "kind": "attr",
@@ -2474,6 +2474,25 @@
       "symbol_reports": [
         {
           "kind": "class",
+          "name": "seaborn.external.version.InvalidVersion",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "seaborn.external.version.Version",
           "methods": [
             {
@@ -2618,25 +2637,6 @@
           "n_properties": 14
         },
         {
-          "kind": "class",
-          "name": "seaborn.external.version.InvalidVersion",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
           "kind": "attr",
           "name": "seaborn.external.version.VERSION_PATTERN",
           "n_typed": 1,
@@ -2768,42 +2768,6 @@
     {
       "path": "seaborn-stubs/_core/moves.pyi",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Shift",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Shift.x",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Shift.y",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "seaborn.objects.Dodge",
@@ -2943,6 +2907,61 @@
         },
         {
           "kind": "class",
+          "name": "seaborn.objects.Shift",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Shift.x",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Shift.y",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Stack",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
           "name": "seaborn.objects.Jitter",
           "methods": [],
           "properties": [],
@@ -2992,25 +3011,6 @@
           "n_method_params": 0,
           "n_attrs": 4,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Stack",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -3039,17 +3039,17 @@
       "n_type_ignores": 0
     },
     {
-      "path": "seaborn-stubs/_marks/line.pyi",
+      "path": "seaborn-stubs/_marks/area.pyi",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "seaborn.objects.Path",
+          "name": "seaborn.objects.Band",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Path.color",
+              "name": "Band.color",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3057,7 +3057,7 @@
             },
             {
               "kind": "attr",
-              "name": "Path.alpha",
+              "name": "Band.alpha",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3065,7 +3065,7 @@
             },
             {
               "kind": "attr",
-              "name": "Path.linewidth",
+              "name": "Band.fill",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3073,7 +3073,7 @@
             },
             {
               "kind": "attr",
-              "name": "Path.linestyle",
+              "name": "Band.edgecolor",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3081,7 +3081,7 @@
             },
             {
               "kind": "attr",
-              "name": "Path.marker",
+              "name": "Band.edgealpha",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3089,7 +3089,7 @@
             },
             {
               "kind": "attr",
-              "name": "Path.pointsize",
+              "name": "Band.edgewidth",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3097,23 +3097,7 @@
             },
             {
               "kind": "attr",
-              "name": "Path.fillcolor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Path.edgecolor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Path.edgewidth",
+              "name": "Band.edgestyle",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3130,37 +3114,74 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 9,
+          "n_attrs": 7,
           "n_properties": 0
         },
         {
           "kind": "class",
-          "name": "seaborn.objects.Range",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Dash",
+          "name": "seaborn.objects.Area",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Dash.width",
+              "name": "Area.color",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.alpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.fill",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.edgecolor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.edgealpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.edgewidth",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.edgestyle",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Area.baseline",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -3177,227 +3198,15 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Lines",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Paths",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Paths.__post_init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Paths.color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Paths.alpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Paths.linewidth",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Paths.linestyle",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 1,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 0,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Line",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
+          "n_attrs": 8,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "seaborn-stubs._marks.line",
+      "name": "seaborn-stubs._marks.area",
       "names": [
-        "seaborn.objects.Dash",
-        "seaborn.objects.Line",
-        "seaborn.objects.Lines",
-        "seaborn.objects.Path",
-        "seaborn.objects.Paths",
-        "seaborn.objects.Range"
-      ],
-      "n_typable": 1,
-      "n_typed": 1,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 0,
-      "n_classes": 6,
-      "n_attrs": 14,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "seaborn-stubs/_stats/aggregation.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Est",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Est.func",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Est.errorbar",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Est.n_boot",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Est.seed",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Agg",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Agg.func",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._stats.aggregation",
-      "names": [
-        "seaborn.objects.Agg",
-        "seaborn.objects.Est"
+        "seaborn.objects.Area",
+        "seaborn.objects.Band"
       ],
       "n_typable": 0,
       "n_typed": 0,
@@ -3410,465 +3219,7 @@
       "n_method_overloads": 0,
       "n_method_params": 0,
       "n_classes": 2,
-      "n_attrs": 5,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "seaborn-stubs/_stats/base.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Stat",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Stat.__call__",
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Stat.group_by_orient",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 5,
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 4,
-          "n_attrs": 1,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._stats.base",
-      "names": [
-        "seaborn.objects.Stat"
-      ],
-      "n_typable": 5,
-      "n_typed": 5,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 4,
-      "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "seaborn-stubs/_core/scales.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Temporal",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Temporal.tick",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Temporal.label",
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Temporal.trans",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Continuous",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Continuous.tick",
-              "n_typed": 8,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 8,
-              "n_params": 7,
-              "n_function_overloads": 1,
-              "n_function_params": 7
-            },
-            {
-              "kind": "function",
-              "name": "Continuous.label",
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Continuous.values",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Continuous.trans",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 13,
-          "n_typed": 13,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 11,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Nominal",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Nominal.tick",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Nominal.label",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Nominal.values",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Nominal.order",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Scale",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Scale.__post_init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Scale.tick",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Scale.label",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Scale.__call__",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Scale.values",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 1,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Boolean",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Boolean.tick",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Boolean.label",
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Boolean.values",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 2,
-          "n_attrs": 1,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._core.scales",
-      "names": [
-        "seaborn.objects.Boolean",
-        "seaborn.objects.Continuous",
-        "seaborn.objects.Nominal",
-        "seaborn.objects.Scale",
-        "seaborn.objects.Temporal"
-      ],
-      "n_typable": 33,
-      "n_typed": 33,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 12,
-      "n_method_overloads": 12,
-      "n_method_params": 20,
-      "n_classes": 5,
-      "n_attrs": 7,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "seaborn-stubs/_stats/order.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Perc",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Perc.k",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Perc.method",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._stats.order",
-      "names": [
-        "seaborn.objects.Perc"
-      ],
-      "n_typable": 0,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 2,
+      "n_attrs": 15,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -4014,17 +3365,102 @@
       "n_type_ignores": 0
     },
     {
-      "path": "seaborn-stubs/_marks/bar.pyi",
+      "path": "seaborn-stubs/_marks/line.pyi",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "seaborn.objects.Bar",
+          "name": "seaborn.objects.Lines",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Range",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Dash",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Bar.color",
+              "name": "Dash.width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Line",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Path",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Path.color",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4032,7 +3468,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.alpha",
+              "name": "Path.alpha",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4040,7 +3476,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.fill",
+              "name": "Path.linewidth",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4048,7 +3484,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.edgecolor",
+              "name": "Path.linestyle",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4056,7 +3492,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.edgealpha",
+              "name": "Path.marker",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4064,7 +3500,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.edgewidth",
+              "name": "Path.pointsize",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4072,7 +3508,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.edgestyle",
+              "name": "Path.fillcolor",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4080,7 +3516,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.width",
+              "name": "Path.edgecolor",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4088,7 +3524,7 @@
             },
             {
               "kind": "attr",
-              "name": "Bar.baseline",
+              "name": "Path.edgewidth",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4110,77 +3546,107 @@
         },
         {
           "kind": "class",
-          "name": "seaborn.objects.Bars",
+          "name": "seaborn.objects.Paths",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Paths.__post_init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Paths.color",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Paths.alpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Paths.linewidth",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Paths.linestyle",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 0,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._marks.line",
+      "names": [
+        "seaborn.objects.Dash",
+        "seaborn.objects.Line",
+        "seaborn.objects.Lines",
+        "seaborn.objects.Path",
+        "seaborn.objects.Paths",
+        "seaborn.objects.Range"
+      ],
+      "n_typable": 1,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 0,
+      "n_classes": 6,
+      "n_attrs": 14,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_marks/base.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Mark",
           "methods": [],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Bars.color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.alpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.fill",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.edgecolor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.edgealpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.edgewidth",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.edgestyle",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.width",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Bars.baseline",
+              "name": "Mark.artist_kws",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -4197,15 +3663,14 @@
           "n_methods": 0,
           "n_method_overloads": 0,
           "n_method_params": 0,
-          "n_attrs": 9,
+          "n_attrs": 1,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "seaborn-stubs._marks.bar",
+      "name": "seaborn-stubs._marks.base",
       "names": [
-        "seaborn.objects.Bar",
-        "seaborn.objects.Bars"
+        "seaborn.objects.Mark"
       ],
       "n_typable": 0,
       "n_typed": 0,
@@ -4217,8 +3682,401 @@
       "n_methods": 0,
       "n_method_overloads": 0,
       "n_method_params": 0,
-      "n_classes": 2,
-      "n_attrs": 18,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_core/scales.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Scale",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Scale.__post_init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Scale.tick",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Scale.label",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Scale.__call__",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Scale.values",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Nominal",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Nominal.tick",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Nominal.label",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Nominal.values",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Nominal.order",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Temporal",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Temporal.tick",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Temporal.label",
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Temporal.trans",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Boolean",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Boolean.tick",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Boolean.label",
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Boolean.values",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Continuous",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Continuous.tick",
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 8,
+              "n_params": 7,
+              "n_function_overloads": 1,
+              "n_function_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "Continuous.label",
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Continuous.values",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Continuous.trans",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 13,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 11,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._core.scales",
+      "names": [
+        "seaborn.objects.Boolean",
+        "seaborn.objects.Continuous",
+        "seaborn.objects.Nominal",
+        "seaborn.objects.Scale",
+        "seaborn.objects.Temporal"
+      ],
+      "n_typable": 33,
+      "n_typed": 33,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 12,
+      "n_method_overloads": 12,
+      "n_method_params": 20,
+      "n_classes": 5,
+      "n_attrs": 7,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_stats/order.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Perc",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Perc.k",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Perc.method",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._stats.order",
+      "names": [
+        "seaborn.objects.Perc"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 2,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -4432,364 +4290,6 @@
       "n_type_ignores": 0
     },
     {
-      "path": "seaborn-stubs/_marks/area.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Band",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Band.color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Band.alpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Band.fill",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Band.edgecolor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Band.edgealpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Band.edgewidth",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Band.edgestyle",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 7,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "seaborn.objects.Area",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Area.color",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.alpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.fill",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.edgecolor",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.edgealpha",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.edgewidth",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.edgestyle",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Area.baseline",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 8,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._marks.area",
-      "names": [
-        "seaborn.objects.Area",
-        "seaborn.objects.Band"
-      ],
-      "n_typable": 0,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 2,
-      "n_attrs": 15,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "seaborn-stubs/_stats/density.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.KDE",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "KDE.__post_init__",
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "KDE.bw_adjust",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "KDE.bw_method",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "KDE.common_norm",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "KDE.common_grid",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "KDE.gridsize",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "KDE.cut",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "KDE.cumulative",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 1,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 0,
-          "n_attrs": 7,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._stats.density",
-      "names": [
-        "seaborn.objects.KDE"
-      ],
-      "n_typable": 1,
-      "n_typed": 1,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 7,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "seaborn-stubs/_stats/regression.pyi",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "seaborn.objects.PolyFit",
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "PolyFit.order",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "PolyFit.gridsize",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 2,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "seaborn-stubs._stats.regression",
-      "names": [
-        "seaborn.objects.PolyFit"
-      ],
-      "n_typable": 0,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 2,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "seaborn-stubs/_marks/text.pyi",
       "symbol_reports": [
         {
@@ -4886,6 +4386,445 @@
       "n_method_params": 0,
       "n_classes": 1,
       "n_attrs": 7,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_stats/base.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Stat",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Stat.__call__",
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Stat.group_by_orient",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._stats.base",
+      "names": [
+        "seaborn.objects.Stat"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_stats/aggregation.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Est",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Est.func",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Est.errorbar",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Est.n_boot",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Est.seed",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Agg",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Agg.func",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._stats.aggregation",
+      "names": [
+        "seaborn.objects.Agg",
+        "seaborn.objects.Est"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 2,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_marks/bar.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Bar",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Bar.color",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.alpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.fill",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.edgecolor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.edgealpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.edgewidth",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.edgestyle",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bar.baseline",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 9,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "seaborn.objects.Bars",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Bars.color",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.alpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.fill",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.edgecolor",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.edgealpha",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.edgewidth",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.edgestyle",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.width",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Bars.baseline",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 9,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._marks.bar",
+      "names": [
+        "seaborn.objects.Bar",
+        "seaborn.objects.Bars"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 2,
+      "n_attrs": 18,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "seaborn-stubs/_stats/regression.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "seaborn.objects.PolyFit",
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PolyFit.order",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PolyFit.gridsize",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "seaborn-stubs._stats.regression",
+      "names": [
+        "seaborn.objects.PolyFit"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 2,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -5138,54 +5077,115 @@
       "n_type_ignores": 1
     },
     {
-      "path": "seaborn-stubs/_marks/base.pyi",
+      "path": "seaborn-stubs/_stats/density.pyi",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "seaborn.objects.Mark",
-          "methods": [],
+          "name": "seaborn.objects.KDE",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KDE.__post_init__",
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Mark.artist_kws",
+              "name": "KDE.bw_adjust",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KDE.bw_method",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KDE.common_norm",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KDE.common_grid",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KDE.gridsize",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KDE.cut",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KDE.cumulative",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
               "n_typable": 0
             }
           ],
-          "n_typable": 0,
-          "n_typed": 0,
+          "n_typable": 1,
+          "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
           "n_method_params": 0,
-          "n_attrs": 1,
+          "n_attrs": 7,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "seaborn-stubs._marks.base",
+      "name": "seaborn-stubs._stats.density",
       "names": [
-        "seaborn.objects.Mark"
+        "seaborn.objects.KDE"
       ],
-      "n_typable": 0,
-      "n_typed": 0,
+      "n_typable": 1,
+      "n_typed": 1,
       "n_any": 0,
       "n_untyped": 0,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_overloads": 0,
+      "n_methods": 1,
+      "n_method_overloads": 1,
       "n_method_params": 0,
       "n_classes": 1,
-      "n_attrs": 1,
+      "n_attrs": 7,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -5194,55 +5194,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.palettes.husl_palette",
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 2,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.color_palette",
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 3,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 3,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.diverging_palette",
-          "n_typed": 9,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 9,
-          "n_params": 8,
-          "n_function_overloads": 2,
-          "n_function_params": 8
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.blend_palette",
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 2,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.set_color_codes",
+          "name": "seaborn.palettes.crayon_palette",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -5263,6 +5215,102 @@
           "n_params": 5,
           "n_function_overloads": 2,
           "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.cubehelix_palette",
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 2,
+          "n_function_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.diverging_palette",
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 9,
+          "n_params": 8,
+          "n_function_overloads": 2,
+          "n_function_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.set_color_codes",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.blend_palette",
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 2,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.color_palette",
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 3,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 3,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.husl_palette",
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 2,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.hls_palette",
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 2,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.palettes.mpl_palette",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 2,
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -5287,54 +5335,6 @@
           "n_params": 5,
           "n_function_overloads": 2,
           "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.mpl_palette",
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 2,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.hls_palette",
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 2,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.crayon_palette",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.palettes.cubehelix_palette",
-          "n_typed": 10,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 2,
-          "n_function_params": 9
         }
       ],
       "type_ignores": [],
@@ -5373,15 +5373,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.rcmod.set_theme",
-          "n_typed": 8,
+          "name": "seaborn.rcmod.plotting_context",
+          "n_typed": 4,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 7
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -5397,15 +5397,27 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.rcmod.plotting_context",
-          "n_typed": 4,
+          "name": "seaborn.rcmod.set_palette",
+          "n_typed": 5,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.rcmod.set_theme",
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
         },
         {
           "kind": "function",
@@ -5421,30 +5433,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.rcmod.set_palette",
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.rcmod.set",
-          "n_typed": 8,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
           "name": "seaborn.rcmod.reset_defaults",
           "n_typed": 1,
           "n_any": 0,
@@ -5454,6 +5442,18 @@
           "n_params": 0,
           "n_function_overloads": 1,
           "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.rcmod.set_context",
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -5469,15 +5469,15 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.rcmod.set_context",
-          "n_typed": 4,
+          "name": "seaborn.rcmod.set",
+          "n_typed": 8,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 8,
+          "n_params": 7,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 7
         }
       ],
       "type_ignores": [],
@@ -5513,15 +5513,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.regression.residplot",
-          "n_typed": 15,
+          "name": "seaborn.regression.lmplot",
+          "n_typed": 41,
           "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 15,
-          "n_params": 14,
-          "n_function_overloads": 2,
-          "n_function_params": 14
+          "n_overloads": 1,
+          "n_typable": 41,
+          "n_params": 40,
+          "n_function_overloads": 1,
+          "n_function_params": 40
         },
         {
           "kind": "function",
@@ -5537,15 +5537,15 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.regression.lmplot",
-          "n_typed": 41,
+          "name": "seaborn.regression.residplot",
+          "n_typed": 15,
           "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 41,
-          "n_params": 40,
-          "n_function_overloads": 1,
-          "n_function_params": 40
+          "n_overloads": 2,
+          "n_typable": 15,
+          "n_params": 14,
+          "n_function_overloads": 2,
+          "n_function_params": 14
         }
       ],
       "type_ignores": [],
@@ -5587,18 +5587,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.relational.scatterplot",
-          "n_typed": 17,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 18,
-          "n_params": 17,
-          "n_function_overloads": 1,
-          "n_function_params": 17
-        },
-        {
-          "kind": "function",
           "name": "seaborn.relational.relplot",
           "n_typed": 28,
           "n_any": 1,
@@ -5608,6 +5596,18 @@
           "n_params": 28,
           "n_function_overloads": 1,
           "n_function_params": 28
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.relational.scatterplot",
+          "n_typed": 17,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 18,
+          "n_params": 17,
+          "n_function_overloads": 1,
+          "n_function_params": 17
         }
       ],
       "type_ignores": [],
@@ -5649,54 +5649,6 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.utils.set_hls_values",
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.utils.get_dataset_names",
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.utils.saturate",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.utils.load_dataset",
-          "n_typed": 4,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
           "name": "seaborn.utils.get_data_home",
           "n_typed": 2,
           "n_any": 0,
@@ -5706,6 +5658,18 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.desaturate",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -5721,15 +5685,51 @@
         },
         {
           "kind": "function",
-          "name": "seaborn.utils.desaturate",
-          "n_typed": 3,
+          "name": "seaborn.utils.load_dataset",
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.saturate",
+          "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.get_dataset_names",
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.utils.set_hls_values",
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [
@@ -5771,30 +5771,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "seaborn.widgets.choose_colorbrewer_palette",
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 2,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "seaborn.widgets.choose_cubehelix_palette",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 2,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "seaborn.widgets.choose_light_palette",
           "n_typed": 3,
           "n_any": 0,
@@ -5807,7 +5783,31 @@
         },
         {
           "kind": "function",
+          "name": "seaborn.widgets.choose_colorbrewer_palette",
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 2,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "seaborn.widgets.choose_diverging_palette",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 2,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 2,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "seaborn.widgets.choose_cubehelix_palette",
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,

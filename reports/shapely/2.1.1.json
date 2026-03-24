@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "package": "shapely",
   "version": "2.1.1",
   "base_version": null,
@@ -122,7 +122,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.affinity.skew",
+          "name": "shapely.affinity.scale",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -146,7 +146,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.affinity.scale",
+          "name": "shapely.affinity.skew",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -282,7 +282,31 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.constructive.normalize",
+          "name": "shapely.constructive.boundary",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.reverse",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.point_on_surface",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -306,7 +330,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.maximum_inscribed_circle",
+          "name": "shapely.constructive.segmentize",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -315,114 +339,6 @@
           "n_params": 3,
           "n_function_overloads": 1,
           "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.build_area",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.oriented_envelope",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.orient_polygons",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.extract_unique_points",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.minimum_clearance_line",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.offset_curve",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.clip_by_rect",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.buffer",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_overloads": 1,
-          "n_typable": 9,
-          "n_params": 8,
-          "n_function_overloads": 1,
-          "n_function_params": 8
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.boundary",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -470,7 +386,63 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.concave_hull",
+          "name": "shapely.constructive.envelope",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.minimum_clearance_line",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.maximum_inscribed_circle",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.minimum_bounding_circle",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "shapely.constructive.minimum_rotated_rectangle",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.simplify",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -482,7 +454,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.node",
+          "name": "shapely.constructive.extract_unique_points",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -494,7 +466,19 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.polygonize_full",
+          "name": "shapely.constructive.voronoi_polygons",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.centroid",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -503,6 +487,102 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.delaunay_triangles",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.snap",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.orient_polygons",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.oriented_envelope",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.polygonize",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.offset_curve",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.clip_by_rect",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_overloads": 1,
+          "n_typable": 7,
+          "n_params": 6,
+          "n_function_overloads": 1,
+          "n_function_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.remove_repeated_points",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "class",
@@ -550,15 +630,27 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.voronoi_polygons",
+          "name": "shapely.constructive.node",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 6
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.constructive.buffer",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_overloads": 1,
+          "n_typable": 9,
+          "n_params": 8,
+          "n_function_overloads": 1,
+          "n_function_params": 8
         },
         {
           "kind": "function",
@@ -574,7 +666,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.polygonize",
+          "name": "shapely.constructive.polygonize_full",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -586,31 +678,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.minimum_bounding_circle",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.reverse",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.snap",
+          "name": "shapely.constructive.concave_hull",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -622,31 +690,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.constructive.simplify",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.delaunay_triangles",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.point_on_surface",
+          "name": "shapely.constructive.normalize",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -657,40 +701,8 @@
           "n_function_params": 2
         },
         {
-          "kind": "attr",
-          "name": "shapely.constructive.minimum_rotated_rectangle",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "function",
-          "name": "shapely.constructive.segmentize",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.remove_repeated_points",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.envelope",
+          "name": "shapely.constructive.build_area",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -703,18 +715,6 @@
         {
           "kind": "function",
           "name": "shapely.constructive.convex_hull",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.constructive.centroid",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -805,18 +805,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.coordinates.transform",
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
           "name": "shapely.coordinates.set_coordinates",
           "n_typed": 0,
           "n_any": 0,
@@ -826,6 +814,18 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.coordinates.transform",
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -969,15 +969,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.creation.linearrings",
+          "name": "shapely.creation.multipolygons",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 7
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -993,66 +993,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.creation.empty",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.creation.multilinestrings",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.creation.prepare",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.creation.multipolygons",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.creation.linestrings",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_overloads": 1,
-          "n_typable": 8,
-          "n_params": 7,
-          "n_function_overloads": 1,
-          "n_function_params": 7
-        },
-        {
-          "kind": "function",
           "name": "shapely.creation.box",
           "n_typed": 0,
           "n_any": 0,
@@ -1062,18 +1002,6 @@
           "n_params": 6,
           "n_function_overloads": 1,
           "n_function_params": 6
-        },
-        {
-          "kind": "function",
-          "name": "shapely.creation.polygons",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
         },
         {
           "kind": "function",
@@ -1089,7 +1017,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.creation.points",
+          "name": "shapely.creation.linestrings",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 8,
@@ -1098,6 +1026,30 @@
           "n_params": 7,
           "n_function_overloads": 1,
           "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "shapely.creation.prepare",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.creation.multilinestrings",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         },
         {
           "kind": "function",
@@ -1110,6 +1062,54 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.creation.polygons",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "shapely.creation.points",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "shapely.creation.empty",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.creation.linearrings",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_overloads": 1,
+          "n_typable": 8,
+          "n_params": 7,
+          "n_function_overloads": 1,
+          "n_function_params": 7
         }
       ],
       "type_ignores": [],
@@ -1148,15 +1148,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.decorators.deprecate_positional",
-          "n_typed": 2,
+          "name": "shapely.decorators.multithreading_enabled",
+          "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 1
         },
         {
           "kind": "class",
@@ -1213,15 +1213,15 @@
         },
         {
           "kind": "function",
-          "name": "shapely.decorators.multithreading_enabled",
-          "n_typed": 0,
+          "name": "shapely.decorators.deprecate_positional",
+          "n_typed": 2,
           "n_any": 0,
-          "n_untyped": 2,
+          "n_untyped": 1,
           "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -1251,25 +1251,6 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "shapely.errors.ShapelyDeprecationWarning",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "shapely.errors.GeometryTypeError",
           "methods": [],
           "properties": [],
@@ -1289,45 +1270,26 @@
         },
         {
           "kind": "class",
-          "name": "shapely.errors.DimensionError",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "shapely.errors.TopologicalError",
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 0,
-          "n_method_overloads": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
           "name": "shapely.errors.UnsupportedGEOSVersionError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "shapely.errors.DimensionError",
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -1374,6 +1336,44 @@
           "n_method_params": 0,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "shapely.errors.TopologicalError",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "shapely.errors.ShapelyDeprecationWarning",
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 0,
+          "n_method_overloads": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
@@ -1403,104 +1403,15 @@
       "n_type_ignores": 0
     },
     {
-      "path": "shapely/geometry/polygon.py",
+      "path": "shapely/geometry/collection.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "shapely.geometry.polygon.Polygon",
+          "name": "shapely.geometry.collection.GeometryCollection",
           "methods": [
             {
               "kind": "function",
-              "name": "Polygon.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Polygon.svg",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Polygon.from_bounds",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Polygon.exterior",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Polygon.interiors",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Polygon.coords",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Polygon.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 16,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 16,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 3,
-          "n_method_overloads": 3,
-          "n_method_params": 9,
-          "n_attrs": 0,
-          "n_properties": 4
-        },
-        {
-          "kind": "class",
-          "name": "shapely.geometry.polygon.LinearRing",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LinearRing.__new__",
+              "name": "GeometryCollection.__new__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1509,40 +1420,12 @@
               "n_params": 1,
               "n_function_overloads": 1,
               "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "LinearRing.__reduce__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "LinearRing.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "LinearRing.is_ccw",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "LinearRing.is_simple",
+              "name": "GeometryCollection.__geo_interface__",
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1550,389 +1433,35 @@
             }
           ],
           "attrs": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.geometry.polygon.orient",
+          "n_typable": 3,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "shapely.geometry.polygon",
-      "names": [
-        "shapely.geometry.polygon.LinearRing",
-        "shapely.geometry.polygon.Polygon",
-        "shapely.geometry.polygon.orient"
-      ],
-      "n_typable": 25,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 25,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 2,
-      "n_methods": 5,
-      "n_method_overloads": 5,
-      "n_method_params": 10,
-      "n_classes": 2,
-      "n_attrs": 0,
-      "n_properties": 7,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "shapely/geometry/multilinestring.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "shapely.geometry.multilinestring.MultiLineString",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MultiLineString.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "MultiLineString.svg",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "MultiLineString.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 1
         }
       ],
       "type_ignores": [],
-      "name": "shapely.geometry.multilinestring",
+      "name": "shapely.geometry.collection",
       "names": [
-        "shapely.geometry.multilinestring.MultiLineString"
+        "shapely.geometry.collection.GeometryCollection"
       ],
-      "n_typable": 7,
+      "n_typable": 3,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 7,
+      "n_untyped": 3,
       "n_functions": 0,
       "n_function_overloads": 0,
       "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_overloads": 2,
-      "n_method_params": 4,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 1,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "shapely/geometry/linestring.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "shapely.geometry.linestring.LineString",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LineString.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "LineString.svg",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "LineString.offset_curve",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "LineString.parallel_offset",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "LineString.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "LineString.xy",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 19,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 19,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 13,
-          "n_attrs": 0,
-          "n_properties": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "shapely.geometry.linestring",
-      "names": [
-        "shapely.geometry.linestring.LineString"
-      ],
-      "n_typable": 19,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 19,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 4,
-      "n_method_overloads": 4,
-      "n_method_params": 13,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 2,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "shapely/geometry/multipolygon.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "shapely.geometry.multipolygon.MultiPolygon",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MultiPolygon.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "MultiPolygon.svg",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "MultiPolygon.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "shapely.geometry.multipolygon",
-      "names": [
-        "shapely.geometry.multipolygon.MultiPolygon"
-      ],
-      "n_typable": 7,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 7,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_overloads": 2,
-      "n_method_params": 4,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 1,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "shapely/geometry/multipoint.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "shapely.geometry.multipoint.MultiPoint",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "MultiPoint.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "MultiPoint.svg",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "MultiPoint.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "shapely.geometry.multipoint",
-      "names": [
-        "shapely.geometry.multipoint.MultiPoint"
-      ],
-      "n_typable": 7,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 7,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_overloads": 2,
-      "n_method_params": 4,
+      "n_methods": 1,
+      "n_method_overloads": 1,
+      "n_method_params": 1,
       "n_classes": 1,
       "n_attrs": 0,
       "n_properties": 1,
@@ -1943,7 +1472,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.geometry.geo.shape",
+          "name": "shapely.geometry.geo.mapping",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1955,7 +1484,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.geometry.geo.mapping",
+          "name": "shapely.geometry.geo.shape",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -2093,50 +1622,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.geometry.base.geom_factory",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "shapely.geometry.base.EmptyGeometry",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "EmptyGeometry.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 1,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "function",
           "name": "shapely.geometry.base.dump_coords",
           "n_typed": 0,
           "n_any": 0,
@@ -2156,178 +1641,16 @@
           "n_typable": 0
         },
         {
-          "kind": "class",
-          "name": "shapely.geometry.base.GeometrySequence",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "GeometrySequence.__init__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "GeometrySequence._get_geom_item",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "GeometrySequence.__iter__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "GeometrySequence.__len__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "GeometrySequence.__getitem__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "GeometrySequence._parent",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 8,
+          "kind": "function",
+          "name": "shapely.geometry.base.geom_factory",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 5,
-          "n_method_overloads": 5,
-          "n_method_params": 3,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "shapely.geometry.base.BaseMultipartGeometry",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BaseMultipartGeometry.__bool__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BaseMultipartGeometry.__eq__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BaseMultipartGeometry.__hash__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BaseMultipartGeometry.svg",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "BaseMultipartGeometry.coords",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "BaseMultipartGeometry.geoms",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 9,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 4,
-          "n_method_overloads": 4,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 2
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "class",
@@ -2488,18 +1811,6 @@
               "n_params": 2,
               "n_function_overloads": 1,
               "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseGeometry._repr_svg_",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
             },
             {
               "kind": "function",
@@ -2889,14 +2200,6 @@
           "properties": [
             {
               "kind": "property",
-              "name": "BaseGeometry._ndim",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
               "name": "BaseGeometry.coords",
               "n_typed": 0,
               "n_any": 0,
@@ -3097,18 +2400,203 @@
             }
           ],
           "attrs": [],
-          "n_typable": 126,
+          "n_typable": 124,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 126,
+          "n_untyped": 124,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
-          "n_methods": 46,
-          "n_method_overloads": 46,
+          "n_methods": 45,
+          "n_method_overloads": 45,
           "n_method_params": 54,
           "n_attrs": 0,
-          "n_properties": 26
+          "n_properties": 25
+        },
+        {
+          "kind": "class",
+          "name": "shapely.geometry.base.EmptyGeometry",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmptyGeometry.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 1,
+          "n_method_overloads": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "shapely.geometry.base.GeometrySequence",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GeometrySequence.__init__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GeometrySequence.__iter__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GeometrySequence.__len__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GeometrySequence.__getitem__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "shapely.geometry.base.BaseMultipartGeometry",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseMultipartGeometry.__bool__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseMultipartGeometry.__eq__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseMultipartGeometry.__hash__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseMultipartGeometry.svg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BaseMultipartGeometry.coords",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BaseMultipartGeometry.geoms",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 2
         }
       ],
       "type_ignores": [],
@@ -3124,84 +2612,19 @@
         "shapely.geometry.base.dump_coords",
         "shapely.geometry.base.geom_factory"
       ],
-      "n_typable": 149,
+      "n_typable": 145,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 149,
+      "n_untyped": 145,
       "n_functions": 2,
       "n_function_overloads": 2,
       "n_function_params": 3,
-      "n_methods": 56,
-      "n_method_overloads": 56,
-      "n_method_params": 60,
+      "n_methods": 54,
+      "n_method_overloads": 54,
+      "n_method_params": 59,
       "n_classes": 6,
-      "n_attrs": 8,
-      "n_properties": 28,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "shapely/geometry/collection.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "shapely.geometry.collection.GeometryCollection",
-          "methods": [
-            {
-              "kind": "function",
-              "name": "GeometryCollection.__new__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "GeometryCollection.__geo_interface__",
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 1,
-          "n_method_overloads": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "shapely.geometry.collection",
-      "names": [
-        "shapely.geometry.collection.GeometryCollection"
-      ],
-      "n_typable": 3,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 3,
-      "n_functions": 0,
-      "n_function_overloads": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_overloads": 1,
-      "n_method_params": 1,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 1,
+      "n_attrs": 7,
+      "n_properties": 27,
       "n_type_ignores": 0
     },
     {
@@ -3322,11 +2745,547 @@
       "n_type_ignores": 0
     },
     {
+      "path": "shapely/geometry/multilinestring.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "shapely.geometry.multilinestring.MultiLineString",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MultiLineString.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MultiLineString.svg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MultiLineString.__geo_interface__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "shapely.geometry.multilinestring",
+      "names": [
+        "shapely.geometry.multilinestring.MultiLineString"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_overloads": 2,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "shapely/geometry/linestring.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "shapely.geometry.linestring.LineString",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LineString.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LineString.svg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "LineString.offset_curve",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "LineString.parallel_offset",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_overloads": 1,
+              "n_typable": 6,
+              "n_params": 5,
+              "n_function_overloads": 1,
+              "n_function_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "LineString.__geo_interface__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LineString.xy",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 19,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 4,
+          "n_method_overloads": 4,
+          "n_method_params": 13,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "shapely.geometry.linestring",
+      "names": [
+        "shapely.geometry.linestring.LineString"
+      ],
+      "n_typable": 19,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 19,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_overloads": 4,
+      "n_method_params": 13,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "shapely/geometry/multipolygon.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "shapely.geometry.multipolygon.MultiPolygon",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MultiPolygon.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MultiPolygon.svg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MultiPolygon.__geo_interface__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "shapely.geometry.multipolygon",
+      "names": [
+        "shapely.geometry.multipolygon.MultiPolygon"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_overloads": 2,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "shapely/geometry/polygon.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "shapely.geometry.polygon.LinearRing",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearRing.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearRing.__reduce__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "LinearRing.__geo_interface__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearRing.is_ccw",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearRing.is_simple",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "shapely.geometry.polygon.Polygon",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Polygon.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_overloads": 1,
+              "n_typable": 3,
+              "n_params": 2,
+              "n_function_overloads": 1,
+              "n_function_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Polygon.svg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Polygon.from_bounds",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_overloads": 1,
+              "n_typable": 5,
+              "n_params": 4,
+              "n_function_overloads": 1,
+              "n_function_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Polygon.exterior",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Polygon.interiors",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Polygon.coords",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Polygon.__geo_interface__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 16,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 3,
+          "n_method_overloads": 3,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.geometry.polygon.orient",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "shapely.geometry.polygon",
+      "names": [
+        "shapely.geometry.polygon.LinearRing",
+        "shapely.geometry.polygon.Polygon",
+        "shapely.geometry.polygon.orient"
+      ],
+      "n_typable": 25,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 25,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 2,
+      "n_methods": 5,
+      "n_method_overloads": 5,
+      "n_method_params": 10,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 7,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "shapely/geometry/multipoint.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "shapely.geometry.multipoint.MultiPoint",
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MultiPoint.__new__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_overloads": 1,
+              "n_typable": 2,
+              "n_params": 1,
+              "n_function_overloads": 1,
+              "n_function_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MultiPoint.svg",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_overloads": 1,
+              "n_typable": 4,
+              "n_params": 3,
+              "n_function_overloads": 1,
+              "n_function_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MultiPoint.__geo_interface__",
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "shapely.geometry.multipoint",
+      "names": [
+        "shapely.geometry.multipoint.MultiPoint"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_overloads": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_overloads": 2,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
       "path": "shapely/io.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.io.from_wkb",
+          "name": "shapely.io.from_geojson",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -3350,7 +3309,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.io.from_wkt",
+          "name": "shapely.io.from_wkb",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -3374,18 +3333,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.io.from_geojson",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
           "name": "shapely.io.to_wkb",
           "n_typed": 0,
           "n_any": 0,
@@ -3395,6 +3342,18 @@
           "n_params": 7,
           "n_function_overloads": 1,
           "n_function_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "shapely.io.from_wkt",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -3476,7 +3435,19 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.linear.shared_paths",
+          "name": "shapely.linear.line_locate_point",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.linear.shortest_line",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -3500,15 +3471,15 @@
         },
         {
           "kind": "function",
-          "name": "shapely.linear.line_locate_point",
+          "name": "shapely.linear.shared_paths",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 3
         },
         {
           "kind": "function",
@@ -3521,18 +3492,6 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.linear.shortest_line",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
         }
       ],
       "type_ignores": [],
@@ -3564,18 +3523,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.measurement.bounds",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "shapely.measurement.frechet_distance",
           "n_typed": 0,
           "n_any": 0,
@@ -3585,18 +3532,6 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.measurement.area",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -3624,19 +3559,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.measurement.length",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.measurement.minimum_bounding_radius",
+          "name": "shapely.measurement.bounds",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -3660,7 +3583,43 @@
         },
         {
           "kind": "function",
+          "name": "shapely.measurement.area",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
           "name": "shapely.measurement.minimum_clearance",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.measurement.minimum_bounding_radius",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.measurement.length",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -3704,6 +3663,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "shapely.ops.snap",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
           "name": "shapely.ops.transform",
           "n_typed": 0,
           "n_any": 0,
@@ -3716,78 +3687,6 @@
         },
         {
           "kind": "attr",
-          "name": "shapely.ops.split",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "shapely.ops.unary_union",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "shapely.ops.orient",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.ops.triangulate",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.ops.validate",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "shapely.ops.operator",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "shapely.ops.voronoi_diagram",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "attr",
           "name": "shapely.ops.polygonize",
           "n_typed": 0,
           "n_any": 0,
@@ -3796,15 +3695,23 @@
         },
         {
           "kind": "function",
-          "name": "shapely.ops.snap",
+          "name": "shapely.ops.clip_by_rect",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 6,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 6,
+          "n_params": 5,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 5
+        },
+        {
+          "kind": "attr",
+          "name": "shapely.ops.linemerge",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "function",
@@ -3832,18 +3739,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.ops.clip_by_rect",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
           "name": "shapely.ops.nearest_points",
           "n_typed": 0,
           "n_any": 0,
@@ -3855,8 +3750,40 @@
           "n_function_params": 2
         },
         {
+          "kind": "function",
+          "name": "shapely.ops.validate",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
           "kind": "attr",
-          "name": "shapely.ops.linemerge",
+          "name": "shapely.ops.operator",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "shapely.ops.orient",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "attr",
+          "name": "shapely.ops.split",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -3869,6 +3796,38 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "shapely.ops.unary_union",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "shapely.ops.triangulate",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.ops.voronoi_diagram",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
@@ -3911,15 +3870,15 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.plotting.patch_from_polygon",
+          "name": "shapely.plotting.plot_line",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 7,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 7,
+          "n_params": 6,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 6
         },
         {
           "kind": "function",
@@ -3935,18 +3894,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.plotting.plot_line",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_overloads": 1,
-          "n_typable": 7,
-          "n_params": 6,
-          "n_function_overloads": 1,
-          "n_function_params": 6
-        },
-        {
-          "kind": "function",
           "name": "shapely.plotting.plot_points",
           "n_typed": 0,
           "n_any": 0,
@@ -3956,6 +3903,18 @@
           "n_params": 5,
           "n_function_overloads": 1,
           "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "shapely.plotting.patch_from_polygon",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         }
       ],
       "type_ignores": [],
@@ -3986,7 +3945,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.predicates.contains",
+          "name": "shapely.predicates.equals_identical",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -3998,31 +3957,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.is_missing",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.has_z",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.is_valid",
+          "name": "shapely.predicates.is_ccw",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -4046,175 +3981,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.is_empty",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.equals_identical",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.contains_properly",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.is_simple",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.equals_exact",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_overloads": 1,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 1,
-          "n_function_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.is_geometry",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.crosses",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.dwithin",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.relate",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.covered_by",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.is_ring",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.is_valid_reason",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.is_ccw",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.within",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.has_m",
+          "name": "shapely.predicates.is_prepared",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -4238,7 +4005,19 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.is_valid_input",
+          "name": "shapely.predicates.disjoint",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.has_m",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -4250,27 +4029,15 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.relate_pattern",
+          "name": "shapely.predicates.is_geometry",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.predicates.contains_xy",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -4298,7 +4065,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.covers",
+          "name": "shapely.predicates.contains",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -4310,7 +4077,19 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.equals",
+          "name": "shapely.predicates.contains_xy",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.covered_by",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -4322,15 +4101,15 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.disjoint",
+          "name": "shapely.predicates.is_empty",
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -4346,7 +4125,55 @@
         },
         {
           "kind": "function",
-          "name": "shapely.predicates.is_prepared",
+          "name": "shapely.predicates.contains_properly",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.crosses",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.relate",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.relate_pattern",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.is_simple",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -4355,6 +4182,138 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.dwithin",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.has_z",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.equals",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.is_missing",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.is_valid_input",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.within",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.is_valid_reason",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.covers",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.is_valid",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.is_ring",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shapely.predicates.equals_exact",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_overloads": 1,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 1,
+          "n_function_params": 5
         }
       ],
       "type_ignores": [],
@@ -4618,6 +4577,98 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "shapely.set_operations.intersection_all",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.set_operations.coverage_union",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.set_operations.coverage_union_all",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.set_operations.disjoint_subset_union_all",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "shapely.set_operations.symmetric_difference",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.set_operations.union",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "attr",
+          "name": "shapely.set_operations.unary_union",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "shapely.set_operations.union_all",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
           "name": "shapely.set_operations.disjoint_subset_union",
           "n_typed": 0,
           "n_any": 0,
@@ -4642,50 +4693,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.set_operations.symmetric_difference_all",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.set_operations.symmetric_difference",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "attr",
-          "name": "shapely.set_operations.unary_union",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "shapely.set_operations.coverage_union",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
           "name": "shapely.set_operations.difference",
           "n_typed": 0,
           "n_any": 0,
@@ -4698,55 +4705,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.set_operations.disjoint_subset_union_all",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.set_operations.union_all",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.set_operations.union",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "shapely.set_operations.intersection_all",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "shapely.set_operations.coverage_union_all",
+          "name": "shapely.set_operations.symmetric_difference_all",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -4793,6 +4752,18 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "shapely.speedups.enable",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_overloads": 1,
+          "n_typable": 1,
+          "n_params": 0,
+          "n_function_overloads": 1,
+          "n_function_params": 0
+        },
+        {
+          "kind": "function",
           "name": "shapely.speedups.disable",
           "n_typed": 0,
           "n_any": 0,
@@ -4810,18 +4781,6 @@
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "shapely.speedups.enable",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 1,
-          "n_params": 0,
-          "n_function_overloads": 1,
-          "n_function_params": 0
         },
         {
           "kind": "attr",
@@ -5021,7 +4980,7 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "shapely.validation.explain_validity",
+          "name": "shapely.validation.make_valid",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -5033,7 +4992,7 @@
         },
         {
           "kind": "function",
-          "name": "shapely.validation.make_valid",
+          "name": "shapely.validation.explain_validity",
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -5131,18 +5090,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.wkb.loads",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
           "name": "shapely.wkb.dumps",
           "n_typed": 0,
           "n_any": 0,
@@ -5152,6 +5099,18 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.wkb.loads",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "function",
@@ -5206,18 +5165,6 @@
         },
         {
           "kind": "function",
-          "name": "shapely.wkt.loads",
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "function",
           "name": "shapely.wkt.dumps",
           "n_typed": 0,
           "n_any": 0,
@@ -5227,6 +5174,18 @@
           "n_params": 4,
           "n_function_overloads": 1,
           "n_function_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "shapely.wkt.loads",
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
         },
         {
           "kind": "function",
@@ -5267,19 +5226,19 @@
   ],
   "typecheckers": {},
   "n_modules": 35,
-  "n_typable": 911,
+  "n_typable": 907,
   "n_typed": 7,
   "n_any": 0,
-  "n_untyped": 904,
+  "n_untyped": 900,
   "n_functions": 155,
   "n_function_overloads": 155,
   "n_function_params": 477,
-  "n_methods": 98,
-  "n_method_params": 127,
-  "n_method_overloads": 98,
+  "n_methods": 96,
+  "n_method_params": 126,
+  "n_method_overloads": 96,
   "n_classes": 26,
-  "n_attrs": 28,
-  "n_properties": 49,
+  "n_attrs": 27,
+  "n_properties": 48,
   "type_ignores": [],
   "n_type_ignores": 0
 }
