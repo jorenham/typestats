@@ -268,8 +268,7 @@ def _untyped_symbols(report: PackageReport, *, strict: bool = False) -> list[str
             if isinstance(sym, ClassReport):
                 for member in (*sym.methods, *sym.properties, *sym.attrs):
                     # strip class prefix from e.g. `Cache.get`
-                    if (short := member.name.rsplit(".", 1)[-1]) == "__init__":
-                        continue
+                    short = member.name.rsplit(".", 1)[-1]
                     if _is_untyped(member):
                         result.append(f"{sym.name}.{short}")
             elif _is_untyped(sym):
@@ -280,7 +279,7 @@ def _untyped_symbols(report: PackageReport, *, strict: bool = False) -> list[str
 def _format_tree(names: list[str]) -> str:
     lines: list[str] = []
     prev_parts: list[str] = []
-    for name in names:
+    for name in sorted(names):
         parts = name.split(".")
 
         shared = 0

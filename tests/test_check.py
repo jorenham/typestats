@@ -479,7 +479,7 @@ class TestFormatTree:
     def test_no_shared_prefix(self) -> None:
         names = ["x.y", "a.b"]
         result = _format_tree(names)
-        assert result == ("  x\n    y\n  a\n    b")
+        assert result == ("  a\n    b\n  x\n    y")
 
     def test_empty(self) -> None:
         assert not _format_tree([])
