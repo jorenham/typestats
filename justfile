@@ -11,6 +11,7 @@ fmt:
 
 typecheck:
     uv run pyrefly check
+    uv run --directory packages/typestats-site pyrefly check
 
 check:
     uv run ruff check
