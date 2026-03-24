@@ -29,7 +29,7 @@ import os
 import shutil
 import sys
 import time
-from subprocess import PIPE
+from subprocess import PIPE, check_output
 from typing import TYPE_CHECKING, Final
 
 import anyio
@@ -51,6 +51,14 @@ _CMD: Final = ">"
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 log = logging.getLogger(__name__)
+
+_REPO_ROOT: Final = anyio.Path(
+    check_output(
+        ["git", "rev-parse", "--show-toplevel"],  # noqa: S607
+        cwd=str(ROOT),
+        text=True,
+    ).strip(),
+)
 
 
 async def _run(
@@ -74,7 +82,10 @@ async def _run(
 
 
 async def _resolve_hash() -> str:
-    sha = (await _run("git", "rev-parse", "origin/data")).strip().decode()
+    await _run("git", "fetch", "origin", "data", cwd=_REPO_ROOT, stderr=PIPE)
+    sha = (
+        (await _run("git", "rev-parse", "origin/data", cwd=_REPO_ROOT)).strip().decode()
+    )
     log.info("Using origin/data (%s) for report data", sha[:12])
     return sha
 
@@ -84,7 +95,7 @@ async def _extract_into(into: anyio.Path, sha: str) -> None:
     if await into.exists():
         shutil.rmtree(str(into))
     await into.mkdir(parents=True)
-    archive = await _run("git", "archive", sha)
+    archive = await _run("git", "archive", sha, cwd=_REPO_ROOT)
     await anyio.run_process(["tar", "-x", "-C", str(into)], input=archive, stderr=None)
 
 
@@ -118,7 +129,7 @@ async def _watch_and_rebuild(
             ) = await typestats_site.dashboard.build_site(
                 reports_dir,
                 _SITE_DIR,
-                ROOT / "projects.toml",
+                str(ROOT / "projects.toml"),
                 reports=None if invalidate else cached_reports,
                 all_reports=None if invalidate else cached_all_reports,
             )
@@ -168,7 +179,7 @@ async def main() -> None:
             typestats_site.dashboard.build_site(
                 _REPORTS_DIR / "reports",
                 _SITE_DIR,
-                ROOT / "projects.toml",
+                str(ROOT / "projects.toml"),
             ),
             _SITE_SHA.write_text(sha),
         )
