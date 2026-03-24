@@ -12,11 +12,13 @@ import anyio
 import pytest
 
 from typestats.check import (
+    _format_tree,
     _is_package_dir_name,
     _resolve,
     _Resolved,
     _source_paths,
     _top_level_names,
+    _untyped_symbols,
     check,
     report,
 )
@@ -402,3 +404,82 @@ class TestFailUnderFrom:
 
         with pytest.raises(SystemExit):
             await check("pkg", fail_under=0, fail_under_from=report_path)
+
+
+class TestUnannotatedListing:
+    pytestmark = pytest.mark.anyio
+
+    async def test_check_lists_unannotated(
+        self,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        await check("pkg")
+        out = capsys.readouterr().out
+
+        m = _OUTPUT_RE.search(out)
+        assert m is not None
+        n_untyped = int(m["typable"]) - int(m["typed"]) - int(m["any"])
+
+        if n_untyped > 0:
+            assert "untyped (" in out
+            lines_after = out.split("untyped (")[1].splitlines()[1:]
+            unannotated_lines = [line for line in lines_after if line.startswith("  ")]
+            assert len(unannotated_lines) > 0
+        else:
+            assert "untyped (" not in out
+
+    async def test_check_strict_lists_any_as_unannotated(
+        self,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        await check("pkg", strict=True)
+        out = capsys.readouterr().out
+        m = _OUTPUT_RE.search(out)
+        assert m is not None
+
+        n_any = int(m["any"])
+        n_untyped = int(m["typable"]) - int(m["typed"]) - n_any
+
+        if n_any > 0 or n_untyped > 0:
+            assert "untyped (" in out
+
+    async def test_untyped_symbols_returns_fqn(self) -> None:
+        """The helper returns fully qualified dotted names."""
+        pkg_report = await PackageReport.from_path(
+            "pkg",
+            anyio.Path(_FIXTURES),
+            "0.0.0",
+            sources=(anyio.Path(_PKG_DIR),),
+        )
+        names = _untyped_symbols(pkg_report)
+        for name in names:
+            assert "." in name, f"expected dotted FQN, got {name!r}"
+            assert "/" not in name
+            assert "\\" not in name
+
+    async def test_untyped_symbols_strict_superset(self) -> None:
+        """Strict mode returns at least as many symbols as non-strict."""
+        pkg_report = await PackageReport.from_path(
+            "pkg",
+            anyio.Path(_FIXTURES),
+            "0.0.0",
+            sources=(anyio.Path(_PKG_DIR),),
+        )
+        normal = set(_untyped_symbols(pkg_report))
+        strict = set(_untyped_symbols(pkg_report, strict=True))
+        assert normal <= strict
+
+
+class TestFormatTree:
+    def test_shared_prefix(self) -> None:
+        names = ["a.b.c", "a.b.d", "a.e"]
+        result = _format_tree(names)
+        assert result == ("  a\n    b\n      c\n      d\n    e")
+
+    def test_no_shared_prefix(self) -> None:
+        names = ["x.y", "a.b"]
+        result = _format_tree(names)
+        assert result == ("  x\n    y\n  a\n    b")
+
+    def test_empty(self) -> None:
+        assert not _format_tree([])
