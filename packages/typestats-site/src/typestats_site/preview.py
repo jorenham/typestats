@@ -39,7 +39,7 @@ _REPORTS_DIR: Final = _SITE_DIR / ".reports"
 
 _CMD: Final = ">"
 
-log = logging.getLogger(__name__)
+_logger: Final = logging.getLogger(__name__)
 
 
 def _find_repo_root() -> anyio.Path:
@@ -60,7 +60,7 @@ async def _run(
     stdout: int | None = subprocess.PIPE,
     stderr: int | None = None,
 ) -> bytes:
-    log.debug("%s %s", _CMD, " ".join(args))
+    _logger.debug("%s %s", _CMD, " ".join(args))
     result = await anyio.run_process(
         list(args),
         cwd=cwd,
@@ -83,15 +83,15 @@ async def _resolve_hash(repo_root: anyio.Path) -> str:
             stderr=subprocess.PIPE,
         )
     except subprocess.CalledProcessError:
-        log.warning("git fetch origin data failed; using cached ref")
+        _logger.warning("git fetch origin data failed; using cached ref")
     sha_raw = await _run("git", "rev-parse", "origin/data", cwd=repo_root)
     sha = sha_raw.strip().decode()
-    log.info("Using origin/data (%s) for report data", sha[:12])
+    _logger.info("Using origin/data (%s) for report data", sha[:12])
     return sha
 
 
 async def _extract_into(into: anyio.Path, sha: str, repo_root: anyio.Path) -> None:
-    log.info("Extracting report data ...")
+    _logger.info("Extracting report data ...")
     if await into.exists():
         shutil.rmtree(str(into))
     await into.mkdir(parents=True)
@@ -114,12 +114,12 @@ async def _watch_and_rebuild(
         ROOT / "src" / "typestats_site" / "dashboard.py",
         ROOT / "projects.toml",
     )
-    log.debug("Watching %s ...", ", ".join(p.name for p in watch_paths))
+    _logger.debug("Watching %s ...", ", ".join(p.name for p in watch_paths))
     cached_reports = initial_reports
     cached_all_reports = initial_all_reports
     async for changes in watchfiles.awatch(*map(str, watch_paths)):
         changed = sorted({anyio.Path(c[1]).name for c in changes})
-        log.info("Changed: %s -- rebuilding ...", ", ".join(changed))
+        _logger.info("Changed: %s -- rebuilding ...", ", ".join(changed))
 
         try:
             if "dashboard.py" in changed:
@@ -137,13 +137,13 @@ async def _watch_and_rebuild(
                 reports=None if invalidate else cached_reports,
                 all_reports=None if invalidate else cached_all_reports,
             )
-            log.info("Rebuilt in %.1fs", time.perf_counter() - t0)
+            _logger.info("Rebuilt in %.1fs", time.perf_counter() - t0)
         except Exception:
-            log.exception("Rebuild failed")
+            _logger.exception("Rebuild failed")
 
 
 async def _serve(*args: str) -> None:
-    log.debug("%s zensical serve %s", _CMD, " ".join(args))
+    _logger.debug("%s zensical serve %s", _CMD, " ".join(args))
     async with await anyio.open_process(
         ["zensical", "serve", *args],
         cwd=ROOT,
@@ -154,7 +154,7 @@ async def _serve(*args: str) -> None:
             async for chunk in proc.stdout:
                 for line in chunk.decode().splitlines():
                     if line and not line.startswith("+"):
-                        log.info(" " * len(_CMD) + " %s", line)  # noqa: G003
+                        _logger.info(" " * len(_CMD) + " %s", line)  # noqa: G003
     if proc.returncode:
         raise SystemExit(proc.returncode)
 
@@ -162,7 +162,7 @@ async def _serve(*args: str) -> None:
 async def _on_shutdown(scope: anyio.CancelScope) -> None:
     with anyio.open_signal_receiver(signal.SIGINT, signal.SIGTERM) as signals:
         async for _signum in signals:
-            log.info("Shutting down ...")
+            _logger.info("Shutting down ...")
             scope.cancel()
             return
 
@@ -178,11 +178,11 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
     initial_reports: _PackageReports | None = None
     initial_all_reports: dict[str, _PackageReports] | None = None
     if not clean and sha == sha_cached and await _REPORTS_DIR.exists():
-        log.info("Data unchanged (%s), skipping extraction.", sha[:12])
+        _logger.info("Data unchanged (%s), skipping extraction.", sha[:12])
     else:
         await _extract_into(_REPORTS_DIR, sha, repo_root)
 
-        log.info("Building dashboard pages ...")
+        _logger.info("Building dashboard pages ...")
         (initial_reports, initial_all_reports), _ = await asyncio.gather(
             typestats_site.dashboard.build_site(
                 _REPORTS_DIR / "reports",
@@ -192,7 +192,7 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
             _SITE_SHA.write_text(sha),
         )
 
-    log.info("Built in %.1fs", time.perf_counter() - t0)
+    _logger.info("Built in %.1fs", time.perf_counter() - t0)
     try:
         async with anyio.create_task_group() as tg:
             tg.start_soon(_on_shutdown, tg.cancel_scope)
@@ -207,4 +207,4 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
     finally:
         if await _REPORTS_DIR.exists():
             shutil.rmtree(str(_REPORTS_DIR))
-            log.info("Cleaned up %s", _REPORTS_DIR)
+            _logger.info("Cleaned up %s", _REPORTS_DIR)
