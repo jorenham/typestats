@@ -8,7 +8,6 @@ from pathlib import Path
 from typing import Annotated, Final
 
 import anyio
-import mainpy
 import tyro
 
 
@@ -119,7 +118,6 @@ async def _run(cmd: Collect | Dashboard | Preview) -> None:
             await preview(clean=cmd.clean, serve_args=cmd.serve_args)
 
 
-@mainpy.main
 def app() -> None:
     logging.basicConfig(
         format="%(asctime)s :: %(name)s :: %(levelname)s :: %(message)s",
@@ -133,3 +131,7 @@ def app() -> None:
     cmd = tyro.cli(Collect | Dashboard | Preview, prog=prog, description=desc)
 
     anyio.run(_run, cmd)
+
+
+if __name__ == "__main__":
+    app()
