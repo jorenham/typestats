@@ -1409,7 +1409,9 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 alias_name = self._symbol_name(name_node)
                 func = Function(alias_name, ref_func.overloads)
                 symbol = Symbol(alias_name, func)
-                methods.append(symbol)
+                if is_public_name(name_node.value):
+                    methods.append(symbol)
+                    cls.member_names.add(name_node.value)
                 symbols.append(symbol)
 
         return True

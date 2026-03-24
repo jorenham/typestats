@@ -838,6 +838,24 @@ class TestImplicitAttrs:
         assert "Foo.value" in member_names
         assert "Foo._internal" not in member_names
 
+    def test_private_method_alias_excluded(self) -> None:
+        """Private method aliases via class-body assignment should not be in members."""
+        src = textwrap.dedent("""
+        class Foo:
+            def method(self, x: int) -> bool: ...
+            _alias = method
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+
+        assert isinstance(cls, Class)
+        member_names = [m.name for m in cls.members]
+        assert "Foo.method" in member_names
+        assert "Foo._alias" not in member_names
+        # But the symbol itself should still exist
+        assert "Foo._alias" in symbols
+
 
 class TestClassMethodAlias:
     def test_simple(self) -> None:
