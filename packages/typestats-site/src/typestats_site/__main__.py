@@ -1,3 +1,6 @@
+# ruff: noqa: PLC0415
+
+import contextlib
 import dataclasses
 import datetime as dt
 import logging
@@ -10,9 +13,6 @@ import tyro
 
 
 def _relative_default(p: str) -> str:
-    import contextlib  # noqa: PLC0415
-    from pathlib import Path  # noqa: PLC0415
-
     path = Path(p)
     with contextlib.suppress(ValueError):
         path = path.relative_to(Path.cwd())
@@ -78,12 +78,21 @@ class Dashboard:
     """Path to projects TOML file."""
 
 
-async def _run(cmd: Collect | Dashboard) -> None:
+@dataclasses.dataclass
+class Preview:
+    """Preview the docs site locally."""
+
+    clean: bool = False
+    """Re-extract report data even if the data branch SHA is unchanged."""
+
+    serve_args: tyro.conf.Positional[tuple[str, ...]] = ()
+    """Extra arguments forwarded to `zensical serve`."""
+
+
+async def _run(cmd: Collect | Dashboard | Preview) -> None:
     match cmd:
         case Collect():
-            from typestats_site.collect import clean_data, collect_all  # noqa: PLC0415
-
-            logging.getLogger().setLevel(logging.INFO)
+            from typestats_site.collect import clean_data, collect_all
 
             if cmd.clean:
                 await clean_data(anyio.Path(cmd.data_dir))
@@ -96,9 +105,7 @@ async def _run(cmd: Collect | Dashboard) -> None:
             )
 
         case Dashboard():
-            from typestats_site.dashboard import build_site  # noqa: PLC0415
-
-            logging.getLogger().setLevel(logging.INFO)
+            from typestats_site.dashboard import build_site
 
             await build_site(
                 anyio.Path(cmd.data_dir),
@@ -106,10 +113,14 @@ async def _run(cmd: Collect | Dashboard) -> None:
                 cmd.projects,
             )
 
+        case Preview():
+            from typestats_site.preview import preview
+
+            await preview(clean=cmd.clean, serve_args=cmd.serve_args)
+
 
 @mainpy.main
 def app() -> None:
-
     logging.basicConfig(
         format="%(asctime)s :: %(name)s :: %(levelname)s :: %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
@@ -119,6 +130,6 @@ def app() -> None:
     prog = "typestats-site"
     desc = "Dashboard site generation and PyPI collection for typestats."
 
-    cmd = tyro.cli(Collect | Dashboard, prog=prog, description=desc)
+    cmd = tyro.cli(Collect | Dashboard | Preview, prog=prog, description=desc)
 
     anyio.run(_run, cmd)
