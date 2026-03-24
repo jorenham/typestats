@@ -23,6 +23,7 @@ __all__ = (
     "TypeAlias",
     "TypeForm",
     "collect_symbols",
+    "is_public_name",
     "type_counts",
 )
 
@@ -597,6 +598,10 @@ def _is_all_target(target: cst.BaseExpression) -> bool:
     return get_full_name_for_node(target) == _ALL
 
 
+def is_public_name(name: str) -> bool:
+    return not name.startswith("_") or name.endswith("__")
+
+
 _INIT_METHODS: Final = frozenset({"__init__", "__new__", "__post_init__"})
 
 
@@ -879,8 +884,9 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if cls := self._current_class:
             if not self._function_depth:
                 for n in names:
-                    cls.members.append(Symbol(self._symbol_name(n), annotation))
-                    cls.member_names.add(n.value)
+                    if is_public_name(n.value):
+                        cls.members.append(Symbol(self._symbol_name(n), annotation))
+                        cls.member_names.add(n.value)
         else:
             self._defined_names.update(n.value for n in names)
 
@@ -1213,10 +1219,10 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         prop = Property(name, fget=sig)
         self.symbols.append(Symbol(name, prop))
 
-        if cls := self._current_class:
+        if (cls := self._current_class) and is_public_name(node.name.value):
             cls.members.append(Symbol(name, prop))
             cls.member_names.add(node.name.value)
-        else:
+        elif not self._current_class:
             self._defined_names.add(node.name.value)
 
     def _update_property(
@@ -1277,7 +1283,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             func = Function(name, overloads)
             self.symbols.append(Symbol(name, func))
             self._added_functions.add(name)
-            if cls:
+            if cls and is_public_name(node.name.value):
                 cls.members.append(Symbol(name, func))
                 cls.member_names.add(node.name.value)
 
@@ -1403,7 +1409,9 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 alias_name = self._symbol_name(name_node)
                 func = Function(alias_name, ref_func.overloads)
                 symbol = Symbol(alias_name, func)
-                methods.append(symbol)
+                if is_public_name(name_node.value):
+                    methods.append(symbol)
+                    cls.member_names.add(name_node.value)
                 symbols.append(symbol)
 
         return True

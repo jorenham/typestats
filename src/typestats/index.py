@@ -85,10 +85,6 @@ _ANY_FQNS: Final[frozenset[str]] = frozenset({
 })
 
 
-def _is_public(name: str) -> bool:
-    return not name.startswith("_") or name.endswith("__")
-
-
 async def _analyze_graph(
     project_dir: StrPath,
     /,
@@ -640,9 +636,13 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                 if (t := import_map.get(src, src)) in module_data:
                     names |= module_exports(t).keys()
         elif _is_public_module(mod):
-            names = {n for n in {*local, *implicit} if _is_public(n)}
+            names = {n for n in {*local, *implicit} if analyze.is_public_name(n)}
         else:
-            names = {n for n in {*local, *import_map} if _is_public(n) and n != "*"}
+            names = {
+                n
+                for n in {*local, *import_map}
+                if n != "*" and analyze.is_public_name(n)
+            }
 
         names -= _MODULE_DUNDERS
 
