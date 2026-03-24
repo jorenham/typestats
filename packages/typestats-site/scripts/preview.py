@@ -13,23 +13,17 @@ Changes to `dashboard.py` are auto-reloaded; other Python source changes
 require a manual restart.
 
 Usage:
-    uv run scripts/preview.py [--clean] [zensical-serve-flags ...]
-
-Examples:
-    uv run scripts/preview.py
-    uv run scripts/preview.py --clean
-    uv run scripts/preview.py --dev-addr 0.0.0.0:9000
+    just preview [--clean] [zensical-serve-flags ...]
 """
 
 import asyncio
 import contextlib
 import importlib
 import logging
-import os
 import shutil
+import subprocess
 import sys
 import time
-from subprocess import PIPE
 from typing import TYPE_CHECKING, Final
 
 import anyio
@@ -53,12 +47,22 @@ logging.basicConfig(level=logging.INFO, format="%(message)s")
 log = logging.getLogger(__name__)
 
 
+def _find_repo_root() -> anyio.Path:
+    out = subprocess.check_output(
+        ["git", "rev-parse", "--show-toplevel"],  # noqa: S607
+        cwd=str(ROOT),
+        text=True,
+        stderr=subprocess.PIPE,
+    )
+    return anyio.Path(out.strip())
+
+
 async def _run(
     *args: str,
     cwd: anyio.Path = ROOT,
     env: dict[str, str] | None = None,
     input: bytes | None = None,  # noqa: A002
-    stdout: int | None = PIPE,
+    stdout: int | None = subprocess.PIPE,
     stderr: int | None = None,
 ) -> bytes:
     log.info("%s %s", _CMD, " ".join(args))
@@ -73,18 +77,20 @@ async def _run(
     return result.stdout
 
 
-async def _resolve_hash() -> str:
-    sha = (await _run("git", "rev-parse", "origin/data")).strip().decode()
+async def _resolve_hash(repo_root: anyio.Path) -> str:
+    await _run("git", "fetch", "origin", "data", cwd=repo_root, stderr=subprocess.PIPE)
+    sha_raw = await _run("git", "rev-parse", "origin/data", cwd=repo_root)
+    sha = sha_raw.strip().decode()
     log.info("Using origin/data (%s) for report data", sha[:12])
     return sha
 
 
-async def _extract_into(into: anyio.Path, sha: str) -> None:
+async def _extract_into(into: anyio.Path, sha: str, repo_root: anyio.Path) -> None:
     log.info("Extracting report data ...")
     if await into.exists():
         shutil.rmtree(str(into))
     await into.mkdir(parents=True)
-    archive = await _run("git", "archive", sha)
+    archive = await _run("git", "archive", sha, cwd=repo_root)
     await anyio.run_process(["tar", "-x", "-C", str(into)], input=archive, stderr=None)
 
 
@@ -118,7 +124,7 @@ async def _watch_and_rebuild(
             ) = await typestats_site.dashboard.build_site(
                 reports_dir,
                 _SITE_DIR,
-                ROOT / "projects.toml",
+                str(ROOT / "projects.toml"),
                 reports=None if invalidate else cached_reports,
                 all_reports=None if invalidate else cached_all_reports,
             )
@@ -132,9 +138,7 @@ async def _serve(*args: str) -> None:
     async with await anyio.open_process(
         ["zensical", "serve", *args],
         cwd=ROOT,
-        stdout=PIPE,
         stderr=None,
-        env={**os.environ, "PYTHON_GIL": "1"},
     ) as proc:
         assert proc.stdout is not None
         with contextlib.suppress(anyio.EndOfStream):
@@ -151,9 +155,10 @@ async def main() -> None:
     clean = "--clean" in args
     serve_args = [a for a in args if a != "--clean"]
 
+    repo_root = _find_repo_root()
     t0 = time.perf_counter()
 
-    sha = await _resolve_hash()
+    sha = await _resolve_hash(repo_root)
     sha_cached = await _SITE_SHA.read_text() if await _SITE_SHA.exists() else None
 
     initial_reports: _PackageReports | None = None
@@ -161,14 +166,14 @@ async def main() -> None:
     if not clean and sha == sha_cached and await _REPORTS_DIR.exists():
         log.info("Data unchanged (%s), skipping extraction.", sha[:12])
     else:
-        await _extract_into(_REPORTS_DIR, sha)
+        await _extract_into(_REPORTS_DIR, sha, repo_root)
 
         log.info("Building dashboard pages ...")
         (initial_reports, initial_all_reports), _ = await asyncio.gather(
             typestats_site.dashboard.build_site(
                 _REPORTS_DIR / "reports",
                 _SITE_DIR,
-                ROOT / "projects.toml",
+                str(ROOT / "projects.toml"),
             ),
             _SITE_SHA.write_text(sha),
         )
