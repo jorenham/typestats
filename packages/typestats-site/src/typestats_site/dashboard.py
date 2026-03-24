@@ -106,7 +106,10 @@ async def _write_pages(pages: list[tuple[StrPath, str]], /) -> None:
 
 
 async def _copy_tree(src: StrPath, dst: StrPath, /, *, clean_md: bool = False) -> None:
-    """Copy `src` into `dst`. If `clean_md=True`, remove `.md` files in `dst` first."""
+    """Copy `src` into `dst`.
+
+    If `clean_md`, remove top-level `.md` files in `dst` first.
+    """
 
     def _sync(src: StrPath, dst: StrPath, /) -> None:
         if clean_md:
@@ -208,7 +211,7 @@ async def build_site(
     await dir_site.mkdir(parents=True, exist_ok=True)
 
     async with anyio.TemporaryDirectory(
-        suffix=".build_",
+        prefix=".build_",
         dir=str(dir_site.parent),
     ) as dir_tmp:
         dir_docs_tmp = anyio.Path(dir_tmp) / "docs" / "dashboard"
