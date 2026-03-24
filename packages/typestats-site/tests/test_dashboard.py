@@ -185,8 +185,9 @@ class TestRenderIndex:
         )
         md = IndexPage([report]).render()
         data_row = _table_rows(md)[0]
-        assert "third-party" in data_row
         assert '<a href="report/#pandas-stubs">pandas-stubs</a>' in data_row
+        # Stubs-only packages no longer show a label in their own row
+        assert "third-party" not in data_row
 
     def test_released_column(self) -> None:
         report = _minimal_report(
@@ -232,6 +233,49 @@ class TestRenderIndex:
         data_row = _table_rows(md)[0]
         assert "2.4.2" in data_row
         assert "(" not in data_row.split("2.4.2")[1].split("</td>")[0]
+
+    def test_stubs_link_for_base_package(self) -> None:
+        """Base package row links to its companion stubs package."""
+        reports = [
+            _minimal_report("PyYAML", "6.0.3"),
+            _minimal_report(
+                "types-PyYAML",
+                "6.0.3",
+                stubs_only=StubsOnly.TYPESHED,
+            ),
+        ]
+        md = IndexPage(reports).render()
+        rows = _table_rows(md)
+        base_row = rows[0]
+        stubs_row = rows[1]
+        # Base package row should link to the stubs package report
+        assert '<a href="report/#types-PyYAML">types-PyYAML</a>' in base_row
+        # Stubs package row should not show a label or link in stubs-only cell
+        assert "typeshed" not in stubs_row
+
+    def test_stubs_link_third_party(self) -> None:
+        """Third-party stubs (X-stubs) also link from the base package."""
+        reports = [
+            _minimal_report("pandas", "2.2.0"),
+            _minimal_report(
+                "pandas-stubs",
+                "2.2.3",
+                stubs_only=StubsOnly.THIRD_PARTY,
+            ),
+        ]
+        md = IndexPage(reports).render()
+        base_row = _table_rows(md)[0]
+        assert '<a href="report/#pandas-stubs">pandas-stubs</a>' in base_row
+
+    def test_no_stubs_link_without_companion(self) -> None:
+        """Package without a companion stubs package has no link."""
+        report = _minimal_report("numpy", "2.4.2")
+        md = IndexPage([report]).render()
+        data_row = _table_rows(md)[0]
+        # The stubs-only cell should be empty (no link, no label)
+        assert 'report/#numpy">numpy</a>' in data_row  # package cell
+        assert "third-party" not in data_row
+        assert "typeshed" not in data_row
 
 
 class TestBuildSite:

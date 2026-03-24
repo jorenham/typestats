@@ -6,20 +6,19 @@ import json
 import logging
 import operator
 import shutil
-import tempfile
 from pathlib import Path
-from typing import ClassVar, Final, NamedTuple
+from typing import ClassVar, Final, LiteralString, NamedTuple, final
 
 import anyio
 import anyio.to_thread
-from jinja2 import ChoiceLoader, Environment, PackageLoader
+from jinja2 import ChoiceLoader, Environment, PackageLoader, Template
 from packaging.version import Version
 
 from typestats._type import StrPath
-from typestats.index import PyTyped
 from typestats.projects import load_projects
 from typestats.report import PackageReport, StubsOnly
 from typestats.schema import MIN_TYPESTATS_VERSION, SCHEMA_VERSION
+from typestats.stubs import stubs_base_name
 
 __all__ = ("build_site",)
 
@@ -34,29 +33,8 @@ def _release_date(r: PackageReport, /) -> str:
     return r.pypi.upload_time[:10] if r.pypi and r.pypi.upload_time else ""
 
 
-_STUBS_ONLY_LABEL: Final[dict[StubsOnly, str]] = {
-    StubsOnly.NO: "",
-    StubsOnly.THIRD_PARTY: "third-party",
-    StubsOnly.TYPESHED: "typeshed",
-}
-
-
-class _IndexRow(NamedTuple):
-    package: str
-    version: str
-    base_version: str | None
-    release_date: str
-    coverage: str
-    coverage_strict: str
-    n_typable: str
-    py_typed_sort: int
-    py_typed: str
-    stubs_only_label: str
-
-
 @functools.cache
-def _get_env() -> "Environment":
-
+def _get_env() -> Environment:
     return Environment(
         loader=ChoiceLoader([
             PackageLoader("typestats_site", "templates"),
@@ -69,62 +47,21 @@ def _get_env() -> "Environment":
     )
 
 
-class IndexPage:
-    TEMPLATE: ClassVar = "index.md.j2"
-
-    # Sort values for icon-only columns (lower = better typing status).
-    # Exposed as hidden <span> elements so tablesort can order icon cells.
-    _PY_TYPED_SORT: ClassVar[dict[PyTyped, int]] = {
-        PyTyped.YES: 0,
-        PyTyped.STUBS: 1,
-        PyTyped.PARTIAL: 2,
-        PyTyped.NO: 3,
-    }
-
-    def __init__(self, reports: _PackageReports, /) -> None:
-        self._reports = reports
-
-    def render(self) -> str:
-        rows = [self._row(r) for r in self._reports]
-        template = _get_env().get_template(self.TEMPLATE)
-        return template.render(rows=rows)
-
-    @classmethod
-    def _row(cls, r: PackageReport, /) -> _IndexRow:
-        return _IndexRow(
-            package=r.package,
-            version=r.version,
-            base_version=r.base_version,
-            release_date=_release_date(r),
-            coverage=f"{r.coverage():.1%}",
-            coverage_strict=f"{r.coverage(True):.1%}",
-            n_typable=f"{r.n_typable:,}",
-            py_typed_sort=cls._PY_TYPED_SORT[r.py_typed],
-            py_typed=r.py_typed.name.lower(),
-            stubs_only_label=_STUBS_ONLY_LABEL[r.stubs_only],
-        )
-
-
 async def _load_all_version_reports(
-    data_dir: anyio.Path,
+    data_dir: StrPath,
     projects_path: StrPath,
     /,
 ) -> dict[str, _PackageReports]:
-    """Load all available version reports for every project.
-
-    Returns a dict keyed by project name. Each value is a list of
-    `PackageReport` objects sorted oldest-to-newest by version.
-    Projects with no data directory are skipped with a warning.
-    """
+    """Load all version reports, keyed by project name, sorted oldest-first."""
     projects = load_projects(projects_path)
 
-    # Collect (project_name, version-sorted paths) for every project that has data.
     per_project: list[tuple[str, list[anyio.Path]]] = []
     for project in projects:
-        project_dir = data_dir / project.name
+        project_dir = anyio.Path(data_dir) / project.name
         if not await project_dir.is_dir():
             _logger.warning("No data directory for %s, skipping", project.name)
             continue
+
         versioned = sorted(
             [
                 (Version(json_file.stem), json_file)
@@ -135,11 +72,10 @@ async def _load_all_version_reports(
         if versioned:
             per_project.append((project.name, [p for _, p in versioned]))
 
-    # Read all files in parallel.
-    flat_paths = (p for _, paths in per_project for p in paths)
-    raws = await asyncio.gather(*(p.read_bytes() for p in flat_paths))
+    raws = await asyncio.gather(
+        *(p.read_bytes() for _, paths in per_project for p in paths)
+    )
 
-    # Reconstruct per-project lists in the original sorted order.
     result: dict[str, _PackageReports] = {}
     i = 0
     for name, paths in per_project:
@@ -151,16 +87,7 @@ async def _load_all_version_reports(
 
 
 def _build_manifest(all_reports: dict[str, _PackageReports], /) -> str:
-    """Build a JSON manifest listing all packages and their versions.
-
-    The manifest is consumed by the client-side report and history pages
-    to resolve which report JSON files to fetch.
-
-    Returns a JSON string of the form:
-    ```json
-    { "numpy": { "versions": ["1.0.0", "1.1.0"], "latest": "1.1.0" }, ... }
-    ```
-    """
+    """Build a JSON manifest of all packages and their versions."""
     manifest: dict[str, dict[str, object]] = {}
     for name, reports in all_reports.items():
         versions = [r.version for r in reports]
@@ -168,19 +95,8 @@ def _build_manifest(all_reports: dict[str, _PackageReports], /) -> str:
     return json.dumps(manifest, indent=2)
 
 
-async def _copy_tree(src: anyio.Path, dst: anyio.Path, /) -> None:
-    """Recursively copy `src` into `dst`, creating directories as needed."""
-    await dst.mkdir(parents=True, exist_ok=True)
-    async for entry in src.iterdir():
-        target = dst / entry.name
-        if await entry.is_dir():
-            await _copy_tree(entry, target)
-        else:
-            await target.write_bytes(await entry.read_bytes())
-
-
-async def _write_pages(pages: list[tuple[str, str]], /) -> None:
-    def _write_pages_sync(pages: list[tuple[str, str]], /) -> None:
+async def _write_pages(pages: list[tuple[StrPath, str]], /) -> None:
+    def _write_pages_sync(pages: list[tuple[StrPath, str]], /) -> None:
         for path_str, content in pages:
             p = Path(path_str)
             p.parent.mkdir(parents=True, exist_ok=True)
@@ -189,45 +105,93 @@ async def _write_pages(pages: list[tuple[str, str]], /) -> None:
     await anyio.to_thread.run_sync(_write_pages_sync, pages)
 
 
-def _install_site_dir(tmp_str: str, site_dir_str: str) -> None:
-    """Replace the markdown content of `site_dir` with the build in `tmp_str`.
+async def _copy_tree(src: StrPath, dst: StrPath, /, *, clean_md: bool = False) -> None:
+    """Copy `src` into `dst`. If `clean_md=True`, remove `.md` files in `dst` first."""
 
-    Only the `.md` files directly in `site_dir` and the `docs/` subtree are replaced.
-    Other files (e.g. `.preview_sha`, `.reports/`) are left intact.
+    def _sync(src: StrPath, dst: StrPath, /) -> None:
+        if clean_md:
+            for f in Path(dst).glob("*.md"):
+                f.unlink()
+        shutil.copytree(src, dst, dirs_exist_ok=True)
 
-    The `docs/` subtree is updated in-place (not removed and recreated) so that
-    inotify-based watchers such as `zensical serve` keep their watches intact.
-    """
-    site_dir = Path(site_dir_str)
+    await anyio.to_thread.run_sync(_sync, src, dst)
 
-    for f in site_dir.glob("*.md"):
-        f.unlink()
 
-    shutil.copytree(tmp_str, site_dir_str, dirs_exist_ok=True)
+class _Page:
+    TEMPLATE: ClassVar[LiteralString]
+
+    @property
+    def template(self) -> Template:
+        return _get_env().get_template(self.TEMPLATE)
+
+
+@final
+class ReportPage(_Page):
+    TEMPLATE: ClassVar = "report.md.j2"
+
+    def render(self) -> str:
+        return self.template.render(
+            schema_version=".".join(map(str, SCHEMA_VERSION)),
+            min_typestats_version=MIN_TYPESTATS_VERSION,
+        )
+
+
+class _IndexRow(NamedTuple):
+    package: str
+    version: str
+    base_version: str | None
+    release_date: str
+    coverage: str
+    coverage_strict: str
+    n_typable: str
+    py_typed_sort: int
+    py_typed: str
+    stubs_link: str
+
+
+@final
+class IndexPage(_Page):
+    TEMPLATE: ClassVar = "index.md.j2"
+
+    _reports: Final[_PackageReports]
+
+    def __init__(self, reports: _PackageReports, /) -> None:
+        self._reports = reports
+
+    def render(self) -> str:
+        stubs_map = {
+            base: r.package
+            for r in self._reports
+            if r.stubs_only != StubsOnly.NO and (base := stubs_base_name(r.package))
+        }
+
+        def row(r: PackageReport, /) -> _IndexRow:
+            return _IndexRow(
+                package=r.package,
+                version=r.version,
+                base_version=r.base_version,
+                release_date=_release_date(r),
+                coverage=f"{r.coverage():.1%}",
+                coverage_strict=f"{r.coverage(True):.1%}",
+                n_typable=f"{r.n_typable:,}",
+                py_typed_sort=r.py_typed.sort_key(),
+                py_typed=r.py_typed.name.lower(),
+                stubs_link=stubs_map.get(r.package, ""),
+            )
+
+        return self.template.render(rows=list(map(row, self._reports)))
 
 
 async def build_site(
     data_dir: anyio.Path,
-    site_dir: anyio.Path,
+    dir_site: anyio.Path,
     projects_path: StrPath = _DEFAULT_PROJECTS,
     /,
     *,
     reports: _PackageReports | None = None,
     all_reports: dict[str, _PackageReports] | None = None,
 ) -> tuple[_PackageReports, dict[str, _PackageReports]]:
-    """Build the index page and manifest, then write them to `site_dir`.
-
-    The committed `docs/` directory (next to `site_dir`) is copied into
-    `site_dir/docs/` first so that static assets (scripts, stylesheets) and
-    the client-side report/history pages are preserved. The generated dashboard
-    index and `manifest.json` are written to `site_dir/docs/dashboard/`.
-
-    If `all_reports` is provided, it is used as-is (incremental rebuild). When
-    absent, all version JSON files are loaded from disk and `reports` (the latest
-    per package) is derived from `all_reports`. Pass `reports` explicitly only when
-    you need to override which version counts as "latest" for the index page.
-
-    Returns `(reports, all_reports)` so callers can cache both for the next build.
+    """Build the dashboard index, report page, and manifest into *dir_site*.
 
     Raises:
         RuntimeError: If no reports could be loaded.
@@ -238,44 +202,28 @@ async def build_site(
         reports = [r[-1] for r in all_reports.values()]
 
     if not reports:
-        msg = "No reports loaded -- cannot build dashboard"
+        msg = "No reports loaded; cannot build dashboard"
         raise RuntimeError(msg)
 
-    await site_dir.mkdir(parents=True, exist_ok=True)
+    await dir_site.mkdir(parents=True, exist_ok=True)
 
-    tmp_str = tempfile.mkdtemp(dir=site_dir.parent, prefix=".build_")
-    try:
-        tmp_docs = anyio.Path(tmp_str) / "docs"
-        await tmp_docs.mkdir()
+    async with anyio.TemporaryDirectory(
+        suffix=".build_",
+        dir=str(dir_site.parent),
+    ) as dir_tmp:
+        dir_docs_tmp = anyio.Path(dir_tmp) / "docs" / "dashboard"
+        await dir_docs_tmp.mkdir(parents=True)
 
-        committed_docs = site_dir.parent / "docs"
-        if await committed_docs.exists():
-            await _copy_tree(committed_docs, tmp_docs)
+        dir_docs = dir_site.parent / "docs"
+        if await dir_docs.exists():
+            await _copy_tree(dir_docs, dir_docs_tmp.parent)
 
-        dashboard_dir = tmp_docs / "dashboard"
-        await dashboard_dir.mkdir(parents=True, exist_ok=True)
+        await _write_pages([
+            (dir_docs_tmp / "index.md", IndexPage(reports).render()),
+            (dir_docs_tmp / "report.md", ReportPage().render()),
+        ])
+        await (dir_docs_tmp / "manifest.json").write_text(_build_manifest(all_reports))
+        await _copy_tree(dir_tmp, dir_site, clean_md=True)
 
-        report_template = _get_env().get_template("report.md.j2")
-        report_md = report_template.render(
-            schema_version=".".join(map(str, SCHEMA_VERSION)),
-            min_typestats_version=MIN_TYPESTATS_VERSION,
-        )
-        pages = [
-            (str(dashboard_dir / "index.md"), IndexPage(reports).render()),
-            (str(dashboard_dir / "report.md"), report_md),
-        ]
-        await _write_pages(pages)
-
-        manifest_path = dashboard_dir / "manifest.json"
-        await manifest_path.write_text(_build_manifest(all_reports))
-
-        await anyio.to_thread.run_sync(_install_site_dir, tmp_str, str(site_dir))
-    finally:
-        shutil.rmtree(tmp_str, ignore_errors=True)
-
-    _logger.info(
-        "Wrote index + manifest (%d packages) to %s",
-        len(reports),
-        site_dir,
-    )
+    _logger.info("Wrote index + manifest (%d packages) to %s", len(reports), dir_site)
     return reports, all_reports

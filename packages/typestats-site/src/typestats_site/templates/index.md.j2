@@ -36,7 +36,11 @@ hide:
         <td style="text-align: right">{{ r.coverage_strict }}</td>
         <td style="text-align: right">{{ r.n_typable }}</td>
         <td><span hidden>{{ r.py_typed_sort }}</span>{{ icon_py_typed(r.py_typed) }}</td>
-        <td>{{ r.stubs_only_label }}</td>
+        {% if r.stubs_link %}
+        <td><a href="report/#{{ r.stubs_link }}">{{ r.stubs_link }}</a></td>
+        {% else %}
+        <td></td>
+        {% endif %}
         <td class="pypi-downloads" data-package="{{ r.package }}" style="text-align: right"></td>
       </tr>
     {% endfor %}

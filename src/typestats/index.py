@@ -41,6 +41,9 @@ class PyTyped(enum.Enum):
     PARTIAL = enum.auto()
     STUBS = enum.auto()
 
+    def sort_key(self) -> int:
+        return {self.YES: 0, self.STUBS: 1, self.PARTIAL: 2, self.NO: 3}[self]
+
 
 @dataclass(frozen=True, slots=True)
 class PublicSymbols:
