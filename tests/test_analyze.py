@@ -770,6 +770,74 @@ class TestImplicitAttrs:
         assert isinstance(cls, Class)
         assert len(cls.members) == n_members
 
+    def test_private_method_excluded(self) -> None:
+        """Private methods should not be included in Class.members."""
+        src = textwrap.dedent("""
+        class Config:
+            def getini(self, name: str) -> str: ...
+            def _getini(self, name: str) -> str: ...
+            def _getini_toml(self, name: str) -> str: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Config"]
+
+        assert isinstance(cls, Class)
+        member_names = [m.name for m in cls.members]
+        assert "Config.getini" in member_names
+        assert "Config._getini" not in member_names
+        assert "Config._getini_toml" not in member_names
+
+    def test_dunder_method_not_excluded(self) -> None:
+        """Dunder methods should still be included in Class.members."""
+        src = textwrap.dedent("""
+        class Foo:
+            def __init__(self, x: int) -> None: ...
+            def __repr__(self) -> str: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+
+        assert isinstance(cls, Class)
+        member_names = [m.name for m in cls.members]
+        assert "Foo.__init__" in member_names
+        assert "Foo.__repr__" in member_names
+
+    def test_private_attr_excluded(self) -> None:
+        """Private class-level attributes should not be in Class.members."""
+        src = textwrap.dedent("""
+        class Foo:
+            x: int
+            _cache: dict
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+
+        assert isinstance(cls, Class)
+        member_names = [m.name for m in cls.members]
+        assert "Foo.x" in member_names
+        assert "Foo._cache" not in member_names
+
+    def test_private_property_excluded(self) -> None:
+        """Private properties should not be in Class.members."""
+        src = textwrap.dedent("""
+        class Foo:
+            @property
+            def value(self) -> int: ...
+            @property
+            def _internal(self) -> int: ...
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+
+        assert isinstance(cls, Class)
+        member_names = [m.name for m in cls.members]
+        assert "Foo.value" in member_names
+        assert "Foo._internal" not in member_names
+
 
 class TestClassMethodAlias:
     def test_simple(self) -> None:
