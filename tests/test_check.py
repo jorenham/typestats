@@ -12,13 +12,14 @@ import anyio
 import pytest
 
 from typestats.check import (
-    _format_tree,
+    _format_list,
     _is_package_dir_name,
     _resolve,
     _Resolved,
     _source_paths,
     _top_level_names,
     _untyped_symbols,
+    _UntypedEntry,
     check,
     report,
 )
@@ -423,7 +424,7 @@ class TestUnannotatedListing:
         if n_untyped > 0:
             assert "untyped (" in out
             lines_after = out.split("untyped (")[1].splitlines()[1:]
-            unannotated_lines = [line for line in lines_after if line.startswith("  ")]
+            unannotated_lines = [line for line in lines_after if line.strip()]
             assert len(unannotated_lines) > 0
         else:
             assert "untyped (" not in out
@@ -443,19 +444,20 @@ class TestUnannotatedListing:
         if n_any > 0 or n_untyped > 0:
             assert "untyped (" in out
 
-    async def test_untyped_symbols_returns_fqn(self) -> None:
-        """The helper returns fully qualified dotted names."""
+    async def test_untyped_symbols_entries(self) -> None:
+        """The helper returns entries with valid path, name, and line."""
         pkg_report = await PackageReport.from_path(
             "pkg",
             anyio.Path(_FIXTURES),
             "0.0.0",
             sources=(anyio.Path(_PKG_DIR),),
         )
-        names = _untyped_symbols(pkg_report)
-        for name in names:
-            assert "." in name, f"expected dotted FQN, got {name!r}"
-            assert "/" not in name
-            assert "\\" not in name
+        entries = _untyped_symbols(pkg_report)
+        for entry in entries:
+            assert entry.path.endswith((".py", ".pyi"))
+            assert "/" not in entry.name
+            assert "\\" not in entry.name
+            assert entry.line_start is None or entry.line_start > 0
 
     async def test_untyped_symbols_strict_superset(self) -> None:
         """Strict mode returns at least as many symbols as non-strict."""
@@ -465,21 +467,114 @@ class TestUnannotatedListing:
             "0.0.0",
             sources=(anyio.Path(_PKG_DIR),),
         )
-        normal = set(_untyped_symbols(pkg_report))
-        strict = set(_untyped_symbols(pkg_report, strict=True))
+        normal = {(e.path, e.name) for e in _untyped_symbols(pkg_report)}
+        strict = {(e.path, e.name) for e in _untyped_symbols(pkg_report, strict=True)}
         assert normal <= strict
 
 
-class TestFormatTree:
-    def test_shared_prefix(self) -> None:
-        names = ["a.b.c", "a.b.d", "a.e"]
-        result = _format_tree(names)
-        assert result == ("  a\n    b\n      c\n      d\n    e")
+class TestFormatList:
+    def test_with_line_numbers(self) -> None:
+        entries = [
+            _UntypedEntry("pkg/a.py", "func_a", 10, None),
+            _UntypedEntry("pkg/a.py", "func_b", 20, None),
+        ]
+        result = _format_list(entries)
+        assert result == "pkg/a.py:10  func_a\npkg/a.py:20  func_b"
 
-    def test_no_shared_prefix(self) -> None:
-        names = ["x.y", "a.b"]
-        result = _format_tree(names)
-        assert result == ("  a\n    b\n  x\n    y")
+    def test_without_line_number(self) -> None:
+        entries = [_UntypedEntry("pkg/b.py", "var_x", None, None)]
+        result = _format_list(entries)
+        assert result == "pkg/b.py  var_x"
+
+    def test_aligns_columns(self) -> None:
+        entries = [
+            _UntypedEntry("pkg/b.py", "z", 1, None),
+            _UntypedEntry("pkg/a.py", "y", 10, None),
+            _UntypedEntry("pkg/a.py", "x", 5, None),
+            _UntypedEntry("pkg/a.py", "w", None, None),
+        ]
+        result = _format_list(entries)
+        assert result == (
+            "pkg/a.py:5   x\npkg/a.py:10  y\npkg/a.py     w\npkg/b.py:1   z"
+        )
+
+    def test_source_lines_with_lineno(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "a.py"
+        src.parent.mkdir()
+        src.write_text("    def foo(self, x):\n        pass\n")
+        entries = [_UntypedEntry("pkg/a.py", "foo", 1, 2)]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        assert result == (
+            "   --> pkg/a.py:1\n1 |     def foo(self, x):\n2 |         pass"
+        )
+
+    def test_source_lines_single_line(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "m.py"
+        src.parent.mkdir()
+        src.write_text("x = 1\ny = 2\nz = 3\n")
+        entries = [_UntypedEntry("pkg/m.py", "y", 2, 2)]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        assert result == "   --> pkg/m.py:2\n2 | y = 2"
+
+    def test_source_lines_aligned_across_entries(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "a.py"
+        src.parent.mkdir()
+        src.write_text("\n".join(f"line {i}" for i in range(1, 101)) + "\n")
+        entries = [
+            _UntypedEntry("pkg/a.py", "x", 3, 3),
+            _UntypedEntry("pkg/a.py", "y", 99, 99),
+        ]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        assert result == (
+            "   --> pkg/a.py:3\n 3 | line 3\n\n   --> pkg/a.py:99\n99 | line 99"
+        )
+
+    def test_source_lines_consecutive_no_dots(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "a.py"
+        src.parent.mkdir()
+        src.write_text("a = 1\nb = 2\nc = 3\nd = 4\n")
+        entries = [
+            _UntypedEntry("pkg/a.py", "b", 2, 2),
+            _UntypedEntry("pkg/a.py", "c", 3, 3),
+        ]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        assert result == (
+            "   --> pkg/a.py:2\n2 | b = 2\n\n   --> pkg/a.py:3\n3 | c = 3"
+        )
+
+    def test_source_lines_gap_after_multiline(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "a.py"
+        src.parent.mkdir()
+        src.write_text("a = 1\ndef f(\n    x,\n):\n    pass\nz = 9\n")
+        entries = [
+            _UntypedEntry("pkg/a.py", "f", 2, 4),
+            _UntypedEntry("pkg/a.py", "z", 6, 6),
+        ]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        assert result == (
+            "   --> pkg/a.py:2\n"
+            "2 | def f(\n"
+            "3 |     x,\n"
+            "4 | ):\n"
+            "\n"
+            "   --> pkg/a.py:6\n"
+            "6 | z = 9"
+        )
+
+    def test_source_lines_aligned_across_files(self, tmp_path: Path) -> None:
+        (tmp_path / "pkg").mkdir()
+        (tmp_path / "pkg" / "a.py").write_text("x = 1\n")
+        lines_b = "\n".join(f"line {i}" for i in range(1, 1001)) + "\n"
+        (tmp_path / "pkg" / "b.py").write_text(lines_b)
+        entries = [
+            _UntypedEntry("pkg/a.py", "x", 1, 1),
+            _UntypedEntry("pkg/b.py", "y", 999, 999),
+        ]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        # width 3 from file b (999) applies globally, so file a pads too
+        assert result == (
+            "   --> pkg/a.py:1\n  1 | x = 1\n\n   --> pkg/b.py:999\n999 | line 999"
+        )
 
     def test_empty(self) -> None:
-        assert not _format_tree([])
+        assert not _format_list([])

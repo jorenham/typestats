@@ -9,7 +9,8 @@ import sys
 import urllib.parse
 import urllib.request
 from collections.abc import Sequence
-from typing import NamedTuple
+from pathlib import Path
+from typing import NamedTuple, Self
 
 import anyio
 
@@ -258,40 +259,116 @@ async def _resolve(package: str) -> _Resolved:
     )
 
 
-def _untyped_symbols(report: PackageReport, *, strict: bool = False) -> list[str]:
+class _UntypedEntry(NamedTuple):
+    path: str
+    name: str
+    line_start: int | None
+    line_end: int | None
+
+    @classmethod
+    def from_report(cls, path: str, name: str, sym: Report) -> Self:
+        return cls(path, name, sym.line_start, sym.line_end)
+
+
+def _untyped_symbols(
+    report: PackageReport, *, strict: bool = False
+) -> list[_UntypedEntry]:
     def _is_untyped(sym: Report) -> bool:
         return sym.n_untyped + (sym.n_any if strict else 0) > 0
 
-    result: list[str] = []
+    result: list[_UntypedEntry] = []
     for mod in sorted(report.module_reports, key=lambda m: m.path):
+        path = mod.path
         for sym in mod.symbol_reports:
+            short = sym.name.removeprefix(f"{mod.name}.")
             if isinstance(sym, ClassReport):
                 for member in (*sym.methods, *sym.properties, *sym.attrs):
-                    # strip class prefix from e.g. `Cache.get`
-                    short = member.name.rsplit(".", 1)[-1]
                     if _is_untyped(member):
-                        result.append(f"{sym.name}.{short}")
+                        member_short = member.name.rsplit(".", 1)[-1]
+                        qualname = f"{short}.{member_short}"
+                        result.append(_UntypedEntry.from_report(path, qualname, member))
             elif _is_untyped(sym):
-                result.append(sym.name)
+                result.append(_UntypedEntry.from_report(path, short, sym))
     return result
 
 
-def _format_tree(names: list[str]) -> str:
+def _read_source_lines(base_path: anyio.Path, paths: set[str]) -> dict[str, list[str]]:
+    root = Path(str(base_path))
+    result: dict[str, list[str]] = {}
+    for rel in paths:
+        try:
+            text = (root / rel).read_text(encoding="utf-8")
+        except OSError:
+            continue
+        result[rel] = text.splitlines()
+    return result
+
+
+def _format_snippet(
+    file_lines: list[str],
+    line_start: int,
+    line_end: int,
+    lineno_w: int = 0,
+) -> list[str]:
+    end = min(line_end, len(file_lines))
+    lineno_w = max(lineno_w, len(str(end)))
+    return [
+        f"{lineno:>{lineno_w}} | {file_lines[lineno - 1].rstrip()}"
+        for lineno in range(line_start, end + 1)
+    ]
+
+
+def _format_list(
+    entries: list[_UntypedEntry],
+    base_path: anyio.Path | None = None,
+) -> str:
+    entries.sort(
+        key=lambda e: (e.path, e.line_start is None, e.line_start or 0, e.name),
+    )
+
+    source_lines: dict[str, list[str]] = {}
+    if base_path is not None:
+        source_lines = _read_source_lines(
+            base_path,
+            {e.path for e in entries if e.line_start is not None},
+        )
+
+    # global lineno width for alignment across files
+    lineno_w = 0
+    if source_lines:
+        for entry in entries:
+            if entry.line_start is not None and entry.path in source_lines:
+                end = entry.line_end or entry.line_start
+                lineno_w = max(
+                    lineno_w,
+                    len(str(min(end, len(source_lines[entry.path])))),
+                )
+
     lines: list[str] = []
-    prev_parts: list[str] = []
-    for name in sorted(names):
-        parts = name.split(".")
-
-        shared = 0
-        for a, b in zip(prev_parts, parts, strict=False):
-            if a != b:
-                break
-            shared += 1
-
-        for depth, part in enumerate(parts[shared:], start=shared):
-            lines.append(f"{'  ' * (depth + 1)}{part}")
-        prev_parts = parts
-
+    if source_lines:
+        for entry in entries:
+            if entry.line_start is None or entry.path not in source_lines:
+                continue
+            end = entry.line_end or entry.line_start
+            if lines:
+                lines.append("")
+            lines.append(f"   --> {entry.path}:{entry.line_start}")
+            lines.extend(
+                _format_snippet(
+                    source_lines[entry.path],
+                    entry.line_start,
+                    end,
+                    lineno_w,
+                ),
+            )
+    else:
+        locs = [
+            f"{e.path}:{e.line_start}" if e.line_start is not None else e.path
+            for e in entries
+        ]
+        w = max((len(loc) for loc in locs), default=0)
+        for loc, entry in zip(locs, entries, strict=False):
+            lines.append(f"{loc:<{w}}  {entry.name}")
     return "\n".join(lines)
 
 
@@ -346,7 +423,7 @@ async def check(
     untyped = _untyped_symbols(pkg_report, strict=strict)
     if untyped:
         print(f"untyped ({len(untyped)}):")
-        print(_format_tree(untyped))
+        print(_format_list(untyped, resolved.path))
         print()
 
     print(
