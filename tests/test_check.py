@@ -589,3 +589,16 @@ class TestFormatList:
         ]
         result = _format_list(entries, base_path=anyio.Path(tmp_path), concise=True)
         assert result == "pkg/a.py:1  foo\npkg/a.py:5  bar"
+
+    def test_fallback_for_missing_line(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "a.py"
+        src.parent.mkdir()
+        src.write_text("x = 1\ny = 2\n")
+        entries = [
+            _UntypedEntry("pkg/a.py", "x", 1, 1),
+            _UntypedEntry("pkg/a.py", "z", None, None),
+        ]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        assert "z" in result
+        assert "pkg/a.py" in result.splitlines()[-1]
+        assert result.splitlines()[-1].strip().endswith("z")

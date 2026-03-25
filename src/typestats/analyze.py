@@ -59,9 +59,7 @@ _MIN_RECURSION_LIMIT: Final = 2000
 
 @contextlib.contextmanager
 def _raised_recursion_limit() -> Generator[None]:
-    """
-    Temporarily raise the recursion limit so `visit_batched` can overflow gracefully.
-    """
+    """Temporarily raise the recursion limit for metadata resolution."""
     limit = sys.getrecursionlimit()
     sys.setrecursionlimit(raised := max(limit, _MIN_RECURSION_LIMIT))
     try:
@@ -798,9 +796,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if line_start is None or body_start is None:
             return line_start, None
 
-        # PositionProvider reports body_start as the first statement,
-        # skipping leading blank/comment lines in the body.
-        # Subtract those so line_end lands on the colon line, not a comment.
+        # Subtract leading blank/comment lines so line_end lands on the colon.
         n_leading = 0
         if isinstance(node.body, cst.IndentedBlock) and node.body.body:
             first = node.body.body[0]

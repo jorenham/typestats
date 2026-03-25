@@ -497,7 +497,6 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         else top_level
     )
 
-    # Flat symbol table: fqn -> (path, type, line_start, line_end)
     all_local: dict[str, _SymbolEntry] = {}
     module_data: dict[str, dict[anyio.Path, analyze.ModuleSymbols]] = {}
     module_locals: dict[str, dict[str, str]] = {}  # mod -> {name: fqn}
@@ -747,11 +746,12 @@ def merge_stubs_overlay(
         for sym in symbols:
             if sym.name not in merged:
                 if (mod := sym.name.rsplit(".", 1)[0]) in stubs_modules:
-                    # covered by stubs but absent: strip annotations, keep kind.
+                    # re-homed to stubs path; clear lines from original file
                     sympath, ty = stubs_mod_path[mod], sym.type_.to_unknown()
+                    merged[sym.name] = sympath, ty, None, None
                 else:
                     sympath, ty = path, sym.type_
-                merged[sym.name] = sympath, ty, sym.line_start, sym.line_end
+                    merged[sym.name] = sympath, ty, sym.line_start, sym.line_end
 
     result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
     for fqn, (path, type_, line_start, line_end) in merged.items():

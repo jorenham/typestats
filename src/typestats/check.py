@@ -335,7 +335,6 @@ def _format_list(
             {e.path for e in entries if e.line_start is not None},
         )
 
-    # global lineno width for alignment across files
     lineno_w = 0
     if source_lines:
         for entry in entries:
@@ -346,10 +345,17 @@ def _format_list(
                     len(str(min(end, len(source_lines[entry.path])))),
                 )
 
+    locs = [
+        f"{e.path}:{e.line_start}" if e.line_start is not None else e.path
+        for e in entries
+    ]
+    w = max((len(loc) for loc in locs), default=0)
+
     lines: list[str] = []
     if source_lines:
-        for entry in entries:
+        for entry, loc in zip(entries, locs, strict=True):
             if entry.line_start is None or entry.path not in source_lines:
+                lines.append(f"{loc:<{w}}  {entry.name}")
                 continue
             end = entry.line_end or entry.line_start
             if lines:
@@ -364,12 +370,7 @@ def _format_list(
                 ),
             )
     else:
-        locs = [
-            f"{e.path}:{e.line_start}" if e.line_start is not None else e.path
-            for e in entries
-        ]
-        w = max((len(loc) for loc in locs), default=0)
-        for loc, entry in zip(locs, entries, strict=False):
+        for loc, entry in zip(locs, entries, strict=True):
             lines.append(f"{loc:<{w}}  {entry.name}")
     return "\n".join(lines)
 
