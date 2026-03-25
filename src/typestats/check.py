@@ -321,13 +321,15 @@ def _format_snippet(
 def _format_list(
     entries: list[_UntypedEntry],
     base_path: anyio.Path | None = None,
+    *,
+    concise: bool = False,
 ) -> str:
     entries.sort(
         key=lambda e: (e.path, e.line_start is None, e.line_start or 0, e.name),
     )
 
     source_lines: dict[str, list[str]] = {}
-    if base_path is not None:
+    if base_path is not None and not concise:
         source_lines = _read_source_lines(
             base_path,
             {e.path for e in entries if e.line_start is not None},
@@ -392,11 +394,12 @@ async def report(package: str, /, *, exclude: Sequence[str] = ()) -> None:
     sys.stdout.write("\n")
 
 
-async def check(
+async def check(  # noqa: PLR0913
     package: str,
     /,
     *,
     strict: bool = False,
+    concise: bool = False,
     fail_under: float | None = None,
     fail_under_from: anyio.Path | None = None,
     exclude: Sequence[str] = (),
@@ -423,7 +426,7 @@ async def check(
     untyped = _untyped_symbols(pkg_report, strict=strict)
     if untyped:
         print(f"untyped ({len(untyped)}):")
-        print(_format_list(untyped, resolved.path))
+        print(_format_list(untyped, resolved.path, concise=concise))
         print()
 
     print(

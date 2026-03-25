@@ -578,3 +578,14 @@ class TestFormatList:
 
     def test_empty(self) -> None:
         assert not _format_list([])
+
+    def test_concise_skips_source(self, tmp_path: Path) -> None:
+        src = tmp_path / "pkg" / "a.py"
+        src.parent.mkdir()
+        src.write_text("def foo(x):\n    pass\n")
+        entries = [
+            _UntypedEntry("pkg/a.py", "foo", 1, 2),
+            _UntypedEntry("pkg/a.py", "bar", 5, None),
+        ]
+        result = _format_list(entries, base_path=anyio.Path(tmp_path), concise=True)
+        assert result == "pkg/a.py:1  foo\npkg/a.py:5  bar"

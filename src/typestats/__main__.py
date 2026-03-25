@@ -53,6 +53,9 @@ class Check:
     fail_under_from: Path | None = None
     """Read a previous JSON report and use its coverage as `--fail-under`."""
 
+    concise: bool = False
+    """Hide source code snippets; show only file paths and line numbers."""
+
     exclude: tuple[str, ...] = ()
     """Glob patterns for modules to exclude from analysis."""
 
@@ -90,6 +93,7 @@ async def _run(cmd: _Command) -> None:
             await check(
                 cmd.package,
                 strict=cmd.strict,
+                concise=cmd.concise,
                 fail_under=cmd.fail_under,
                 fail_under_from=(
                     anyio.Path(cmd.fail_under_from) if cmd.fail_under_from else None
