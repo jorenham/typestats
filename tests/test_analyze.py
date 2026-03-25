@@ -2593,3 +2593,114 @@ class TestInstanceAttrs:  # noqa: PLR0904
         assert isinstance(b_cls, Class)
         member_names = {m.name for m in b_cls.members}
         assert "B.x" not in member_names
+
+
+class TestSymbolLineNumbers:
+    """
+    Tests that collect_symbols records 1-indexed line numbers via PositionProvider.
+    """
+
+    @staticmethod
+    def _syms(src: str) -> dict[str, Symbol]:
+        return {s.name: s for s in collect_symbols(src).symbols}
+
+    @staticmethod
+    def _members(src: str, cls_name: str = "C") -> dict[str, Symbol]:
+        cls_sym = TestSymbolLineNumbers._syms(src)[cls_name]
+        assert isinstance(cls_sym.type_, Class)
+        return {m.name: m for m in cls_sym.type_.members}
+
+    def test_variable_line(self) -> None:
+        src = textwrap.dedent("""\
+        x: int = 1
+        y = 2
+        """)
+        syms = self._syms(src)
+        assert syms["x"].line_start == 1
+        assert syms["y"].line_start == 2
+
+    def test_function_line(self) -> None:
+        src = textwrap.dedent("""\
+        def foo() -> int:
+            return 1
+
+        def bar():
+            pass
+        """)
+        syms = self._syms(src)
+        assert syms["foo"].line_start == 1
+        assert syms["foo"].line_end == 1
+        assert syms["bar"].line_start == 4
+        assert syms["bar"].line_end == 4
+
+    def test_function_line_end_excludes_body_comments(self) -> None:
+        src = textwrap.dedent("""\
+        def foo():
+            # comment
+            pass
+        """)
+        syms = self._syms(src)
+        assert syms["foo"].line_start == 1
+        assert syms["foo"].line_end == 1
+
+    def test_function_multiline_sig_excludes_body_comments(self) -> None:
+        src = textwrap.dedent("""\
+        def bar(
+            x,
+            y,
+        ):
+            # comment 1
+            # comment 2
+            pass
+        """)
+        syms = self._syms(src)
+        assert syms["bar"].line_start == 1
+        assert syms["bar"].line_end == 4
+
+    def test_class_line(self) -> None:
+        src = textwrap.dedent("""\
+        class A:
+            x: int
+
+        class B:
+            y = 1
+        """)
+        syms = self._syms(src)
+        assert syms["A"].line_start == 1
+        assert syms["B"].line_start == 4
+
+    def test_overload_uses_first_line(self) -> None:
+        src = textwrap.dedent("""\
+        from typing import overload
+
+        @overload
+        def f(x: int) -> int: ...
+        @overload
+        def f(x: str) -> str: ...
+        def f(x):
+            return x
+        """)
+        syms = self._syms(src)
+        assert syms["f"].line_start == 4
+
+    def test_class_member_lines(self) -> None:
+        src = textwrap.dedent("""\
+        class C:
+            x: int
+            def method(self) -> None:
+                pass
+        """)
+        members = self._members(src)
+        assert members["C.x"].line_start == 2
+        assert members["C.method"].line_start == 3
+
+    def test_instance_attr_line(self) -> None:
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.x: int = 1
+                self.y = 2
+        """)
+        members = self._members(src)
+        assert members["C.x"].line_start == 3
+        assert members["C.y"].line_start == 4
