@@ -1,8 +1,9 @@
+import contextlib
 import logging
 import re
 import sys
 from collections import defaultdict, deque
-from collections.abc import Callable, Collection, Mapping
+from collections.abc import Callable, Collection, Generator, Mapping
 from dataclasses import dataclass
 from enum import IntEnum, StrEnum
 from typing import Final, Literal, NamedTuple, Self, override
@@ -13,6 +14,7 @@ from libcst.helpers import (
     get_absolute_module_from_package_for_import,
     get_full_name_for_node,
 )
+from libcst.metadata import MetadataWrapper, PositionProvider
 
 __all__ = (
     "ANY",
@@ -50,8 +52,25 @@ _SPECIAL_TYPEFORMS: Final = frozenset({
     "TypeVarTuple",
 })
 _ALL: Final = "__all__"
-
 _VERSION_INFO_FQN: Final = "sys.version_info"
+
+_MIN_RECURSION_LIMIT: Final = 2000
+
+
+@contextlib.contextmanager
+def _raised_recursion_limit() -> Generator[None]:
+    """
+    Temporarily raise the recursion limit so `visit_batched` can overflow gracefully.
+    """
+    limit = sys.getrecursionlimit()
+    sys.setrecursionlimit(raised := max(limit, _MIN_RECURSION_LIMIT))
+    try:
+        yield
+    finally:
+        if sys.getrecursionlimit() == raised:
+            sys.setrecursionlimit(limit)
+
+
 _VERSION_CMP_OPS: Final[Mapping[type[cst.BaseCompOp], str]] = {
     cst.GreaterThanEqual: "__ge__",
     cst.LessThan: "__lt__",
@@ -428,6 +447,7 @@ class Property:
 class Symbol:
     name: str
     type_: TypeForm
+    line: int | None = None
 
     @override
     def __str__(self) -> str:
@@ -464,7 +484,9 @@ class Class:
     def to_unknown(self) -> Self:
         return type(self)(
             self.name,
-            tuple(Symbol(m.name, m.type_.to_unknown()) for m in self.members),
+            tuple(
+                Symbol(m.name, m.type_.to_unknown(), line=m.line) for m in self.members
+            ),
             is_protocol=self.is_protocol,
         )
 
@@ -630,8 +652,8 @@ def _collect_self_attrs(
     body: cst.BaseSuite,
     self_name: str,
     resolve_name: _NameResolver,
-) -> dict[str, TypeForm]:
-    result: dict[str, TypeForm] = {}
+) -> dict[str, tuple[TypeForm, cst.CSTNode]]:
+    result: dict[str, tuple[TypeForm, cst.CSTNode]] = {}
 
     # BFS over the body, skipping nested scopes
     queue: deque[cst.CSTNode] = deque([body])
@@ -643,11 +665,11 @@ def _collect_self_attrs(
 
         if isinstance(node, cst.AnnAssign):
             if attr := _is_self_attr(node.target, self_name):
-                result[attr] = Expr.from_expr(
-                    node.annotation.annotation,
-                    resolve_name,
+                result[attr] = (
+                    Expr.from_expr(node.annotation.annotation, resolve_name),
+                    node,
                 )
-            continue  # skip `AnnAssign` children
+            continue
 
         if isinstance(node, cst.Assign):
             for target in node.targets:
@@ -655,8 +677,8 @@ def _collect_self_attrs(
                     (attr := _is_self_attr(target.target, self_name))
                     and attr not in result
                 ):  # fmt: skip
-                    result[attr] = UNTYPED
-            continue  # skip `Assign` children
+                    result[attr] = (UNTYPED, node)
+            continue
 
         queue.extend(node.children)
 
@@ -670,12 +692,15 @@ class _ClassStackItem:
     is_protocol: bool
     is_schema: bool
     symbol_index: int  # index into _SymbolVisitor.symbols where the Class symbol lives
+    line: int | None
     members: list[Symbol]
     member_names: set[str]  # short attr names (without class prefix) for dedup
     base_names: tuple[str, ...]  # resolved FQNs of base classes
 
 
 class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
+    METADATA_DEPENDENCIES = (PositionProvider,)
+
     _TYPE_IGNORE_RE: Final[re.Pattern[str]] = re.compile(
         r"""
         \s*\#\s*
@@ -714,6 +739,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     _property_map: dict[str, int]
     _added_functions: set[str]
     _class_attrs_typed: dict[str, frozenset[str]]
+    _overload_lines: dict[str, int | None]
 
     _package_name: Final[str]
 
@@ -742,8 +768,17 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         self._property_map = {}
         self._added_functions = set()
         self._class_attrs_typed = {}
+        self._overload_lines = {}
 
         self._package_name = package_name
+
+    def _line_of(self, node: cst.CSTNode) -> int | None:
+        try:
+            metadata = self.get_metadata(PositionProvider, node)
+        except KeyError:
+            return None
+        else:
+            return metadata.start.line
 
     @property
     def exports_explicit(self) -> frozenset[str] | None:
@@ -765,7 +800,6 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         return fname
 
     def _is_version_info(self, node: cst.BaseExpression) -> bool:
-        """Check for a `sys.version_info` expression."""
         value = node.value if isinstance(node, cst.Subscript) else node
         match value:
             case cst.Name(_) | cst.Attribute(_, cst.Name("version_info")):
@@ -878,20 +912,22 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             TypeAlias(self._symbol_name(name_node), expr) for name_node in names
         )
 
-    def _add_symbols(self, names: list[cst.Name], annotation: TypeForm) -> None:
+    def _add_symbols(self, names: list[cst.Name], ty: TypeForm) -> None:
         if not names:
             return
 
+        new = [Symbol(self._symbol_name(n), ty, line=self._line_of(n)) for n in names]
+
         if cls := self._current_class:
             if not self._function_depth:
-                for n in names:
+                for sym, n in zip(new, names, strict=True):
                     if is_public_name(n.value):
-                        cls.members.append(Symbol(self._symbol_name(n), annotation))
+                        cls.members.append(sym)
                         cls.member_names.add(n.value)
         else:
             self._defined_names.update(n.value for n in names)
 
-        self.symbols.extend(Symbol(self._symbol_name(n), annotation) for n in names)
+        self.symbols.extend(new)
 
     def _callable_signature(
         self,
@@ -1131,12 +1167,19 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     is_protocol=is_protocol,
                     is_schema=self._is_schema_class(node),
                     symbol_index=len(self.symbols),
+                    line=self._line_of(node),
                     members=[],
                     member_names=set(),
                     base_names=base_names,
                 ),
             )
-            self.symbols.append(Symbol(name, Class(name, is_protocol=is_protocol)))
+            self.symbols.append(
+                Symbol(
+                    name,
+                    Class(name, is_protocol=is_protocol),
+                    line=self._line_of(node),
+                ),
+            )
 
         return True
 
@@ -1153,6 +1196,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     tuple(item.members),
                     is_protocol=item.is_protocol,
                 ),
+                line=item.line,
             )
             # Record typed attrs for inheritance lookups by subclasses.
             typed = {
@@ -1216,12 +1260,13 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     def _add_property(self, node: cst.FunctionDef, name: str, sig: Overload) -> None:
         """Create a new `Property` with *sig* as its `fget`."""
         self._property_map[name] = len(self.symbols)
+        line = self._line_of(node)
 
         prop = Property(name, fget=sig)
-        self.symbols.append(Symbol(name, prop))
+        self.symbols.append(Symbol(name, prop, line=line))
 
         if (cls := self._current_class) and is_public_name(node.name.value):
-            cls.members.append(Symbol(name, prop))
+            cls.members.append(Symbol(name, prop, line=line))
             cls.member_names.add(node.name.value)
         elif not self._current_class:
             self._defined_names.add(node.name.value)
@@ -1242,12 +1287,16 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         else:
             fset, fdel = prop_old.fset, sig
         prop_new = Property(prop_old.name, prop_old.fget, fset, fdel)
-        self.symbols[idx] = Symbol(prop_old.name, prop_new)
+        self.symbols[idx] = Symbol(
+            prop_old.name,
+            prop_new,
+            line=self.symbols[idx].line,
+        )
 
         if cls := self._current_class:
             for i, m in enumerate(members := cls.members):
                 if m.type_ is prop_old:
-                    members[i] = Symbol(m.name, prop_new)
+                    members[i] = Symbol(m.name, prop_new, line=m.line)
                     break
 
     def _handle_function_def(self, node: cst.FunctionDef) -> None:
@@ -1268,6 +1317,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             self._overload_map[name].append(
                 self._callable_signature(node, skip_first=skip_first),
             )
+            self._overload_lines.setdefault(name, self._line_of(node))
         elif "property" in decorators or "cached_property" in decorators:
             sig = self._callable_signature(node, skip_first=skip_first)
             self._add_property(node, name, sig)
@@ -1282,10 +1332,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 overloads = (self._callable_signature(node, skip_first=skip_first),)
 
             func = Function(name, overloads)
-            self.symbols.append(Symbol(name, func))
+            line = self._overload_lines.pop(name, None) or self._line_of(node)
+            self.symbols.append(Symbol(name, func, line=line))
             self._added_functions.add(name)
             if cls and is_public_name(node.name.value):
-                cls.members.append(Symbol(name, func))
+                cls.members.append(Symbol(name, func, line=line))
                 cls.member_names.add(node.name.value)
 
         # Scan init-family methods for instance attributes (self.attr = ...)
@@ -1315,13 +1366,14 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             inherited_typed |= self._class_attrs_typed.get(base, frozenset())
 
         self_attrs = _collect_self_attrs(body, self_name, self._resolve_name)
-        for attr_name, ty in self_attrs.items():
+        for attr_name, (ty, attr_node) in self_attrs.items():
             if attr_name in inherited_typed:
                 continue
 
             full_name = f"{cls.name}.{attr_name}"
             if attr_name not in cls.member_names:
-                sym = Symbol(full_name, ty)
+                line = self._line_of(attr_node)
+                sym = Symbol(full_name, ty, line=line)
                 cls.members.append(sym)
                 cls.member_names.add(attr_name)
                 self.symbols.append(sym)
@@ -1337,7 +1389,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         """Replace an IMPLICIT class member with `replacement`."""
         for i, m in enumerate(cls.members):
             if m.name == full_name and m.type_ is IMPLICIT:
-                cls.members[i] = sym = Symbol(full_name, replacement)
+                cls.members[i] = sym = Symbol(
+                    full_name,
+                    replacement,
+                    line=m.line,
+                )
                 for j, s in enumerate(self.symbols):
                     if s.name == full_name and s.type_ is IMPLICIT:
                         self.symbols[j] = sym
@@ -1354,7 +1410,14 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         symbols = self.symbols
         for name, overloads in self._overload_map.items():
             if name not in added_functions:
-                symbols.append(Symbol(name, Function(name, _nonempty_tuple(overloads))))
+                line = self._overload_lines.get(name)
+                symbols.append(
+                    Symbol(
+                        name,
+                        Function(name, _nonempty_tuple(overloads)),
+                        line=line,
+                    ),
+                )
 
     @override
     def visit_AnnAssign(self, node: cst.AnnAssign) -> None:
@@ -1409,7 +1472,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             for name_node in _extract_names(target.target):
                 alias_name = self._symbol_name(name_node)
                 func = Function(alias_name, ref_func.overloads)
-                symbol = Symbol(alias_name, func)
+                line = self._line_of(name_node)
+                symbol = Symbol(alias_name, func, line=line)
                 if is_public_name(name_node.value):
                     methods.append(symbol)
                     cls.member_names.add(name_node.value)
@@ -1560,16 +1624,25 @@ def collect_symbols(
         )
         return _EMPTY_SYMBOLS
 
-    # Single pass: collects symbols AND evaluates version guards.
     visitor = _SymbolVisitor(package_name=package_name or "")
-    try:
-        module.visit(visitor)
-    except RecursionError:
-        _logger.warning(
-            "skipping module %s: CST too deeply nested (recursion limit hit)",
-            package_name or "<unknown>",
-        )
-        return _EMPTY_SYMBOLS
+    with _raised_recursion_limit():
+        try:
+            MetadataWrapper(module, unsafe_skip_copy=True).visit(visitor)
+        except RecursionError:
+            _logger.warning(
+                "module %s: metadata resolution hit recursion limit, "
+                "falling back to plain visit (no line numbers)",
+                package_name or "<unknown>",
+            )
+            visitor = _SymbolVisitor(package_name=package_name or "")
+            try:
+                module.visit(visitor)
+            except RecursionError:
+                _logger.warning(
+                    "skipping module %s: CST too deeply nested (recursion limit hit)",
+                    package_name or "<unknown>",
+                )
+                return _EMPTY_SYMBOLS
 
     imports = visitor.imports
 

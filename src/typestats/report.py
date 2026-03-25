@@ -124,6 +124,8 @@ class Report(Protocol):
     def n_attrs(self) -> int: ...
     @property
     def n_properties(self) -> int: ...
+    @property
+    def line(self) -> int | None: ...
 
 
 class AttrReport(BaseModel):
@@ -133,6 +135,7 @@ class AttrReport(BaseModel):
 
     kind: Literal["attr"] = "attr"
     name: str
+    line: int | None = None
     n_typed: _Max1
     n_any: _Max1
     n_untyped: _Max1
@@ -153,9 +156,20 @@ class AttrReport(BaseModel):
     n_properties: Literal[0] = Field(0, exclude=True)
 
     @classmethod
-    def from_symbol(cls, name: str, ty: analyze.TypeForm, /) -> Self:
+    def from_symbol(
+        cls,
+        name: str,
+        ty: analyze.TypeForm,
+        line: int | None = None,
+    ) -> Self:
         s = _SlotState.from_typeform(ty)
-        return cls(name=name, n_typed=s.typed, n_any=s.any, n_untyped=s.untyped)
+        return cls(
+            name=name,
+            line=line,
+            n_typed=s.typed,
+            n_any=s.any,
+            n_untyped=s.untyped,
+        )
 
 
 class FunctionReport(BaseModel):
@@ -165,6 +179,7 @@ class FunctionReport(BaseModel):
 
     kind: Literal["function"] = "function"
     name: str
+    line: int | None = None
     n_typed: NonNegativeInt
     n_any: NonNegativeInt
     n_untyped: NonNegativeInt
@@ -199,12 +214,18 @@ class FunctionReport(BaseModel):
         return self.n_params
 
     @classmethod
-    def from_symbol(cls, name: str, ty: analyze.Function, /) -> Self:
+    def from_symbol(
+        cls,
+        name: str,
+        ty: analyze.Function,
+        line: int | None = None,
+    ) -> Self:
         counts = ty.type_counts
         untyped = counts.typable - counts.typed - counts.any
 
         return cls(
             name=name,
+            line=line,
             n_typed=counts.typed,
             n_any=counts.any,
             n_untyped=untyped,
@@ -219,6 +240,7 @@ class PropertyReport(BaseModel):
 
     kind: Literal["property"] = "property"
     name: str
+    line: int | None = None
     n_typed: NonNegativeInt
     n_any: NonNegativeInt
     n_untyped: NonNegativeInt
@@ -239,7 +261,12 @@ class PropertyReport(BaseModel):
     n_properties: Literal[1] = Field(1, exclude=True)
 
     @classmethod
-    def from_symbol(cls, name: str, ty: analyze.Property, /) -> Self:
+    def from_symbol(
+        cls,
+        name: str,
+        ty: analyze.Property,
+        line: int | None = None,
+    ) -> Self:
         n_typed = n_any = n_untyped = 0
 
         # fget: 0 params, 1 return
@@ -259,6 +286,7 @@ class PropertyReport(BaseModel):
 
         return cls(
             name=name,
+            line=line,
             n_typed=n_typed,
             n_any=n_any,
             n_untyped=n_untyped,
@@ -272,6 +300,7 @@ class ClassReport(BaseModel):
 
     kind: Literal["class"] = "class"
     name: str
+    line: int | None = None
     methods: tuple[FunctionReport, ...]
     properties: tuple[PropertyReport, ...] = ()
     attrs: tuple[AttrReport, ...] = ()
@@ -339,22 +368,22 @@ class ClassReport(BaseModel):
         return len(self.properties)
 
     @classmethod
-    def from_symbol(cls, name: str, ty: analyze.Class, /) -> Self:
+    def from_symbol(cls, name: str, ty: analyze.Class, line: int | None = None) -> Self:
         if ty.is_protocol:
-            return cls(name=name, methods=(), properties=())
+            return cls(name=name, line=line, methods=(), properties=())
 
         methods = [
-            FunctionReport.from_symbol(member.name, member.type_)
+            FunctionReport.from_symbol(member.name, member.type_, line=member.line)
             for member in ty.members
             if isinstance(member.type_, analyze.Function)
         ]
         properties = [
-            PropertyReport.from_symbol(member.name, member.type_)
+            PropertyReport.from_symbol(member.name, member.type_, line=member.line)
             for member in ty.members
             if isinstance(member.type_, analyze.Property)
         ]
         attrs = [
-            AttrReport.from_symbol(member.name, member.type_)
+            AttrReport.from_symbol(member.name, member.type_, line=member.line)
             for member in ty.members
             if not isinstance(
                 member.type_,
@@ -363,6 +392,7 @@ class ClassReport(BaseModel):
         ]
         return cls(
             name=name,
+            line=line,
             methods=tuple(methods),
             properties=tuple(properties),
             attrs=tuple(attrs),
@@ -372,13 +402,13 @@ class ClassReport(BaseModel):
 def _symbol_report(symbol: analyze.Symbol) -> Report:
     match symbol.type_:
         case analyze.Function():
-            return FunctionReport.from_symbol(symbol.name, symbol.type_)
+            return FunctionReport.from_symbol(symbol.name, symbol.type_, symbol.line)
         case analyze.Property():
-            return PropertyReport.from_symbol(symbol.name, symbol.type_)
+            return PropertyReport.from_symbol(symbol.name, symbol.type_, symbol.line)
         case analyze.Class():
-            return ClassReport.from_symbol(symbol.name, symbol.type_)
+            return ClassReport.from_symbol(symbol.name, symbol.type_, symbol.line)
         case _:
-            return AttrReport.from_symbol(symbol.name, symbol.type_)
+            return AttrReport.from_symbol(symbol.name, symbol.type_, symbol.line)
 
 
 def _coverage(n_typed: int, n_any: int, n_typable: int, strict: bool = False) -> float:

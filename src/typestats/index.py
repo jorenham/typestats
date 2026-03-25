@@ -58,7 +58,6 @@ class PublicSymbols:
 
 _RE_INIT: Final = re.compile(r"^__init__\.pyi?$")
 
-# Directory names to exclude from analysis (tests, benchmarks, docs, etc.)
 _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
     ".spin",
     "_examples",
@@ -68,16 +67,14 @@ _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
     "examples",
     "tests",
 })
-# File names to exclude from analysis.
 _EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py", "setup.py"})
-# Module-level dunder names that are not real symbols for typing purposes.
 _MODULE_DUNDERS: Final[frozenset[str]] = frozenset({
     "__all__",
     "__dir__",
     "__doc__",
     "__getattr__",
 })
-# Fully qualified names that are considered equivalent to having no annotation.
+# FQNs treated as equivalent to having no annotation.
 _ANY_FQNS: Final[frozenset[str]] = frozenset({
     "typing.Any",
     "typing_extensions.Any",
@@ -98,14 +95,13 @@ async def _analyze_graph(
     """Run `ruff analyze graph` and clean self/parent-package dependencies."""
     raw_graph = await analyze_graph(project_dir, *opts, sources=sources)
 
-    # Normalize all paths to forward slashes (ruff uses OS-native separators).
+    # normalize to forward slashes
     graph = {
         k.replace("\\", "/"): [v.replace("\\", "/") for v in vs]
         for k, vs in raw_graph.items()
     }
 
-    # Build both absolute and CWD-relative prefixes so we can strip the
-    # project directory from graph keys regardless of how ruff reports them.
+    # build absolute and CWD-relative prefixes for stripping project_dir
     abs_path = await anyio.Path(project_dir).resolve()
     abs_prefix = str(abs_path).replace(os.sep, "/").rstrip("/") + "/"
     try:
@@ -113,7 +109,6 @@ async def _analyze_graph(
         rel = str(abs_path.relative_to(cwd)).replace(os.sep, "/")
         rel_prefix = rel.rstrip("/") + "/"
     except ValueError:
-        # project_dir is not under cwd; ruff will use absolute paths
         rel_prefix = abs_prefix
 
     exclude_re = None
@@ -136,13 +131,9 @@ async def _analyze_graph(
 
     def _skip_dep(node: str, dep: str, deps: list[str]) -> bool:
         return (
-            # break self-dependencies
             dep == node
-            # break self/super package dependencies
             or (node.count("/") >= dep.count("/") and "/__init__.py" in dep)
-            # remove .py deps that also have a .pyi counterpart
             or (dep.endswith(".py") and dep + "i" in deps)
-            # exclude test/benchmark/doc directories
             or _excluded(dep)
         )
 
@@ -404,6 +395,7 @@ def _unfold_any(
                     analyze.Symbol(
                         m.name,
                         _unfold_any(m.type_, import_map, mod, alias_targets),
+                        m.line,
                     )
                     for m in members
                 ),
@@ -482,7 +474,6 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         await list_sources(project_dir, exclude=exclude, sources=sources)
     )
 
-    # Drop .py when .pyi exists for the same file
     pyi_set = frozenset(str(s) for s in source_list if s.suffix == ".pyi")
     source_list = [
         s for s in source_list if not (s.suffix == ".py" and f"{s}i" in pyi_set)
@@ -490,30 +481,21 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
     module_paths = sources_to_module_paths(source_list)
 
-    # Compute top_level from ALL discovered modules (used for auto-resolving
-    # package_name).  A narrower `in_scope` set is derived below for wildcard
-    # traversal and EXTERNAL-vs-UNTYPED decisions so that unrelated packages
-    # bundled in the same sdist are not accidentally treated as internal.
+    # All top-level names; a narrower `in_scope` is derived below.
     top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
 
-    # Auto-resolve package_name when it doesn't match any top-level module.
-    # Handles PyPI names that differ from the Python import name, e.g.
-    # - "pillow" -> "PIL"
-    # - "beautifulsoup4" -> "bs4"
-    # - "more-itertools" -> "more_itertools"
     if package_name is not None and package_name not in top_level:
         package_name = _resolve_package_name(package_name, top_level)
 
-    # Scope for wildcard traversal and EXTERNAL-vs-UNTYPED: only the target
-    # package and its private companion (e.g. pytest + _pytest).
+    # Target package + private companion (e.g. pytest + _pytest).
     in_scope = (
         frozenset({package_name, f"_{package_name}"})
         if package_name is not None
         else top_level
     )
 
-    # Step 1: Parse all modules, build flat symbol table (fqn -> (path, type))
-    all_local: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
+    # Flat symbol table: fqn -> (path, type, line)
+    all_local: dict[str, tuple[anyio.Path, analyze.TypeForm, int | None]] = {}
     module_data: dict[str, dict[anyio.Path, analyze.ModuleSymbols]] = {}
     module_locals: dict[str, dict[str, str]] = {}  # mod -> {name: fqn}
     for mod, paths in module_paths.items():
@@ -529,28 +511,25 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                 else (mod.rsplit(".", 1)[0] if "." in mod else "")
             )
             syms = analyze.collect_symbols(
-                await path.read_text(encoding="utf-8"), package_name=pkg
+                await path.read_text(encoding="utf-8"),
+                package_name=pkg,
             )
             entries[path] = syms
 
-            for name, type_ in chain(
-                ((a.name, a.value) for a in syms.type_aliases),
-                ((s.name, s.type_) for s in syms.symbols),
-            ):
+            syms_iter: Iterable[tuple[str, analyze.TypeForm, int | None]] = chain(
+                ((a.name, a.value, None) for a in syms.type_aliases),
+                ((s.name, s.type_, s.line) for s in syms.symbols),
+            )
+            for name, type_, line in syms_iter:
                 if "." not in name:
                     fqn = f"{mod}.{name}"
-                    all_local.setdefault(fqn, (path, type_))
+                    all_local.setdefault(fqn, (path, type_, line))
                     local.setdefault(name, fqn)
 
         module_data[mod] = entries
         module_locals[mod] = local
 
-    # Step 1.5: Normalize Any-equivalent annotations
-    #
-    # Build a table mapping type-alias FQNs to the FQN of their RHS
-    # value, then walk every entry in `all_local` and replace any
-    # `Expr` annotation that resolves to `typing.Any` (directly or
-    # through alias chains) with `ANY`.
+    # Replace Expr annotations resolving to Any (directly or via alias chains).
     alias_targets: dict[str, str] = {}
     path_to_mod: dict[anyio.Path, str] = {}
     import_maps: dict[str, dict[str, str]] = {}
@@ -573,7 +552,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                     alias_fqn = f"{mod}.{alias.name}"
                     alias_targets[alias_fqn] = _resolve_expr_name(value_name, imap, mod)
 
-    for fqn, (path, type_) in list(all_local.items()):
+    for fqn, (path, type_, line) in list(all_local.items()):
         if not isinstance(
             type_,
             analyze.Expr | analyze.Function | analyze.Property | analyze.Class,
@@ -584,9 +563,8 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
         type_new = _unfold_any(type_, import_maps.get(p2m, {}), p2m, alias_targets)
         if type_new is not type_:
-            all_local[fqn] = path, type_new
+            all_local[fqn] = path, type_new, line
 
-    # Step 2: Compute module exports with origin tracing
     exports_cache: dict[str, dict[str, str]] = {}
 
     def resolve_origin(fqn: str, _seen: frozenset[str] = frozenset()) -> str:
@@ -667,8 +645,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         exports_cache[mod] = result
         return result
 
-    # Step 3: Mark public symbols and build result
-    public: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
+    public: dict[str, tuple[anyio.Path, analyze.TypeForm, int | None]] = {}
     for mod, entries in module_data.items():
         if not _is_public_module(mod):
             continue
@@ -678,32 +655,30 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         for name, origin in module_exports(mod).items():
             if origin in module_data:
                 if not trace_origins:
-                    # Include submodule re-exports as EXTERNAL so they
-                    # appear in merge input and don't become orphan UNKNOWNs.
+                    # keep submodule re-exports as EXTERNAL for merge input
                     public.setdefault(
                         f"{mod}.{name}",
-                        (first_path, analyze.EXTERNAL),
+                        (first_path, analyze.EXTERNAL, None),
                     )
                 continue
             if origin in all_local:
                 if trace_origins:
                     public.setdefault(origin, all_local[origin])
                 else:
-                    origin_path, type_ = all_local[origin]
-                    public.setdefault(f"{mod}.{name}", (origin_path, type_))
+                    origin_path, type_, line = all_local[origin]
+                    public.setdefault(f"{mod}.{name}", (origin_path, type_, line))
             else:
                 type_ = (
                     analyze.EXTERNAL
                     if origin.split(".", 1)[0] not in in_scope
                     else analyze.UNTYPED
                 )
-                public.setdefault(f"{mod}.{name}", (first_path, type_))
+                public.setdefault(f"{mod}.{name}", (first_path, type_, None))
 
     result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
-    for fqn, (path, type_) in public.items():
-        result[path].append(analyze.Symbol(fqn, type_))
+    for fqn, (path, type_, line) in public.items():
+        result[path].append(analyze.Symbol(fqn, type_, line))
 
-    # Collect per-path type-ignore comments
     type_ignores: dict[anyio.Path, tuple[analyze.IgnoreComment, ...]] = {}
     for entries in module_data.values():
         for path, syms in entries.items():
@@ -713,8 +688,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
     elapsed = time.perf_counter() - t0
     _logger.info("collect_public_symbols: %.2fs", elapsed)
 
-    # Use sources from the target package so that get_py_typed sees
-    # the package root, not the sdist root.
+    # restrict to target package so get_py_typed sees the package root
     if package_name is not None:
         filtered_sources = list(
             chain.from_iterable(
@@ -751,34 +725,29 @@ def merge_stubs_overlay(
     original types (the type-checker falls back to the `.py`).
     """
 
-    # Flatten stubs to {fqn: (path, type)} and build module -> stubs-path map
-    stubs_flat: dict[str, tuple[anyio.Path, analyze.TypeForm]] = {}
+    stubs_flat: dict[str, tuple[anyio.Path, analyze.TypeForm, int | None]] = {}
     stubs_mod_path: dict[str, anyio.Path] = {}
     for path, syms in stubs.items():
         for s in syms:
-            stubs_flat.setdefault(s.name, (path, s.type_))
+            stubs_flat.setdefault(s.name, (path, s.type_, s.line))
             stubs_mod_path.setdefault(s.name.rsplit(".", 1)[0], path)
 
     stubs_modules = frozenset(stubs_mod_path)
 
-    # Start with all stubs symbols
-    merged: dict[str, tuple[anyio.Path, analyze.TypeForm]] = dict(stubs_flat)
+    merged = dict(stubs_flat)
 
-    # Add original symbols not in stubs
     for path, symbols in original.items():
         for sym in symbols:
             if sym.name not in merged:
-                mod = sym.name.rsplit(".", 1)[0]
-                if mod in stubs_modules:
-                    # module covered by stubs but symbol missing:
-                    # strip annotations but preserve its kind (func, prop, class, etc)
-                    merged[sym.name] = stubs_mod_path[mod], sym.type_.to_unknown()
+                if (mod := sym.name.rsplit(".", 1)[0]) in stubs_modules:
+                    # covered by stubs but absent: strip annotations, keep kind.
+                    sympath, ty = stubs_mod_path[mod], sym.type_.to_unknown()
                 else:
-                    merged[sym.name] = path, sym.type_
+                    sympath, ty = path, sym.type_
+                merged[sym.name] = sympath, ty, sym.line
 
-    # Group by path
     result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
-    for fqn, (path, type_) in merged.items():
-        result[path].append(analyze.Symbol(fqn, type_))
+    for fqn, (path, type_, line) in merged.items():
+        result[path].append(analyze.Symbol(fqn, type_, line))
 
     return dict(result)

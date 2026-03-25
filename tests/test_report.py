@@ -333,6 +333,41 @@ class TestSymbolReport:
         assert isinstance(r, AttrReport)
         assert r.n_untyped == 1
 
+    def test_line_propagated_attr(self) -> None:
+        r = _symbol_report(Symbol("x", _INT, line=42))
+        assert isinstance(r, AttrReport)
+        assert r.line == 42
+
+    def test_line_propagated_function(self) -> None:
+        func = _func(_overload([("a", _INT)]))
+        r = _symbol_report(Symbol("f", func, line=10))
+        assert isinstance(r, FunctionReport)
+        assert r.line == 10
+
+    def test_line_propagated_class(self) -> None:
+        member = Symbol("C.x", _INT, line=5)
+        cls_ = Class("C", (member,))
+        r = _symbol_report(Symbol("C", cls_, line=3))
+        assert isinstance(r, ClassReport)
+        assert r.line == 3
+        assert r.attrs[0].line == 5
+
+    def test_line_none_by_default(self) -> None:
+        r = _symbol_report(Symbol("x", _INT))
+        assert r.line is None
+
+    def test_line_roundtrip_json(self) -> None:
+        r = AttrReport.from_symbol("x", _INT, line=7)
+        data = r.model_dump()
+        assert data["line"] == 7
+        restored = AttrReport.model_validate(data)
+        assert restored.line == 7
+
+    def test_line_absent_in_json_is_none(self) -> None:
+        data = {"kind": "attr", "name": "x", "n_typed": 1, "n_any": 0, "n_untyped": 0}
+        r = AttrReport.model_validate(data)
+        assert r.line is None
+
 
 class TestModuleReport:
     def test_name_module(self) -> None:
