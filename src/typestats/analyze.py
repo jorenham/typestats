@@ -219,7 +219,8 @@ class Param:
     def is_typed(self) -> bool:
         return self.annotation.is_typed
 
-    def key(self, index: int, /) -> int | str:
+    # https://github.com/facebook/pyrefly/issues/2895
+    def key(self, index: int, /) -> int | str:  # pyrefly: ignore[bad-return]
         match self.kind:
             case ParamKind.POSITIONAL_ONLY:
                 return index
