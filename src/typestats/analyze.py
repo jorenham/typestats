@@ -447,7 +447,8 @@ class Property:
 class Symbol:
     name: str
     type_: TypeForm
-    line: int | None = None
+    line_start: int | None = None
+    line_end: int | None = None
 
     @override
     def __str__(self) -> str:
@@ -485,7 +486,13 @@ class Class:
         return type(self)(
             self.name,
             tuple(
-                Symbol(m.name, m.type_.to_unknown(), line=m.line) for m in self.members
+                Symbol(
+                    m.name,
+                    m.type_.to_unknown(),
+                    line_start=m.line_start,
+                    line_end=m.line_end,
+                )
+                for m in self.members
             ),
             is_protocol=self.is_protocol,
         )
@@ -692,7 +699,8 @@ class _ClassStackItem:
     is_protocol: bool
     is_schema: bool
     symbol_index: int  # index into _SymbolVisitor.symbols where the Class symbol lives
-    line: int | None
+    line_start: int | None
+    line_end: int | None
     members: list[Symbol]
     member_names: set[str]  # short attr names (without class prefix) for dedup
     base_names: tuple[str, ...]  # resolved FQNs of base classes
@@ -739,7 +747,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     _property_map: dict[str, int]
     _added_functions: set[str]
     _class_attrs_typed: dict[str, frozenset[str]]
-    _overload_lines: dict[str, int | None]
+    _overload_lines: dict[str, tuple[int | None, int | None]]
 
     _package_name: Final[str]
 
@@ -772,13 +780,35 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         self._package_name = package_name
 
-    def _line_of(self, node: cst.CSTNode) -> int | None:
+    def _lines_of(self, node: cst.CSTNode) -> tuple[int | None, int | None]:
         try:
             metadata = self.get_metadata(PositionProvider, node)
         except KeyError:
-            return None
+            return None, None
         else:
-            return metadata.start.line
+            return metadata.start.line, metadata.end.line
+
+    def _sig_lines_of(
+        self,
+        node: cst.FunctionDef | cst.ClassDef,
+    ) -> tuple[int | None, int | None]:
+        """Return `(line_start, line_end)` covering only the signature."""
+        line_start, _ = self._lines_of(node)
+        body_start, _ = self._lines_of(node.body)
+        if line_start is None or body_start is None:
+            return line_start, None
+
+        # PositionProvider reports body_start as the first statement,
+        # skipping leading blank/comment lines in the body.
+        # Subtract those so line_end lands on the colon line, not a comment.
+        n_leading = 0
+        if isinstance(node.body, cst.IndentedBlock) and node.body.body:
+            first = node.body.body[0]
+            if hasattr(first, "leading_lines"):
+                n_leading = len(first.leading_lines)
+
+        line_end = max(body_start - n_leading - 1, line_start)
+        return line_start, line_end
 
     @property
     def exports_explicit(self) -> frozenset[str] | None:
@@ -916,7 +946,16 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if not names:
             return
 
-        new = [Symbol(self._symbol_name(n), ty, line=self._line_of(n)) for n in names]
+        new = [
+            Symbol(
+                self._symbol_name(n),
+                ty,
+                line_start=ls,
+                line_end=le,
+            )
+            for n in names
+            for ls, le in (self._lines_of(n),)
+        ]
 
         if cls := self._current_class:
             if not self._function_depth:
@@ -1158,6 +1197,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 )
                 is not None
             )
+            line_start, line_end = self._sig_lines_of(node)
             stack.append(
                 _ClassStackItem(
                     name,
@@ -1167,7 +1207,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     is_protocol=is_protocol,
                     is_schema=self._is_schema_class(node),
                     symbol_index=len(self.symbols),
-                    line=self._line_of(node),
+                    line_start=line_start,
+                    line_end=line_end,
                     members=[],
                     member_names=set(),
                     base_names=base_names,
@@ -1177,7 +1218,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 Symbol(
                     name,
                     Class(name, is_protocol=is_protocol),
-                    line=self._line_of(node),
+                    line_start=line_start,
+                    line_end=line_end,
                 ),
             )
 
@@ -1196,7 +1238,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     tuple(item.members),
                     is_protocol=item.is_protocol,
                 ),
-                line=item.line,
+                line_start=item.line_start,
+                line_end=item.line_end,
             )
             # Record typed attrs for inheritance lookups by subclasses.
             typed = {
@@ -1260,13 +1303,17 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     def _add_property(self, node: cst.FunctionDef, name: str, sig: Overload) -> None:
         """Create a new `Property` with *sig* as its `fget`."""
         self._property_map[name] = len(self.symbols)
-        line = self._line_of(node)
+        line_start, line_end = self._sig_lines_of(node)
 
         prop = Property(name, fget=sig)
-        self.symbols.append(Symbol(name, prop, line=line))
+        self.symbols.append(
+            Symbol(name, prop, line_start=line_start, line_end=line_end)
+        )
 
         if (cls := self._current_class) and is_public_name(node.name.value):
-            cls.members.append(Symbol(name, prop, line=line))
+            cls.members.append(
+                Symbol(name, prop, line_start=line_start, line_end=line_end)
+            )
             cls.member_names.add(node.name.value)
         elif not self._current_class:
             self._defined_names.add(node.name.value)
@@ -1290,13 +1337,16 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         self.symbols[idx] = Symbol(
             prop_old.name,
             prop_new,
-            line=self.symbols[idx].line,
+            line_start=self.symbols[idx].line_start,
+            line_end=self.symbols[idx].line_end,
         )
 
         if cls := self._current_class:
             for i, m in enumerate(members := cls.members):
                 if m.type_ is prop_old:
-                    members[i] = Symbol(m.name, prop_new, line=m.line)
+                    members[i] = Symbol(
+                        m.name, prop_new, line_start=m.line_start, line_end=m.line_end
+                    )
                     break
 
     def _handle_function_def(self, node: cst.FunctionDef) -> None:
@@ -1317,7 +1367,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             self._overload_map[name].append(
                 self._callable_signature(node, skip_first=skip_first),
             )
-            self._overload_lines.setdefault(name, self._line_of(node))
+            self._overload_lines.setdefault(name, self._sig_lines_of(node))
         elif "property" in decorators or "cached_property" in decorators:
             sig = self._callable_signature(node, skip_first=skip_first)
             self._add_property(node, name, sig)
@@ -1332,11 +1382,18 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 overloads = (self._callable_signature(node, skip_first=skip_first),)
 
             func = Function(name, overloads)
-            line = self._overload_lines.pop(name, None) or self._line_of(node)
-            self.symbols.append(Symbol(name, func, line=line))
+            lines = self._overload_lines.pop(name, None)
+            if lines is None or lines[0] is None:
+                lines = self._sig_lines_of(node)
+            line_start, line_end = lines
+            self.symbols.append(
+                Symbol(name, func, line_start=line_start, line_end=line_end)
+            )
             self._added_functions.add(name)
             if cls and is_public_name(node.name.value):
-                cls.members.append(Symbol(name, func, line=line))
+                cls.members.append(
+                    Symbol(name, func, line_start=line_start, line_end=line_end)
+                )
                 cls.member_names.add(node.name.value)
 
         # Scan init-family methods for instance attributes (self.attr = ...)
@@ -1372,8 +1429,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
             full_name = f"{cls.name}.{attr_name}"
             if attr_name not in cls.member_names:
-                line = self._line_of(attr_node)
-                sym = Symbol(full_name, ty, line=line)
+                line_start, line_end = self._lines_of(attr_node)
+                sym = Symbol(full_name, ty, line_start=line_start, line_end=line_end)
                 cls.members.append(sym)
                 cls.member_names.add(attr_name)
                 self.symbols.append(sym)
@@ -1392,7 +1449,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 cls.members[i] = sym = Symbol(
                     full_name,
                     replacement,
-                    line=m.line,
+                    line_start=m.line_start,
+                    line_end=m.line_end,
                 )
                 for j, s in enumerate(self.symbols):
                     if s.name == full_name and s.type_ is IMPLICIT:
@@ -1410,12 +1468,14 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         symbols = self.symbols
         for name, overloads in self._overload_map.items():
             if name not in added_functions:
-                line = self._overload_lines.get(name)
+                lines = self._overload_lines.get(name, (None, None))
+                line_start, line_end = lines
                 symbols.append(
                     Symbol(
                         name,
                         Function(name, _nonempty_tuple(overloads)),
-                        line=line,
+                        line_start=line_start,
+                        line_end=line_end,
                     ),
                 )
 
@@ -1472,8 +1532,10 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             for name_node in _extract_names(target.target):
                 alias_name = self._symbol_name(name_node)
                 func = Function(alias_name, ref_func.overloads)
-                line = self._line_of(name_node)
-                symbol = Symbol(alias_name, func, line=line)
+                line_start, line_end = self._lines_of(name_node)
+                symbol = Symbol(
+                    alias_name, func, line_start=line_start, line_end=line_end
+                )
                 if is_public_name(name_node.value):
                     methods.append(symbol)
                     cls.member_names.add(name_node.value)

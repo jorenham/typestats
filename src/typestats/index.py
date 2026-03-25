@@ -17,6 +17,8 @@ from . import analyze
 from ._ruff import analyze_graph
 from ._type import StrPath, StrPaths
 
+type _SymbolEntry = tuple[anyio.Path, analyze.TypeForm, int | None, int | None]
+
 __all__ = (
     "PublicSymbols",
     "PyTyped",
@@ -395,7 +397,8 @@ def _unfold_any(
                     analyze.Symbol(
                         m.name,
                         _unfold_any(m.type_, import_map, mod, alias_targets),
-                        m.line,
+                        line_start=m.line_start,
+                        line_end=m.line_end,
                     )
                     for m in members
                 ),
@@ -494,8 +497,8 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         else top_level
     )
 
-    # Flat symbol table: fqn -> (path, type, line)
-    all_local: dict[str, tuple[anyio.Path, analyze.TypeForm, int | None]] = {}
+    # Flat symbol table: fqn -> (path, type, line_start, line_end)
+    all_local: dict[str, _SymbolEntry] = {}
     module_data: dict[str, dict[anyio.Path, analyze.ModuleSymbols]] = {}
     module_locals: dict[str, dict[str, str]] = {}  # mod -> {name: fqn}
     for mod, paths in module_paths.items():
@@ -516,14 +519,16 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
             )
             entries[path] = syms
 
-            syms_iter: Iterable[tuple[str, analyze.TypeForm, int | None]] = chain(
-                ((a.name, a.value, None) for a in syms.type_aliases),
-                ((s.name, s.type_, s.line) for s in syms.symbols),
+            syms_iter: Iterable[
+                tuple[str, analyze.TypeForm, int | None, int | None]
+            ] = chain(
+                ((a.name, a.value, None, None) for a in syms.type_aliases),
+                ((s.name, s.type_, s.line_start, s.line_end) for s in syms.symbols),
             )
-            for name, type_, line in syms_iter:
+            for name, type_, line_start, line_end in syms_iter:
                 if "." not in name:
                     fqn = f"{mod}.{name}"
-                    all_local.setdefault(fqn, (path, type_, line))
+                    all_local.setdefault(fqn, (path, type_, line_start, line_end))
                     local.setdefault(name, fqn)
 
         module_data[mod] = entries
@@ -552,7 +557,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                     alias_fqn = f"{mod}.{alias.name}"
                     alias_targets[alias_fqn] = _resolve_expr_name(value_name, imap, mod)
 
-    for fqn, (path, type_, line) in list(all_local.items()):
+    for fqn, (path, type_, line_start, line_end) in list(all_local.items()):
         if not isinstance(
             type_,
             analyze.Expr | analyze.Function | analyze.Property | analyze.Class,
@@ -563,7 +568,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
 
         type_new = _unfold_any(type_, import_maps.get(p2m, {}), p2m, alias_targets)
         if type_new is not type_:
-            all_local[fqn] = path, type_new, line
+            all_local[fqn] = path, type_new, line_start, line_end
 
     exports_cache: dict[str, dict[str, str]] = {}
 
@@ -645,7 +650,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
         exports_cache[mod] = result
         return result
 
-    public: dict[str, tuple[anyio.Path, analyze.TypeForm, int | None]] = {}
+    public: dict[str, _SymbolEntry] = {}
     for mod, entries in module_data.items():
         if not _is_public_module(mod):
             continue
@@ -658,26 +663,28 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
                     # keep submodule re-exports as EXTERNAL for merge input
                     public.setdefault(
                         f"{mod}.{name}",
-                        (first_path, analyze.EXTERNAL, None),
+                        (first_path, analyze.EXTERNAL, None, None),
                     )
                 continue
             if origin in all_local:
                 if trace_origins:
                     public.setdefault(origin, all_local[origin])
                 else:
-                    origin_path, type_, line = all_local[origin]
-                    public.setdefault(f"{mod}.{name}", (origin_path, type_, line))
+                    origin_path, type_, ls, le = all_local[origin]
+                    public.setdefault(f"{mod}.{name}", (origin_path, type_, ls, le))
             else:
                 type_ = (
                     analyze.EXTERNAL
                     if origin.split(".", 1)[0] not in in_scope
                     else analyze.UNTYPED
                 )
-                public.setdefault(f"{mod}.{name}", (first_path, type_, None))
+                public.setdefault(f"{mod}.{name}", (first_path, type_, None, None))
 
     result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
-    for fqn, (path, type_, line) in public.items():
-        result[path].append(analyze.Symbol(fqn, type_, line))
+    for fqn, (path, type_, line_start, line_end) in public.items():
+        result[path].append(
+            analyze.Symbol(fqn, type_, line_start=line_start, line_end=line_end),
+        )
 
     type_ignores: dict[anyio.Path, tuple[analyze.IgnoreComment, ...]] = {}
     for entries in module_data.values():
@@ -725,11 +732,11 @@ def merge_stubs_overlay(
     original types (the type-checker falls back to the `.py`).
     """
 
-    stubs_flat: dict[str, tuple[anyio.Path, analyze.TypeForm, int | None]] = {}
+    stubs_flat: dict[str, _SymbolEntry] = {}
     stubs_mod_path: dict[str, anyio.Path] = {}
     for path, syms in stubs.items():
         for s in syms:
-            stubs_flat.setdefault(s.name, (path, s.type_, s.line))
+            stubs_flat.setdefault(s.name, (path, s.type_, s.line_start, s.line_end))
             stubs_mod_path.setdefault(s.name.rsplit(".", 1)[0], path)
 
     stubs_modules = frozenset(stubs_mod_path)
@@ -744,10 +751,12 @@ def merge_stubs_overlay(
                     sympath, ty = stubs_mod_path[mod], sym.type_.to_unknown()
                 else:
                     sympath, ty = path, sym.type_
-                merged[sym.name] = sympath, ty, sym.line
+                merged[sym.name] = sympath, ty, sym.line_start, sym.line_end
 
     result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
-    for fqn, (path, type_, line) in merged.items():
-        result[path].append(analyze.Symbol(fqn, type_, line))
+    for fqn, (path, type_, line_start, line_end) in merged.items():
+        result[path].append(
+            analyze.Symbol(fqn, type_, line_start=line_start, line_end=line_end),
+        )
 
     return dict(result)

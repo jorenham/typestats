@@ -2616,8 +2616,8 @@ class TestSymbolLineNumbers:
         y = 2
         """)
         syms = self._syms(src)
-        assert syms["x"].line == 1
-        assert syms["y"].line == 2
+        assert syms["x"].line_start == 1
+        assert syms["y"].line_start == 2
 
     def test_function_line(self) -> None:
         src = textwrap.dedent("""\
@@ -2628,8 +2628,34 @@ class TestSymbolLineNumbers:
             pass
         """)
         syms = self._syms(src)
-        assert syms["foo"].line == 1
-        assert syms["bar"].line == 4
+        assert syms["foo"].line_start == 1
+        assert syms["foo"].line_end == 1
+        assert syms["bar"].line_start == 4
+        assert syms["bar"].line_end == 4
+
+    def test_function_line_end_excludes_body_comments(self) -> None:
+        src = textwrap.dedent("""\
+        def foo():
+            # comment
+            pass
+        """)
+        syms = self._syms(src)
+        assert syms["foo"].line_start == 1
+        assert syms["foo"].line_end == 1
+
+    def test_function_multiline_sig_excludes_body_comments(self) -> None:
+        src = textwrap.dedent("""\
+        def bar(
+            x,
+            y,
+        ):
+            # comment 1
+            # comment 2
+            pass
+        """)
+        syms = self._syms(src)
+        assert syms["bar"].line_start == 1
+        assert syms["bar"].line_end == 4
 
     def test_class_line(self) -> None:
         src = textwrap.dedent("""\
@@ -2640,8 +2666,8 @@ class TestSymbolLineNumbers:
             y = 1
         """)
         syms = self._syms(src)
-        assert syms["A"].line == 1
-        assert syms["B"].line == 4
+        assert syms["A"].line_start == 1
+        assert syms["B"].line_start == 4
 
     def test_overload_uses_first_line(self) -> None:
         src = textwrap.dedent("""\
@@ -2655,7 +2681,7 @@ class TestSymbolLineNumbers:
             return x
         """)
         syms = self._syms(src)
-        assert syms["f"].line == 4
+        assert syms["f"].line_start == 4
 
     def test_class_member_lines(self) -> None:
         src = textwrap.dedent("""\
@@ -2665,8 +2691,8 @@ class TestSymbolLineNumbers:
                 pass
         """)
         members = self._members(src)
-        assert members["C.x"].line == 2
-        assert members["C.method"].line == 3
+        assert members["C.x"].line_start == 2
+        assert members["C.method"].line_start == 3
 
     def test_instance_attr_line(self) -> None:
         src = textwrap.dedent("""\
@@ -2676,5 +2702,5 @@ class TestSymbolLineNumbers:
                 self.y = 2
         """)
         members = self._members(src)
-        assert members["C.x"].line == 3
-        assert members["C.y"].line == 4
+        assert members["C.x"].line_start == 3
+        assert members["C.y"].line_start == 4
