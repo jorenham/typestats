@@ -926,6 +926,79 @@ class TestClassMethodAlias:
         assert all(m.type_.is_typed for m in cls.members)
 
 
+class TestClassDescriptorAlias:
+    def test_staticmethod_call(self) -> None:
+        src = textwrap.dedent("""
+        class Foo:
+            def _helper(self, x: int) -> bool: ...
+            helper = staticmethod(_helper)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+
+        assert isinstance(symbols["Foo.helper"], Function)
+        assert symbols["Foo"].is_typed
+
+    def test_classmethod_call(self) -> None:
+        src = textwrap.dedent("""
+        class Foo:
+            def _from_str(cls, s: str) -> None: ...
+            from_str = classmethod(_from_str)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+
+        assert isinstance(symbols["Foo.from_str"], Function)
+        assert symbols["Foo"].is_typed
+
+    def test_staticmethod_adds_to_class_members(self) -> None:
+        src = textwrap.dedent("""
+        class Foo:
+            def _helper(self, x: int) -> bool: ...
+            helper = staticmethod(_helper)
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["Foo"]
+
+        assert isinstance(cls, Class)
+        member_names = {m.name for m in cls.members}
+        assert "Foo.helper" in member_names
+        assert all(m.type_.is_typed for m in cls.members)
+
+    def test_staticmethod_overloaded(self) -> None:
+        src = textwrap.dedent("""
+        from typing import overload
+
+        class Foo:
+            @overload
+            def _helper(self, x: int) -> int: ...
+            @overload
+            def _helper(self, x: str) -> str: ...
+            def _helper(self, x: int | str) -> int | str: ...
+            helper = staticmethod(_helper)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        helper = symbols["Foo.helper"]
+        original = symbols["Foo._helper"]
+
+        assert isinstance(helper, Function)
+        assert isinstance(original, Function)
+        assert len(helper.overloads) == len(original.overloads)
+
+    def test_non_method_ref_falls_through(self) -> None:
+        src = textwrap.dedent("""
+        class Foo:
+            x: int = 1
+            helper = staticmethod(x)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+
+        # x is not a Function, so staticmethod(x) falls through to UNTYPED
+        assert not isinstance(symbols["Foo.helper"], Function)
+
+
 class TestIsTyped:
     def test_markers(self) -> None:
         assert not UNTYPED.is_typed

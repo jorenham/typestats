@@ -631,6 +631,7 @@ def is_public_name(name: str) -> bool:
 
 
 _INIT_METHODS: Final = frozenset({"__init__", "__new__", "__post_init__"})
+_DESCRIPTOR_WRAPPERS: Final = frozenset({"staticmethod", "classmethod"})
 
 
 def _get_first_param_name(node: cst.FunctionDef) -> str | None:
@@ -1508,13 +1509,31 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             self._add_symbols(_extract_names(target), ty)
 
     def _try_resolve_method_alias(self, node: cst.Assign) -> bool:
-        if not (cls := self._current_class) or not isinstance(node.value, cst.Name):
+        if not (cls := self._current_class):
+            return False
+
+        # Plain alias: `__rand__ = __and__`
+        # Descriptor wrapper: `helper = staticmethod(_helper)`
+        value = node.value
+        if isinstance(value, cst.Name):
+            ref_name = value.value
+        elif (
+            isinstance(value, cst.Call)
+            and isinstance(value.func, cst.Name)
+            and value.func.value in _DESCRIPTOR_WRAPPERS
+            and len(value.args) == 1
+        ):
+            arg = value.args[0]
+            if arg.keyword or not isinstance(arg.value, cst.Name):
+                return False
+            ref_name = arg.value.value
+        else:
             return False
 
         methods = cls.members
         symbols = self.symbols
 
-        ref = f"{cls.name}.{node.value.value}"
+        ref = f"{cls.name}.{ref_name}"
 
         if overloads := self._overload_map.get(ref):
             ref_func = Function(ref, _nonempty_tuple(overloads))
