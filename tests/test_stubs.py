@@ -7,17 +7,18 @@ from typestats.stubs import find_stubs_dir, stubs_base_name
 
 
 class TestStubsBaseName:
-    def test_third_party(self) -> None:
-        assert stubs_base_name("boto3-stubs") == "boto3"
-
-    def test_typeshed(self) -> None:
-        assert stubs_base_name("types-requests") == "requests"
-
-    def test_no_match(self) -> None:
-        assert stubs_base_name("boto3-stubs-lite") is None
-
-    def test_plain_package(self) -> None:
-        assert stubs_base_name("numpy") is None
+    @pytest.mark.parametrize(
+        ("project", "expected"),
+        [
+            ("boto3-stubs", "boto3"),
+            ("types-requests", "requests"),
+            ("boto3-stubs-lite", None),
+            ("numpy", None),
+        ],
+        ids=["third_party", "typeshed", "no_match", "plain"],
+    )
+    def test_base_name(self, project: str, expected: str | None) -> None:
+        assert stubs_base_name(project) == expected
 
 
 class TestFindStubsDir:

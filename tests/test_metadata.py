@@ -10,7 +10,6 @@ class TestReadPkgMetadata:
     pytestmark = pytest.mark.anyio
 
     async def test_sdist_pkg_info(self, tmp_path: Path) -> None:
-        """PKG-INFO at root is found and parsed."""
         (tmp_path / "PKG-INFO").write_text(
             textwrap.dedent("""\
                 Metadata-Version: 2.4
@@ -53,7 +52,6 @@ class TestReadPkgMetadata:
         assert "Description" not in result
 
     async def test_wheel_dist_info_metadata(self, tmp_path: Path) -> None:
-        """*.dist-info/METADATA in wheel layout is found and parsed."""
         dist_info = tmp_path / "my_package-1.0.0.dist-info"
         dist_info.mkdir()
         (dist_info / "METADATA").write_text(
@@ -71,12 +69,10 @@ class TestReadPkgMetadata:
         assert result["Version"] == ["1.0.0"]
 
     async def test_no_metadata_returns_none(self, tmp_path: Path) -> None:
-        """Empty directory -> None."""
         result = await read_pkg_metadata(tmp_path)
         assert result is None
 
     async def test_description_header_excluded(self, tmp_path: Path) -> None:
-        """The Description header (carrying readme text) is excluded."""
         (tmp_path / "PKG-INFO").write_text(
             textwrap.dedent("""\
                 Metadata-Version: 2.4
@@ -92,7 +88,7 @@ class TestReadPkgMetadata:
         assert result["Name"] == ["pkg"]
 
     async def test_sdist_preferred_over_wheel(self, tmp_path: Path) -> None:
-        """When both PKG-INFO and .dist-info/METADATA exist, PKG-INFO wins."""
+        """PKG-INFO wins over .dist-info/METADATA."""
         (tmp_path / "PKG-INFO").write_text(
             textwrap.dedent("""\
                 Metadata-Version: 2.4
@@ -115,7 +111,6 @@ class TestReadPkgMetadata:
         assert result["Name"] == ["from-sdist"]
 
     async def test_project_urls(self, tmp_path: Path) -> None:
-        """Project-URL is a common multi-valued header; verify it works."""
         (tmp_path / "PKG-INFO").write_text(
             textwrap.dedent("""\
                 Metadata-Version: 2.4
@@ -136,7 +131,7 @@ class TestReadPkgMetadata:
         ]
 
     async def test_dist_name_selects_correct_dist_info(self, tmp_path: Path) -> None:
-        """When multiple .dist-info dirs exist, `dist_name` picks the right one."""
+        """Multiple .dist-info dirs: `dist_name` picks the right one."""
         wrong = tmp_path / "other_pkg-2.0.0.dist-info"
         wrong.mkdir()
         (wrong / "METADATA").write_text(
@@ -162,7 +157,6 @@ class TestReadPkgMetadata:
         assert result["Version"] == ["1.0.0"]
 
     async def test_dist_name_no_match_returns_none(self, tmp_path: Path) -> None:
-        """When `dist_name` does not match any .dist-info, return None."""
         wrong = tmp_path / "other_pkg-1.0.0.dist-info"
         wrong.mkdir()
         (wrong / "METADATA").write_text(
@@ -177,7 +171,7 @@ class TestReadPkgMetadata:
         assert result is None
 
     async def test_dist_name_normalization(self, tmp_path: Path) -> None:
-        """dist_name matching normalizes hyphens, underscores, and case."""
+        """Normalizes hyphens, underscores, and case."""
         dist_info = tmp_path / "Scipy_Stubs-1.0.0.dist-info"
         dist_info.mkdir()
         (dist_info / "METADATA").write_text(

@@ -158,7 +158,6 @@ class TestMypyConfig:
         assert config["strict"] == "True"
 
     async def test_nearest_config_wins(self, tmp_path: Path) -> None:
-        """A config in a closer ancestor should win over one further up."""
         (tmp_path / "mypy.ini").write_text("[mypy]\nstrict = False\n")
         child = tmp_path / "sub"
         child.mkdir()
@@ -174,7 +173,6 @@ class TestMypyConfig:
         self,
         tmp_path: Path,
     ) -> None:
-        """A mypy.ini without a [mypy] section should be skipped."""
         (tmp_path / "mypy.ini").write_text("[other]\nfoo = bar\n")
         assert await mypy_config(tmp_path) is None
 
@@ -218,7 +216,6 @@ class TestPyrightConfig:
         assert config["reportMissingImports"] == "error"
 
     async def test_pyrightconfig_json_non_dict_skipped(self, tmp_path: Path) -> None:
-        """A pyrightconfig.json that contains a non-dict is skipped."""
         (tmp_path / "pyrightconfig.json").write_text('"just a string"')
         assert await pyright_config(tmp_path) is None
 
@@ -266,7 +263,6 @@ class TestPyrightConfig:
         assert config["typeCheckingMode"] == "strict"
 
     async def test_nearest_config_wins(self, tmp_path: Path) -> None:
-        """A config in a closer ancestor should win over one further up."""
         (tmp_path / "pyrightconfig.json").write_text(
             '{"typeCheckingMode": "basic"}',
         )
@@ -337,7 +333,6 @@ class TestPyreflyConfig:
         assert config["errors"]["bad-return"] is False
 
     async def test_pyrefly_toml_empty_skipped(self, tmp_path: Path) -> None:
-        """An empty pyrefly.toml should be skipped (returns None)."""
         (tmp_path / "pyrefly.toml").write_text("")
         assert await pyrefly_config(tmp_path) is None
 
@@ -390,7 +385,6 @@ class TestPyreflyConfig:
         assert config["python-version"] == "3.12"
 
     async def test_nearest_config_wins(self, tmp_path: Path) -> None:
-        """A config in a closer ancestor should win over one further up."""
         (tmp_path / "pyrefly.toml").write_text('python-version = "3.11"\n')
         child = tmp_path / "sub"
         child.mkdir()
@@ -435,7 +429,6 @@ class TestTyConfig:
         assert config["rules"]["index-out-of-bounds"] == "ignore"
 
     async def test_ty_toml_empty_skipped(self, tmp_path: Path) -> None:
-        """An empty ty.toml should be skipped (returns None)."""
         (tmp_path / "ty.toml").write_text("")
         assert await ty_config(tmp_path) is None
 
@@ -456,7 +449,6 @@ class TestTyConfig:
         assert config["rules"]["index-out-of-bounds"] == "ignore"
 
     async def test_pyproject_without_tool_ty_skipped(self, tmp_path: Path) -> None:
-        """A pyproject.toml without [tool.ty] should be skipped."""
         (tmp_path / "pyproject.toml").write_text("[tool.other]\nfoo = 'bar'\n")
         assert await ty_config(tmp_path) is None
 
@@ -480,7 +472,6 @@ class TestTyConfig:
         assert config["python-version"] == "3.12"
 
     async def test_nearest_config_wins(self, tmp_path: Path) -> None:
-        """A config in a closer ancestor should win over one further up."""
         (tmp_path / "ty.toml").write_text('python-version = "3.11"\n')
         child = tmp_path / "sub"
         child.mkdir()
@@ -529,7 +520,6 @@ class TestZubanConfig:
         assert await zuban_config(tmp_path) is None
 
     async def test_pyproject_without_tool_zuban_skipped(self, tmp_path: Path) -> None:
-        """A pyproject.toml without [tool.zuban] should be skipped."""
         (tmp_path / "pyproject.toml").write_text("[tool.mypy]\nstrict = true\n")
         assert await zuban_config(tmp_path) is None
 
@@ -583,7 +573,6 @@ class TestZubanConfig:
         assert config["strict"] is True
 
     async def test_nearest_config_wins(self, tmp_path: Path) -> None:
-        """A config in a closer ancestor should win over one further up."""
         (tmp_path / "pyproject.toml").write_text("[tool.zuban]\nstrict = false\n")
         child = tmp_path / "sub"
         child.mkdir()

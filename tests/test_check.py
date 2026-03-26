@@ -1,4 +1,4 @@
-"""Tests for the `typestats check` module."""
+"""Tests for `typestats.check`."""
 
 import importlib.metadata
 import importlib.util
@@ -39,6 +39,8 @@ _PKG_DIR = _FIXTURES / "pkg"
 _from_path_cache: dict[str, PackageReport] = {}
 _original_from_path = PackageReport.from_path
 
+type CaptureStr = pytest.CaptureFixture[str]
+
 
 @pytest.fixture(autouse=True, scope="module")
 def _cache_expensive_calls() -> Any:
@@ -70,22 +72,22 @@ def _cache_expensive_calls() -> Any:
 
 
 class TestIsPackageDirName:
-    def test_regular_identifier(self) -> None:
-        assert _is_package_dir_name("scipy") is True
-
-    def test_stubs_directory(self) -> None:
-        assert _is_package_dir_name("scipy-stubs") is True
-
-    def test_dist_info(self) -> None:
-        assert _is_package_dir_name("scipy-1.0.dist-info") is False
-
-    def test_not_identifier(self) -> None:
-        assert _is_package_dir_name("not-a-package") is False
+    @pytest.mark.parametrize(
+        ("name", "expected"),
+        [
+            ("scipy", True),
+            ("scipy-stubs", True),
+            ("scipy-1.0.dist-info", False),
+            ("not-a-package", False),
+        ],
+        ids=["identifier", "stubs", "dist_info", "non_identifier"],
+    )
+    def test_classification(self, name: str, expected: bool) -> None:
+        assert _is_package_dir_name(name) is expected
 
 
 class TestTopLevelNames:
     def test_single_file_module(self) -> None:
-        """Detect top-level .py files from dist metadata."""
         dist = importlib.metadata.distribution("pytest")
         top = _top_level_names(dist)
         assert "pytest" not in top.modules
@@ -169,10 +171,7 @@ class TestSourcePaths:
 
         dist = self._mock_dist(
             "mypkg",
-            files=[
-                PurePosixPath("mypkg/__init__.py"),
-                PurePosixPath("mypkg/core.py"),
-            ],
+            files=[PurePosixPath("mypkg/__init__.py"), PurePosixPath("mypkg/core.py")],
         )
 
         result = await _source_paths(dist, anyio.Path(tmp_path))
@@ -290,10 +289,7 @@ class TestCheckNotInstalled:
 class TestResolveStubs:
     pytestmark = pytest.mark.anyio
 
-    async def test_stubs_base_not_installed(
-        self,
-        monkeypatch: pytest.MonkeyPatch,
-    ) -> None:
+    async def test_stubs_base_missing(self, monkeypatch: pytest.MonkeyPatch) -> None:
         stubs_dist = MagicMock(spec=importlib.metadata.Distribution)
         stubs_dist.metadata = {"Version": "1.0", "Name": "foo-stubs"}
         stubs_dist.locate_file.return_value = "/fake/sp"
@@ -336,17 +332,14 @@ class TestResolveStubs:
 class TestCheckInstalled:
     pytestmark = pytest.mark.anyio
 
-    async def test_check_pkg(self, capsys: pytest.CaptureFixture[str]) -> None:
+    async def test_check_pkg(self, capsys: CaptureStr) -> None:
         await check("pkg")
         out = capsys.readouterr().out.strip()
         m = _OUTPUT_RE.search(out)
         assert m is not None, f"unexpected output: {out!r}"
         assert int(m["typable"]) > 0
 
-    async def test_report_writes_json_to_stdout(
-        self,
-        capsys: pytest.CaptureFixture[str],
-    ) -> None:
+    async def test_report_writes_json_to_stdout(self, capsys: CaptureStr) -> None:
         await report("pkg")
         out = capsys.readouterr().out
 
@@ -359,11 +352,7 @@ class TestCheckInstalled:
 class TestFailUnderFrom:
     pytestmark = pytest.mark.anyio
 
-    async def test_pass_when_coverage_meets_baseline(
-        self,
-        tmp_path: Path,
-        capsys: pytest.CaptureFixture[str],
-    ) -> None:
+    async def test_pass_above(self, tmp_path: Path, capsys: CaptureStr) -> None:
         await report("pkg")
         report_json = capsys.readouterr().out
         report_path = anyio.Path(tmp_path / "base.json")
@@ -373,7 +362,7 @@ class TestFailUnderFrom:
         out = capsys.readouterr().out
         assert "OK" in out
 
-    async def test_fail_when_coverage_below_baseline(self, tmp_path: Path) -> None:
+    async def test_fail_under(self, tmp_path: Path) -> None:
         # Baseline with >100% coverage -- impossible to meet.
         fake_report = {"n_typed": 200, "n_any": 0, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
@@ -382,11 +371,7 @@ class TestFailUnderFrom:
         with pytest.raises(SystemExit):
             await check("pkg", fail_under_from=report_path)
 
-    async def test_strict_mode_uses_strict_coverage(
-        self,
-        tmp_path: Path,
-        capsys: pytest.CaptureFixture[str],
-    ) -> None:
+    async def test_strict_coverage(self, tmp_path: Path, capsys: CaptureStr) -> None:
         # Non-strict = (1+1)/100 = 2%; strict = 1/100 = 1%.
         fake_report = {"n_typed": 1, "n_any": 1, "n_typable": 100}
         report_path = anyio.Path(tmp_path / "base.json")
@@ -410,10 +395,7 @@ class TestFailUnderFrom:
 class TestUnannotatedListing:
     pytestmark = pytest.mark.anyio
 
-    async def test_check_lists_unannotated(
-        self,
-        capsys: pytest.CaptureFixture[str],
-    ) -> None:
+    async def test_lists_untyped(self, capsys: CaptureStr) -> None:
         await check("pkg")
         out = capsys.readouterr().out
 
@@ -424,15 +406,12 @@ class TestUnannotatedListing:
         if n_untyped > 0:
             assert "untyped (" in out
             lines_after = out.split("untyped (")[1].splitlines()[1:]
-            unannotated_lines = [line for line in lines_after if line.strip()]
-            assert len(unannotated_lines) > 0
+            untyped_lines = [line for line in lines_after if line.strip()]
+            assert len(untyped_lines) > 0
         else:
             assert "untyped (" not in out
 
-    async def test_check_strict_lists_any_as_unannotated(
-        self,
-        capsys: pytest.CaptureFixture[str],
-    ) -> None:
+    async def test_strict_lists_any_as_untyped(self, capsys: CaptureStr) -> None:
         await check("pkg", strict=True)
         out = capsys.readouterr().out
         m = _OUTPUT_RE.search(out)
@@ -445,7 +424,6 @@ class TestUnannotatedListing:
             assert "untyped (" in out
 
     async def test_untyped_symbols_entries(self) -> None:
-        """The helper returns entries with valid path, name, and line."""
         pkg_report = await PackageReport.from_path(
             "pkg",
             anyio.Path(_FIXTURES),
@@ -460,7 +438,7 @@ class TestUnannotatedListing:
             assert entry.line_start is None or entry.line_start > 0
 
     async def test_untyped_symbols_strict_superset(self) -> None:
-        """Strict mode returns at least as many symbols as non-strict."""
+        """Strict is a superset of non-strict."""
         pkg_report = await PackageReport.from_path(
             "pkg",
             anyio.Path(_FIXTURES),
