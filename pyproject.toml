@@ -1,5 +1,5 @@
 [build-system]
-requires = ["uv_build>=0.10,<0.11"]
+requires = ["uv_build>=0.10,<0.12"]
 build-backend = "uv_build"
 
 [project]
@@ -28,11 +28,11 @@ classifiers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-  "tyro>=1.0.10", # like argparse but Pythonic
-  "anyio>=4.13.0,<5", # like asyncio but with a decent API (asyncio is a mess)
-  "libcst>=1.8.6,<2", # like ast but preservers comments/formatting and other goodies
-  "pydantic>=2.12.5",
-  "ruff>=0.15.7",
+  "tyro>=1.0,<2",
+  "anyio>=4.11,<5",
+  "libcst>=1.7,<2",
+  "pydantic>=2.11,<3",
+  "ruff>=0.14,<1",
 ]
 
 [project.scripts]
@@ -43,7 +43,6 @@ site = [
   "typestats-site",
 ]
 test = [
-  "typestats",
   "pytest>=9.0.2",
   "pytest-httpx>=0.36.0,<1",
 ]
@@ -53,7 +52,6 @@ dev = [
   "dprint-py>=0.52.0.0",
   "pyrefly==0.58.0",
   "uvloop>=0.22.1,<1; sys_platform != 'win32'",
-  "watchfiles>=1.1.1,<2",
 ]
 
 [tool.uv.sources]
