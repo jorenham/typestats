@@ -938,12 +938,16 @@ class TestClassDescriptorAlias:
 
         helper = symbols["Foo.helper"]
         assert isinstance(helper, Function)
-        # staticmethod does not auto-bind; `self` + `x` are both real params
-        assert helper.type_counts.typable == 3  # self(untyped) + x + return
-        assert symbols["Foo"].is_typed
+        # `self` + `x` are both real params (no auto-bind)
+        assert helper.type_counts.typable == 3
+
+        cls = symbols["Foo"]
+        assert isinstance(cls, Class)
+        assert cls.is_typed
+        assert "Foo.helper" in {m.name for m in cls.members}
 
     def test_staticmethod_no_self(self) -> None:
-        """Stubs pattern: method defined without `self`, wrapped as staticmethod."""
+        """Method without `self`, wrapped as staticmethod."""
         src = textwrap.dedent("""
         class Foo:
             def _helper(x: int) -> bool: ...
@@ -954,8 +958,8 @@ class TestClassDescriptorAlias:
 
         helper = symbols["Foo.helper"]
         assert isinstance(helper, Function)
-        # The `x` parameter must not be dropped by skip_first
-        assert helper.type_counts.typable == 2  # x + return
+        # `x` must not be dropped by skip_first
+        assert helper.type_counts.typable == 2
         assert helper.type_counts.typed == 2
 
     def test_classmethod_call(self) -> None:
@@ -969,20 +973,6 @@ class TestClassDescriptorAlias:
 
         assert isinstance(symbols["Foo.from_str"], Function)
         assert symbols["Foo"].is_typed
-
-    def test_staticmethod_adds_to_class_members(self) -> None:
-        src = textwrap.dedent("""
-        class Foo:
-            def _helper(self, x: int) -> bool: ...
-            helper = staticmethod(_helper)
-        """)
-        module = collect_symbols(src)
-        cls = {s.name: s.type_ for s in module.symbols}["Foo"]
-
-        assert isinstance(cls, Class)
-        member_names = {m.name for m in cls.members}
-        assert "Foo.helper" in member_names
-        assert all(m.type_.is_typed for m in cls.members)
 
     def test_staticmethod_overloaded(self) -> None:
         src = textwrap.dedent("""
@@ -1014,11 +1004,11 @@ class TestClassDescriptorAlias:
         module = collect_symbols(src)
         symbols = {s.name: s.type_ for s in module.symbols}
 
-        # x is not a Function, so staticmethod(x) falls through to UNTYPED
+        # x is not a Function; falls through to UNTYPED
         assert not isinstance(symbols["Foo.helper"], Function)
 
     def test_same_name_rebind(self) -> None:
-        """Rebinding with same name must replace, not duplicate."""
+        """Same-name rebind replaces, not duplicates."""
         src = textwrap.dedent("""
         class Foo:
             def helper(self, x: int) -> bool: ...
@@ -1032,8 +1022,27 @@ class TestClassDescriptorAlias:
         helper_members = [m for m in cls.members if m.name == "Foo.helper"]
         assert len(helper_members) == 1
         assert isinstance(helper_members[0].type_, Function)
-        # Unskipped: self + x + return
-        assert helper_members[0].type_.type_counts.typable == 3
+        assert helper_members[0].type_.type_counts.typable == 3  # self + x + return
+
+    @pytest.mark.parametrize("wrapper", ["staticmethod", "classmethod"])
+    def test_stub_marker_underscore(self, wrapper: str) -> None:
+        """`_ = wrapper(helper)` must not create `Foo._`."""
+        src = textwrap.dedent(f"""
+        class Foo:
+            def helper(self, x: int) -> bool: ...
+            _ = {wrapper}(helper)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+
+        assert isinstance(cls, Class)
+        assert "Foo._" not in symbols
+        assert all(m.name != "Foo._" for m in cls.members)
+
+        helper_members = [m for m in cls.members if m.name == "Foo.helper"]
+        assert len(helper_members) == 1
+        assert isinstance(helper_members[0].type_, Function)
 
 
 class TestIsTyped:

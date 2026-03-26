@@ -1263,6 +1263,11 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 typed |= self._class_attrs_typed.get(base, frozenset())
             self._class_attrs_typed[item.name] = frozenset(typed)
 
+            # Clear per-class unskipped-overload cache.
+            prefix = f"{item.name}."
+            for key in [k for k in self._unskipped_overloads if k.startswith(prefix)]:
+                del self._unskipped_overloads[key]
+
     @override
     def visit_FunctionDef(self, node: cst.FunctionDef) -> bool:
         if self._function_depth == 0:
@@ -1445,7 +1450,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         skip_first: bool,
         had_overloads: bool,
     ) -> None:
-        """Store full (unskipped) overloads for later `staticmethod()` resolution."""
+        """Store unskipped overloads for `staticmethod()` resolution."""
         if not skip_first:
             return
         if raw_list := self._raw_overload_map.pop(name, None):
@@ -1563,11 +1568,12 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if not (cls := self._current_class):
             return False
 
-        ref_name, is_static = self._unwrap_descriptor(node.value)
+        ref_name, wrapper = self._unwrap_descriptor(node.value)
         if ref_name is None:
             return False
 
         ref = f"{cls.name}.{ref_name}"
+        is_static = wrapper == "staticmethod"
 
         ref_func = self._resolve_unskipped(ref) if is_static else None
         if ref_func is None:
@@ -1577,7 +1583,12 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         for target in node.targets:
             for name_node in _extract_names(target.target):
-                self._add_method_alias(cls, name_node, ref_func.overloads)
+                if name_node.value == "_" and wrapper is not None:
+                    # Stub marker: `_ = staticmethod(f)`
+                    if is_static:
+                        self._update_method_as_static(cls, ref, ref_func)
+                else:
+                    self._add_method_alias(cls, name_node, ref_func.overloads)
 
         return True
 
@@ -1602,10 +1613,10 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 cls.member_names.add(short)
 
     @staticmethod
-    def _unwrap_descriptor(value: cst.BaseExpression) -> tuple[str | None, bool]:
-        """Extract the reference name and whether it is a `staticmethod` wrapper."""
+    def _unwrap_descriptor(value: cst.BaseExpression) -> tuple[str | None, str | None]:
+        """Extract the reference name and descriptor wrapper (if any)."""
         if isinstance(value, cst.Name):
-            return value.value, False
+            return value.value, None
         if (
             isinstance(value, cst.Call)
             and isinstance(value.func, cst.Name)
@@ -1614,11 +1625,30 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         ):
             arg = value.args[0]
             if not arg.keyword and isinstance(arg.value, cst.Name):
-                return arg.value.value, value.func.value == "staticmethod"
-        return None, False
+                return arg.value.value, value.func.value
+        return None, None
+
+    def _update_method_as_static(
+        self,
+        cls: _ClassStackItem,
+        ref: str,
+        ref_func: Function,
+    ) -> None:
+        """Replace the referenced method with unskipped overloads."""
+        func = Function(ref, ref_func.overloads)
+        for items in (self.symbols, cls.members):
+            for i, s in enumerate(items):
+                if s.name == ref:
+                    items[i] = Symbol(
+                        ref,
+                        func,
+                        line_start=s.line_start,
+                        line_end=s.line_end,
+                    )
+                    break
 
     def _resolve_unskipped(self, ref: str) -> Function | None:
-        """Resolve unskipped overloads for `staticmethod()` wrappers."""
+        """Look up unskipped overloads for `staticmethod()` wrappers."""
         if raw := self._raw_overload_map.get(ref):
             return Function(ref, _nonempty_tuple(raw))
         if raw_tup := self._unskipped_overloads.get(ref):
