@@ -84,6 +84,7 @@ async def _load_all_version_reports(
             try:
                 reports.append(PackageReport.model_validate_json(raws[j]))
             except ValidationError as e:
+                e.add_note(f"Error validating report for {name} from {paths[j - i]}")
                 for err in e.errors(include_input=True):
                     e.add_note(err["msg"])
                 raise
