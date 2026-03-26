@@ -1044,6 +1044,26 @@ class TestClassDescriptorAlias:
         assert len(helper_members) == 1
         assert isinstance(helper_members[0].type_, Function)
 
+    def test_stub_marker_overload_only(self) -> None:
+        """Overload-only + `_ = staticmethod(f)` uses unskipped sig."""
+        src = textwrap.dedent("""
+        from typing import overload
+
+        class Foo:
+            @overload
+            def helper(self, x: int) -> int: ...
+            @overload
+            def helper(self, x: str) -> str: ...
+            _ = staticmethod(helper)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+
+        helper = symbols["Foo.helper"]
+        assert isinstance(helper, Function)
+        # Unskipped: self + x + return per overload
+        assert all(len(o.params) == 2 for o in helper.overloads)
+
 
 class TestIsTyped:
     def test_markers(self) -> None:

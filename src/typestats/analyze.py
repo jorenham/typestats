@@ -1250,7 +1250,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 line_start=item.line_start,
                 line_end=item.line_end,
             )
-            # Record typed attrs for inheritance lookups by subclasses.
+            # record typed attrs for inheritance lookups by subclasses
             typed = {
                 m.name.removeprefix(f"{item.name}.")
                 for m in item.members
@@ -1258,15 +1258,17 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 and m.type_ is not IMPLICIT
                 and m.type_ is not UNTYPED
             }
-            # Include typed attrs inherited from bases.
+            # include typed attrs inherited from bases
             for base in item.base_names:
                 typed |= self._class_attrs_typed.get(base, frozenset())
             self._class_attrs_typed[item.name] = frozenset(typed)
 
-            # Clear per-class unskipped-overload cache.
+            # clear per-class overload caches
             prefix = f"{item.name}."
             for key in [k for k in self._unskipped_overloads if k.startswith(prefix)]:
                 del self._unskipped_overloads[key]
+            for key in [k for k in self._raw_overload_map if k.startswith(prefix)]:
+                del self._raw_overload_map[key]
 
     @override
     def visit_FunctionDef(self, node: cst.FunctionDef) -> bool:
@@ -1636,16 +1638,17 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     ) -> None:
         """Replace the referenced method with unskipped overloads."""
         func = Function(ref, ref_func.overloads)
+        replaced = False
         for items in (self.symbols, cls.members):
             for i, s in enumerate(items):
                 if s.name == ref:
-                    items[i] = Symbol(
-                        ref,
-                        func,
-                        line_start=s.line_start,
-                        line_end=s.line_end,
-                    )
+                    items[i] = Symbol(ref, func, s.line_start, s.line_end)
+                    replaced = True
                     break
+
+        if not replaced and ref in self._overload_map:
+            # Overload-only: rewrite so leave_Module uses unskipped sig.
+            self._overload_map[ref] = list(ref_func.overloads)
 
     def _resolve_unskipped(self, ref: str) -> Function | None:
         """Look up unskipped overloads for `staticmethod()` wrappers."""
