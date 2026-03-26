@@ -13,6 +13,7 @@ import anyio
 import anyio.to_thread
 from jinja2 import ChoiceLoader, Environment, PackageLoader, Template
 from packaging.version import Version
+from pydantic import ValidationError
 
 from typestats._type import StrPath
 from typestats.projects import load_projects
@@ -52,7 +53,6 @@ async def _load_all_version_reports(
     projects_path: StrPath,
     /,
 ) -> dict[str, _PackageReports]:
-    """Load all version reports, keyed by project name, sorted oldest-first."""
     projects = load_projects(projects_path)
 
     per_project: list[tuple[str, list[anyio.Path]]] = []
@@ -79,9 +79,15 @@ async def _load_all_version_reports(
     result: dict[str, _PackageReports] = {}
     i = 0
     for name, paths in per_project:
-        result[name] = [
-            PackageReport.model_validate_json(raws[j]) for j in range(i, i + len(paths))
-        ]
+        reports: _PackageReports = []
+        for j in range(i, i + len(paths)):
+            try:
+                reports.append(PackageReport.model_validate_json(raws[j]))
+            except ValidationError as e:
+                for err in e.errors(include_input=True):
+                    e.add_note(err["msg"])
+                raise
+        result[name] = reports
         i += len(paths)
     return result
 
