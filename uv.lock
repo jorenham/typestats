@@ -633,7 +633,6 @@ dev = [
     { name = "typestats" },
     { name = "typestats-site" },
     { name = "uvloop", marker = "sys_platform != 'win32'" },
-    { name = "watchfiles" },
 ]
 site = [
     { name = "typestats-site" },
@@ -662,7 +661,6 @@ dev = [
     { name = "typestats" },
     { name = "typestats-site", editable = "packages/typestats-site" },
     { name = "uvloop", marker = "sys_platform != 'win32'", specifier = ">=0.22.1,<1" },
-    { name = "watchfiles", specifier = ">=1.1.1,<2" },
 ]
 site = [{ name = "typestats-site", editable = "packages/typestats-site" }]
 test = [
@@ -676,13 +674,11 @@ name = "typestats-site"
 version = "0.0.0.dev0"
 source = { editable = "packages/typestats-site" }
 dependencies = [
-    { name = "anyio" },
     { name = "httpx", extra = ["http2"] },
     { name = "httpx-retries" },
     { name = "jinja2" },
     { name = "packaging" },
     { name = "typestats" },
-    { name = "tyro" },
     { name = "zensical" },
 ]
 
@@ -700,13 +696,11 @@ test = [
 
 [package.metadata]
 requires-dist = [
-    { name = "anyio", specifier = ">=4.13.0" },
     { name = "httpx", extras = ["http2"], specifier = ">=0.28.1,<1" },
     { name = "httpx-retries", specifier = ">=0.4.6" },
     { name = "jinja2", specifier = ">=3.1.6,<4" },
     { name = "packaging", specifier = ">=26.0" },
     { name = "typestats", editable = "." },
-    { name = "tyro", specifier = ">=1.0.10" },
     { name = "zensical", specifier = ">=0.0.29" },
 ]
 
