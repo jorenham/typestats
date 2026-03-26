@@ -58,7 +58,6 @@ class TestCollectProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """A new version produces a JSON file."""
         name, version = "mypkg", "2.5.0"
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
@@ -97,7 +96,7 @@ class TestCollectProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """When the JSON already exists with current schema, the project is skipped."""
+        """Current-schema JSON skips collection."""
         name, version = "mypkg", "2.5.0"
 
         # Pre-create the output file with current schema_version
@@ -137,7 +136,7 @@ class TestCollectProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """When the JSON exists but has an outdated schema, it is re-collected."""
+        """Outdated schema triggers re-collection."""
         name, version = "mypkg", "2.5.0"
 
         out = tmp_path / name / f"{version}.json"
@@ -177,7 +176,7 @@ class TestCollectProject:
         httpx_mock: "HTTPXMock",
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
-        """When install fails (e.g. no compatible wheels), the version is skipped."""
+        """Install failure skips the version."""
         name, version = "mypkg", "2.5.0"
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
@@ -213,7 +212,6 @@ class TestCollectAll:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """Integration test: collect_all processes projects from a TOML file."""
         name, version = "mypkg", "1.0.0"
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
@@ -246,7 +244,6 @@ class TestCollectAll:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """Projects with existing data files are skipped."""
         name, version = "mypkg", "1.0.0"
 
         # Pre-create output
@@ -278,7 +275,7 @@ class TestCollectAll:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """Data directories for projects not in the TOML file are removed."""
+        """Unlisted project directories are removed."""
         name, version = "mypkg", "1.0.0"
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{name}/"),
@@ -320,7 +317,6 @@ class TestBackfillCutoff:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """Versions uploaded before BACKFILL_SINCE are not collected."""
         name = "mypkg"
         detail = {
             "name": name,
@@ -375,7 +371,6 @@ class TestBackfillCutoff:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """Multiple eligible versions are all collected."""
         name = "mypkg"
         detail = {
             "name": name,
@@ -612,7 +607,6 @@ class TestCleanData:
     pytestmark = pytest.mark.anyio
 
     async def test_removes_json_files(self, tmp_path: Path) -> None:
-        """All .json files under data_dir are removed."""
         pkg_dir = tmp_path / "mypkg"
         pkg_dir.mkdir()
         (pkg_dir / "1.0.0.json").write_text("{}")
@@ -625,7 +619,6 @@ class TestCleanData:
         assert not (pkg_dir / "2.0.0.json").exists()
 
     async def test_removes_empty_subdirs(self, tmp_path: Path) -> None:
-        """Empty package directories are cleaned up after removing JSON files."""
         pkg_dir = tmp_path / "mypkg"
         pkg_dir.mkdir()
         (pkg_dir / "1.0.0.json").write_text("{}")
@@ -635,7 +628,6 @@ class TestCleanData:
         assert not pkg_dir.exists()
 
     async def test_keeps_nonempty_subdirs(self, tmp_path: Path) -> None:
-        """Subdirectories with non-JSON files are kept."""
         pkg_dir = tmp_path / "mypkg"
         pkg_dir.mkdir()
         (pkg_dir / "1.0.0.json").write_text("{}")
@@ -648,11 +640,9 @@ class TestCleanData:
         assert (pkg_dir / "notes.txt").exists()
 
     async def test_nonexistent_dir(self, tmp_path: Path) -> None:
-        """Returns 0 when data_dir does not exist."""
         removed = await clean_data(anyio.Path(tmp_path / "nope"))
         assert removed == 0
 
     async def test_empty_dir(self, tmp_path: Path) -> None:
-        """Returns 0 when data_dir contains no JSON files."""
         removed = await clean_data(anyio.Path(tmp_path))
         assert removed == 0

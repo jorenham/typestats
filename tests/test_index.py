@@ -68,12 +68,10 @@ class TestGetPyTyped:
     pytestmark = pytest.mark.anyio
 
     async def test_stubs_package(self) -> None:
-        """A `-stubs` package should return STUBS."""
         sources = await list_sources(_STUBS_OVERLAY)
         assert await get_py_typed(sources) == PyTyped.STUBS
 
     async def test_no_marker(self, tmp_path: Path) -> None:
-        """A package without py.typed should return NO."""
         pkg = tmp_path / "mypkg"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("")
@@ -81,7 +79,6 @@ class TestGetPyTyped:
         assert await get_py_typed(sources) == PyTyped.NO
 
     async def test_yes(self, tmp_path: Path) -> None:
-        """A package with an empty py.typed marker should return YES."""
         pkg = tmp_path / "mypkg"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("")
@@ -90,7 +87,6 @@ class TestGetPyTyped:
         assert await get_py_typed(sources) == PyTyped.YES
 
     async def test_partial(self, tmp_path: Path) -> None:
-        """A package with 'partial' in py.typed should return PARTIAL."""
         pkg = tmp_path / "mypkg"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("")
@@ -126,7 +122,7 @@ def test_sources_to_module_paths_package_and_module() -> None:
 
 
 def test_sources_to_module_paths_excludes_non_package_subdirs() -> None:
-    """Files in directories without __init__ nested inside a package are excluded."""
+    """Non-package subdirs are excluded."""
     pkg = anyio.Path("numpy")
     linalg = pkg / "linalg"
     vendored = linalg / "lapack_lite"
@@ -135,21 +131,16 @@ def test_sources_to_module_paths_excludes_non_package_subdirs() -> None:
         pkg / "__init__.py",
         linalg / "__init__.py",
         linalg / "linalg.py",
-        # These are in a non-package subdir (no __init__.py in lapack_lite/)
         vendored / "clapack_scrub.py",
         vendored / "fortran.py",
         vendored / "make_lite.py",
-        # This stub sits alongside the directory, not inside it
         linalg / "lapack_lite.pyi",
     ])
 
-    # The vendored files should be excluded
     assert all("clapack_scrub" not in k for k in result)
     assert all("fortran" not in k for k in result)
     assert all("make_lite" not in k for k in result)
-    # The stub file at the package level should remain
     assert "numpy.linalg.lapack_lite" in result
-    # Normal package contents should remain
     assert "numpy" in result
     assert "numpy.linalg" in result
     assert "numpy.linalg.linalg" in result
@@ -158,10 +149,7 @@ def test_sources_to_module_paths_excludes_non_package_subdirs() -> None:
 def test_sources_to_module_paths_stubs_only() -> None:
     stubs = anyio.Path("proj-stubs")
 
-    result = sources_to_module_paths([
-        stubs / "__init__.pyi",
-        stubs / "util.pyi",
-    ])
+    result = sources_to_module_paths([stubs / "__init__.pyi", stubs / "util.pyi"])
 
     assert result["proj"] == frozenset({stubs / "__init__.pyi"})
     assert result["proj.util"] == frozenset({stubs / "util.pyi"})
@@ -236,7 +224,7 @@ def test_collect_public_symbols_explicit_private_reexports() -> None:
 
 
 def test_collect_public_symbols_pyi_relative_imports() -> None:
-    """Stub files with relative imports should resolve symbols correctly."""
+    """Relative imports in stubs resolve correctly."""
     names = _public_symbol_names(_PROJECT)
 
     # The .pyi stub uses relative imports (from ._core._can import CanAdd)
@@ -268,7 +256,6 @@ def _public_symbol_types(project_dir: Path) -> dict[str, analyze.TypeForm]:
 
 
 def test_collect_public_symbols_external_reexport() -> None:
-    """Re-exports from external packages should be marked EXTERNAL."""
     types = _public_symbol_types(_PROJECT)
 
     # `sin` is imported from stdlib `math` and listed in __all__
@@ -277,7 +264,7 @@ def test_collect_public_symbols_external_reexport() -> None:
 
 
 def test_collect_public_symbols_pyi_stub_types_not_untyped() -> None:
-    """Symbols typed only in .pyi stubs should not be reported as UNTYPED."""
+    """Stubs-typed symbols are not UNTYPED."""
     types = _public_symbol_types(_PROJECT)
 
     assert "stubpkg._typeforms.AnnotatedAlias" in types
@@ -287,7 +274,7 @@ def test_collect_public_symbols_pyi_stub_types_not_untyped() -> None:
 
 
 def test_collect_public_symbols_unresolved_all_names_untyped() -> None:
-    """Names in __all__ that can't be resolved should be UNTYPED."""
+    """Unresolvable `__all__` names are UNTYPED."""
     types = _public_symbol_types(_PROJECT)
 
     # spam is imported from _b; origin is pkg._b.spam
@@ -305,7 +292,7 @@ def test_collect_public_symbols_unresolved_all_names_untyped() -> None:
 
 
 def test_collect_public_symbols_typevar_in_all_not_untyped() -> None:
-    """TypeVar listed in __all__ should be IMPLICIT, not UNTYPED (GH-130)."""
+    """GH-130."""
     types = _public_symbol_types(_PROJECT)
 
     assert "pkg.T" in types
@@ -313,12 +300,7 @@ def test_collect_public_symbols_typevar_in_all_not_untyped() -> None:
 
 
 def test_collect_public_symbols_same_name_module_not_untyped() -> None:
-    """Functions re-exported from a submodule with the same name should not be UNTYPED.
-
-    When `from ._private import func` is used, and `_private` re-exports `func`
-    from a submodule also named `func` (e.g. `_private/func.py`), the import chain
-    is followed to the original definition.
-    """
+    """Same-name submodule re-exports are not UNTYPED."""
     types = _public_symbol_types(_PROJECT)
 
     assert "mylib._core._ops.do_mul.do_mul" in types
@@ -425,7 +407,6 @@ class TestResolvesToAny:
 
 
 def test_collect_public_symbols_direct_any_is_any() -> None:
-    """Symbols typed as `typing.Any` should be ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.any_var" in types
@@ -433,7 +414,6 @@ def test_collect_public_symbols_direct_any_is_any() -> None:
 
 
 def test_collect_public_symbols_string_any_is_any() -> None:
-    """Stringified `"Any"` annotation should be detected as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.string_any_var" in types
@@ -441,7 +421,6 @@ def test_collect_public_symbols_string_any_is_any() -> None:
 
 
 def test_collect_public_symbols_string_annotation_not_any() -> None:
-    """Stringified non-Any annotation should NOT be detected as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.string_int_var" in types
@@ -449,7 +428,6 @@ def test_collect_public_symbols_string_annotation_not_any() -> None:
 
 
 def test_collect_public_symbols_alias_to_any_is_any() -> None:
-    """Symbols typed with a type alias that resolves to Any should be ANY."""
     types = _public_symbol_types(_PROJECT)
 
     # Unknown is defined as `type Unknown = Any` in _defs
@@ -458,7 +436,6 @@ def test_collect_public_symbols_alias_to_any_is_any() -> None:
 
 
 def test_collect_public_symbols_chained_alias_to_any_is_any() -> None:
-    """Aliases through multiple levels should still resolve to ANY."""
     types = _public_symbol_types(_PROJECT)
 
     # Chained is defined as `type Chained = Unknown`, Unknown -> Any
@@ -467,7 +444,6 @@ def test_collect_public_symbols_chained_alias_to_any_is_any() -> None:
 
 
 def test_collect_public_symbols_cross_module_alias_to_any_is_any() -> None:
-    """Type aliases imported from other modules should be resolved."""
     types = _public_symbol_types(_PROJECT)
 
     # Remote is `type Remote = Any` in _defs, used in mod
@@ -476,7 +452,6 @@ def test_collect_public_symbols_cross_module_alias_to_any_is_any() -> None:
 
 
 def test_collect_public_symbols_non_any_alias_not_any() -> None:
-    """Type aliases that don't resolve to Any should remain typed."""
     types = _public_symbol_types(_PROJECT)
 
     # NotAny is `type NotAny = int`, so not_any_alias_var should still be typed
@@ -488,7 +463,7 @@ def test_collect_public_symbols_non_any_alias_not_any() -> None:
 
 
 def test_collect_public_symbols_function_any_params_unfolded() -> None:
-    """Function params typed with Any aliases should be unfolded to ANY."""
+    """Any-alias params are unfolded."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.annotated_func" in types
@@ -496,18 +471,14 @@ def test_collect_public_symbols_function_any_params_unfolded() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # param `a: Unknown` should be ANY (Unknown -> Any)
     assert overload.params[0].name == "a"
     assert overload.params[0].annotation is analyze.ANY
-    # param `b: int` should remain typed
     assert overload.params[1].name == "b"
     assert overload.params[1].annotation is not analyze.ANY
-    # return `str` should remain typed
     assert overload.returns is not analyze.ANY
 
 
 def test_collect_public_symbols_object_param_not_any() -> None:
-    """Function params typed as `object` should NOT be treated as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.object_param_func" in types
@@ -515,18 +486,14 @@ def test_collect_public_symbols_object_param_not_any() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # param `x: object` should NOT be ANY
     assert overload.params[0].name == "x"
     assert overload.params[0].annotation is not analyze.ANY
-    # param `y: int` should remain typed
     assert overload.params[1].name == "y"
     assert overload.params[1].annotation is not analyze.ANY
-    # return `-> object` should NOT be ANY (output position)
     assert overload.returns is not analyze.ANY
 
 
 def test_collect_public_symbols_object_var_not_any() -> None:
-    """Variable typed as `object` should NOT be treated as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "anypkg.mod.object_var" in types
@@ -534,7 +501,6 @@ def test_collect_public_symbols_object_var_not_any() -> None:
 
 
 def test_collect_public_symbols_object_param_no_aliases() -> None:
-    """object is not treated as ANY even without type aliases."""
     types = _public_symbol_types(_PROJECT)
 
     assert "noalias.funcs.object_param_func" in types
@@ -542,15 +508,12 @@ def test_collect_public_symbols_object_param_no_aliases() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # param `x: object` should NOT be ANY
     assert overload.params[0].name == "x"
     assert overload.params[0].annotation is not analyze.ANY
-    # return `-> int` should remain typed
     assert overload.returns is not analyze.ANY
 
 
 def test_collect_public_symbols_object_return_no_aliases() -> None:
-    """object in return position must NOT be treated as ANY."""
     types = _public_symbol_types(_PROJECT)
 
     assert "noalias.funcs.object_return_func" in types
@@ -558,7 +521,6 @@ def test_collect_public_symbols_object_return_no_aliases() -> None:
     assert isinstance(func, analyze.Function)
 
     overload = func.overloads[0]
-    # return `-> object` should NOT be ANY (output position)
     assert overload.returns is not analyze.ANY
 
 
@@ -635,7 +597,6 @@ class TestMergeStubsOverlay:
         assert "pkg.d" in flat
 
     def test_symbol_count_invariant(self) -> None:
-        """Merged result always has at least as many symbols as original."""
         orig = {
             anyio.Path("/a/pkg/__init__.py"): [
                 analyze.Symbol("pkg.x", self._INT),
@@ -654,7 +615,7 @@ class TestMergeStubsOverlay:
         assert n_orig <= n_merged
 
     def test_orphan_consolidated_under_stubs_path(self) -> None:
-        """Original-only symbols in covered modules go under the stubs path."""
+        """Orphans go under stubs path."""
         stubs_path = anyio.Path("/b/pkg-stubs/__init__.pyi")
         orig = {
             anyio.Path("/a/pkg/__init__.py"): [
@@ -664,19 +625,20 @@ class TestMergeStubsOverlay:
         }
         stubs = {stubs_path: [analyze.Symbol("pkg.x", self._INT)]}
         merged = merge_stubs_overlay(orig, stubs)
-        # orphan should be under the stubs path, not the original path
         stubs_names = {s.name for s in merged.get(stubs_path, [])}
         assert "pkg.orphan" in stubs_names
 
     def test_missing_function_preserves_kind(self) -> None:
-        """Function missing from stubs keeps Function kind, untyped."""
+        """Missing function keeps kind, untyped."""
         func = analyze.Function(
             "f",
             (
                 analyze.Overload(
                     (
                         analyze.Param(
-                            "x", analyze.ParamKind.POSITIONAL_OR_KEYWORD, self._INT
+                            "x",
+                            analyze.ParamKind.POSITIONAL_OR_KEYWORD,
+                            self._INT,
                         ),
                     ),
                     self._INT,
@@ -702,13 +664,12 @@ class TestMergeStubsOverlay:
         result = flat["pkg.f"]
         assert isinstance(result, analyze.Function)
         assert not result.is_typed
-        # params structure preserved, but annotations stripped
         assert len(result.overloads[0].params) == 1
         assert result.overloads[0].params[0].annotation is analyze.UNTYPED
         assert result.overloads[0].returns is analyze.UNTYPED
 
     def test_missing_class_preserves_kind(self) -> None:
-        """Class missing from stubs keeps Class kind, untyped."""
+        """Missing class keeps kind, untyped."""
         cls = analyze.Class(
             "C",
             members=(
@@ -749,7 +710,6 @@ def _merged_stubs_types() -> dict[str, analyze.TypeForm]:
 
 
 def test_merge_stubs_overlay_covered_symbols_typed() -> None:
-    """Symbols covered by stubs use the stubs type (typed)."""
     types = _merged_stubs_types()
     for name in ("mypkg.func_a", "mypkg.func_b", "mypkg.__version__"):
         assert name in types
@@ -757,14 +717,14 @@ def test_merge_stubs_overlay_covered_symbols_typed() -> None:
 
 
 def test_merge_stubs_overlay_stubs_only_symbol() -> None:
-    """Symbols only in stubs (e.g. from __getattr__) are included."""
+    """Stubs-only symbols are included."""
     types = _merged_stubs_types()
     assert "mypkg.dynamic_func" in types
     assert types["mypkg.dynamic_func"] is not analyze.UNTYPED
 
 
 def test_merge_stubs_overlay_missing_from_stubs_preserves_kind() -> None:
-    """Original function not in stubs (module covered) keeps Function kind."""
+    """Missing function keeps Function kind."""
     types = _merged_stubs_types()
     assert "mypkg.extra_func" in types
     tf = types["mypkg.extra_func"]
@@ -773,7 +733,7 @@ def test_merge_stubs_overlay_missing_from_stubs_preserves_kind() -> None:
 
 
 def test_merge_stubs_overlay_uncovered_module_original() -> None:
-    """Module not covered by stubs -> original type preserved."""
+    """Uncovered module keeps original type."""
     types = _merged_stubs_types()
     assert "mypkg.utils.helper" in types
     assert types["mypkg.utils.helper"] is not analyze.UNTYPED
@@ -797,7 +757,6 @@ def test_merge_stubs_overlay_count_invariant() -> None:
 
 
 def test_collect_public_symbols_type_ignores() -> None:
-    """Type-ignore / type-checker ignore comments are collected per path."""
 
     async def _run() -> dict[str, tuple[analyze.IgnoreComment, ...]]:
         pub = await collect_public_symbols(_PROJECT)
@@ -815,7 +774,7 @@ def test_collect_public_symbols_type_ignores() -> None:
 
 
 def test_collect_public_symbols_type_check_only_excluded() -> None:
-    """@type_check_only symbols are excluded unless explicitly in __all__."""
+    """Excluded unless in `__all__`."""
     names = _public_symbol_names(_PROJECT)
 
     # _Proto is @type_check_only but explicitly in __all__ -> included
@@ -839,7 +798,6 @@ class TestExcludeGlobs:
     pytestmark = pytest.mark.anyio
 
     async def test_list_sources_exclude_single_file(self) -> None:
-        """A glob matching a single file should exclude it from sources."""
         all_sources = await list_sources(_PROJECT)
         filtered = await list_sources(_PROJECT, exclude=["pkg/a.py"])
 
@@ -850,7 +808,6 @@ class TestExcludeGlobs:
         assert "a.py" not in filtered_names
 
     async def test_list_sources_exclude_wildcard(self) -> None:
-        """A wildcard glob should exclude all matching files."""
         all_sources = await list_sources(_PROJECT)
         filtered = await list_sources(_PROJECT, exclude=["pkg/*.py"])
 
@@ -862,11 +819,9 @@ class TestExcludeGlobs:
         assert "a.py" not in filtered_names
         assert "_b.py" not in filtered_names
 
-        # Other packages should remain
         assert any("mylib" in str(s) for s in filtered)
 
     async def test_list_sources_exclude_recursive_glob(self) -> None:
-        """A recursive glob (/**) should exclude nested files."""
         all_sources = await list_sources(_PROJECT)
         filtered = await list_sources(_PROJECT, exclude=["mylib/**"])
 
@@ -878,57 +833,40 @@ class TestExcludeGlobs:
         assert any("/mylib_pyi/" in s.as_posix() for s in filtered)
 
     async def test_list_sources_exclude_empty(self) -> None:
-        """An empty exclude list should return all sources."""
         all_sources = await list_sources(_PROJECT)
         filtered = await list_sources(_PROJECT, exclude=())
         assert {s.name for s in all_sources} == {s.name for s in filtered}
 
     async def test_collect_public_symbols_exclude_module(self) -> None:
-        """Excluding a module should remove its symbols from the result."""
         pub_all = await collect_public_symbols(_PROJECT)
-        pub_filtered = await collect_public_symbols(
-            _PROJECT,
-            exclude=["pkg/a.py"],
-        )
+        pub_filtered = await collect_public_symbols(_PROJECT, exclude=["pkg/a.py"])
 
         names_all = {s.name for syms in pub_all.symbols.values() for s in syms}
         names_filtered = {
             s.name for syms in pub_filtered.symbols.values() for s in syms
         }
 
-        # pkg.a symbols should be present in the unfiltered set
         assert "pkg.a.public_func" in names_all
 
-        # pkg.a symbols should be gone after excluding pkg/a.py
         assert "pkg.a.public_func" not in names_filtered
         assert "pkg.a.spam" not in names_filtered
 
     async def test_collect_public_symbols_exclude_package(self) -> None:
-        """Excluding an entire package should remove all its symbols."""
-        pub_filtered = await collect_public_symbols(
-            _PROJECT,
-            exclude=["mylib/**"],
-        )
-
+        pub_filtered = await collect_public_symbols(_PROJECT, exclude=["mylib/**"])
         names = {s.name for syms in pub_filtered.symbols.values() for s in syms}
 
         assert not any(n.startswith("mylib.") for n in names)
 
     async def test_list_sources_exclude_multiple_patterns(self) -> None:
-        """Multiple exclude patterns should all be applied."""
-        filtered = await list_sources(
-            _PROJECT,
-            exclude=["pkg/**", "mylib/**"],
-        )
+        filtered = await list_sources(_PROJECT, exclude=["pkg/**", "mylib/**"])
 
         assert not any("/pkg/" in s.as_posix() for s in filtered)
         assert not any("/mylib/" in s.as_posix() for s in filtered)
-        # Other packages should still be present
         assert any("/mylib_pyi/" in s.as_posix() for s in filtered)
 
     async def test_package_name_private_companion(self, tmp_path: Path) -> None:
-        """Private companion packages (e.g. _pytest) should not be treated
-        as external when using package_name filtering (GH src-layout)."""
+        """Private companion packages (e.g. `_pytest`) should not be
+        treated as external (GH src-layout)."""
         # Simulate a src-layout: src/mypkg/__init__.py re-exports from src/_mypkg/
         src = tmp_path / "src"
         pkg = src / "mypkg"
@@ -958,8 +896,7 @@ class TestExcludeGlobs:
                 assert ty is not analyze.UNTYPED, f"{name} should not be UNTYPED"
 
     async def test_package_name_different_import_name(self, tmp_path: Path) -> None:
-        """package_name is auto-resolved when the PyPI name differs from the
-        Python import name (e.g. pillow -> PIL)."""
+        """Auto-resolves PyPI name to import name (e.g. pillow -> PIL)."""
         pil = tmp_path / "PIL"
         pil.mkdir()
         (pil / "__init__.py").write_text(
@@ -984,8 +921,7 @@ class TestExcludeGlobs:
                 assert ty is not analyze.UNTYPED, f"{name} should not be UNTYPED"
 
     async def test_package_name_hyphen_normalization(self, tmp_path: Path) -> None:
-        """PyPI names with hyphens are auto-resolved to underscored imports
-        (e.g. more-itertools -> more_itertools)."""
+        """Hyphens normalize to underscores (e.g. more-itertools)."""
         pkg = tmp_path / "more_itertools"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("def chunked(it: list, n: int) -> list: ...\n")
@@ -996,11 +932,7 @@ class TestExcludeGlobs:
         assert any("chunked" in n for n in types), f"missing chunked in {types}"
 
     async def test_delegated_all_from_submodule(self, tmp_path: Path) -> None:
-        """__all__ = submod.__all__ should export the submodule's public names.
-
-        Reproduces the regex package pattern where __init__.py delegates its
-        entire public API to a private submodule via attribute access on __all__.
-        """
+        """`__all__ = submod.__all__` exports the submodule's public names."""
         pkg = tmp_path / "regex"
         pkg.mkdir()
         (pkg / "_main.py").write_text(
@@ -1031,15 +963,7 @@ class TestExcludeGlobs:
             assert ty is not analyze.EXTERNAL, f"{name} should not be EXTERNAL"
 
     async def test_delegated_all_realistic_regex(self, tmp_path: Path) -> None:
-        """Realistic reproduction of the regex sdist layout.
-
-        The actual regex sdist has:
-        - regex/__init__.py with `__all__ = regex._main.__all__`
-        - regex/_main.py  with `from regex._regex_core import *`
-        - regex/_regex_core.py providing flag constants
-        - regex/tests/ (excluded)
-        - setup.py at project root
-        """
+        """Realistic regex sdist layout with delegated `__all__`."""
         pkg = tmp_path / "regex"
         pkg.mkdir()
         (pkg / "_regex_core.py").write_text(
@@ -1090,7 +1014,6 @@ class TestSrcLayout:
     pytestmark = pytest.mark.anyio
 
     async def test_is_src_layout(self, tmp_path: Path) -> None:
-        """A `src/` directory without `__init__.py` is a src layout."""
         src = tmp_path / "src"
         pkg = src / "mypkg"
         pkg.mkdir(parents=True)
@@ -1100,7 +1023,7 @@ class TestSrcLayout:
         assert await is_src_layout(anyio.Path(tmp_path)) is True
 
     async def test_is_src_layout_with_init(self, tmp_path: Path) -> None:
-        """A `src/` directory WITH `__init__.py` is not a src layout."""
+        """`src/` WITH `__init__.py` is not a src layout."""
         src = tmp_path / "src"
         src.mkdir()
         (src / "__init__.py").write_text("")
@@ -1108,7 +1031,6 @@ class TestSrcLayout:
         assert await is_src_layout(anyio.Path(tmp_path)) is False
 
     async def test_is_src_layout_no_src(self, tmp_path: Path) -> None:
-        """Without a `src/` directory, returns False."""
         pkg = tmp_path / "mypkg"
         pkg.mkdir()
         (pkg / "__init__.py").write_text("")
@@ -1116,7 +1038,7 @@ class TestSrcLayout:
         assert await is_src_layout(anyio.Path(tmp_path)) is False
 
     async def test_is_src_layout_no_python_files(self, tmp_path: Path) -> None:
-        """A `src/` with only non-Python files (e.g. C++) is not a src layout."""
+        """`src/` with only non-Python files is not a src layout."""
         src = tmp_path / "src"
         lib = src / "mylib"
         lib.mkdir(parents=True)
@@ -1131,9 +1053,7 @@ class TestSrcLayout:
         assert await is_src_layout(anyio.Path(tmp_path)) is False
 
     async def test_is_src_layout_nested_py_no_package(self, tmp_path: Path) -> None:
-        """A `src/` with deeply nested `.py` but no direct child packages is not
-        a src layout (e.g. `dash-bootstrap-components` bundles JS source under
-        `src/` with stray `.py` in subdirs)."""
+        """Nested `.py` but no direct child packages is not a src layout."""
         src = tmp_path / "src"
         # Non-package subdir containing a .py file
         lib = src / "lib"
@@ -1152,7 +1072,7 @@ class TestSrcLayout:
         assert await is_src_layout(anyio.Path(tmp_path)) is False
 
     async def test_src_layout_ignores_non_src_files(self, tmp_path: Path) -> None:
-        """Files outside `src/` should not be discovered in a src layout."""
+        """Files outside `src/` are not discovered."""
         # src layout package
         src = tmp_path / "src"
         pkg = src / "mypkg"

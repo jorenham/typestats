@@ -300,7 +300,6 @@ class TestVersionsSince:
         assert Version("1.0.0") in result
 
     async def test_limit(self, httpx_mock: HTTPXMock) -> None:
-        """When limit is set, only the most recent N versions are returned."""
         files = [
             {
                 "filename": f"pkg-1.{i}.0.tar.gz",

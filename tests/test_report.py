@@ -123,7 +123,6 @@ class TestFunctionReport:
         assert r.n_untyped == 2
 
     def test_implicit_params_excluded(self) -> None:
-        """IMPLICIT params (self/cls) don't count as typable."""
         func = _func(_overload([("self", IMPLICIT), ("x", _INT)]))
         r = FunctionReport.from_symbol("f", func)
         assert r.n_typable == 2  # x + return, not self
@@ -542,8 +541,6 @@ class TestPackageReport:
 
 
 class TestPackageReportJson:
-    """Validate JSON serialization round-trips correctly."""
-
     @staticmethod
     def _pkg(*symbols: Symbol) -> PackageReport:
         mod = ModuleReport.from_symbols(
@@ -563,7 +560,6 @@ class TestPackageReportJson:
         )
 
     def test_round_trip(self) -> None:
-        """model_dump_json -> model_validate_json should reproduce the report."""
         report = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED))
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
@@ -598,7 +594,6 @@ class TestPackageReportJson:
         assert names == sorted(names)
 
     def test_metadata_round_trip(self) -> None:
-        """Metadata survives JSON serialization round-trip."""
         mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
         report = PackageReport(
             package="pkg",
@@ -616,7 +611,6 @@ class TestPackageReportJson:
         assert restored.metadata == report.metadata
 
     def test_metadata_none_round_trip(self) -> None:
-        """metadata=None survives JSON serialization round-trip."""
         report = self._pkg(Symbol("x", _INT))
         assert report.metadata is None
         json_str = report.model_dump_json()
@@ -624,7 +618,6 @@ class TestPackageReportJson:
         assert restored.metadata is None
 
     def test_pypi_round_trip(self) -> None:
-        """PypiInfo survives JSON serialization round-trip."""
         mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
         pypi = PypiInfo(
             upload_time="2025-06-15T12:30:00Z",
@@ -649,7 +642,6 @@ class TestPackageReportJson:
         assert restored.pypi.sha256 == "abcdef1234567890"
 
     def test_pypi_none_round_trip(self) -> None:
-        """pypi=None survives JSON serialization round-trip."""
         report = self._pkg(Symbol("x", _INT))
         assert report.pypi is None
         json_str = report.model_dump_json()
@@ -657,7 +649,6 @@ class TestPackageReportJson:
         assert restored.pypi is None
 
     def test_pypi_partial_fields(self) -> None:
-        """PypiInfo with only some fields set round-trips correctly."""
         mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
         pypi = PypiInfo(upload_time="2025-01-01T00:00:00Z")
         report = PackageReport(
@@ -675,7 +666,6 @@ class TestPackageReportJson:
         assert restored.pypi.size is None
 
     def test_schema_version_in_json(self) -> None:
-        """JSON output includes schema_version with the current value."""
         schema_ver = ".".join(map(str, SCHEMA_VERSION))
         mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
         report = PackageReport(
@@ -689,7 +679,6 @@ class TestPackageReportJson:
         assert data["schema_version"] == schema_ver
 
     def test_schema_version_round_trip(self) -> None:
-        """schema_version survives JSON serialization round-trip."""
         schema_ver = ".".join(map(str, SCHEMA_VERSION))
         mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
         report = PackageReport(
@@ -713,7 +702,6 @@ class TestPackageReportJson:
         assert restored.schema_version == "0.0"
 
     def test_schema_version_is_first_field(self) -> None:
-        """schema_version appears first in JSON output."""
         report = self._pkg(Symbol("x", _INT))
         json_str = report.model_dump_json()
         data = json.loads(json_str)
@@ -725,7 +713,7 @@ class TestPackageReportFromPath:
     pytestmark = pytest.mark.anyio
 
     async def test_stubs_typecheckers_from_stubs_path(self, tmp_path: Path) -> None:
-        """Type-checker configs should come from stubs_path, not the base path."""
+        """Configs come from stubs_path, not base."""
         base = tmp_path / "base"
         stubs = tmp_path / "stubs"
         shutil.copytree(_FIXTURES / "stubs_base", base)
@@ -744,7 +732,7 @@ class TestPackageReportFromPath:
         assert report.py_typed == PyTyped.STUBS
 
     async def test_base_typecheckers_without_stubs(self, tmp_path: Path) -> None:
-        """Without stubs_path, type-checker configs come from the base path."""
+        """Without stubs_path, configs come from base."""
         base = tmp_path / "base"
         shutil.copytree(_FIXTURES / "stubs_base", base)
 
@@ -757,7 +745,7 @@ class TestPackageReportFromPath:
         assert report.py_typed is PyTyped.NO
 
     async def test_stubs_project_name(self, tmp_path: Path) -> None:
-        """When *project* is given, the report should use it as the package name."""
+        """Uses *project* as package name."""
         base = tmp_path / "base"
         stubs = tmp_path / "stubs"
         shutil.copytree(_FIXTURES / "stubs_base", base)
@@ -775,7 +763,7 @@ class TestPackageReportFromPath:
         assert report.py_typed is PyTyped.STUBS
 
     async def test_stubs_default_project_name(self, tmp_path: Path) -> None:
-        """Without *project*, the report should use *pkg* as the package name."""
+        """Uses *pkg* as package name."""
         base = tmp_path / "base"
         stubs = tmp_path / "stubs"
         shutil.copytree(_FIXTURES / "stubs_base", base)
@@ -787,13 +775,7 @@ class TestPackageReportFromPath:
         assert report.py_typed is PyTyped.STUBS
 
     async def test_stubs_with_setup_py(self, tmp_path: Path) -> None:
-        """setup.py in a stubs sdist must not pollute py.typed detection.
-
-        Reproduces the types-PyYAML bug: when a stubs sdist contains
-        setup.py, `_resolve_package_name` fails (multiple public
-        top-level modules) and `get_py_typed` sees the sdist root
-        instead of the `-stubs` directory.
-        """
+        """setup.py in stubs sdist doesn't pollute py.typed."""
         base = tmp_path / "base"
         stubs = tmp_path / "stubs"
         shutil.copytree(_FIXTURES / "stubs_base", base)
@@ -814,12 +796,7 @@ class TestPackageReportFromPath:
         assert report.stubs_only is StubsOnly.TYPESHED
 
     async def test_stubs_only_detected_from_package_dir(self, tmp_path: Path) -> None:
-        """Stubs-only should be detected from package directory name (*-stubs),
-        even when not passed explicitly.
-
-        Reproduces GH-231: boto3-stubs-lite installs a `boto3-stubs/`
-        directory but the project name doesn't match `*-stubs`.
-        """
+        """GH-231: stubs-only detected from dir name."""
         pkg_dir = tmp_path / "mypkg-stubs"
         pkg_dir.mkdir()
         (pkg_dir / "__init__.pyi").write_text("x: int\n")
@@ -858,8 +835,7 @@ class TestPackageReportFromPath:
         assert report.stubs_only is StubsOnly.THIRD_PARTY
 
     async def test_typeshed_stubs_without_stubs_dir(self, tmp_path: Path) -> None:
-        """types-* stubs install under the real import name (e.g. requests/),
-        not requests-stubs/. stubs_only should still be detected via stubs_path."""
+        """Real import name (no -stubs dir): detected via stubs_path."""
         base = tmp_path / "base"
         stubs = tmp_path / "stubs"
         pkg_base = base / "requests"

@@ -53,7 +53,6 @@ class TestFromProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """Regular (non-stubs) project delegates to from_path correctly."""
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
             json=self._pypi_detail_json(self._PKG, "2.5.0"),
@@ -152,7 +151,7 @@ class TestFromProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """The exclude list from the Project is forwarded to from_path."""
+        """Exclude list forwarded to from_path."""
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{self._PKG}/"),
             json=self._pypi_detail_json(self._PKG, "1.0.0"),
@@ -173,8 +172,7 @@ class TestFromProject:
         httpx_mock: "HTTPXMock",
         mock_uv: MockUv,
     ) -> None:
-        """A *-stubs-lite project whose package dir is *-stubs should
-        install the base package and be detected as stubs-only."""
+        """*-stubs-lite detected as stubs-only."""
         stubs_lite_name = f"{self._PKG}-stubs-lite"
         httpx_mock.add_response(
             url=_PYPI_HOST.join(f"/simple/{stubs_lite_name}/"),

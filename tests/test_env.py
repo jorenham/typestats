@@ -23,7 +23,7 @@ def _clear_cache() -> None:
 
 
 @pytest.fixture
-def no_env_vars(monkeypatch: pytest.MonkeyPatch) -> None:
+def no_env(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("VIRTUAL_ENV", raising=False)
     monkeypatch.delenv("CONDA_PREFIX", raising=False)
 
@@ -54,11 +54,11 @@ def _build_fake_venv(root: Path, pkg_name: str, version: str) -> None:
 class TestExternalSitePackages:
     pytestmark = pytest.mark.anyio
 
-    async def test_no_env_vars_no_venv_anywhere(
+    async def test_no_env_no_venv_anywhere(
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         monkeypatch.setenv("PATH", "/usr/bin:/usr/local/bin")
         monkeypatch.chdir(tmp_path)
@@ -67,7 +67,7 @@ class TestExternalSitePackages:
     async def test_skips_own_prefix(
         self,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         monkeypatch.setenv("VIRTUAL_ENV", sys.prefix)
         assert await external_site_packages() == []
@@ -76,7 +76,7 @@ class TestExternalSitePackages:
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         sp = _make_site_packages(tmp_path)
         monkeypatch.setenv("VIRTUAL_ENV", str(tmp_path))
@@ -86,7 +86,7 @@ class TestExternalSitePackages:
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         monkeypatch.setenv("VIRTUAL_ENV", str(tmp_path))
         monkeypatch.setenv("PATH", "/usr/bin")
@@ -99,7 +99,7 @@ class TestExternalSitePackages:
         via: str,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         venv = tmp_path / (".venv" if via == "cwd" else "fakevenv")
         (venv / _SCRIPTS_DIR).mkdir(parents=True)
@@ -124,7 +124,7 @@ class TestFindDistribution:
     async def test_not_found(
         self,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         with pytest.raises(importlib.metadata.PackageNotFoundError):
             await find_distribution("nonexistent_pkg_xyz_99999")
@@ -133,7 +133,7 @@ class TestFindDistribution:
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         sp = _make_site_packages(tmp_path)
         dist_info = sp / "fakepkg-1.0.dist-info"
@@ -160,7 +160,7 @@ class TestUvxIntegration:
         via: str,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         if via == "cwd":
             _build_fake_venv(tmp_path / ".venv", "mypkg", "2.5.0")
@@ -180,7 +180,7 @@ class TestUvxIntegration:
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         monkeypatch.setenv("PATH", f"{sys.prefix}/{_SCRIPTS_DIR}{os.pathsep}/usr/bin")
         monkeypatch.chdir(tmp_path)
@@ -192,7 +192,7 @@ class TestUvxIntegration:
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
-        no_env_vars: None,
+        no_env: None,
     ) -> None:
         env_venv = tmp_path / "env_venv"
         _build_fake_venv(env_venv, "envpkg", "1.0.0")
