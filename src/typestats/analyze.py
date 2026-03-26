@@ -634,6 +634,14 @@ _INIT_METHODS: Final = frozenset({"__init__", "__new__", "__post_init__"})
 _DESCRIPTOR_WRAPPERS: Final = frozenset({"staticmethod", "classmethod"})
 
 
+def _replace_or_append(items: list[Symbol], name: str, symbol: Symbol) -> None:
+    for i, symbol_ in enumerate(items):
+        if symbol_.name == name:
+            items[i] = symbol
+            return
+    items.append(symbol)
+
+
 def _get_first_param_name(node: cst.FunctionDef) -> str | None:
     """Return the name of the first positional parameter (usually `self` or `cls`)."""
     for params in (node.params.posonly_params, node.params.params):
@@ -1569,21 +1577,29 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         for target in node.targets:
             for name_node in _extract_names(target.target):
-                alias_name = self._symbol_name(name_node)
-                func = Function(alias_name, ref_func.overloads)
-                line_start, line_end = self._lines_of(name_node)
-                symbol = Symbol(
-                    alias_name,
-                    func,
-                    line_start=line_start,
-                    line_end=line_end,
-                )
-                if is_public_name(name_node.value):
-                    cls.members.append(symbol)
-                    cls.member_names.add(name_node.value)
-                self.symbols.append(symbol)
+                self._add_method_alias(cls, name_node, ref_func.overloads)
 
         return True
+
+    def _add_method_alias(
+        self,
+        cls: _ClassStackItem,
+        name_node: cst.Name,
+        overloads: tuple[Overload, *tuple[Overload, ...]],
+    ) -> None:
+        alias_name = self._symbol_name(name_node)
+        func = Function(alias_name, overloads)
+        line_start, line_end = self._lines_of(name_node)
+        symbol = Symbol(alias_name, func, line_start=line_start, line_end=line_end)
+
+        _replace_or_append(self.symbols, alias_name, symbol)
+        short = name_node.value
+        if is_public_name(short):
+            if short in cls.member_names:
+                _replace_or_append(cls.members, alias_name, symbol)
+            else:
+                cls.members.append(symbol)
+                cls.member_names.add(short)
 
     @staticmethod
     def _unwrap_descriptor(value: cst.BaseExpression) -> tuple[str | None, bool]:

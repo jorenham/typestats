@@ -1017,6 +1017,24 @@ class TestClassDescriptorAlias:
         # x is not a Function, so staticmethod(x) falls through to UNTYPED
         assert not isinstance(symbols["Foo.helper"], Function)
 
+    def test_same_name_rebind(self) -> None:
+        """Rebinding with same name must replace, not duplicate."""
+        src = textwrap.dedent("""
+        class Foo:
+            def helper(self, x: int) -> bool: ...
+            helper = staticmethod(helper)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+        cls = symbols["Foo"]
+
+        assert isinstance(cls, Class)
+        helper_members = [m for m in cls.members if m.name == "Foo.helper"]
+        assert len(helper_members) == 1
+        assert isinstance(helper_members[0].type_, Function)
+        # Unskipped: self + x + return
+        assert helper_members[0].type_.type_counts.typable == 3
+
 
 class TestIsTyped:
     def test_markers(self) -> None:
