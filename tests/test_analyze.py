@@ -936,8 +936,27 @@ class TestClassDescriptorAlias:
         module = collect_symbols(src)
         symbols = {s.name: s.type_ for s in module.symbols}
 
-        assert isinstance(symbols["Foo.helper"], Function)
+        helper = symbols["Foo.helper"]
+        assert isinstance(helper, Function)
+        # staticmethod does not auto-bind; `self` + `x` are both real params
+        assert helper.type_counts.typable == 3  # self(untyped) + x + return
         assert symbols["Foo"].is_typed
+
+    def test_staticmethod_no_self(self) -> None:
+        """Stubs pattern: method defined without `self`, wrapped as staticmethod."""
+        src = textwrap.dedent("""
+        class Foo:
+            def _helper(x: int) -> bool: ...
+            helper = staticmethod(_helper)
+        """)
+        module = collect_symbols(src)
+        symbols = {s.name: s.type_ for s in module.symbols}
+
+        helper = symbols["Foo.helper"]
+        assert isinstance(helper, Function)
+        # The `x` parameter must not be dropped by skip_first
+        assert helper.type_counts.typable == 2  # x + return
+        assert helper.type_counts.typed == 2
 
     def test_classmethod_call(self) -> None:
         src = textwrap.dedent("""

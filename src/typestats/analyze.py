@@ -743,6 +743,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
     _function_depth: int
     _skipped_class_depth: int
     _overload_map: defaultdict[str, list[Overload]]
+    _raw_overload_map: defaultdict[str, list[Overload]]
+    _unskipped_overloads: dict[str, tuple[Overload, *tuple[Overload, ...]]]
     _property_map: dict[str, int]
     _added_functions: set[str]
     _class_attrs_typed: dict[str, frozenset[str]]
@@ -772,6 +774,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         self._function_depth = 0
         self._skipped_class_depth = 0
         self._overload_map = defaultdict(list)
+        self._raw_overload_map = defaultdict(list)
+        self._unskipped_overloads = {}
         self._property_map = {}
         self._added_functions = set()
         self._class_attrs_typed = {}
@@ -1364,6 +1368,10 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             self._overload_map[name].append(
                 self._callable_signature(node, skip_first=skip_first),
             )
+            if skip_first:
+                self._raw_overload_map[name].append(
+                    self._callable_signature(node, skip_first=False),
+                )
             self._overload_lines.setdefault(name, self._sig_lines_of(node))
         elif "property" in decorators or "cached_property" in decorators:
             sig = self._callable_signature(node, skip_first=skip_first)
@@ -1373,25 +1381,7 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             sig = self._callable_signature(node, skip_first=skip_first)
             self._update_property(accessor_kind, prop_name, sig)
         else:
-            if overload_list := self._overload_map.pop(name, None):
-                overloads = _nonempty_tuple(overload_list)
-            else:
-                overloads = (self._callable_signature(node, skip_first=skip_first),)
-
-            func = Function(name, overloads)
-            lines = self._overload_lines.pop(name, None)
-            if lines is None or lines[0] is None:
-                lines = self._sig_lines_of(node)
-            line_start, line_end = lines
-            self.symbols.append(
-                Symbol(name, func, line_start=line_start, line_end=line_end)
-            )
-            self._added_functions.add(name)
-            if cls and is_public_name(node.name.value):
-                cls.members.append(
-                    Symbol(name, func, line_start=line_start, line_end=line_end)
-                )
-                cls.member_names.add(node.name.value)
+            self._add_function(cls, node, name, skip_first=skip_first)
 
         # Scan init-family methods for instance attributes (self.attr = ...)
         if (
@@ -1403,6 +1393,59 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
             and (self_name := _get_first_param_name(node))
         ):
             self._scan_init_attrs(cls, node.body, self_name)
+
+    def _add_function(
+        self,
+        cls: _ClassStackItem | None,
+        node: cst.FunctionDef,
+        name: str,
+        *,
+        skip_first: bool,
+    ) -> None:
+        if overload_list := self._overload_map.pop(name, None):
+            overloads = _nonempty_tuple(overload_list)
+        else:
+            overloads = (self._callable_signature(node, skip_first=skip_first),)
+
+        self._save_unskipped_overloads(
+            name,
+            node,
+            skip_first=skip_first,
+            had_overloads=bool(overload_list),
+        )
+
+        func = Function(name, overloads)
+        lines = self._overload_lines.pop(name, None)
+        if lines is None or lines[0] is None:
+            lines = self._sig_lines_of(node)
+        line_start, line_end = lines
+        self.symbols.append(
+            Symbol(name, func, line_start=line_start, line_end=line_end),
+        )
+        self._added_functions.add(name)
+        if cls and is_public_name(node.name.value):
+            cls.members.append(
+                Symbol(name, func, line_start=line_start, line_end=line_end),
+            )
+            cls.member_names.add(node.name.value)
+
+    def _save_unskipped_overloads(
+        self,
+        name: str,
+        node: cst.FunctionDef,
+        *,
+        skip_first: bool,
+        had_overloads: bool,
+    ) -> None:
+        """Store full (unskipped) overloads for later `staticmethod()` resolution."""
+        if not skip_first:
+            return
+        if raw_list := self._raw_overload_map.pop(name, None):
+            self._unskipped_overloads[name] = _nonempty_tuple(raw_list)
+        elif not had_overloads:
+            self._unskipped_overloads[name] = (
+                self._callable_signature(node, skip_first=False),
+            )
 
     def _scan_init_attrs(
         self,
@@ -1512,36 +1555,17 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if not (cls := self._current_class):
             return False
 
-        # Plain alias: `__rand__ = __and__`
-        # Descriptor wrapper: `helper = staticmethod(_helper)`
-        value = node.value
-        if isinstance(value, cst.Name):
-            ref_name = value.value
-        elif (
-            isinstance(value, cst.Call)
-            and isinstance(value.func, cst.Name)
-            and value.func.value in _DESCRIPTOR_WRAPPERS
-            and len(value.args) == 1
-        ):
-            arg = value.args[0]
-            if arg.keyword or not isinstance(arg.value, cst.Name):
-                return False
-            ref_name = arg.value.value
-        else:
+        ref_name, is_static = self._unwrap_descriptor(node.value)
+        if ref_name is None:
             return False
-
-        methods = cls.members
-        symbols = self.symbols
 
         ref = f"{cls.name}.{ref_name}"
 
-        if overloads := self._overload_map.get(ref):
-            ref_func = Function(ref, _nonempty_tuple(overloads))
-        else:
-            src_type = next((s.type_ for s in symbols if s.name == ref), None)
-            if not isinstance(src_type, Function):
+        ref_func = self._resolve_unskipped(ref) if is_static else None
+        if ref_func is None:
+            ref_func = self._resolve_method_ref(ref)
+            if ref_func is None:
                 return False
-            ref_func = src_type
 
         for target in node.targets:
             for name_node in _extract_names(target.target):
@@ -1549,14 +1573,48 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 func = Function(alias_name, ref_func.overloads)
                 line_start, line_end = self._lines_of(name_node)
                 symbol = Symbol(
-                    alias_name, func, line_start=line_start, line_end=line_end
+                    alias_name,
+                    func,
+                    line_start=line_start,
+                    line_end=line_end,
                 )
                 if is_public_name(name_node.value):
-                    methods.append(symbol)
+                    cls.members.append(symbol)
                     cls.member_names.add(name_node.value)
-                symbols.append(symbol)
+                self.symbols.append(symbol)
 
         return True
+
+    @staticmethod
+    def _unwrap_descriptor(value: cst.BaseExpression) -> tuple[str | None, bool]:
+        """Extract the reference name and whether it is a `staticmethod` wrapper."""
+        if isinstance(value, cst.Name):
+            return value.value, False
+        if (
+            isinstance(value, cst.Call)
+            and isinstance(value.func, cst.Name)
+            and value.func.value in _DESCRIPTOR_WRAPPERS
+            and len(value.args) == 1
+        ):
+            arg = value.args[0]
+            if not arg.keyword and isinstance(arg.value, cst.Name):
+                return arg.value.value, value.func.value == "staticmethod"
+        return None, False
+
+    def _resolve_unskipped(self, ref: str) -> Function | None:
+        """Resolve unskipped overloads for `staticmethod()` wrappers."""
+        if raw := self._raw_overload_map.get(ref):
+            return Function(ref, _nonempty_tuple(raw))
+        if raw_tup := self._unskipped_overloads.get(ref):
+            return Function(ref, raw_tup)
+        return None
+
+    def _resolve_method_ref(self, ref: str) -> Function | None:
+        """Resolve a method reference from the overload map or symbol list."""
+        if overloads := self._overload_map.get(ref):
+            return Function(ref, _nonempty_tuple(overloads))
+        src_type = next((s.type_ for s in self.symbols if s.name == ref), None)
+        return src_type if isinstance(src_type, Function) else None
 
     def _try_add_name_alias(self, node: cst.Assign) -> bool:
         """Handle `X = {name}` or `X = {name}[...]` as an import alias or type alias."""
