@@ -45,8 +45,14 @@ document$.subscribe(() => {
   for (const g of groups) {
     for (const btn of g.querySelectorAll(".filter-btn")) {
       btn.addEventListener("click", () => {
-        g.querySelector(".filter-btn--active")?.classList.remove("filter-btn--active")
+        const prev = g.querySelector(".filter-btn--active")
+        if (prev === btn) return
+        if (prev) {
+          prev.classList.remove("filter-btn--active")
+          prev.setAttribute("aria-pressed", "false")
+        }
         btn.classList.add("filter-btn--active")
+        btn.setAttribute("aria-pressed", "true")
         apply()
       })
     }
