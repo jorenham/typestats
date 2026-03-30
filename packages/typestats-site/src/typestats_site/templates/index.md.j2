@@ -37,30 +37,30 @@ hide:
       <th><abbr title="PyPI package name">Package</abbr></th>
       <th><abbr title="Latest release version">Version</abbr></th>
       <th><abbr title="Release date on PyPI">Released</abbr></th>
+      <th style="text-align: right" data-sort-method="number"><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>
       <th style="text-align: right; white-space: nowrap"><abbr title="Percentage of typed symbols">Coverage</abbr> {{ help_link("../reference/metrics/", "What is coverage?") }}</th>
       <th style="text-align: right; white-space: nowrap"><abbr title="Percentage of typed symbols, excluding Any">Coverage (strict)</abbr> {{ help_link("../reference/metrics/", "What is strict coverage?") }}</th>
       <th style="text-align: right; white-space: nowrap"><abbr title="Number of public typable slots: each function parameter, return type, and variable counts as one">Typables</abbr> {{ help_link("../reference/metrics/", "What are typables?") }}</th>
-      <th><abbr title="PEP 561 py.typed marker">py.typed</abbr></th>
-      <th><abbr title="Type info from a standalone stubs package">Stubs-only</abbr></th>
-      <th style="text-align: right" data-sort-method="number"><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>
+      <th class="num"><abbr title="PEP 561 py.typed marker">py.typed</abbr></th>
+      <th><abbr title="Type info from a standalone stubs package">Stubs</abbr></th>
     </tr>
   </thead>
   <tbody>
     {% for r in rows %}
       <tr data-py-typed="{{ '1' if r.py_typed != 'no' else '0' }}" data-stubs="{{ '1' if r.stubs_link else '0' }}">
         <td><a href="report/#{{ r.package }}">{{ r.package }}</a></td>
-        <td>{{ r.version }}{% if r.base_version %} ({{ r.base_version }}){% endif %}</td>
-        <td>{{ r.release_date }}</td>
-        <td style="text-align: right">{{ r.coverage }}</td>
-        <td style="text-align: right">{{ r.coverage_strict }}</td>
-        <td style="text-align: right">{{ r.n_typable }}</td>
-        <td><span hidden>{{ r.py_typed_sort }}</span>{{ icon_py_typed(r.py_typed) }}</td>
+        <td class="num">{{ r.version }}</td>
+        <td class="num">{{ r.release_date }}</td>
+        <td class="num pypi-downloads" data-package="{{ r.package }}" style="text-align: right"></td>
+        <td class="num" style="text-align: right">{{ r.coverage }}</td>
+        <td class="num" style="text-align: right">{{ r.coverage_strict }}</td>
+        <td class="num" style="text-align: right">{{ r.n_typable }}</td>
+        <td class="num"><span hidden>{{ r.py_typed_sort }}</span>{{ icon_py_typed(r.py_typed) }}</td>
         {% if r.stubs_link %}
         <td><a href="report/#{{ r.stubs_link }}">{{ r.stubs_link }}</a></td>
         {% else %}
         <td></td>
         {% endif %}
-        <td class="pypi-downloads" data-package="{{ r.package }}" style="text-align: right"></td>
       </tr>
     {% endfor %}
   </tbody>
