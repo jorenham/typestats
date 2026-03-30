@@ -217,7 +217,7 @@ class TestRenderIndex:
         report = _minimal_report("numpy", "2.4.2")
         md = IndexPage([report]).render()
         data_row = _table_rows(md)[0]
-        assert 'class="pypi-downloads"' in data_row
+        assert 'class="num pypi-downloads"' in data_row
         assert 'data-package="numpy"' in data_row
 
     def test_base_version_not_shown(self) -> None:
