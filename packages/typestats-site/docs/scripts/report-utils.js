@@ -59,7 +59,16 @@ function displayModuleName(moduleName, packageName) {
 }
 
 function mermaidPie(slices) {
-  const lines = ["pie"]
+  const lines = [
+    "---",
+    "config:",
+    "  theme: base",
+    "  themeVariables:",
+    '    pieOuterStrokeWidth: "1px"',
+    '    pieStrokeWidth: "1px"',
+    "---",
+    "pie",
+  ]
   for (const s of slices) {
     if (s.value) lines.push(`    "${s.label}" : ${s.value}`)
   }
