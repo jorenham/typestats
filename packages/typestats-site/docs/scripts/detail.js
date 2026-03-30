@@ -386,12 +386,13 @@ function renderIncompleteAnnotations(report) {
 
   for (const sec of sections) {
     const admonitionType = sec.nUntyped > 0 ? "warning" : "question"
+    const hasLines = sec.rows.some(r => r.line_start != null)
     html += `<span id="${sec.slug}"></span>
     <details class="${admonitionType}">
       <summary><code>${sec.displayName}</code> (${sec.nUntyped} missing, ${sec.nAny} any)</summary>
       <table data-no-sort>
         <thead><tr>
-          <th style="text-align:right"><abbr title="Source line range">Line</abbr></th>
+          ${hasLines ? '<th style="text-align:right"><abbr title="Source line range">Line</abbr></th>' : ""}
           <th colspan="2">Symbol</th>
           <th style="text-align:right"><abbr title="Total annotation slots">Typable</abbr></th>
           <th style="text-align:right"><abbr title="Slots with a type annotation (including Any)">Typed</abbr></th>
@@ -403,7 +404,7 @@ function renderIncompleteAnnotations(report) {
       const kindBadge = kindLabel(row.kind)
       const line = row.line_start != null ? `${row.line_start}` : ""
       html += `<tr>
-        <td class="num" style="text-align:right">${line}</td>
+        ${hasLines ? `<td class="num" style="text-align:right">${line}</td>` : ""}
         <td>${kindBadge}</td>
         <td><code>${row.name}</code></td>
         <td class="num" style="text-align:right">${row.n_typed + row.n_any + row.n_untyped}</td>

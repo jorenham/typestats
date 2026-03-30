@@ -25,10 +25,6 @@
     fill: var(--md-default-fg-color, #ccc) !important;
 }
 
-.mermaid .pieCircle {
-    stroke-width: 0.5px !important;
-}
-
 .line-chart {
     display: block;
     width: 100%;
@@ -251,6 +247,21 @@ table[data-dashboard] td {
     background: var(--md-accent-fg-color, #448aff);
     color: var(--md-accent-bg-color, #fff);
     font-size: 0.85em;
+}
+
+table[data-no-sort] td:has(code[class^="sym-"]) {
+    padding-right: .5em;
+}
+
+table[data-no-sort] td:has(code[class^="sym-"]) + td {
+    padding-left: 0;
+}
+
+table[data-no-sort] td:has(code[class^="sym-"]) + td code,
+#detail-root table td:first-child code:not([class]),
+details.warning > summary code,
+details.question > summary code {
+    background: transparent;
 }
 
 .md-typeset code.sym-attr,
