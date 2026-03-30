@@ -392,7 +392,7 @@ function renderIncompleteAnnotations(report) {
       <summary><code>${sec.displayName}</code> (${sec.nUntyped} missing, ${sec.nAny} any)</summary>
       <table data-no-sort>
         <thead><tr>
-          ${hasLines ? '<th style="text-align:right"><abbr title="Source line range">Line</abbr></th>' : ""}
+          ${hasLines ? '<th style="text-align:right"><abbr title="Source line number">Line</abbr></th>' : ""}
           <th colspan="2">Symbol</th>
           <th style="text-align:right"><abbr title="Total annotation slots">Typable</abbr></th>
           <th style="text-align:right"><abbr title="Slots with a type annotation (including Any)">Typed</abbr></th>

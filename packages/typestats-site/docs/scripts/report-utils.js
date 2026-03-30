@@ -62,6 +62,7 @@ function mermaidPie(slices) {
   const lines = [
     "---",
     "config:",
+    "  theme: base",
     "  themeVariables:",
     '    pieOuterStrokeWidth: "1px"',
     '    pieStrokeWidth: "1px"',
