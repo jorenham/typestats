@@ -131,7 +131,7 @@ def _write_report(data_dir: StrPath, report: PackageReport) -> Path:
 
 def _table_rows(md: str) -> list[str]:
     """Extract data `<tr>...</tr>` blocks (containing `<td>`) from HTML tables."""
-    return [m for m in re.findall(r"<tr>.*?</tr>", md, re.DOTALL) if "<td" in m]
+    return [m for m in re.findall(r"<tr[\s>].*?</tr>", md, re.DOTALL) if "<td" in m]
 
 
 class TestRenderIndex:
