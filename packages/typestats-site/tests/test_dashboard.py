@@ -238,11 +238,7 @@ class TestRenderIndex:
         """Base package row links to its companion stubs package."""
         reports = [
             _minimal_report("PyYAML", "6.0.3"),
-            _minimal_report(
-                "types-PyYAML",
-                "6.0.3",
-                stubs_only=StubsOnly.TYPESHED,
-            ),
+            _minimal_report("types-PyYAML", "6.0.3", stubs_only=StubsOnly.TYPESHED),
         ]
         md = IndexPage(reports).render()
         rows = _table_rows(md)
@@ -257,11 +253,7 @@ class TestRenderIndex:
         """Third-party stubs (X-stubs) also link from the base package."""
         reports = [
             _minimal_report("pandas", "2.2.0"),
-            _minimal_report(
-                "pandas-stubs",
-                "2.2.3",
-                stubs_only=StubsOnly.THIRD_PARTY,
-            ),
+            _minimal_report("pandas-stubs", "2.2.3", stubs_only=StubsOnly.THIRD_PARTY),
         ]
         md = IndexPage(reports).render()
         base_row = _table_rows(md)[0]
@@ -276,6 +268,37 @@ class TestRenderIndex:
         assert 'report/#numpy">numpy</a>' in data_row  # package cell
         assert "third-party" not in data_row
         assert "typeshed" not in data_row
+
+    def test_filter_bar_present(self) -> None:
+        md = IndexPage([_minimal_report()]).render()
+        assert 'class="filter-bar"' in md
+        assert 'class="filter-group"' in md
+        assert 'data-filter="py-typed"' in md
+        assert 'data-filter="stubs"' in md
+
+    def test_data_py_typed_attribute(self) -> None:
+        reports = [
+            _minimal_report("a", "1.0", py_typed=PyTyped.YES),
+            _minimal_report("b", "1.0", py_typed=PyTyped.NO),
+            _minimal_report("c", "1.0", py_typed=PyTyped.PARTIAL),
+            _minimal_report("d", "1.0", py_typed=PyTyped.STUBS),
+        ]
+        md = IndexPage(reports).render()
+        rows = _table_rows(md)
+        assert 'data-py-typed="1"' in rows[0]  # YES
+        assert 'data-py-typed="0"' in rows[1]  # NO
+        assert 'data-py-typed="1"' in rows[2]  # PARTIAL
+        assert 'data-py-typed="1"' in rows[3]  # STUBS
+
+    def test_data_stubs_attribute(self) -> None:
+        reports = [
+            _minimal_report("PyYAML", "6.0.3"),
+            _minimal_report("types-PyYAML", "6.0.3", stubs_only=StubsOnly.TYPESHED),
+        ]
+        md = IndexPage(reports).render()
+        rows = _table_rows(md)
+        assert 'data-stubs="1"' in rows[0]  # has stubs companion
+        assert 'data-stubs="0"' in rows[1]  # is the stubs package itself
 
 
 class TestBuildSite:
