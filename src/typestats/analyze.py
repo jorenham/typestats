@@ -634,6 +634,91 @@ _INIT_METHODS: Final = frozenset({"__init__", "__new__", "__post_init__"})
 _DESCRIPTOR_WRAPPERS: Final = frozenset({"staticmethod", "classmethod"})
 
 
+_RETURN: Final = -1
+
+# dunder methods with implicit annotation slots (0-based after self/cls; -1 = return)
+_IMPLICIT_DUNDER_METHODS: Final[dict[str, set[int]]] = {
+    "__init__": {_RETURN},
+    "__init_subclass__": {_RETURN},
+    "__del__": {_RETURN},
+    "__bool__": {_RETURN},
+    "__int__": {_RETURN},
+    "__float__": {_RETURN},
+    "__complex__": {_RETURN},
+    "__bytes__": {_RETURN},
+    "__str__": {_RETURN},
+    "__repr__": {_RETURN},
+    "__format__": {0, _RETURN},
+    "__index__": {_RETURN},
+    "__len__": {_RETURN},
+    "__length_hint__": {_RETURN},
+    "__contains__": {_RETURN},
+    "__hash__": {_RETURN},
+    "__setitem__": {_RETURN},
+    "__delitem__": {_RETURN},
+    "__getattr__": {0},
+    "__setattr__": {0, _RETURN},
+    "__delattr__": {0, _RETURN},
+    "__dir__": {_RETURN},
+    "__set__": {_RETURN},
+    "__delete__": {_RETURN},
+    "__set_name__": {1, _RETURN},
+    "__buffer__": {0, _RETURN},
+    "__release_buffer__": {0, _RETURN},
+    "__exit__": {0, 1, 2},
+    "__aexit__": {0, 1, 2},
+    "__instancecheck__": {_RETURN},
+    "__subclasscheck__": {_RETURN},
+    "__mro_entries__": {_RETURN},
+    "__subclasses__": {_RETURN},
+}
+
+# class-body dunder attributes with implicit types
+_IMPLICIT_DUNDER_ATTRS: Final[frozenset[str]] = frozenset({
+    "__slots__",
+    "__match_args__",
+    "__name__",
+    "__qualname__",
+    "__module__",
+    "__doc__",
+    "__dict__",
+    "__bases__",
+    "__base__",
+    "__annotations__",
+    "__type_params__",
+    "__static_attributes__",
+    "__firstlineno__",
+    "__weakref__",
+    "__class__",
+    "__objclass__",
+    "__mro__",
+})
+
+
+def _apply_implicit_dunder(name: str, sig: Overload) -> Overload:
+    """Replace UNTYPED slots with IMPLICIT for implicit dunder methods."""
+    implicit = _IMPLICIT_DUNDER_METHODS.get(name)
+    if implicit is None:
+        return sig
+
+    changed = False
+    params = list(sig.params)
+    for i, p in enumerate(params):
+        if i in implicit and p.annotation is UNTYPED:
+            params[i] = Param(p.name, p.kind, IMPLICIT)
+            changed = True
+
+    returns = sig.returns
+    if _RETURN in implicit and sig.returns is UNTYPED:
+        returns = IMPLICIT
+        changed = True
+
+    if not changed:
+        return sig
+
+    return Overload(tuple(params), returns)
+
+
 def _replace_or_append(items: list[Symbol], name: str, symbol: Symbol) -> None:
     for i, symbol_ in enumerate(items):
         if symbol_.name == name:
@@ -955,10 +1040,14 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         if not names:
             return
 
+        in_class = bool(self._current_class) and not self._function_depth
+
         new = [
             Symbol(
                 self._symbol_name(n),
-                ty,
+                IMPLICIT
+                if ty is UNTYPED and in_class and n.value in _IMPLICIT_DUNDER_ATTRS
+                else ty,
                 line_start=ls,
                 line_end=le,
             )
@@ -1015,10 +1104,15 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                     ),
                 )
 
-        return Overload(
+        sig = Overload(
             tuple(params),
             Expr.from_annotation(node.returns, self._resolve_name),
         )
+
+        if skip_first and self._current_class:
+            sig = _apply_implicit_dunder(node.name.value, sig)
+
+        return sig
 
     def _has_type_check_only(self, node: cst.ClassDef | cst.FunctionDef) -> bool:
         for dec in node.decorators:
