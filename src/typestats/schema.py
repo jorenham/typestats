@@ -10,5 +10,5 @@ from typing import Final, LiteralString
 
 __all__ = "MIN_TYPESTATS_VERSION", "SCHEMA_VERSION"
 
-SCHEMA_VERSION: Final[tuple[int, int]] = (0, 3)
+SCHEMA_VERSION: Final[tuple[int, int]] = (0, 4)
 MIN_TYPESTATS_VERSION: Final[LiteralString] = "0.2.0"

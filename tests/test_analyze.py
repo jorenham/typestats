@@ -2469,3 +2469,244 @@ class TestSymbolLineNumbers:
         members = self._members(src)
         assert members["C.x"].line_start == 3
         assert members["C.y"].line_start == 4
+
+
+class TestTrivialDunderMethods:
+    """Trivial dunder method slots are marked IMPLICIT when untyped."""
+
+    def test_init_return_implicit(self) -> None:
+        """__init__ without return annotation gets IMPLICIT return."""
+        src = "class C:\n    def __init__(self, x: int): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__init__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert sig.returns is IMPLICIT
+        assert sig.params[0].annotation.is_typed  # x: int is kept
+
+    def test_init_return_typed_preserved(self) -> None:
+        """Explicit -> None on __init__ is not replaced."""
+        src = "class C:\n    def __init__(self) -> None: ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__init__")
+        assert isinstance(func, Function)
+        assert isinstance(func.overloads[0].returns, Expr)
+
+    def test_str_return_implicit(self) -> None:
+        src = "class C:\n    def __str__(self): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__str__")
+        assert isinstance(func, Function)
+        assert func.overloads[0].returns is IMPLICIT
+
+    def test_bool_return_implicit(self) -> None:
+        src = "class C:\n    def __bool__(self): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__bool__")
+        assert isinstance(func, Function)
+        assert func.overloads[0].returns is IMPLICIT
+
+    def test_format_param_and_return_implicit(self) -> None:
+        """__format__ has trivial param 0 (format_spec) and return."""
+        src = "class C:\n    def __format__(self, fmt): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__format__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert sig.params[0].annotation is IMPLICIT  # format_spec
+        assert sig.returns is IMPLICIT
+
+    def test_format_typed_param_preserved(self) -> None:
+        """Already-typed param on __format__ is not replaced."""
+        src = "class C:\n    def __format__(self, fmt: str) -> str: ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__format__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert isinstance(sig.params[0].annotation, Expr)
+        assert isinstance(sig.returns, Expr)
+
+    def test_exit_params_implicit(self) -> None:
+        """__exit__ has trivial params 0-2; return is NOT trivial."""
+        src = textwrap.dedent("""\
+        class C:
+            def __exit__(self, exc_type, exc_val, exc_tb): ...
+        """)
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__exit__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert sig.params[0].annotation is IMPLICIT
+        assert sig.params[1].annotation is IMPLICIT
+        assert sig.params[2].annotation is IMPLICIT
+        assert sig.returns is UNTYPED  # return is not trivial
+
+    def test_getattr_param_implicit_return_not(self) -> None:
+        """__getattr__ has trivial param 0 (name) but non-trivial return."""
+        src = "class C:\n    def __getattr__(self, name): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__getattr__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert sig.params[0].annotation is IMPLICIT
+        assert sig.returns is UNTYPED
+
+    def test_set_name_param2_implicit(self) -> None:
+        """__set_name__ has trivial param 1 (name) and return."""
+        src = "class C:\n    def __set_name__(self, owner, name): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__set_name__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert sig.params[0].annotation is UNTYPED  # owner is not trivial
+        assert sig.params[1].annotation is IMPLICIT  # name is trivial
+        assert sig.returns is IMPLICIT
+
+    def test_non_trivial_dunder_unchanged(self) -> None:
+        """__eq__ is NOT in the trivial list; its return stays UNTYPED."""
+        src = "class C:\n    def __eq__(self, other): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__eq__")
+        assert isinstance(func, Function)
+        sig = func.overloads[0]
+        assert sig.returns is UNTYPED
+
+    def test_toplevel_function_not_affected(self) -> None:
+        """Trivial dunder names outside a class are not touched."""
+        src = "def __init__(x): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "__init__")
+        assert isinstance(func, Function)
+        assert func.overloads[0].returns is UNTYPED
+
+    def test_overloaded_trivial_dunder(self) -> None:
+        """Overloaded __init__ gets IMPLICIT return on each overload."""
+        src = textwrap.dedent("""\
+        from typing import overload
+        class C:
+            @overload
+            def __init__(self, x: int): ...
+            @overload
+            def __init__(self, x: str): ...
+            def __init__(self, x): ...
+        """)
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__init__")
+        assert isinstance(func, Function)
+        for sig in func.overloads:
+            assert sig.returns is IMPLICIT
+
+    @pytest.mark.parametrize(
+        "method",
+        [
+            "__init__",
+            "__init_subclass__",
+            "__del__",
+            "__bool__",
+            "__int__",
+            "__float__",
+            "__complex__",
+            "__bytes__",
+            "__str__",
+            "__repr__",
+            "__index__",
+            "__len__",
+            "__length_hint__",
+            "__contains__",
+            "__hash__",
+            "__setitem__",
+            "__delitem__",
+            "__dir__",
+            "__set__",
+            "__delete__",
+            "__instancecheck__",
+            "__subclasscheck__",
+            "__mro_entries__",
+            "__subclasses__",
+        ],
+    )
+    def test_return_only_methods(self, method: str) -> None:
+        """All return-only trivial dunders get IMPLICIT return."""
+        src = f"class C:\n    def {method}(self): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == f"C.{method}")
+        assert isinstance(func, Function)
+        assert func.overloads[0].returns is IMPLICIT
+
+    def test_type_counts_exclude_trivial(self) -> None:
+        """Trivial IMPLICIT slots are excluded from type_counts."""
+        src = "class C:\n    def __init__(self, x: int): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__init__")
+        assert isinstance(func, Function)
+        # x: int is 1 typed slot, return is IMPLICIT (skipped), total typable = 1
+        assert type_counts(func) == (1, 0, 1)
+
+
+class TestTrivialDunderAttrs:
+    """Trivial dunder attributes in class bodies are marked IMPLICIT."""
+
+    def test_module_attr_call_rhs_implicit(self) -> None:
+        """__module__ with a call RHS becomes IMPLICIT, not UNTYPED."""
+        src = textwrap.dedent("""\
+        class C:
+            __module__ = get_module()
+        """)
+        module = collect_symbols(src)
+        sym = next(s for s in module.symbols if s.name == "C.__module__")
+        assert sym.type_ is IMPLICIT
+
+    def test_match_args_literal_already_implicit(self) -> None:
+        """__match_args__ with a literal value is already IMPLICIT."""
+        src = textwrap.dedent("""\
+        class C:
+            __match_args__ = ("x", "y")
+        """)
+        module = collect_symbols(src)
+        sym = next(s for s in module.symbols if s.name == "C.__match_args__")
+        assert sym.type_ is IMPLICIT
+
+    def test_non_trivial_attr_stays_untyped(self) -> None:
+        """A non-trivial class attr with a call RHS stays UNTYPED."""
+        src = textwrap.dedent("""\
+        class C:
+            data = compute()
+        """)
+        module = collect_symbols(src)
+        sym = next(s for s in module.symbols if s.name == "C.data")
+        assert sym.type_ is UNTYPED
+
+    def test_trivial_attr_outside_class_unaffected(self) -> None:
+        """Module-level __doc__ = compute() stays UNTYPED."""
+        src = "__doc__ = compute()\n"
+        module = collect_symbols(src)
+        sym = next(s for s in module.symbols if s.name == "__doc__")
+        assert sym.type_ is UNTYPED
+
+    @pytest.mark.parametrize(
+        "attr",
+        [
+            "__match_args__",
+            "__name__",
+            "__qualname__",
+            "__module__",
+            "__doc__",
+            "__dict__",
+            "__bases__",
+            "__base__",
+            "__annotations__",
+            "__type_params__",
+            "__static_attributes__",
+            "__firstlineno__",
+            "__weakref__",
+            "__class__",
+            "__objclass__",
+            "__mro__",
+        ],
+    )
+    def test_trivial_attr_call_rhs_implicit(self, attr: str) -> None:
+        """All trivial dunder attrs with a call RHS are IMPLICIT."""
+        src = f"class C:\n    {attr} = make()"
+        module = collect_symbols(src)
+        sym = next(s for s in module.symbols if s.name == f"C.{attr}")
+        assert sym.type_ is IMPLICIT
