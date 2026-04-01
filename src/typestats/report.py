@@ -889,7 +889,7 @@ class PackageReport(BaseModel):
             py_typed=collected.py_typed,
             pypi=pypi,
             metadata=collected.metadata,
-            typecheckers=dict(collected.configs),
+            typecheckers=dict(collected.configs),  # pyrefly:ignore[bad-argument-type]
         )
 
     @staticmethod
