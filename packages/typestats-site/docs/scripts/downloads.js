@@ -1,3 +1,6 @@
+const TOP_PYPI_PACKAGES_URL =
+  "https://hugovk.dev/top-pypi-packages/top-pypi-packages-30-days.min.json"
+
 document$.subscribe(async () => {
   const cells = document.querySelectorAll("td.pypi-downloads")
   if (!cells.length) return
@@ -26,9 +29,7 @@ document$.subscribe(async () => {
 
   if (!downloads) {
     try {
-      const resp = await fetch(
-        "https://hugovk.github.io/top-pypi-packages/top-pypi-packages-30-days.min.json",
-      )
+      const resp = await fetch(TOP_PYPI_PACKAGES_URL)
       if (!resp.ok) {
         console.error(
           `Failed to fetch PyPI download stats: ${resp.status} ${resp.statusText}`,
