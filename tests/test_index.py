@@ -614,19 +614,68 @@ class TestMergeStubsOverlay:
         n_merged = sum(len(v) for v in merged.values())
         assert n_orig <= n_merged
 
-    def test_orphan_consolidated_under_stubs_path(self) -> None:
-        """Orphans go under stubs path."""
+    def test_orphan_keeps_original_path(self) -> None:
+        orig_path = anyio.Path("/a/pkg/__init__.py")
         stubs_path = anyio.Path("/b/pkg-stubs/__init__.pyi")
         orig = {
-            anyio.Path("/a/pkg/__init__.py"): [
+            orig_path: [
                 analyze.Symbol("pkg.x", self._INT),
-                analyze.Symbol("pkg.orphan", self._INT),
+                analyze.Symbol("pkg.orphan", self._INT, line_start=5, line_end=5),
             ],
         }
         stubs = {stubs_path: [analyze.Symbol("pkg.x", self._INT)]}
         merged = merge_stubs_overlay(orig, stubs)
-        stubs_names = {s.name for s in merged.get(stubs_path, [])}
-        assert "pkg.orphan" in stubs_names
+        orig_names = {s.name for s in merged.get(orig_path, [])}
+        assert "pkg.orphan" in orig_names
+
+    def test_orphan_preserves_line_numbers(self) -> None:
+        orig_path = anyio.Path("/a/pkg/__init__.py")
+        orig = {
+            orig_path: [
+                analyze.Symbol("pkg.x", self._INT),
+                analyze.Symbol("pkg.orphan", self._INT, line_start=10, line_end=12),
+            ],
+        }
+        stubs = {
+            anyio.Path("/b/pkg-stubs/__init__.pyi"): [
+                analyze.Symbol("pkg.x", self._INT),
+            ],
+        }
+        merged = merge_stubs_overlay(orig, stubs)
+        orphan = next(
+            s for syms in merged.values() for s in syms if s.name == "pkg.orphan"
+        )
+        assert orphan.line_start == 10
+        assert orphan.line_end == 12
+
+    def test_orphan_class_member_lines_match_path(self) -> None:
+        orig_path = anyio.Path("/a/pkg/__init__.py")
+        cls = analyze.Class(
+            "C",
+            members=(
+                analyze.Symbol("C.x", self._INT, line_start=20, line_end=20),
+                analyze.Symbol("C.y", self._INT, line_start=21, line_end=21),
+            ),
+        )
+        orig = {
+            orig_path: [
+                analyze.Symbol("pkg.x", self._INT),
+                analyze.Symbol("pkg.C", cls, line_start=18, line_end=22),
+            ],
+        }
+        stubs = {
+            anyio.Path("/b/pkg-stubs/__init__.pyi"): [
+                analyze.Symbol("pkg.x", self._INT),
+            ],
+        }
+        merged = merge_stubs_overlay(orig, stubs)
+        orphan = next(s for syms in merged.values() for s in syms if s.name == "pkg.C")
+        assert orphan in merged.get(orig_path, [])
+        assert orphan.line_start == 18
+        assert orphan.line_end == 22
+        assert isinstance(orphan.type_, analyze.Class)
+        assert orphan.type_.members[0].line_start == 20
+        assert orphan.type_.members[1].line_start == 21
 
     def test_missing_function_preserves_kind(self) -> None:
         """Missing function keeps kind, untyped."""

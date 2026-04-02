@@ -345,22 +345,18 @@ def _format_list(
                     len(str(min(end, len(source_lines[entry.path])))),
                 )
 
-    locs = [
-        f"{e.path}:{e.line_start}" if e.line_start is not None else e.path
-        for e in entries
-    ]
-    w = max((len(loc) for loc in locs), default=0)
-
     lines: list[str] = []
     if source_lines:
-        for entry, loc in zip(entries, locs, strict=True):
-            if entry.line_start is None or entry.path not in source_lines:
-                lines.append(f"{loc:<{w}}  {entry.name}")
-                continue
-            end = entry.line_end or entry.line_start
+        prefix = "   --> "
+        for entry in entries:
             if lines:
                 lines.append("")
-            lines.append(f"   --> {entry.path}:{entry.line_start}")
+            loc = f"{entry.path}:{entry.line_start}" if entry.line_start else entry.path
+            if entry.line_start is None or entry.path not in source_lines:
+                lines.append(f"{prefix}{loc}  {entry.name}")
+                continue
+            end = entry.line_end or entry.line_start
+            lines.append(f"{prefix}{loc}")
             lines.extend(
                 _format_snippet(
                     source_lines[entry.path],
@@ -370,6 +366,11 @@ def _format_list(
                 ),
             )
     else:
+        locs = [
+            f"{e.path}:{e.line_start}" if e.line_start is not None else e.path
+            for e in entries
+        ]
+        w = max((len(loc) for loc in locs), default=0)
         for loc, entry in zip(locs, entries, strict=True):
             lines.append(f"{loc:<{w}}  {entry.name}")
     return "\n".join(lines)

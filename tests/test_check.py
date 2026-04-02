@@ -577,6 +577,4 @@ class TestFormatList:
             _UntypedEntry("pkg/a.py", "z", None, None),
         ]
         result = _format_list(entries, base_path=anyio.Path(tmp_path))
-        assert "z" in result
-        assert "pkg/a.py" in result.splitlines()[-1]
-        assert result.splitlines()[-1].strip().endswith("z")
+        assert result == "   --> pkg/a.py:1\n1 | x = 1\n\n   --> pkg/a.py  z"

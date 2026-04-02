@@ -723,12 +723,10 @@ def merge_stubs_overlay(
     with `trace_origins=False` so that symbol FQNs are public import names
     and paths point to the public module file (not origin files).
 
-    Stubs types take priority. Original symbols whose modules are covered by stubs but
-    that are absent from those stubs have their annotations stripped (matching
-    type-checker behaviour: stubs shadow the `.py`) while preserving the structural
-    kind (function, property, class). These symbols are consolidated under the stubs
-    path. Original symbols whose modules are *not* covered by stubs retain their
-    original types (the type-checker falls back to the `.py`).
+    Stubs types take priority. Symbols absent from stubs but whose module is
+    covered have their annotations stripped while preserving structural kind and
+    original path/line numbers. Symbols in uncovered modules keep their original
+    types (the type-checker falls back to the `.py`).
     """
 
     stubs_flat: dict[str, _SymbolEntry] = {}
@@ -745,10 +743,10 @@ def merge_stubs_overlay(
     for path, symbols in original.items():
         for sym in symbols:
             if sym.name not in merged:
-                if (mod := sym.name.rsplit(".", 1)[0]) in stubs_modules:
-                    # re-homed to stubs path; clear lines from original file
-                    sympath, ty = stubs_mod_path[mod], sym.type_.to_unknown()
-                    merged[sym.name] = sympath, ty, None, None
+                if sym.name.rsplit(".", 1)[0] in stubs_modules:
+                    # absent from stubs; strip annotations but keep original location
+                    ty = sym.type_.to_unknown()
+                    merged[sym.name] = path, ty, sym.line_start, sym.line_end
                 else:
                     sympath, ty = path, sym.type_
                     merged[sym.name] = sympath, ty, sym.line_start, sym.line_end
