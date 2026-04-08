@@ -7,6 +7,7 @@ from collections.abc import Mapping
 from datetime import date
 from typing import Any, Final, Literal, NotRequired, TypedDict
 
+import anyio
 import httpx
 from packaging.requirements import Requirement
 from packaging.specifiers import SpecifierSet
@@ -19,6 +20,8 @@ from packaging.utils import (
 )
 from packaging.version import Version
 
+from typestats.metadata import read_pkg_metadata
+
 __all__ = (
     "available_versions",
     "base_specifier_from_metadata",
@@ -28,6 +31,7 @@ __all__ = (
     "match_version",
     "match_version_from_specifier",
     "parse_file_version",
+    "resolve_base_version",
     "versions_since",
 )
 
@@ -225,6 +229,36 @@ def match_version_from_specifier(
     with contextlib.suppress(ValueError):
         return max(specifier.filter(available))
     return None
+
+
+async def resolve_base_version(
+    project_name: str,
+    base_name: str,
+    base_available: Mapping[Version, Any],
+    stubs_version: Version,
+    stubs_sp: anyio.Path,
+    /,
+) -> Version | None:
+    """Pick the best base-package version for a stubs package.
+
+    For typeshed `types-` packages the first two release components of
+    `stubs_version` are matched directly.  For third-party stubs, the
+    `Requires-Dist` metadata is consulted first; the major.minor heuristic
+    is used only as a fallback when no dependency on the base package is
+    declared.
+
+    Returns `None` when the specifier from metadata matches no available
+    version, or when the major.minor fallback finds nothing.
+    """
+
+    if (
+        not project_name.startswith("types-")
+        and (metadata := await read_pkg_metadata(stubs_sp, dist_name=project_name))
+        and (specifier := base_specifier_from_metadata(metadata, base_name))
+    ):
+        return match_version_from_specifier(base_available, specifier)
+
+    return match_version(base_available, stubs_version)
 
 
 async def latest_distribution(
