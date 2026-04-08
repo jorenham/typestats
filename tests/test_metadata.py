@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from typestats._metadata import read_pkg_metadata
+from typestats.metadata import read_pkg_metadata
 
 
 class TestReadPkgMetadata:

@@ -95,7 +95,9 @@ variance-mismatch = "error"
 # (based)pyright
 
 [tool.pyright]
+extraPaths = ["packages/typestats-site/src"]
 ignore = [".venv", "tests/fixtures/**"]
+allowedUntypedLibraries = ["watchfiles"]
 stubPath = "."
 pythonPlatform = "All"
 typeCheckingMode = "strict"

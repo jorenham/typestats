@@ -16,7 +16,12 @@ from typestats.report import SCHEMA_VERSION, PackageReport
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from ._http import retry_client
-from ._pypi import FileDetail, available_versions, match_version, versions_since
+from ._pypi import (
+    FileDetail,
+    available_versions,
+    resolve_base_version,
+    versions_since,
+)
 from ._report import PypiInfo
 from ._uv import install_to_venv
 
@@ -144,7 +149,13 @@ async def collect_project(  # noqa: PLR0913
 
         if base_name is not None:
             assert base_available is not None
-            base_ver = match_version(base_available, version)
+            base_ver = await resolve_base_version(
+                project.name,
+                base_name,
+                base_available,
+                version,
+                sp,
+            )
             if base_ver is None:
                 _logger.warning(
                     "  %s %s - no matching %s version, skipping",

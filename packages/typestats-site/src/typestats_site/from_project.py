@@ -29,27 +29,31 @@ async def from_project(
     installed site-packages is scanned for `*-stubs/` directories (e.g.
     `boto3-stubs-lite` ships a `boto3-stubs/` directory).
 
-    For stubs packages, the base package version is required to match the
-    stubs version in the first two release components (major.minor).
+    For third-party stubs packages, the base package version is resolved
+    from `Requires-Dist` metadata when available.  For typeshed `types-`
+    packages (and as a fallback), the base version is matched on the first
+    two release components (major.minor).
 
     Raises:
-        RuntimeError: If no base package version matches the stubs version.
+        RuntimeError: If no matching base package version can be found.
     """
     ver, dist_file = await _pypi.latest_distribution(client, project.name)
-
-    # Install the project into a venv.
     sp = await _uv.install_to_venv(out_dir, project.name, str(ver))
-
-    # Detect stubs pattern from the project name.
     base_name = stubs_base_name(project.name)
 
-    # Scan for a *-stubs/ directory (e.g. boto3-stubs-lite).
+    # e.g. boto3-stubs-lite ships a boto3-stubs/ directory
     if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
         base_name = detected
 
     if base_name is not None:
         base_available = await _pypi.available_versions(client, base_name)
-        base_ver = _pypi.match_version(base_available, ver)
+        base_ver = await _pypi.resolve_base_version(
+            project.name,
+            base_name,
+            base_available,
+            ver,
+            sp,
+        )
         if base_ver is None:
             prefix = ".".join(str(c) for c in ver.release[:2])
             msg = f"no {base_name} version matching {prefix}.* found"

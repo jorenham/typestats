@@ -1,3 +1,4 @@
+import contextlib
 import itertools
 import logging
 import operator
@@ -6,22 +7,31 @@ from collections.abc import Mapping
 from datetime import date
 from typing import Any, Final, Literal, NotRequired, TypedDict
 
+import anyio
 import httpx
+from packaging.requirements import InvalidRequirement, Requirement
+from packaging.specifiers import SpecifierSet
 from packaging.utils import (
     InvalidSdistFilename,
     InvalidWheelFilename,
+    canonicalize_name,
     parse_sdist_filename,
     parse_wheel_filename,
 )
 from packaging.version import Version
 
+from typestats.metadata import read_pkg_metadata
+
 __all__ = (
     "available_versions",
+    "base_specifier_from_metadata",
     "fetch_project_detail",
     "latest_distribution",
     "latest_version",
     "match_version",
+    "match_version_from_specifier",
     "parse_file_version",
+    "resolve_base_version",
     "versions_since",
 )
 
@@ -187,6 +197,73 @@ def match_version(
     prefix = target.release[:2]
     matching = [v for v in available if v.release[:2] == prefix]
     return max(matching) if matching else None
+
+
+def base_specifier_from_metadata(
+    metadata: Mapping[str, list[str]],
+    base_name: str,
+    /,
+) -> SpecifierSet | None:
+    """Extract the version specifier for `base_name` from `Requires-Dist` metadata.
+
+    Returns the `SpecifierSet` when the metadata declares a dependency on `base_name`
+    with a non-empty specifier, or `None` otherwise.
+    """
+    if not (requires := metadata.get("Requires-Dist")):
+        return None
+
+    target = canonicalize_name(base_name)
+    for raw in requires:
+        try:
+            req = Requirement(raw)
+        except InvalidRequirement:
+            _logger.warning("Skipping malformed Requires-Dist: %s", raw)
+            continue
+        if req.specifier and canonicalize_name(req.name) == target:
+            return req.specifier
+
+    return None
+
+
+def match_version_from_specifier(
+    available: Mapping[Version, Any],
+    specifier: SpecifierSet,
+    /,
+) -> Version | None:
+    """Latest version in `available` that satisfies `specifier` or `None`."""
+    with contextlib.suppress(ValueError):
+        return max(specifier.filter(available))
+    return None
+
+
+async def resolve_base_version(
+    project_name: str,
+    base_name: str,
+    base_available: Mapping[Version, Any],
+    stubs_version: Version,
+    stubs_sp: anyio.Path,
+    /,
+) -> Version | None:
+    """Pick the best base-package version for a stubs package.
+
+    For typeshed `types-` packages the first two release components of
+    `stubs_version` are matched directly.  For third-party stubs, the
+    `Requires-Dist` metadata is consulted first; the major.minor heuristic
+    is used only as a fallback when no dependency on the base package is
+    declared.
+
+    Returns `None` when the specifier from metadata matches no available
+    version, or when the major.minor fallback finds nothing.
+    """
+
+    if (
+        not project_name.startswith("types-")
+        and (metadata := await read_pkg_metadata(stubs_sp, dist_name=project_name))
+        and (specifier := base_specifier_from_metadata(metadata, base_name))
+    ):
+        return match_version_from_specifier(base_available, specifier)
+
+    return match_version(base_available, stubs_version)
 
 
 async def latest_distribution(
