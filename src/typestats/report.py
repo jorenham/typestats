@@ -904,8 +904,8 @@ class PackageReport(BaseModel):
         dist_name: str = "",
     ) -> _CollectResult:
         """Run analysis coroutines and return merged results."""
-        from typestats._metadata import read_pkg_metadata
         from typestats.index import collect_public_symbols, merge_stubs_overlay
+        from typestats.metadata import read_pkg_metadata
         from typestats.typecheckers import discover_configs
 
         coros: list[Coroutine[Any, Any, Any]] = [
