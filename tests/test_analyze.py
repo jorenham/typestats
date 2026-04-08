@@ -2359,6 +2359,29 @@ class TestInstanceAttrs:  # noqa: PLR0904
         member_names = {m.name for m in b_cls.members}
         assert "B.x" not in member_names
 
+    def test_property_setter_not_instance_attr(self) -> None:
+        """Assignment to a property setter in __init__ is not an instance attr."""
+        src = textwrap.dedent("""\
+        class C:
+            def __init__(self):
+                self.theme = "default"
+
+            @property
+            def theme(self) -> str:
+                return self._theme
+
+            @theme.setter
+            def theme(self, value: str) -> None:
+                self._theme = value
+        """)
+        module = collect_symbols(src)
+        cls = {s.name: s.type_ for s in module.symbols}["C"]
+        assert isinstance(cls, Class)
+        members = {m.name: m.type_ for m in cls.members}
+        assert "C.theme" in members
+        assert isinstance(members["C.theme"], Property)
+        assert len([m for m in cls.members if m.name == "C.theme"]) == 1
+
 
 class TestSymbolLineNumbers:
     """

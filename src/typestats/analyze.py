@@ -1416,15 +1416,20 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
         line_start, line_end = self._sig_lines_of(node)
 
         prop = Property(name, fget=sig)
-        self.symbols.append(
-            Symbol(name, prop, line_start=line_start, line_end=line_end)
-        )
+        sym = Symbol(name, prop, line_start=line_start, line_end=line_end)
+        self.symbols.append(sym)
 
         if (cls := self._current_class) and is_public_name(node.name.value):
-            cls.members.append(
-                Symbol(name, prop, line_start=line_start, line_end=line_end)
-            )
-            cls.member_names.add(node.name.value)
+            if (short_name := node.name.value) in cls.member_names:
+                # replace init-scanned attribute shadowed by this property
+                for i, m in enumerate(cls.members):
+                    if m.name == name:
+                        cls.members[i] = sym
+                        break
+            else:
+                cls.members.append(sym)
+                cls.member_names.add(short_name)
+
         elif not self._current_class:
             self._defined_names.add(node.name.value)
 
