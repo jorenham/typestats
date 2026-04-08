@@ -9,7 +9,7 @@ from typing import Any, Final, Literal, NotRequired, TypedDict
 
 import anyio
 import httpx
-from packaging.requirements import Requirement
+from packaging.requirements import InvalidRequirement, Requirement
 from packaging.specifiers import SpecifierSet
 from packaging.utils import (
     InvalidSdistFilename,
@@ -213,7 +213,12 @@ def base_specifier_from_metadata(
         return None
 
     target = canonicalize_name(base_name)
-    for req in map(Requirement, requires):
+    for raw in requires:
+        try:
+            req = Requirement(raw)
+        except InvalidRequirement:
+            _logger.warning("Skipping malformed Requires-Dist: %s", raw)
+            continue
         if req.specifier and canonicalize_name(req.name) == target:
             return req.specifier
 

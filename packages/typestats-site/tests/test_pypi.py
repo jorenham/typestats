@@ -488,6 +488,12 @@ class TestBaseSpecifierFromMetadata:
         metadata = {"Requires-Dist": ["toolz"]}
         assert base_specifier_from_metadata(metadata, "toolz") is None
 
+    def test_malformed_requirement_skipped(self) -> None:
+        metadata = {"Requires-Dist": ["not a valid req!!!", "toolz (~=1.0)"]}
+        spec = base_specifier_from_metadata(metadata, "toolz")
+        assert spec is not None
+        assert Version("1.0.0") in spec
+
 
 class TestMatchVersionFromSpecifier:
     def test_returns_latest_matching(self) -> None:
