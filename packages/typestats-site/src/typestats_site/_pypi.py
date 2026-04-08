@@ -1,3 +1,4 @@
+import contextlib
 import itertools
 import logging
 import operator
@@ -7,9 +8,12 @@ from datetime import date
 from typing import Any, Final, Literal, NotRequired, TypedDict
 
 import httpx
+from packaging.requirements import Requirement
+from packaging.specifiers import SpecifierSet
 from packaging.utils import (
     InvalidSdistFilename,
     InvalidWheelFilename,
+    canonicalize_name,
     parse_sdist_filename,
     parse_wheel_filename,
 )
@@ -17,10 +21,12 @@ from packaging.version import Version
 
 __all__ = (
     "available_versions",
+    "base_specifier_from_metadata",
     "fetch_project_detail",
     "latest_distribution",
     "latest_version",
     "match_version",
+    "match_version_from_specifier",
     "parse_file_version",
     "versions_since",
 )
@@ -187,6 +193,38 @@ def match_version(
     prefix = target.release[:2]
     matching = [v for v in available if v.release[:2] == prefix]
     return max(matching) if matching else None
+
+
+def base_specifier_from_metadata(
+    metadata: Mapping[str, list[str]],
+    base_name: str,
+    /,
+) -> SpecifierSet | None:
+    """Extract the version specifier for `base_name` from `Requires-Dist` metadata.
+
+    Returns the `SpecifierSet` when the metadata declares a dependency on `base_name`
+    with a non-empty specifier, or `None` otherwise.
+    """
+    if not (requires := metadata.get("Requires-Dist")):
+        return None
+
+    target = canonicalize_name(base_name)
+    for req in map(Requirement, requires):
+        if req.specifier and canonicalize_name(req.name) == target:
+            return req.specifier
+
+    return None
+
+
+def match_version_from_specifier(
+    available: Mapping[Version, Any],
+    specifier: SpecifierSet,
+    /,
+) -> Version | None:
+    """Latest version in `available` that satisfies `specifier` or `None`."""
+    with contextlib.suppress(ValueError):
+        return max(specifier.filter(available))
+    return None
 
 
 async def latest_distribution(

@@ -5,6 +5,7 @@ from datetime import date
 
 import httpx
 import pytest
+from packaging.specifiers import SpecifierSet
 from packaging.version import Version
 from pytest_httpx import HTTPXMock
 
@@ -12,7 +13,9 @@ from typestats_site._pypi import (
     FileDetail,
     ProjectDetail,
     _best_distribution,
+    base_specifier_from_metadata,
     match_version,
+    match_version_from_specifier,
     parse_file_version,
     versions_since,
 )
@@ -422,11 +425,11 @@ class TestVersionsSince:
 
 class TestMatchVersion:
     def test_matches_major_minor(self) -> None:
-        available = {
-            Version("1.0.0"): None,
-            Version("1.0.1"): None,
-            Version("2.0.0"): None,
-        }
+        available = dict.fromkeys((
+            Version("1.0.0"),
+            Version("1.0.1"),
+            Version("2.0.0"),
+        ))
         assert match_version(available, Version("1.0.3")) == Version("1.0.1")
 
     def test_returns_none_when_no_match(self) -> None:
@@ -434,12 +437,12 @@ class TestMatchVersion:
         assert match_version(available, Version("1.0.0")) is None
 
     def test_returns_latest_matching(self) -> None:
-        available = {
-            Version("1.17.0"): None,
-            Version("1.17.1"): None,
-            Version("1.17.2"): None,
-            Version("1.18.0"): None,
-        }
+        available = dict.fromkeys((
+            Version("1.17.0"),
+            Version("1.17.1"),
+            Version("1.17.2"),
+            Version("1.18.0"),
+        ))
         assert match_version(available, Version("1.17.1.1")) == Version("1.17.2")
 
     def test_empty_available(self) -> None:
@@ -447,7 +450,7 @@ class TestMatchVersion:
 
     def test_single_component_version(self) -> None:
         """Versions with fewer than two release components use a shorter prefix."""
-        available = {Version("1"): None}
+        available = dict.fromkeys((Version("1"),))
         # packaging.version.Version("1").release == (1,), so release[:2] == (1,)
         assert match_version(available, Version("1.0.0")) is None
         assert match_version(available, Version("1")) == Version("1")
@@ -456,3 +459,51 @@ class TestMatchVersion:
         """Stub versions like 1.18.0.0 match base versions like 1.18.x."""
         available = {Version("1.17.2"): None, Version("1.18.0"): None}
         assert match_version(available, Version("1.18.0.0")) == Version("1.18.0")
+
+
+class TestBaseSpecifierFromMetadata:
+    def test_matching_requires_dist(self) -> None:
+        metadata = {"Requires-Dist": ["toolz (~=1.0)"]}
+        spec = base_specifier_from_metadata(metadata, "toolz")
+        assert spec is not None
+        assert Version("1.0.0") in spec
+        assert Version("0.12.0") not in spec
+
+    def test_no_requires_dist(self) -> None:
+        metadata = {"Name": ["toolz-stubs"]}
+        assert base_specifier_from_metadata(metadata, "toolz") is None
+
+    def test_base_not_in_requires_dist(self) -> None:
+        metadata = {"Requires-Dist": ["unrelated-pkg>=1.0"]}
+        assert base_specifier_from_metadata(metadata, "toolz") is None
+
+    def test_name_normalization(self) -> None:
+        metadata = {"Requires-Dist": ["My-Pkg (>=2.0,<3)"]}
+        spec = base_specifier_from_metadata(metadata, "my_pkg")
+        assert spec is not None
+        assert Version("2.5.0") in spec
+        assert Version("1.9.0") not in spec
+
+    def test_empty_specifier_ignored(self) -> None:
+        metadata = {"Requires-Dist": ["toolz"]}
+        assert base_specifier_from_metadata(metadata, "toolz") is None
+
+
+class TestMatchVersionFromSpecifier:
+    def test_returns_latest_matching(self) -> None:
+        available = dict.fromkeys((
+            Version("1.0.0"),
+            Version("1.0.1"),
+            Version("2.0.0"),
+        ))
+        spec = SpecifierSet("~=1.0")
+        assert match_version_from_specifier(available, spec) == Version("1.0.1")
+
+    def test_returns_none_when_no_match(self) -> None:
+        available = dict.fromkeys((Version("0.9.0"), Version("0.8.0")))
+        spec = SpecifierSet(">=1.0")
+        assert match_version_from_specifier(available, spec) is None
+
+    def test_empty_available(self) -> None:
+        spec = SpecifierSet(">=1.0")
+        assert match_version_from_specifier({}, spec) is None
