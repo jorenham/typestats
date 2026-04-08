@@ -2380,7 +2380,7 @@ class TestInstanceAttrs:  # noqa: PLR0904
         members = {m.name: m.type_ for m in cls.members}
         assert "C.theme" in members
         assert isinstance(members["C.theme"], Property)
-        assert len([m for m in cls.members if m.name == "C.theme"]) == 1
+        assert sum(1 for m in cls.members if m.name == "C.theme") == 1
 
 
 class TestSymbolLineNumbers:
