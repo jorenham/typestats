@@ -2,6 +2,7 @@ import json
 import shutil
 from pathlib import Path
 
+import anyio
 import libcst as cst
 import pytest
 
@@ -32,6 +33,7 @@ from typestats.report import (
     PropertyReport,
     PypiInfo,
     StubsOnly,
+    _normalize_relpath,
     _SlotState,
     _symbol_report,
 )
@@ -468,6 +470,88 @@ class TestModuleReport:
         m = ModuleReport.from_symbols("m.py", [], type_ignores=comments)
         assert m.type_ignores == comments
         assert m.n_type_ignores == 2
+
+
+class TestNormalizeRelpath:
+    def test_src_at_position_zero(self) -> None:
+        rel, _ = _normalize_relpath(
+            anyio.Path("/project/src/pkg/mod.py"),
+            anyio.Path("/project"),
+            None,
+            primary_is_src_layout=True,
+            fallback_is_src_layout=False,
+        )
+        assert rel == anyio.Path("pkg/mod.py")
+
+    def test_src_at_position_one(self) -> None:
+        """Regression: `src` after a project-name prefix must still be stripped."""
+        rel, _ = _normalize_relpath(
+            anyio.Path("/workspace/project/src/pkg/mod.py"),
+            anyio.Path("/workspace"),
+            None,
+            primary_is_src_layout=True,
+            fallback_is_src_layout=False,
+        )
+        assert rel == anyio.Path("pkg/mod.py")
+
+    def test_no_strip_when_flag_false(self) -> None:
+        rel, _ = _normalize_relpath(
+            anyio.Path("/project/src/pkg/mod.py"),
+            anyio.Path("/project"),
+            None,
+            primary_is_src_layout=False,
+            fallback_is_src_layout=False,
+        )
+        assert rel == anyio.Path("src/pkg/mod.py")
+
+    def test_no_src_in_path(self) -> None:
+        rel, _ = _normalize_relpath(
+            anyio.Path("/project/pkg/mod.py"),
+            anyio.Path("/project"),
+            None,
+            primary_is_src_layout=True,
+            fallback_is_src_layout=False,
+        )
+        assert rel == anyio.Path("pkg/mod.py")
+
+
+class TestSrcLayoutReport:
+    pytestmark = pytest.mark.anyio
+
+    @staticmethod
+    def _create_src_project(root: Path) -> Path:
+        pkg = root / "src" / "mypkg"
+        pkg.mkdir(parents=True)
+        (pkg / "__init__.py").write_text(
+            "from .mod import greet\n\n__all__ = ['greet']\n",
+        )
+        (pkg / "mod.py").write_text("def greet(name: str) -> str:\n    return name\n")
+        return root
+
+    async def test_no_src_in_module_names(self, tmp_path: Path) -> None:
+        project = self._create_src_project(tmp_path / "project")
+        report = await PackageReport.from_path(
+            "mypkg",
+            project,
+            "0.1.0",
+            sources=(anyio.Path(project / "src" / "mypkg"),),
+        )
+        for mod in report.module_reports:
+            assert ".src." not in mod.name, f"module name contains .src.: {mod.name}"
+            assert "/src/" not in mod.path, f"module path contains /src/: {mod.path}"
+
+    async def test_no_src_when_root_is_parent(self, tmp_path: Path) -> None:
+        """Regression: even when from_path receives the *parent* of the project
+        root (e.g. the workspace directory), ``src`` must still be stripped."""
+        project = self._create_src_project(tmp_path / "project")
+        report = await PackageReport.from_path(
+            "mypkg",
+            tmp_path,
+            "0.1.0",
+            sources=(anyio.Path(project / "src" / "mypkg"),),
+        )
+        for mod in report.module_reports:
+            assert ".src." not in mod.name, f"module name contains .src.: {mod.name}"
 
 
 class TestPackageReport:
