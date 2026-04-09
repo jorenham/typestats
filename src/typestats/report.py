@@ -975,7 +975,16 @@ class PackageReport(BaseModel):
                 except ValueError:
                     continue
 
-                if "src" in rel.parts:
+                try:
+                    src_index = rel.parts.index("src")
+                except ValueError:
+                    continue
+
+                if src_index == 0:
+                    continue
+
+                candidate_root = path.joinpath(*rel.parts[:src_index])
+                if await is_src_layout(candidate_root):
                     path_src = True
                     break
 

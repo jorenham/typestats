@@ -542,7 +542,7 @@ class TestSrcLayoutReport:
 
     async def test_no_src_when_root_is_parent(self, tmp_path: Path) -> None:
         """Regression: even when from_path receives the *parent* of the project
-        root (e.g. the workspace directory), ``src`` must still be stripped."""
+        root (e.g. the workspace directory), `src` must still be stripped."""
         project = self._create_src_project(tmp_path / "project")
         report = await PackageReport.from_path(
             "mypkg",
