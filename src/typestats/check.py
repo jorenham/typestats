@@ -15,6 +15,7 @@ from typing import NamedTuple, Self
 import anyio
 
 from ._env import find_distribution
+from .index import is_src_layout
 from .report import ClassReport, PackageReport, Report, _coverage
 from .stubs import stubs_base_name
 
@@ -76,7 +77,14 @@ async def _source_paths(dist: _Dist, sp: anyio.Path) -> tuple[anyio.Path, ...]:
         top.modules,
     )
 
-    dirs = [d for name in sorted(top.packages) if await (d := sp / name).is_dir()]
+    dirs = [
+        d
+        for name in sorted(top.packages)
+        if await (d := sp / name).is_dir()
+        and (
+            await (d / "__init__.py").is_file() or await (d / "__init__.pyi").is_file()
+        )
+    ]
     if dirs:
         return tuple(dirs)
 
@@ -205,6 +213,13 @@ def _dist_top_level_names(dist: _Dist) -> frozenset[str]:
     return frozenset()
 
 
+async def _project_root(source: anyio.Path) -> anyio.Path:
+    root = source.parent
+    if await is_src_layout(root.parent):
+        root = root.parent
+    return root
+
+
 async def _resolve(package: str) -> _Resolved:
     try:
         found = await find_distribution(package)
@@ -236,9 +251,9 @@ async def _resolve(package: str) -> _Resolved:
             raise SystemExit(msg)
         return _Resolved(
             pkg=base_name.replace("-", "_"),
-            path=base_sources[0].parent,
+            path=await _project_root(base_sources[0]),
             version=version,
-            stubs_path=stubs_sources[0].parent,
+            stubs_path=await _project_root(stubs_sources[0]),
             project=package,
             base_version=base_version,
             sources=base_sources,
@@ -251,7 +266,7 @@ async def _resolve(package: str) -> _Resolved:
         raise SystemExit(msg)
     return _Resolved(
         pkg=package.replace("-", "_"),
-        path=sources[0].parent,
+        path=await _project_root(sources[0]),
         version=version,
         stubs_path=None,
         project=None,

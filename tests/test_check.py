@@ -286,6 +286,58 @@ class TestCheckNotInstalled:
             await check("nonexistent-stubs")
 
 
+class TestResolveSrcLayout:
+    pytestmark = pytest.mark.anyio
+
+    async def test_path_is_project_root(self, tmp_path: Path) -> None:
+        """For editable src-layout installs, path must be the project root."""
+        sp = tmp_path / "lib" / "site-packages"
+        sp.mkdir(parents=True)
+        project_root = tmp_path / "project"
+        pkg_dir = project_root / "src" / "mypkg"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.py").touch()
+
+        direct_url = json.dumps({
+            "url": project_root.as_uri(),
+            "dir_info": {"editable": True},
+        })
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.metadata = {"Version": "1.0", "Name": "mypkg"}
+        dist.files = None
+        dist.read_text = lambda name: direct_url if name == "direct_url.json" else None
+
+        found = MagicMock()
+        found.dist = dist
+        found.site_packages = anyio.Path(sp)
+
+        with patch("typestats.check.find_distribution", return_value=found):
+            resolved = await _resolve("mypkg")
+
+        assert resolved.path == anyio.Path(project_root)
+
+    async def test_path_flat_layout(self, tmp_path: Path) -> None:
+        """For flat-layout installs, path is the site-packages directory."""
+        sp = tmp_path / "lib" / "site-packages"
+        pkg_dir = sp / "mypkg"
+        pkg_dir.mkdir(parents=True)
+        (pkg_dir / "__init__.py").touch()
+
+        dist = MagicMock(spec=importlib.metadata.Distribution)
+        dist.metadata = {"Version": "1.0", "Name": "mypkg"}
+        dist.files = [PurePosixPath("mypkg/__init__.py")]
+        dist.read_text = MagicMock(return_value=None)
+
+        found = MagicMock()
+        found.dist = dist
+        found.site_packages = anyio.Path(sp)
+
+        with patch("typestats.check.find_distribution", return_value=found):
+            resolved = await _resolve("mypkg")
+
+        assert resolved.path == anyio.Path(sp)
+
+
 class TestResolveStubs:
     pytestmark = pytest.mark.anyio
 

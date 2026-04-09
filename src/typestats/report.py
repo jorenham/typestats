@@ -1,5 +1,3 @@
-# ruff: noqa: PLC0415
-
 import asyncio
 import enum
 from collections.abc import Coroutine, Mapping, Sequence
@@ -32,9 +30,15 @@ from pydantic import (
 
 from . import analyze
 from ._type import StrPath, StrPaths
-from .index import PublicSymbols, PyTyped
+from .index import (
+    PublicSymbols,
+    PyTyped,
+    collect_public_symbols,
+    is_src_layout,
+    merge_stubs_overlay,
+)
 from .schema import SCHEMA_VERSION
-from .typecheckers import TypeCheckerConfigDict, TypeCheckerName
+from .typecheckers import TypeCheckerConfigDict, TypeCheckerName, discover_configs
 
 __all__ = (
     "AttrReport",
@@ -498,8 +502,13 @@ def _normalize_relpath(
         strip_src = primary_is_src_layout
 
     parts = list(rel.parts)
-    if strip_src and parts and parts[0] == "src":
-        parts = parts[1:]
+    if strip_src:
+        try:
+            src_idx = parts.index("src")
+        except ValueError:
+            pass
+        else:
+            parts = parts[src_idx + 1 :]
 
     had_stubs = bool(parts and parts[0].endswith("-stubs"))
 
@@ -773,7 +782,7 @@ class PackageReport(BaseModel):
 
     def project_urls(self) -> _ProjectUrls:
         """Extract PyPI and repository URLs from package metadata."""
-        from urllib.parse import urlparse
+        from urllib.parse import urlparse  # noqa: PLC0415
 
         urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{self.package}/"}
 
@@ -904,9 +913,7 @@ class PackageReport(BaseModel):
         dist_name: str = "",
     ) -> _CollectResult:
         """Run analysis coroutines and return merged results."""
-        from typestats.index import collect_public_symbols, merge_stubs_overlay
-        from typestats.metadata import read_pkg_metadata
-        from typestats.typecheckers import discover_configs
+        from .metadata import read_pkg_metadata  # noqa: PLC0415
 
         coros: list[Coroutine[Any, Any, Any]] = [
             discover_configs(stubs_path or path),
@@ -960,9 +967,27 @@ class PackageReport(BaseModel):
         stubs_path: anyio.Path | None,
     ) -> _BuildResult:
         """Build `ModuleReport` tuples with normalized paths."""
-        from typestats.index import is_src_layout
 
-        path_src = await is_src_layout(path)
+        if not (path_src := await is_src_layout(path)):
+            for src_path in symbols:
+                try:
+                    rel = src_path.relative_to(path)
+                except ValueError:
+                    continue
+
+                try:
+                    src_index = rel.parts.index("src")
+                except ValueError:
+                    continue
+
+                if src_index == 0:
+                    continue
+
+                candidate_root = path.joinpath(*rel.parts[:src_index])
+                if await is_src_layout(candidate_root):
+                    path_src = True
+                    break
+
         stubs_src = await is_src_layout(stubs_path) if stubs_path is not None else False
 
         primary = stubs_path or path
