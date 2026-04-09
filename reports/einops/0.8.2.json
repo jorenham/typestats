@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4",
+  "schema_version": "0.5",
   "package": "einops",
   "version": "0.8.2",
   "base_version": null,
@@ -53,15 +53,53 @@
   },
   "module_reports": [
     {
-      "path": "einops/einops.py",
+      "path": "einops/packing.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "einops.einops.asnumpy",
-          "line_start": 766,
-          "line_end": 766,
+          "name": "einops.packing.pack",
+          "line_start": 33,
+          "line_end": 33,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "einops.packing.unpack",
+          "line_start": 97,
+          "line_end": 97,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
+        },
+        {
+          "kind": "attr",
+          "name": "einops.packing.Shape",
+          "line_start": null,
+          "line_end": null,
           "n_typed": 1,
-          "n_any": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "einops.packing.prod",
+          "line_start": 90,
+          "line_end": 90,
+          "n_typed": 2,
+          "n_any": 0,
           "n_untyped": 0,
           "n_overloads": 1,
           "n_typable": 2,
@@ -70,19 +108,58 @@
           "n_function_params": 1
         },
         {
-          "kind": "function",
-          "name": "einops.einops.rearrange",
-          "line_start": 554,
-          "line_end": 554,
-          "n_typed": 3,
-          "n_any": 1,
+          "kind": "attr",
+          "name": "einops.packing.Tensor",
+          "line_start": 8,
+          "line_end": 8,
+          "n_typed": 0,
+          "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 2,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 2,
-          "n_function_params": 3
+          "n_typable": 0
         },
+        {
+          "kind": "function",
+          "name": "einops.packing.analyze_pattern",
+          "line_start": 14,
+          "line_end": 14,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "einops.packing",
+      "names": [
+        "einops.packing.Shape",
+        "einops.packing.Tensor",
+        "einops.packing.analyze_pattern",
+        "einops.packing.pack",
+        "einops.packing.prod",
+        "einops.packing.unpack"
+      ],
+      "n_typable": 13,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_overloads": 4,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_overloads": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "einops/einops.py",
+      "symbol_reports": [
         {
           "kind": "function",
           "name": "einops.einops.reduce",
@@ -113,6 +190,34 @@
         },
         {
           "kind": "function",
+          "name": "einops.einops.einsum",
+          "line_start": 850,
+          "line_end": 850,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 4,
+          "n_typable": 6,
+          "n_params": 5,
+          "n_function_overloads": 4,
+          "n_function_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "einops.einops.asnumpy",
+          "line_start": 766,
+          "line_end": 766,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "function",
           "name": "einops.einops.repeat",
           "line_start": 620,
           "line_end": 620,
@@ -127,71 +232,21 @@
         },
         {
           "kind": "function",
-          "name": "einops.einops.einsum",
-          "line_start": 850,
-          "line_end": 850,
-          "n_typed": 6,
-          "n_any": 0,
+          "name": "einops.einops.rearrange",
+          "line_start": 554,
+          "line_end": 554,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
-          "n_overloads": 4,
-          "n_typable": 6,
-          "n_params": 5,
-          "n_function_overloads": 4,
-          "n_function_params": 5
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.CookedRecipe",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
+          "n_overloads": 2,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 2,
+          "n_function_params": 3
         },
         {
           "kind": "attr",
           "name": "einops.einops.HashableAxesLengths",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.FakeHashableAxesLengths",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.ReductionCallable",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.Tensor",
-          "line_start": 16,
-          "line_end": 16,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.einops.Reduction",
           "line_start": null,
           "line_end": null,
           "n_typed": 1,
@@ -305,6 +360,56 @@
           "n_method_params": 6,
           "n_attrs": 7,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.CookedRecipe",
+          "line_start": null,
+          "line_end": null,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.Reduction",
+          "line_start": null,
+          "line_end": null,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.ReductionCallable",
+          "line_start": null,
+          "line_end": null,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.FakeHashableAxesLengths",
+          "line_start": null,
+          "line_end": null,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "einops.einops.Tensor",
+          "line_start": 16,
+          "line_end": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -336,111 +441,6 @@
       "n_method_params": 6,
       "n_classes": 1,
       "n_attrs": 13,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "einops/packing.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "einops.packing.unpack",
-          "line_start": 97,
-          "line_end": 97,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "einops.packing.pack",
-          "line_start": 33,
-          "line_end": 33,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "einops.packing.analyze_pattern",
-          "line_start": 14,
-          "line_end": 14,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "einops.packing.Shape",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "einops.packing.Tensor",
-          "line_start": 8,
-          "line_end": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "einops.packing.prod",
-          "line_start": 90,
-          "line_end": 90,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "einops.packing",
-      "names": [
-        "einops.packing.Shape",
-        "einops.packing.Tensor",
-        "einops.packing.analyze_pattern",
-        "einops.packing.pack",
-        "einops.packing.prod",
-        "einops.packing.unpack"
-      ],
-      "n_typable": 13,
-      "n_typed": 13,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 4,
-      "n_function_overloads": 4,
-      "n_function_params": 8,
-      "n_methods": 0,
-      "n_method_overloads": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 2,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -494,6 +494,34 @@
       "symbol_reports": [
         {
           "kind": "function",
+          "name": "einops.array_api.pack",
+          "line_start": 52,
+          "line_end": 52,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "einops.array_api.reduce",
+          "line_start": 7,
+          "line_end": 7,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_overloads": 1,
+          "n_typable": 5,
+          "n_params": 4,
+          "n_function_overloads": 1,
+          "n_function_params": 4
+        },
+        {
+          "kind": "function",
           "name": "einops.array_api.asnumpy",
           "line_start": 43,
           "line_end": 43,
@@ -508,12 +536,12 @@
         },
         {
           "kind": "function",
-          "name": "einops.array_api.unpack",
-          "line_start": 72,
-          "line_end": 72,
-          "n_typed": 4,
+          "name": "einops.array_api.repeat",
+          "line_start": 35,
+          "line_end": 35,
+          "n_typed": 3,
           "n_any": 0,
-          "n_untyped": 0,
+          "n_untyped": 1,
           "n_overloads": 1,
           "n_typable": 4,
           "n_params": 3,
@@ -536,40 +564,12 @@
         },
         {
           "kind": "function",
-          "name": "einops.array_api.reduce",
-          "line_start": 7,
-          "line_end": 7,
-          "n_typed": 5,
+          "name": "einops.array_api.unpack",
+          "line_start": 72,
+          "line_end": 72,
+          "n_typed": 4,
           "n_any": 0,
           "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "einops.array_api.pack",
-          "line_start": 52,
-          "line_end": 52,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "einops.array_api.repeat",
-          "line_start": 35,
-          "line_end": 35,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 1,
           "n_overloads": 1,
           "n_typable": 4,
           "n_params": 3,
@@ -719,16 +719,6 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "einops.layers.__author__",
-          "line_start": 1,
-          "line_end": 1,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "class",
           "name": "einops.layers.ReduceMixin",
           "line_start": 58,
@@ -850,6 +840,16 @@
           "n_method_params": 2,
           "n_attrs": 3,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.__author__",
+          "line_start": 1,
+          "line_end": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -957,16 +957,6 @@
           "n_method_params": 1,
           "n_attrs": 3,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.layers.flax.__author__",
-          "line_start": 11,
-          "line_end": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1129,6 +1119,16 @@
           "n_method_params": 1,
           "n_attrs": 2,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.flax.__author__",
+          "line_start": 11,
+          "line_end": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1239,16 +1239,6 @@
           "n_properties": 0
         },
         {
-          "kind": "attr",
-          "name": "einops.layers.oneflow.__author__",
-          "line_start": 8,
-          "line_end": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
           "kind": "class",
           "name": "einops.layers.oneflow.EinMix",
           "line_start": 21,
@@ -1319,6 +1309,16 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.oneflow.__author__",
+          "line_start": 8,
+          "line_end": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1382,16 +1382,6 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.layers.paddle.__author__",
-          "line_start": 8,
-          "line_end": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1464,6 +1454,16 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.paddle.__author__",
+          "line_start": 8,
+          "line_end": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1555,16 +1555,6 @@
           "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.layers.tensorflow.__author__",
-          "line_start": 22,
-          "line_end": 22,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1693,6 +1683,16 @@
           "n_method_params": 2,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.tensorflow.__author__",
+          "line_start": 22,
+          "line_end": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1756,16 +1756,6 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "attr",
-          "name": "einops.layers.torch.__author__",
-          "line_start": 10,
-          "line_end": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "class",
@@ -1838,6 +1828,16 @@
           "n_method_params": 1,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "attr",
+          "name": "einops.layers.torch.__author__",
+          "line_start": 10,
+          "line_end": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -1866,67 +1866,6 @@
     {
       "path": "einops/parsing.py",
       "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "einops.parsing.AnonymousAxis",
-          "line_start": 10,
-          "line_end": 10,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AnonymousAxis.__init__",
-              "line_start": 13,
-              "line_end": 13,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AnonymousAxis.__repr__",
-              "line_start": 21,
-              "line_end": 21,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 0,
-              "n_params": -1,
-              "n_function_overloads": 1,
-              "n_function_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AnonymousAxis.value",
-              "line_start": 14,
-              "line_end": 14,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 2,
-          "n_method_overloads": 2,
-          "n_method_params": -1,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
         {
           "kind": "class",
           "name": "einops.parsing.ParsedExpression",
@@ -2068,6 +2007,67 @@
           "n_method_overloads": 5,
           "n_method_params": 5,
           "n_attrs": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "einops.parsing.AnonymousAxis",
+          "line_start": 10,
+          "line_end": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnonymousAxis.__init__",
+              "line_start": 13,
+              "line_end": 13,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 1,
+              "n_params": 0,
+              "n_function_overloads": 1,
+              "n_function_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AnonymousAxis.__repr__",
+              "line_start": 21,
+              "line_end": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_overloads": 1,
+              "n_typable": 0,
+              "n_params": -1,
+              "n_function_overloads": 1,
+              "n_function_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AnonymousAxis.value",
+              "line_start": 14,
+              "line_end": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_functions": 0,
+          "n_function_overloads": 0,
+          "n_function_params": 0,
+          "n_methods": 2,
+          "n_method_overloads": 2,
+          "n_method_params": -1,
+          "n_attrs": 1,
           "n_properties": 0
         }
       ],

@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4",
+  "schema_version": "0.5",
   "package": "geopandas",
   "version": "1.1.0",
   "base_version": null,
@@ -204,23 +204,23 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "geopandas.array.to_wkt",
-          "line_start": 263,
-          "line_end": 263,
+          "name": "geopandas.array.from_wkb",
+          "line_start": 204,
+          "line_end": 204,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 2
+          "n_function_params": 3
         },
         {
           "kind": "function",
-          "name": "geopandas.array.isna",
-          "line_start": 127,
-          "line_end": 127,
+          "name": "geopandas.array.to_shapely",
+          "line_start": 195,
+          "line_end": 195,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -1542,6 +1542,16 @@
           "properties": [
             {
               "kind": "property",
+              "name": "GeometryArray.crs",
+              "line_start": 382,
+              "line_end": 382,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
               "name": "GeometryArray.sindex",
               "line_start": 352,
               "line_end": 352,
@@ -1559,16 +1569,6 @@
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "GeometryArray.crs",
-              "line_start": 382,
-              "line_end": 382,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
             },
             {
               "kind": "property",
@@ -1851,29 +1851,18 @@
               "n_typable": 1
             }
           ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "GeometryArray.crs",
-              "line_start": 348,
-              "line_end": 348,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 238,
+          "attrs": [],
+          "n_typable": 237,
           "n_typed": 5,
           "n_any": 0,
-          "n_untyped": 233,
+          "n_untyped": 232,
           "n_functions": 0,
           "n_function_overloads": 0,
           "n_function_params": 0,
           "n_methods": 93,
           "n_method_overloads": 93,
           "n_method_params": 112,
-          "n_attrs": 1,
+          "n_attrs": 0,
           "n_properties": 31
         },
         {
@@ -1973,27 +1962,51 @@
         },
         {
           "kind": "function",
-          "name": "geopandas.array.from_wkb",
-          "line_start": 204,
-          "line_end": 204,
+          "name": "geopandas.array.from_shapely",
+          "line_start": 153,
+          "line_end": 153,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 2
         },
         {
           "kind": "attr",
-          "name": "geopandas.array.geometry_type_values",
-          "line_start": 56,
-          "line_end": 56,
+          "name": "geopandas.array.POINT_GEOM_TYPES",
+          "line_start": 52,
+          "line_end": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "geopandas.array.TransformerFromCRS",
+          "line_start": 35,
+          "line_end": 35,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.array.transform",
+          "line_start": 1859,
+          "line_end": 1859,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_overloads": 1,
+          "n_typable": 3,
+          "n_params": 2,
+          "n_function_overloads": 1,
+          "n_function_params": 2
         },
         {
           "kind": "attr",
@@ -2007,31 +2020,37 @@
         },
         {
           "kind": "function",
-          "name": "geopandas.array.from_wkt",
-          "line_start": 238,
-          "line_end": 238,
+          "name": "geopandas.array.to_wkt",
+          "line_start": 263,
+          "line_end": 263,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 3,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 3,
+          "n_params": 2,
           "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 2
         },
         {
-          "kind": "function",
-          "name": "geopandas.array.to_shapely",
-          "line_start": 195,
-          "line_end": 195,
+          "kind": "attr",
+          "name": "geopandas.array.geometry_type_values",
+          "line_start": 56,
+          "line_end": 56,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "geopandas.array.POLYGON_GEOM_TYPES",
+          "line_start": 50,
+          "line_end": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "function",
@@ -2049,13 +2068,27 @@
         },
         {
           "kind": "attr",
-          "name": "geopandas.array.POINT_GEOM_TYPES",
-          "line_start": 52,
-          "line_end": 52,
+          "name": "geopandas.array.geometry_type_ids",
+          "line_start": 55,
+          "line_end": 55,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.array.from_wkt",
+          "line_start": 238,
+          "line_end": 238,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         },
         {
           "kind": "attr",
@@ -2069,61 +2102,17 @@
         },
         {
           "kind": "function",
-          "name": "geopandas.array.transform",
-          "line_start": 1859,
-          "line_end": 1859,
+          "name": "geopandas.array.isna",
+          "line_start": 127,
+          "line_end": 127,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
+          "n_untyped": 2,
           "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
+          "n_typable": 2,
+          "n_params": 1,
           "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "geopandas.array.from_shapely",
-          "line_start": 153,
-          "line_end": 153,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_overloads": 1,
-          "n_typable": 3,
-          "n_params": 2,
-          "n_function_overloads": 1,
-          "n_function_params": 2
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.array.TransformerFromCRS",
-          "line_start": 35,
-          "line_end": 35,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.array.POLYGON_GEOM_TYPES",
-          "line_start": 50,
-          "line_end": 50,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.array.geometry_type_ids",
-          "line_start": 55,
-          "line_end": 55,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -2148,10 +2137,10 @@
         "geopandas.array.transform",
         "geopandas.array.type_mapping"
       ],
-      "n_typable": 274,
+      "n_typable": 273,
       "n_typed": 5,
       "n_any": 0,
-      "n_untyped": 269,
+      "n_untyped": 268,
       "n_functions": 9,
       "n_function_overloads": 9,
       "n_function_params": 21,
@@ -2159,13 +2148,27 @@
       "n_method_overloads": 95,
       "n_method_params": 113,
       "n_classes": 2,
-      "n_attrs": 11,
+      "n_attrs": 10,
       "n_properties": 31,
       "n_type_ignores": 0
     },
     {
       "path": "geopandas/base.py",
       "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "geopandas.base.is_geometry_type",
+          "line_start": 15,
+          "line_end": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
         {
           "kind": "class",
           "name": "geopandas.base.GeoPandasBase",
@@ -3502,20 +3505,6 @@
           "n_method_params": 135,
           "n_attrs": 0,
           "n_properties": 25
-        },
-        {
-          "kind": "function",
-          "name": "geopandas.base.is_geometry_type",
-          "line_start": 15,
-          "line_end": 15,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],
@@ -4667,17 +4656,7 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "geopandas.io.arrow.GEOARROW_ENCODINGS",
-          "line_start": 21,
-          "line_end": 21,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.io.arrow.PARQUET_GEOMETRY_ENCODINGS",
+          "name": "geopandas.io.arrow.SUPPORTED_VERSIONS_LITERAL",
           "line_start": null,
           "line_end": null,
           "n_typed": 1,
@@ -4687,17 +4666,7 @@
         },
         {
           "kind": "attr",
-          "name": "geopandas.io.arrow.SUPPORTED_ENCODINGS",
-          "line_start": 29,
-          "line_end": 29,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.io.arrow.SUPPORTED_VERSIONS_LITERAL",
+          "name": "geopandas.io.arrow.PARQUET_GEOMETRY_ENCODINGS",
           "line_start": null,
           "line_end": null,
           "n_typed": 1,
@@ -4720,6 +4689,26 @@
           "name": "geopandas.io.arrow.METADATA_VERSION",
           "line_start": 18,
           "line_end": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "geopandas.io.arrow.SUPPORTED_ENCODINGS",
+          "line_start": 29,
+          "line_end": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "geopandas.io.arrow.GEOARROW_ENCODINGS",
+          "line_start": 21,
+          "line_end": 21,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4755,10 +4744,44 @@
       "path": "geopandas/io/file.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "geopandas.io.file.infer_schema",
+          "line_start": 800,
+          "line_end": 800,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_overloads": 1,
+          "n_typable": 2,
+          "n_params": 1,
+          "n_function_overloads": 1,
+          "n_function_params": 1
+        },
+        {
+          "kind": "attr",
+          "name": "geopandas.io.file.fiona",
+          "line_start": 38,
+          "line_end": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "attr",
           "name": "geopandas.io.file.fiona_env",
           "line_start": 39,
           "line_end": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "geopandas.io.file.FIONA_GE_19",
+          "line_start": 41,
+          "line_end": 41,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4776,40 +4799,6 @@
         },
         {
           "kind": "attr",
-          "name": "geopandas.io.file.fiona",
-          "line_start": 38,
-          "line_end": 38,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.io.file.pyogrio_import_error",
-          "line_start": 75,
-          "line_end": 75,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "geopandas.io.file.infer_schema",
-          "line_start": 800,
-          "line_end": 800,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
-        },
-        {
-          "kind": "attr",
           "name": "geopandas.io.file.pyogrio",
           "line_start": 74,
           "line_end": 74,
@@ -4820,9 +4809,9 @@
         },
         {
           "kind": "attr",
-          "name": "geopandas.io.file.FIONA_GE_19",
-          "line_start": 41,
-          "line_end": 41,
+          "name": "geopandas.io.file.pyogrio_import_error",
+          "line_start": 75,
+          "line_end": 75,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -4859,6 +4848,16 @@
       "path": "geopandas/io/util.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "geopandas.io.util.SCHEMES",
+          "line_start": 36,
+          "line_end": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
           "kind": "function",
           "name": "geopandas.io.util.vsi_path",
           "line_start": 8,
@@ -4871,16 +4870,6 @@
           "n_params": 1,
           "n_function_overloads": 1,
           "n_function_params": 1
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.io.util.SCHEMES",
-          "line_start": 36,
-          "line_end": 36,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         },
         {
           "kind": "attr",
@@ -4918,34 +4907,6 @@
     {
       "path": "geopandas/plotting.py",
       "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "geopandas.plotting.plot_dataframe",
-          "line_start": 489,
-          "line_end": 511,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 22,
-          "n_overloads": 1,
-          "n_typable": 22,
-          "n_params": 21,
-          "n_function_overloads": 1,
-          "n_function_params": 21
-        },
-        {
-          "kind": "function",
-          "name": "geopandas.plotting.plot_series",
-          "line_start": 316,
-          "line_end": 325,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_overloads": 1,
-          "n_typable": 9,
-          "n_params": 8,
-          "n_function_overloads": 1,
-          "n_function_params": 8
-        },
         {
           "kind": "class",
           "name": "geopandas.plotting.GeoplotAccessor",
@@ -4995,6 +4956,34 @@
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.plotting.plot_series",
+          "line_start": 316,
+          "line_end": 325,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_overloads": 1,
+          "n_typable": 9,
+          "n_params": 8,
+          "n_function_overloads": 1,
+          "n_function_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.plotting.plot_dataframe",
+          "line_start": 489,
+          "line_end": 511,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 22,
+          "n_overloads": 1,
+          "n_typable": 22,
+          "n_params": 21,
+          "n_function_overloads": 1,
+          "n_function_params": 21
         }
       ],
       "type_ignores": [],
@@ -5022,6 +5011,16 @@
     {
       "path": "geopandas/sindex.py",
       "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "geopandas.sindex.PREDICATES",
+          "line_start": 9,
+          "line_end": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
         {
           "kind": "class",
           "name": "geopandas.sindex.SpatialIndex",
@@ -5155,16 +5154,6 @@
           "n_method_params": 10,
           "n_attrs": 1,
           "n_properties": 3
-        },
-        {
-          "kind": "attr",
-          "name": "geopandas.sindex.PREDICATES",
-          "line_start": 9,
-          "line_end": 9,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
         }
       ],
       "type_ignores": [],
@@ -5193,20 +5182,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "geopandas.testing.assert_geodataframe_equal",
-          "line_start": 241,
-          "line_end": 253,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 12,
-          "n_overloads": 1,
-          "n_typable": 12,
-          "n_params": 11,
-          "n_function_overloads": 1,
-          "n_function_params": 11
-        },
-        {
-          "kind": "function",
           "name": "geopandas.testing.geom_equals",
           "line_start": 54,
           "line_end": 54,
@@ -5232,6 +5207,20 @@
           "n_params": 2,
           "n_function_overloads": 1,
           "n_function_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.testing.assert_geodataframe_equal",
+          "line_start": 241,
+          "line_end": 253,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_overloads": 1,
+          "n_typable": 12,
+          "n_params": 11,
+          "n_function_overloads": 1,
+          "n_function_params": 11
         },
         {
           "kind": "function",
@@ -5276,20 +5265,6 @@
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "geopandas.tools.sjoin.sjoin",
-          "line_start": 12,
-          "line_end": 22,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 10,
-          "n_overloads": 1,
-          "n_typable": 10,
-          "n_params": 9,
-          "n_function_overloads": 1,
-          "n_function_params": 9
-        },
-        {
-          "kind": "function",
           "name": "geopandas.tools.sjoin.sjoin_nearest",
           "line_start": 573,
           "line_end": 582,
@@ -5301,6 +5276,20 @@
           "n_params": 8,
           "n_function_overloads": 1,
           "n_function_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.tools.sjoin.sjoin",
+          "line_start": 12,
+          "line_end": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_overloads": 1,
+          "n_typable": 10,
+          "n_params": 9,
+          "n_function_overloads": 1,
+          "n_function_params": 9
         }
       ],
       "type_ignores": [],
@@ -5325,50 +5314,35 @@
       "n_type_ignores": 0
     },
     {
-      "path": "geopandas/tools/geocoding.py",
+      "path": "geopandas/tools/clip.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "geopandas.tools.geocoding.reverse_geocode",
-          "line_start": 70,
-          "line_end": 70,
+          "name": "geopandas.tools.clip.clip",
+          "line_start": 114,
+          "line_end": 114,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 4,
+          "n_untyped": 5,
           "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
+          "n_typable": 5,
+          "n_params": 4,
           "n_function_overloads": 1,
-          "n_function_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "geopandas.tools.geocoding.geocode",
-          "line_start": 25,
-          "line_end": 25,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_overloads": 1,
-          "n_typable": 4,
-          "n_params": 3,
-          "n_function_overloads": 1,
-          "n_function_params": 3
+          "n_function_params": 4
         }
       ],
       "type_ignores": [],
-      "name": "geopandas.tools.geocoding",
+      "name": "geopandas.tools.clip",
       "names": [
-        "geopandas.tools.geocoding.geocode",
-        "geopandas.tools.geocoding.reverse_geocode"
+        "geopandas.tools.clip.clip"
       ],
-      "n_typable": 8,
+      "n_typable": 5,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 8,
-      "n_functions": 2,
-      "n_function_overloads": 2,
-      "n_function_params": 6,
+      "n_untyped": 5,
+      "n_functions": 1,
+      "n_function_overloads": 1,
+      "n_function_params": 4,
       "n_methods": 0,
       "n_method_overloads": 0,
       "n_method_params": 0,
@@ -5416,35 +5390,50 @@
       "n_type_ignores": 0
     },
     {
-      "path": "geopandas/tools/clip.py",
+      "path": "geopandas/tools/geocoding.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "geopandas.tools.clip.clip",
-          "line_start": 114,
-          "line_end": 114,
+          "name": "geopandas.tools.geocoding.geocode",
+          "line_start": 25,
+          "line_end": 25,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
+          "n_untyped": 4,
           "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
+          "n_typable": 4,
+          "n_params": 3,
           "n_function_overloads": 1,
-          "n_function_params": 4
+          "n_function_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "geopandas.tools.geocoding.reverse_geocode",
+          "line_start": 70,
+          "line_end": 70,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_overloads": 1,
+          "n_typable": 4,
+          "n_params": 3,
+          "n_function_overloads": 1,
+          "n_function_params": 3
         }
       ],
       "type_ignores": [],
-      "name": "geopandas.tools.clip",
+      "name": "geopandas.tools.geocoding",
       "names": [
-        "geopandas.tools.clip.clip"
+        "geopandas.tools.geocoding.geocode",
+        "geopandas.tools.geocoding.reverse_geocode"
       ],
-      "n_typable": 5,
+      "n_typable": 8,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 5,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 4,
+      "n_untyped": 8,
+      "n_functions": 2,
+      "n_function_overloads": 2,
+      "n_function_params": 6,
       "n_methods": 0,
       "n_method_overloads": 0,
       "n_method_params": 0,
@@ -5528,10 +5517,10 @@
   ],
   "typecheckers": {},
   "n_modules": 18,
-  "n_typable": 925,
+  "n_typable": 924,
   "n_typed": 184,
   "n_any": 1,
-  "n_untyped": 740,
+  "n_untyped": 739,
   "n_functions": 25,
   "n_function_overloads": 25,
   "n_function_params": 111,
@@ -5539,7 +5528,7 @@
   "n_method_params": 461,
   "n_method_overloads": 248,
   "n_classes": 8,
-  "n_attrs": 33,
+  "n_attrs": 32,
   "n_properties": 68,
   "type_ignores": [],
   "n_type_ignores": 0
