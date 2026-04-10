@@ -171,7 +171,7 @@ class AttrReport(BaseModel):
         line_end: int | None = None,
     ) -> Self:
         s = _SlotState.from_typeform(ty)
-        return cls(
+        return cls(  # pyright: ignore[reportCallIssue]
             name=name,
             line_start=line_start,
             line_end=line_end,
@@ -234,7 +234,7 @@ class FunctionReport(BaseModel):
         counts = ty.type_counts
         untyped = counts.typable - counts.typed - counts.any
 
-        return cls(
+        return cls(  # pyright: ignore[reportCallIssue]
             name=name,
             line_start=line_start,
             line_end=line_end,
@@ -298,7 +298,7 @@ class PropertyReport(BaseModel):
                 n_any += s.any
                 n_untyped += s.untyped
 
-        return cls(
+        return cls(  # pyright: ignore[reportCallIssue]
             name=name,
             line_start=line_start,
             line_end=line_end,
@@ -392,7 +392,7 @@ class ClassReport(BaseModel):
         line_end: int | None = None,
     ) -> Self:
         if ty.is_protocol:
-            return cls(
+            return cls(  # pyright: ignore[reportCallIssue]
                 name=name,
                 line_start=line_start,
                 line_end=line_end,
@@ -433,7 +433,7 @@ class ClassReport(BaseModel):
                 analyze.Function | analyze.Property | analyze.Class,
             )
         ]
-        return cls(
+        return cls(  # pyright: ignore[reportCallIssue]
             name=name,
             line_start=line_start,
             line_end=line_end,
@@ -443,7 +443,9 @@ class ClassReport(BaseModel):
         )
 
 
-def _symbol_report(symbol: analyze.Symbol) -> Report:
+def _symbol_report(
+    symbol: analyze.Symbol,
+) -> AttrReport | FunctionReport | PropertyReport | ClassReport:
     match symbol.type_:
         case analyze.Function():
             return FunctionReport.from_symbol(

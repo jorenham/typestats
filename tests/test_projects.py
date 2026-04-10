@@ -14,18 +14,18 @@ class TestProject:
         assert p.exclude == ()
 
     def test_with_exclude(self) -> None:
-        p = Project(name="numpy", exclude=["tests/**", "benchmarks/**"])
+        p = Project(name="numpy", exclude=("tests/**", "benchmarks/**"))
         assert p.name == "numpy"
         assert p.exclude == ("tests/**", "benchmarks/**")
 
     def test_frozen(self) -> None:
         p = Project(name="numpy")
         with pytest.raises(ValidationError):
-            p.name = "other"  # type: ignore[misc]  # pyrefly: ignore
+            p.name = "other"  # type: ignore[misc]  # pyrefly: ignore[read-only]
 
     def test_missing_name(self) -> None:
         with pytest.raises(ValidationError):
-            Project()  # type: ignore[call-arg]  # pyrefly: ignore
+            Project()  # type: ignore[call-arg]  # pyrefly: ignore[missing-argument]  # pyright: ignore[reportCallIssue]
 
 
 class TestLoadProjects:
@@ -39,7 +39,7 @@ projects = [
 """)
         projects = load_projects(toml_path)
         assert len(projects) == 2
-        assert projects[0] == Project(name="numpy", exclude=["numpy/typing/tests/**"])
+        assert projects[0] == Project(name="numpy", exclude=("numpy/typing/tests/**",))
         assert projects[1] == Project(name="scipy-stubs")
 
     def test_empty_projects_list(self, tmp_path: Path) -> None:

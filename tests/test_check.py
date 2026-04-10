@@ -1,5 +1,7 @@
 """Tests for `typestats.check`."""
 
+# pyright: reportUnknownLambdaType=false
+
 import importlib.metadata
 import importlib.util
 import json
@@ -43,7 +45,7 @@ type CaptureStr = pytest.CaptureFixture[str]
 
 
 @pytest.fixture(autouse=True, scope="module")
-def _cache_expensive_calls() -> Any:
+def _cache_expensive_calls() -> Any:  # pyright: ignore[reportUnusedFunction]
     """Use a tiny fixture package and cache results across the module."""  # noqa: DOC402
     fixture_resolved = _Resolved(
         pkg="pkg",
@@ -368,15 +370,18 @@ class TestResolveStubs:
         base_dist.files = None
         base_dist.read_text.return_value = None
 
-        def fake_distribution(name: str) -> importlib.metadata.Distribution:
+        def fake_distribution(name: str, /) -> importlib.metadata.Distribution:
             if name == "foo-stubs":
                 return stubs_dist
             if name == "foo":
                 return base_dist
             raise importlib.metadata.PackageNotFoundError(name)
 
+        def fake_find_spec(_: str, /) -> Any:
+            return None
+
         monkeypatch.setattr(importlib.metadata, "distribution", fake_distribution)
-        monkeypatch.setattr(importlib.util, "find_spec", lambda _name: None)
+        monkeypatch.setattr(importlib.util, "find_spec", fake_find_spec)
         with pytest.raises(SystemExit, match="could not find source files"):
             await _resolve("foo-stubs")
 

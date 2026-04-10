@@ -35,6 +35,7 @@ _logger: Final = logging.getLogger(__name__)
 
 type _PathMap[T] = Mapping[anyio.Path, T]
 type _SymbolSequence = Sequence[analyze.Symbol]
+type _IgnoreComments = tuple[analyze.IgnoreComment, ...]
 
 
 class PyTyped(enum.Enum):
@@ -51,10 +52,8 @@ class PyTyped(enum.Enum):
 class PublicSymbols:
     """Result of `collect_public_symbols`."""
 
-    symbols: _PathMap[_SymbolSequence] = field(default_factory=dict)
-    type_ignores: _PathMap[tuple[analyze.IgnoreComment, ...]] = field(
-        default_factory=dict,
-    )
+    symbols: _PathMap[_SymbolSequence] = field(default_factory=dict)  # pyright: ignore[reportUnknownVariableType]
+    type_ignores: _PathMap[_IgnoreComments] = field(default_factory=dict)  # pyright: ignore[reportUnknownVariableType]
     py_typed: PyTyped = field(default_factory=lambda: PyTyped.NO)
 
 
@@ -688,7 +687,7 @@ async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
             analyze.Symbol(fqn, type_, line_start=line_start, line_end=line_end),
         )
 
-    type_ignores: dict[anyio.Path, tuple[analyze.IgnoreComment, ...]] = {}
+    type_ignores: dict[anyio.Path, _IgnoreComments] = {}
     for entries in module_data.values():
         for path, syms in entries.items():
             if syms.ignore_comments:
