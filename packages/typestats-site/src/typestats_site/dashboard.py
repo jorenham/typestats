@@ -153,6 +153,8 @@ class _IndexRow(NamedTuple):
     release_date: str
     coverage: str
     coverage_strict: str
+    coverage_num: float
+    coverage_strict_num: float
     n_typable: str
     py_typed_sort: int
     py_typed: str
@@ -176,13 +178,17 @@ class IndexPage(_Page):
         }
 
         def row(r: PackageReport, /) -> _IndexRow:
+            cov = r.coverage()
+            cov_strict = r.coverage(True)
             return _IndexRow(
                 package=r.package,
                 version=r.version,
                 base_version=r.base_version,
                 release_date=_release_date(r),
-                coverage=f"{r.coverage():.1%}",
-                coverage_strict=f"{r.coverage(True):.1%}",
+                coverage=f"{cov:.1%}",
+                coverage_strict=f"{cov_strict:.1%}",
+                coverage_num=round(cov * 100, 1),
+                coverage_strict_num=round(cov_strict * 100, 1),
                 n_typable=f"{r.n_typable:,}",
                 py_typed_sort=r.py_typed.sort_key(),
                 py_typed=r.py_typed.name.lower(),

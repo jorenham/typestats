@@ -28,6 +28,15 @@ hide:
       <button type="button" class="filter-btn" aria-pressed="false" data-value="1">Yes</button>
       <button type="button" class="filter-btn" aria-pressed="false" data-value="0">No</button>
     </div>
+    <div class="filter-group filter-group--range" data-filter="coverage">
+      <span class="filter-label">Coverage</span>
+      <span class="range-value" data-range-min>0%</span>
+      <div class="range-slider">
+        <input type="range" min="0" max="100" value="0" step="1" data-thumb="min" aria-label="Minimum coverage">
+        <input type="range" min="0" max="100" value="100" step="1" data-thumb="max" aria-label="Maximum coverage">
+      </div>
+      <span class="range-value" data-range-max>100%</span>
+    </div>
   </div>
 </div>
 
@@ -47,7 +56,10 @@ hide:
   </thead>
   <tbody>
     {% for r in rows %}
-      <tr data-py-typed="{{ '1' if r.py_typed != 'no' else '0' }}" data-stubs="{{ '1' if r.stubs_link else '0' }}">
+      <tr data-py-typed="{{ '1' if r.py_typed != 'no' else '0' }}"
+          data-stubs="{{ '1' if r.stubs_link else '0' }}"
+          data-coverage="{{ r.coverage_num }}"
+          data-coverage-strict="{{ r.coverage_strict_num }}">
         <td><a href="report/#{{ r.package }}">{{ r.package }}</a></td>
         <td class="num">{{ r.version }}</td>
         <td class="num">{{ r.release_date }}</td>
