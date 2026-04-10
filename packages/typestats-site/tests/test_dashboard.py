@@ -300,6 +300,20 @@ class TestRenderIndex:
         assert 'data-stubs="1"' in rows[0]  # has stubs companion
         assert 'data-stubs="0"' in rows[1]  # is the stubs package itself
 
+    def test_data_coverage_attributes(self) -> None:
+        report = _minimal_report("pkg", "1.0.0", n_typed=8, n_any=2, n_untyped=10)
+        md = IndexPage([report]).render()
+        data_row = _table_rows(md)[0]
+        # coverage: (8+2)/20 = 50.0%, strict: 8/20 = 40.0%
+        assert 'data-coverage="50.0"' in data_row
+        assert 'data-coverage-strict="40.0"' in data_row
+
+    def test_filter_bar_coverage_slider(self) -> None:
+        md = IndexPage([_minimal_report()]).render()
+        assert 'data-filter="coverage"' in md
+        assert 'data-thumb="min"' in md
+        assert 'data-thumb="max"' in md
+
 
 class TestBuildSite:
     pytestmark = pytest.mark.anyio
