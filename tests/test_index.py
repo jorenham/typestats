@@ -31,8 +31,12 @@ _STUBS_OVERLAY: Path = _FIXTURES / "stubs_overlay"
 def _is_excluded(rel: str) -> bool:
     """Local helper matching the inlined logic in `_analyze_graph`."""
     parts = rel.split("/")
-    return parts[-1] in _EXCLUDED_FILE_NAMES or bool(
-        _EXCLUDED_DIR_NAMES.intersection(parts),
+    filename = parts[-1]
+    stem = filename.removesuffix(".pyi").removesuffix(".py")
+    return (
+        not stem.isidentifier()
+        or filename in _EXCLUDED_FILE_NAMES
+        or bool(_EXCLUDED_DIR_NAMES.intersection(parts))
     )
 
 
@@ -51,6 +55,10 @@ def _is_excluded(rel: str) -> bool:
         ("numpy/conftest.py", True),
         ("conftest.py", True),
         ("setup.py", True),
+        ("migrations/0083_workflowcontenttype.py", True),
+        ("myapp/0001_initial.py", True),
+        ("my-script.py", True),
+        ("some-module.pyi", True),
         ("numpy/__init__.py", False),
         ("numpy/_core/__init__.py", False),
         ("numpy/linalg/__init__.pyi", False),

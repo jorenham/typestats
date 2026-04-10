@@ -124,9 +124,12 @@ async def _analyze_graph(
         prefix = abs_prefix if _is_absolute(path) else rel_prefix
         rel = path.removeprefix(prefix).lstrip("/")
         parts = rel.split("/")
+        filename = parts[-1]
+        stem = filename.removesuffix(".pyi").removesuffix(".py")
 
         return (
-            parts[-1] in _EXCLUDED_FILE_NAMES
+            not stem.isidentifier()
+            or filename in _EXCLUDED_FILE_NAMES
             or bool(_EXCLUDED_DIR_NAMES.intersection(parts))
             or (exclude_re is not None and exclude_re.fullmatch(rel) is not None)
         )
