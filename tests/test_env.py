@@ -18,7 +18,7 @@ _SCRIPTS_DIR = "Scripts" if sys.platform == "win32" else "bin"
 
 
 @pytest.fixture(autouse=True)
-def _clear_cache() -> None:
+def _clear_cache() -> None:  # pyright: ignore[reportUnusedFunction]
     esp_cache.clear()
 
 

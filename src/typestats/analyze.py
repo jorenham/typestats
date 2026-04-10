@@ -14,7 +14,7 @@ from libcst.helpers import (
     get_absolute_module_from_package_for_import,
     get_full_name_for_node,
 )
-from libcst.metadata import MetadataWrapper, PositionProvider
+from libcst.metadata import CodeRange, MetadataWrapper, PositionProvider
 
 __all__ = (
     "ANY",
@@ -120,19 +120,15 @@ def _eval_version_info_expr(node: cst.BaseExpression) -> tuple[int, ...] | int |
 
     match node.slice[0].slice:
         case cst.Index(cst.Integer(v)):
-            out = target[int(v)]
-            if isinstance(out, int):
-                return out
+            return target[int(v)]
         case cst.Slice() as sl if (bounds := _parse_slice_bounds(sl)) is not None:
-            out = target[bounds[0] : bounds[1]]
-            if all(isinstance(i, int) for i in out):
-                return out
-
-    _logger.warning(
-        "unsupported version_info subscript: %s",
-        _EMPTY_MODULE.code_for_node(node),
-    )
-    return None
+            return target[bounds[0] : bounds[1]]
+        case _:
+            _logger.warning(
+                "unsupported version_info subscript: %s",
+                _EMPTY_MODULE.code_for_node(node),
+            )
+            return None
 
 
 class ParamKind(StrEnum):
@@ -731,8 +727,7 @@ def _get_first_param_name(node: cst.FunctionDef) -> str | None:
     """Return the name of the first positional parameter (usually `self` or `cls`)."""
     for params in (node.params.posonly_params, node.params.params):
         for p in params:
-            if isinstance(p, cst.Param):
-                return p.name.value
+            return p.name.value
     return None
 
 
@@ -876,18 +871,19 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         self._package_name = package_name
 
-    def _lines_of(self, node: cst.CSTNode) -> tuple[int | None, int | None]:
+    def _lines_of(self, node: cst.CSTNode) -> tuple[int, int] | tuple[None, None]:
         try:
             metadata = self.get_metadata(PositionProvider, node)
         except KeyError:
             return None, None
         else:
+            assert isinstance(metadata, CodeRange)
             return metadata.start.line, metadata.end.line
 
     def _sig_lines_of(
         self,
         node: cst.FunctionDef | cst.ClassDef,
-    ) -> tuple[int | None, int | None]:
+    ) -> tuple[int, int] | tuple[int | None, None]:
         """Return `(line_start, line_end)` covering only the signature."""
         line_start, _ = self._lines_of(node)
         body_start, _ = self._lines_of(node.body)
@@ -896,10 +892,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         # Subtract leading blank/comment lines so line_end lands on the colon.
         n_leading = 0
-        if isinstance(node.body, cst.IndentedBlock) and node.body.body:
-            first = node.body.body[0]
-            if hasattr(first, "leading_lines"):
-                n_leading = len(first.leading_lines)
+        if isinstance(body := node.body, cst.IndentedBlock) and body.body:
+            n_leading = len(getattr(body.body[0], "leading_lines", []))
 
         line_end = max(body_start - n_leading - 1, line_start)
         return line_start, line_end
@@ -1382,6 +1376,8 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
                 | cst.SimpleStatementSuite(trailing_whitespace=tw)
             ):
                 self.visit_TrailingWhitespace(tw)
+            case _:
+                pass
 
         return False  # skip function body: no module/class-level symbols there
 
@@ -1393,20 +1389,17 @@ class _SymbolVisitor(cst.CSTVisitor):  # noqa: PLR0904
 
         Returns `(accessor_kind, property_full_name)` or `None`.
         """
+        prefix = f"{cls.name}." if (cls := self._current_class) else ""
         for dec in node.decorators:
             if (
                 isinstance(expr := dec.decorator, cst.Attribute)
                 and (attr := expr.attr.value) in {"setter", "deleter"}
                 and isinstance(value := expr.value, cst.Name)
             ):
-                prop_base_name = value.value
-                full_name = (
-                    f"{cls.name}.{prop_base_name}"
-                    if (cls := self._current_class)
-                    else prop_base_name
-                )
+                full_name = prefix + value.value
                 if full_name in self._property_map:
-                    return attr, full_name
+                    # pyright fails to narrow `attr` to `Literal["setter", "deleter"]`
+                    return attr, full_name  # pyright: ignore[reportReturnType]
 
         return None
 

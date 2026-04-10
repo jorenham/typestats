@@ -2,6 +2,7 @@
 
 import importlib.metadata
 import importlib.util
+import itertools
 import json
 import logging
 import re
@@ -133,61 +134,69 @@ async def _resolve_editable_source(
     sp: anyio.Path,
     names: _Names,
 ) -> anyio.Path | None:
-    if (source_root := _read_direct_url(dist)) and (
-        result := await _find_package_in_root(source_root, names)
-    ):
+    if (
+        (source_root := _read_direct_url(dist))
+        and (result := await _find_package_in_root(source_root, names))
+    ):  # fmt: skip
         return result
 
-    dist_name = dist.metadata["Name"]
-    if dist_name is None:
+    if not (dist_name := dist.metadata["Name"]):
         return None
+
     pth_path = sp / (dist_name.replace("-", "_") + ".pth")
     if await pth_path.is_file():
         pth_text = await pth_path.read_text()
         for raw_line in pth_text.splitlines():
-            entry = raw_line.strip()
-            if not entry or entry.startswith("#"):
+            if not (entry := raw_line.strip()) or entry.startswith("#"):
                 continue
-            entry_path = anyio.Path(entry)
-            candidate = entry_path if entry_path.is_absolute() else (sp / entry_path)
-            candidate = await candidate.resolve()
-            if await candidate.is_dir() and (
-                result := await _find_package_in_root(candidate, names)
-            ):
+
+            path = anyio.Path(entry)
+            candidate = await (path if path.is_absolute() else (sp / path)).resolve()
+            if (
+                await candidate.is_dir()
+                and (result := await _find_package_in_root(candidate, names))
+            ):  # fmt: skip
                 return result
+
     return None
 
 
 def _read_direct_url(dist: _Dist) -> anyio.Path | None:
-    raw = dist.read_text("direct_url.json")
-    if raw is None:
+    if (raw := dist.read_text("direct_url.json")) is None:
         return None
+
     try:
         data = json.loads(raw)
     except (json.JSONDecodeError, ValueError):
         return None
-    url = data.get("url", "")
-    if not url.startswith("file://"):
-        return None
+
     if not data.get("dir_info", {}).get("editable", False):
         return None
-    parsed = urllib.parse.urlparse(url)
-    base_path = anyio.Path(urllib.request.url2pathname(parsed.path))
-    subdirectory = data.get("subdirectory")
-    if isinstance(subdirectory, str) and subdirectory:
+
+    url: str = data.get("url", "")
+    if not url.startswith("file://"):
+        return None
+
+    base_path = anyio.Path(urllib.request.url2pathname(urllib.parse.urlparse(url).path))
+
+    if subdirectory := data.get("subdirectory"):
+        assert isinstance(subdirectory, str)
         base_path /= subdirectory
+
     return base_path
 
 
 async def _find_package_in_root(root: anyio.Path, names: _Names) -> anyio.Path | None:
     for name in names:
-        for variant in (name, name.replace("_", "-")):
-            for base in (root, root / "src"):
-                candidate = base / variant
-                for marker in ("__init__.py", "__init__.pyi"):
-                    if await (candidate / marker).is_file():
-                        _logger.debug("editable source: %s -> %s", name, candidate)
-                        return candidate
+        for variant, base, marker in itertools.product(
+            (name, name.replace("_", "-")),
+            (root, root / "src"),
+            ("__init__.py", "__init__.pyi"),
+        ):
+            candidate = base / variant
+            if await (candidate / marker).is_file():
+                _logger.debug("editable source: %s -> %s", name, candidate)
+                return candidate
     return None
 
 
@@ -203,12 +212,9 @@ def _find_spec_source(names: _Names) -> anyio.Path | None:
 
 
 def _dist_top_level_names(dist: _Dist) -> frozenset[str]:
-    top_level = dist.read_text("top_level.txt")
-    if top_level is not None:
+    if top_level := dist.read_text("top_level.txt"):
         return frozenset(top_level.split())
-
-    name = dist.metadata["Name"]
-    if name is not None:
+    if name := dist.metadata["Name"]:
         return frozenset({name.replace("-", "_")})
     return frozenset()
 
@@ -226,6 +232,7 @@ async def _resolve(package: str) -> _Resolved:
     except importlib.metadata.PackageNotFoundError:
         msg = f"package {package!r} is not installed"
         raise SystemExit(msg) from None
+
     version = found.dist.metadata["Version"]
     sp = found.site_packages
 

@@ -1,3 +1,5 @@
+# ruff: noqa: RUF069
+
 import json
 import shutil
 from pathlib import Path
@@ -444,18 +446,16 @@ class TestModuleReport:
         assert m.n_method_overloads == 3  # 3 overloads from the class method
 
     def test_coverage_default(self) -> None:
-        """Non-strict: Any counts as typed."""
         m = ModuleReport.from_symbols("m.py", [Symbol("a", _INT), Symbol("b", ANY)])
-        assert m.coverage() == pytest.approx(1)
+        assert m.coverage() == 1
 
     def test_coverage_strict(self) -> None:
-        """Strict: Any doesn't count as typed."""
         m = ModuleReport.from_symbols("m.py", [Symbol("a", _INT), Symbol("b", ANY)])
-        assert m.coverage(True) == pytest.approx(1 / 2)
+        assert m.coverage(True) == 0.5
 
     def test_coverage_empty(self) -> None:
         m = ModuleReport(path="m.py", symbol_reports=())
-        assert m.coverage() == pytest.approx(0)
+        assert m.coverage() == 0
 
     def test_type_ignores_default_empty(self) -> None:
         m = ModuleReport(path="m.py", symbol_reports=())
@@ -566,11 +566,11 @@ class TestPackageReport:
 
     def test_coverage(self) -> None:
         r = self._pkg(Symbol("a", _INT), Symbol("b", ANY))
-        assert r.coverage() == pytest.approx(1)
+        assert r.coverage() == 1
 
     def test_coverage_strict(self) -> None:
         r = self._pkg(Symbol("a", _INT), Symbol("b", ANY))
-        assert r.coverage(True) == pytest.approx(1 / 2)
+        assert r.coverage(True) == 0.5
 
     def test_aggregation(self) -> None:
         r = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED))
