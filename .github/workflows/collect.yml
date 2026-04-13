@@ -11,8 +11,7 @@ on:
       - src/typestats/schema.py
   workflow_dispatch:
 
-permissions:
-  contents: write
+permissions: {}
 
 concurrency:
   group: collect
@@ -20,8 +19,11 @@ concurrency:
 
 jobs:
   collect:
+    name: collect
     runs-on: ubuntu-latest
     timeout-minutes: 240
+    permissions:
+      contents: write # push collected data to the data branch
     environment: reports
     steps:
       - name: checkout main

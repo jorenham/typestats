@@ -18,9 +18,7 @@ on: # zizmor: ignore[dangerous-triggers]
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: read # checkout
 
 concurrency:
   group: pages
@@ -28,7 +26,12 @@ concurrency:
 
 jobs:
   deploy:
+    name: deploy
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+
+    permissions:
+      pages: write # deploy to GitHub Pages
+      id-token: write # verify the deployment originates from this workflow
 
     runs-on: ubuntu-latest
     timeout-minutes: 10
