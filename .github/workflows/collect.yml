@@ -26,12 +26,15 @@ jobs:
     steps:
       - name: checkout main
         uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
 
       - name: checkout data
         uses: actions/checkout@v6.0.2
         with:
           ref: data
           path: _data
+          persist-credentials: false
 
       - uses: astral-sh/setup-uv@v8.0.0
         with:
