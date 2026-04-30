@@ -143,7 +143,11 @@ async def _watch_and_rebuild(
 
 
 async def _serve(*args: str) -> None:
+    if "--strict" not in args:
+        args = ("--strict", *args)
+
     _logger.debug("%s zensical serve %s", _CMD, " ".join(args))
+
     async with await anyio.open_process(
         ["zensical", "serve", *args],
         cwd=ROOT,
