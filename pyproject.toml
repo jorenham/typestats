@@ -7,9 +7,7 @@ name = "typestats"
 version = "0.2.2"
 description = "Type annotation coverage statistics for Python packages"
 readme = "README.md"
-authors = [
-  { name = "Joren Hammudoglu", email = "jhammudoglu@gmail.com" },
-]
+authors = [{ name = "Joren Hammudoglu", email = "jhammudoglu@gmail.com" }]
 license = "BSD-3-Clause"
 license-files = ["LICENSE"]
 classifiers = [
@@ -39,18 +37,13 @@ dependencies = [
 typestats = "typestats:__main__.app"
 
 [dependency-groups]
-site = [
-  "typestats-site",
-]
-test = [
-  "pytest>=9.0.3",
-  "pytest-httpx>=0.36.2",
-]
+site = ["typestats-site"]
+test = ["pytest>=9.0.3", "pytest-httpx>=0.36.2"]
 dev = [
   { include-group = "site" },
   { include-group = "test" },
   "dprint-py==0.53.1.0",
-  "pyrefly==0.62.0",
+  "pyrefly==0.63.1",
   "uvloop>=0.22.1,<1; sys_platform != 'win32'",
 ]
 
@@ -66,7 +59,11 @@ members = ["packages/*"]
 minversion = "9.0"
 testpaths = ["src", "tests"]
 addopts = ["-ra", "--doctest-modules", "--ignore=tests/fixtures"]
-doctest_optionflags = ["NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL", "ELLIPSIS"]
+doctest_optionflags = [
+  "NORMALIZE_WHITESPACE",
+  "IGNORE_EXCEPTION_DETAIL",
+  "ELLIPSIS",
+]
 filterwarnings = ["error"]
 log_level = "INFO"
 strict = true
@@ -119,11 +116,7 @@ src = [
   "packages/typestats-site/src",
   "packages/typestats-site/tests",
 ]
-extend-exclude = [
-  ".cache",
-  ".pytest_cache",
-  "tests/fixtures",
-]
+extend-exclude = [".cache", ".pytest_cache", "tests/fixtures"]
 force-exclude = true
 show-fixes = true
 preview = true
