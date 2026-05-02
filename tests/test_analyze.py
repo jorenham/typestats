@@ -2665,6 +2665,14 @@ class TestTrivialDunderMethods:
         # x: int is 1 typed slot, return is IMPLICIT (skipped), total typable = 1
         assert type_counts(func) == (1, 0, 1)
 
+    def test_post_init_return_implicit(self) -> None:
+        """__post_init__ without return annotation gets IMPLICIT return."""
+        src = "class C:\n    def __post_init__(self): ..."
+        module = collect_symbols(src)
+        func = next(s.type_ for s in module.symbols if s.name == "C.__post_init__")
+        assert isinstance(func, Function)
+        assert func.overloads[0].returns is IMPLICIT
+
 
 class TestTrivialDunderAttrs:
     """Trivial dunder attributes in class bodies are marked IMPLICIT."""

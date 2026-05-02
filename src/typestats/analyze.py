@@ -636,6 +636,7 @@ _RETURN: Final = -1
 _IMPLICIT_DUNDER_METHODS: Final[dict[str, set[int]]] = {
     "__init__": {_RETURN},
     "__init_subclass__": {_RETURN},
+    "__post_init__": {_RETURN},
     "__del__": {_RETURN},
     "__bool__": {_RETURN},
     "__int__": {_RETURN},
