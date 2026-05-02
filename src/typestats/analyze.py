@@ -626,7 +626,7 @@ def is_public_name(name: str) -> bool:
     return not name.startswith("_") or name.endswith("__")
 
 
-_INIT_METHODS: Final = frozenset({"__init__", "__new__", "__post_init__"})
+_INIT_METHODS: Final = frozenset({"__init__", "__new__"})
 _DESCRIPTOR_WRAPPERS: Final = frozenset({"staticmethod", "classmethod"})
 
 

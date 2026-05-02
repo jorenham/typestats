@@ -2170,6 +2170,7 @@ class TestInstanceAttrs:  # noqa: PLR0904
         members = {m.name: m.type_ for m in cls.members}
         assert "C.computed" in members
         assert members["C.computed"] is UNTYPED
+        assert members.get("C.__post_init__") is None
 
     def test_nested_function_ignored(self) -> None:
         src = textwrap.dedent("""\
