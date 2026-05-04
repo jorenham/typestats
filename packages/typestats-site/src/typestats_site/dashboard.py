@@ -20,14 +20,13 @@ from typestats.projects import load_projects
 from typestats.report import PackageReport, StubsOnly
 from typestats.schema import MIN_TYPESTATS_VERSION, SCHEMA_VERSION
 from typestats.stubs import stubs_base_name
+from typestats_site import PROJECTS_PATH
 
 __all__ = ("build_site",)
 
 type _PackageReports = list[PackageReport]
 
 _logger: Final = logging.getLogger(__name__)
-
-_DEFAULT_PROJECTS: Final = Path(__file__).parents[2] / "projects.toml"
 
 
 def _release_date(r: PackageReport, /) -> str:
@@ -201,7 +200,7 @@ class IndexPage(_Page):
 async def build_site(
     data_dir: anyio.Path,
     dir_site: anyio.Path,
-    projects_path: StrPath = _DEFAULT_PROJECTS,
+    projects_path: StrPath = PROJECTS_PATH,
     /,
     *,
     reports: _PackageReports | None = None,

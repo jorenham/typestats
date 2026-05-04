@@ -26,6 +26,7 @@ import anyio
 import watchfiles
 
 import typestats_site.dashboard
+from typestats_site import PROJECTS_PATH
 
 if TYPE_CHECKING:
     from typestats.report import PackageReport
@@ -112,7 +113,7 @@ async def _watch_and_rebuild(
         ROOT / "docs",
         ROOT / "src" / "typestats_site" / "templates",
         ROOT / "src" / "typestats_site" / "dashboard.py",
-        ROOT / "projects.toml",
+        PROJECTS_PATH,
     )
     _logger.debug("Watching %s ...", ", ".join(p.name for p in watch_paths))
     cached_reports = initial_reports
@@ -133,7 +134,7 @@ async def _watch_and_rebuild(
             ) = await typestats_site.dashboard.build_site(
                 reports_dir,
                 _SITE_DIR,
-                str(ROOT / "projects.toml"),
+                PROJECTS_PATH,
                 reports=None if invalidate else cached_reports,
                 all_reports=None if invalidate else cached_all_reports,
             )
@@ -179,6 +180,8 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
     sha = await _resolve_hash(repo_root)
     sha_cached = await _SITE_SHA.read_text() if await _SITE_SHA.exists() else None
 
+    reports_path = _REPORTS_DIR / "reports"
+
     initial_reports: _PackageReports | None = None
     initial_all_reports: dict[str, _PackageReports] | None = None
     if not clean and sha == sha_cached and await _REPORTS_DIR.exists():
@@ -188,11 +191,7 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
 
         _logger.info("Building dashboard pages ...")
         (initial_reports, initial_all_reports), _ = await asyncio.gather(
-            typestats_site.dashboard.build_site(
-                _REPORTS_DIR / "reports",
-                _SITE_DIR,
-                str(ROOT / "projects.toml"),
-            ),
+            typestats_site.dashboard.build_site(reports_path, _SITE_DIR, PROJECTS_PATH),
             _SITE_SHA.write_text(sha),
         )
 
@@ -202,7 +201,7 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
             tg.start_soon(_on_shutdown, tg.cancel_scope)
             tg.start_soon(
                 _watch_and_rebuild,
-                _REPORTS_DIR / "reports",
+                reports_path,
                 initial_reports,
                 initial_all_reports,
             )
