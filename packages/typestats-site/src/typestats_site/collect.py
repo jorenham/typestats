@@ -31,8 +31,9 @@ if TYPE_CHECKING:
 __all__ = "clean_data", "collect_all"
 
 
+from typestats_site import PROJECTS_PATH
+
 _logger: Final = logging.getLogger(__name__)
-_DEFAULT_PROJECTS: Final = anyio.Path(__file__).parents[2] / "projects.toml"
 
 
 async def _remove_tree(path: anyio.Path, /) -> None:
@@ -216,10 +217,7 @@ async def collect_all(
 
     data_dir = anyio.Path(data_dir)
 
-    if projects_path is None:
-        projects_path = _DEFAULT_PROJECTS
-
-    projects = load_projects(projects_path)
+    projects = load_projects(projects_path or PROJECTS_PATH)
     _logger.info("Collecting data for %d projects...", len(projects))
 
     # prune data for unlisted projects

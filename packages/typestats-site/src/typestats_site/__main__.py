@@ -5,10 +5,12 @@ import dataclasses
 import datetime as dt
 import logging
 from pathlib import Path
-from typing import Annotated, Final
+from typing import Annotated
 
 import anyio
 import tyro
+
+from typestats_site import PROJECTS_PATH
 
 
 def _relative_default(p: str) -> str:
@@ -16,9 +18,6 @@ def _relative_default(p: str) -> str:
     with contextlib.suppress(ValueError):
         path = path.relative_to(Path.cwd())
     return f"(default: {path})"
-
-
-_DEFAULT_PROJECTS: Final[Path] = Path(__file__).parents[2] / "projects.toml"
 
 
 def _parse_positive_int(s: str) -> int:
@@ -50,7 +49,7 @@ class Collect:
     data_dir: Path
     """Directory to write `{package}/{version}.json` files into."""
 
-    projects: _ProjectsArg = _DEFAULT_PROJECTS
+    projects: _ProjectsArg = Path(PROJECTS_PATH)
     """Path to projects TOML file."""
 
     clean: bool = False
@@ -73,7 +72,7 @@ class Dashboard:
     site_dir: Path
     """Output directory for generated markdown pages."""
 
-    projects: _ProjectsArg = _DEFAULT_PROJECTS
+    projects: _ProjectsArg = Path(PROJECTS_PATH)
     """Path to projects TOML file."""
 
 
