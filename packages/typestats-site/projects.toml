@@ -1,210 +1,711 @@
-projects = [
-  { "name" = "numpy", "exclude" = ["numpy/typing/tests/**"] },
-  { "name" = "pandas-stubs", "exclude" = ["pandas/core/**", # pandas.core is technically private, and anything considered public
-    # is re-exported in other places. For example, `DataFrameGroupBy` is
-    # re-exported in `pandas.api.typing`.
-    "pandas/compat/**", # Not considered public
-    # https://github.com/pandas-dev/pandas/blob/e87248e/doc/source/reference/index.rst#L34
-    "pandas/io/common/**","pandas/io/parsers/**","pandas/io/excel/**","pandas/io/formats/csvs/**","pandas/io/formats/excel/**","pandas/io/formats/html/**","pandas/io/formats/info/**","pandas/io/formats/printing/**","pandas/io/formats/string/**","pandas/io/formats/xml/**", # The only parts of `pandas.io` which appear in the API reference are:
-    # - `pandas.io.json`
-    # - `pandas.io.formats.style`
-    # https://github.com/pandas-dev/pandas/blob/b8371f5/doc/source/reference/io.rst
-    # See also: https://github.com/pandas-dev/pandas/issues/27522#issuecomment-516360201
-  ] },
-  { "name" = "narwhals" },
-  { "name" = "polars" },
-  { "name" = "scipy-stubs" },
-  { "name" = "click" },
-  { "name" = "pytest" },
-  { "name" = "PyYAML" },
-  { "name" = "types-PyYAML" },
-  { "name" = "requests" },
-  { "name" = "types-requests" },
-  { "name" = "pytz" },
-  { "name" = "types-pytz" },
-  { "name" = "tqdm" },
-  { "name" = "types-tqdm" },
-  { "name" = "fire", "exclude" = ["fire/*_test.py", "fire/test_components*.py", "fire/testutils*.py"] },
-  { "name" = "trimesh" },
-  { "name" = "Pillow" },
-  { "name" = "psutil" },
-  { "name" = "types-psutil" },
-  { "name" = "jinja2", "exclude" = ["src/jinja2/tests.py"] },
-  { "name" = "networkx" },
-  { "name" = "types-networkx" },
-  { "name" = "libcst" },
-  { "name" = "imageio" },
-  { "name" = "fsspec" },
-  { "name" = "aiohttp" },
-  { "name" = "h5py" },
-  { "name" = "matplotlib" },
-  { "name" = "regex" },
-  { "name" = "types-regex" },
-  { "name" = "transformers" },
-  { "name" = "seaborn", "exclude" = ["seaborn/external/**"] },
-  { "name" = "types-seaborn" },
-  { "name" = "boto3" },
-  { "name" = "boto3-stubs" },
-  { "name" = "boto3-stubs-lite" },
-  { "name" = "botocore", "exclude" = ["botocore/vendored/**"] },
-  { "name" = "botocore-stubs", "exclude" = ["botocore/vendored/**"] },
-  { "name" = "aiofiles" },
-  { "name" = "types-aiofiles" },
-  { "name" = "soundfile" },
-  { "name" = "munch" },
-  { "name" = "msgpack" },
-  { "name" = "sqlalchemy" },
-  { "name" = "einops" },
-  { "name" = "librosa" },
-  { "name" = "cloudpickle" },
-  { "name" = "jsonpickle" },
-  { "name" = "torch" },
-  { "name" = "torchmetrics" },
-  { "name" = "vLLM" },
-  { "name" = "tabulate" },
-  { "name" = "types-tabulate" },
-  { "name" = "paramiko" },
-  { "name" = "types-paramiko" },
-  { "name" = "asyncclick" },
-  { "name" = "sympy" },
-  { "name" = "joblib", "exclude" = ["joblib/test/**"] },
-  { "name" = "joblib-stubs", "exclude" = ["joblib/test/**"] },
-  { "name" = "thrift" },
-  { "name" = "flatbuffers" },
-  { "name" = "decord" },
-  { "name" = "wandb", "exclude" = ["wandb/vendor/**"] },
-  { "name" = "av" },
-  { "name" = "asyncssh" },
-  { "name" = "orjson" },
-  { "name" = "simpy" },
-  { "name" = "sqlparse" },
-  { "name" = "ipywidgets" },
-  { "name" = "nltk", "exclude" = ["nltk/test/**"] },
-  { "name" = "timm" },
-  { "name" = "xgboost" },
-  { "name" = "dill" },
-  { "name" = "kornia" },
-  { "name" = "mercantile" },
-  { "name" = "urllib3" },
-  { "name" = "ipython", "exclude" = ["IPython/external/**", "IPython/testing/**"] },
-  { "name" = "ipdb" },
-  { "name" = "lmdb" },
-  { "name" = "pexpect" },
-  { "name" = "types-pexpect" },
-  { "name" = "lpips" },
-  { "name" = "more-itertools" },
-  { "name" = "gitpython" },
-  { "name" = "shapely" },
-  { "name" = "types-shapely" },
-  { "name" = "parameterized" },
-  { "name" = "datasets" },
-  { "name" = "hypothesis", "exclude" = ["hypothesis/vendor/**"] },
-  { "name" = "prettytable" },
-  { "name" = "aioitertools" },
-  { "name" = "pydot" },
-  { "name" = "jsonschema" },
-  { "name" = "types-jsonschema" },
-  { "name" = "pyzmq" },
-  { "name" = "zstandard" },
-  { "name" = "sacrebleu" },
-  { "name" = "graphviz" },
-  { "name" = "simplejson", "exclude" = ["simplejson/tool.py"] },
-  { "name" = "types-simplejson", "exclude" = ["simplejson/tool.py"] },
-  { "name" = "colorama" },
-  { "name" = "types-colorama" },
-  { "name" = "click-log" },
-  { "name" = "types-click-log" },
-  { "name" = "plotly" },
-  # { "name" = "plotly-stubs" },  # installation issue due to mismatching version numbers
-  { "name" = "spacy" },
-  { "name" = "numba", "exclude" = ["numba/cloudpickle/**", "numba/cpython/**", "numba/misc/**", "numba/np/**", "numba/parfors/**", "numba/scripts/**", "numba/testing/**"] },
-  { "name" = "llvmlite" },
-  { "name" = "openai" },
-  { "name" = "uvloop" },
-  { "name" = "streamlit", "exclude" = ["streamlit/vendor/**"] },
-  # { "name" = "phpserialize" },  # last release <2021
-  # { "name" = "gym" },  # archived in favor of `gymnasium`
-  { "name" = "gymnasium" },
-  { "name" = "msgspec" },
-  # { "name" = "commentjson" },  # last release <2021
-  { "name" = "cachetools" },
-  { "name" = "types-cachetools" },
-  { "name" = "pint", "exclude" = ["pint/testsuite/**"] },
-  { "name" = "humanfriendly", "exclude" = ["humanfriendly/tests.py", "humanfriendly/testing.py"] },
-  { "name" = "rich" },
-  { "name" = "openpyxl" },
-  { "name" = "types-openpyxl" },
-  { "name" = "shap", "exclude" = ["shap/benchmark/**"] },
-  { "name" = "gradio", "exclude" = ["gradio/test_data/**"] },
-  # { "name" = "oyaml" },  # last release <2021
-  { "name" = "toolz" },
-  { "name" = "toolz-stubs" },
-  { "name" = "yappi" },
-  { "name" = "httplib2" },
-  { "name" = "types-httplib2" },
-  { "name" = "progressbar2" },
-  { "name" = "dacite" },
-  { "name" = "argcomplete" },
-  { "name" = "grpcio" },
-  # { "name" = "types-grpcio" },  # outdated, unmaintained, and incomplete
-  { "name" = "pyserial" },
-  { "name" = "types-pyserial" },
-  { "name" = "folium" },
-  { "name" = "structlog" },
-  { "name" = "deepspeed" },
-  { "name" = "openexr" },
-  { "name" = "shortuuid", "exclude" = ["shortuuid/test_shortuuid.py"] },
-  { "name" = "pyrender" },
-  { "name" = "backoff" },
-  { "name" = "nbformat" },
-  { "name" = "emoji" },
-  { "name" = "mpmath" },
-  { "name" = "ldap3" },
-  { "name" = "types-ldap3" },
-  { "name" = "typing-inspect" },
-  { "name" = "astroid" },
-  { "name" = "pandera" },
-  # { "name" = "astunparse" },  # last release <2021
-  { "name" = "xmltodict" },
-  { "name" = "types-xmltodict" },
-  { "name" = "pyproj" },
-  { "name" = "aiogoogle" },
-  # { "name" = "pyquaternion" },  # last release <2021
-  { "name" = "sh" },
-  { "name" = "nevergrad", "exclude" = ["nevergrad/**/test_*.py"] },
-  { "name" = "prophet" },
-  { "name" = "simple-parsing" },
-  { "name" = "aiosqlite" },
-  { "name" = "Deprecated" },
-  { "name" = "types-Deprecated" },
-  { "name" = "msgpack-numpy" },
-  { "name" = "chevron" },
-  { "name" = "types-chevron" },
-  { "name" = "levenshtein" },
-  # { "name" = "toml" },  # last release <2021
-  { "name" = "types-toml" },
-  { "name" = "json-tricks" },
-  { "name" = "websockets" },
-  { "name" = "geopandas" },
-  { "name" = "types-geopandas" },
-  # { "name" = "jsonpath-rw" },  # last release <2021
-  { "name" = "dash" },
-  { "name" = "click-option-group" },
-  { "name" = "pystache" },
-  { "name" = "dnspython" },
-  { "name" = "pyjwt" },
-  { "name" = "rawpy" },
-  { "name" = "beautifulsoup4" },
-  { "name" = "k-diffusion" },
-  { "name" = "pydantic" },
-  { "name" = "pudb", "exclude" = ["pudb/test/**"] },
-  { "name" = "xlsxwriter" },
-  { "name" = "semver", "exclude" = ["src/semver/_deprecated.py"] },
-  { "name" = "omegaconf", "exclude" = ["omegaconf/vendor/**"] },
-  { "name" = "jax", "exclude" = ["jax/tools/**"] },
-  { "name" = "dask" },
-  { "name" = "optuna" },
-  { "name" = "django-stubs" },
-  { "name" = "wagtail" },
-  { "name" = "typestats" },
+[[projects]]
+name = "numpy"
+exclude = [
+  "numpy/typing/tests/**",
 ]
+
+[[projects]]
+name = "pandas-stubs"
+exclude = [
+  # pandas.core is technically private, and anything considered public
+  # is re-exported in other places. For example, `DataFrameGroupBy` is
+  # re-exported in `pandas.api.typing`.
+  "pandas/core/**",
+  # Not considered public
+  # (https://github.com/pandas-dev/pandas/blob/e87248e/doc/source/reference/index.rst#L34)
+  "pandas/compat/**",
+  # The only parts of `pandas.io` which appear in the API reference are:
+  # - `pandas.io.json`
+  # - `pandas.io.formats.style`
+  # https://github.com/pandas-dev/pandas/blob/b8371f5/doc/source/reference/io.rst
+  # See also: https://github.com/pandas-dev/pandas/issues/27522#issuecomment-516360201
+  "pandas/io/common/**",
+  "pandas/io/parsers/**",
+  "pandas/io/excel/**",
+  "pandas/io/formats/csvs/**",
+  "pandas/io/formats/excel/**",
+  "pandas/io/formats/html/**",
+  "pandas/io/formats/info/**",
+  "pandas/io/formats/printing/**",
+  "pandas/io/formats/string/**",
+  "pandas/io/formats/xml/**",
+]
+
+[[projects]]
+name = "narwhals"
+
+[[projects]]
+name = "polars"
+
+[[projects]]
+name = "scipy-stubs"
+
+[[projects]]
+name = "click"
+
+[[projects]]
+name = "pytest"
+
+[[projects]]
+name = "PyYAML"
+
+[[projects]]
+name = "types-PyYAML"
+
+[[projects]]
+name = "requests"
+
+[[projects]]
+name = "types-requests"
+
+[[projects]]
+name = "pytz"
+
+[[projects]]
+name = "types-pytz"
+
+[[projects]]
+name = "tqdm"
+
+[[projects]]
+name = "types-tqdm"
+
+[[projects]]
+name = "fire"
+exclude = [
+  "fire/*_test.py",
+  "fire/test_components*.py",
+  "fire/testutils*.py",
+]
+
+[[projects]]
+name = "trimesh"
+
+[[projects]]
+name = "Pillow"
+
+[[projects]]
+name = "psutil"
+
+[[projects]]
+name = "types-psutil"
+
+[[projects]]
+name = "jinja2"
+exclude = [
+  "src/jinja2/tests.py",
+]
+
+[[projects]]
+name = "networkx"
+
+[[projects]]
+name = "types-networkx"
+
+[[projects]]
+name = "libcst"
+
+[[projects]]
+name = "imageio"
+
+[[projects]]
+name = "fsspec"
+
+[[projects]]
+name = "aiohttp"
+
+[[projects]]
+name = "h5py"
+
+[[projects]]
+name = "matplotlib"
+
+[[projects]]
+name = "regex"
+
+[[projects]]
+name = "types-regex"
+
+[[projects]]
+name = "transformers"
+
+[[projects]]
+name = "seaborn"
+exclude = [
+  "seaborn/external/**",
+]
+
+[[projects]]
+name = "types-seaborn"
+
+[[projects]]
+name = "boto3"
+
+[[projects]]
+name = "boto3-stubs"
+
+[[projects]]
+name = "boto3-stubs-lite"
+
+[[projects]]
+name = "botocore"
+exclude = [
+  "botocore/vendored/**",
+]
+
+[[projects]]
+name = "botocore-stubs"
+exclude = [
+  "botocore/vendored/**",
+]
+
+[[projects]]
+name = "aiofiles"
+
+[[projects]]
+name = "types-aiofiles"
+
+[[projects]]
+name = "soundfile"
+
+[[projects]]
+name = "munch"
+
+[[projects]]
+name = "msgpack"
+
+[[projects]]
+name = "sqlalchemy"
+
+[[projects]]
+name = "einops"
+
+[[projects]]
+name = "librosa"
+
+[[projects]]
+name = "cloudpickle"
+
+[[projects]]
+name = "jsonpickle"
+
+[[projects]]
+name = "torch"
+
+[[projects]]
+name = "torchmetrics"
+
+[[projects]]
+name = "vLLM"
+
+[[projects]]
+name = "tabulate"
+
+[[projects]]
+name = "types-tabulate"
+
+[[projects]]
+name = "paramiko"
+
+[[projects]]
+name = "types-paramiko"
+
+[[projects]]
+name = "asyncclick"
+
+[[projects]]
+name = "sympy"
+
+[[projects]]
+name = "joblib"
+exclude = [
+  "joblib/test/**",
+]
+
+[[projects]]
+name = "joblib-stubs"
+exclude = [
+  "joblib/test/**",
+]
+
+[[projects]]
+name = "thrift"
+
+[[projects]]
+name = "flatbuffers"
+
+[[projects]]
+name = "decord"
+
+[[projects]]
+name = "wandb"
+exclude = [
+  "wandb/vendor/**",
+]
+
+[[projects]]
+name = "av"
+
+[[projects]]
+name = "asyncssh"
+
+[[projects]]
+name = "orjson"
+
+[[projects]]
+name = "simpy"
+
+[[projects]]
+name = "sqlparse"
+
+[[projects]]
+name = "ipywidgets"
+
+[[projects]]
+name = "nltk"
+exclude = [
+  "nltk/test/**",
+]
+
+[[projects]]
+name = "timm"
+
+[[projects]]
+name = "xgboost"
+
+[[projects]]
+name = "dill"
+
+[[projects]]
+name = "kornia"
+
+[[projects]]
+name = "mercantile"
+
+[[projects]]
+name = "urllib3"
+
+[[projects]]
+name = "ipython"
+exclude = [
+  "IPython/external/**",
+  "IPython/testing/**",
+]
+
+[[projects]]
+name = "ipdb"
+
+[[projects]]
+name = "lmdb"
+
+[[projects]]
+name = "pexpect"
+
+[[projects]]
+name = "types-pexpect"
+
+[[projects]]
+name = "lpips"
+
+[[projects]]
+name = "more-itertools"
+
+[[projects]]
+name = "gitpython"
+
+[[projects]]
+name = "shapely"
+
+[[projects]]
+name = "types-shapely"
+
+[[projects]]
+name = "parameterized"
+
+[[projects]]
+name = "datasets"
+
+[[projects]]
+name = "hypothesis"
+exclude = [
+  "hypothesis/vendor/**",
+]
+
+[[projects]]
+name = "prettytable"
+
+[[projects]]
+name = "aioitertools"
+
+[[projects]]
+name = "pydot"
+
+[[projects]]
+name = "jsonschema"
+
+[[projects]]
+name = "types-jsonschema"
+
+[[projects]]
+name = "pyzmq"
+
+[[projects]]
+name = "zstandard"
+
+[[projects]]
+name = "sacrebleu"
+
+[[projects]]
+name = "graphviz"
+
+[[projects]]
+name = "simplejson"
+exclude = [
+  "simplejson/tool.py",
+]
+
+[[projects]]
+name = "types-simplejson"
+exclude = [
+  "simplejson/tool.py",
+]
+
+[[projects]]
+name = "colorama"
+
+[[projects]]
+name = "types-colorama"
+
+[[projects]]
+name = "click-log"
+
+[[projects]]
+name = "types-click-log"
+
+[[projects]]
+name = "plotly"
+
+# [[projects]]
+# name = "plotly-stubs"
+# installation issue due to mismatching version numbers
+
+[[projects]]
+name = "spacy"
+
+[[projects]]
+name = "numba"
+exclude = [
+  "numba/cloudpickle/**",
+  "numba/cpython/**",
+  "numba/misc/**",
+  "numba/np/**",
+  "numba/parfors/**",
+  "numba/scripts/**",
+  "numba/testing/**",
+]
+
+[[projects]]
+name = "llvmlite"
+
+[[projects]]
+name = "openai"
+
+[[projects]]
+name = "uvloop"
+
+[[projects]]
+name = "streamlit"
+exclude = [
+  "streamlit/vendor/**",
+]
+
+# [[projects]]
+# name = "phpserialize"
+# last release <2021
+
+[[projects]]
+name = "gymnasium" # formerly "gym"
+
+[[projects]]
+name = "msgspec"
+
+# [[projects]]
+# name = "commentjson"
+# last release <2021
+
+[[projects]]
+name = "cachetools"
+
+[[projects]]
+name = "types-cachetools"
+
+[[projects]]
+name = "pint"
+exclude = [
+  "pint/testsuite/**",
+]
+
+[[projects]]
+name = "humanfriendly"
+exclude = [
+  "humanfriendly/tests.py",
+  "humanfriendly/testing.py",
+]
+
+[[projects]]
+name = "rich"
+
+[[projects]]
+name = "openpyxl"
+
+[[projects]]
+name = "types-openpyxl"
+
+[[projects]]
+name = "shap"
+exclude = [
+  "shap/benchmark/**",
+]
+
+[[projects]]
+name = "gradio"
+exclude = [
+  "gradio/test_data/**",
+]
+
+# [[projects]]
+# name = "oyaml"
+# last release <2021
+
+[[projects]]
+name = "toolz"
+
+[[projects]]
+name = "toolz-stubs"
+
+[[projects]]
+name = "yappi"
+
+[[projects]]
+name = "httplib2"
+
+[[projects]]
+name = "types-httplib2"
+
+[[projects]]
+name = "progressbar2"
+
+[[projects]]
+name = "dacite"
+
+[[projects]]
+name = "argcomplete"
+
+[[projects]]
+name = "grpcio"
+
+# [[projects]]
+# name = "types-grpcio"
+# outdated, unmaintained, and incomplete
+
+[[projects]]
+name = "pyserial"
+
+[[projects]]
+name = "types-pyserial"
+
+[[projects]]
+name = "folium"
+
+[[projects]]
+name = "structlog"
+
+[[projects]]
+name = "deepspeed"
+
+[[projects]]
+name = "openexr"
+
+[[projects]]
+name = "shortuuid"
+exclude = [
+  "shortuuid/test_shortuuid.py",
+]
+
+[[projects]]
+name = "pyrender"
+
+[[projects]]
+name = "backoff"
+
+[[projects]]
+name = "nbformat"
+
+[[projects]]
+name = "emoji"
+
+[[projects]]
+name = "mpmath"
+
+[[projects]]
+name = "ldap3"
+
+[[projects]]
+name = "types-ldap3"
+
+[[projects]]
+name = "typing-inspect"
+
+[[projects]]
+name = "astroid"
+
+[[projects]]
+name = "pandera"
+
+# [[projects]]
+# name = "astunparse"
+# last release <2021
+
+[[projects]]
+name = "xmltodict"
+
+[[projects]]
+name = "types-xmltodict"
+
+[[projects]]
+name = "pyproj"
+
+[[projects]]
+name = "aiogoogle"
+
+# [[projects]]
+# name = "pyquaternion"
+# last release <2021
+
+[[projects]]
+name = "sh"
+
+[[projects]]
+name = "nevergrad"
+exclude = [
+  "nevergrad/**/test_*.py",
+]
+
+[[projects]]
+name = "prophet"
+
+[[projects]]
+name = "simple-parsing"
+
+[[projects]]
+name = "aiosqlite"
+
+[[projects]]
+name = "Deprecated"
+
+[[projects]]
+name = "types-Deprecated"
+
+[[projects]]
+name = "msgpack-numpy"
+
+[[projects]]
+name = "chevron"
+
+[[projects]]
+name = "types-chevron"
+
+[[projects]]
+name = "levenshtein"
+
+# [[projects]]
+# name = "toml"
+# last release <2021
+
+[[projects]]
+name = "types-toml"
+
+[[projects]]
+name = "json-tricks"
+
+[[projects]]
+name = "websockets"
+
+[[projects]]
+name = "geopandas"
+
+[[projects]]
+name = "types-geopandas"
+
+# [[projects]]
+# name = "jsonpath-rw"
+# last release <2021
+
+[[projects]]
+name = "dash"
+
+[[projects]]
+name = "click-option-group"
+
+[[projects]]
+name = "pystache"
+
+[[projects]]
+name = "dnspython"
+
+[[projects]]
+name = "pyjwt"
+
+[[projects]]
+name = "rawpy"
+
+[[projects]]
+name = "beautifulsoup4"
+
+[[projects]]
+name = "k-diffusion"
+
+[[projects]]
+name = "pydantic"
+
+[[projects]]
+name = "pudb"
+exclude = [
+  "pudb/test/**",
+]
+
+[[projects]]
+name = "xlsxwriter"
+
+[[projects]]
+name = "semver"
+exclude = [
+  "src/semver/_deprecated.py",
+]
+
+[[projects]]
+name = "omegaconf"
+exclude = [
+  "omegaconf/vendor/**",
+]
+
+[[projects]]
+name = "jax"
+exclude = [
+  "jax/tools/**",
+]
+
+[[projects]]
+name = "dask"
+
+[[projects]]
+name = "optuna"
+
+[[projects]]
+name = "django-stubs"
+
+[[projects]]
+name = "wagtail"
+
+[[projects]]
+name = "typestats"
