@@ -25,13 +25,21 @@ class PyTyped(enum.Enum):
 _RE_INIT: Final = re.compile(r"^__init__\.pyi?$")
 
 _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
+    ".git",
     ".spin",
+    ".tox",
+    ".venv",
+    "__pycache__",
     "_examples",
     "benchmarks",
+    "build",
+    "dist",
     "doc",
     "docs",
     "examples",
+    "node_modules",
     "tests",
+    "venv",
 })
 _EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py", "setup.py"})
 

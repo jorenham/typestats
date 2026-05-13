@@ -416,22 +416,21 @@ def _convert_module(pm: _ModuleReport, rel_path: str) -> ModuleReport:  # noqa: 
     def _build_class(class_fqn: str) -> ClassReport:
         class_sym = class_sym_map[class_fqn]
         members = class_members.get(class_fqn, [])
-        class_prefix = class_fqn + "."
         return ClassReport(
             name=class_fqn.removeprefix(mod_prefix),
             line_start=_line_start(class_sym),
             methods=tuple(
-                _build_function(s, s["name"].removeprefix(class_prefix))
+                _build_function(s, s["name"].removeprefix(mod_prefix))
                 for s in members
                 if s["kind"] == "function"
             ),
             properties=tuple(
-                _build_property(s, s["name"].removeprefix(class_prefix))
+                _build_property(s, s["name"].removeprefix(mod_prefix))
                 for s in members
                 if s["kind"] == "property"
             ),
             attrs=tuple(
-                _build_attr(s, s["name"].removeprefix(class_prefix))
+                _build_attr(s, s["name"].removeprefix(mod_prefix))
                 for s in members
                 if s["kind"] == "attr"
             ),

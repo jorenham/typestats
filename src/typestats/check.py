@@ -147,9 +147,18 @@ def _format_list(
     return "\n".join(lines)
 
 
+async def _resolve_root(paths: tuple[str, ...]) -> tuple[anyio.Path, tuple[str, ...]]:
+    """Single-dir arg becomes the root (pyrefly auto-discovers); else CWD."""
+    if len(paths) == 1:
+        p = anyio.Path(paths[0])
+        if await p.is_dir():
+            return p, ()
+    return anyio.Path("."), paths
+
+
 async def report(*paths: str, exclude: Sequence[str] = ()) -> None:
     """Write a JSON type-coverage report to stdout."""
-    root = anyio.Path(".")
+    root, pyrefly_paths = await _resolve_root(paths)
     pkg, version = await _read_project(root)
 
     pkg_report = await PackageReport.from_path(
@@ -157,14 +166,14 @@ async def report(*paths: str, exclude: Sequence[str] = ()) -> None:
         root,
         version,
         exclude=exclude,
-        pyrefly_paths=paths,
+        pyrefly_paths=pyrefly_paths,
     )
 
     sys.stdout.write(pkg_report.model_dump_json(indent=2))
     sys.stdout.write("\n")
 
 
-async def check(
+async def check(  # noqa: PLR0914
     *paths: str,
     strict: bool = False,
     concise: bool = False,
@@ -173,7 +182,7 @@ async def check(
     exclude: Sequence[str] = (),
 ) -> None:
     """Print type-annotation coverage for the project."""  # noqa: DOC501
-    root = anyio.Path(".")
+    root, pyrefly_paths = await _resolve_root(paths)
     pkg, version = await _read_project(root)
 
     pkg_report = await PackageReport.from_path(
@@ -181,7 +190,7 @@ async def check(
         root,
         version,
         exclude=exclude,
-        pyrefly_paths=paths,
+        pyrefly_paths=pyrefly_paths,
     )
 
     cov = pkg_report.coverage(strict) * 100
