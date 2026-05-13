@@ -10,10 +10,10 @@ __all__ = ("run",)
 _logger: Final = logging.getLogger(__name__)
 
 
-async def run(*args: str) -> subprocess.CompletedProcess[bytes]:
+async def run(*args: str, cwd: str | None = None) -> subprocess.CompletedProcess[bytes]:
     """Run a subprocess, log the command, and check the return code."""
     _logger.info("Running subprocess: %s", " ".join(args))
-    result = await anyio.run_process(list(args), check=False)
+    result = await anyio.run_process(list(args), check=False, cwd=cwd)
     if result.returncode != 0:
         stderr = result.stderr.decode(errors="replace").strip()
         _logger.error("Subprocess failed (exit %d): %s", result.returncode, stderr)

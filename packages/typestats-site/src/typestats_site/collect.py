@@ -12,7 +12,8 @@ import httpx
 
 from typestats._type import StrPath
 from typestats.projects import Project, load_projects
-from typestats.report import SCHEMA_VERSION, PackageReport
+from typestats.report import PackageReport
+from typestats.schema import SCHEMA_VERSION
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from ._http import retry_client

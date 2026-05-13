@@ -17,15 +17,16 @@ class Version:
 
 @dataclasses.dataclass
 class Report:
-    """Generate a JSON type-coverage report for an installed package.
+    """Generate a JSON type-coverage report for the current project.
 
     The JSON report is written to stdout.
-    Redirect it to a file with `typestats report <package> > report.json`.
+    Redirect it to a file with `typestats report > report.json`.
     """
 
-    package: Positional[str]
+    paths: Positional[tuple[str, ...]] = dataclasses.field(default_factory=tuple)
     """
-    Package name (must be installed in the current environment).
+    Optional paths to pass to `pyrefly report`. When omitted pyrefly discovers
+    sources automatically.
     """
 
     exclude: tuple[str, ...] = ()
@@ -37,11 +38,12 @@ class Report:
 
 @dataclasses.dataclass
 class Check:
-    """Check type-annotation coverage for an installed package."""
+    """Check type-annotation coverage for the current project."""
 
-    package: Positional[str]
+    paths: Positional[tuple[str, ...]] = dataclasses.field(default_factory=tuple)
     """
-    Package name (must be installed in the current environment).
+    Optional paths to pass to `pyrefly report`. When omitted pyrefly discovers
+    sources automatically.
     """
 
     strict: bool = False
@@ -80,7 +82,7 @@ async def _run(cmd: _Command) -> None:
                 logging.getLogger().setLevel(logging.INFO)
 
             await report(
-                cmd.package,
+                *cmd.paths,
                 exclude=cmd.exclude,
             )
 
@@ -91,7 +93,7 @@ async def _run(cmd: _Command) -> None:
                 logging.getLogger().setLevel(logging.INFO)
 
             await check(
-                cmd.package,
+                *cmd.paths,
                 strict=cmd.strict,
                 concise=cmd.concise,
                 fail_under=cmd.fail_under,

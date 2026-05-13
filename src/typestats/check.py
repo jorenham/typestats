@@ -1,301 +1,59 @@
 # ruff: noqa: T201
 
-import importlib.metadata
-import importlib.util
-import itertools
 import json
 import logging
-import re
 import sys
-import urllib.parse
-import urllib.request
+import tomllib
 from collections.abc import Sequence
 from pathlib import Path
 from typing import NamedTuple, Self
 
 import anyio
 
-from ._env import find_distribution
-from .index import is_src_layout
-from .report import ClassReport, PackageReport, Report, _coverage
-from .stubs import stubs_base_name
+from .report import (
+    AttrReport,
+    ClassReport,
+    FunctionReport,
+    PackageReport,
+    PropertyReport,
+    _coverage,
+)
 
-__all__ = "check", "report"
+type _LeafReport = AttrReport | FunctionReport | PropertyReport
+
+__all__ = ("check", "report")
 
 _logger = logging.getLogger(__name__)
 
-type _Dist = importlib.metadata.Distribution
-type _Names = frozenset[str]
 
+async def _read_project(root: anyio.Path) -> tuple[str, str]:
+    """Read `(name, version)` from `pyproject.toml` in *root*.
 
-class _Resolved(NamedTuple):
-    pkg: str
-    path: anyio.Path
-    version: str
-    stubs_path: anyio.Path | None
-    project: str | None
-    base_version: str | None = None
-    sources: tuple[anyio.Path, ...] = ()
-    stubs_sources: tuple[anyio.Path, ...] = ()
-
-
-def _is_package_dir_name(name: str) -> bool:
-    if name.endswith(".dist-info"):
-        return False
-    if name.isidentifier():
-        return True
-    if name.endswith("-stubs"):
-        return name.removesuffix("-stubs").isidentifier()
-    return False
-
-
-class _TopLevel(NamedTuple):
-    packages: _Names
-    modules: _Names
-
-
-def _top_level_names(dist: _Dist) -> _TopLevel:
-    if dist.files is None:
-        return _TopLevel(frozenset(), frozenset())
-
-    packages: set[str] = set()
-    modules: set[str] = set()
-    for f in dist.files:
-        parts = f.parts
-        if len(parts) >= 2 and _is_package_dir_name(parts[0]):
-            packages.add(parts[0])
-        elif len(parts) == 1 and re.fullmatch(r"[^_].*\.pyi?", parts[0]):
-            modules.add(parts[0])
-    return _TopLevel(frozenset(packages), frozenset(modules))
-
-
-async def _source_paths(dist: _Dist, sp: anyio.Path) -> tuple[anyio.Path, ...]:
-    top = _top_level_names(dist)
-    _logger.debug(
-        "top_level_names(%s): packages=%s, modules=%s",
-        dist.metadata["Name"],
-        top.packages,
-        top.modules,
-    )
-
-    dirs = [
-        d
-        for name in sorted(top.packages)
-        if await (d := sp / name).is_dir()
-        and (
-            await (d / "__init__.py").is_file() or await (d / "__init__.pyi").is_file()
-        )
-    ]
-    if dirs:
-        return tuple(dirs)
-
-    files = [f for name in sorted(top.modules) if await (f := sp / name).is_file()]
-    if files:
-        return tuple(files)
-
-    names = top.packages or _dist_top_level_names(dist)
-
-    if result := await _resolve_editable_paths(dist, names):
-        return (result,)
-
-    if result := await _resolve_editable_source(dist, sp, names):
-        return (result,)
-
-    if result := _find_spec_source(names):
-        return (result,)
-
-    _logger.debug("no source paths found for %s in %s", dist.metadata["Name"], sp)
-    return ()
-
-
-async def _resolve_editable_paths(dist: _Dist, names: _Names) -> anyio.Path | None:
-    if not dist.files:
-        return None
-    for name in names:
-        variants = {name, name.replace("_", "-")}
-        for f in dist.files:
-            if f.parts[0] != "..":
-                continue
-            if not (matched := variants & set(f.parts)):
-                continue
-            variant = next(iter(matched))
-            resolved = await anyio.Path(str(dist.locate_file(f))).resolve()
-            pkg_dir = resolved.parent
-            while pkg_dir.name != variant and pkg_dir != pkg_dir.parent:
-                pkg_dir = pkg_dir.parent
-            if pkg_dir.name == variant and await pkg_dir.is_dir():
-                _logger.debug("editable install: %s -> %s", name, pkg_dir)
-                return pkg_dir
-    return None
-
-
-async def _resolve_editable_source(
-    dist: _Dist,
-    sp: anyio.Path,
-    names: _Names,
-) -> anyio.Path | None:
-    if (
-        (source_root := _read_direct_url(dist))
-        and (result := await _find_package_in_root(source_root, names))
-    ):  # fmt: skip
-        return result
-
-    if not (dist_name := dist.metadata["Name"]):
-        return None
-
-    pth_path = sp / (dist_name.replace("-", "_") + ".pth")
-    if await pth_path.is_file():
-        pth_text = await pth_path.read_text()
-        for raw_line in pth_text.splitlines():
-            if not (entry := raw_line.strip()) or entry.startswith("#"):
-                continue
-
-            path = anyio.Path(entry)
-            candidate = await (path if path.is_absolute() else (sp / path)).resolve()
-            if (
-                await candidate.is_dir()
-                and (result := await _find_package_in_root(candidate, names))
-            ):  # fmt: skip
-                return result
-
-    return None
-
-
-def _read_direct_url(dist: _Dist) -> anyio.Path | None:
-    if (raw := dist.read_text("direct_url.json")) is None:
-        return None
-
+    Falls back to empty strings if the file is missing or invalid.
+    """
     try:
-        data = json.loads(raw)
-    except (json.JSONDecodeError, ValueError):
-        return None
-
-    if not data.get("dir_info", {}).get("editable", False):
-        return None
-
-    url: str = data.get("url", "")
-    if not url.startswith("file://"):
-        return None
-
-    base_path = anyio.Path(urllib.request.url2pathname(urllib.parse.urlparse(url).path))
-
-    if subdirectory := data.get("subdirectory"):
-        assert isinstance(subdirectory, str)
-        base_path /= subdirectory
-
-    return base_path
-
-
-async def _find_package_in_root(root: anyio.Path, names: _Names) -> anyio.Path | None:
-    for name in names:
-        for variant, base, marker in itertools.product(
-            (name, name.replace("_", "-")),
-            (root, root / "src"),
-            ("__init__.py", "__init__.pyi"),
-        ):
-            candidate = base / variant
-            if await (candidate / marker).is_file():
-                _logger.debug("editable source: %s -> %s", name, candidate)
-                return candidate
-    return None
-
-
-def _find_spec_source(names: _Names) -> anyio.Path | None:
-    for name in names:
-        if (spec := importlib.util.find_spec(name)) is None:
-            continue
-        if spec.submodule_search_locations:
-            return anyio.Path(spec.submodule_search_locations[0])
-        if spec.origin is not None:
-            return anyio.Path(spec.origin)
-    return None
-
-
-def _dist_top_level_names(dist: _Dist) -> frozenset[str]:
-    if top_level := dist.read_text("top_level.txt"):
-        return frozenset(top_level.split())
-    if name := dist.metadata["Name"]:
-        return frozenset({name.replace("-", "_")})
-    return frozenset()
-
-
-async def _project_root(source: anyio.Path) -> anyio.Path:
-    root = source.parent
-    if await is_src_layout(root.parent):
-        root = root.parent
-    return root
-
-
-async def _resolve(package: str) -> _Resolved:
-    try:
-        found = await find_distribution(package)
-    except importlib.metadata.PackageNotFoundError:
-        msg = f"package {package!r} is not installed"
-        raise SystemExit(msg) from None
-
-    version = found.dist.metadata["Version"]
-    sp = found.site_packages
-
-    base_name = stubs_base_name(package)
-
-    if base_name is not None:
-        try:
-            base_found = await find_distribution(base_name)
-        except importlib.metadata.PackageNotFoundError:
-            msg = (
-                f"base package {base_name!r} is not installed (required by {package!r})"
-            )
-            raise SystemExit(msg) from None
-        base_version = base_found.dist.metadata["Version"]
-        base_sp = base_found.site_packages
-        base_sources = await _source_paths(base_found.dist, base_sp)
-        stubs_sources = await _source_paths(found.dist, sp)
-        if not base_sources:
-            msg = f"could not find source files for {base_name!r}"
-            raise SystemExit(msg)
-        if not stubs_sources:
-            msg = f"could not find source files for {package!r}"
-            raise SystemExit(msg)
-        return _Resolved(
-            pkg=base_name.replace("-", "_"),
-            path=await _project_root(base_sources[0]),
-            version=version,
-            stubs_path=await _project_root(stubs_sources[0]),
-            project=package,
-            base_version=base_version,
-            sources=base_sources,
-            stubs_sources=stubs_sources,
-        )
-
-    sources = await _source_paths(found.dist, sp)
-    if not sources:
-        msg = f"could not find source files for {package!r}"
-        raise SystemExit(msg)
-    return _Resolved(
-        pkg=package.replace("-", "_"),
-        path=await _project_root(sources[0]),
-        version=version,
-        stubs_path=None,
-        project=None,
-        sources=sources,
-    )
+        text = await (root / "pyproject.toml").read_text()
+        data = tomllib.loads(text)
+    except (OSError, tomllib.TOMLDecodeError):
+        return "", ""
+    proj = data.get("project", {})
+    return proj.get("name", "").replace("-", "_"), proj.get("version", "")
 
 
 class _UntypedEntry(NamedTuple):
     path: str
     name: str
     line_start: int | None
-    line_end: int | None
 
     @classmethod
-    def from_report(cls, path: str, name: str, sym: Report) -> Self:
-        return cls(path, name, sym.line_start, sym.line_end)
+    def from_report(cls, path: str, name: str, sym: _LeafReport) -> Self:
+        return cls(path, name, sym.line_start)
 
 
 def _untyped_symbols(
     report: PackageReport, *, strict: bool = False
 ) -> list[_UntypedEntry]:
-    def _is_untyped(sym: Report) -> bool:
+    def _is_untyped(sym: _LeafReport) -> bool:
         return sym.n_untyped + (sym.n_any if strict else 0) > 0
 
     result: list[_UntypedEntry] = []
@@ -329,15 +87,10 @@ def _read_source_lines(base_path: anyio.Path, paths: set[str]) -> dict[str, list
 def _format_snippet(
     file_lines: list[str],
     line_start: int,
-    line_end: int,
     lineno_w: int = 0,
 ) -> list[str]:
-    end = min(line_end, len(file_lines))
-    lineno_w = max(lineno_w, len(str(end)))
-    return [
-        f"{lineno:>{lineno_w}} | {file_lines[lineno - 1].rstrip()}"
-        for lineno in range(line_start, end + 1)
-    ]
+    lineno_w = max(lineno_w, len(str(line_start)))
+    return [f"{line_start:>{lineno_w}} | {file_lines[line_start - 1].rstrip()}"]
 
 
 def _format_list(
@@ -361,10 +114,9 @@ def _format_list(
     if source_lines:
         for entry in entries:
             if entry.line_start is not None and entry.path in source_lines:
-                end = entry.line_end or entry.line_start
                 lineno_w = max(
                     lineno_w,
-                    len(str(min(end, len(source_lines[entry.path])))),
+                    len(str(min(entry.line_start, len(source_lines[entry.path])))),
                 )
 
     lines: list[str] = []
@@ -374,16 +126,13 @@ def _format_list(
             if lines:
                 lines.append("")
             loc = f"{entry.path}:{entry.line_start}" if entry.line_start else entry.path
+            lines.append(f"{prefix}{loc}  {entry.name}")
             if entry.line_start is None or entry.path not in source_lines:
-                lines.append(f"{prefix}{loc}  {entry.name}")
                 continue
-            end = entry.line_end or entry.line_start
-            lines.append(f"{prefix}{loc}")
             lines.extend(
                 _format_snippet(
                     source_lines[entry.path],
                     entry.line_start,
-                    end,
                     lineno_w,
                 ),
             )
@@ -398,49 +147,41 @@ def _format_list(
     return "\n".join(lines)
 
 
-async def report(package: str, /, *, exclude: Sequence[str] = ()) -> None:
-    """Write a JSON type-coverage report for `package` to stdout."""
-    resolved = await _resolve(package)
+async def report(*paths: str, exclude: Sequence[str] = ()) -> None:
+    """Write a JSON type-coverage report to stdout."""
+    root = anyio.Path(".")
+    pkg, version = await _read_project(root)
 
     pkg_report = await PackageReport.from_path(
-        resolved.pkg,
-        resolved.path,
-        resolved.version,
-        stubs_path=resolved.stubs_path,
-        project=resolved.project,
-        base_version=resolved.base_version,
+        pkg,
+        root,
+        version,
         exclude=exclude,
-        sources=resolved.sources,
-        stubs_sources=resolved.stubs_sources,
+        pyrefly_paths=paths,
     )
 
     sys.stdout.write(pkg_report.model_dump_json(indent=2))
     sys.stdout.write("\n")
 
 
-async def check(  # noqa: PLR0913
-    package: str,
-    /,
-    *,
+async def check(
+    *paths: str,
     strict: bool = False,
     concise: bool = False,
     fail_under: float | None = None,
     fail_under_from: anyio.Path | None = None,
     exclude: Sequence[str] = (),
 ) -> None:
-    """Print type-annotation coverage for `package`."""  # noqa: DOC501
-    resolved = await _resolve(package)
+    """Print type-annotation coverage for the project."""  # noqa: DOC501
+    root = anyio.Path(".")
+    pkg, version = await _read_project(root)
 
     pkg_report = await PackageReport.from_path(
-        resolved.pkg,
-        resolved.path,
-        resolved.version,
-        stubs_path=resolved.stubs_path,
-        project=resolved.project,
-        base_version=resolved.base_version,
+        pkg,
+        root,
+        version,
         exclude=exclude,
-        sources=resolved.sources,
-        stubs_sources=resolved.stubs_sources,
+        pyrefly_paths=paths,
     )
 
     cov = pkg_report.coverage(strict) * 100
@@ -450,7 +191,7 @@ async def check(  # noqa: PLR0913
     untyped = _untyped_symbols(pkg_report, strict=strict)
     if untyped:
         print(f"untyped ({len(untyped)}):")
-        print(_format_list(untyped, resolved.path, concise=concise))
+        print(_format_list(untyped, root, concise=concise))
         print()
 
     print(

@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "typestats"
-version = "0.2.2"
+version = "0.3.0.dev0"
 description = "Type annotation coverage statistics for Python packages"
 readme = "README.md"
 authors = [
@@ -28,11 +28,10 @@ classifiers = [
 ]
 requires-python = ">=3.12"
 dependencies = [
-  "tyro>=1.0,<2",
   "anyio>=4.11,<5",
-  "libcst>=1.7,<2",
   "pydantic>=2.11,<3",
-  "ruff>=0.14,<1",
+  "pyrefly>=1.0,<2",
+  "tyro>=1.0,<2",
 ]
 
 [project.scripts]
@@ -48,7 +47,7 @@ dev = [
   { include-group = "site" },
   { include-group = "test" },
   "dprint-py==0.53.1.0",
-  "pyrefly==0.63.1",
+  "ruff==0.15.12",
   "uvloop>=0.22.1,<1; sys_platform != 'win32'",
 ]
 
@@ -98,7 +97,7 @@ variance-mismatch = "error"
 
 [tool.pyright]
 extraPaths = ["packages/typestats-site/src"]
-ignore = [".venv", "tests/fixtures/**"]
+ignore = ["tests/fixtures/**"]
 allowedUntypedLibraries = ["watchfiles"]
 stubPath = "."
 pythonPlatform = "All"

@@ -20,8 +20,8 @@ check:
     uv run dprint check
 
 selfcheck:
-    uv run typestats check typestats --strict --fail-under=100
-    uv run typestats check typestats-site --strict --fail-under=100
+    uv run typestats check --strict --fail-under=100
+    uv run typestats check packages/typestats-site --strict --fail-under=100
 
 update:
     uv sync --upgrade

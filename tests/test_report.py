@@ -5,372 +5,23 @@ import shutil
 from pathlib import Path
 
 import anyio
-import libcst as cst
 import pytest
 
-from typestats.analyze import (
-    ANY,
-    EXTERNAL,
-    IMPLICIT,
-    UNTYPED,
-    Class,
-    Expr,
-    Function,
-    IgnoreComment,
-    Overload,
-    Param,
-    ParamKind,
-    Property,
-    Symbol,
-    TypeForm,
-)
 from typestats.index import PyTyped
 from typestats.report import (
-    SCHEMA_VERSION,
     AttrReport,
     ClassReport,
     FunctionReport,
+    IgnoreComment,
     ModuleReport,
     PackageReport,
     PropertyReport,
     PypiInfo,
     StubsOnly,
-    _normalize_relpath,
-    _SlotState,
-    _symbol_report,
 )
+from typestats.schema import SCHEMA_VERSION
 
 _FIXTURES = Path(__file__).parent / "fixtures"
-
-_INT = Expr(cst.parse_expression("int"))
-_PARAM = ParamKind.POSITIONAL_OR_KEYWORD
-
-
-class TestSlotState:
-    @pytest.mark.parametrize(
-        ("typeform", "expected"),
-        [
-            (_INT, (1, 0, 0)),
-            (ANY, (0, 1, 0)),
-            (UNTYPED, (0, 0, 1)),
-            (IMPLICIT, (0, 0, 0)),
-            (EXTERNAL, (0, 0, 0)),
-        ],
-        ids=["expr", "any", "untyped", "implicit", "external"],
-    )
-    def test_slot_state(
-        self,
-        typeform: TypeForm,
-        expected: tuple[int, int, int],
-    ) -> None:
-        assert _SlotState.from_typeform(typeform) == expected
-
-
-class TestAttrReport:
-    @pytest.mark.parametrize(
-        ("typeform", "n_typable", "n_typed", "n_any", "n_untyped"),
-        [
-            (_INT, 1, 1, 0, 0),
-            (ANY, 1, 0, 1, 0),
-            (UNTYPED, 1, 0, 0, 1),
-            (IMPLICIT, 0, 0, 0, 0),
-            (EXTERNAL, 0, 0, 0, 0),
-        ],
-        ids=["typed", "any", "untyped", "implicit", "external"],
-    )
-    def test_from_symbol(
-        self,
-        typeform: TypeForm,
-        n_typable: int,
-        n_typed: int,
-        n_any: int,
-        n_untyped: int,
-    ) -> None:
-        r = AttrReport.from_symbol("x", typeform)
-        assert r.n_typable == n_typable
-        assert r.n_typed == n_typed
-        assert r.n_any == n_any
-        assert r.n_untyped == n_untyped
-
-
-def _func(overload0: Overload, /, *overloads: Overload) -> Function:
-    return Function("f", (overload0, *overloads))
-
-
-def _overload(params: list[tuple[str, TypeForm]], returns: TypeForm = _INT) -> Overload:
-    return Overload(tuple(Param(n, _PARAM, t) for n, t in params), returns)
-
-
-class TestFunctionReport:
-    def test_fully_typed(self) -> None:
-        func = _func(_overload([("a", _INT), ("b", _INT)]))
-        r = FunctionReport.from_symbol("f", func)
-        assert r.n_typable == 3  # 2 params + return
-        assert r.n_typed == 3
-        assert r.n_any == 0
-        assert r.n_untyped == 0
-        assert r.n_overloads == 1
-
-    def test_mixed(self) -> None:
-        func = _func(_overload([("a", _INT), ("b", UNTYPED)], returns=ANY))
-        r = FunctionReport.from_symbol("f", func)
-        assert r.n_typable == 3
-        assert r.n_typed == 1
-        assert r.n_any == 1
-        assert r.n_untyped == 1
-
-    def test_all_untyped(self) -> None:
-        func = _func(_overload([("a", UNTYPED)], returns=UNTYPED))
-        r = FunctionReport.from_symbol("f", func)
-        assert r.n_typable == 2
-        assert r.n_typed == 0
-        assert r.n_untyped == 2
-
-    def test_implicit_params_excluded(self) -> None:
-        func = _func(_overload([("self", IMPLICIT), ("x", _INT)]))
-        r = FunctionReport.from_symbol("f", func)
-        assert r.n_typable == 2  # x + return, not self
-        assert r.n_typed == 2
-
-    def test_multiple_overloads(self) -> None:
-        func = _func(
-            _overload([("a", _INT)]),
-            _overload([("a", UNTYPED)], returns=UNTYPED),
-        )
-        r = FunctionReport.from_symbol("f", func)
-        # 1 unique param (a at pos 0) + 1 return = 2 typable
-        # param: typed in overload 1, untyped in 2 -> untyped
-        # return: typed in overload 1, untyped in 2 -> untyped
-        assert r.n_typable == 2
-        assert r.n_typed == 0
-        assert r.n_untyped == 2
-        assert r.n_overloads == 2
-        assert r.n_params == 1
-
-    def test_overloads_different_params(self) -> None:
-        """Params across overloads are deduplicated by position/name."""
-        func = _func(
-            _overload([]),  # () -> int
-            Overload((Param("a", ParamKind.POSITIONAL_ONLY, _INT),), _INT),
-            Overload((Param("b", ParamKind.POSITIONAL_ONLY, _INT),), _INT),
-            Overload((Param("b", ParamKind.KEYWORD_ONLY, _INT),), _INT),
-        )
-        r = FunctionReport.from_symbol("f", func)
-        # 1 pos-only param (pos 0) + 1 kw-only param ("b") + 1 return = 3
-        assert r.n_typable == 3
-        assert r.n_typed == 3
-        assert r.n_overloads == 4
-        assert r.n_params == 2
-
-    def test_overloads_worst_wins(self) -> None:
-        """When merging slots, the worst annotation state wins."""
-        func = _func(_overload([("a", _INT)]), _overload([("a", UNTYPED)]))
-        r = FunctionReport.from_symbol("f", func)
-        # param: typed in one, untyped in other -> untyped
-        # return: typed in both -> typed
-        assert r.n_typable == 2
-        assert r.n_typed == 1
-        assert r.n_untyped == 1
-
-    def test_overloads_any_state(self) -> None:
-        """ANY is worse than typed but better than untyped."""
-        func = _func(_overload([("a", _INT)]), _overload([("a", ANY)]))
-        r = FunctionReport.from_symbol("f", func)
-        # param: typed in one, any in other -> any
-        assert r.n_typable == 2
-        assert r.n_typed == 1
-        assert r.n_any == 1
-
-
-class TestClassReport:
-    def test_methods_only(self) -> None:
-        method = Function("m", (_overload([("x", _INT)]),))
-        cls_ = Class("C", (Symbol("C.m", method),))
-        r = ClassReport.from_symbol("C", cls_)
-        assert len(r.methods) == 1
-        assert r.n_typable == 2  # x + return
-        assert r.n_typed == 2
-        assert r.n_functions == 0
-        assert r.n_methods == 1
-        assert r.n_method_overloads == 1
-
-    def test_non_function_members_reported_as_attrs(self) -> None:
-        cls_ = Class(
-            "C",
-            (Symbol("C.a", IMPLICIT), Symbol("C.b", _INT), Symbol("C.c", UNTYPED)),
-        )
-        r = ClassReport.from_symbol("C", cls_)
-        assert len(r.methods) == 0
-        assert len(r.attrs) == 3
-        # IMPLICIT -> (0,0,0), _INT -> (1,0,1), UNTYPED -> (0,0,1)
-        assert r.n_typable == 2
-        assert r.n_typed == 1
-        assert r.n_untyped == 1
-        assert r.n_attrs == 3
-
-    def test_aggregation(self) -> None:
-        m1 = Function("a", (_overload([("x", _INT)]),))
-        m2 = Function("b", (_overload([("y", UNTYPED)], returns=UNTYPED),))
-        cls_ = Class("C", (Symbol("C.a", m1), Symbol("C.b", m2)))
-        r = ClassReport.from_symbol("C", cls_)
-        assert r.n_typable == 4
-        assert r.n_typed == 2
-        assert r.n_untyped == 2
-
-    def test_overloaded_methods(self) -> None:
-        m1 = Function("a", (_overload([("x", _INT)]), _overload([("x", UNTYPED)])))
-        m2 = Function("b", (_overload([("y", _INT)]),))
-        cls_ = Class("C", (Symbol("C.a", m1), Symbol("C.b", m2)))
-        r = ClassReport.from_symbol("C", cls_)
-        assert r.n_functions == 0
-        assert r.n_methods == 2
-        assert r.n_method_overloads == 3  # m1 has 2 overloads + m2 has 1
-
-    def test_with_properties(self) -> None:
-        method = Function("m", (_overload([("x", _INT)]),))
-        prop = Property("p", fget=_overload([]))
-        cls_ = Class("C", (Symbol("C.m", method), Symbol("C.p", prop)))
-        r = ClassReport.from_symbol("C", cls_)
-        assert len(r.methods) == 1
-        assert len(r.properties) == 1
-        assert r.n_methods == 1
-        assert r.n_properties == 1
-        # method: x + return = 2; property fget: return = 1
-        assert r.n_typable == 3
-        assert r.n_typed == 3
-
-    def test_properties_only(self) -> None:
-        prop = Property("p", fget=_overload([]), fset=_overload([("value", _INT)]))
-        cls_ = Class("C", (Symbol("C.p", prop),))
-        r = ClassReport.from_symbol("C", cls_)
-        assert len(r.methods) == 0
-        assert len(r.properties) == 1
-        assert r.n_methods == 0
-        assert r.n_properties == 1
-        # fget: return = 1; fset: value param = 1 (return excluded)
-        assert r.n_typable == 2
-        assert r.n_typed == 2
-
-    def test_protocol_excluded(self) -> None:
-        method = Function("m", (_overload([("x", _INT)]),))
-        cls_ = Class("C", (Symbol("C.m", method),), is_protocol=True)
-        r = ClassReport.from_symbol("C", cls_)
-        assert len(r.methods) == 0
-        assert len(r.properties) == 0
-        assert r.n_typable == 0
-        assert r.n_typed == 0
-        assert r.n_methods == 0
-        assert r.n_classes == 1
-
-
-class TestPropertyReport:
-    def test_fget_only_typed(self) -> None:
-        prop = Property("x", fget=_overload([]))
-        r = PropertyReport.from_symbol("x", prop)
-        assert r.n_typable == 1  # return of fget
-        assert r.n_typed == 1
-        assert r.n_any == 0
-        assert r.n_untyped == 0
-        assert r.n_properties == 1
-        assert r.n_functions == 0
-        assert r.n_methods == 0
-        assert r.n_classes == 0
-        assert r.n_attrs == 0
-
-    def test_fget_and_fset(self) -> None:
-        fget = _overload([])  # () -> int
-        fset = _overload([("value", _INT)])  # (value: int) -> int
-        prop = Property("x", fget=fget, fset=fset)
-        r = PropertyReport.from_symbol("x", prop)
-        # fget: return = 1; fset: value param = 1 (return excluded)
-        assert r.n_typable == 2
-        assert r.n_typed == 2
-
-    def test_mixed_annotations(self) -> None:
-        fget = _overload([], returns=UNTYPED)
-        fset = _overload([("value", _INT)])
-        prop = Property("x", fget=fget, fset=fset)
-        r = PropertyReport.from_symbol("x", prop)
-        assert r.n_typed == 1
-        assert r.n_untyped == 1
-
-    def test_no_accessors(self) -> None:
-        prop = Property("x")
-        r = PropertyReport.from_symbol("x", prop)
-        assert r.n_typable == 0
-        assert r.n_typed == 0
-
-    def test_all_accessors(self) -> None:
-        fget = _overload([])
-        fset = _overload([("value", _INT)])
-        fdel = _overload([])
-        prop = Property("x", fget=fget, fset=fset, fdel=fdel)
-        r = PropertyReport.from_symbol("x", prop)
-        # fget: return = 1; fset: param = 1 (return excluded); fdel: 0 slots
-        assert r.n_typable == 2
-        assert r.n_typed == 2
-
-
-class TestSymbolReport:
-    def test_function(self) -> None:
-        func = _func(_overload([("a", _INT)]))
-        r = _symbol_report(Symbol("f", func))
-        assert isinstance(r, FunctionReport)
-
-    def test_class(self) -> None:
-        cls_ = Class("C", ())
-        r = _symbol_report(Symbol("C", cls_))
-        assert isinstance(r, ClassReport)
-
-    def test_property(self) -> None:
-        prop = Property("x", fget=_overload([]))
-        r = _symbol_report(Symbol("x", prop))
-        assert isinstance(r, PropertyReport)
-
-    def test_name(self) -> None:
-        r = _symbol_report(Symbol("x", _INT))
-        assert isinstance(r, AttrReport)
-
-    def test_untyped(self) -> None:
-        r = _symbol_report(Symbol("x", UNTYPED))
-        assert isinstance(r, AttrReport)
-        assert r.n_untyped == 1
-
-    def test_line_propagated_attr(self) -> None:
-        r = _symbol_report(Symbol("x", _INT, line_start=42))
-        assert isinstance(r, AttrReport)
-        assert r.line_start == 42
-
-    def test_line_propagated_function(self) -> None:
-        func = _func(_overload([("a", _INT)]))
-        r = _symbol_report(Symbol("f", func, line_start=10))
-        assert isinstance(r, FunctionReport)
-        assert r.line_start == 10
-
-    def test_line_propagated_class(self) -> None:
-        member = Symbol("C.x", _INT, line_start=5)
-        cls_ = Class("C", (member,))
-        r = _symbol_report(Symbol("C", cls_, line_start=3))
-        assert isinstance(r, ClassReport)
-        assert r.line_start == 3
-        assert r.attrs[0].line_start == 5
-
-    def test_line_none_by_default(self) -> None:
-        r = _symbol_report(Symbol("x", _INT))
-        assert r.line_start is None
-
-    def test_line_roundtrip_json(self) -> None:
-        r = AttrReport.from_symbol("x", _INT, line_start=7)
-        data = r.model_dump()
-        assert data["line_start"] == 7
-        restored = AttrReport.model_validate(data)
-        assert restored.line_start == 7
-
-    def test_line_absent_in_json_is_none(self) -> None:
-        data = {"kind": "attr", "name": "x", "n_typed": 1, "n_any": 0, "n_untyped": 0}
-        r = AttrReport.model_validate(data)
-        assert r.line_start is None
-        assert r.line_end is None
 
 
 class TestModuleReport:
@@ -383,16 +34,23 @@ class TestModuleReport:
         assert m.name == "pkg"
 
     def test_names(self) -> None:
-        m = ModuleReport.from_symbols(
-            "mod.py",
-            [Symbol("a", _INT), Symbol("b", UNTYPED)],
+        m = ModuleReport(
+            path="mod.py",
+            symbol_reports=(
+                AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+                AttrReport(name="b", n_typed=0, n_any=0, n_untyped=1),
+            ),
         )
         assert m.names == frozenset({"a", "b"})
 
     def test_counts(self) -> None:
-        m = ModuleReport.from_symbols(
-            "mod.py",
-            [Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED)],
+        m = ModuleReport(
+            path="mod.py",
+            symbol_reports=(
+                AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+                AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
+                AttrReport(name="c", n_typed=0, n_any=0, n_untyped=1),
+            ),
         )
         assert m.n_typable == 3
         assert m.n_typed == 1
@@ -400,23 +58,18 @@ class TestModuleReport:
         assert m.n_untyped == 1
 
     def test_entity_counts(self) -> None:
-        func = _func(_overload([("a", _INT)]))
-        overloaded = _func(_overload([("a", _INT)]), _overload([("a", UNTYPED)]))
-        cls_ = Class("C", ())
-        m = ModuleReport.from_symbols(
-            "mod.py",
-            [
-                Symbol("f", func),
-                Symbol("g", overloaded),
-                Symbol("C", cls_),
-                Symbol("x", _INT),
-                Symbol("y", UNTYPED),
-            ],
+        m = ModuleReport(
+            path="mod.py",
+            symbol_reports=(
+                FunctionReport(name="f", n_typed=2, n_any=0, n_untyped=0),
+                FunctionReport(name="g", n_typed=0, n_any=0, n_untyped=2),
+                ClassReport(name="C", methods=()),
+                AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),
+                AttrReport(name="y", n_typed=0, n_any=0, n_untyped=1),
+            ),
         )
-        assert m.n_functions == 2  # f + g (empty class has no methods)
+        assert m.n_functions == 2
         assert m.n_methods == 0
-        assert m.n_function_overloads == 3  # f has 1 + g has 2
-        assert m.n_method_overloads == 0
         assert m.n_classes == 1
         assert m.n_attrs == 2
 
@@ -424,33 +77,27 @@ class TestModuleReport:
         m = ModuleReport(path="m.py", symbol_reports=())
         assert m.n_functions == 0
         assert m.n_methods == 0
-        assert m.n_function_overloads == 0
-        assert m.n_method_overloads == 0
         assert m.n_classes == 0
         assert m.n_attrs == 0
 
-    def test_overloads_from_class_methods(self) -> None:
-        overloaded_method = Function(
-            "m",
-            (
-                _overload([("x", _INT)]),
-                _overload([("x", UNTYPED)]),
-                _overload([("x", ANY)]),
+    def test_coverage_default(self) -> None:
+        m = ModuleReport(
+            path="m.py",
+            symbol_reports=(
+                AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+                AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
             ),
         )
-        cls_ = Class("C", (Symbol("C.m", overloaded_method),))
-        m = ModuleReport.from_symbols("mod.py", [Symbol("C", cls_)])
-        assert m.n_functions == 0
-        assert m.n_methods == 1
-        assert m.n_function_overloads == 0
-        assert m.n_method_overloads == 3  # 3 overloads from the class method
-
-    def test_coverage_default(self) -> None:
-        m = ModuleReport.from_symbols("m.py", [Symbol("a", _INT), Symbol("b", ANY)])
         assert m.coverage() == 1
 
     def test_coverage_strict(self) -> None:
-        m = ModuleReport.from_symbols("m.py", [Symbol("a", _INT), Symbol("b", ANY)])
+        m = ModuleReport(
+            path="m.py",
+            symbol_reports=(
+                AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+                AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
+            ),
+        )
         assert m.coverage(True) == 0.5
 
     def test_coverage_empty(self) -> None:
@@ -462,57 +109,116 @@ class TestModuleReport:
         assert m.type_ignores == ()
         assert m.n_type_ignores == 0
 
-    def test_type_ignores_from_symbols(self) -> None:
+    def test_type_ignores_stored(self) -> None:
         comments = (
             IgnoreComment("type", frozenset({"assignment"})),
             IgnoreComment("pyright", None),
         )
-        m = ModuleReport.from_symbols("m.py", [], type_ignores=comments)
+        m = ModuleReport(path="m.py", symbol_reports=(), type_ignores=comments)
         assert m.type_ignores == comments
         assert m.n_type_ignores == 2
 
 
-class TestNormalizeRelpath:
-    def test_src_at_position_zero(self) -> None:
-        rel, _ = _normalize_relpath(
-            anyio.Path("/project/src/pkg/mod.py"),
-            anyio.Path("/project"),
-            None,
-            primary_is_src_layout=True,
-            fallback_is_src_layout=False,
-        )
-        assert rel == anyio.Path("pkg/mod.py")
+class TestAttrReport:
+    def test_typed(self) -> None:
+        r = AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0)
+        assert r.n_typable == 1
+        assert r.n_typed == 1
+        assert r.n_any == 0
+        assert r.n_untyped == 0
 
-    def test_src_at_position_one(self) -> None:
-        """Regression: `src` after a project-name prefix must still be stripped."""
-        rel, _ = _normalize_relpath(
-            anyio.Path("/workspace/project/src/pkg/mod.py"),
-            anyio.Path("/workspace"),
-            None,
-            primary_is_src_layout=True,
-            fallback_is_src_layout=False,
-        )
-        assert rel == anyio.Path("pkg/mod.py")
+    def test_any(self) -> None:
+        r = AttrReport(name="x", n_typed=0, n_any=1, n_untyped=0)
+        assert r.n_typable == 1
+        assert r.n_any == 1
 
-    def test_no_strip_when_flag_false(self) -> None:
-        rel, _ = _normalize_relpath(
-            anyio.Path("/project/src/pkg/mod.py"),
-            anyio.Path("/project"),
-            None,
-            primary_is_src_layout=False,
-            fallback_is_src_layout=False,
-        )
-        assert rel == anyio.Path("src/pkg/mod.py")
+    def test_untyped(self) -> None:
+        r = AttrReport(name="x", n_typed=0, n_any=0, n_untyped=1)
+        assert r.n_typable == 1
+        assert r.n_untyped == 1
 
-    def test_no_src_in_path(self) -> None:
-        rel, _ = _normalize_relpath(
-            anyio.Path("/project/pkg/mod.py"),
-            anyio.Path("/project"),
-            None,
-            primary_is_src_layout=True,
-            fallback_is_src_layout=False,
+    def test_implicit(self) -> None:
+        r = AttrReport(name="x", n_typed=0, n_any=0, n_untyped=0)
+        assert r.n_typable == 0
+
+    def test_line_roundtrip_json(self) -> None:
+        r = AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0, line_start=7)
+        data = r.model_dump()
+        assert data["line_start"] == 7
+        restored = AttrReport.model_validate(data)
+        assert restored.line_start == 7
+
+    def test_line_absent_in_json_is_none(self) -> None:
+        data = {"kind": "attr", "name": "x", "n_typed": 1, "n_any": 0, "n_untyped": 0}
+        r = AttrReport.model_validate(data)
+        assert r.line_start is None
+
+
+class TestFunctionReport:
+    def test_fully_typed(self) -> None:
+        r = FunctionReport(name="f", n_typed=3, n_any=0, n_untyped=0)
+        assert r.n_typable == 3
+        assert r.n_typed == 3
+        assert r.n_params == 2
+
+    def test_mixed(self) -> None:
+        r = FunctionReport(name="f", n_typed=1, n_any=1, n_untyped=1)
+        assert r.n_typable == 3
+
+
+class TestPropertyReport:
+    def test_typed(self) -> None:
+        r = PropertyReport(name="x", n_typed=1, n_any=0, n_untyped=0)
+        assert r.n_typable == 1
+        assert r.n_typed == 1
+
+    def test_untyped(self) -> None:
+        r = PropertyReport(name="x", n_typed=0, n_any=0, n_untyped=1)
+        assert r.n_typable == 1
+        assert r.n_untyped == 1
+
+
+class TestClassReport:
+    def test_methods_only(self) -> None:
+        r = ClassReport(
+            name="C",
+            methods=(FunctionReport(name="C.m", n_typed=2, n_any=0, n_untyped=0),),
         )
-        assert rel == anyio.Path("pkg/mod.py")
+        assert len(r.methods) == 1
+        assert r.n_typable == 2
+        assert r.n_typed == 2
+        assert r.n_methods == 1
+
+    def test_attrs(self) -> None:
+        r = ClassReport(
+            name="C",
+            methods=(),
+            attrs=(
+                AttrReport(name="C.a", n_typed=0, n_any=0, n_untyped=0),
+                AttrReport(name="C.b", n_typed=1, n_any=0, n_untyped=0),
+                AttrReport(name="C.c", n_typed=0, n_any=0, n_untyped=1),
+            ),
+        )
+        assert r.n_typable == 2
+        assert r.n_typed == 1
+        assert r.n_untyped == 1
+        # n_attrs skips zero-typable C.a.
+        assert r.n_attrs == 2
+
+    def test_properties(self) -> None:
+        r = ClassReport(
+            name="C",
+            methods=(FunctionReport(name="C.m", n_typed=2, n_any=0, n_untyped=0),),
+            properties=(PropertyReport(name="C.p", n_typed=1, n_any=0, n_untyped=0),),
+        )
+        assert r.n_methods == 1
+        assert r.n_properties == 1
+        assert r.n_typable == 3
+        assert r.n_typed == 3
+
+    def test_empty_class(self) -> None:
+        r = ClassReport(name="C", methods=())
+        assert r.n_typable == 0
 
 
 class TestSrcLayoutReport:
@@ -554,49 +260,67 @@ class TestSrcLayoutReport:
             assert ".src." not in mod.name, f"module name contains .src.: {mod.name}"
 
 
-class TestPackageReport:
-    def _pkg(self, *symbols: Symbol) -> PackageReport:
-        mod = ModuleReport.from_symbols("mod.py", list(symbols))
-        return PackageReport(
-            package="pkg",
-            module_reports=(mod,),
-            version="1.0.0",
-            py_typed=PyTyped.YES,
-        )
+def _pkg(
+    *symbol_reports: AttrReport | FunctionReport | PropertyReport | ClassReport,
+) -> PackageReport:
+    mod = ModuleReport(path="mod.py", symbol_reports=symbol_reports)
+    return PackageReport(
+        package="pkg",
+        module_reports=(mod,),
+        version="1.0.0",
+        py_typed=PyTyped.YES,
+    )
 
+
+class TestPackageReport:
     def test_coverage(self) -> None:
-        r = self._pkg(Symbol("a", _INT), Symbol("b", ANY))
+        r = _pkg(
+            AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+            AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
+        )
         assert r.coverage() == 1
 
     def test_coverage_strict(self) -> None:
-        r = self._pkg(Symbol("a", _INT), Symbol("b", ANY))
+        r = _pkg(
+            AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+            AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
+        )
         assert r.coverage(True) == 0.5
 
     def test_aggregation(self) -> None:
-        r = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED))
+        r = _pkg(
+            AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+            AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
+            AttrReport(name="c", n_typed=0, n_any=0, n_untyped=1),
+        )
         assert r.n_typable == 3
         assert r.n_typed == 1
         assert r.n_any == 1
         assert r.n_untyped == 1
 
     def test_entity_counts(self) -> None:
-        func = _func(_overload([("a", _INT)]))
-        method = Function("m", (_overload([("x", _INT)]),))
-        cls_ = Class("C", (Symbol("C.m", method),))
-        r = self._pkg(Symbol("f", func), Symbol("C", cls_), Symbol("x", _INT))
-        assert r.n_functions == 1  # f
-        assert r.n_methods == 1  # C.m
-        assert r.n_function_overloads == 1
-        assert r.n_method_overloads == 1
+        r = _pkg(
+            FunctionReport(name="f", n_typed=2, n_any=0, n_untyped=0),
+            ClassReport(
+                name="C",
+                methods=(FunctionReport(name="C.m", n_typed=2, n_any=0, n_untyped=0),),
+            ),
+            AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),
+        )
+        assert r.n_functions == 1
+        assert r.n_methods == 1
         assert r.n_classes == 1
         assert r.n_attrs == 1
 
     def test_typechecker_configs_default_empty(self) -> None:
-        r = self._pkg(Symbol("a", _INT))
+        r = _pkg(AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0))
         assert r.typecheckers == {}
 
     def test_typechecker_configs_stored(self) -> None:
-        mod = ModuleReport.from_symbols("mod.py", [Symbol("a", _INT)])
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=(AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),),
+        )
         r = PackageReport(
             package="pkg",
             module_reports=(mod,),
@@ -612,8 +336,8 @@ class TestPackageReport:
         c1 = IgnoreComment("type", frozenset({"assignment"}))
         c2 = IgnoreComment("pyright", None)
         c3 = IgnoreComment("ty", frozenset({"deprecated"}))
-        m1 = ModuleReport.from_symbols("a.py", [], type_ignores=(c1, c2))
-        m2 = ModuleReport.from_symbols("b.py", [], type_ignores=(c3,))
+        m1 = ModuleReport(path="a.py", symbol_reports=(), type_ignores=(c1, c2))
+        m2 = ModuleReport(path="b.py", symbol_reports=(), type_ignores=(c3,))
         r = PackageReport(
             package="pkg",
             module_reports=(m1, m2),
@@ -626,10 +350,12 @@ class TestPackageReport:
 
 class TestPackageReportJson:
     @staticmethod
-    def _pkg(*symbols: Symbol) -> PackageReport:
-        mod = ModuleReport.from_symbols(
-            "mod.py",
-            list(symbols),
+    def _pkg(
+        *symbol_reports: AttrReport | FunctionReport | PropertyReport | ClassReport,
+    ) -> PackageReport:
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=symbol_reports,
             type_ignores=(
                 IgnoreComment("type", frozenset({"assignment", "override"})),
                 IgnoreComment("pyright", None),
@@ -644,18 +370,25 @@ class TestPackageReportJson:
         )
 
     def test_round_trip(self) -> None:
-        report = self._pkg(Symbol("a", _INT), Symbol("b", ANY), Symbol("c", UNTYPED))
+        report = self._pkg(
+            AttrReport(name="a", n_typed=1, n_any=0, n_untyped=0),
+            AttrReport(name="b", n_typed=0, n_any=1, n_untyped=0),
+            AttrReport(name="c", n_typed=0, n_any=0, n_untyped=1),
+        )
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
         assert restored == report
 
     def test_py_typed_serializes_as_name(self) -> None:
-        report = self._pkg(Symbol("x", _INT))
+        report = self._pkg(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0))
         data = report.model_dump(mode="json")
         assert data["py_typed"] == "YES"
 
     def test_py_typed_partial(self) -> None:
-        mod = ModuleReport.from_symbols("m.py", [Symbol("x", _INT)])
+        mod = ModuleReport(
+            path="m.py",
+            symbol_reports=(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),),
+        )
         report = PackageReport(
             package="p",
             module_reports=(mod,),
@@ -669,16 +402,19 @@ class TestPackageReportJson:
 
     def test_names_sorted_in_json(self) -> None:
         report = self._pkg(
-            Symbol("z_name", _INT),
-            Symbol("a_name", _INT),
-            Symbol("m_name", _INT),
+            AttrReport(name="z_name", n_typed=1, n_any=0, n_untyped=0),
+            AttrReport(name="a_name", n_typed=1, n_any=0, n_untyped=0),
+            AttrReport(name="m_name", n_typed=1, n_any=0, n_untyped=0),
         )
         data = report.model_dump(mode="json")
         names = data["module_reports"][0]["names"]
         assert names == sorted(names)
 
     def test_metadata_round_trip(self) -> None:
-        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),),
+        )
         report = PackageReport(
             package="pkg",
             module_reports=(mod,),
@@ -695,14 +431,17 @@ class TestPackageReportJson:
         assert restored.metadata == report.metadata
 
     def test_metadata_none_round_trip(self) -> None:
-        report = self._pkg(Symbol("x", _INT))
+        report = self._pkg(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0))
         assert report.metadata is None
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
         assert restored.metadata is None
 
     def test_pypi_round_trip(self) -> None:
-        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),),
+        )
         pypi = PypiInfo(
             upload_time="2025-06-15T12:30:00Z",
             requires_python=">=3.10",
@@ -719,21 +458,19 @@ class TestPackageReportJson:
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
         assert restored.pypi == pypi
-        assert restored.pypi is not None
-        assert restored.pypi.upload_time == "2025-06-15T12:30:00Z"
-        assert restored.pypi.requires_python == ">=3.10"
-        assert restored.pypi.size == 123456
-        assert restored.pypi.sha256 == "abcdef1234567890"
 
     def test_pypi_none_round_trip(self) -> None:
-        report = self._pkg(Symbol("x", _INT))
+        report = self._pkg(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0))
         assert report.pypi is None
         json_str = report.model_dump_json()
         restored = PackageReport.model_validate_json(json_str)
         assert restored.pypi is None
 
     def test_pypi_partial_fields(self) -> None:
-        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),),
+        )
         pypi = PypiInfo(upload_time="2025-01-01T00:00:00Z")
         report = PackageReport(
             package="pkg",
@@ -751,7 +488,10 @@ class TestPackageReportJson:
 
     def test_schema_version_in_json(self) -> None:
         schema_ver = ".".join(map(str, SCHEMA_VERSION))
-        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),),
+        )
         report = PackageReport(
             schema_version=schema_ver,
             package="pkg",
@@ -764,7 +504,10 @@ class TestPackageReportJson:
 
     def test_schema_version_round_trip(self) -> None:
         schema_ver = ".".join(map(str, SCHEMA_VERSION))
-        mod = ModuleReport.from_symbols("mod.py", [Symbol("x", _INT)])
+        mod = ModuleReport(
+            path="mod.py",
+            symbol_reports=(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0),),
+        )
         report = PackageReport(
             schema_version=schema_ver,
             package="pkg",
@@ -778,7 +521,7 @@ class TestPackageReportJson:
 
     def test_schema_version_missing_treated_as_old(self) -> None:
         """JSON without schema_version is interpreted as schema '0.0'."""
-        report = self._pkg(Symbol("x", _INT))
+        report = self._pkg(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0))
         data = report.model_dump(mode="json")
         del data["schema_version"]
         json_str = json.dumps(data)
@@ -786,7 +529,7 @@ class TestPackageReportJson:
         assert restored.schema_version == "0.0"
 
     def test_schema_version_is_first_field(self) -> None:
-        report = self._pkg(Symbol("x", _INT))
+        report = self._pkg(AttrReport(name="x", n_typed=1, n_any=0, n_untyped=0))
         json_str = report.model_dump_json()
         data = json.loads(json_str)
         first_key = next(iter(data))
@@ -803,10 +546,8 @@ class TestPackageReportFromPath:
         shutil.copytree(_FIXTURES / "stubs_base", base)
         shutil.copytree(_FIXTURES / "stubs_overlay", stubs)
 
-        # Place a mypy config only in the base dir (should be ignored)
         (base / "mypy.ini").write_text("[mypy]\nstrict = True\n")
 
-        # Place a pyright config only in the stubs dir (should be discovered)
         (stubs / "pyrightconfig.json").write_text(json.dumps({"strict": ["."]}))
 
         report = await PackageReport.from_path("mypkg", base, "1.0.0", stubs_path=stubs)
@@ -820,7 +561,6 @@ class TestPackageReportFromPath:
         base = tmp_path / "base"
         shutil.copytree(_FIXTURES / "stubs_base", base)
 
-        # Place a mypy config in the base dir
         (base / "mypy.ini").write_text("[mypy]\nstrict = True\n")
 
         report = await PackageReport.from_path("mypkg", base, "1.0.0")
@@ -945,6 +685,7 @@ class TestPackageReportFromPath:
         stubs = tmp_path / "stubs"
         shutil.copytree(_FIXTURES / "stubs_base", base)
         shutil.copytree(_FIXTURES / "stubs_overlay", stubs)
+        (stubs / "pyproject.toml").write_text("[tool.pyrefly]\n")
 
         report = await PackageReport.from_path(
             "mypkg",
@@ -962,6 +703,7 @@ class TestPackageReportFromPath:
         pkg_dir = tmp_path / "mypkg-stubs"
         pkg_dir.mkdir()
         (pkg_dir / "__init__.pyi").write_text("x: int\n")
+        (tmp_path / "pyproject.toml").write_text("[tool.pyrefly]\n")
 
         report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
 
@@ -975,6 +717,7 @@ class TestPackageReportFromPath:
         pkg_dir.mkdir(parents=True)
         (pkg_dir / "__init__.py").write_text("x: int = 1\n")
         (pkg_dir / "utils.py").write_text("def helper(x: str) -> str: return x\n")
+        (tmp_path / "pyproject.toml").write_text("[tool.pyrefly]\n")
 
         report = await PackageReport.from_path("mypkg", tmp_path, "1.0.0")
 
@@ -991,6 +734,7 @@ class TestPackageReportFromPath:
         pkg_dir = src_dir / "mypkg-stubs"
         pkg_dir.mkdir(parents=True)
         (pkg_dir / "__init__.pyi").write_text("x: int\n")
+        (tmp_path / "pyproject.toml").write_text("[tool.pyrefly]\n")
 
         report = await PackageReport.from_path("mypkg-stubs-lite", tmp_path, "1.0.0")
 

@@ -87,6 +87,6 @@ jobs:
         with:
           python-version: "3.12"
       - name: typestats check typestats
-        run: uv run typestats check typestats --strict --fail-under=100
+        run: uv run typestats check --strict --fail-under=100
       - name: typestats check typestats-site
-        run: uv run typestats check typestats-site --strict --fail-under=100
+        run: uv run typestats check packages/typestats-site --strict --fail-under=100
