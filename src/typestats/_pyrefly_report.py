@@ -1,15 +1,11 @@
 """Adapter that converts `pyrefly report` JSON output to typestats Pydantic models."""
 
-from __future__ import annotations
-
 import json
 import sys
-from typing import TYPE_CHECKING, Literal, TypedDict
+from collections.abc import Sequence
+from typing import Literal, TypedDict
 
 from .subprocess import run
-
-if TYPE_CHECKING:
-    from collections.abc import Sequence
 
 __all__ = ("run_pyrefly_report",)
 
