@@ -207,6 +207,7 @@ class ModuleReport(BaseModel):
     model_config: ClassVar = ConfigDict(frozen=True)
 
     path: str
+    path_abs: str = Field(default="", exclude=True)
     symbol_reports: tuple[AnySymbolReport, ...]
     type_ignores: tuple[IgnoreComment, ...] = ()
 
@@ -455,6 +456,7 @@ def _convert_module(pm: _ModuleReport, rel_path: str) -> ModuleReport:  # noqa: 
 
     return ModuleReport(
         path=rel_path,
+        path_abs=pm["path"],
         symbol_reports=tuple(symbol_reports),
         type_ignores=tuple(
             IgnoreComment(
@@ -683,7 +685,7 @@ class PackageReport(BaseModel):
             sources=sources or pyrefly_paths or (),
         )
         stubs_files: list[anyio.Path] = (
-            await list_sources(stubs_obj, sources=stubs_sources)
+            await list_sources(stubs_obj, exclude=exclude, sources=stubs_sources)
             if stubs_obj is not None
             else []
         )

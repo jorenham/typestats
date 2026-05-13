@@ -170,7 +170,7 @@ class TestUnannotatedListing:
             assert entry.path.endswith((".py", ".pyi"))
             assert "/" not in entry.name
             assert "\\" not in entry.name
-            assert entry.line_start is None or entry.line_start > 0
+            assert entry.line is None or entry.line > 0
 
     async def test_untyped_symbols_strict_superset(self) -> None:
         """Strict is a superset of non-strict."""
@@ -188,43 +188,47 @@ class TestUnannotatedListing:
 class TestFormatList:
     def test_with_line_numbers(self) -> None:
         entries = [
-            _UntypedEntry("pkg/a.py", "func_a", 10),
-            _UntypedEntry("pkg/a.py", "func_b", 20),
+            _UntypedEntry("pkg/a.py", "", "func_a", 10),
+            _UntypedEntry("pkg/a.py", "", "func_b", 20),
         ]
         result = _format_list(entries)
         assert result == "pkg/a.py:10  func_a\npkg/a.py:20  func_b"
 
     def test_without_line_number(self) -> None:
-        entries = [_UntypedEntry("pkg/b.py", "var_x", None)]
+        entries = [_UntypedEntry("pkg/b.py", "", "var_x", None)]
         result = _format_list(entries)
         assert result == "pkg/b.py  var_x"
 
     def test_aligns_columns(self) -> None:
         entries = [
-            _UntypedEntry("pkg/b.py", "z", 1),
-            _UntypedEntry("pkg/a.py", "y", 10),
-            _UntypedEntry("pkg/a.py", "x", 5),
-            _UntypedEntry("pkg/a.py", "w", None),
+            _UntypedEntry("pkg/b.py", "", "z", 1),
+            _UntypedEntry("pkg/a.py", "", "y", 10),
+            _UntypedEntry("pkg/a.py", "", "x", 5),
+            _UntypedEntry("pkg/a.py", "", "w", None),
         ]
         result = _format_list(entries)
         assert result == (
             "pkg/a.py:5   x\npkg/a.py:10  y\npkg/a.py     w\npkg/b.py:1   z"
         )
 
+    @staticmethod
+    def _load(tmp_path: Path, *rels: str) -> dict[str, list[str]]:
+        return {r: (tmp_path / r).read_text().splitlines() for r in rels}
+
     def test_source_lines_with_lineno(self, tmp_path: Path) -> None:
         src = tmp_path / "pkg" / "a.py"
         src.parent.mkdir()
         src.write_text("    def foo(self, x):\n        pass\n")
-        entries = [_UntypedEntry("pkg/a.py", "foo", 1)]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        entries = [_UntypedEntry("pkg/a.py", "", "foo", 1)]
+        result = _format_list(entries, self._load(tmp_path, "pkg/a.py"))
         assert result == "   --> pkg/a.py:1  foo\n1 |     def foo(self, x):"
 
     def test_source_lines_single_line(self, tmp_path: Path) -> None:
         src = tmp_path / "pkg" / "m.py"
         src.parent.mkdir()
         src.write_text("x = 1\ny = 2\nz = 3\n")
-        entries = [_UntypedEntry("pkg/m.py", "y", 2)]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        entries = [_UntypedEntry("pkg/m.py", "", "y", 2)]
+        result = _format_list(entries, self._load(tmp_path, "pkg/m.py"))
         assert result == "   --> pkg/m.py:2  y\n2 | y = 2"
 
     def test_source_lines_aligned_across_entries(self, tmp_path: Path) -> None:
@@ -232,10 +236,10 @@ class TestFormatList:
         src.parent.mkdir()
         src.write_text("\n".join(f"line {i}" for i in range(1, 101)) + "\n")
         entries = [
-            _UntypedEntry("pkg/a.py", "x", 3),
-            _UntypedEntry("pkg/a.py", "y", 99),
+            _UntypedEntry("pkg/a.py", "", "x", 3),
+            _UntypedEntry("pkg/a.py", "", "y", 99),
         ]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        result = _format_list(entries, self._load(tmp_path, "pkg/a.py"))
         assert result == (
             "   --> pkg/a.py:3  x\n 3 | line 3\n\n   --> pkg/a.py:99  y\n99 | line 99"
         )
@@ -245,10 +249,10 @@ class TestFormatList:
         src.parent.mkdir()
         src.write_text("a = 1\nb = 2\nc = 3\nd = 4\n")
         entries = [
-            _UntypedEntry("pkg/a.py", "b", 2),
-            _UntypedEntry("pkg/a.py", "c", 3),
+            _UntypedEntry("pkg/a.py", "", "b", 2),
+            _UntypedEntry("pkg/a.py", "", "c", 3),
         ]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        result = _format_list(entries, self._load(tmp_path, "pkg/a.py"))
         assert result == (
             "   --> pkg/a.py:2  b\n2 | b = 2\n\n   --> pkg/a.py:3  c\n3 | c = 3"
         )
@@ -258,10 +262,10 @@ class TestFormatList:
         src.parent.mkdir()
         src.write_text("a = 1\ndef f(\n    x,\n):\n    pass\nz = 9\n")
         entries = [
-            _UntypedEntry("pkg/a.py", "f", 2),
-            _UntypedEntry("pkg/a.py", "z", 6),
+            _UntypedEntry("pkg/a.py", "", "f", 2),
+            _UntypedEntry("pkg/a.py", "", "z", 6),
         ]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        result = _format_list(entries, self._load(tmp_path, "pkg/a.py"))
         assert result == (
             "   --> pkg/a.py:2  f\n2 | def f(\n\n   --> pkg/a.py:6  z\n6 | z = 9"
         )
@@ -272,10 +276,10 @@ class TestFormatList:
         lines_b = "\n".join(f"line {i}" for i in range(1, 1001)) + "\n"
         (tmp_path / "pkg" / "b.py").write_text(lines_b)
         entries = [
-            _UntypedEntry("pkg/a.py", "x", 1),
-            _UntypedEntry("pkg/b.py", "y", 999),
+            _UntypedEntry("pkg/a.py", "", "x", 1),
+            _UntypedEntry("pkg/b.py", "", "y", 999),
         ]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        result = _format_list(entries, self._load(tmp_path, "pkg/a.py", "pkg/b.py"))
         # width 3 from file b (999) applies globally, so file a pads too
         assert result == (
             "   --> pkg/a.py:1  x\n  1 | x = 1\n"
@@ -285,15 +289,13 @@ class TestFormatList:
     def test_empty(self) -> None:
         assert not _format_list([])
 
-    def test_concise_skips_source(self, tmp_path: Path) -> None:
-        src = tmp_path / "pkg" / "a.py"
-        src.parent.mkdir()
-        src.write_text("def foo(x):\n    pass\n")
+    def test_concise_skips_source(self) -> None:
         entries = [
-            _UntypedEntry("pkg/a.py", "foo", 1),
-            _UntypedEntry("pkg/a.py", "bar", 5),
+            _UntypedEntry("pkg/a.py", "", "foo", 1),
+            _UntypedEntry("pkg/a.py", "", "bar", 5),
         ]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path), concise=True)
+        # concise mode: pass no source_lines
+        result = _format_list(entries)
         assert result == "pkg/a.py:1  foo\npkg/a.py:5  bar"
 
     def test_fallback_for_missing_line(self, tmp_path: Path) -> None:
@@ -301,8 +303,8 @@ class TestFormatList:
         src.parent.mkdir()
         src.write_text("x = 1\ny = 2\n")
         entries = [
-            _UntypedEntry("pkg/a.py", "x", 1),
-            _UntypedEntry("pkg/a.py", "z", None),
+            _UntypedEntry("pkg/a.py", "", "x", 1),
+            _UntypedEntry("pkg/a.py", "", "z", None),
         ]
-        result = _format_list(entries, base_path=anyio.Path(tmp_path))
+        result = _format_list(entries, self._load(tmp_path, "pkg/a.py"))
         assert result == "   --> pkg/a.py:1  x\n1 | x = 1\n\n   --> pkg/a.py  z"

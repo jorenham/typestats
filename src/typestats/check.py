@@ -1,11 +1,13 @@
 # ruff: noqa: T201
 
+import asyncio
+import functools
+import itertools
 import json
 import logging
 import sys
 import tomllib
 from collections.abc import Sequence
-from pathlib import Path
 from typing import NamedTuple, Self
 
 import anyio
@@ -19,134 +21,128 @@ from .report import (
     _coverage,
 )
 
-type _LeafReport = AttrReport | FunctionReport | PropertyReport
+__all__ = "check", "report"
 
-__all__ = ("check", "report")
+type _LeafReport = AttrReport | FunctionReport | PropertyReport
 
 _logger = logging.getLogger(__name__)
 
 
 async def _read_project(root: anyio.Path) -> tuple[str, str]:
-    """Read `(name, version)` from `pyproject.toml` in *root*.
-
-    Falls back to empty strings if the file is missing or invalid.
-    """
+    """Read `(name, version)` from `pyproject.toml` in `root` or `("", "")`."""
     try:
         text = await (root / "pyproject.toml").read_text()
-        data = tomllib.loads(text)
-    except (OSError, tomllib.TOMLDecodeError):
+    except FileNotFoundError:
         return "", ""
-    proj = data.get("project", {})
+    proj = tomllib.loads(text).get("project", {})
     return proj.get("name", "").replace("-", "_"), proj.get("version", "")
 
 
 class _UntypedEntry(NamedTuple):
     path: str
+    path_abs: str
     name: str
-    line_start: int | None
+    line: int | None
 
     @classmethod
-    def from_report(cls, path: str, name: str, sym: _LeafReport) -> Self:
-        return cls(path, name, sym.line_start)
+    def from_report(cls, path: str, path_abs: str, name: str, sym: _LeafReport) -> Self:
+        return cls(path, path_abs, name, sym.line_start)
 
 
 def _untyped_symbols(
-    report: PackageReport, *, strict: bool = False
+    report: PackageReport,
+    *,
+    strict: bool = False,
 ) -> list[_UntypedEntry]:
-    def _is_untyped(sym: _LeafReport) -> bool:
-        return sym.n_untyped + (sym.n_any if strict else 0) > 0
+    if strict:
+
+        def _is_untyped(sym: _LeafReport, /) -> bool:
+            return sym.n_untyped + sym.n_any > 0
+
+    else:
+
+        def _is_untyped(sym: _LeafReport, /) -> bool:
+            return sym.n_untyped > 0
 
     result: list[_UntypedEntry] = []
     for mod in sorted(report.module_reports, key=lambda m: m.path):
-        path = mod.path
+        entry = functools.partial(_UntypedEntry.from_report, mod.path, mod.path_abs)
+
         for sym in mod.symbol_reports:
             short = sym.name.removeprefix(f"{mod.name}.")
+
             if isinstance(sym, ClassReport):
                 for member in (*sym.methods, *sym.properties, *sym.attrs):
                     if _is_untyped(member):
                         member_short = member.name.rsplit(".", 1)[-1]
-                        qualname = f"{short}.{member_short}"
-                        result.append(_UntypedEntry.from_report(path, qualname, member))
+                        result.append(entry(f"{short}.{member_short}", member))
             elif _is_untyped(sym):
-                result.append(_UntypedEntry.from_report(path, short, sym))
+                result.append(entry(short, sym))
+
     return result
 
 
-def _read_source_lines(base_path: anyio.Path, paths: set[str]) -> dict[str, list[str]]:
-    root = Path(str(base_path))
-    result: dict[str, list[str]] = {}
-    for rel in paths:
+async def _read_src_lines(paths: dict[str, str]) -> dict[str, list[str]]:
+    async def _read(rel: str, path_abs: str) -> tuple[str, list[str]] | None:
+        path = anyio.Path(path_abs)
         try:
-            text = (root / rel).read_text(encoding="utf-8")
+            text = await path.read_text(encoding="utf-8")
         except OSError:
-            continue
-        result[rel] = text.splitlines()
-    return result
+            return None
+        return rel, text.splitlines()
 
-
-def _format_snippet(
-    file_lines: list[str],
-    line_start: int,
-    lineno_w: int = 0,
-) -> list[str]:
-    if not file_lines or line_start < 1:
-        return []
-    idx = min(line_start, len(file_lines)) - 1
-    lineno_w = max(lineno_w, len(str(line_start)))
-    return [f"{line_start:>{lineno_w}} | {file_lines[idx].rstrip()}"]
+    results = await asyncio.gather(*itertools.starmap(_read, paths.items()))
+    return dict(r for r in results if r is not None)
 
 
 def _format_list(
     entries: list[_UntypedEntry],
-    base_path: anyio.Path | None = None,
-    *,
-    concise: bool = False,
+    src_lines: dict[str, list[str]] | None = None,
 ) -> str:
-    entries.sort(
-        key=lambda e: (e.path, e.line_start is None, e.line_start or 0, e.name),
-    )
+    entries.sort(key=lambda e: (e.path, e.line is None, e.line or 0, e.name))
 
-    source_lines: dict[str, list[str]] = {}
-    if base_path is not None and not concise:
-        source_lines = _read_source_lines(
-            base_path,
-            {e.path for e in entries if e.line_start is not None},
+    if not src_lines:
+        locs = [f"{e.path}:{e.line}" if e.line is not None else e.path for e in entries]
+        w = max(map(len, locs), default=0)
+        return "\n".join(
+            f"{loc:<{w}}  {e.name}" for loc, e in zip(locs, entries, strict=True)
         )
 
-    lineno_w = 0
-    if source_lines:
-        for entry in entries:
-            if entry.line_start is not None and entry.path in source_lines:
-                lineno_w = max(
-                    lineno_w,
-                    len(str(min(entry.line_start, len(source_lines[entry.path])))),
-                )
-
-    lines: list[str] = []
-    if source_lines:
-        prefix = "   --> "
-        for entry in entries:
-            if lines:
-                lines.append("")
-            loc = f"{entry.path}:{entry.line_start}" if entry.line_start else entry.path
-            lines.append(f"{prefix}{loc}  {entry.name}")
-            if entry.line_start is None or entry.path not in source_lines:
-                continue
-            lines.extend(
-                _format_snippet(
-                    source_lines[entry.path],
-                    entry.line_start,
-                    lineno_w,
-                ),
-            )
-    else:
-        locs = [
-            f"{e.path}:{e.line_start}" if e.line_start is not None else e.path
+    lineno_w = max(
+        (
+            len(str(min(e.line, len(src_lines[e.path]))))
             for e in entries
-        ]
-        w = max((len(loc) for loc in locs), default=0)
-        for loc, entry in zip(locs, entries, strict=True):
-            lines.append(f"{loc:<{w}}  {entry.name}")
+            if e.line is not None and e.path in src_lines
+        ),
+        default=0,
+    )
+
+    def _format_snippet(
+        file_lines: list[str],
+        line_start: int,
+        lineno_w: int,
+    ) -> list[str]:
+        if not file_lines or line_start < 1:
+            return []
+        idx = min(line_start, len(file_lines)) - 1
+        lineno_w = max(lineno_w, len(str(line_start)))
+
+        return [f"{line_start:>{lineno_w}} | {file_lines[idx].rstrip()}"]
+
+    prefix = "   --> "
+    lines: list[str] = []
+    for entry in entries:
+        if lines:
+            lines.append("")
+
+        loc = f"{entry.path}:{entry.line}" if entry.line else entry.path
+        lines.append(f"{prefix}{loc}  {entry.name}")
+
+        if entry.line is None or entry.path not in src_lines:
+            continue
+
+        lines.extend(_format_snippet(src_lines[entry.path], entry.line, lineno_w))
+
     return "\n".join(lines)
 
 
@@ -176,7 +172,7 @@ async def report(*paths: str, exclude: Sequence[str] = ()) -> None:
     sys.stdout.write("\n")
 
 
-async def check(  # noqa: PLR0914
+async def check(
     *paths: str,
     strict: bool = False,
     concise: bool = False,
@@ -184,7 +180,7 @@ async def check(  # noqa: PLR0914
     fail_under_from: anyio.Path | None = None,
     exclude: Sequence[str] = (),
 ) -> None:
-    """Print type-annotation coverage for the project."""  # noqa: DOC501
+    """Print type-annotation coverage for the project."""
     root, pyrefly_paths = await _resolve_root(paths)
     pkg, version = await _read_project(root)
 
@@ -200,10 +196,15 @@ async def check(  # noqa: PLR0914
     w = len(str(pkg_report.n_typable))
     strict_suffix = " (strict)" if strict else ""
 
-    untyped = _untyped_symbols(pkg_report, strict=strict)
-    if untyped:
+    if untyped := _untyped_symbols(pkg_report, strict=strict):
+        src_lines: dict[str, list[str]] = {}
+        if not concise:
+            src_lines = await _read_src_lines({
+                e.path: e.path_abs for e in untyped if e.line is not None
+            })
+
         print(f"untyped ({len(untyped)}):")
-        print(_format_list(untyped, root, concise=concise))
+        print(_format_list(untyped, src_lines))
         print()
 
     print(
@@ -214,18 +215,13 @@ async def check(  # noqa: PLR0914
     )
 
     if fail_under_from is not None:
-        try:
-            data = json.loads(await fail_under_from.read_bytes())
-            n_typed_base: int = data["n_typed"]
-            n_any_base: int = data["n_any"]
-            n_typable_base: int = data["n_typable"]
-        except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
-            msg = (
-                f"failed to read baseline from {fail_under_from}: {exc}\n"
-                "expected a JSON report with 'n_typed', 'n_any', and 'n_typable' fields"
-            )
-            raise SystemExit(msg) from None
-        fail_under = _coverage(n_typed_base, n_any_base, n_typable_base, strict) * 100
+        baseline = json.loads(await fail_under_from.read_bytes())
+        fail_under = 100 * _coverage(
+            baseline["n_typed"],
+            baseline["n_any"],
+            baseline["n_typable"],
+            strict,
+        )
 
     if fail_under is not None:
         label = "strict coverage" if strict else "coverage"

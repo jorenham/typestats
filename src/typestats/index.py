@@ -78,23 +78,21 @@ async def _collect_sources(
 
     roots = [await anyio.Path(s).resolve() for s in sources] if sources else [abs_path]
 
-    found: list[anyio.Path] = []
+    seen: dict[anyio.Path, None] = {}
     for root in roots:
         if await root.is_file():
             if not _excluded(root):
-                found.append(root)
+                seen.setdefault(root, None)
             continue
-        found.extend([
-            child
-            async for child in root.rglob("*.py")
-            if await child.is_file() and not _excluded(child)
-        ])
-        found.extend([
-            child
-            async for child in root.rglob("*.pyi")
-            if await child.is_file() and not _excluded(child)
-        ])
-    return found
+        async for child in root.rglob("*"):
+            if (
+                child.suffix in {".py", ".pyi"}
+                and child not in seen
+                and not _excluded(child)
+                and await child.is_file()
+            ):
+                seen[child] = None
+    return list(seen)
 
 
 async def _is_package(d: anyio.Path) -> bool:
