@@ -89,8 +89,11 @@ def _format_snippet(
     line_start: int,
     lineno_w: int = 0,
 ) -> list[str]:
+    if not file_lines or line_start < 1:
+        return []
+    idx = min(line_start, len(file_lines)) - 1
     lineno_w = max(lineno_w, len(str(line_start)))
-    return [f"{line_start:>{lineno_w}} | {file_lines[line_start - 1].rstrip()}"]
+    return [f"{line_start:>{lineno_w}} | {file_lines[idx].rstrip()}"]
 
 
 def _format_list(

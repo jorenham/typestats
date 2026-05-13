@@ -65,7 +65,7 @@ class IgnoreComment:
     def __str__(self) -> str:
         if self.rules is None:
             return f"{self.kind}: ignore"
-        return f"{self.kind}: ignore[{', '.join(self.rules)}]"
+        return f"{self.kind}: ignore[{', '.join(sorted(self.rules))}]"
 
 
 type _Max1 = Literal[0, 1]
@@ -676,7 +676,12 @@ class PackageReport(BaseModel):
         )
         display = project or pkg
 
-        pkg_files = await list_sources(path_obj, exclude=exclude, sources=sources)
+        # narrow discovery to what pyrefly will analyze
+        pkg_files = await list_sources(
+            path_obj,
+            exclude=exclude,
+            sources=sources or pyrefly_paths or (),
+        )
         stubs_files: list[anyio.Path] = (
             await list_sources(stubs_obj, sources=stubs_sources)
             if stubs_obj is not None
