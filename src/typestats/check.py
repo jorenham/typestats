@@ -15,6 +15,7 @@ import anyio
 from .report import (
     AttrReport,
     ClassReport,
+    FromPathOptions,
     FunctionReport,
     PackageReport,
     PropertyReport,
@@ -164,8 +165,7 @@ async def report(*paths: str, exclude: Sequence[str] = ()) -> None:
         pkg,
         root,
         version,
-        exclude=exclude,
-        pyrefly_paths=pyrefly_paths,
+        FromPathOptions(exclude=exclude, pyrefly_paths=pyrefly_paths),
     )
 
     sys.stdout.write(pkg_report.model_dump_json(indent=2))
@@ -188,8 +188,7 @@ async def check(
         pkg,
         root,
         version,
-        exclude=exclude,
-        pyrefly_paths=pyrefly_paths,
+        FromPathOptions(exclude=exclude, pyrefly_paths=pyrefly_paths),
     )
 
     cov = pkg_report.coverage(strict) * 100

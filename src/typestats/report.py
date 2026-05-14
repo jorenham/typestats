@@ -4,6 +4,7 @@ import logging
 from collections import defaultdict
 from collections.abc import Sequence
 from dataclasses import dataclass
+from itertools import chain
 from pathlib import Path, PurePosixPath
 from typing import (
     Annotated,
@@ -16,6 +17,7 @@ from typing import (
     cast,
     override,
 )
+from urllib.parse import urlparse
 
 import anyio
 from pydantic import (
@@ -29,14 +31,10 @@ from pydantic import (
     field_validator,
 )
 
-from ._pyrefly_report import _ModuleReport, _SymbolReport
-from ._type import StrPath, StrPaths
-from .index import (
-    PyTyped,
-    get_py_typed,
-    is_src_layout,
-    list_sources,
-)
+from ._pyrefly_report import _ModuleReport, _SymbolReport, run_pyrefly_report
+from ._type import StrPath
+from .index import PyTyped, get_py_typed
+from .metadata import read_pkg_metadata
 from .schema import SCHEMA_VERSION
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName, discover_configs
 
@@ -46,6 +44,7 @@ __all__ = (
     "AnySymbolReport",
     "AttrReport",
     "ClassReport",
+    "FromPathOptions",
     "FunctionReport",
     "IgnoreComment",
     "ModuleReport",
@@ -63,9 +62,8 @@ class IgnoreComment:
 
     @override
     def __str__(self) -> str:
-        if self.rules is None:
-            return f"{self.kind}: ignore"
-        return f"{self.kind}: ignore[{', '.join(sorted(self.rules))}]"
+        rules = "" if self.rules is None else f"[{', '.join(sorted(self.rules))}]"
+        return f"{self.kind}: ignore{rules}"
 
 
 type _Max1 = Literal[0, 1]
@@ -315,144 +313,142 @@ def _line_start(sym: _SymbolReport) -> int | None:
     return loc["line"] if loc else None
 
 
-def _run_paths_from_files(files: Sequence[anyio.Path]) -> tuple[str, ...]:
-    """Pick pyrefly run paths: package dirs (via `__init__`), else the files."""
-    init_dirs: dict[str, None] = {}
-    for f in files:
-        if f.stem == "__init__":
-            init_dirs[str(f.parent)] = None
-    if init_dirs:
-        return tuple(init_dirs)
-    return tuple(str(f) for f in files)
+async def _has_stubs_dir(root: anyio.Path) -> bool:
+    """Whether *root* or `*root*/src* has any direct `*-stubs/` child."""
+    for r in (root, root / "src"):
+        if not await r.is_dir():
+            continue
+        async for d in r.iterdir():
+            if d.name.endswith("-stubs") and await d.is_dir():
+                return True
+    return False
 
 
-async def _scan_for_packages(root: anyio.Path, is_src: bool) -> tuple[str, ...]:
-    """Find child packages of *root* (or `root/src`); falls back to `(root,)`."""
-    search_root = root / "src" if is_src else root
-    found = [
-        str(d)
-        async for d in search_root.iterdir()
-        if await d.is_dir()
-        and (await (d / "__init__.py").exists() or await (d / "__init__.pyi").exists())
-    ]
-    return tuple(found) or (str(root),)
+async def _scan_for_packages(root: anyio.Path) -> tuple[str, ...]:
+    """Find child packages under *root* (preferring `root/src/`)."""
+    for search_root in (root / "src", root):
+        if not await search_root.is_dir():
+            continue
+        found = [
+            str(d)
+            async for d in search_root.iterdir()
+            if await d.is_dir()
+            and (
+                await (d / "__init__.py").exists()
+                or await (d / "__init__.pyi").exists()
+            )
+        ]
+        if found:
+            return tuple(found)
+    return (str(root),)
 
 
-def _relativize_path(
-    abs_path: str,
-    package_root: anyio.Path,
-    pkg_is_src_layout: bool,
-    stubs: tuple[anyio.Path, bool] | None,
-) -> str:
-    """Convert pyrefly's absolute path to a relative POSIX path.
-
-    The path is relative to the package (or stubs) root, with the `src/`
-    prefix stripped for src-layout projects.
-    """
+def _module_path(name: str, abs_path: str) -> str:
+    """Repo-relative module path derived from pyrefly's FQN, with `-stubs` restored."""
     p = Path(abs_path)
-
-    if stubs is not None:
-        stubs_root, stubs_is_src_layout = stubs
-        stubs_root_p = Path(stubs_root)
-        src_root = stubs_root_p / "src" if stubs_is_src_layout else stubs_root_p
-        try:
-            return p.relative_to(src_root).as_posix()
-        except ValueError:
-            pass
-
-    pkg_root_p = Path(package_root)
-    src_root = pkg_root_p / "src" if pkg_is_src_layout else pkg_root_p
-    try:
-        return p.relative_to(src_root).as_posix()
-    except ValueError:
-        return p.relative_to(pkg_root_p).as_posix()
+    suffix = p.suffix or ".py"
+    rel = name.replace(".", "/")
+    stubs_dir = next((part for part in p.parts if part.endswith("-stubs")), None)
+    if stubs_dir is not None:
+        head, _, tail = rel.partition("/")
+        if head + "-stubs" == stubs_dir:
+            rel = stubs_dir + ("/" + tail if tail else "")
+    if p.stem == "__init__":
+        return f"{rel}/__init__{suffix}"
+    return rel + suffix
 
 
-def _convert_module(pm: _ModuleReport, rel_path: str) -> ModuleReport:  # noqa: C901
-    symbols = pm["symbol_reports"]
-    class_sym_map: dict[str, _SymbolReport] = {
-        s["name"]: s for s in symbols if s["kind"] == "class"
-    }
-    class_members: defaultdict[str, list[_SymbolReport]] = defaultdict(list)
-    top_level_syms: list[_SymbolReport] = []
+def _build_attr(sym: _SymbolReport, short_name: str) -> AttrReport:
+    return AttrReport(
+        name=short_name,
+        line_start=_line_start(sym),
+        n_typed=cast("Literal[0, 1]", min(sym["n_typed"], 1)),
+        n_any=cast("Literal[0, 1]", min(sym["n_any"], 1)),
+        n_untyped=cast("Literal[0, 1]", min(sym["n_untyped"], 1)),
+    )
 
+
+def _build_function(sym: _SymbolReport, short_name: str) -> FunctionReport:
+    return FunctionReport(
+        name=short_name,
+        line_start=_line_start(sym),
+        n_typed=sym["n_typed"],
+        n_any=sym["n_any"],
+        n_untyped=sym["n_untyped"],
+    )
+
+
+def _build_property(sym: _SymbolReport, short_name: str) -> PropertyReport:
+    return PropertyReport(
+        name=short_name,
+        line_start=_line_start(sym),
+        n_typed=sym["n_typed"],
+        n_any=sym["n_any"],
+        n_untyped=sym["n_untyped"],
+    )
+
+
+_LEAF_BUILDERS: Final = {
+    "attr": _build_attr,
+    "function": _build_function,
+    "property": _build_property,
+}
+
+
+def _build_class(
+    class_sym: _SymbolReport,
+    members: list[_SymbolReport],
+    mod_prefix: str,
+) -> ClassReport:
+    def _short(s: _SymbolReport) -> str:
+        return s["name"].removeprefix(mod_prefix)
+
+    return ClassReport(
+        name=_short(class_sym),
+        line_start=_line_start(class_sym),
+        methods=tuple(
+            _build_function(s, _short(s)) for s in members if s["kind"] == "function"
+        ),
+        properties=tuple(
+            _build_property(s, _short(s)) for s in members if s["kind"] == "property"
+        ),
+        attrs=tuple(_build_attr(s, _short(s)) for s in members if s["kind"] == "attr"),
+    )
+
+
+def _partition_symbols(
+    symbols: list[_SymbolReport],
+) -> tuple[
+    dict[str, _SymbolReport],
+    dict[str, list[_SymbolReport]],
+    list[_SymbolReport],
+]:
+    classes = {s["name"]: s for s in symbols if s["kind"] == "class"}
+    members: defaultdict[str, list[_SymbolReport]] = defaultdict(list)
+    top_level: list[_SymbolReport] = []
     for sym in symbols:
         if sym["kind"] == "class":
             continue
         parent_fqn, _, _ = sym["name"].rpartition(".")
-        if parent_fqn in class_sym_map:
-            class_members[parent_fqn].append(sym)
-        else:
-            top_level_syms.append(sym)
+        (members[parent_fqn] if parent_fqn in classes else top_level).append(sym)
+    return classes, members, top_level
 
+
+def _convert_module(pm: _ModuleReport, rel_path: str) -> ModuleReport:
+    classes, members, top_level = _partition_symbols(pm["symbol_reports"])
     mod_prefix = pm["name"] + "."
 
-    def _build_attr(sym: _SymbolReport, short_name: str) -> AttrReport:
-        return AttrReport(
-            name=short_name,
-            line_start=_line_start(sym),
-            n_typed=cast("Literal[0, 1]", min(sym["n_typed"], 1)),
-            n_any=cast("Literal[0, 1]", min(sym["n_any"], 1)),
-            n_untyped=cast("Literal[0, 1]", min(sym["n_untyped"], 1)),
-        )
-
-    def _build_function(sym: _SymbolReport, short_name: str) -> FunctionReport:
-        return FunctionReport(
-            name=short_name,
-            line_start=_line_start(sym),
-            n_typed=sym["n_typed"],
-            n_any=sym["n_any"],
-            n_untyped=sym["n_untyped"],
-        )
-
-    def _build_property(sym: _SymbolReport, short_name: str) -> PropertyReport:
-        return PropertyReport(
-            name=short_name,
-            line_start=_line_start(sym),
-            n_typed=sym["n_typed"],
-            n_any=sym["n_any"],
-            n_untyped=sym["n_untyped"],
-        )
-
-    def _build_class(class_fqn: str) -> ClassReport:
-        class_sym = class_sym_map[class_fqn]
-        members = class_members.get(class_fqn, [])
-        return ClassReport(
-            name=class_fqn.removeprefix(mod_prefix),
-            line_start=_line_start(class_sym),
-            methods=tuple(
-                _build_function(s, s["name"].removeprefix(mod_prefix))
-                for s in members
-                if s["kind"] == "function"
-            ),
-            properties=tuple(
-                _build_property(s, s["name"].removeprefix(mod_prefix))
-                for s in members
-                if s["kind"] == "property"
-            ),
-            attrs=tuple(
-                _build_attr(s, s["name"].removeprefix(mod_prefix))
-                for s in members
-                if s["kind"] == "attr"
-            ),
-        )
-
-    symbol_reports: list[
-        AttrReport | FunctionReport | PropertyReport | ClassReport
-    ] = []
-    for sym in top_level_syms:
-        short = sym["name"].removeprefix(mod_prefix)
-        match sym["kind"]:
-            case "function":
-                symbol_reports.append(_build_function(sym, short))
-            case "property":
-                symbol_reports.append(_build_property(sym, short))
-            case "attr":
-                symbol_reports.append(_build_attr(sym, short))
-            case _:
-                _logger.warning("Unexpected top-level symbol kind %r", sym["kind"])
-
-    symbol_reports.extend(_build_class(fqn) for fqn in class_sym_map)
+    symbol_reports: list[AnySymbolReport] = []
+    for sym in top_level:
+        builder = _LEAF_BUILDERS.get(sym["kind"])
+        if builder is None:
+            _logger.warning("Unexpected top-level symbol kind %r", sym["kind"])
+            continue
+        symbol_reports.append(builder(sym, sym["name"].removeprefix(mod_prefix)))
+    symbol_reports.extend(
+        _build_class(class_sym, members.get(fqn, []), mod_prefix)
+        for fqn, class_sym in classes.items()
+    )
 
     return ModuleReport(
         path=rel_path,
@@ -470,16 +466,10 @@ def _convert_module(pm: _ModuleReport, rel_path: str) -> ModuleReport:  # noqa: 
 
 def convert_module_reports(
     pyrefly_modules: list[_ModuleReport],
-    package_root: anyio.Path,
-    pkg_is_src_layout: bool,
-    stubs: tuple[anyio.Path, bool] | None = None,
 ) -> tuple[ModuleReport, ...]:
     """Convert pyrefly module report dicts to typestats `ModuleReport` objects."""
     return tuple(
-        _convert_module(
-            pm,
-            _relativize_path(pm["path"], package_root, pkg_is_src_layout, stubs),
-        )
+        _convert_module(pm, _module_path(pm["name"], pm["path"]))
         for pm in pyrefly_modules
     )
 
@@ -511,6 +501,29 @@ _REPO_HOSTS: Final = {
 class _ProjectUrls(TypedDict):
     pypi: str
     repo: NotRequired[str]
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class FromPathOptions:
+    """Optional inputs for `PackageReport.from_path`.
+
+    `stubs_path`: companion `*-stubs` sdist; symbols there overlay *path*.
+    `project`: display name in the report (defaults to *pkg*).
+    `base_version`: stubs' base-package version, recorded alongside *version*.
+    `exclude`: glob patterns forwarded to pyrefly's `--project-excludes`.
+    `pypi`: distribution metadata to embed in the report.
+    `pyrefly_paths`: explicit paths for `pyrefly report`; auto-discovered when None.
+    """
+
+    stubs_path: StrPath | None = None
+    project: str | None = None
+    base_version: str | None = None
+    exclude: Sequence[str] = ()
+    pypi: "PypiInfo | None" = None
+    pyrefly_paths: tuple[str, ...] | None = None
+
+
+_DEFAULT_FROM_PATH_OPTIONS: Final = FromPathOptions()
 
 
 class PackageReport(BaseModel):
@@ -618,125 +631,82 @@ class PackageReport(BaseModel):
 
     def project_urls(self) -> _ProjectUrls:
         """Extract PyPI and repository URLs from package metadata."""
-        from urllib.parse import urlparse  # noqa: PLC0415
 
         urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{self.package}/"}
 
-        if self.metadata:
-            for header in ("Home-page", "Project-URL"):
-                for entry in self.metadata.get(header, []):
-                    if not (url := entry.rsplit(",", 1)[-1].strip()):
-                        continue
+        if not self.metadata:
+            return urls
 
-                    res = urlparse(url)
-                    if not (h := res.hostname) or h not in _REPO_HOSTS:
-                        continue
+        entries = chain(
+            self.metadata.get("Home-page", []),
+            self.metadata.get("Project-URL", []),
+        )
+        for entry in entries:
+            if not (url := entry.rpartition(",")[2].strip()):
+                continue
 
-                    urls["repo"] = f"https://{h}{'/'.join(res.path.split('/', 3)[:3])}"
-                    return urls
+            res = urlparse(url)
+            if not (h := res.hostname) or h not in _REPO_HOSTS:
+                continue
+
+            urls["repo"] = f"https://{h}{'/'.join(res.path.split('/', 3)[:3])}"
+            return urls
 
         return urls
 
     @classmethod
-    async def from_path(  # noqa: PLR0913, PLR0914
+    async def from_path(
         cls,
         pkg: str,
         path: StrPath,
         version: str,
         /,
-        *,
-        stubs_path: "StrPath | None" = None,
-        project: str | None = None,
-        base_version: str | None = None,
-        exclude: Sequence[str] = (),
-        pypi: PypiInfo | None = None,
-        sources: StrPaths = (),
-        stubs_sources: StrPaths = (),
-        pyrefly_paths: tuple[str, ...] | None = None,
+        opts: FromPathOptions = _DEFAULT_FROM_PATH_OPTIONS,
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
-        When `stubs_path` is given (a companion `{pkg}-stubs` sdist), symbols from the
-        stubs overlay take priority and any original symbol whose module is covered by
-        stubs but absent from those stubs is marked `UNTYPED`.
-
-        When `project` is given, it is used as the display name in the report instead
-        of `pkg` (useful for stubs packages where the PyPI project name differs from
-        the Python package name, e.g. `scipy-stubs` vs `scipy`).
-
-        When `base_version` is given, it is recorded in the report alongside the
-        stubs `version` so both versions are visible.
-
+        See `FromPathOptions` for stubs overlay, exclusion, and metadata knobs.
         Runs `pyrefly report` and `discover_configs` concurrently.
         """
-        from ._pyrefly_report import run_pyrefly_report  # noqa: PLC0415
-        from .metadata import read_pkg_metadata  # noqa: PLC0415
+        display = opts.project or pkg
 
-        path_obj = await anyio.Path(path).resolve()
-        stubs_obj = (
-            await anyio.Path(stubs_path).resolve() if stubs_path is not None else None
-        )
-        display = project or pkg
-
-        # narrow discovery to what pyrefly will analyze
-        pkg_files = await list_sources(
-            path_obj,
-            exclude=exclude,
-            sources=sources or pyrefly_paths or (),
-        )
-        stubs_files: list[anyio.Path] = (
-            await list_sources(stubs_obj, exclude=exclude, sources=stubs_sources)
-            if stubs_obj is not None
-            else []
-        )
-
-        pkg_is_src = await is_src_layout(path_obj)
-        stubs_is_src = (
-            await is_src_layout(stubs_obj) if stubs_obj is not None else False
-        )
-
-        if pyrefly_paths is not None:
-            run_paths = pyrefly_paths
-        elif stubs_sources or sources:
-            run_paths = tuple(str(s) for s in (*stubs_sources, *sources))
-        else:
-            # With stubs, analyze stubs only; pyrefly skips the impl sources.
-            src_root = stubs_obj or path_obj
-            src_is_src = stubs_is_src if stubs_obj is not None else pkg_is_src
-            source_files = stubs_files if stubs_obj is not None else pkg_files
-            run_paths = _run_paths_from_files(source_files) or await _scan_for_packages(
-                src_root, src_is_src
+        if opts.stubs_path is not None:
+            path_obj, stubs_obj = await asyncio.gather(
+                anyio.Path(path).resolve(), anyio.Path(opts.stubs_path).resolve()
             )
+        else:
+            path_obj = await anyio.Path(path).resolve()
+            stubs_obj = None
 
-        configs, pyrefly_modules, metadata = await asyncio.gather(
-            discover_configs(stubs_obj or path_obj),
-            run_pyrefly_report(
-                *run_paths,
-                cwd=str(stubs_obj or path_obj),
-                project_excludes=exclude,
-            ),
-            read_pkg_metadata(stubs_obj or path_obj, dist_name=display or None),
+        cwd = stubs_obj or path_obj
+        run_paths = (
+            opts.pyrefly_paths
+            if opts.pyrefly_paths is not None
+            else await _scan_for_packages(cwd)
         )
 
-        module_reports = convert_module_reports(
-            pyrefly_modules,
-            path_obj,
-            pkg_is_src,
-            (stubs_obj, stubs_is_src) if stubs_obj is not None else None,
+        common = (
+            discover_configs(cwd),
+            run_pyrefly_report(*run_paths, cwd=str(cwd), project_excludes=opts.exclude),
+            read_pkg_metadata(cwd, dist_name=display or None),
+        )
+        if stubs_obj is None:
+            configs, pyrefly_modules, metadata, stubs_dir_found = await asyncio.gather(
+                *common, _has_stubs_dir(path_obj)
+            )
+        else:
+            configs, pyrefly_modules, metadata = await asyncio.gather(*common)
+            stubs_dir_found = False
+
+        module_reports = convert_module_reports(pyrefly_modules)
+
+        py_typed = await get_py_typed(
+            [pm["path"] for pm in pyrefly_modules] or list(run_paths) or [str(cwd)]
         )
 
-        py_typed = await get_py_typed(stubs_files or pkg_files)
-        had_stubs_dir = any(
+        had_stubs_dir = stubs_dir_found or any(
             r.path.split("/")[0].endswith("-stubs") for r in module_reports
         )
-        # Also detect stubs-only from directory structure (handles packages
-        # with no importable symbols that pyrefly may not report).
-        if not had_stubs_dir and stubs_obj is None:
-            stubs_check_root = path_obj / "src" if pkg_is_src else path_obj
-            async for d in stubs_check_root.iterdir():
-                if d.name.endswith("-stubs") and await d.is_dir():
-                    had_stubs_dir = True
-                    break
 
         stubs_only = StubsOnly.NO
         if stubs_obj is not None or had_stubs_dir:
@@ -752,9 +722,9 @@ class PackageReport(BaseModel):
             stubs_only=stubs_only,
             module_reports=module_reports,
             version=version,
-            base_version=base_version,
+            base_version=opts.base_version,
             py_typed=py_typed,
-            pypi=pypi,
+            pypi=opts.pypi,
             metadata=metadata,
             typecheckers=configs,
         )

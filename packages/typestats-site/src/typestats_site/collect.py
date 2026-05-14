@@ -12,7 +12,7 @@ import httpx
 
 from typestats._type import StrPath
 from typestats.projects import Project, load_projects
-from typestats.report import PackageReport
+from typestats.report import FromPathOptions, PackageReport
 from typestats.schema import SCHEMA_VERSION
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
@@ -177,19 +177,23 @@ async def collect_project(  # noqa: PLR0913
                 base_name,
                 base_sp,
                 str(version),
-                stubs_path=sp,
-                project=project.name,
-                base_version=base_ver_str,
-                exclude=project.exclude,
-                pypi=PypiInfo.from_file_detail(file_detail),
+                FromPathOptions(
+                    stubs_path=sp,
+                    project=project.name,
+                    base_version=base_ver_str,
+                    exclude=project.exclude,
+                    pypi=PypiInfo.from_file_detail(file_detail),
+                ),
             )
         else:
             report = await PackageReport.from_path(
                 project.name,
                 sp,
                 str(version),
-                exclude=project.exclude,
-                pypi=PypiInfo.from_file_detail(file_detail),
+                FromPathOptions(
+                    exclude=project.exclude,
+                    pypi=PypiInfo.from_file_detail(file_detail),
+                ),
             )
 
         json_bytes = report.model_dump_json(indent=2).encode()

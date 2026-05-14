@@ -1,11 +1,14 @@
+import asyncio
 import enum
 import fnmatch
 import os
 import re
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
+from pathlib import Path
 from typing import Final
 
 import anyio
+import anyio.to_thread
 
 from ._type import StrPath, StrPaths
 
@@ -42,6 +45,26 @@ _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
     "venv",
 })
 _EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py", "setup.py"})
+_SOURCE_SUFFIXES: Final[tuple[str, ...]] = (".py", ".pyi", ".ipynb")
+
+
+def _walk_sources(root: Path) -> Iterator[Path]:
+    """Walk *root*, pruning excluded directories.
+
+    Yields:
+        `.py` / `.pyi` files under *root* (or *root* itself if it is one).
+    """
+    if root.is_file():
+        if root.suffix in _SOURCE_SUFFIXES:
+            yield root
+        return
+
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in _EXCLUDED_DIR_NAMES]
+        dp = Path(dirpath)
+        for fn in filenames:
+            if fn.endswith(_SOURCE_SUFFIXES):
+                yield dp / fn
 
 
 async def _collect_sources(
@@ -51,10 +74,7 @@ async def _collect_sources(
     exclude: Sequence[str] = (),
     sources: StrPaths = (),
 ) -> list[anyio.Path]:
-    """Walk *project_dir* (or explicit *sources*) and return `.py`/`.pyi` files.
-
-    Applies the standard exclusion rules for non-package directories and files.
-    """
+    """Walk *project_dir* (or explicit *sources*) and return `.py`/`.pyi` files."""
     abs_path = await anyio.Path(project_dir).resolve()
     abs_prefix = abs_path.as_posix().rstrip("/") + "/"
 
@@ -64,35 +84,31 @@ async def _collect_sources(
         else None
     )
 
-    def _excluded(path: anyio.Path) -> bool:
-        rel_path = path.as_posix().removeprefix(abs_prefix)
-        parts = rel_path.split("/")
-        filename = parts[-1]
-        stem = filename.removesuffix(".pyi").removesuffix(".py")
+    def _excluded(path: Path) -> bool:
+        rel = path.as_posix().removeprefix(abs_prefix)
         return (
-            not stem.isidentifier()
-            or filename in _EXCLUDED_FILE_NAMES
-            or bool(_EXCLUDED_DIR_NAMES.intersection(parts))
-            or (exclude_re is not None and exclude_re.fullmatch(rel_path) is not None)
+            not path.stem.isidentifier()
+            or path.name in _EXCLUDED_FILE_NAMES
+            or (exclude_re is not None and exclude_re.fullmatch(rel) is not None)
         )
 
-    roots = [await anyio.Path(s).resolve() for s in sources] if sources else [abs_path]
+    if sources:
+        resolved: list[anyio.Path] = await asyncio.gather(
+            *(anyio.Path(s).resolve() for s in sources)
+        )
+        roots = [Path(r) for r in resolved]
+    else:
+        roots = [Path(abs_path)]
 
-    seen: dict[anyio.Path, None] = {}
-    for root in roots:
-        if await root.is_file():
-            if not _excluded(root):
-                seen.setdefault(root, None)
-            continue
-        async for child in root.rglob("*"):
-            if (
-                child.suffix in {".py", ".pyi"}
-                and child not in seen
-                and not _excluded(child)
-                and await child.is_file()
-            ):
-                seen[child] = None
-    return list(seen)
+    def _scan() -> dict[anyio.Path, None]:
+        seen: dict[anyio.Path, None] = {}
+        for root in roots:
+            for f in _walk_sources(root):
+                if not _excluded(f):
+                    seen.setdefault(anyio.Path(f), None)
+        return seen
+
+    return list(await anyio.to_thread.run_sync(_scan))
 
 
 async def _is_package(d: anyio.Path) -> bool:
@@ -114,17 +130,17 @@ async def is_src_layout(project_dir: anyio.Path, /) -> bool:
     - contains at least one direct child that is a package or module.
     """
     src = project_dir / "src"
-    if not await src.is_dir():
-        return False
 
-    if await _is_package(src):
+    if not await src.is_dir() or await _is_package(src):
         return False
 
     async for child in src.iterdir():
-        if await child.is_dir():
-            if await _is_package(child):
-                return True
-        elif child.suffix in {".py", ".pyi"} and child.stem.isidentifier():
+        is_dir = await child.is_dir()
+        if (is_dir and await _is_package(child)) or (
+            not is_dir
+            and child.suffix in _SOURCE_SUFFIXES
+            and child.stem.isidentifier()
+        ):
             return True
 
     return False
@@ -144,29 +160,14 @@ async def list_sources(
     only files under `src/` are included.
     """
     project_dir = anyio.Path(path)
-    found = await _collect_sources(
-        project_dir,
-        exclude=exclude,
-        sources=sources,
-    )
-
-    if await is_src_layout(project_dir):
-        src_prefix = str(await (project_dir / "src").resolve()) + os.sep
-        found = [s for s in found if str(await s.resolve()).startswith(src_prefix)]
-
-    return found
+    if not sources and await is_src_layout(project_dir):
+        sources = (project_dir / "src",)
+    return await _collect_sources(project_dir, exclude=exclude, sources=sources)
 
 
 async def get_py_typed(sources: StrPaths, /) -> PyTyped:
-    """
-    Determine the `py.typed` status from a list of source paths.
-
-    Raises:
-        ValueError: if *sources* is empty.
-    """
-    if not sources:
-        msg = "no sources provided"
-        raise ValueError(msg)
+    """Determine the `py.typed` status from a list of source paths."""
+    assert sources
 
     root = anyio.Path(os.path.commonpath(sources))
     if await root.is_file():
