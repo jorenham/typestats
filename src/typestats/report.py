@@ -474,6 +474,12 @@ def convert_module_reports(
     )
 
 
+def _top_package_name(pyrefly_modules: list[_ModuleReport]) -> str:
+    """First dotted segment shared by all pyrefly FQNs, or `""` if ambiguous."""
+    tops = {pm["name"].split(".", 1)[0] for pm in pyrefly_modules}
+    return tops.pop() if len(tops) == 1 else ""
+
+
 class PypiInfo(BaseModel):
     """Metadata from the PyPI Simple Repository API for a distribution file."""
 
@@ -699,6 +705,9 @@ class PackageReport(BaseModel):
             stubs_dir_found = False
 
         module_reports = convert_module_reports(pyrefly_modules)
+
+        if not display:
+            display = _top_package_name(pyrefly_modules)
 
         py_typed = await get_py_typed(
             [pm["path"] for pm in pyrefly_modules] or list(run_paths) or [str(cwd)]
