@@ -1,20 +1,23 @@
 import asyncio
 import enum
-from collections.abc import Coroutine, Mapping, Sequence
-from pathlib import PurePosixPath
+import logging
+from collections import defaultdict
+from collections.abc import Sequence
+from dataclasses import dataclass
+from itertools import chain
+from pathlib import Path, PurePosixPath
 from typing import (
     Annotated,
-    Any,
     ClassVar,
     Final,
     Literal,
-    NamedTuple,
     NotRequired,
-    Protocol,
     Self,
     TypedDict,
     cast,
+    override,
 )
+from urllib.parse import urlparse
 
 import anyio
 from pydantic import (
@@ -28,110 +31,48 @@ from pydantic import (
     field_validator,
 )
 
-from . import analyze
-from ._type import StrPath, StrPaths
-from .index import (
-    PublicSymbols,
-    PyTyped,
-    collect_public_symbols,
-    is_src_layout,
-    merge_stubs_overlay,
-)
+from ._pyrefly_report import _ModuleReport, _SymbolReport, run_pyrefly_report
+from ._type import StrPath
+from .index import PyTyped, get_py_typed
+from .metadata import read_pkg_metadata
 from .schema import SCHEMA_VERSION
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName, discover_configs
 
+_logger: Final = logging.getLogger(__name__)
+
 __all__ = (
+    "AnySymbolReport",
     "AttrReport",
     "ClassReport",
+    "FromPathOptions",
     "FunctionReport",
+    "IgnoreComment",
     "ModuleReport",
     "PackageReport",
     "PropertyReport",
     "PypiInfo",
-    "Report",
     "StubsOnly",
 )
 
-type _Symbols = Sequence[analyze.Symbol]
-type _SymbolMap = Mapping[anyio.Path, _Symbols]
-type _IgnoreMap = Mapping[anyio.Path, tuple[analyze.IgnoreComment, ...]]
-type _Metadata = dict[str, list[str]] | None
+
+@dataclass(frozen=True, slots=True)
+class IgnoreComment:
+    kind: str  # e.g., "type", "pyright", "pyrefly", "ty", etc.
+    rules: frozenset[str] | None
+
+    @override
+    def __str__(self) -> str:
+        rules = "" if self.rules is None else f"[{', '.join(sorted(self.rules))}]"
+        return f"{self.kind}: ignore{rules}"
+
+
 type _Max1 = Literal[0, 1]
-
-
-class _CollectResult(NamedTuple):
-    symbols: _SymbolMap
-    type_ignores: _IgnoreMap
-    py_typed: PyTyped
-    metadata: _Metadata
-    configs: dict[TypeCheckerName, TypeCheckerConfigDict]
-
-
-class _BuildResult(NamedTuple):
-    module_reports: tuple["ModuleReport", ...]
-    had_stubs_dir: bool
 
 
 class StubsOnly(enum.Enum):
     NO = "no"
     THIRD_PARTY = "yes (third party)"
     TYPESHED = "yes (typeshed)"
-
-
-class _SlotState(NamedTuple):
-    typed: _Max1
-    any: _Max1
-    untyped: _Max1
-
-    @classmethod
-    def from_typeform(cls, ty: analyze.TypeForm) -> Self:
-        match ty:
-            case analyze.Expr():
-                return cls(1, 0, 0)
-            case analyze.ANY:
-                return cls(0, 1, 0)
-            case analyze.UNTYPED:
-                return cls(0, 0, 1)
-            case _:  # IMPLICIT | EXTERNAL
-                return cls(0, 0, 0)
-
-
-class Report(Protocol):
-    @property
-    def kind(self) -> str: ...
-    @property
-    def name(self) -> str: ...
-
-    @property
-    def n_typed(self) -> int: ...
-    @property
-    def n_any(self) -> int: ...
-    @property
-    def n_untyped(self) -> int: ...
-    @property
-    def n_typable(self) -> int: ...
-    @property
-    def n_functions(self) -> int: ...
-    @property
-    def n_methods(self) -> int: ...
-    @property
-    def n_function_overloads(self) -> int: ...
-    @property
-    def n_function_params(self) -> int: ...
-    @property
-    def n_method_overloads(self) -> int: ...
-    @property
-    def n_method_params(self) -> int: ...
-    @property
-    def n_classes(self) -> int: ...
-    @property
-    def n_attrs(self) -> int: ...
-    @property
-    def n_properties(self) -> int: ...
-    @property
-    def line_start(self) -> int | None: ...
-    @property
-    def line_end(self) -> int | None: ...
 
 
 class AttrReport(BaseModel):
@@ -142,7 +83,6 @@ class AttrReport(BaseModel):
     kind: Literal["attr"] = "attr"
     name: str
     line_start: int | None = None
-    line_end: int | None = None
     n_typed: _Max1
     n_any: _Max1
     n_untyped: _Max1
@@ -151,34 +91,6 @@ class AttrReport(BaseModel):
     @property
     def n_typable(self) -> _Max1:
         return cast("_Max1", self.n_typed + self.n_any + self.n_untyped)
-
-    n_functions: Literal[0] = Field(0, exclude=True)
-    n_methods: Literal[0] = Field(0, exclude=True)
-    n_function_overloads: Literal[0] = Field(0, exclude=True)
-    n_function_params: Literal[0] = Field(0, exclude=True)
-    n_method_overloads: Literal[0] = Field(0, exclude=True)
-    n_method_params: Literal[0] = Field(0, exclude=True)
-    n_classes: Literal[0] = Field(0, exclude=True)
-    n_attrs: Literal[1] = Field(1, exclude=True)
-    n_properties: Literal[0] = Field(0, exclude=True)
-
-    @classmethod
-    def from_symbol(
-        cls,
-        name: str,
-        ty: analyze.TypeForm,
-        line_start: int | None = None,
-        line_end: int | None = None,
-    ) -> Self:
-        s = _SlotState.from_typeform(ty)
-        return cls(  # pyright: ignore[reportCallIssue]
-            name=name,
-            line_start=line_start,
-            line_end=line_end,
-            n_typed=s.typed,
-            n_any=s.any,
-            n_untyped=s.untyped,
-        )
 
 
 class FunctionReport(BaseModel):
@@ -189,60 +101,19 @@ class FunctionReport(BaseModel):
     kind: Literal["function"] = "function"
     name: str
     line_start: int | None = None
-    line_end: int | None = None
     n_typed: NonNegativeInt
     n_any: NonNegativeInt
     n_untyped: NonNegativeInt
-    n_overloads: NonNegativeInt
 
     @computed_field
     @property
     def n_typable(self) -> NonNegativeInt:
         return self.n_typed + self.n_any + self.n_untyped
 
-    n_functions: Literal[1] = Field(1, exclude=True)
-    n_methods: Literal[0] = Field(0, exclude=True)
-    n_method_overloads: Literal[0] = Field(0, exclude=True)
-    n_method_params: Literal[0] = Field(0, exclude=True)
-    n_classes: Literal[0] = Field(0, exclude=True)
-    n_attrs: Literal[0] = Field(0, exclude=True)
-    n_properties: Literal[0] = Field(0, exclude=True)
-
     @computed_field
     @property
     def n_params(self) -> NonNegativeInt:
         return self.n_typable - 1
-
-    @computed_field
-    @property
-    def n_function_overloads(self) -> NonNegativeInt:
-        return self.n_overloads
-
-    @computed_field
-    @property
-    def n_function_params(self) -> NonNegativeInt:
-        return self.n_params
-
-    @classmethod
-    def from_symbol(
-        cls,
-        name: str,
-        ty: analyze.Function,
-        line_start: int | None = None,
-        line_end: int | None = None,
-    ) -> Self:
-        counts = ty.type_counts
-        untyped = counts.typable - counts.typed - counts.any
-
-        return cls(  # pyright: ignore[reportCallIssue]
-            name=name,
-            line_start=line_start,
-            line_end=line_end,
-            n_typed=counts.typed,
-            n_any=counts.any,
-            n_untyped=untyped,
-            n_overloads=len(ty.overloads),
-        )
 
 
 class PropertyReport(BaseModel):
@@ -253,7 +124,6 @@ class PropertyReport(BaseModel):
     kind: Literal["property"] = "property"
     name: str
     line_start: int | None = None
-    line_end: int | None = None
     n_typed: NonNegativeInt
     n_any: NonNegativeInt
     n_untyped: NonNegativeInt
@@ -262,50 +132,6 @@ class PropertyReport(BaseModel):
     @property
     def n_typable(self) -> NonNegativeInt:
         return self.n_typed + self.n_any + self.n_untyped
-
-    n_functions: Literal[0] = Field(0, exclude=True)
-    n_function_overloads: Literal[0] = Field(0, exclude=True)
-    n_function_params: Literal[0] = Field(0, exclude=True)
-    n_methods: Literal[0] = Field(0, exclude=True)
-    n_method_overloads: Literal[0] = Field(0, exclude=True)
-    n_method_params: Literal[0] = Field(0, exclude=True)
-    n_classes: Literal[0] = Field(0, exclude=True)
-    n_attrs: Literal[0] = Field(0, exclude=True)
-    n_properties: Literal[1] = Field(1, exclude=True)
-
-    @classmethod
-    def from_symbol(
-        cls,
-        name: str,
-        ty: analyze.Property,
-        line_start: int | None = None,
-        line_end: int | None = None,
-    ) -> Self:
-        n_typed = n_any = n_untyped = 0
-
-        # fget: 0 params, 1 return
-        if ty.fget is not None:
-            s = _SlotState.from_typeform(ty.fget.returns)
-            n_typed += s.typed
-            n_any += s.any
-            n_untyped += s.untyped
-
-        # fset: 1 param, 0 returns
-        if ty.fset is not None:
-            for p in ty.fset.params:
-                s = _SlotState.from_typeform(p.annotation)
-                n_typed += s.typed
-                n_any += s.any
-                n_untyped += s.untyped
-
-        return cls(  # pyright: ignore[reportCallIssue]
-            name=name,
-            line_start=line_start,
-            line_end=line_end,
-            n_typed=n_typed,
-            n_any=n_any,
-            n_untyped=n_untyped,
-        )
 
 
 class ClassReport(BaseModel):
@@ -316,7 +142,6 @@ class ClassReport(BaseModel):
     kind: Literal["class"] = "class"
     name: str
     line_start: int | None = None
-    line_end: int | None = None
     methods: tuple[FunctionReport, ...]
     properties: tuple[PropertyReport, ...] = ()
     attrs: tuple[AttrReport, ...] = ()
@@ -343,138 +168,24 @@ class ClassReport(BaseModel):
 
     @computed_field
     @property
-    def n_functions(self) -> Literal[0]:
-        return 0
-
-    @computed_field
-    @property
-    def n_function_overloads(self) -> Literal[0]:
-        return 0
-
-    @computed_field
-    @property
-    def n_function_params(self) -> Literal[0]:
-        return 0
-
-    @computed_field
-    @property
     def n_methods(self) -> NonNegativeInt:
         return len(self.methods)
-
-    @computed_field
-    @property
-    def n_method_overloads(self) -> NonNegativeInt:
-        return sum(m.n_overloads for m in self.methods)
 
     @computed_field
     @property
     def n_method_params(self) -> NonNegativeInt:
         return sum(m.n_params for m in self.methods)
 
-    n_classes: Literal[1] = Field(1, exclude=True)
-
     @computed_field
     @property
     def n_attrs(self) -> NonNegativeInt:
-        return len(self.attrs)
+        # Skip n_typable=0 attrs: pyrefly emits pydantic/dataclass fields that way.
+        return sum(1 for a in self.attrs if a.n_typable)
 
     @computed_field
     @property
     def n_properties(self) -> NonNegativeInt:
         return len(self.properties)
-
-    @classmethod
-    def from_symbol(
-        cls,
-        name: str,
-        ty: analyze.Class,
-        line_start: int | None = None,
-        line_end: int | None = None,
-    ) -> Self:
-        if ty.is_protocol:
-            return cls(  # pyright: ignore[reportCallIssue]
-                name=name,
-                line_start=line_start,
-                line_end=line_end,
-                methods=(),
-                properties=(),
-            )
-
-        methods = [
-            FunctionReport.from_symbol(
-                member.name,
-                member.type_,
-                line_start=member.line_start,
-                line_end=member.line_end,
-            )
-            for member in ty.members
-            if isinstance(member.type_, analyze.Function)
-        ]
-        properties = [
-            PropertyReport.from_symbol(
-                member.name,
-                member.type_,
-                line_start=member.line_start,
-                line_end=member.line_end,
-            )
-            for member in ty.members
-            if isinstance(member.type_, analyze.Property)
-        ]
-        attrs = [
-            AttrReport.from_symbol(
-                member.name,
-                member.type_,
-                line_start=member.line_start,
-                line_end=member.line_end,
-            )
-            for member in ty.members
-            if not isinstance(
-                member.type_,
-                analyze.Function | analyze.Property | analyze.Class,
-            )
-        ]
-        return cls(  # pyright: ignore[reportCallIssue]
-            name=name,
-            line_start=line_start,
-            line_end=line_end,
-            methods=tuple(methods),
-            properties=tuple(properties),
-            attrs=tuple(attrs),
-        )
-
-
-def _symbol_report(
-    symbol: analyze.Symbol,
-) -> AttrReport | FunctionReport | PropertyReport | ClassReport:
-    match symbol.type_:
-        case analyze.Function():
-            return FunctionReport.from_symbol(
-                symbol.name,
-                symbol.type_,
-                symbol.line_start,
-                symbol.line_end,
-            )
-        case analyze.Property():
-            return PropertyReport.from_symbol(
-                symbol.name,
-                symbol.type_,
-                symbol.line_start,
-                symbol.line_end,
-            )
-        case analyze.Class():
-            return ClassReport.from_symbol(
-                symbol.name,
-                symbol.type_,
-                symbol.line_start,
-                symbol.line_end,
-            )
-        case _:
-            return AttrReport.from_symbol(
-                symbol.name,
-                symbol.type_,
-                symbol.line_start,
-                symbol.line_end,
-            )
 
 
 def _coverage(n_typed: int, n_any: int, n_typable: int, strict: bool = False) -> float:
@@ -484,42 +195,7 @@ def _coverage(n_typed: int, n_any: int, n_typable: int, strict: bool = False) ->
     return typed / total if total else 0.0
 
 
-def _normalize_relpath(
-    src: anyio.Path,
-    primary_root: anyio.Path,
-    fallback_root: anyio.Path | None,
-    *,
-    primary_is_src_layout: bool,
-    fallback_is_src_layout: bool,
-) -> tuple[anyio.Path, bool]:
-    try:
-        rel = src.relative_to(primary_root)
-    except ValueError:
-        if fallback_root is None:
-            raise
-
-        rel = src.relative_to(fallback_root)
-        strip_src = fallback_is_src_layout
-    else:
-        strip_src = primary_is_src_layout
-
-    parts = list(rel.parts)
-    if strip_src:
-        try:
-            src_idx = parts.index("src")
-        except ValueError:
-            pass
-        else:
-            parts = parts[src_idx + 1 :]
-
-    had_stubs = bool(parts and parts[0].endswith("-stubs"))
-
-    return anyio.Path(*parts) if parts else rel, had_stubs
-
-
-# Pydantic discriminated union for (de)serialization; use `Report`
-# protocol for general type annotations.
-type _AnySymbolReport = Annotated[
+type AnySymbolReport = Annotated[
     AttrReport | FunctionReport | PropertyReport | ClassReport,
     Discriminator("kind"),
 ]
@@ -529,8 +205,9 @@ class ModuleReport(BaseModel):
     model_config: ClassVar = ConfigDict(frozen=True)
 
     path: str
-    symbol_reports: tuple[_AnySymbolReport, ...]
-    type_ignores: tuple[analyze.IgnoreComment, ...] = ()
+    path_abs: str = Field(default="", exclude=True)
+    symbol_reports: tuple[AnySymbolReport, ...]
+    type_ignores: tuple[IgnoreComment, ...] = ()
 
     @computed_field
     @property
@@ -574,47 +251,53 @@ class ModuleReport(BaseModel):
     @computed_field
     @property
     def n_functions(self) -> NonNegativeInt:
-        return sum(s.n_functions for s in self.symbol_reports)
-
-    @computed_field
-    @property
-    def n_function_overloads(self) -> NonNegativeInt:
-        return sum(s.n_function_overloads for s in self.symbol_reports)
+        return sum(1 for s in self.symbol_reports if isinstance(s, FunctionReport))
 
     @computed_field
     @property
     def n_function_params(self) -> NonNegativeInt:
-        return sum(s.n_function_params for s in self.symbol_reports)
+        return sum(
+            s.n_params for s in self.symbol_reports if isinstance(s, FunctionReport)
+        )
 
     @computed_field
     @property
     def n_methods(self) -> NonNegativeInt:
-        return sum(s.n_methods for s in self.symbol_reports)
-
-    @computed_field
-    @property
-    def n_method_overloads(self) -> NonNegativeInt:
-        return sum(s.n_method_overloads for s in self.symbol_reports)
+        return sum(
+            s.n_methods for s in self.symbol_reports if isinstance(s, ClassReport)
+        )
 
     @computed_field
     @property
     def n_method_params(self) -> NonNegativeInt:
-        return sum(s.n_method_params for s in self.symbol_reports)
+        return sum(
+            s.n_method_params for s in self.symbol_reports if isinstance(s, ClassReport)
+        )
 
     @computed_field
     @property
     def n_classes(self) -> NonNegativeInt:
-        return sum(s.n_classes for s in self.symbol_reports)
+        return sum(1 for s in self.symbol_reports if isinstance(s, ClassReport))
 
     @computed_field
     @property
     def n_attrs(self) -> NonNegativeInt:
-        return sum(s.n_attrs for s in self.symbol_reports)
+        return sum(
+            s.n_attrs
+            if isinstance(s, ClassReport)
+            else bool(isinstance(s, AttrReport) and s.n_typable)
+            for s in self.symbol_reports
+        )
 
     @computed_field
     @property
     def n_properties(self) -> NonNegativeInt:
-        return sum(s.n_properties for s in self.symbol_reports)
+        return sum(
+            len(s.properties)
+            if isinstance(s, ClassReport)
+            else isinstance(s, PropertyReport)
+            for s in self.symbol_reports
+        )
 
     @computed_field
     @property
@@ -624,20 +307,177 @@ class ModuleReport(BaseModel):
     def coverage(self, strict: bool = False, /) -> float:
         return _coverage(self.n_typed, self.n_any, self.n_typable, strict)
 
-    @classmethod
-    def from_symbols(
-        cls,
-        path: StrPath,
-        symbols: _Symbols,
-        /,
-        *,
-        type_ignores: Sequence[analyze.IgnoreComment] = (),
-    ) -> Self:
-        return cls(
-            path=anyio.Path(path).as_posix(),
-            symbol_reports=tuple(_symbol_report(s) for s in symbols),
-            type_ignores=tuple(type_ignores),
-        )
+
+def _line_start(sym: _SymbolReport) -> int | None:
+    loc = sym.get("location")
+    return loc["line"] if loc else None
+
+
+async def _has_stubs_dir(root: anyio.Path) -> bool:
+    """Whether *root* or `*root*/src* has any direct `*-stubs/` child."""
+    for r in (root, root / "src"):
+        if not await r.is_dir():
+            continue
+        async for d in r.iterdir():
+            if d.name.endswith("-stubs") and await d.is_dir():
+                return True
+    return False
+
+
+async def _scan_for_packages(root: anyio.Path) -> tuple[str, ...]:
+    """Find child packages under *root* (preferring `root/src/`)."""
+    for search_root in (root / "src", root):
+        if not await search_root.is_dir():
+            continue
+        found = [
+            str(d)
+            async for d in search_root.iterdir()
+            if await d.is_dir()
+            and (
+                await (d / "__init__.py").exists()
+                or await (d / "__init__.pyi").exists()
+            )
+        ]
+        if found:
+            return tuple(found)
+    return (str(root),)
+
+
+def _module_path(name: str, abs_path: str) -> str:
+    """Repo-relative module path derived from pyrefly's FQN, with `-stubs` restored."""
+    p = Path(abs_path)
+    suffix = p.suffix or ".py"
+    rel = name.replace(".", "/")
+    stubs_dir = next((part for part in p.parts if part.endswith("-stubs")), None)
+    if stubs_dir is not None:
+        head, _, tail = rel.partition("/")
+        if head + "-stubs" == stubs_dir:
+            rel = stubs_dir + ("/" + tail if tail else "")
+    if p.stem == "__init__":
+        return f"{rel}/__init__{suffix}"
+    return rel + suffix
+
+
+def _build_attr(sym: _SymbolReport, short_name: str) -> AttrReport:
+    return AttrReport(
+        name=short_name,
+        line_start=_line_start(sym),
+        n_typed=cast("Literal[0, 1]", min(sym["n_typed"], 1)),
+        n_any=cast("Literal[0, 1]", min(sym["n_any"], 1)),
+        n_untyped=cast("Literal[0, 1]", min(sym["n_untyped"], 1)),
+    )
+
+
+def _build_function(sym: _SymbolReport, short_name: str) -> FunctionReport:
+    return FunctionReport(
+        name=short_name,
+        line_start=_line_start(sym),
+        n_typed=sym["n_typed"],
+        n_any=sym["n_any"],
+        n_untyped=sym["n_untyped"],
+    )
+
+
+def _build_property(sym: _SymbolReport, short_name: str) -> PropertyReport:
+    return PropertyReport(
+        name=short_name,
+        line_start=_line_start(sym),
+        n_typed=sym["n_typed"],
+        n_any=sym["n_any"],
+        n_untyped=sym["n_untyped"],
+    )
+
+
+_LEAF_BUILDERS: Final = {
+    "attr": _build_attr,
+    "function": _build_function,
+    "property": _build_property,
+}
+
+
+def _build_class(
+    class_sym: _SymbolReport,
+    members: list[_SymbolReport],
+    mod_prefix: str,
+) -> ClassReport:
+    def _short(s: _SymbolReport) -> str:
+        return s["name"].removeprefix(mod_prefix)
+
+    return ClassReport(
+        name=_short(class_sym),
+        line_start=_line_start(class_sym),
+        methods=tuple(
+            _build_function(s, _short(s)) for s in members if s["kind"] == "function"
+        ),
+        properties=tuple(
+            _build_property(s, _short(s)) for s in members if s["kind"] == "property"
+        ),
+        attrs=tuple(_build_attr(s, _short(s)) for s in members if s["kind"] == "attr"),
+    )
+
+
+def _partition_symbols(
+    symbols: list[_SymbolReport],
+) -> tuple[
+    dict[str, _SymbolReport],
+    dict[str, list[_SymbolReport]],
+    list[_SymbolReport],
+]:
+    classes = {s["name"]: s for s in symbols if s["kind"] == "class"}
+    members: defaultdict[str, list[_SymbolReport]] = defaultdict(list)
+    top_level: list[_SymbolReport] = []
+    for sym in symbols:
+        if sym["kind"] == "class":
+            continue
+        parent_fqn, _, _ = sym["name"].rpartition(".")
+        (members[parent_fqn] if parent_fqn in classes else top_level).append(sym)
+    return classes, members, top_level
+
+
+def _convert_module(pm: _ModuleReport, rel_path: str) -> ModuleReport:
+    classes, members, top_level = _partition_symbols(pm["symbol_reports"])
+    mod_prefix = pm["name"] + "."
+
+    symbol_reports: list[AnySymbolReport] = []
+    for sym in top_level:
+        builder = _LEAF_BUILDERS.get(sym["kind"])
+        if builder is None:
+            _logger.warning("Unexpected top-level symbol kind %r", sym["kind"])
+            continue
+        symbol_reports.append(builder(sym, sym["name"].removeprefix(mod_prefix)))
+    symbol_reports.extend(
+        _build_class(class_sym, members.get(fqn, []), mod_prefix)
+        for fqn, class_sym in classes.items()
+    )
+
+    return ModuleReport(
+        path=rel_path,
+        path_abs=pm["path"],
+        symbol_reports=tuple(symbol_reports),
+        type_ignores=tuple(
+            IgnoreComment(
+                kind=sup["kind"],
+                rules=frozenset(sup["codes"]) if sup["codes"] else None,
+            )
+            for sup in pm.get("type_ignores", [])
+        ),
+    )
+
+
+def convert_module_reports(
+    pyrefly_modules: list[_ModuleReport],
+) -> tuple[ModuleReport, ...]:
+    """Convert pyrefly module report dicts to typestats `ModuleReport` objects."""
+    return tuple(
+        _convert_module(pm, _module_path(pm["name"], pm["path"]))
+        for pm in pyrefly_modules
+    )
+
+
+def _top_package_name(pyrefly_modules: list[_ModuleReport]) -> str:
+    """First dotted segment shared by all pyrefly FQNs, or `""` if ambiguous."""
+    tops = {pm["name"].split(".", 1)[0] for pm in pyrefly_modules}
+    return tops.pop() if len(tops) == 1 else ""
 
 
 class PypiInfo(BaseModel):
@@ -667,6 +507,29 @@ _REPO_HOSTS: Final = {
 class _ProjectUrls(TypedDict):
     pypi: str
     repo: NotRequired[str]
+
+
+@dataclass(frozen=True, slots=True, kw_only=True)
+class FromPathOptions:
+    """Optional inputs for `PackageReport.from_path`.
+
+    `stubs_path`: companion `*-stubs` sdist; symbols there overlay *path*.
+    `project`: display name in the report (defaults to *pkg*).
+    `base_version`: stubs' base-package version, recorded alongside *version*.
+    `exclude`: glob patterns forwarded to pyrefly's `--project-excludes`.
+    `pypi`: distribution metadata to embed in the report.
+    `pyrefly_paths`: explicit paths for `pyrefly report`; auto-discovered when None.
+    """
+
+    stubs_path: StrPath | None = None
+    project: str | None = None
+    base_version: str | None = None
+    exclude: Sequence[str] = ()
+    pypi: "PypiInfo | None" = None
+    pyrefly_paths: tuple[str, ...] | None = None
+
+
+_DEFAULT_FROM_PATH_OPTIONS: Final = FromPathOptions()
 
 
 class PackageReport(BaseModel):
@@ -731,11 +594,6 @@ class PackageReport(BaseModel):
 
     @computed_field
     @property
-    def n_function_overloads(self) -> NonNegativeInt:
-        return sum(m.n_function_overloads for m in self.module_reports)
-
-    @computed_field
-    @property
     def n_function_params(self) -> NonNegativeInt:
         return sum(m.n_function_params for m in self.module_reports)
 
@@ -748,11 +606,6 @@ class PackageReport(BaseModel):
     @property
     def n_method_params(self) -> NonNegativeInt:
         return sum(m.n_method_params for m in self.module_reports)
-
-    @computed_field
-    @property
-    def n_method_overloads(self) -> NonNegativeInt:
-        return sum(m.n_method_overloads for m in self.module_reports)
 
     @computed_field
     @property
@@ -771,7 +624,7 @@ class PackageReport(BaseModel):
 
     @computed_field
     @property
-    def type_ignores(self) -> tuple[analyze.IgnoreComment, ...]:
+    def type_ignores(self) -> tuple[IgnoreComment, ...]:
         return tuple(ignore for m in self.module_reports for ignore in m.type_ignores)
 
     @computed_field
@@ -784,106 +637,96 @@ class PackageReport(BaseModel):
 
     def project_urls(self) -> _ProjectUrls:
         """Extract PyPI and repository URLs from package metadata."""
-        from urllib.parse import urlparse  # noqa: PLC0415
 
         urls: _ProjectUrls = {"pypi": f"https://pypi.org/project/{self.package}/"}
 
-        if self.metadata:
-            for header in ("Home-page", "Project-URL"):
-                for entry in self.metadata.get(header, []):
-                    if not (url := entry.rsplit(",", 1)[-1].strip()):
-                        continue
+        if not self.metadata:
+            return urls
 
-                    res = urlparse(url)
-                    if not (h := res.hostname) or h not in _REPO_HOSTS:
-                        continue
+        entries = chain(
+            self.metadata.get("Home-page", []),
+            self.metadata.get("Project-URL", []),
+        )
+        for entry in entries:
+            if not (url := entry.rpartition(",")[2].strip()):
+                continue
 
-                    urls["repo"] = f"https://{h}{'/'.join(res.path.split('/', 3)[:3])}"
-                    return urls
+            res = urlparse(url)
+            if not (h := res.hostname) or h not in _REPO_HOSTS:
+                continue
+
+            urls["repo"] = f"https://{h}{'/'.join(res.path.split('/', 3)[:3])}"
+            return urls
 
         return urls
 
-    def print(self) -> None:
-        """Print a human-readable summary to stdout."""
-        for f in sorted(self.module_reports, key=lambda r: r.path):
-            typed = f.n_typed + f.n_any
-            print(  # noqa: T201
-                f"{f.path} -> {f.coverage():.1%} "
-                f"({typed}/{f.n_typable} typed, "
-                f"{f.n_any} Any, {f.n_untyped} missing)",
-            )
-
-        typed = self.n_typed + self.n_any
-        print(  # noqa: T201
-            f"=> {self.package} {self.version}: {self.coverage():.1%} "
-            f"({typed}/{self.n_typable} typed, "
-            f"{self.n_any} Any, {self.n_untyped} missing)",
-        )
-        print(  # noqa: T201
-            f"   {self.n_modules} modules, "
-            f"{self.n_functions} functions ({self.n_function_overloads} overloads), "
-            f"{self.n_methods} methods ({self.n_method_overloads} overloads), "
-            f"{self.n_properties} properties, "
-            f"{self.n_classes} classes, {self.n_attrs} attrs, "
-            f"{self.n_type_ignores} ignore comments",
-        )
-        print(f"   stubs-only: {self.stubs_only.value}")  # noqa: T201
-        print(f"   py.typed: {self.py_typed.name}")  # noqa: T201
-
     @classmethod
-    async def from_path(  # noqa: PLR0913
+    async def from_path(
         cls,
         pkg: str,
         path: StrPath,
         version: str,
         /,
-        *,
-        stubs_path: "StrPath | None" = None,
-        project: str | None = None,
-        base_version: str | None = None,
-        exclude: Sequence[str] = (),
-        pypi: PypiInfo | None = None,
-        sources: StrPaths = (),
-        stubs_sources: StrPaths = (),
+        opts: FromPathOptions = _DEFAULT_FROM_PATH_OPTIONS,
     ) -> Self:
         """Build a `PackageReport` by analysing the package at *path*.
 
-        When `stubs_path` is given (a companion `{pkg}-stubs` sdist), symbols from the
-        stubs overlay take priority and any original symbol whose module is covered by
-        stubs but absent from those stubs is marked `UNTYPED`.
-
-        When `project` is given, it is used as the display name in the report instead
-        of `pkg` (useful for stubs packages where the PyPI project name differs from
-        the Python package name, e.g. `scipy-stubs` vs `scipy`).
-
-        When `base_version` is given, it is recorded in the report alongside the
-        stubs `version` so both versions are visible.
-
-        Runs `collect_public_symbols` (and optionally the stubs collection) and
-        `discover_configs` concurrently.
+        See `FromPathOptions` for stubs overlay, exclusion, and metadata knobs.
+        Runs `pyrefly report` and `discover_configs` concurrently.
         """
-        path_obj = anyio.Path(path)
-        stubs_obj = anyio.Path(stubs_path) if stubs_path is not None else None
+        display = opts.project or pkg
 
-        collected = await cls._collect(
-            pkg,
-            path_obj,
-            stubs_obj,
-            exclude,
-            sources=sources,
-            stubs_sources=stubs_sources,
-            dist_name=project or pkg,
-        )
-        built = await cls._build_module_reports(
-            collected.symbols,
-            collected.type_ignores,
-            path_obj,
-            stubs_obj,
+        if opts.stubs_path is not None:
+            path_obj, stubs_obj = await asyncio.gather(
+                anyio.Path(path).resolve(), anyio.Path(opts.stubs_path).resolve()
+            )
+        else:
+            path_obj = await anyio.Path(path).resolve()
+            stubs_obj = None
+
+        cwd = stubs_obj or path_obj
+        run_paths = (
+            opts.pyrefly_paths
+            if opts.pyrefly_paths is not None
+            else await _scan_for_packages(cwd)
         )
 
-        display = project or pkg
+        # Anchor pyrefly's module-name resolution when no config is reachable upward.
+        search_paths = tuple(dict.fromkeys(str(Path(p).parent) for p in run_paths))
+
+        common = (
+            discover_configs(cwd),
+            run_pyrefly_report(
+                *run_paths,
+                cwd=str(cwd),
+                project_excludes=opts.exclude,
+                search_paths=search_paths,
+            ),
+            read_pkg_metadata(cwd, dist_name=display or None),
+        )
+        if stubs_obj is None:
+            configs, pyrefly_modules, metadata, stubs_dir_found = await asyncio.gather(
+                *common, _has_stubs_dir(path_obj)
+            )
+        else:
+            configs, pyrefly_modules, metadata = await asyncio.gather(*common)
+            stubs_dir_found = False
+
+        module_reports = convert_module_reports(pyrefly_modules)
+
+        if not display:
+            display = _top_package_name(pyrefly_modules)
+
+        py_typed = await get_py_typed(
+            [pm["path"] for pm in pyrefly_modules] or list(run_paths) or [str(cwd)]
+        )
+
+        had_stubs_dir = stubs_dir_found or any(
+            r.path.split("/")[0].endswith("-stubs") for r in module_reports
+        )
+
         stubs_only = StubsOnly.NO
-        if stubs_obj is not None or built.had_stubs_dir:
+        if stubs_obj is not None or had_stubs_dir:
             stubs_only = (
                 StubsOnly.TYPESHED
                 if display.startswith("types-")
@@ -894,122 +737,11 @@ class PackageReport(BaseModel):
             schema_version=".".join(map(str, SCHEMA_VERSION)),
             package=display,
             stubs_only=stubs_only,
-            module_reports=built.module_reports,
+            module_reports=module_reports,
             version=version,
-            base_version=base_version,
-            py_typed=collected.py_typed,
-            pypi=pypi,
-            metadata=collected.metadata,
-            typecheckers=collected.configs,
+            base_version=opts.base_version,
+            py_typed=py_typed,
+            pypi=opts.pypi,
+            metadata=metadata,
+            typecheckers=configs,
         )
-
-    @staticmethod
-    async def _collect(  # noqa: PLR0913
-        pkg: str,
-        path: anyio.Path,
-        stubs_path: anyio.Path | None,
-        exclude: Sequence[str],
-        *,
-        sources: StrPaths = (),
-        stubs_sources: StrPaths = (),
-        dist_name: str = "",
-    ) -> _CollectResult:
-        """Run analysis coroutines and return merged results."""
-        from .metadata import read_pkg_metadata  # noqa: PLC0415
-
-        coros: list[Coroutine[Any, Any, Any]] = [
-            discover_configs(stubs_path or path),
-            collect_public_symbols(
-                path,
-                trace_origins=stubs_path is None,
-                package_name=pkg,
-                exclude=exclude,
-                sources=sources,
-            ),
-        ]
-        if stubs_path is not None:
-            coros.append(
-                collect_public_symbols(
-                    stubs_path,
-                    trace_origins=False,
-                    package_name=pkg,
-                    exclude=exclude,
-                    sources=stubs_sources,
-                ),
-            )
-        coros.append(read_pkg_metadata(stubs_path or path, dist_name=dist_name or None))
-
-        res = await asyncio.gather(*coros)
-        configs: dict[TypeCheckerName, TypeCheckerConfigDict] = res[0]
-        base_result: PublicSymbols = res[1]
-
-        if stubs_path is not None:
-            stubs_result: PublicSymbols = res[2]
-            py_typed = stubs_result.py_typed
-            symbols = merge_stubs_overlay(base_result.symbols, stubs_result.symbols)
-            ignores_orig = base_result.type_ignores
-            ignores_stubs = stubs_result.type_ignores
-            type_ignores: _IgnoreMap = {
-                p: ignores_stubs[p] if p in ignores_stubs else ignores_orig.get(p, ())
-                for p in symbols
-            }
-        else:
-            py_typed = base_result.py_typed
-            symbols, type_ignores = base_result.symbols, base_result.type_ignores
-
-        metadata: _Metadata = res[-1]
-
-        return _CollectResult(symbols, type_ignores, py_typed, metadata, configs)
-
-    @staticmethod
-    async def _build_module_reports(
-        symbols: _SymbolMap,
-        type_ignores: _IgnoreMap,
-        path: anyio.Path,
-        stubs_path: anyio.Path | None,
-    ) -> _BuildResult:
-        """Build `ModuleReport` tuples with normalized paths."""
-
-        if not (path_src := await is_src_layout(path)):
-            for src_path in symbols:
-                try:
-                    rel = src_path.relative_to(path)
-                except ValueError:
-                    continue
-
-                try:
-                    src_index = rel.parts.index("src")
-                except ValueError:
-                    continue
-
-                if src_index == 0:
-                    continue
-
-                candidate_root = path.joinpath(*rel.parts[:src_index])
-                if await is_src_layout(candidate_root):
-                    path_src = True
-                    break
-
-        stubs_src = await is_src_layout(stubs_path) if stubs_path is not None else False
-
-        primary = stubs_path or path
-        had_stubs_dir = False
-        reports: list[ModuleReport] = []
-        for src_path, syms in symbols.items():
-            rel, had_stubs = _normalize_relpath(
-                src_path,
-                primary,
-                path if stubs_path is not None else None,
-                primary_is_src_layout=stubs_src if stubs_path else path_src,
-                fallback_is_src_layout=path_src,
-            )
-            had_stubs_dir = had_stubs_dir or had_stubs
-            reports.append(
-                ModuleReport.from_symbols(
-                    rel,
-                    syms,
-                    type_ignores=type_ignores.get(src_path, ()),
-                ),
-            )
-
-        return _BuildResult(tuple(reports), had_stubs_dir)

@@ -263,12 +263,12 @@ function renderGridCards(report) {
   ])
   const card4 = `<strong>Typables</strong><hr>${kindPie}
     <ul>
-      <li>${fmtInt(report.n_functions)} functions (+${fmtInt(report.n_function_overloads - report.n_functions)} overloads)
+      <li>${fmtInt(report.n_functions)} functions
         <ul><li>${fmtInt(report.n_function_params)} parameters</li></ul>
       </li>
       <li>${fmtInt(report.n_classes)} classes
         <ul>
-          <li>${fmtInt(report.n_methods)} methods (+${fmtInt(report.n_method_overloads - report.n_methods)} overloads)
+          <li>${fmtInt(report.n_methods)} methods
             <ul><li>${fmtInt(report.n_method_params)} parameters</li></ul>
           </li>
           <li>${fmtInt(report.n_properties)} properties</li>
@@ -442,7 +442,6 @@ function incompleteRows(moduleReport) {
           n_any: member.n_any,
           n_untyped: member.n_untyped,
           line_start: member.line_start ?? null,
-          line_end: member.line_end ?? null,
         })
       }
       continue
@@ -455,7 +454,6 @@ function incompleteRows(moduleReport) {
       n_any: s.n_any,
       n_untyped: s.n_untyped,
       line_start: s.line_start ?? null,
-      line_end: s.line_end ?? null,
     })
   }
   return rows.sort((a, b) => (a.line_start ?? Infinity) - (b.line_start ?? Infinity))

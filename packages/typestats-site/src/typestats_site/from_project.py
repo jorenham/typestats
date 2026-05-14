@@ -4,7 +4,7 @@ import httpx
 
 from typestats._type import StrPath
 from typestats.projects import Project
-from typestats.report import PackageReport
+from typestats.report import FromPathOptions, PackageReport
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from . import _pypi, _uv
@@ -64,17 +64,21 @@ async def from_project(
             base_name,
             base_sp,
             str(ver),
-            stubs_path=sp,
-            project=project.name,
-            base_version=str(base_ver),
-            exclude=project.exclude,
-            pypi=PypiInfo.from_file_detail(dist_file),
+            FromPathOptions(
+                stubs_path=sp,
+                project=project.name,
+                base_version=str(base_ver),
+                exclude=project.exclude,
+                pypi=PypiInfo.from_file_detail(dist_file),
+            ),
         )
 
     return await PackageReport.from_path(
         project.name,
         sp,
         str(ver),
-        exclude=project.exclude,
-        pypi=PypiInfo.from_file_detail(dist_file),
+        FromPathOptions(
+            exclude=project.exclude,
+            pypi=PypiInfo.from_file_detail(dist_file),
+        ),
     )

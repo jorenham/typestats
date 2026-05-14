@@ -1,41 +1,18 @@
+import asyncio
 import enum
 import fnmatch
-import logging
 import os
 import re
-import time
-from collections import defaultdict, deque
-from collections.abc import Iterable, Mapping, Sequence
-from dataclasses import dataclass, field
-from itertools import chain
+from collections.abc import Iterator, Sequence
+from pathlib import Path
 from typing import Final
 
 import anyio
-from libcst.helpers import get_full_name_for_node
+import anyio.to_thread
 
-from . import analyze
-from ._ruff import analyze_graph
 from ._type import StrPath, StrPaths
 
-type _SymbolEntry = tuple[anyio.Path, analyze.TypeForm, int | None, int | None]
-
-__all__ = (
-    "PublicSymbols",
-    "PyTyped",
-    "collect_public_symbols",
-    "get_py_typed",
-    "is_src_layout",
-    "list_sources",
-    "merge_stubs_overlay",
-)
-
-
-_logger: Final = logging.getLogger(__name__)
-
-
-type _PathMap[T] = Mapping[anyio.Path, T]
-type _SymbolSequence = Sequence[analyze.Symbol]
-type _IgnoreComments = tuple[analyze.IgnoreComment, ...]
+__all__ = ("PyTyped", "get_py_typed", "is_src_layout", "list_sources")
 
 
 class PyTyped(enum.Enum):
@@ -48,104 +25,90 @@ class PyTyped(enum.Enum):
         return {self.YES: 0, self.STUBS: 1, self.PARTIAL: 2, self.NO: 3}[self]
 
 
-@dataclass(frozen=True, slots=True)
-class PublicSymbols:
-    """Result of `collect_public_symbols`."""
-
-    symbols: _PathMap[_SymbolSequence] = field(default_factory=dict)  # pyright: ignore[reportUnknownVariableType]
-    type_ignores: _PathMap[_IgnoreComments] = field(default_factory=dict)  # pyright: ignore[reportUnknownVariableType]
-    py_typed: PyTyped = field(default_factory=lambda: PyTyped.NO)
-
-
 _RE_INIT: Final = re.compile(r"^__init__\.pyi?$")
 
 _EXCLUDED_DIR_NAMES: Final[frozenset[str]] = frozenset({
+    ".git",
     ".spin",
+    ".tox",
+    ".venv",
+    "__pycache__",
     "_examples",
     "benchmarks",
+    "build",
+    "dist",
     "doc",
     "docs",
     "examples",
+    "node_modules",
     "tests",
+    "venv",
 })
 _EXCLUDED_FILE_NAMES: Final[frozenset[str]] = frozenset({"conftest.py", "setup.py"})
-_MODULE_DUNDERS: Final[frozenset[str]] = frozenset({
-    "__all__",
-    "__dir__",
-    "__doc__",
-    "__getattr__",
-})
-# FQNs treated as equivalent to having no annotation.
-_ANY_FQNS: Final[frozenset[str]] = frozenset({
-    "typing.Any",
-    "typing_extensions.Any",
-    "_typeshed.Incomplete",
-    "_typeshed.MaybeNone",
-    "_typeshed.sentinel",
-    "_typeshed.AnnotationForm",
-})
+_SOURCE_SUFFIXES: Final[tuple[str, ...]] = (".py", ".pyi", ".ipynb")
 
 
-async def _analyze_graph(
+def _walk_sources(root: Path) -> Iterator[Path]:
+    """Walk *root*, pruning excluded directories.
+
+    Yields:
+        `.py` / `.pyi` files under *root* (or *root* itself if it is one).
+    """
+    if root.is_file():
+        if root.suffix in _SOURCE_SUFFIXES:
+            yield root
+        return
+
+    for dirpath, dirnames, filenames in os.walk(root):
+        dirnames[:] = [d for d in dirnames if d not in _EXCLUDED_DIR_NAMES]
+        dp = Path(dirpath)
+        for fn in filenames:
+            if fn.endswith(_SOURCE_SUFFIXES):
+                yield dp / fn
+
+
+async def _collect_sources(
     project_dir: StrPath,
     /,
-    *opts: str,
+    *,
     exclude: Sequence[str] = (),
     sources: StrPaths = (),
-) -> dict[str, list[str]]:
-    """Run `ruff analyze graph` and clean self/parent-package dependencies."""
-    raw_graph = await analyze_graph(project_dir, *opts, sources=sources)
-
-    # normalize to forward slashes
-    graph = {
-        k.replace("\\", "/"): [v.replace("\\", "/") for v in vs]
-        for k, vs in raw_graph.items()
-    }
-
-    # build absolute and CWD-relative prefixes for stripping project_dir
+) -> list[anyio.Path]:
+    """Walk *project_dir* (or explicit *sources*) and return `.py`/`.pyi` files."""
     abs_path = await anyio.Path(project_dir).resolve()
-    abs_prefix = str(abs_path).replace(os.sep, "/").rstrip("/") + "/"
-    try:
-        cwd = await anyio.Path.cwd()
-        rel = str(abs_path.relative_to(cwd)).replace(os.sep, "/")
-        rel_prefix = rel.rstrip("/") + "/"
-    except ValueError:
-        rel_prefix = abs_prefix
+    abs_prefix = abs_path.as_posix().rstrip("/") + "/"
 
-    exclude_re = None
-    if exclude:
-        exclude_re = re.compile("|".join(fnmatch.translate(pat) for pat in exclude))
+    exclude_re = (
+        re.compile("|".join(fnmatch.translate(pat) for pat in exclude))
+        if exclude
+        else None
+    )
 
-    def _is_absolute(path: str) -> bool:
-        return path.startswith("/") or (len(path) >= 3 and path[1] == ":")
-
-    def _excluded(path: str) -> bool:
-        prefix = abs_prefix if _is_absolute(path) else rel_prefix
-        rel = path.removeprefix(prefix).lstrip("/")
-        parts = rel.split("/")
-        filename = parts[-1]
-        stem = filename.removesuffix(".pyi").removesuffix(".py")
-
+    def _excluded(path: Path) -> bool:
+        rel = path.as_posix().removeprefix(abs_prefix)
         return (
-            not stem.isidentifier()
-            or filename in _EXCLUDED_FILE_NAMES
-            or bool(_EXCLUDED_DIR_NAMES.intersection(parts))
+            not path.stem.isidentifier()
+            or path.name in _EXCLUDED_FILE_NAMES
             or (exclude_re is not None and exclude_re.fullmatch(rel) is not None)
         )
 
-    def _skip_dep(node: str, dep: str, deps: list[str]) -> bool:
-        return (
-            dep == node
-            or (node.count("/") >= dep.count("/") and "/__init__.py" in dep)
-            or (dep.endswith(".py") and dep + "i" in deps)
-            or _excluded(dep)
+    if sources:
+        resolved: list[anyio.Path] = await asyncio.gather(
+            *(anyio.Path(s).resolve() for s in sources)
         )
+        roots = [Path(r) for r in resolved]
+    else:
+        roots = [Path(abs_path)]
 
-    return {
-        node: list(dict.fromkeys(dep for dep in deps if not _skip_dep(node, dep, deps)))
-        for node, deps in graph.items()
-        if not _excluded(node)
-    }
+    def _scan() -> dict[anyio.Path, None]:
+        seen: dict[anyio.Path, None] = {}
+        for root in roots:
+            for f in _walk_sources(root):
+                if not _excluded(f):
+                    seen.setdefault(anyio.Path(f), None)
+        return seen
+
+    return list(await anyio.to_thread.run_sync(_scan))
 
 
 async def _is_package(d: anyio.Path) -> bool:
@@ -167,17 +130,17 @@ async def is_src_layout(project_dir: anyio.Path, /) -> bool:
     - contains at least one direct child that is a package or module.
     """
     src = project_dir / "src"
-    if not await src.is_dir():
-        return False
 
-    if await _is_package(src):
+    if not await src.is_dir() or await _is_package(src):
         return False
 
     async for child in src.iterdir():
-        if await child.is_dir():
-            if await _is_package(child):
-                return True
-        elif child.suffix in {".py", ".pyi"} and child.stem.isidentifier():
+        is_dir = await child.is_dir()
+        if (is_dir and await _is_package(child)) or (
+            not is_dir
+            and child.suffix in _SOURCE_SUFFIXES
+            and child.stem.isidentifier()
+        ):
             return True
 
     return False
@@ -197,31 +160,14 @@ async def list_sources(
     only files under `src/` are included.
     """
     project_dir = anyio.Path(path)
-    graph = await _analyze_graph(
-        project_dir,
-        "--type-checking-imports",
-        exclude=exclude,
-        sources=sources,
-    )
-    found = list(map(anyio.Path, graph))
-
-    if await is_src_layout(project_dir):
-        src_prefix = str(await (project_dir / "src").resolve()) + os.sep
-        found = [s for s in found if str(await s.resolve()).startswith(src_prefix)]
-
-    return found
+    if not sources and await is_src_layout(project_dir):
+        sources = (project_dir / "src",)
+    return await _collect_sources(project_dir, exclude=exclude, sources=sources)
 
 
 async def get_py_typed(sources: StrPaths, /) -> PyTyped:
-    """
-    Determine the `py.typed` status from a list of source paths.
-
-    Raises:
-        ValueError: if *sources* is empty.
-    """
-    if not sources:
-        msg = "no sources provided"
-        raise ValueError(msg)
+    """Determine the `py.typed` status from a list of source paths."""
+    assert sources
 
     root = anyio.Path(os.path.commonpath(sources))
     if await root.is_file():
@@ -237,526 +183,3 @@ async def get_py_typed(sources: StrPaths, /) -> PyTyped:
         return PyTyped.PARTIAL
 
     return PyTyped.YES
-
-
-def sources_to_module_paths(
-    sources: Iterable[StrPath],
-    /,
-) -> Mapping[str, frozenset[anyio.Path]]:
-    """
-    Group the source files of a project by their fully qualified module paths.
-
-    This will take into account any stubs files (i.e., `.pyi` files) that may exist
-    alongside the source files, or in a separate `{project}-stubs` package.
-
-    This also supports single-file modules (i.e., without `__init__`).
-
-    Namespace packages are not currently supported.
-    """
-    source_paths = list(map(anyio.Path, sources))
-
-    init_files = frozenset(p for p in source_paths if _RE_INIT.match(p.name))
-    init_dirs = frozenset(p.parent for p in init_files)
-
-    def _in_namespace_package(source: anyio.Path) -> bool:
-        """True when *source* sits in a directory without `__init__` that is
-        nested inside a proper package directory.  Such directories are not
-        importable (e.g. vendored third-party code) and should be excluded."""
-
-        if (parent := source.parent) in init_dirs:
-            return False
-
-        # Walk up and check whether any ancestor is a package directory.
-        current = parent.parent
-        while current != parent:
-            if current in init_dirs:
-                return True
-            parent = current
-            current = current.parent
-        return False
-
-    # Exclude files that live in non-package subdirectories of a package
-    source_paths = [p for p in source_paths if not _in_namespace_package(p)]
-
-    def _module_path(source: anyio.Path) -> str:
-        parts = deque[str]()
-        current_dir = source.parent
-        while current_dir in init_dirs:
-            dir_name = current_dir.name
-            if dir_name.endswith("-stubs"):
-                parts.appendleft(dir_name.removesuffix("-stubs"))
-                break
-            parts.appendleft(dir_name)
-            current_dir = current_dir.parent
-
-        if not _RE_INIT.match(source.name):
-            parts.append(source.stem)
-
-        return ".".join(parts) if parts else source.stem
-
-    module_paths: defaultdict[str, set[anyio.Path]] = defaultdict(set)
-    for path in source_paths:
-        module_paths[_module_path(path)].add(path)
-
-    return {k: frozenset(ps) for k, ps in module_paths.items()}
-
-
-def _resolve_expr_name(name: str, import_map: Mapping[str, str], mod: str) -> str:
-    """Resolve a dotted name to its FQN using the module's import map.
-
-    Looks up the whole *name* first, then tries to resolve just the first
-    component (for `import typing; typing.Any` style access), and finally
-    falls back to treating it as a module-local name.
-    """
-    if name in import_map:
-        return import_map[name]
-
-    first, _, rest = name.partition(".")
-    if rest and first in import_map:
-        return f"{import_map[first]}.{rest}"
-    return f"{mod}.{name}"
-
-
-def _resolves_to_any(fqn: str, alias_targets: Mapping[str, str]) -> bool:
-    """Check if *fqn* ultimately resolves to `typing.Any` through alias chains."""
-    seen: set[str] = set()
-    current = fqn
-    while current not in seen:
-        if current in _ANY_FQNS:
-            return True
-        if current not in alias_targets:
-            return False
-        seen.add(current)
-        current = alias_targets[current]
-    return False
-
-
-def _unfold_overload(
-    overload: analyze.Overload,
-    import_map: Mapping[str, str],
-    mod: str,
-    alias_targets: Mapping[str, str],
-) -> analyze.Overload:
-    return analyze.Overload(
-        tuple(
-            analyze.Param(
-                p.name,
-                p.kind,
-                _unfold_any(p.annotation, import_map, mod, alias_targets),
-            )
-            for p in overload.params
-        ),
-        _unfold_any(overload.returns, import_map, mod, alias_targets),
-    )
-
-
-def _unfold_accessor(
-    acc: analyze.Overload | None,
-    import_map: Mapping[str, str],
-    mod: str,
-    alias_targets: Mapping[str, str],
-) -> analyze.Overload | None:
-    if acc is None:
-        return None
-    return _unfold_overload(acc, import_map, mod, alias_targets)
-
-
-def _unfold_any(
-    type_: analyze.TypeForm,
-    import_map: Mapping[str, str],
-    mod: str,
-    alias_targets: Mapping[str, str],
-) -> analyze.TypeForm:
-    """Replace `Expr` annotations that resolve to `Any` with `ANY`.
-
-    Walks *type_* recursively so that function parameters, return types, and
-    class members are all checked.
-    """
-    match type_:
-        case analyze.Expr(expr=expr):
-            name = get_full_name_for_node(expr)
-            if name is not None:
-                fqn = _resolve_expr_name(name, import_map, mod)
-                if _resolves_to_any(fqn, alias_targets):
-                    return analyze.ANY
-            return type_
-        case analyze.Function(name=fn_name, overloads=overloads):
-            new_overloads = tuple(
-                _unfold_overload(o, import_map, mod, alias_targets) for o in overloads
-            )
-            return analyze.Function(fn_name, (new_overloads[0], *new_overloads[1:]))
-        case analyze.Property(name=prop_name, fget=fget, fset=fset, fdel=fdel):
-            return analyze.Property(
-                prop_name,
-                fget=_unfold_accessor(fget, import_map, mod, alias_targets),
-                fset=_unfold_accessor(fset, import_map, mod, alias_targets),
-                fdel=_unfold_accessor(fdel, import_map, mod, alias_targets),
-            )
-        case analyze.Class(name=cls_name, members=members, is_protocol=is_protocol):
-            return analyze.Class(
-                cls_name,
-                tuple(
-                    analyze.Symbol(
-                        m.name,
-                        _unfold_any(m.type_, import_map, mod, alias_targets),
-                        line_start=m.line_start,
-                        line_end=m.line_end,
-                    )
-                    for m in members
-                ),
-                is_protocol=is_protocol,
-            )
-        case _:
-            return type_
-
-
-def _resolve_package_name(package_name: str, top_level: frozenset[str]) -> str | None:
-    """Resolve a PyPI project name to its top-level Python import name.
-
-    Tries, in order:
-    1. Hyphen-to-underscore normalisation (`more-itertools` -> `more_itertools`).
-    2. If the sdist contains exactly one public (non-underscore) top-level
-       package, use that (`pillow` -> `PIL`, `beautifulsoup4` -> `bs4`).
-
-    Returns `None` when resolution fails, which disables filtering so all
-    public modules are analysed.
-    """
-    normalized = package_name.replace("-", "_")
-    if normalized in top_level:
-        return normalized
-
-    public = {t for t in top_level if not t.startswith("_")}
-    if len(public) == 1:
-        resolved = next(iter(public))
-        _logger.info(
-            "Resolved package_name %r -> %r (sole public top-level module)",
-            package_name,
-            resolved,
-        )
-        return resolved
-
-    _logger.warning(
-        "Could not resolve package_name %r to a top-level module "
-        "(found: %s); analysing all public modules",
-        package_name,
-        ", ".join(sorted(public)) or "(none)",
-    )
-    return None
-
-
-def _is_public_module(module_path: str, /) -> bool:
-    """Check if all parts of a dotted module path are public."""
-    return all(not part.startswith("_") for part in module_path.split("."))
-
-
-async def collect_public_symbols(  # noqa: C901, PLR0912, PLR0914, PLR0915
-    project_dir: StrPath,
-    /,
-    *,
-    trace_origins: bool = True,
-    package_name: str | None = None,
-    exclude: Sequence[str] = (),
-    sources: StrPaths = (),
-) -> PublicSymbols:
-    """Collect public, fully qualified symbols from a package by source path.
-
-    Symbols are attributed to their *origin* source file.  When a public module
-    re-exports a symbol from a private module, the origin's fully qualified name
-    (and source path) is used rather than the re-exporting module's.
-
-    When *package_name* is given, only modules whose top-level component
-    matches *package_name* are included (useful for sdists that contain
-    unrelated sub-projects).
-
-    When *exclude* is given, source files whose project-relative paths match
-    any of the glob patterns are excluded from analysis.
-
-    When *sources* is given, only those paths are analyzed instead of
-    discovering all sources under *project_dir*.
-    """
-    t0 = time.perf_counter()
-    source_list = list(
-        await list_sources(project_dir, exclude=exclude, sources=sources)
-    )
-
-    pyi_set = frozenset(str(s) for s in source_list if s.suffix == ".pyi")
-    source_list = [
-        s for s in source_list if not (s.suffix == ".py" and f"{s}i" in pyi_set)
-    ]
-
-    module_paths = sources_to_module_paths(source_list)
-
-    # All top-level names; a narrower `in_scope` is derived below.
-    top_level = frozenset(m.split(".", 1)[0] for m in module_paths)
-
-    if package_name is not None and package_name not in top_level:
-        package_name = _resolve_package_name(package_name, top_level)
-
-    # Target package + private companion (e.g. pytest + _pytest).
-    in_scope = (
-        frozenset({package_name, f"_{package_name}"})
-        if package_name is not None
-        else top_level
-    )
-
-    all_local: dict[str, _SymbolEntry] = {}
-    module_data: dict[str, dict[anyio.Path, analyze.ModuleSymbols]] = {}
-    module_locals: dict[str, dict[str, str]] = {}  # mod -> {name: fqn}
-    for mod, paths in module_paths.items():
-        entries: dict[anyio.Path, analyze.ModuleSymbols] = {}
-        local: dict[str, str] = {}
-        for path in sorted(paths, key=lambda p: not p.name.endswith(".pyi")):
-            if not await path.is_file():
-                _logger.warning("File from import graph not found: %s", path)
-                continue
-            pkg = (
-                mod
-                if _RE_INIT.match(path.name)
-                else (mod.rsplit(".", 1)[0] if "." in mod else "")
-            )
-            syms = analyze.collect_symbols(
-                await path.read_text(encoding="utf-8"),
-                package_name=pkg,
-            )
-            entries[path] = syms
-
-            syms_iter: Iterable[
-                tuple[str, analyze.TypeForm, int | None, int | None]
-            ] = chain(
-                ((a.name, a.value, None, None) for a in syms.type_aliases),
-                ((s.name, s.type_, s.line_start, s.line_end) for s in syms.symbols),
-            )
-            for name, type_, line_start, line_end in syms_iter:
-                if "." not in name:
-                    fqn = f"{mod}.{name}"
-                    all_local.setdefault(fqn, (path, type_, line_start, line_end))
-                    local.setdefault(name, fqn)
-
-        module_data[mod] = entries
-        module_locals[mod] = local
-
-    # Replace Expr annotations resolving to Any (directly or via alias chains).
-    alias_targets: dict[str, str] = {}
-    path_to_mod: dict[anyio.Path, str] = {}
-    import_maps: dict[str, dict[str, str]] = {}
-    for mod, entries in module_data.items():
-        imap: dict[str, str] = {}
-        for syms in entries.values():
-            imap.update(syms.imports)
-        import_maps[mod] = imap
-
-        for path in entries:
-            path_to_mod[path] = mod
-
-        for syms in entries.values():
-            for alias in syms.type_aliases:
-                if (
-                    "." not in alias.name  # skip class-level aliases
-                    and isinstance(alias.value, analyze.Expr)
-                    and (value_name := get_full_name_for_node(alias.value.expr))
-                ):
-                    alias_fqn = f"{mod}.{alias.name}"
-                    alias_targets[alias_fqn] = _resolve_expr_name(value_name, imap, mod)
-
-    for fqn, (path, type_, line_start, line_end) in list(all_local.items()):
-        if not isinstance(
-            type_,
-            analyze.Expr | analyze.Function | analyze.Property | analyze.Class,
-        ):
-            continue
-        if (p2m := path_to_mod.get(path)) is None:
-            continue
-
-        type_new = _unfold_any(type_, import_maps.get(p2m, {}), p2m, alias_targets)
-        if type_new is not type_:
-            all_local[fqn] = path, type_new, line_start, line_end
-
-    exports_cache: dict[str, dict[str, str]] = {}
-
-    def resolve_origin(fqn: str, _seen: frozenset[str] = frozenset()) -> str:
-        """Follow import chains to the original local definition."""
-        if fqn in all_local or fqn in _seen or "." not in fqn:
-            return fqn
-        mod, name = fqn.rsplit(".", 1)
-        seen = _seen | {fqn}
-        for syms in module_data.get(mod, {}).values():
-            if target := dict(syms.imports).get(name):
-                return resolve_origin(target, seen)
-            for wc_mod in syms.imports_wildcard:
-                if name in (wc := module_exports(wc_mod)):
-                    return resolve_origin(wc[name], seen)
-        return fqn
-
-    def module_exports(mod: str) -> dict[str, str]:  # noqa: C901, PLR0912
-        """Return `{export_name: origin_fqn}` for all names exported by *mod*."""
-        if mod in exports_cache:
-            return exports_cache[mod]
-        exports_cache[mod] = {}  # break cycles
-
-        import_map: dict[str, str] = {}
-        wc_mods: list[str] = []
-        explicit: frozenset[str] | None = None
-        dynamic: list[str] = []
-        implicit: set[str] = set()
-        tco: set[str] = set()  # @type_check_only decorated names
-
-        for syms in module_data.get(mod, {}).values():
-            import_map.update(syms.imports)
-            wc_mods.extend(syms.imports_wildcard)
-            if syms.exports_explicit is not None:
-                explicit = syms.exports_explicit
-            dynamic.extend(syms.exports_explicit_dynamic)
-            implicit.update(syms.exports_implicit)
-            tco.update(syms.type_check_only)
-
-        local = module_locals.get(mod, {})
-
-        wc: dict[str, str] = {}
-        for wc_mod in wc_mods:
-            if wc_mod.split(".", 1)[0] in in_scope:
-                for name, origin in module_exports(wc_mod).items():
-                    wc.setdefault(name, origin)
-
-        if explicit is not None:
-            names = set(explicit)
-            for src in dynamic:
-                if (t := import_map.get(src, src)) in module_data:
-                    names |= module_exports(t).keys()
-        elif _is_public_module(mod):
-            names = {n for n in {*local, *implicit} if analyze.is_public_name(n)}
-        else:
-            names = {
-                n
-                for n in {*local, *import_map}
-                if n != "*" and analyze.is_public_name(n)
-            }
-
-        names -= _MODULE_DUNDERS
-
-        # Exclude @type_check_only symbols unless explicitly in __all__
-        if tco:
-            names -= tco if explicit is None else tco - explicit
-
-        result: dict[str, str] = {}
-        for name in names:
-            if name in local:
-                result[name] = local[name]
-            elif name in wc:
-                result[name] = wc[name]
-            elif target := import_map.get(name):
-                result[name] = resolve_origin(target)
-            else:
-                result[name] = f"{mod}.{name}"
-
-        exports_cache[mod] = result
-        return result
-
-    public: dict[str, _SymbolEntry] = {}
-    for mod, entries in module_data.items():
-        if not _is_public_module(mod):
-            continue
-        if package_name is not None and mod.split(".", 1)[0] != package_name:
-            continue
-        first_path = next(iter(entries))
-        for name, origin in module_exports(mod).items():
-            if origin in module_data:
-                if not trace_origins:
-                    # keep submodule re-exports as EXTERNAL for merge input
-                    public.setdefault(
-                        f"{mod}.{name}",
-                        (first_path, analyze.EXTERNAL, None, None),
-                    )
-                continue
-            if origin in all_local:
-                if trace_origins:
-                    public.setdefault(origin, all_local[origin])
-                else:
-                    origin_path, type_, ls, le = all_local[origin]
-                    public.setdefault(f"{mod}.{name}", (origin_path, type_, ls, le))
-            else:
-                type_ = (
-                    analyze.EXTERNAL
-                    if origin.split(".", 1)[0] not in in_scope
-                    else analyze.UNTYPED
-                )
-                public.setdefault(f"{mod}.{name}", (first_path, type_, None, None))
-
-    result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
-    for fqn, (path, type_, line_start, line_end) in public.items():
-        result[path].append(
-            analyze.Symbol(fqn, type_, line_start=line_start, line_end=line_end),
-        )
-
-    type_ignores: dict[anyio.Path, _IgnoreComments] = {}
-    for entries in module_data.values():
-        for path, syms in entries.items():
-            if syms.ignore_comments:
-                type_ignores[path] = type_ignores.get(path, ()) + syms.ignore_comments
-
-    elapsed = time.perf_counter() - t0
-    _logger.info("collect_public_symbols: %.2fs", elapsed)
-
-    # restrict to target package so get_py_typed sees the package root
-    if package_name is not None:
-        filtered_sources = list(
-            chain.from_iterable(
-                ps
-                for m, ps in module_paths.items()
-                if m.split(".", 1)[0] == package_name
-            ),
-        )
-    else:
-        filtered_sources = list(chain.from_iterable(module_paths.values()))
-
-    return PublicSymbols(
-        symbols=dict(result),
-        type_ignores=type_ignores,
-        py_typed=await get_py_typed(filtered_sources or source_list),
-    )
-
-
-def merge_stubs_overlay(
-    original: _PathMap[_SymbolSequence],
-    stubs: _PathMap[_SymbolSequence],
-) -> _PathMap[_SymbolSequence]:
-    """Merge a stubs-only package overlay with original package symbols.
-
-    Both *original* and *stubs* must be produced by `collect_public_symbols`
-    with `trace_origins=False` so that symbol FQNs are public import names
-    and paths point to the public module file (not origin files).
-
-    Stubs types take priority. Symbols absent from stubs but whose module is
-    covered have their annotations stripped while preserving structural kind and
-    original path/line numbers. Symbols in uncovered modules keep their original
-    types (the type-checker falls back to the `.py`).
-    """
-
-    stubs_flat: dict[str, _SymbolEntry] = {}
-    stubs_mod_path: dict[str, anyio.Path] = {}
-    for path, syms in stubs.items():
-        for s in syms:
-            stubs_flat.setdefault(s.name, (path, s.type_, s.line_start, s.line_end))
-            stubs_mod_path.setdefault(s.name.rsplit(".", 1)[0], path)
-
-    stubs_modules = frozenset(stubs_mod_path)
-
-    merged = dict(stubs_flat)
-
-    for path, symbols in original.items():
-        for sym in symbols:
-            if sym.name not in merged:
-                if sym.name.rsplit(".", 1)[0] in stubs_modules:
-                    # absent from stubs; strip annotations but keep original location
-                    ty = sym.type_.to_unknown()
-                    merged[sym.name] = path, ty, sym.line_start, sym.line_end
-                else:
-                    sympath, ty = path, sym.type_
-                    merged[sym.name] = sympath, ty, sym.line_start, sym.line_end
-
-    result: defaultdict[anyio.Path, list[analyze.Symbol]] = defaultdict(list)
-    for fqn, (path, type_, line_start, line_end) in merged.items():
-        result[path].append(
-            analyze.Symbol(fqn, type_, line_start=line_start, line_end=line_end),
-        )
-
-    return dict(result)

@@ -33,7 +33,7 @@ if TYPE_CHECKING:
 
 type _PackageReports = list[PackageReport]
 
-ROOT: Final = anyio.Path(__file__).parent.parent.parent
+ROOT: Final[anyio.Path] = anyio.Path(__file__).parent.parent.parent
 _SITE_DIR: Final = ROOT / "_site"
 _SITE_SHA: Final = _SITE_DIR / ".preview_sha"
 _REPORTS_DIR: Final = _SITE_DIR / ".reports"

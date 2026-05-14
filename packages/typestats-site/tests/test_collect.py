@@ -11,7 +11,7 @@ import httpx
 import pytest
 
 from typestats.projects import Project
-from typestats.report import SCHEMA_VERSION
+from typestats.schema import SCHEMA_VERSION
 from typestats_site.collect import clean_data, collect_all, collect_project
 
 if TYPE_CHECKING:

@@ -12,7 +12,8 @@ import httpx
 
 from typestats._type import StrPath
 from typestats.projects import Project, load_projects
-from typestats.report import SCHEMA_VERSION, PackageReport
+from typestats.report import FromPathOptions, PackageReport
+from typestats.schema import SCHEMA_VERSION
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from ._http import retry_client
@@ -176,19 +177,23 @@ async def collect_project(  # noqa: PLR0913
                 base_name,
                 base_sp,
                 str(version),
-                stubs_path=sp,
-                project=project.name,
-                base_version=base_ver_str,
-                exclude=project.exclude,
-                pypi=PypiInfo.from_file_detail(file_detail),
+                FromPathOptions(
+                    stubs_path=sp,
+                    project=project.name,
+                    base_version=base_ver_str,
+                    exclude=project.exclude,
+                    pypi=PypiInfo.from_file_detail(file_detail),
+                ),
             )
         else:
             report = await PackageReport.from_path(
                 project.name,
                 sp,
                 str(version),
-                exclude=project.exclude,
-                pypi=PypiInfo.from_file_detail(file_detail),
+                FromPathOptions(
+                    exclude=project.exclude,
+                    pypi=PypiInfo.from_file_detail(file_detail),
+                ),
             )
 
         json_bytes = report.model_dump_json(indent=2).encode()
@@ -229,23 +234,25 @@ async def collect_all(
                 await _remove_tree(child)
 
     written: list[anyio.Path] = []
+    limiter = anyio.CapacityLimiter(8)
     async with anyio.TemporaryDirectory() as tmp, retry_client() as client:
         work_dir = anyio.Path(tmp)
 
         async def _collect(project: "Project") -> None:
-            try:
-                written.extend(
-                    await collect_project(
-                        project,
-                        client,
-                        data_dir,
-                        work_dir,
-                        backfill_since=backfill_since,
-                        backfill_limit=backfill_limit,
-                    ),
-                )
-            except Exception:
-                _logger.exception("  %s - failed, skipping", project.name)
+            async with limiter:
+                try:
+                    written.extend(
+                        await collect_project(
+                            project,
+                            client,
+                            data_dir,
+                            work_dir,
+                            backfill_since=backfill_since,
+                            backfill_limit=backfill_limit,
+                        ),
+                    )
+                except Exception:
+                    _logger.exception("  %s - failed, skipping", project.name)
 
         async with anyio.create_task_group() as tg:
             for project in projects:
