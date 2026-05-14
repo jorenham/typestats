@@ -4,7 +4,6 @@ import asyncio
 import functools
 import itertools
 import json
-import logging
 import sys
 import tomllib
 from collections.abc import Sequence
@@ -25,8 +24,6 @@ from .report import (
 __all__ = "check", "report"
 
 type _LeafReport = AttrReport | FunctionReport | PropertyReport
-
-_logger = logging.getLogger(__name__)
 
 
 async def _read_project(root: anyio.Path) -> tuple[str, str]:
