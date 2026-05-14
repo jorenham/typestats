@@ -1,4 +1,3 @@
-import contextlib
 from typing import Final
 
 import anyio
@@ -17,6 +16,10 @@ __all__ = (
 # Use 3.13 instead of the host Python to maximize wheel availability and
 # avoid slow source builds or installation failures.
 PYTHON_VERSION: Final = "3.13"
+
+# Serialize concurrent install_to_venv calls for the same venv path so two
+# tasks (e.g. a stubs project and its base project) don't race on `uv venv`.
+_venv_locks: Final[dict[str, anyio.Lock]] = {}
 
 
 async def create_venv(path: StrPath, /) -> anyio.Path:
@@ -56,12 +59,12 @@ async def install_to_venv(
     """Create a venv, install *project*, and return the `site-packages` path."""
     venv_path = anyio.Path(work_dir) / f"{project}-{version}"
 
-    with contextlib.suppress(FileNotFoundError, StopAsyncIteration):
+    lock = _venv_locks.setdefault(str(venv_path), anyio.Lock())
+    async with lock:
+        if not await venv_path.is_dir():
+            python = await create_venv(venv_path)
+            await install(python, project, version)
         return await site_packages_dir(venv_path)
-
-    python = await create_venv(venv_path)
-    await install(python, project, str(version))
-    return await site_packages_dir(venv_path)
 
 
 async def site_packages_dir(venv: StrPath, /) -> anyio.Path:

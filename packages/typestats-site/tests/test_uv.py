@@ -153,3 +153,36 @@ class TestInstallToVenv:
 
         assert result == anyio.Path(sp)
         mock.assert_not_awaited()
+
+    async def test_concurrent_calls_serialize(
+        self,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        """Concurrent calls for the same venv must not race on `uv venv`."""
+        venv = tmp_path / "mypkg-1.0.0"
+        sp = venv / "lib" / "python3.12" / "site-packages"
+
+        def create_dirs(
+            *_args: object,
+            **_kwargs: object,
+        ) -> subprocess.CompletedProcess[bytes]:
+            sp.mkdir(parents=True, exist_ok=True)
+            return subprocess.CompletedProcess(args=[], returncode=0)
+
+        mock = AsyncMock(side_effect=create_dirs)
+        monkeypatch.setattr("anyio.run_process", mock)
+
+        results: list[anyio.Path] = []
+
+        async def call() -> None:
+            results.append(await install_to_venv(tmp_path, "mypkg", "1.0.0"))
+
+        async with anyio.create_task_group() as tg:
+            for _ in range(4):
+                tg.start_soon(call)
+
+        assert results == [anyio.Path(sp)] * 4
+        # Only one task should have run create_venv + install (2 subprocess
+        # calls); the rest reuse the already-created site-packages dir.
+        assert mock.await_count == 2
