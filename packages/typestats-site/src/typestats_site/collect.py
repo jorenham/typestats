@@ -234,23 +234,25 @@ async def collect_all(
                 await _remove_tree(child)
 
     written: list[anyio.Path] = []
+    limiter = anyio.CapacityLimiter(8)
     async with anyio.TemporaryDirectory() as tmp, retry_client() as client:
         work_dir = anyio.Path(tmp)
 
         async def _collect(project: "Project") -> None:
-            try:
-                written.extend(
-                    await collect_project(
-                        project,
-                        client,
-                        data_dir,
-                        work_dir,
-                        backfill_since=backfill_since,
-                        backfill_limit=backfill_limit,
-                    ),
-                )
-            except Exception:
-                _logger.exception("  %s - failed, skipping", project.name)
+            async with limiter:
+                try:
+                    written.extend(
+                        await collect_project(
+                            project,
+                            client,
+                            data_dir,
+                            work_dir,
+                            backfill_since=backfill_since,
+                            backfill_limit=backfill_limit,
+                        ),
+                    )
+                except Exception:
+                    _logger.exception("  %s - failed, skipping", project.name)
 
         async with anyio.create_task_group() as tg:
             for project in projects:
