@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.5",
+  "schema_version": "1.0",
   "package": "aiosqlite",
   "version": "0.22.0",
   "base_version": null,
@@ -68,13 +68,12 @@
   },
   "module_reports": [
     {
-      "path": "aiosqlite/__init__.py",
+      "path": "aiosqlite/tests/perf.py",
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "aiosqlite.sqlite_version",
-          "line_start": null,
-          "line_end": null,
+          "name": "TEST_DB",
+          "line_start": 17,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -82,9 +81,8 @@
         },
         {
           "kind": "attr",
-          "name": "aiosqlite.IntegrityError",
-          "line_start": null,
-          "line_end": null,
+          "name": "TARGET",
+          "line_start": 18,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -92,144 +90,561 @@
         },
         {
           "kind": "attr",
-          "name": "aiosqlite.paramstyle",
-          "line_start": null,
-          "line_end": null,
+          "name": "RESULTS",
+          "line_start": 19,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
         },
         {
-          "kind": "attr",
-          "name": "aiosqlite.NotSupportedError",
-          "line_start": null,
-          "line_end": null,
+          "kind": "function",
+          "name": "timed",
+          "line_start": 22,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
-          "kind": "attr",
-          "name": "aiosqlite.Error",
-          "line_start": null,
-          "line_end": null,
+          "kind": "class",
+          "name": "PerfTest",
+          "line_start": 65,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PerfTest.setUpClass",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.tearDownClass",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_connection_memory",
+              "line_start": 80,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_connection_file",
+              "line_start": 87,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_atomics",
+              "line_start": 105,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_inserts",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_inserts_authorized",
+              "line_start": 128,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_insert_ids",
+              "line_start": 145,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_insert_macro_ids",
+              "line_start": 158,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_select",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_select_macro",
+              "line_start": 182,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PerfTest.test_iterable_cursor_perf",
+              "line_start": 194,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.register_converter",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.Warning",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.Row",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.register_adapter",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.DatabaseError",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.OperationalError",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.ProgrammingError",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "aiosqlite.sqlite_version_info",
-          "line_start": null,
-          "line_end": null,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 12,
+          "n_methods": 12,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "aiosqlite",
+      "name": "aiosqlite.tests.perf",
       "names": [
-        "aiosqlite.DatabaseError",
-        "aiosqlite.Error",
-        "aiosqlite.IntegrityError",
-        "aiosqlite.NotSupportedError",
-        "aiosqlite.OperationalError",
-        "aiosqlite.ProgrammingError",
-        "aiosqlite.Row",
-        "aiosqlite.Warning",
-        "aiosqlite.paramstyle",
-        "aiosqlite.register_adapter",
-        "aiosqlite.register_converter",
-        "aiosqlite.sqlite_version",
-        "aiosqlite.sqlite_version_info"
+        "PerfTest",
+        "RESULTS",
+        "TARGET",
+        "TEST_DB",
+        "timed"
       ],
-      "n_typable": 0,
+      "n_typable": 15,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_overloads": 0,
+      "n_untyped": 15,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 12,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "aiosqlite/tests/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "setup_logger",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "aiosqlite.tests.helpers",
+      "names": [
+        "setup_logger"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
       "n_function_params": 0,
       "n_methods": 0,
-      "n_method_overloads": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_attrs": 13,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "aiosqlite/tests/smoke.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SmokeTest",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SmokeTest.setUpClass",
+              "line_start": 19,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.setUp",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_connection_await",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_connection_context",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_connection_locations",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_multiple_connections",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_multiple_queries",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_iterable_cursor",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_multi_loop_usage",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_context_cursor",
+              "line_start": 162,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_cursor_return_self",
+              "line_start": 183,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_connection_properties",
+              "line_start": 204,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_fetch_all",
+              "line_start": 259,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_enable_load_extension",
+              "line_start": 274,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_set_progress_handler",
+              "line_start": 288,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_create_function",
+              "line_start": 299,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_create_function_deterministic",
+              "line_start": 320,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_set_trace_callback",
+              "line_start": 336,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_set_authorizer_deny_drops",
+              "line_start": 348,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_set_authorizer_exception_propagation",
+              "line_start": 373,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_connect_error",
+              "line_start": 384,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_connect_base_exception",
+              "line_start": 393,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_iterdump",
+              "line_start": 410,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_cursor_on_closed_connection",
+              "line_start": 429,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_cursor_on_closed_connection_loop",
+              "line_start": 439,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_close_blocking_until_transaction_queue_empty",
+              "line_start": 454,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_close_twice",
+              "line_start": 465,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_backup_aiosqlite",
+              "line_start": 473,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_backup_sqlite",
+              "line_start": 496,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SmokeTest.test_emits_warning_when_left_open",
+              "line_start": 514,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SmokeTest.db",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 31,
+          "n_methods": 30,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "aiosqlite.tests.smoke",
+      "names": [
+        "SmokeTest"
+      ],
+      "n_typable": 31,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 31,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 30,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -238,171 +653,125 @@
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "aiosqlite.cursor.Cursor",
+          "name": "Cursor",
           "line_start": 12,
-          "line_end": 12,
           "methods": [
             {
               "kind": "function",
               "name": "Cursor.__init__",
               "line_start": 13,
-              "line_end": 13,
-              "n_typed": 3,
+              "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_typable": 2,
+              "n_params": 1
             },
             {
               "kind": "function",
               "name": "Cursor.__aiter__",
               "line_start": 18,
-              "line_end": 18,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Cursor.execute",
               "line_start": 34,
-              "line_end": 36,
               "n_typed": 3,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_params": 2
             },
             {
               "kind": "function",
               "name": "Cursor.executemany",
               "line_start": 43,
-              "line_end": 45,
               "n_typed": 3,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
+              "n_params": 2
             },
             {
               "kind": "function",
               "name": "Cursor.executescript",
               "line_start": 50,
-              "line_end": 50,
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_params": 1
             },
             {
               "kind": "function",
               "name": "Cursor.fetchone",
               "line_start": 55,
-              "line_end": 55,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Cursor.fetchmany",
               "line_start": 59,
-              "line_end": 59,
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_params": 1
             },
             {
               "kind": "function",
               "name": "Cursor.fetchall",
               "line_start": 66,
-              "line_end": 66,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Cursor.close",
               "line_start": 70,
-              "line_end": 70,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Cursor.__aenter__",
               "line_start": 106,
-              "line_end": 106,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Cursor.__aexit__",
               "line_start": 109,
-              "line_end": 109,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             }
           ],
           "properties": [
             {
               "kind": "property",
               "name": "Cursor.rowcount",
-              "line_start": 75,
-              "line_end": 75,
+              "line_start": 74,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -411,8 +780,7 @@
             {
               "kind": "property",
               "name": "Cursor.lastrowid",
-              "line_start": 79,
-              "line_end": 79,
+              "line_start": 78,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -421,8 +789,7 @@
             {
               "kind": "property",
               "name": "Cursor.arraysize",
-              "line_start": 83,
-              "line_end": 83,
+              "line_start": 82,
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -431,8 +798,7 @@
             {
               "kind": "property",
               "name": "Cursor.description",
-              "line_start": 91,
-              "line_end": 91,
+              "line_start": 90,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -441,8 +807,7 @@
             {
               "kind": "property",
               "name": "Cursor.row_factory",
-              "line_start": 95,
-              "line_end": 95,
+              "line_start": 94,
               "n_typed": 2,
               "n_any": 0,
               "n_untyped": 0,
@@ -451,8 +816,7 @@
             {
               "kind": "property",
               "name": "Cursor.connection",
-              "line_start": 103,
-              "line_end": 103,
+              "line_start": 102,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -464,23 +828,18 @@
               "kind": "attr",
               "name": "Cursor.iter_chunk_size",
               "line_start": 14,
-              "line_end": 14,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 28,
-          "n_typed": 25,
+          "n_typable": 27,
+          "n_typed": 24,
           "n_any": 0,
           "n_untyped": 3,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
           "n_methods": 11,
-          "n_method_overloads": 11,
-          "n_method_params": 8,
+          "n_method_params": 7,
           "n_attrs": 1,
           "n_properties": 6
         }
@@ -488,455 +847,19 @@
       "type_ignores": [],
       "name": "aiosqlite.cursor",
       "names": [
-        "aiosqlite.cursor.Cursor"
+        "Cursor"
       ],
-      "n_typable": 28,
-      "n_typed": 25,
+      "n_typable": 27,
+      "n_typed": 24,
       "n_any": 0,
       "n_untyped": 3,
       "n_functions": 0,
-      "n_function_overloads": 0,
       "n_function_params": 0,
       "n_methods": 11,
-      "n_method_overloads": 11,
-      "n_method_params": 8,
+      "n_method_params": 7,
       "n_classes": 1,
       "n_attrs": 1,
       "n_properties": 6,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "aiosqlite/core.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "aiosqlite.core.Connection",
-          "line_start": 77,
-          "line_end": 77,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Connection.__init__",
-              "line_start": 78,
-              "line_end": 83,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Connection.__await__",
-              "line_start": 149,
-              "line_end": 149,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.__aenter__",
-              "line_start": 153,
-              "line_end": 153,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.__aexit__",
-              "line_start": 156,
-              "line_end": 156,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.cursor",
-              "line_start": 160,
-              "line_end": 160,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.commit",
-              "line_start": 164,
-              "line_end": 164,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.rollback",
-              "line_start": 168,
-              "line_end": 168,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.close",
-              "line_start": 172,
-              "line_end": 172,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.execute",
-              "line_start": 188,
-              "line_end": 190,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Connection.execute_insert",
-              "line_start": 198,
-              "line_end": 200,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Connection.execute_fetchall",
-              "line_start": 207,
-              "line_end": 209,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Connection.executemany",
-              "line_start": 216,
-              "line_end": 218,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Connection.executescript",
-              "line_start": 224,
-              "line_end": 224,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Connection.interrupt",
-              "line_start": 229,
-              "line_end": 229,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.create_function",
-              "line_start": 233,
-              "line_end": 235,
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 5,
-              "n_params": 4,
-              "n_function_overloads": 1,
-              "n_function_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Connection.enable_load_extension",
-              "line_start": 287,
-              "line_end": 287,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Connection.load_extension",
-              "line_start": 290,
-              "line_end": 290,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Connection.set_progress_handler",
-              "line_start": 293,
-              "line_end": 295,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 3,
-              "n_params": 2,
-              "n_function_overloads": 1,
-              "n_function_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Connection.set_trace_callback",
-              "line_start": 298,
-              "line_end": 298,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Connection.set_authorizer",
-              "line_start": 301,
-              "line_end": 303,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Connection.iterdump",
-              "line_start": 345,
-              "line_end": 345,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Connection.backup",
-              "line_start": 387,
-              "line_end": 395,
-              "n_typed": 6,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 6,
-              "n_params": 5,
-              "n_function_overloads": 1,
-              "n_function_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "Connection.__del__",
-              "line_start": 413,
-              "line_end": 413,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_overloads": 1,
-              "n_typable": 0,
-              "n_params": -1,
-              "n_function_overloads": 1,
-              "n_function_params": -1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Connection.in_transaction",
-              "line_start": 256,
-              "line_end": 256,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Connection.isolation_level",
-              "line_start": 260,
-              "line_end": 260,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Connection.row_factory",
-              "line_start": 268,
-              "line_end": 268,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Connection.text_factory",
-              "line_start": 276,
-              "line_end": 276,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Connection.total_changes",
-              "line_start": 284,
-              "line_end": 284,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 57,
-          "n_typed": 56,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
-          "n_methods": 23,
-          "n_method_overloads": 23,
-          "n_method_params": 26,
-          "n_attrs": 0,
-          "n_properties": 5
-        },
-        {
-          "kind": "function",
-          "name": "aiosqlite.core.connect",
-          "line_start": 432,
-          "line_end": 438,
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 1,
-          "n_overloads": 1,
-          "n_typable": 5,
-          "n_params": 4,
-          "n_function_overloads": 1,
-          "n_function_params": 4
-        }
-      ],
-      "type_ignores": [],
-      "name": "aiosqlite.core",
-      "names": [
-        "aiosqlite.core.Connection",
-        "aiosqlite.core.connect"
-      ],
-      "n_typable": 62,
-      "n_typed": 59,
-      "n_any": 1,
-      "n_untyped": 2,
-      "n_functions": 1,
-      "n_function_overloads": 1,
-      "n_function_params": 4,
-      "n_methods": 23,
-      "n_method_overloads": 23,
-      "n_method_params": 26,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 5,
       "n_type_ignores": 0
     },
     {
@@ -944,9 +867,8 @@
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "aiosqlite.__version__.__version__",
+          "name": "__version__",
           "line_start": 7,
-          "line_end": 7,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
@@ -956,20 +878,18 @@
       "type_ignores": [],
       "name": "aiosqlite.__version__",
       "names": [
-        "aiosqlite.__version__.__version__"
+        "__version__"
       ],
       "n_typable": 0,
       "n_typed": 0,
       "n_any": 0,
       "n_untyped": 0,
       "n_functions": 0,
-      "n_function_overloads": 0,
       "n_function_params": 0,
       "n_methods": 0,
-      "n_method_overloads": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_attrs": 1,
+      "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -977,108 +897,89 @@
       "path": "aiosqlite/context.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "contextmanager",
+          "line_start": 49,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
           "kind": "class",
-          "name": "aiosqlite.context.Result",
+          "name": "Result",
           "line_start": 15,
-          "line_end": 15,
           "methods": [
             {
               "kind": "function",
               "name": "Result.__init__",
               "line_start": 18,
-              "line_end": 18,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Result.send",
               "line_start": 22,
-              "line_end": 22,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 1,
-              "n_overloads": 1,
               "n_typable": 2,
-              "n_params": 1,
-              "n_function_overloads": 1,
-              "n_function_params": 1
+              "n_params": 1
             },
             {
               "kind": "function",
               "name": "Result.throw",
               "line_start": 25,
-              "line_end": 25,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 3,
-              "n_overloads": 1,
               "n_typable": 4,
-              "n_params": 3,
-              "n_function_overloads": 1,
-              "n_function_params": 3
+              "n_params": 3
             },
             {
               "kind": "function",
               "name": "Result.close",
               "line_start": 34,
-              "line_end": 34,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Result.__await__",
               "line_start": 37,
-              "line_end": 37,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Result.__aenter__",
               "line_start": 40,
-              "line_end": 40,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             },
             {
               "kind": "function",
               "name": "Result.__aexit__",
               "line_start": 44,
-              "line_end": 44,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
-              "n_overloads": 1,
               "n_typable": 1,
-              "n_params": 0,
-              "n_function_overloads": 1,
-              "n_function_params": 0
+              "n_params": 0
             }
           ],
           "properties": [],
@@ -1087,67 +988,389 @@
           "n_typed": 7,
           "n_any": 0,
           "n_untyped": 4,
-          "n_functions": 0,
-          "n_function_overloads": 0,
-          "n_function_params": 0,
           "n_methods": 7,
-          "n_method_overloads": 7,
           "n_method_params": 4,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "function",
-          "name": "aiosqlite.context.contextmanager",
-          "line_start": 49,
-          "line_end": 52,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_overloads": 1,
-          "n_typable": 2,
-          "n_params": 1,
-          "n_function_overloads": 1,
-          "n_function_params": 1
         }
       ],
       "type_ignores": [],
       "name": "aiosqlite.context",
       "names": [
-        "aiosqlite.context.Result",
-        "aiosqlite.context.contextmanager"
+        "Result",
+        "contextmanager"
       ],
       "n_typable": 13,
       "n_typed": 9,
       "n_any": 0,
       "n_untyped": 4,
       "n_functions": 1,
-      "n_function_overloads": 1,
       "n_function_params": 1,
       "n_methods": 7,
-      "n_method_overloads": 7,
       "n_method_params": 4,
       "n_classes": 1,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
+    },
+    {
+      "path": "aiosqlite/core.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "connect",
+          "line_start": 432,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "Connection",
+          "line_start": 77,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Connection.__init__",
+              "line_start": 78,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Connection.__await__",
+              "line_start": 149,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.__aenter__",
+              "line_start": 153,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.__aexit__",
+              "line_start": 156,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.cursor",
+              "line_start": 159,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.commit",
+              "line_start": 164,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.rollback",
+              "line_start": 168,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.close",
+              "line_start": 172,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.execute",
+              "line_start": 187,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Connection.execute_insert",
+              "line_start": 197,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Connection.execute_fetchall",
+              "line_start": 206,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Connection.executemany",
+              "line_start": 215,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Connection.executescript",
+              "line_start": 223,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Connection.interrupt",
+              "line_start": 229,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.create_function",
+              "line_start": 233,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Connection.enable_load_extension",
+              "line_start": 287,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Connection.load_extension",
+              "line_start": 290,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Connection.set_progress_handler",
+              "line_start": 293,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Connection.set_trace_callback",
+              "line_start": 298,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Connection.set_authorizer",
+              "line_start": 301,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Connection.iterdump",
+              "line_start": 345,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Connection.backup",
+              "line_start": 387,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Connection.__del__",
+              "line_start": 413,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Connection.in_transaction",
+              "line_start": 255,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Connection.isolation_level",
+              "line_start": 259,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Connection.row_factory",
+              "line_start": 267,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Connection.text_factory",
+              "line_start": 275,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Connection.total_changes",
+              "line_start": 283,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 56,
+          "n_typed": 55,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 23,
+          "n_method_params": 25,
+          "n_attrs": 0,
+          "n_properties": 5
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "aiosqlite.core",
+      "names": [
+        "Connection",
+        "connect"
+      ],
+      "n_typable": 61,
+      "n_typed": 58,
+      "n_any": 1,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 4,
+      "n_methods": 23,
+      "n_method_params": 25,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 5,
+      "n_type_ignores": 2
     }
   ],
   "typecheckers": {},
-  "n_modules": 5,
-  "n_typable": 103,
-  "n_typed": 93,
+  "n_modules": 7,
+  "n_typable": 148,
+  "n_typed": 91,
   "n_any": 1,
-  "n_untyped": 9,
-  "n_functions": 2,
-  "n_function_overloads": 2,
-  "n_function_params": 5,
-  "n_methods": 41,
-  "n_method_params": 38,
-  "n_method_overloads": 41,
-  "n_classes": 3,
-  "n_attrs": 15,
+  "n_untyped": 56,
+  "n_functions": 4,
+  "n_function_params": 7,
+  "n_methods": 83,
+  "n_method_params": 36,
+  "n_classes": 5,
+  "n_attrs": 2,
   "n_properties": 11,
-  "type_ignores": [],
-  "n_type_ignores": 0
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 2
 }
