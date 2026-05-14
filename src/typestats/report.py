@@ -691,9 +691,17 @@ class PackageReport(BaseModel):
             else await _scan_for_packages(cwd)
         )
 
+        # Anchor pyrefly's module-name resolution when no config is reachable upward.
+        search_paths = tuple(dict.fromkeys(str(Path(p).parent) for p in run_paths))
+
         common = (
             discover_configs(cwd),
-            run_pyrefly_report(*run_paths, cwd=str(cwd), project_excludes=opts.exclude),
+            run_pyrefly_report(
+                *run_paths,
+                cwd=str(cwd),
+                project_excludes=opts.exclude,
+                search_paths=search_paths,
+            ),
             read_pkg_metadata(cwd, dist_name=display or None),
         )
         if stubs_obj is None:

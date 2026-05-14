@@ -40,12 +40,15 @@ async def run_pyrefly_report(
     *paths: str,
     cwd: str | None = None,
     project_excludes: Sequence[str] = (),
+    search_paths: Sequence[str] = (),
 ) -> list[_ModuleReport]:
     """Run `pyrefly report` and return its `module_reports`.
 
     `paths` are forwarded as positional args; pyrefly auto-discovers when empty.
     `cwd` lets pyrefly resolve project structure from a different directory.
     `project_excludes` globs are merged into pyrefly's `--project-excludes`.
+    `search_paths` anchor module-name resolution when no pyrefly config is nearby
+    (e.g. when reporting on packages installed under a site-packages directory).
     """
     args = [
         sys.executable,
@@ -56,6 +59,7 @@ async def run_pyrefly_report(
         "--public-only",
     ]
     args.extend(f"--project-excludes={pat}" for pat in project_excludes)
+    args.extend(f"--search-path={p}" for p in search_paths)
     args.extend(paths)
 
     result = await run(*args, cwd=cwd)
