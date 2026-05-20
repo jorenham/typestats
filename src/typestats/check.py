@@ -26,10 +26,10 @@ __all__ = "check", "report"
 type _LeafReport = AttrReport | FunctionReport | PropertyReport
 
 
-async def _read_project(root: anyio.Path) -> tuple[str, str]:
-    """Read `(name, version)` from `pyproject.toml` in `root` or `("", "")`."""
+async def _read_project() -> tuple[str, str]:
+    """Read `(name, version)` from `./pyproject.toml` or `("", "")`."""
     try:
-        text = await (root / "pyproject.toml").read_text()
+        text = await anyio.Path("pyproject.toml").read_text()
     except FileNotFoundError:
         return "", ""
     proj = tomllib.loads(text).get("project", {})
@@ -144,27 +144,21 @@ def _format_list(
     return "\n".join(lines)
 
 
-async def _resolve_root(paths: tuple[str, ...]) -> tuple[anyio.Path, tuple[str, ...]]:
-    """Single-dir arg becomes the root (pyrefly auto-discovers); else CWD."""
-    if len(paths) == 1:
-        p = anyio.Path(paths[0])
-        if await p.is_dir():
-            return p, ()
-    return anyio.Path("."), paths
+async def _build_pkg_report(
+    paths: tuple[str, ...], exclude: Sequence[str]
+) -> PackageReport:
+    pkg, version = await _read_project()
+    return await PackageReport.from_path(
+        pkg,
+        anyio.Path("."),
+        version,
+        FromPathOptions(exclude=exclude, pyrefly_paths=paths),
+    )
 
 
 async def report(*paths: str, exclude: Sequence[str] = ()) -> None:
     """Write a JSON type-coverage report to stdout."""
-    root, pyrefly_paths = await _resolve_root(paths)
-    pkg, version = await _read_project(root)
-
-    pkg_report = await PackageReport.from_path(
-        pkg,
-        root,
-        version,
-        FromPathOptions(exclude=exclude, pyrefly_paths=pyrefly_paths),
-    )
-
+    pkg_report = await _build_pkg_report(paths, exclude)
     sys.stdout.write(pkg_report.model_dump_json(indent=2))
     sys.stdout.write("\n")
 
@@ -178,15 +172,7 @@ async def check(
     exclude: Sequence[str] = (),
 ) -> None:
     """Print type-annotation coverage for the project."""
-    root, pyrefly_paths = await _resolve_root(paths)
-    pkg, version = await _read_project(root)
-
-    pkg_report = await PackageReport.from_path(
-        pkg,
-        root,
-        version,
-        FromPathOptions(exclude=exclude, pyrefly_paths=pyrefly_paths),
-    )
+    pkg_report = await _build_pkg_report(paths, exclude)
 
     cov = pkg_report.coverage(strict) * 100
     w = len(str(pkg_report.n_typable))

@@ -9,6 +9,7 @@ from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from . import _pypi, _uv
 from ._report import PypiInfo
+from ._uv import discover_packages
 
 __all__ = ("from_project",)
 
@@ -70,6 +71,7 @@ async def from_project(
                 base_version=str(base_ver),
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(dist_file),
+                pyrefly_paths=await discover_packages(sp),
             ),
         )
 
@@ -80,5 +82,6 @@ async def from_project(
         FromPathOptions(
             exclude=project.exclude,
             pypi=PypiInfo.from_file_detail(dist_file),
+            pyrefly_paths=await discover_packages(sp),
         ),
     )

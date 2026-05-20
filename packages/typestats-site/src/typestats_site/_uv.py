@@ -8,6 +8,7 @@ from typestats.subprocess import run as _subprocess_run
 __all__ = (
     "PYTHON_VERSION",
     "create_venv",
+    "discover_packages",
     "install",
     "install_to_venv",
     "site_packages_dir",
@@ -65,6 +66,24 @@ async def install_to_venv(
             python = await create_venv(venv_path)
             await install(python, project, version)
         return await site_packages_dir(venv_path)
+
+
+async def _is_top_level_module(p: anyio.Path) -> bool:
+    """`p` is a package dir or a single-file module with an identifier name."""
+    if await p.is_dir():
+        return await (p / "__init__.py").exists() or await (p / "__init__.pyi").exists()
+    return p.suffix in {".py", ".pyi"} and p.stem.isidentifier()
+
+
+async def discover_packages(site_packages: StrPath, /) -> tuple[str, ...]:
+    """Return absolute paths of top-level packages/modules in *site_packages*.
+
+    Includes both package dirs (with `__init__.py[i]`) and single-file modules
+    (e.g. `six.py`). Falls back to *site_packages* itself when nothing matches.
+    """
+    sp = await anyio.Path(site_packages).resolve()
+    found = [str(p) async for p in sp.iterdir() if await _is_top_level_module(p)]
+    return tuple(found) or (str(sp),)
 
 
 async def site_packages_dir(venv: StrPath, /) -> anyio.Path:

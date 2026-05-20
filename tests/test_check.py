@@ -18,6 +18,7 @@ from typestats.check import (
     check,
     report,
 )
+from typestats.index import PyTyped
 from typestats.report import FromPathOptions, PackageReport
 
 _OUTPUT_RE = re.compile(
@@ -53,7 +54,7 @@ def _cache_expensive_calls() -> Any:  # pyright: ignore[reportUnusedFunction]
             )
         return _from_path_cache[pkg]
 
-    async def mock_read_project(_root: anyio.Path) -> tuple[str, str]:  # noqa: RUF029
+    async def mock_read_project() -> tuple[str, str]:  # noqa: RUF029
         return "pkg", "0.0.0"
 
     with (
@@ -88,6 +89,52 @@ class TestCheckInstalled:
         assert data["package"] == "pkg"
         assert isinstance(data["module_reports"], list)
         assert data["n_typable"] > 0
+
+
+class TestPathForwarding:
+    """Regression: positional CLI paths are forwarded to pyrefly verbatim."""
+
+    pytestmark = pytest.mark.anyio
+
+    @pytest.fixture
+    def captured_opts(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> "list[FromPathOptions]":
+        captured: list[FromPathOptions] = []
+        stub = PackageReport(
+            package="stub",
+            version="0",
+            py_typed=PyTyped.NO,
+            module_reports=(),
+        )
+
+        async def capture(  # noqa: RUF029
+            _pkg: str, _path: Any, _version: str, opts: FromPathOptions, /
+        ) -> PackageReport:
+            captured.append(opts)
+            return stub
+
+        monkeypatch.setattr(PackageReport, "from_path", capture)
+        return captured
+
+    async def test_check_forwards_paths(
+        self, captured_opts: "list[FromPathOptions]"
+    ) -> None:
+        await check("zmq", "other_pkg")
+        assert captured_opts[-1].pyrefly_paths == ("zmq", "other_pkg")
+
+    async def test_report_forwards_paths(
+        self, captured_opts: "list[FromPathOptions]"
+    ) -> None:
+        await report("mylib")
+        assert captured_opts[-1].pyrefly_paths == ("mylib",)
+
+    async def test_no_args_forwards_empty(
+        self, captured_opts: "list[FromPathOptions]"
+    ) -> None:
+        await check()
+        assert captured_opts[-1].pyrefly_paths == ()
 
 
 class TestFailUnderFrom:

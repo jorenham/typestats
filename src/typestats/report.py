@@ -33,12 +33,19 @@ from pydantic import (
 
 from ._pyrefly_report import _ModuleReport, _SymbolReport, run_pyrefly_report
 from ._type import StrPath
-from .index import PyTyped, get_py_typed
+from .index import EXCLUDED_DIR_NAMES, EXCLUDED_FILE_NAMES, PyTyped, get_py_typed
 from .metadata import read_pkg_metadata
 from .schema import SCHEMA_VERSION
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName, discover_configs
 
 _logger: Final = logging.getLogger(__name__)
+
+_DEFAULT_PYREFLY_EXCLUDES: Final[tuple[str, ...]] = tuple(
+    chain(
+        (f"**/{name}/**" for name in sorted(EXCLUDED_DIR_NAMES)),
+        (f"**/{name}" for name in sorted(EXCLUDED_FILE_NAMES)),
+    ),
+)
 
 __all__ = (
     "AnySymbolReport",
@@ -324,25 +331,6 @@ async def _has_stubs_dir(root: anyio.Path) -> bool:
     return False
 
 
-async def _scan_for_packages(root: anyio.Path) -> tuple[str, ...]:
-    """Find child packages under *root* (preferring `root/src/`)."""
-    for search_root in (root / "src", root):
-        if not await search_root.is_dir():
-            continue
-        found = [
-            str(d)
-            async for d in search_root.iterdir()
-            if await d.is_dir()
-            and (
-                await (d / "__init__.py").exists()
-                or await (d / "__init__.pyi").exists()
-            )
-        ]
-        if found:
-            return tuple(found)
-    return (str(root),)
-
-
 def _module_path(name: str, abs_path: str) -> str:
     """Repo-relative module path derived from pyrefly's FQN, with `-stubs` restored."""
     p = Path(abs_path)
@@ -518,7 +506,8 @@ class FromPathOptions:
     `base_version`: stubs' base-package version, recorded alongside *version*.
     `exclude`: glob patterns forwarded to pyrefly's `--project-excludes`.
     `pypi`: distribution metadata to embed in the report.
-    `pyrefly_paths`: explicit paths for `pyrefly report`; auto-discovered when None.
+    `pyrefly_paths`: positional paths forwarded to `pyrefly report`; empty
+        triggers pyrefly's project-checking mode.
     """
 
     stubs_path: StrPath | None = None
@@ -526,7 +515,7 @@ class FromPathOptions:
     base_version: str | None = None
     exclude: Sequence[str] = ()
     pypi: "PypiInfo | None" = None
-    pyrefly_paths: tuple[str, ...] | None = None
+    pyrefly_paths: tuple[str, ...] = ()
 
 
 _DEFAULT_FROM_PATH_OPTIONS: Final = FromPathOptions()
@@ -678,18 +667,15 @@ class PackageReport(BaseModel):
 
         if opts.stubs_path is not None:
             path_obj, stubs_obj = await asyncio.gather(
-                anyio.Path(path).resolve(), anyio.Path(opts.stubs_path).resolve()
+                anyio.Path(path).resolve(),
+                anyio.Path(opts.stubs_path).resolve(),
             )
         else:
             path_obj = await anyio.Path(path).resolve()
             stubs_obj = None
 
         cwd = stubs_obj or path_obj
-        run_paths = (
-            opts.pyrefly_paths
-            if opts.pyrefly_paths is not None
-            else await _scan_for_packages(cwd)
-        )
+        run_paths = opts.pyrefly_paths
 
         # Anchor pyrefly's module-name resolution when no config is reachable upward.
         search_paths = tuple(dict.fromkeys(str(Path(p).parent) for p in run_paths))
@@ -699,7 +685,7 @@ class PackageReport(BaseModel):
             run_pyrefly_report(
                 *run_paths,
                 cwd=str(cwd),
-                project_excludes=opts.exclude,
+                project_excludes=(*_DEFAULT_PYREFLY_EXCLUDES, *opts.exclude),
                 search_paths=search_paths,
             ),
             read_pkg_metadata(cwd, dist_name=display or None),
