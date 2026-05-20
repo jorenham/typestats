@@ -69,12 +69,11 @@ async def install_to_venv(
 
 
 async def discover_packages(site_packages: StrPath, /) -> tuple[str, ...]:
-    """Return paths of top-level packages in *site_packages*.
+    """Return absolute paths of top-level packages in *site_packages*.
 
-    A package is a directory with an `__init__.py` or `__init__.pyi`. Falls
-    back to *site_packages* itself when no top-level package is found.
+    Falls back to *site_packages* itself when no package is found.
     """
-    sp = anyio.Path(site_packages)
+    sp = await anyio.Path(site_packages).resolve()
     found = [
         str(d)
         async for d in sp.iterdir()
