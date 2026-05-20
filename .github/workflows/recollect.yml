@@ -1,0 +1,57 @@
+name: Recollect
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  recollect:
+    name: recollect
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    permissions:
+      contents: write # push collected data to the data branch
+    environment: reports
+    steps:
+      - name: checkout main
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: checkout data
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: data
+          path: _data
+          persist-credentials: true
+
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          python-version: "3.14t"
+
+      - name: recollect type-coverage data
+        id: collect
+        run: >-
+          uv run -m typestats_site collect
+          --data-dir _data/reports
+          --clean
+          --backfill-limit 1000
+
+      - name: Commit and push new data
+        if: always() && steps.collect.outcome != 'cancelled'
+        uses: EndBug/add-and-commit@290ea2c423ad77ca9c62ae0f5b224379612c0321 # v10.0.0
+        with:
+          add: reports/
+          commit: --signoff
+          cwd: _data
+          default_author: github_actions
+          message: "Recollect type-coverage data"
+
+      - name: Fail if recollect failed
+        if: always() && steps.collect.outcome == 'failure'
+        run: exit 1
