@@ -21,6 +21,7 @@ jobs:
       - name: checkout main
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          ref: main
           persist-credentials: false
 
       - name: checkout data
@@ -35,7 +36,6 @@ jobs:
           python-version: "3.14t"
 
       - name: recollect type-coverage data
-        id: collect
         run: >-
           uv run -m typestats_site collect
           --data-dir _data/reports
