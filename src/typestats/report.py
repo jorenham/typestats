@@ -33,12 +33,19 @@ from pydantic import (
 
 from ._pyrefly_report import _ModuleReport, _SymbolReport, run_pyrefly_report
 from ._type import StrPath
-from .index import PyTyped, get_py_typed
+from .index import _EXCLUDED_DIR_NAMES, _EXCLUDED_FILE_NAMES, PyTyped, get_py_typed
 from .metadata import read_pkg_metadata
 from .schema import SCHEMA_VERSION
 from .typecheckers import TypeCheckerConfigDict, TypeCheckerName, discover_configs
 
 _logger: Final = logging.getLogger(__name__)
+
+_DEFAULT_PYREFLY_EXCLUDES: Final[tuple[str, ...]] = tuple(
+    chain(
+        (f"**/{name}/**" for name in sorted(_EXCLUDED_DIR_NAMES)),
+        (f"**/{name}" for name in sorted(_EXCLUDED_FILE_NAMES)),
+    ),
+)
 
 __all__ = (
     "AnySymbolReport",
@@ -678,7 +685,7 @@ class PackageReport(BaseModel):
             run_pyrefly_report(
                 *run_paths,
                 cwd=str(cwd),
-                project_excludes=opts.exclude,
+                project_excludes=(*_DEFAULT_PYREFLY_EXCLUDES, *opts.exclude),
                 search_paths=search_paths,
             ),
             read_pkg_metadata(cwd, dist_name=display or None),
