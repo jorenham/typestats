@@ -1,6 +1,8 @@
+import shutil
 from typing import Final
 
 import anyio
+import anyio.to_thread
 
 from typestats._type import StrPath
 from typestats.subprocess import run as _subprocess_run
@@ -11,6 +13,7 @@ __all__ = (
     "discover_packages",
     "install",
     "install_to_venv",
+    "remove_venv",
     "site_packages_dir",
 )
 
@@ -51,6 +54,10 @@ async def install(python: StrPath, project: str, version: str, /) -> None:
     )
 
 
+def _venv_path(work_dir: StrPath, project: str, version: str, /) -> anyio.Path:
+    return anyio.Path(work_dir) / f"{project}-{version}"
+
+
 async def install_to_venv(
     work_dir: StrPath,
     project: str,
@@ -58,7 +65,7 @@ async def install_to_venv(
     /,
 ) -> anyio.Path:
     """Create a venv, install *project*, and return the `site-packages` path."""
-    venv_path = anyio.Path(work_dir) / f"{project}-{version}"
+    venv_path = _venv_path(work_dir, project, version)
 
     lock = _venv_locks.setdefault(str(venv_path), anyio.Lock())
     async with lock:
@@ -66,6 +73,16 @@ async def install_to_venv(
             python = await create_venv(venv_path)
             await install(python, project, version)
         return await site_packages_dir(venv_path)
+
+
+async def remove_venv(work_dir: StrPath, project: str, version: str, /) -> None:
+    """Remove a venv previously created by `install_to_venv` and free its lock."""
+    venv_path = _venv_path(work_dir, project, version)
+    _venv_locks.pop(str(venv_path), None)
+    if await venv_path.is_dir():
+        await anyio.to_thread.run_sync(
+            lambda: shutil.rmtree(venv_path, ignore_errors=True),
+        )
 
 
 async def _is_top_level_module(p: anyio.Path) -> bool:

@@ -1,14 +1,20 @@
 """Batch collection of type-coverage data for curated projects."""
 
 import contextlib
+import dataclasses
 import datetime as dt
+import functools
 import json
 import logging
+import shutil
 import subprocess
-from typing import TYPE_CHECKING, Final
+from pathlib import Path
+from typing import Final
 
 import anyio
+import anyio.to_thread
 import httpx
+from packaging.version import Version
 
 from typestats._type import StrPath
 from typestats.projects import Project, load_projects
@@ -24,10 +30,7 @@ from ._pypi import (
     versions_since,
 )
 from ._report import PypiInfo
-from ._uv import discover_packages, install_to_venv
-
-if TYPE_CHECKING:
-    from packaging.version import Version
+from ._uv import discover_packages, install_to_venv, remove_venv
 
 __all__ = "clean_data", "collect_all"
 
@@ -35,16 +38,6 @@ __all__ = "clean_data", "collect_all"
 from typestats_site import PROJECTS_PATH
 
 _logger: Final = logging.getLogger(__name__)
-
-
-async def _remove_tree(path: anyio.Path, /) -> None:
-    """Recursively remove a directory tree."""
-    async for child in path.iterdir():
-        if await child.is_dir():
-            await _remove_tree(child)
-        else:
-            await child.unlink()
-    await path.rmdir()
 
 
 async def clean_data(data_dir: anyio.Path, /) -> int:
@@ -75,15 +68,104 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
     return removed
 
 
-async def _is_current_schema(path: anyio.Path) -> bool:
+def _is_current_schema(path: Path) -> bool:
     try:
-        data = json.loads(await path.read_bytes())
+        data = json.loads(path.read_bytes())
     except (json.JSONDecodeError, OSError):
         return False
     else:
         raw = str(data.get("schema_version", "0.0"))
         have = tuple(int(x) for x in raw.split("."))
         return have >= SCHEMA_VERSION
+
+
+@dataclasses.dataclass
+class _ProjectCollector:
+    project: Project
+    client: httpx.AsyncClient
+    work_dir: anyio.Path
+    eligible: dict[Version, FileDetail]
+    base_name: str | None
+    base_available: dict[Version, FileDetail] | None
+    base_install_cache: dict[str, anyio.Path] = dataclasses.field(default_factory=dict)
+
+    def log(self, level: int, version: Version, msg: str, /, *args: object) -> None:
+        _logger.log(level, f"  %s %s - {msg}", self.project.name, version, *args)  # noqa: G004
+
+    async def collect_version(self, version: Version, out: Path) -> bool:
+        project = self.project
+
+        try:
+            sp = await install_to_venv(self.work_dir, project.name, str(version))
+        except subprocess.CalledProcessError:
+            self.log(logging.WARNING, version, "install failed, skipping")
+            return False
+
+        # detect *-stubs/ dirs not derivable from the project name
+        if self.base_name is None:
+            detected = await find_stubs_dir(sp)
+            if detected is not None:
+                self.base_name = detected
+                self.base_available = await available_versions(self.client, detected)
+
+        pypi = PypiInfo.from_file_detail(self.eligible[version])
+        pyrefly_paths = await discover_packages(sp)
+
+        if base_name := self.base_name:
+            assert self.base_available is not None
+
+            base_ver = await resolve_base_version(
+                project.name,
+                base_name,
+                self.base_available,
+                version,
+                sp,
+            )
+            if base_ver is None:
+                self.log(
+                    logging.WARNING,
+                    version,
+                    "no matching %s version, skipping",
+                    base_name,
+                )
+                return False
+
+            base_ver_str = str(base_ver)
+            base_sp = self.base_install_cache.get(base_ver_str)
+            if base_sp is None:
+                base_sp = await install_to_venv(self.work_dir, base_name, base_ver_str)
+                self.base_install_cache[base_ver_str] = base_sp
+
+            report = await PackageReport.from_path(
+                base_name,
+                base_sp,
+                str(version),
+                FromPathOptions(
+                    stubs_path=sp,
+                    project=project.name,
+                    base_version=base_ver_str,
+                    exclude=project.exclude,
+                    pypi=pypi,
+                    pyrefly_paths=pyrefly_paths,
+                ),
+            )
+        else:
+            report = await PackageReport.from_path(
+                project.name,
+                sp,
+                str(version),
+                FromPathOptions(
+                    exclude=project.exclude,
+                    pypi=pypi,
+                    pyrefly_paths=pyrefly_paths,
+                ),
+            )
+
+        json_bytes = report.model_dump_json(indent=2).encode()
+        out.write_bytes(json_bytes)  # noqa: ASYNC240
+        self.log(logging.INFO, version, "wrote %s", out)
+
+        return True
 
 
 async def collect_project(  # noqa: PLR0913
@@ -95,7 +177,7 @@ async def collect_project(  # noqa: PLR0913
     *,
     backfill_since: dt.date,
     backfill_limit: int,
-) -> list[anyio.Path]:
+) -> list[Path]:
     """Collect type-coverage data for all eligible versions of a project.
 
     Collects all versions uploaded on or after `backfill_since` that haven't been
@@ -110,99 +192,36 @@ async def collect_project(  # noqa: PLR0913
         limit=backfill_limit,
     )
     base_name = stubs_base_name(project.name)
+    base_available = await available_versions(client, base_name) if base_name else None
+    collector = _ProjectCollector(
+        project=project,
+        client=client,
+        work_dir=work_dir,
+        eligible=eligible,
+        base_name=base_name,
+        base_available=base_available,
+    )
 
-    base_available: dict[Version, FileDetail] | None = None
-    if base_name is not None:
-        base_available = await available_versions(client, base_name)
+    project_data_dir = Path(data_dir, project.name)
+    project_data_dir.mkdir(parents=True, exist_ok=True)  # noqa: ASYNC240
 
-    base_install_cache: dict[str, anyio.Path] = {}
-    written: list[anyio.Path] = []
+    written: list[Path] = []
     for version in sorted(eligible):
-        out = data_dir / project.name / f"{version}.json"
-        if await out.exists():
-            if await _is_current_schema(out):
-                _logger.info(
-                    "  %s %s - already collected, skipping",
-                    project.name,
-                    version,
-                )
+        out = project_data_dir / f"{version}.json"
+        if out.is_file():
+            if _is_current_schema(out):
+                collector.log(logging.INFO, version, "already collected, skipping")
                 continue
+            collector.log(logging.INFO, version, "outdated schema, re-collecting")
+            out.unlink()
 
-            _logger.info(
-                "  %s %s - outdated schema, re-collecting",
-                project.name,
-                version,
-            )
-            await out.unlink()
-
-        _logger.info("  %s %s - analyzing...", project.name, version)
-        file_detail = eligible[version]
+        collector.log(logging.INFO, version, "analyzing...")
 
         try:
-            sp = await install_to_venv(work_dir, project.name, str(version))
-        except subprocess.CalledProcessError:
-            _logger.warning("  %s %s - install failed, skipping", project.name, version)
-            continue
-
-        # detect *-stubs/ dirs not derivable from the project name
-        if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
-            base_name = detected
-            base_available = await available_versions(client, base_name)
-
-        if base_name is not None:
-            assert base_available is not None
-            base_ver = await resolve_base_version(
-                project.name,
-                base_name,
-                base_available,
-                version,
-                sp,
-            )
-            if base_ver is None:
-                _logger.warning(
-                    "  %s %s - no matching %s version, skipping",
-                    project.name,
-                    version,
-                    base_name,
-                )
-                continue
-
-            base_ver_str = str(base_ver)
-            if base_ver_str in base_install_cache:
-                base_sp = base_install_cache[base_ver_str]
-            else:
-                base_sp = await install_to_venv(work_dir, base_name, base_ver_str)
-                base_install_cache[base_ver_str] = base_sp
-            report = await PackageReport.from_path(
-                base_name,
-                base_sp,
-                str(version),
-                FromPathOptions(
-                    stubs_path=sp,
-                    project=project.name,
-                    base_version=base_ver_str,
-                    exclude=project.exclude,
-                    pypi=PypiInfo.from_file_detail(file_detail),
-                    pyrefly_paths=await discover_packages(sp),
-                ),
-            )
-        else:
-            report = await PackageReport.from_path(
-                project.name,
-                sp,
-                str(version),
-                FromPathOptions(
-                    exclude=project.exclude,
-                    pypi=PypiInfo.from_file_detail(file_detail),
-                    pyrefly_paths=await discover_packages(sp),
-                ),
-            )
-
-        json_bytes = report.model_dump_json(indent=2).encode()
-        await out.parent.mkdir(parents=True, exist_ok=True)
-        await out.write_bytes(json_bytes)
-        _logger.info("  %s %s - wrote %s", project.name, version, out)
-        written.append(out)
+            if await collector.collect_version(version, out):
+                written.append(out)
+        finally:
+            await remove_venv(work_dir, project.name, str(version))
 
     return written
 
@@ -214,7 +233,7 @@ async def collect_all(
     *,
     backfill_since: dt.date,
     backfill_limit: int,
-) -> list[anyio.Path]:
+) -> list[Path]:
     """Analyze every project in `projects_path` and write JSON reports.
 
     Collects all versions since `backfill_since` that haven't been collected yet,
@@ -233,28 +252,34 @@ async def collect_all(
         async for child in data_dir.iterdir():
             if await child.is_dir() and child.name not in project_names:
                 _logger.info("Removing unlisted project data: %s", child.name)
-                await _remove_tree(child)
+                await anyio.to_thread.run_sync(functools.partial(shutil.rmtree, child))
 
-    written: list[anyio.Path] = []
+    written: list[Path] = []
     limiter = anyio.CapacityLimiter(8)
     async with anyio.TemporaryDirectory() as tmp, retry_client() as client:
         work_dir = anyio.Path(tmp)
 
         async def _collect(project: "Project") -> None:
             async with limiter:
+                # Per-project subdir: no cross-project venv sharing, safe to reap.
+                project_work_dir = work_dir / project.name
+                await project_work_dir.mkdir()
                 try:
                     written.extend(
                         await collect_project(
                             project,
                             client,
                             data_dir,
-                            work_dir,
+                            project_work_dir,
                             backfill_since=backfill_since,
                             backfill_limit=backfill_limit,
                         ),
                     )
                 except Exception:
                     _logger.exception("  %s - failed, skipping", project.name)
+                finally:
+                    # sync because an `await` here can be cancelled mid-cleanup.
+                    shutil.rmtree(project_work_dir, ignore_errors=True)
 
         async with anyio.create_task_group() as tg:
             for project in projects:

@@ -83,10 +83,10 @@ class TestCollectProject:
 
         assert len(results) == 1
         result = results[0]
-        assert await result.exists()
-        assert result == data_dir / name / f"{version}.json"
+        assert result.exists()
+        assert result == Path(data_dir, name, f"{version}.json")
 
-        data = json.loads(await result.read_text())
+        data = json.loads(result.read_text())
         assert data["package"] == name
         assert data["version"] == version
 
@@ -234,8 +234,8 @@ class TestCollectAll:
         )
 
         assert len(written) == 1
-        assert await written[0].exists()
-        data = json.loads(await written[0].read_text())
+        assert written[0].exists()
+        data = json.loads(written[0].read_text())
         assert data["package"] == name
 
     async def test_skips_already_collected(
@@ -487,9 +487,9 @@ class TestBackfillCutoff:
 
         assert len(results) == 1
         result = results[0]
-        assert result == data_dir / stubs_name / f"{stubs_version}.json"
+        assert result == Path(data_dir, stubs_name, f"{stubs_version}.json")
 
-        data = json.loads(await result.read_text())
+        data = json.loads(result.read_text())
         assert data["package"] == stubs_name
         assert data["version"] == stubs_version
         assert data["base_version"] == base_version
@@ -559,7 +559,7 @@ class TestBackfillCutoff:
             )
 
         assert len(results) == 1
-        data = json.loads(await results[0].read_text())
+        data = json.loads(results[0].read_text())
         assert data["package"] == stubs_lite_name
         assert data["stubs_only"] == "yes (third party)"
 
