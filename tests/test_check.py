@@ -53,7 +53,7 @@ def _cache_expensive_calls() -> Any:  # pyright: ignore[reportUnusedFunction]
             )
         return _from_path_cache[pkg]
 
-    async def mock_read_project(_root: anyio.Path) -> tuple[str, str]:  # noqa: RUF029
+    async def mock_read_project() -> tuple[str, str]:  # noqa: RUF029
         return "pkg", "0.0.0"
 
     with (

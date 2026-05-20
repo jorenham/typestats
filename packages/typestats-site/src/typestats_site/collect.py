@@ -24,7 +24,7 @@ from ._pypi import (
     versions_since,
 )
 from ._report import PypiInfo
-from ._uv import install_to_venv
+from ._uv import discover_packages, install_to_venv
 
 if TYPE_CHECKING:
     from packaging.version import Version
@@ -183,6 +183,7 @@ async def collect_project(  # noqa: PLR0913
                     base_version=base_ver_str,
                     exclude=project.exclude,
                     pypi=PypiInfo.from_file_detail(file_detail),
+                    pyrefly_paths=await discover_packages(sp),
                 ),
             )
         else:
@@ -193,6 +194,7 @@ async def collect_project(  # noqa: PLR0913
                 FromPathOptions(
                     exclude=project.exclude,
                     pypi=PypiInfo.from_file_detail(file_detail),
+                    pyrefly_paths=await discover_packages(sp),
                 ),
             )
 

@@ -8,6 +8,7 @@ from typestats.subprocess import run as _subprocess_run
 __all__ = (
     "PYTHON_VERSION",
     "create_venv",
+    "discover_packages",
     "install",
     "install_to_venv",
     "site_packages_dir",
@@ -65,6 +66,22 @@ async def install_to_venv(
             python = await create_venv(venv_path)
             await install(python, project, version)
         return await site_packages_dir(venv_path)
+
+
+async def discover_packages(site_packages: StrPath, /) -> tuple[str, ...]:
+    """Return paths of top-level packages in *site_packages*.
+
+    A package is a directory with an `__init__.py` or `__init__.pyi`. Falls
+    back to *site_packages* itself when no top-level package is found.
+    """
+    sp = anyio.Path(site_packages)
+    found = [
+        str(d)
+        async for d in sp.iterdir()
+        if await d.is_dir()
+        and (await (d / "__init__.py").exists() or await (d / "__init__.pyi").exists())
+    ]
+    return tuple(found) or (str(sp),)
 
 
 async def site_packages_dir(venv: StrPath, /) -> anyio.Path:
