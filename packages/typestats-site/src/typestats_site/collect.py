@@ -30,7 +30,7 @@ from ._pypi import (
     versions_since,
 )
 from ._report import PypiInfo
-from ._uv import discover_packages, install_to_venv, remove_venv
+from ._uv import clear_venv_locks, discover_packages, install_to_venv, remove_venv
 
 __all__ = "clean_data", "collect_all"
 
@@ -279,6 +279,7 @@ async def collect_all(
                     _logger.exception("  %s - failed, skipping", project.name)
                 finally:
                     # sync because an `await` here can be cancelled mid-cleanup.
+                    clear_venv_locks(project_work_dir)
                     shutil.rmtree(project_work_dir, ignore_errors=True)
 
         async with anyio.create_task_group() as tg:

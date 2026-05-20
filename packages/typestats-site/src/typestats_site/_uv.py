@@ -1,3 +1,4 @@
+import os
 import shutil
 from typing import Final
 
@@ -9,6 +10,7 @@ from typestats.subprocess import run as _subprocess_run
 
 __all__ = (
     "PYTHON_VERSION",
+    "clear_venv_locks",
     "create_venv",
     "discover_packages",
     "install",
@@ -83,6 +85,13 @@ async def remove_venv(work_dir: StrPath, project: str, version: str, /) -> None:
         await anyio.to_thread.run_sync(
             lambda: shutil.rmtree(venv_path, ignore_errors=True),
         )
+
+
+def clear_venv_locks(work_dir: StrPath, /) -> None:
+    """Drop `_venv_locks` entries for any venv under `work_dir`."""
+    prefix = os.fspath(work_dir) + os.sep
+    for key in [k for k in _venv_locks if k.startswith(prefix)]:
+        del _venv_locks[key]
 
 
 async def _is_top_level_module(p: anyio.Path) -> bool:
