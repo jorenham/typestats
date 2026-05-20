@@ -43,7 +43,6 @@ jobs:
           --backfill-limit 1000
 
       - name: Commit and push new data
-        if: always() && steps.collect.outcome != 'cancelled'
         uses: EndBug/add-and-commit@290ea2c423ad77ca9c62ae0f5b224379612c0321 # v10.0.0
         with:
           add: reports/
@@ -51,7 +50,3 @@ jobs:
           cwd: _data
           default_author: github_actions
           message: "Recollect type-coverage data"
-
-      - name: Fail if recollect failed
-        if: always() && steps.collect.outcome == 'failure'
-        run: exit 1
