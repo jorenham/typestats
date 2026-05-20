@@ -93,131 +93,178 @@
   },
   "module_reports": [
     {
-      "path": "jsonpickle/version.py",
+      "path": "jsonpickle/errors.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "metadata",
-          "line_start": 4,
+          "kind": "class",
+          "name": "ClassNotFoundError",
+          "line_start": 6,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ClassNotFoundError.__init__",
+              "line_start": 7,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "__version__",
-          "line_start": 16,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "jsonpickle.version",
+      "name": "jsonpickle.errors",
       "names": [
-        "__version__",
-        "metadata"
+        "ClassNotFoundError"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "jsonpickle/compat.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "PY_MAJOR",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "class_types",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "iterator_types",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "string_types",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "numeric_types",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ustr",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "iterator",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "jsonpickle.compat",
+      "names": [
+        "PY_MAJOR",
+        "class_types",
+        "iterator",
+        "iterator_types",
+        "numeric_types",
+        "string_types",
+        "ustr"
       ],
       "n_typable": 2,
       "n_typed": 0,
       "n_any": 0,
       "n_untyped": 2,
-      "n_functions": 0,
-      "n_function_params": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_attrs": 2,
+      "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
     {
-      "path": "jsonpickle/handlers.py",
+      "path": "jsonpickle/pickler.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "registry",
-          "line_start": 85,
+          "kind": "function",
+          "name": "encode",
+          "line_start": 18,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "register",
-          "line_start": 86,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "unregister",
-          "line_start": 87,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "get",
-          "line_start": 88,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 19,
+          "n_typable": 19,
+          "n_params": 18
         },
         {
           "kind": "class",
-          "name": "ArrayHandler",
-          "line_start": 144,
+          "name": "Pickler",
+          "line_start": 195,
           "methods": [
             {
               "kind": "function",
-              "name": "ArrayHandler.flatten",
-              "line_start": 147,
+              "name": "Pickler.__init__",
+              "line_start": 196,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
+              "n_untyped": 14,
+              "n_typable": 14,
+              "n_params": 13
             },
             {
               "kind": "function",
-              "name": "ArrayHandler.restore",
-              "line_start": 152,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "BaseHandler",
-          "line_start": 91,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BaseHandler.__init__",
-              "line_start": 92,
+              "name": "Pickler.reset",
+              "line_start": 277,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -226,75 +273,229 @@
             },
             {
               "kind": "function",
-              "name": "BaseHandler.flatten",
-              "line_start": 102,
+              "name": "Pickler.flatten",
+              "line_start": 334,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
               "n_typable": 3,
               "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BaseHandler.restore",
-              "line_start": 113,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BaseHandler.handles",
-              "line_start": 120,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BaseHandler.__call__",
-              "line_start": 134,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "BaseHandler.context",
-              "line_start": 100,
+              "name": "Pickler.unpicklable",
+              "line_start": 213,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.make_refs",
+              "line_start": 214,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.backend",
+              "line_start": 215,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.keys",
+              "line_start": 216,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.warn",
+              "line_start": 217,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.numeric_keys",
+              "line_start": 218,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.use_base85",
+              "line_start": 219,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.handle_readonly",
+              "line_start": 235,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.fail_safe",
+              "line_start": 245,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Pickler.include_properties",
+              "line_start": 246,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 11,
+          "n_typable": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 28,
+          "n_methods": 3,
+          "n_method_params": 15,
+          "n_attrs": 10,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "jsonpickle.pickler",
+      "names": [
+        "Pickler",
+        "encode"
+      ],
+      "n_typable": 47,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 47,
+      "n_functions": 1,
+      "n_function_params": 18,
+      "n_methods": 3,
+      "n_method_params": 15,
+      "n_classes": 1,
+      "n_attrs": 10,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "jsonpickle/unpickler.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "decode",
+          "line_start": 15,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 11,
-          "n_methods": 5,
-          "n_method_params": 5,
-          "n_attrs": 1,
-          "n_properties": 0
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "loadclass",
+          "line_start": 181,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "has_tag",
+          "line_start": 225,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "getargs",
+          "line_start": 242,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "make_blank_classic",
+          "line_start": 274,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "loadrepr",
+          "line_start": 285,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_tag_dict",
+          "line_start": 332,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "class",
-          "name": "CloneFactory",
-          "line_start": 234,
+          "name": "Unpickler",
+          "line_start": 354,
           "methods": [
             {
               "kind": "function",
-              "name": "CloneFactory.__init__",
-              "line_start": 237,
+              "name": "Unpickler.__init__",
+              "line_start": 355,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Unpickler.reset",
+              "line_start": 373,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -303,223 +504,8 @@
             },
             {
               "kind": "function",
-              "name": "CloneFactory.__call__",
-              "line_start": 240,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "CloneFactory.__repr__",
-              "line_start": 244,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CloneFactory.exemplar",
-              "line_start": 238,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_methods": 3,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "DatetimeHandler",
-          "line_start": 163,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DatetimeHandler.flatten",
-              "line_start": 172,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "DatetimeHandler.restore",
-              "line_start": 187,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "LockHandler",
-          "line_start": 262,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LockHandler.flatten",
-              "line_start": 265,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "LockHandler.restore",
-              "line_start": 269,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "QueueHandler",
-          "line_start": 216,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "QueueHandler.flatten",
-              "line_start": 224,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "QueueHandler.restore",
-              "line_start": 227,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "RegexHandler",
-          "line_start": 202,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RegexHandler.flatten",
-              "line_start": 205,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "RegexHandler.restore",
-              "line_start": 209,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Registry",
-          "line_start": 23,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Registry.__init__",
-              "line_start": 24,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "Registry.get",
-              "line_start": 28,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Registry.register",
-              "line_start": 46,
+              "name": "Unpickler.restore",
+              "line_start": 404,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -528,8 +514,8 @@
             },
             {
               "kind": "function",
-              "name": "Registry.unregister",
-              "line_start": 79,
+              "name": "Unpickler.register_classes",
+              "line_start": 425,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -538,25 +524,304 @@
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 9,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Unpickler.backend",
+              "line_start": 364,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpickler.keys",
+              "line_start": 365,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpickler.safe",
+              "line_start": 366,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpickler.v1_decode",
+              "line_start": 367,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpickler.on_missing",
+              "line_start": 368,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Unpickler.handle_readonly",
+              "line_start": 369,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 9,
+          "n_untyped": 19,
           "n_methods": 4,
-          "n_method_params": 5,
-          "n_attrs": 0,
+          "n_method_params": 9,
+          "n_attrs": 6,
           "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "jsonpickle.unpickler",
+      "names": [
+        "Unpickler",
+        "decode",
+        "getargs",
+        "has_tag",
+        "has_tag_dict",
+        "loadclass",
+        "loadrepr",
+        "make_blank_classic"
+      ],
+      "n_typable": 46,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 46,
+      "n_functions": 7,
+      "n_function_params": 20,
+      "n_methods": 4,
+      "n_method_params": 9,
+      "n_classes": 1,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "jsonpickle/tags_pd.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "np_dtypes",
+          "line_start": 219,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "pd_dtypes",
+          "line_start": 225,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TYPE_MAP",
+          "line_start": 232,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "REVERSE_TYPE_MAP",
+          "line_start": 235,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "split_letters_numbers_brackets",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_smallest_unique_substrings",
+          "line_start": 35,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "all_subclasses",
+          "line_start": 118,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_all_numpy_dtype_strings",
+          "line_start": 127,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_all_pandas_dtype_strings",
+          "line_start": 198,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "jsonpickle.tags_pd",
+      "names": [
+        "REVERSE_TYPE_MAP",
+        "TYPE_MAP",
+        "all_subclasses",
+        "get_all_numpy_dtype_strings",
+        "get_all_pandas_dtype_strings",
+        "get_smallest_unique_substrings",
+        "np_dtypes",
+        "pd_dtypes",
+        "split_letters_numbers_brackets"
+      ],
+      "n_typable": 12,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 5,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "jsonpickle/backend.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "json",
+          "line_start": 282,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
         },
         {
           "kind": "class",
-          "name": "TextIOHandler",
-          "line_start": 280,
+          "name": "JSONBackend",
+          "line_start": 1,
           "methods": [
             {
               "kind": "function",
-              "name": "TextIOHandler.flatten",
-              "line_start": 283,
+              "name": "JSONBackend.encode",
+              "line_start": 18,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.decode",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.__init__",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.enable_fallthrough",
+              "line_start": 108,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.load_backend",
+              "line_start": 133,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.remove_backend",
+              "line_start": 191,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.backend_encode",
+              "line_start": 202,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.backend_decode",
+              "line_start": 212,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -565,8 +830,48 @@
             },
             {
               "kind": "function",
-              "name": "TextIOHandler.restore",
-              "line_start": 286,
+              "name": "JSONBackend.set_preferred_backend",
+              "line_start": 217,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.set_encoder_options",
+              "line_start": 242,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.set_decoder_options",
+              "line_start": 263,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.dumps",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "JSONBackend.loads",
+              "line_start": 68,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -576,81 +881,32 @@
           ],
           "properties": [],
           "attrs": [],
-          "n_typable": 5,
+          "n_typable": 40,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "UUIDHandler",
-          "line_start": 248,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "UUIDHandler.flatten",
-              "line_start": 251,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "UUIDHandler.restore",
-              "line_start": 255,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_methods": 2,
-          "n_method_params": 3,
+          "n_untyped": 40,
+          "n_methods": 13,
+          "n_method_params": 27,
           "n_attrs": 0,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "jsonpickle.handlers",
+      "name": "jsonpickle.backend",
       "names": [
-        "ArrayHandler",
-        "BaseHandler",
-        "CloneFactory",
-        "DatetimeHandler",
-        "LockHandler",
-        "QueueHandler",
-        "RegexHandler",
-        "Registry",
-        "TextIOHandler",
-        "UUIDHandler",
-        "get",
-        "register",
-        "registry",
-        "unregister"
+        "JSONBackend",
+        "json"
       ],
-      "n_typable": 60,
+      "n_typable": 41,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 60,
+      "n_untyped": 41,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 26,
-      "n_method_params": 31,
-      "n_classes": 10,
-      "n_attrs": 3,
+      "n_methods": 13,
+      "n_method_params": 27,
+      "n_classes": 1,
+      "n_attrs": 1,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -906,322 +1162,43 @@
       "n_type_ignores": 0
     },
     {
-      "path": "jsonpickle/backend.py",
+      "path": "jsonpickle/version.py",
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "json",
-          "line_start": 282,
+          "name": "metadata",
+          "line_start": 4,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
           "n_typable": 1
         },
         {
-          "kind": "class",
-          "name": "JSONBackend",
-          "line_start": 1,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "JSONBackend.encode",
-              "line_start": 18,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.decode",
-              "line_start": 44,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.__init__",
-              "line_start": 70,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.enable_fallthrough",
-              "line_start": 108,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.load_backend",
-              "line_start": 133,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.remove_backend",
-              "line_start": 191,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.backend_encode",
-              "line_start": 202,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.backend_decode",
-              "line_start": 212,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.set_preferred_backend",
-              "line_start": 217,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.set_encoder_options",
-              "line_start": 242,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.set_decoder_options",
-              "line_start": 263,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.dumps",
-              "line_start": 42,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "JSONBackend.loads",
-              "line_start": 68,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 40,
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 16,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 40,
-          "n_methods": 13,
-          "n_method_params": 27,
-          "n_attrs": 0,
-          "n_properties": 0
+          "n_untyped": 1,
+          "n_typable": 1
         }
       ],
       "type_ignores": [],
-      "name": "jsonpickle.backend",
+      "name": "jsonpickle.version",
       "names": [
-        "JSONBackend",
-        "json"
-      ],
-      "n_typable": 41,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 41,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 13,
-      "n_method_params": 27,
-      "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "jsonpickle/compat.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "PY_MAJOR",
-          "line_start": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "class_types",
-          "line_start": 9,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "iterator_types",
-          "line_start": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "string_types",
-          "line_start": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "numeric_types",
-          "line_start": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "ustr",
-          "line_start": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "iterator",
-          "line_start": 17,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "jsonpickle.compat",
-      "names": [
-        "PY_MAJOR",
-        "class_types",
-        "iterator",
-        "iterator_types",
-        "numeric_types",
-        "string_types",
-        "ustr"
+        "__version__",
+        "metadata"
       ],
       "n_typable": 2,
       "n_typed": 0,
       "n_any": 0,
       "n_untyped": 2,
-      "n_functions": 1,
-      "n_function_params": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "jsonpickle/errors.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "ClassNotFoundError",
-          "line_start": 6,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ClassNotFoundError.__init__",
-              "line_start": 7,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 1,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_methods": 1,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "jsonpickle.errors",
-      "names": [
-        "ClassNotFoundError"
-      ],
-      "n_typable": 1,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 1,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 1,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 0,
+      "n_attrs": 2,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -1747,12 +1724,12 @@
       "n_type_ignores": 0
     },
     {
-      "path": "jsonpickle/tags_pd.py",
+      "path": "jsonpickle/handlers.py",
       "symbol_reports": [
         {
           "kind": "attr",
-          "name": "np_dtypes",
-          "line_start": 219,
+          "name": "registry",
+          "line_start": 85,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -1760,200 +1737,77 @@
         },
         {
           "kind": "attr",
-          "name": "pd_dtypes",
-          "line_start": 225,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "TYPE_MAP",
-          "line_start": 232,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "REVERSE_TYPE_MAP",
-          "line_start": 235,
+          "name": "register",
+          "line_start": 86,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 0
         },
         {
-          "kind": "function",
-          "name": "split_letters_numbers_brackets",
-          "line_start": 12,
+          "kind": "attr",
+          "name": "unregister",
+          "line_start": 87,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
-          "kind": "function",
-          "name": "get_smallest_unique_substrings",
-          "line_start": 35,
+          "kind": "attr",
+          "name": "get",
+          "line_start": 88,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "all_subclasses",
-          "line_start": 118,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_all_numpy_dtype_strings",
-          "line_start": 127,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "get_all_pandas_dtype_strings",
-          "line_start": 198,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "jsonpickle.tags_pd",
-      "names": [
-        "REVERSE_TYPE_MAP",
-        "TYPE_MAP",
-        "all_subclasses",
-        "get_all_numpy_dtype_strings",
-        "get_all_pandas_dtype_strings",
-        "get_smallest_unique_substrings",
-        "np_dtypes",
-        "pd_dtypes",
-        "split_letters_numbers_brackets"
-      ],
-      "n_typable": 12,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 12,
-      "n_functions": 5,
-      "n_function_params": 4,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 3,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "jsonpickle/unpickler.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "decode",
-          "line_start": 15,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_typable": 11,
-          "n_params": 10
-        },
-        {
-          "kind": "function",
-          "name": "loadclass",
-          "line_start": 181,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "has_tag",
-          "line_start": 225,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "getargs",
-          "line_start": 242,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "make_blank_classic",
-          "line_start": 274,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "loadrepr",
-          "line_start": 285,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "has_tag_dict",
-          "line_start": 332,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
+          "n_untyped": 0,
+          "n_typable": 0
         },
         {
           "kind": "class",
-          "name": "Unpickler",
-          "line_start": 354,
+          "name": "ArrayHandler",
+          "line_start": 144,
           "methods": [
             {
               "kind": "function",
-              "name": "Unpickler.__init__",
-              "line_start": 355,
+              "name": "ArrayHandler.flatten",
+              "line_start": 147,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 6,
-              "n_typable": 6,
-              "n_params": 5
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             },
             {
               "kind": "function",
-              "name": "Unpickler.reset",
-              "line_start": 373,
+              "name": "ArrayHandler.restore",
+              "line_start": 152,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "BaseHandler",
+          "line_start": 91,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseHandler.__init__",
+              "line_start": 92,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1962,18 +1816,38 @@
             },
             {
               "kind": "function",
-              "name": "Unpickler.restore",
-              "line_start": 404,
+              "name": "BaseHandler.flatten",
+              "line_start": 102,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             },
             {
               "kind": "function",
-              "name": "Unpickler.register_classes",
-              "line_start": 425,
+              "name": "BaseHandler.restore",
+              "line_start": 113,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHandler.handles",
+              "line_start": 120,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseHandler.__call__",
+              "line_start": 134,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1985,126 +1859,32 @@
           "attrs": [
             {
               "kind": "attr",
-              "name": "Unpickler.backend",
-              "line_start": 364,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpickler.keys",
-              "line_start": 365,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpickler.safe",
-              "line_start": 366,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpickler.v1_decode",
-              "line_start": 367,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpickler.on_missing",
-              "line_start": 368,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Unpickler.handle_readonly",
-              "line_start": 369,
+              "name": "BaseHandler.context",
+              "line_start": 100,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 19,
+          "n_typable": 11,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 19,
-          "n_methods": 4,
-          "n_method_params": 9,
-          "n_attrs": 6,
+          "n_untyped": 11,
+          "n_methods": 5,
+          "n_method_params": 5,
+          "n_attrs": 1,
           "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "jsonpickle.unpickler",
-      "names": [
-        "Unpickler",
-        "decode",
-        "getargs",
-        "has_tag",
-        "has_tag_dict",
-        "loadclass",
-        "loadrepr",
-        "make_blank_classic"
-      ],
-      "n_typable": 46,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 46,
-      "n_functions": 7,
-      "n_function_params": 20,
-      "n_methods": 4,
-      "n_method_params": 9,
-      "n_classes": 1,
-      "n_attrs": 6,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "jsonpickle/pickler.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "encode",
-          "line_start": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 19,
-          "n_typable": 19,
-          "n_params": 18
         },
         {
           "kind": "class",
-          "name": "Pickler",
-          "line_start": 195,
+          "name": "CloneFactory",
+          "line_start": 234,
           "methods": [
             {
               "kind": "function",
-              "name": "Pickler.__init__",
-              "line_start": 196,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 14,
-              "n_typable": 14,
-              "n_params": 13
-            },
-            {
-              "kind": "function",
-              "name": "Pickler.reset",
-              "line_start": 277,
+              "name": "CloneFactory.__init__",
+              "line_start": 237,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -2113,177 +1893,354 @@
             },
             {
               "kind": "function",
-              "name": "Pickler.flatten",
-              "line_start": 334,
+              "name": "CloneFactory.__call__",
+              "line_start": 240,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CloneFactory.__repr__",
+              "line_start": 244,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
             }
           ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "Pickler.unpicklable",
-              "line_start": 213,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.make_refs",
-              "line_start": 214,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.backend",
-              "line_start": 215,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.keys",
-              "line_start": 216,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.warn",
-              "line_start": 217,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.numeric_keys",
-              "line_start": 218,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.use_base85",
-              "line_start": 219,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.handle_readonly",
-              "line_start": 235,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.fail_safe",
-              "line_start": 245,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Pickler.include_properties",
-              "line_start": 246,
+              "name": "CloneFactory.exemplar",
+              "line_start": 238,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1
             }
           ],
-          "n_typable": 28,
+          "n_typable": 4,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 28,
+          "n_untyped": 4,
           "n_methods": 3,
-          "n_method_params": 15,
-          "n_attrs": 10,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DatetimeHandler",
+          "line_start": 163,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DatetimeHandler.flatten",
+              "line_start": 172,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DatetimeHandler.restore",
+              "line_start": 187,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LockHandler",
+          "line_start": 262,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LockHandler.flatten",
+              "line_start": 265,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LockHandler.restore",
+              "line_start": 269,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QueueHandler",
+          "line_start": 216,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QueueHandler.flatten",
+              "line_start": 224,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QueueHandler.restore",
+              "line_start": 227,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RegexHandler",
+          "line_start": 202,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RegexHandler.flatten",
+              "line_start": 205,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RegexHandler.restore",
+              "line_start": 209,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Registry",
+          "line_start": 23,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Registry.__init__",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Registry.get",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Registry.register",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Registry.unregister",
+              "line_start": 79,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 4,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextIOHandler",
+          "line_start": 280,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TextIOHandler.flatten",
+              "line_start": 283,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TextIOHandler.restore",
+              "line_start": 286,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UUIDHandler",
+          "line_start": 248,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UUIDHandler.flatten",
+              "line_start": 251,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "UUIDHandler.restore",
+              "line_start": 255,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
           "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "jsonpickle.pickler",
+      "name": "jsonpickle.handlers",
       "names": [
-        "Pickler",
-        "encode"
+        "ArrayHandler",
+        "BaseHandler",
+        "CloneFactory",
+        "DatetimeHandler",
+        "LockHandler",
+        "QueueHandler",
+        "RegexHandler",
+        "Registry",
+        "TextIOHandler",
+        "UUIDHandler",
+        "get",
+        "register",
+        "registry",
+        "unregister"
       ],
-      "n_typable": 47,
+      "n_typable": 60,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 47,
-      "n_functions": 1,
-      "n_function_params": 18,
-      "n_methods": 3,
-      "n_method_params": 15,
-      "n_classes": 1,
-      "n_attrs": 10,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "jsonpickle/ext/numpy.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "register_handlers",
-          "line_start": 354,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "unregister_handlers",
-          "line_start": 381,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "jsonpickle.ext.numpy",
-      "names": [
-        "register_handlers",
-        "unregister_handlers"
-      ],
-      "n_typable": 5,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 5,
-      "n_functions": 2,
-      "n_function_params": 3,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
+      "n_untyped": 60,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 26,
+      "n_method_params": 31,
+      "n_classes": 10,
+      "n_attrs": 3,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -2323,6 +2280,49 @@
       "n_untyped": 2,
       "n_functions": 2,
       "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "jsonpickle/ext/numpy.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "register_handlers",
+          "line_start": 354,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "unregister_handlers",
+          "line_start": 381,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "jsonpickle.ext.numpy",
+      "names": [
+        "register_handlers",
+        "unregister_handlers"
+      ],
+      "n_typable": 5,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 2,
+      "n_function_params": 3,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,

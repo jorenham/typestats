@@ -50,307 +50,466 @@
   },
   "module_reports": [
     {
-      "path": "decord/av_reader.py",
+      "path": "decord/bridge/torchdl.py",
       "symbol_reports": [
         {
-          "kind": "class",
-          "name": "AVReader",
-          "line_start": 14,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AVReader.__init__",
-              "line_start": 44,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 8,
-              "n_typable": 8,
-              "n_params": 7
-            },
-            {
-              "kind": "function",
-              "name": "AVReader.__len__",
-              "line_start": 51,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "AVReader.__getitem__",
-              "line_start": 61,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AVReader.get_batch",
-              "line_start": 92,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 12,
+          "kind": "function",
+          "name": "try_import_torch",
+          "line_start": 6,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 12,
-          "n_methods": 4,
-          "n_method_params": 8,
-          "n_attrs": 0,
-          "n_properties": 0
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "to_torch",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "from_torch",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
         }
       ],
       "type_ignores": [],
-      "name": "decord.av_reader",
+      "name": "decord.bridge.torchdl",
       "names": [
-        "AVReader"
+        "from_torch",
+        "to_torch",
+        "try_import_torch"
       ],
-      "n_typable": 12,
+      "n_typable": 5,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 12,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 4,
-      "n_method_params": 8,
-      "n_classes": 1,
+      "n_untyped": 5,
+      "n_functions": 3,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
     {
-      "path": "decord/ndarray.py",
+      "path": "decord/bridge/tvm.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "cpu",
+          "name": "try_import_tvm",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "to_tvm",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "from_tvm",
           "line_start": 23,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
           "n_typable": 2,
           "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "gpu",
-          "line_start": 38,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "array",
-          "line_start": 53,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "zerocopy_from_numpy",
-          "line_start": 73,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "NDArray",
-          "line_start": 18,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "NDArray.__len__",
-              "line_start": 20,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": -1,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "decord.ndarray",
+      "name": "decord.bridge.tvm",
       "names": [
-        "NDArray",
-        "array",
-        "cpu",
-        "gpu",
-        "zerocopy_from_numpy"
+        "from_tvm",
+        "to_tvm",
+        "try_import_tvm"
       ],
-      "n_typable": 9,
+      "n_typable": 5,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 9,
-      "n_functions": 4,
-      "n_function_params": 5,
-      "n_methods": 1,
-      "n_method_params": -1,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/logging.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "QUIET",
-          "line_start": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "PANIC",
-          "line_start": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "FATAL",
-          "line_start": 9,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "ERROR",
-          "line_start": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "WARNING",
-          "line_start": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "INFO",
-          "line_start": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "VERBOSE",
-          "line_start": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "DEBUG",
-          "line_start": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "TRACE",
-          "line_start": 15,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "CRITICAL",
-          "line_start": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "set_level",
-          "line_start": 20,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.logging",
-      "names": [
-        "CRITICAL",
-        "DEBUG",
-        "ERROR",
-        "FATAL",
-        "INFO",
-        "PANIC",
-        "QUIET",
-        "TRACE",
-        "VERBOSE",
-        "WARNING",
-        "set_level"
-      ],
-      "n_typable": 2,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 2,
-      "n_functions": 1,
-      "n_function_params": 1,
+      "n_untyped": 5,
+      "n_functions": 3,
+      "n_function_params": 2,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
       "n_attrs": 0,
       "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/bridge/tf.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "try_import_tfdl",
+          "line_start": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "to_tensorflow",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "from_tensorflow",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.bridge.tf",
+      "names": [
+        "from_tensorflow",
+        "to_tensorflow",
+        "try_import_tfdl"
+      ],
+      "n_typable": 5,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 3,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/bridge/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "try_import",
+          "line_start": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.bridge.utils",
+      "names": [
+        "try_import"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/bridge/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "reset_bridge",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_bridge",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bridge_out",
+          "line_start": 37,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bridge_in",
+          "line_start": 42,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "use_mxnet",
+          "line_start": 66,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "use_torch",
+          "line_start": 69,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "use_tensorflow",
+          "line_start": 72,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "use_tvm",
+          "line_start": 75,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.bridge",
+      "names": [
+        "bridge_in",
+        "bridge_out",
+        "reset_bridge",
+        "set_bridge",
+        "use_mxnet",
+        "use_tensorflow",
+        "use_torch",
+        "use_tvm"
+      ],
+      "n_typable": 11,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 11,
+      "n_functions": 8,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/bridge/mxnet.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "try_import_mxnet",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "to_mxnet",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "from_mxnet",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.bridge.mxnet",
+      "names": [
+        "from_mxnet",
+        "to_mxnet",
+        "try_import_mxnet"
+      ],
+      "n_typable": 5,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 3,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/function/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BuiltinFunction",
+          "line_start": 6,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BuiltinFunction.name",
+              "line_start": 8,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "BundledFunction",
+          "line_start": 13,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BundledFunction.__init__",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BundledFunction.__call__",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BundledFunction.name",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BundledFunction.fn_list",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.function.base",
+      "names": [
+        "BuiltinFunction",
+        "BundledFunction"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 2,
+      "n_classes": 2,
+      "n_attrs": 1,
+      "n_properties": 2,
       "n_type_ignores": 0
     },
     {
@@ -402,274 +561,6 @@
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/audio_reader.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "AudioReaderHandle",
-          "line_start": 16,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "AudioReader",
-          "line_start": 18,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AudioReader.__init__",
-              "line_start": 36,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.__len__",
-              "line_start": 58,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.__del__",
-              "line_start": 68,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.__getitem__",
-              "line_start": 72,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.get_batch",
-              "line_start": 96,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.duration",
-              "line_start": 127,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.add_padding",
-              "line_start": 144,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AudioReader.get_info",
-              "line_start": 157,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "AudioReader.shape",
-              "line_start": 115,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "AudioReader.sample_rate",
-              "line_start": 55,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 13,
-          "n_methods": 8,
-          "n_method_params": 3,
-          "n_attrs": 1,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.audio_reader",
-      "names": [
-        "AudioReader",
-        "AudioReaderHandle"
-      ],
-      "n_typable": 13,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 13,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 8,
-      "n_method_params": 3,
-      "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 1,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/video_loader.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "VideoLoaderHandle",
-          "line_start": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "class",
-          "name": "VideoLoader",
-          "line_start": 17,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "VideoLoader.__init__",
-              "line_start": 41,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "VideoLoader.__del__",
-              "line_start": 60,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "VideoLoader.__len__",
-              "line_start": 64,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "VideoLoader.reset",
-              "line_start": 75,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "VideoLoader.__next__",
-              "line_start": 83,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "VideoLoader.next",
-              "line_start": 104,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "VideoLoader.__iter__",
-              "line_start": 110,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 11,
-          "n_methods": 7,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.video_loader",
-      "names": [
-        "VideoLoader",
-        "VideoLoaderHandle"
-      ],
-      "n_typable": 11,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 11,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_params": 4,
-      "n_classes": 1,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
@@ -844,6 +735,578 @@
       "n_type_ignores": 0
     },
     {
+      "path": "decord/video_loader.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "VideoLoaderHandle",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "VideoLoader",
+          "line_start": 17,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "VideoLoader.__init__",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "VideoLoader.__del__",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "VideoLoader.__len__",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "VideoLoader.reset",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "VideoLoader.__next__",
+              "line_start": 83,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "VideoLoader.next",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "VideoLoader.__iter__",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 7,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.video_loader",
+      "names": [
+        "VideoLoader",
+        "VideoLoaderHandle"
+      ],
+      "n_typable": 11,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 11,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/av_reader.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AVReader",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AVReader.__init__",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "AVReader.__len__",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "AVReader.__getitem__",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AVReader.get_batch",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 4,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.av_reader",
+      "names": [
+        "AVReader"
+      ],
+      "n_typable": 12,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/logging.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "QUIET",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PANIC",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FATAL",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ERROR",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "WARNING",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INFO",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "VERBOSE",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEBUG",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRACE",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CRITICAL",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_level",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.logging",
+      "names": [
+        "CRITICAL",
+        "DEBUG",
+        "ERROR",
+        "FATAL",
+        "INFO",
+        "PANIC",
+        "QUIET",
+        "TRACE",
+        "VERBOSE",
+        "WARNING",
+        "set_level"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/audio_reader.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "AudioReaderHandle",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AudioReader",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AudioReader.__init__",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.__len__",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.__del__",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.__getitem__",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.get_batch",
+              "line_start": 96,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.duration",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.add_padding",
+              "line_start": 144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AudioReader.get_info",
+              "line_start": 157,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AudioReader.shape",
+              "line_start": 115,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AudioReader.sample_rate",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 8,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.audio_reader",
+      "names": [
+        "AudioReader",
+        "AudioReaderHandle"
+      ],
+      "n_typable": 13,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 13,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 8,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "decord/ndarray.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "cpu",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "gpu",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "array",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "zerocopy_from_numpy",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "NDArray",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NDArray.__len__",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "decord.ndarray",
+      "names": [
+        "NDArray",
+        "array",
+        "cpu",
+        "gpu",
+        "zerocopy_from_numpy"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 4,
+      "n_function_params": 5,
+      "n_methods": 1,
+      "n_method_params": -1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
       "path": "decord/data/kinetics/kinetics400_action.py",
       "symbol_reports": [
         {
@@ -936,363 +1399,6 @@
       "n_method_params": 21,
       "n_classes": 2,
       "n_attrs": 2,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/bridge/tvm.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "try_import_tvm",
-          "line_start": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "to_tvm",
-          "line_start": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "from_tvm",
-          "line_start": 23,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.bridge.tvm",
-      "names": [
-        "from_tvm",
-        "to_tvm",
-        "try_import_tvm"
-      ],
-      "n_typable": 5,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 5,
-      "n_functions": 3,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/bridge/__init__.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "reset_bridge",
-          "line_start": 22,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "set_bridge",
-          "line_start": 27,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "bridge_out",
-          "line_start": 37,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "bridge_in",
-          "line_start": 42,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "use_mxnet",
-          "line_start": 66,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "use_torch",
-          "line_start": 69,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "use_tensorflow",
-          "line_start": 72,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "use_tvm",
-          "line_start": 75,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.bridge",
-      "names": [
-        "bridge_in",
-        "bridge_out",
-        "reset_bridge",
-        "set_bridge",
-        "use_mxnet",
-        "use_tensorflow",
-        "use_torch",
-        "use_tvm"
-      ],
-      "n_typable": 11,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 11,
-      "n_functions": 8,
-      "n_function_params": 3,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/bridge/utils.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "try_import",
-          "line_start": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.bridge.utils",
-      "names": [
-        "try_import"
-      ],
-      "n_typable": 3,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 3,
-      "n_functions": 1,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/bridge/tf.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "try_import_tfdl",
-          "line_start": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "to_tensorflow",
-          "line_start": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "from_tensorflow",
-          "line_start": 27,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.bridge.tf",
-      "names": [
-        "from_tensorflow",
-        "to_tensorflow",
-        "try_import_tfdl"
-      ],
-      "n_typable": 5,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 5,
-      "n_functions": 3,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/bridge/mxnet.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "try_import_mxnet",
-          "line_start": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "to_mxnet",
-          "line_start": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "from_mxnet",
-          "line_start": 23,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.bridge.mxnet",
-      "names": [
-        "from_mxnet",
-        "to_mxnet",
-        "try_import_mxnet"
-      ],
-      "n_typable": 5,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 5,
-      "n_functions": 3,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/bridge/torchdl.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "try_import_torch",
-          "line_start": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "to_torch",
-          "line_start": 21,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "from_torch",
-          "line_start": 28,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.bridge.torchdl",
-      "names": [
-        "from_torch",
-        "to_torch",
-        "try_import_torch"
-      ],
-      "n_typable": 5,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 5,
-      "n_functions": 3,
-      "n_function_params": 2,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -1658,112 +1764,6 @@
       "n_classes": 1,
       "n_attrs": 25,
       "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "decord/function/base.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "BuiltinFunction",
-          "line_start": 6,
-          "methods": [],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "BuiltinFunction.name",
-              "line_start": 8,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 1,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "BundledFunction",
-          "line_start": 13,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BundledFunction.__init__",
-              "line_start": 21,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BundledFunction.__call__",
-              "line_start": 24,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "BundledFunction.name",
-              "line_start": 35,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "BundledFunction.fn_list",
-              "line_start": 22,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_methods": 2,
-          "n_method_params": 2,
-          "n_attrs": 1,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "decord.function.base",
-      "names": [
-        "BuiltinFunction",
-        "BundledFunction"
-      ],
-      "n_typable": 7,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 7,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_params": 2,
-      "n_classes": 2,
-      "n_attrs": 1,
-      "n_properties": 2,
       "n_type_ignores": 0
     },
     {

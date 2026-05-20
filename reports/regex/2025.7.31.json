@@ -1,0 +1,1994 @@
+{
+  "schema_version": "1.0",
+  "package": "regex",
+  "version": "2025.7.31",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2025-07-30T00:13:26.283664Z",
+    "requires_python": ">=3.9",
+    "size": 407354,
+    "sha256": "80a1af156ea8670ae63184e5c112b481326ece1879e09447f6fbb49d1b49330b"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "regex"
+    ],
+    "Version": [
+      "2025.7.31"
+    ],
+    "Summary": [
+      "Alternative regular expression module, to replace re."
+    ],
+    "Author-email": [
+      "Matthew Barnett <regex@mrabarnett.plus.com>"
+    ],
+    "License": [
+      "This work was derived from the 're' module of CPython 2.6 and CPython 3.1,\n        copyright (c) 1998-2001 by Secret Labs AB and licensed under CNRI's Python 1.6\n        license.\n        \n        All additions and alterations are licensed under the Apache 2.0 License.\n        \n        \n                                         Apache License\n                                   Version 2.0, January 2004\n                                http://www.apache.org/licenses/\n        \n           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n        \n           1. Definitions.\n        \n              \"License\" shall mean the terms and conditions for use, reproduction,\n              and distribution as defined by Sections 1 through 9 of this document.\n        \n              \"Licensor\" shall mean the copyright owner or entity authorized by\n              the copyright owner that is granting the License.\n        \n              \"Legal Entity\" shall mean the union of the acting entity and all\n              other entities that control, are controlled by, or are under common\n              control with that entity. For the purposes of this definition,\n              \"control\" means (i) the power, direct or indirect, to cause the\n              direction or management of such entity, whether by contract or\n              otherwise, or (ii) ownership of fifty percent (50%) or more of the\n              outstanding shares, or (iii) beneficial ownership of such entity.\n        \n              \"You\" (or \"Your\") shall mean an individual or Legal Entity\n              exercising permissions granted by this License.\n        \n              \"Source\" form shall mean the preferred form for making modifications,\n              including but not limited to software source code, documentation\n              source, and configuration files.\n        \n              \"Object\" form shall mean any form resulting from mechanical\n              transformation or translation of a Source form, including but\n              not limited to compiled object code, generated documentation,\n              and conversions to other media types.\n        \n              \"Work\" shall mean the work of authorship, whether in Source or\n              Object form, made available under the License, as indicated by a\n              copyright notice that is included in or attached to the work\n              (an example is provided in the Appendix below).\n        \n              \"Derivative Works\" shall mean any work, whether in Source or Object\n              form, that is based on (or derived from) the Work and for which the\n              editorial revisions, annotations, elaborations, or other modifications\n              represent, as a whole, an original work of authorship. For the purposes\n              of this License, Derivative Works shall not include works that remain\n              separable from, or merely link (or bind by name) to the interfaces of,\n              the Work and Derivative Works thereof.\n        \n              \"Contribution\" shall mean any work of authorship, including\n              the original version of the Work and any modifications or additions\n              to that Work or Derivative Works thereof, that is intentionally\n              submitted to Licensor for inclusion in the Work by the copyright owner\n              or by an individual or Legal Entity authorized to submit on behalf of\n              the copyright owner. For the purposes of this definition, \"submitted\"\n              means any form of electronic, verbal, or written communication sent\n              to the Licensor or its representatives, including but not limited to\n              communication on electronic mailing lists, source code control systems,\n              and issue tracking systems that are managed by, or on behalf of, the\n              Licensor for the purpose of discussing and improving the Work, but\n              excluding communication that is conspicuously marked or otherwise\n              designated in writing by the copyright owner as \"Not a Contribution.\"\n        \n              \"Contributor\" shall mean Licensor and any individual or Legal Entity\n              on behalf of whom a Contribution has been received by Licensor and\n              subsequently incorporated within the Work.\n        \n           2. Grant of Copyright License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              copyright license to reproduce, prepare Derivative Works of,\n              publicly display, publicly perform, sublicense, and distribute the\n              Work and such Derivative Works in Source or Object form.\n        \n           3. Grant of Patent License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              (except as stated in this section) patent license to make, have made,\n              use, offer to sell, sell, import, and otherwise transfer the Work,\n              where such license applies only to those patent claims licensable\n              by such Contributor that are necessarily infringed by their\n              Contribution(s) alone or by combination of their Contribution(s)\n              with the Work to which such Contribution(s) was submitted. If You\n              institute patent litigation against any entity (including a\n              cross-claim or counterclaim in a lawsuit) alleging that the Work\n              or a Contribution incorporated within the Work constitutes direct\n              or contributory patent infringement, then any patent licenses\n              granted to You under this License for that Work shall terminate\n              as of the date such litigation is filed.\n        \n           4. Redistribution. You may reproduce and distribute copies of the\n              Work or Derivative Works thereof in any medium, with or without\n              modifications, and in Source or Object form, provided that You\n              meet the following conditions:\n        \n              (a) You must give any other recipients of the Work or\n                  Derivative Works a copy of this License; and\n        \n              (b) You must cause any modified files to carry prominent notices\n                  stating that You changed the files; and\n        \n              (c) You must retain, in the Source form of any Derivative Works\n                  that You distribute, all copyright, patent, trademark, and\n                  attribution notices from the Source form of the Work,\n                  excluding those notices that do not pertain to any part of\n                  the Derivative Works; and\n        \n              (d) If the Work includes a \"NOTICE\" text file as part of its\n                  distribution, then any Derivative Works that You distribute must\n                  include a readable copy of the attribution notices contained\n                  within such NOTICE file, excluding those notices that do not\n                  pertain to any part of the Derivative Works, in at least one\n                  of the following places: within a NOTICE text file distributed\n                  as part of the Derivative Works; within the Source form or\n                  documentation, if provided along with the Derivative Works; or,\n                  within a display generated by the Derivative Works, if and\n                  wherever such third-party notices normally appear. The contents\n                  of the NOTICE file are for informational purposes only and\n                  do not modify the License. You may add Your own attribution\n                  notices within Derivative Works that You distribute, alongside\n                  or as an addendum to the NOTICE text from the Work, provided\n                  that such additional attribution notices cannot be construed\n                  as modifying the License.\n        \n              You may add Your own copyright statement to Your modifications and\n              may provide additional or different license terms and conditions\n              for use, reproduction, or distribution of Your modifications, or\n              for any such Derivative Works as a whole, provided Your use,\n              reproduction, and distribution of the Work otherwise complies with\n              the conditions stated in this License.\n        \n           5. Submission of Contributions. Unless You explicitly state otherwise,\n              any Contribution intentionally submitted for inclusion in the Work\n              by You to the Licensor shall be under the terms and conditions of\n              this License, without any additional terms or conditions.\n              Notwithstanding the above, nothing herein shall supersede or modify\n              the terms of any separate license agreement you may have executed\n              with Licensor regarding such Contributions.\n        \n           6. Trademarks. This License does not grant permission to use the trade\n              names, trademarks, service marks, or product names of the Licensor,\n              except as required for reasonable and customary use in describing the\n              origin of the Work and reproducing the content of the NOTICE file.\n        \n           7. Disclaimer of Warranty. Unless required by applicable law or\n              agreed to in writing, Licensor provides the Work (and each\n              Contributor provides its Contributions) on an \"AS IS\" BASIS,\n              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n              implied, including, without limitation, any warranties or conditions\n              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n              PARTICULAR PURPOSE. You are solely responsible for determining the\n              appropriateness of using or redistributing the Work and assume any\n              risks associated with Your exercise of permissions under this License.\n        \n           8. Limitation of Liability. In no event and under no legal theory,\n              whether in tort (including negligence), contract, or otherwise,\n              unless required by applicable law (such as deliberate and grossly\n              negligent acts) or agreed to in writing, shall any Contributor be\n              liable to You for damages, including any direct, indirect, special,\n              incidental, or consequential damages of any character arising as a\n              result of this License or out of the use or inability to use the\n              Work (including but not limited to damages for loss of goodwill,\n              work stoppage, computer failure or malfunction, or any and all\n              other commercial damages or losses), even if such Contributor\n              has been advised of the possibility of such damages.\n        \n           9. Accepting Warranty or Additional Liability. While redistributing\n              the Work or Derivative Works thereof, You may choose to offer,\n              and charge a fee for, acceptance of support, warranty, indemnity,\n              or other liability obligations and/or rights consistent with this\n              License. However, in accepting such obligations, You may act only\n              on Your own behalf and on Your sole responsibility, not on behalf\n              of any other Contributor, and only if You agree to indemnify,\n              defend, and hold each Contributor harmless for any liability\n              incurred by, or claims asserted against, such Contributor by reason\n              of your accepting any such warranty or additional liability.\n        \n           END OF TERMS AND CONDITIONS\n        \n           APPENDIX: How to apply the Apache License to your work.\n        \n              To apply the Apache License to your work, attach the following\n              boilerplate notice, with the fields enclosed by brackets \"[]\"\n              replaced with your own identifying information. (Don't include\n              the brackets!)  The text should be enclosed in the appropriate\n              comment syntax for the file format. We also recommend that a\n              file or class name and description of purpose be included on the\n              same \"printed page\" as the copyright notice for easier\n              identification within third-party archives.\n        \n           Copyright 2020 Matthew Barnett\n        \n           Licensed under the Apache License, Version 2.0 (the \"License\");\n           you may not use this file except in compliance with the License.\n           You may obtain a copy of the License at\n        \n               http://www.apache.org/licenses/LICENSE-2.0\n        \n           Unless required by applicable law or agreed to in writing, software\n           distributed under the License is distributed on an \"AS IS\" BASIS,\n           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n           See the License for the specific language governing permissions and\n           limitations under the License.\n        "
+    ],
+    "Project-URL": [
+      "Homepage, https://github.com/mrabarnett/mrab-regex"
+    ],
+    "Classifier": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Topic :: Scientific/Engineering :: Information Analysis",
+      "Topic :: Software Development :: Libraries :: Python Modules",
+      "Topic :: Text Processing",
+      "Topic :: Text Processing :: General"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/x-rst"
+    ],
+    "License-File": [
+      "LICENSE.txt"
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "regex/test_regex.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "test_main",
+          "line_start": 4501,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "BytesSubclass",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BytesSubclass.__getitem__",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RegexTests",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RegexTests.assertTypedEqual",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_weakref",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_search_star_plus",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.bump_num",
+              "line_start": 78,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_basic_regex_sub",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_449964",
+              "line_start": 113,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_449000",
+              "line_start": 118,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_1661",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_3629",
+              "line_start": 141,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_sub_template_numeric_escape",
+              "line_start": 146,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_qualified_re_sub",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_114660",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_462270",
+              "line_start": 211,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_14462",
+              "line_start": 220,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_symbolic_refs",
+              "line_start": 226,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_subn",
+              "line_start": 249,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_split",
+              "line_start": 256,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_qualified_re_split",
+              "line_start": 307,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_findall",
+              "line_start": 320,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_117612",
+              "line_start": 345,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_match",
+              "line_start": 349,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_groupref_exists",
+              "line_start": 376,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_groupref",
+              "line_start": 399,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_groupdict",
+              "line_start": 415,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_expand",
+              "line_start": 419,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_repeat_minmax",
+              "line_start": 424,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_getattr",
+              "line_start": 461,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_special_escapes",
+              "line_start": 491,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bigcharset",
+              "line_start": 524,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_anyall",
+              "line_start": 539,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_non_consuming",
+              "line_start": 544,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_ignore_case",
+              "line_start": 558,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_case_folding",
+              "line_start": 584,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_category",
+              "line_start": 672,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_not_literal",
+              "line_start": 675,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_search_coverage",
+              "line_start": 679,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_escape",
+              "line_start": 683,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_re_escape_byte",
+              "line_start": 696,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_constants",
+              "line_start": 708,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_flags",
+              "line_start": 720,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_sre_character_literals",
+              "line_start": 725,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_sre_character_class_literals",
+              "line_start": 741,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_113254",
+              "line_start": 753,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_527371",
+              "line_start": 758,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_545855",
+              "line_start": 767,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_418626",
+              "line_start": 773,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_612074",
+              "line_start": 788,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_stack_overflow",
+              "line_start": 792,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_scanner",
+              "line_start": 799,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_448951",
+              "line_start": 815,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_725106",
+              "line_start": 824,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_725149",
+              "line_start": 842,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_764548",
+              "line_start": 849,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_finditer",
+              "line_start": 855,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_926075",
+              "line_start": 859,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_931848",
+              "line_start": 863,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_581080",
+              "line_start": 868,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_817234",
+              "line_start": 877,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_empty_array",
+              "line_start": 883,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_inline_flags",
+              "line_start": 891,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_dollar_matches_twice",
+              "line_start": 918,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bytes_str_mixing",
+              "line_start": 930,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_ascii_and_unicode_flag",
+              "line_start": 964,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_subscripting_match",
+              "line_start": 991,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_new_named_groups",
+              "line_start": 1002,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_properties",
+              "line_start": 1008,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_word_class",
+              "line_start": 1192,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_search_anchor",
+              "line_start": 1205,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_search_reverse",
+              "line_start": 1208,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_atomic",
+              "line_start": 1306,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_possessive",
+              "line_start": 1310,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_zerowidth",
+              "line_start": 1336,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_scoped_and_inline_flags",
+              "line_start": 1394,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_repeated_repeats",
+              "line_start": 1408,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_lookbehind",
+              "line_start": 1417,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_unmatched_in_sub",
+              "line_start": 1465,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_bug_10328",
+              "line_start": 1486,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_overlapped",
+              "line_start": 1503,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_splititer",
+              "line_start": 1527,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_grapheme",
+              "line_start": 1532,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_word_boundary",
+              "line_start": 1544,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_line_boundary",
+              "line_start": 1568,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_branch_reset",
+              "line_start": 1610,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_set",
+              "line_start": 1664,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_various",
+              "line_start": 1741,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_replacement",
+              "line_start": 2476,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_common_prefix",
+              "line_start": 2485,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_captures",
+              "line_start": 2492,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_guards",
+              "line_start": 2512,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_turkic",
+              "line_start": 2532,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_named_lists",
+              "line_start": 2558,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_fuzzy",
+              "line_start": 2612,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_recursive",
+              "line_start": 2805,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_copy",
+              "line_start": 2876,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_format",
+              "line_start": 2919,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_fullmatch",
+              "line_start": 2933,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_issue_18468",
+              "line_start": 2955,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_partial",
+              "line_start": 3031,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_hg_bugs",
+              "line_start": 3084,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_fuzzy_ext",
+              "line_start": 4376,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_subscripted_captures",
+              "line_start": 4464,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_more_zerowidth",
+              "line_start": 4483,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegexTests.test_line_ending",
+              "line_start": 4495,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 107,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 107,
+          "n_methods": 103,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StrSubclass",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StrSubclass.__getitem__",
+              "line_start": 11,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "regex.test_regex",
+      "names": [
+        "BytesSubclass",
+        "RegexTests",
+        "StrSubclass",
+        "test_main"
+      ],
+      "n_typable": 112,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 112,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 105,
+      "n_method_params": 6,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "regex/regex.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 244,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_VERSION",
+          "line_start": 432,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "Pattern",
+          "line_start": 728,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "Match",
+          "line_start": 729,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "Regex",
+          "line_start": 738,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "match",
+          "line_start": 249,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "fullmatch",
+          "line_start": 256,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "search",
+          "line_start": 263,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "sub",
+          "line_start": 270,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "subf",
+          "line_start": 280,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "subn",
+          "line_start": 290,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "subfn",
+          "line_start": 302,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "split",
+          "line_start": 314,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "splititer",
+          "line_start": 325,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "findall",
+          "line_start": 331,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "finditer",
+          "line_start": 340,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "compile",
+          "line_start": 349,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "purge",
+          "line_start": 355,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "cache_all",
+          "line_start": 363,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "template",
+          "line_start": 373,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "escape",
+          "line_start": 377,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "regex.regex",
+      "names": [
+        "DEFAULT_VERSION",
+        "Match",
+        "Pattern",
+        "Regex",
+        "__version__",
+        "cache_all",
+        "compile",
+        "escape",
+        "findall",
+        "finditer",
+        "fullmatch",
+        "match",
+        "purge",
+        "search",
+        "split",
+        "splititer",
+        "sub",
+        "subf",
+        "subfn",
+        "subn",
+        "template"
+      ],
+      "n_typable": 140,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 140,
+      "n_functions": 16,
+      "n_function_params": 122,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "regex/_regex_core.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "A",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ASCII",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "B",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "BESTMATCH",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "D",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEBUG",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "E",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ENHANCEMATCH",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "F",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "FULLCASE",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "I",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "IGNORECASE",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "L",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "LOCALE",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "M",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "MULTILINE",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "P",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "POSIX",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "R",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "REVERSE",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "S",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DOTALL",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "T",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TEMPLATE",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "U",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "UNICODE",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "V0",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "VERSION0",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "V1",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "VERSION1",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "W",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "WORD",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "X",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "VERBOSE",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "RegexFlag",
+          "line_start": 73,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RegexFlag.__repr__",
+              "line_start": 93,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RegexFlag.__str__",
+              "line_start": 122,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Scanner",
+          "line_start": 4353,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Scanner.__init__",
+              "line_start": 4354,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Scanner.scan",
+              "line_start": 4427,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Scanner.lexicon",
+              "line_start": 4355,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Scanner.scanner",
+              "line_start": 4423,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "error",
+          "line_start": 30,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "error.__init__",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "error.msg",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "error.pattern",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "error.pos",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "error.lineno",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "error.colno",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "regex._regex_core",
+      "names": [
+        "A",
+        "ASCII",
+        "B",
+        "BESTMATCH",
+        "D",
+        "DEBUG",
+        "DOTALL",
+        "E",
+        "ENHANCEMATCH",
+        "F",
+        "FULLCASE",
+        "I",
+        "IGNORECASE",
+        "L",
+        "LOCALE",
+        "M",
+        "MULTILINE",
+        "P",
+        "POSIX",
+        "R",
+        "REVERSE",
+        "RegexFlag",
+        "S",
+        "Scanner",
+        "T",
+        "TEMPLATE",
+        "U",
+        "UNICODE",
+        "V0",
+        "V1",
+        "VERBOSE",
+        "VERSION0",
+        "VERSION1",
+        "W",
+        "WORD",
+        "X",
+        "error"
+      ],
+      "n_typable": 48,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 48,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 3,
+      "n_classes": 3,
+      "n_attrs": 41,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 3,
+  "n_typable": 300,
+  "n_typed": 0,
+  "n_any": 0,
+  "n_untyped": 300,
+  "n_functions": 17,
+  "n_function_params": 122,
+  "n_methods": 109,
+  "n_method_params": 9,
+  "n_classes": 6,
+  "n_attrs": 43,
+  "n_properties": 0,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}
