@@ -68,18 +68,21 @@ async def install_to_venv(
         return await site_packages_dir(venv_path)
 
 
-async def discover_packages(site_packages: StrPath, /) -> tuple[str, ...]:
-    """Return absolute paths of top-level packages in *site_packages*.
+async def _is_top_level_module(p: anyio.Path) -> bool:
+    """`p` is a package dir or a single-file module with an identifier name."""
+    if await p.is_dir():
+        return await (p / "__init__.py").exists() or await (p / "__init__.pyi").exists()
+    return p.suffix in {".py", ".pyi"} and p.stem.isidentifier()
 
-    Falls back to *site_packages* itself when no package is found.
+
+async def discover_packages(site_packages: StrPath, /) -> tuple[str, ...]:
+    """Return absolute paths of top-level packages/modules in *site_packages*.
+
+    Includes both package dirs (with `__init__.py[i]`) and single-file modules
+    (e.g. `six.py`). Falls back to *site_packages* itself when nothing matches.
     """
     sp = await anyio.Path(site_packages).resolve()
-    found = [
-        str(d)
-        async for d in sp.iterdir()
-        if await d.is_dir()
-        and (await (d / "__init__.py").exists() or await (d / "__init__.pyi").exists())
-    ]
+    found = [str(p) async for p in sp.iterdir() if await _is_top_level_module(p)]
     return tuple(found) or (str(sp),)
 
 

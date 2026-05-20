@@ -10,6 +10,7 @@ import pytest
 from typestats_site._uv import (
     PYTHON_VERSION,
     create_venv,
+    discover_packages,
     install,
     install_to_venv,
     site_packages_dir,
@@ -186,3 +187,75 @@ class TestInstallToVenv:
         # Only one task should have run create_venv + install (2 subprocess
         # calls); the rest reuse the already-created site-packages dir.
         assert mock.await_count == 2
+
+
+class TestDiscoverPackages:
+    pytestmark = pytest.mark.anyio
+
+    async def test_package_dir(self, tmp_path: Path) -> None:
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("")
+
+        result = await discover_packages(tmp_path)
+        assert result == (str(pkg.resolve()),)
+
+    async def test_stub_package_dir(self, tmp_path: Path) -> None:
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.pyi").write_text("")
+
+        result = await discover_packages(tmp_path)
+        assert result == (str(pkg.resolve()),)
+
+    async def test_top_level_module(self, tmp_path: Path) -> None:
+        """Single-file modules (e.g. six.py) are included."""
+        mod = tmp_path / "six.py"
+        mod.write_text("")
+
+        result = await discover_packages(tmp_path)
+        assert result == (str(mod.resolve()),)
+
+    async def test_top_level_stub_module(self, tmp_path: Path) -> None:
+        mod = tmp_path / "six.pyi"
+        mod.write_text("")
+
+        result = await discover_packages(tmp_path)
+        assert result == (str(mod.resolve()),)
+
+    async def test_skips_non_identifier_module(self, tmp_path: Path) -> None:
+        (tmp_path / "not-an-identifier.py").write_text("")
+
+        result = await discover_packages(tmp_path)
+        # falls back to site_packages itself
+        assert result == (str(await anyio.Path(tmp_path).resolve()),)
+
+    async def test_skips_dir_without_init(self, tmp_path: Path) -> None:
+        (tmp_path / "not_a_pkg").mkdir()
+        (tmp_path / "not_a_pkg" / "thing.py").write_text("")
+
+        result = await discover_packages(tmp_path)
+        assert result == (str(await anyio.Path(tmp_path).resolve()),)
+
+    async def test_returns_absolute_paths_from_relative_input(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Relative input must still yield absolute paths."""
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("")
+
+        monkeypatch.chdir(tmp_path)
+        result = await discover_packages(".")
+        assert result == (str(pkg.resolve()),)
+        assert Path(result[0]).is_absolute()
+
+    async def test_mixed_package_and_module(self, tmp_path: Path) -> None:
+        pkg = tmp_path / "mypkg"
+        pkg.mkdir()
+        (pkg / "__init__.py").write_text("")
+        mod = tmp_path / "six.py"
+        mod.write_text("")
+
+        result = await discover_packages(tmp_path)
+        assert set(result) == {str(pkg.resolve()), str(mod.resolve())}

@@ -656,3 +656,56 @@ class TestPackageReportFromPath:
         assert all(not n.startswith("src.") for n in names)
         assert "mypkg" in names
         assert "mypkg.utils" in names
+
+
+class TestDefaultPyreflyExcludes:
+    """Regression: default exclude patterns reach `pyrefly report`."""
+
+    pytestmark = pytest.mark.anyio
+
+    @staticmethod
+    def _patch_pyrefly(
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> dict[str, tuple[str, ...]]:
+        captured: dict[str, tuple[str, ...]] = {}
+
+        async def fake_pyrefly(*_paths: str, **kwargs: object) -> list[object]:  # noqa: RUF029
+            captured["project_excludes"] = cast(
+                "tuple[str, ...]", kwargs["project_excludes"]
+            )
+            return []
+
+        monkeypatch.setattr("typestats.report.run_pyrefly_report", fake_pyrefly)
+        return captured
+
+    async def test_defaults_forwarded(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        captured = self._patch_pyrefly(monkeypatch)
+        await PackageReport.from_path("mypkg", tmp_path, "1.0.0")
+
+        excludes = captured["project_excludes"]
+        assert "**/tests/**" in excludes
+        assert "**/__pycache__/**" in excludes
+        assert "**/build/**" in excludes
+        assert "**/docs/**" in excludes
+        assert "**/conftest.py" in excludes
+        assert "**/setup.py" in excludes
+
+    async def test_caller_excludes_appended_after_defaults(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        captured = self._patch_pyrefly(monkeypatch)
+        await PackageReport.from_path(
+            "mypkg",
+            tmp_path,
+            "1.0.0",
+            FromPathOptions(exclude=("custom/**", "other/**")),
+        )
+
+        excludes = captured["project_excludes"]
+        assert "**/tests/**" in excludes
+        assert "custom/**" in excludes
+        assert "other/**" in excludes
+        # Caller's patterns come after the defaults.
+        assert excludes.index("**/tests/**") < excludes.index("custom/**")
