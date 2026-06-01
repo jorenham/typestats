@@ -97,11 +97,7 @@ async def _extract_into(into: anyio.Path, sha: str, repo_root: anyio.Path) -> No
         shutil.rmtree(str(into))
     await into.mkdir(parents=True)
     archive = await _run("git", "archive", sha, cwd=repo_root)
-    await anyio.run_process(
-        ["tar", "-x", "-C", str(into)],
-        input=archive,
-        stderr=None,
-    )
+    await anyio.run_process(["tar", "-x", "-C", str(into)], input=archive, stderr=None)
 
 
 async def _watch_and_rebuild(
@@ -122,25 +118,22 @@ async def _watch_and_rebuild(
         changed = sorted({anyio.Path(c[1]).name for c in changes})
         _logger.info("Changed: %s -- rebuilding ...", ", ".join(changed))
 
-        try:
-            if "dashboard.py" in changed:
-                importlib.reload(typestats_site.dashboard)
+        if "dashboard.py" in changed:
+            importlib.reload(typestats_site.dashboard)
 
-            invalidate = "projects.toml" in changed
-            t0 = time.perf_counter()
-            (
-                cached_reports,
-                cached_all_reports,
-            ) = await typestats_site.dashboard.build_site(
-                reports_dir,
-                _SITE_DIR,
-                PROJECTS_PATH,
-                reports=None if invalidate else cached_reports,
-                all_reports=None if invalidate else cached_all_reports,
-            )
-            _logger.info("Rebuilt in %.1fs", time.perf_counter() - t0)
-        except Exception:
-            _logger.exception("Rebuild failed")
+        invalidate = "projects.toml" in changed
+        t0 = time.perf_counter()
+        (
+            cached_reports,
+            cached_all_reports,
+        ) = await typestats_site.dashboard.build_site(
+            reports_dir,
+            _SITE_DIR,
+            PROJECTS_PATH,
+            reports=None if invalidate else cached_reports,
+            all_reports=None if invalidate else cached_all_reports,
+        )
+        _logger.info("Rebuilt in %.1fs", time.perf_counter() - t0)
 
 
 async def _serve(*args: str) -> None:
