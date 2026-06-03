@@ -187,7 +187,7 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
   const urls = extractProjectUrls(pkg, report.metadata)
   const navLinks = [urls.pypi, urls.repo]
     .filter(Boolean)
-    .map(u => `<a href="${u}">${new URL(u).hostname}</a>`)
+    .map(u => `<a href="${escapeHtml(u)}">${new URL(u).hostname}</a>`)
   if (hasDiff)
     navLinks.push(
       `<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`,
