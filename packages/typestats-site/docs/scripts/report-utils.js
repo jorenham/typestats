@@ -190,7 +190,8 @@ async function fillDownloadCells(cells) {
 
   const fmt = new Intl.NumberFormat("en", { notation: "compact" })
   for (const cell of cells) {
-    const count = downloads.get(cell.dataset.package.toLowerCase())
+    const pkg = cell.dataset.package
+    const count = pkg ? downloads.get(pkg.toLowerCase()) : null
     if (count == null) continue
     cell.textContent = fmt.format(count)
     cell.setAttribute("data-sort", String(count))

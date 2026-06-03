@@ -204,7 +204,7 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
 
   root.innerHTML = parts.join("\n")
 
-  fillDownloadCells(root.querySelectorAll("td.pypi-downloads"))
+  fillDownloadCells(root.querySelectorAll("td.pypi-downloads")).catch(console.error)
 
   const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches
   for (const a of root.querySelectorAll("[data-scroll-to]")) {
