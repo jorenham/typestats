@@ -184,7 +184,10 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
       `<div class="admonition warning"><p class="admonition-title">Report compatibility warning</p><p>${warning}</p></div>`,
     )
   }
-  const navLinks = []
+  const urls = extractProjectUrls(pkg, report.metadata)
+  const navLinks = [urls.pypi, urls.repo]
+    .filter(Boolean)
+    .map(u => `<a href="${u}">${new URL(u).hostname}</a>`)
   if (hasDiff)
     navLinks.push(
       `<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`,
@@ -193,13 +196,15 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
     const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`
     navLinks.push(`<a href="${jsonUrl}">Download JSON</a>`)
   }
-  if (navLinks.length) parts.push(`<p>${navLinks.join(" | ")}</p>`)
-  parts.push(renderGridCards(report))
+  parts.push(`<p>${navLinks.join(" | ")}</p>`)
+  parts.push(renderOverview(report))
   parts.push(renderModulesTable(report))
   parts.push(renderIncompleteAnnotations(report))
   parts.push(renderTypeIgnores(report))
 
   root.innerHTML = parts.join("\n")
+
+  fillDownloadCells(root.querySelectorAll("td.pypi-downloads"))
 
   const smooth = !matchMedia("(prefers-reduced-motion: reduce)").matches
   for (const a of root.querySelectorAll("[data-scroll-to]")) {
@@ -215,8 +220,7 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
   initTablesort(root)
 }
 
-function renderGridCards(report) {
-  const urls = extractProjectUrls(report.package, report.metadata)
+function renderOverview(report) {
   const pyTyped = report.py_typed
   const stubsLabel = STUBS_ONLY_LABEL[report.stubs_only] || ""
 
@@ -225,17 +229,24 @@ function renderGridCards(report) {
 
   const symbolsByKind = computeSymbolsByKind(report)
 
-  let urlsHtml = `<tr><td>PyPI</td><td><a href="${urls.pypi}">${urls.pypi}</a></td></tr>`
-  if (urls.repo) {
-    urlsHtml += `<tr><td>Repository</td><td><a href="${urls.repo}">${urls.repo}</a></td></tr>`
-  }
-  const card1 = `<table>${urlsHtml}</table>`
+  const released = report.pypi?.upload_time?.slice(0, 10) ?? ""
 
-  let pyTypedHtml = `<tr><td><code>py.typed</code></td><td>${iconPyTyped(pyTyped)}</td></tr>`
-  if (stubsLabel) {
-    pyTypedHtml += `<tr><td>stubs-only</td><td>${stubsLabel}</td></tr>`
+  // One column per fact, kept on a single row.
+  let metaHead = ""
+  let metaBody = ""
+  if (released) {
+    metaHead += `<th><abbr title="Release date on PyPI">Released</abbr></th>`
+    metaBody += `<td>${released}</td>`
   }
-  const card2 = `<table>${pyTypedHtml}</table>`
+  metaHead += `<th><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>`
+  metaBody += `<td class="pypi-downloads" data-package="${escapeHtml(report.package)}"></td>`
+  metaHead += `<th><code>py.typed</code></th>`
+  metaBody += `<td>${iconPyTyped(pyTyped)}</td>`
+  if (stubsLabel) {
+    metaHead += `<th>stubs-only</th>`
+    metaBody += `<td>${stubsLabel}</td>`
+  }
+  const metaTable = `<table data-no-sort><thead><tr>${metaHead}</tr></thead><tbody><tr>${metaBody}</tr></tbody></table>`
 
   const covPie = mermaidPie([
     { label: "Typed", value: report.n_typed },
@@ -279,9 +290,8 @@ function renderGridCards(report) {
       </li>
     </ul>`
 
-  return `<div class="grid cards">
-    <div class="card">${card1}</div>
-    <div class="card">${card2}</div>
+  return `${metaTable}
+  <div class="grid cards">
     <div class="card">${card3}</div>
     <div class="card">${card4}</div>
   </div>`

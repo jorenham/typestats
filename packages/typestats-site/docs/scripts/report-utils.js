@@ -151,6 +151,52 @@ async function fetchReport(pkg, version) {
   return resp.json()
 }
 
+const TOP_PYPI_PACKAGES_URL =
+  "https://hugovk.dev/top-pypi-packages/top-pypi-packages-30-days.min.json"
+
+// Fill each `.pypi-downloads` cell with its `data-package`'s monthly downloads.
+async function fillDownloadCells(cells) {
+  if (!cells.length) return
+
+  // dataset updates on the 1st of each month; use previous month's key until then
+  const month = new Date()
+  if (month.getDate() < 2) month.setMonth(month.getMonth() - 1)
+  const cacheKey = `pypi-downloads-${month.getFullYear()}-${month.getMonth()}`
+
+  let downloads
+  try {
+    const cached = localStorage.getItem(cacheKey)
+    if (cached) downloads = new Map(JSON.parse(cached))
+  } catch {
+    // ignore storage errors
+  }
+
+  if (!downloads) {
+    try {
+      const resp = await fetch(TOP_PYPI_PACKAGES_URL)
+      if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`)
+      const { rows } = await resp.json()
+      downloads = new Map(rows.map(r => [r.project.toLowerCase(), r.download_count]))
+    } catch (err) {
+      console.error("Failed to fetch PyPI download stats:", err)
+      return
+    }
+    try {
+      localStorage.setItem(cacheKey, JSON.stringify([...downloads]))
+    } catch {
+      // ignore storage quota errors
+    }
+  }
+
+  const fmt = new Intl.NumberFormat("en", { notation: "compact" })
+  for (const cell of cells) {
+    const count = downloads.get(cell.dataset.package.toLowerCase())
+    if (count == null) continue
+    cell.textContent = fmt.format(count)
+    cell.setAttribute("data-sort", String(count))
+  }
+}
+
 function escapeHtml(s) {
   return String(s)
     .replace(/&/g, "&amp;")
