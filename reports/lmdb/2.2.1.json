@@ -552,14 +552,33 @@
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 76,
-          "n_typed": 76,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Cursor.db",
+              "line_start": 329,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Cursor.txn",
+              "line_start": 330,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 78,
+          "n_typed": 78,
           "n_any": 0,
           "n_untyped": 0,
           "n_methods": 36,
           "n_method_params": 40,
-          "n_attrs": 0,
+          "n_attrs": 2,
           "n_properties": 0
         },
         {
@@ -807,14 +826,24 @@
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 56,
-          "n_typed": 56,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Environment.readonly",
+              "line_start": 165,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 57,
+          "n_typed": 57,
           "n_any": 0,
           "n_untyped": 0,
           "n_methods": 19,
           "n_method_params": 37,
-          "n_attrs": 0,
+          "n_attrs": 1,
           "n_properties": 0
         },
         {
@@ -834,14 +863,42 @@
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 2,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Error.what",
+              "line_start": 76,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Error.code",
+              "line_start": 77,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Error.reason",
+              "line_start": 78,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 5,
           "n_any": 0,
           "n_untyped": 0,
           "n_methods": 1,
           "n_method_params": 1,
-          "n_attrs": 0,
+          "n_attrs": 3,
           "n_properties": 0
         },
         {
@@ -1231,14 +1288,24 @@
             }
           ],
           "properties": [],
-          "attrs": [],
-          "n_typable": 40,
-          "n_typed": 40,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Transaction.env",
+              "line_start": 258,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 41,
+          "n_typed": 41,
           "n_any": 0,
           "n_untyped": 0,
           "n_methods": 14,
           "n_method_params": 26,
-          "n_attrs": 0,
+          "n_attrs": 1,
           "n_properties": 0
         },
         {
@@ -1261,6 +1328,22 @@
           "kind": "class",
           "name": "VersionMismatchError",
           "line_start": 97,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "_Database",
+          "line_start": 252,
           "methods": [],
           "properties": [],
           "attrs": [],
@@ -1306,21 +1389,757 @@
         "Transaction",
         "TxnFullError",
         "VersionMismatchError",
+        "_Database",
         "__version__",
         "enable_drop_gil",
         "version"
       ],
-      "n_typable": 177,
-      "n_typed": 177,
+      "n_typable": 184,
+      "n_typed": 184,
       "n_any": 0,
       "n_untyped": 0,
       "n_functions": 2,
       "n_function_params": 0,
       "n_methods": 70,
       "n_method_params": 104,
-      "n_classes": 29,
-      "n_attrs": 1,
+      "n_classes": 30,
+      "n_attrs": 8,
       "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "lmdb/aio.pyi",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "wrap",
+          "line_start": 31,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "AsyncCursor",
+          "line_start": 161,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncCursor.__init__",
+              "line_start": 168,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.__aenter__",
+              "line_start": 174,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.__aexit__",
+              "line_start": 175,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.iternext",
+              "line_start": 184,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.iternext_dup",
+              "line_start": 198,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.iternext_nodup",
+              "line_start": 212,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.iterprev",
+              "line_start": 226,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.iterprev_dup",
+              "line_start": 240,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.iterprev_nodup",
+              "line_start": 254,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.key",
+              "line_start": 276,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.value",
+              "line_start": 277,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.item",
+              "line_start": 278,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.close",
+              "line_start": 282,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.first",
+              "line_start": 283,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.first_dup",
+              "line_start": 284,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.last",
+              "line_start": 285,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.last_dup",
+              "line_start": 286,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.prev",
+              "line_start": 287,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.prev_dup",
+              "line_start": 288,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.prev_nodup",
+              "line_start": 289,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.next",
+              "line_start": 290,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.next_dup",
+              "line_start": 291,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.next_nodup",
+              "line_start": 292,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.set_key",
+              "line_start": 293,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.set_key_dup",
+              "line_start": 294,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.set_range",
+              "line_start": 295,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.set_range_dup",
+              "line_start": 296,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.delete",
+              "line_start": 297,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.count",
+              "line_start": 298,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.put",
+              "line_start": 299,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.putmulti",
+              "line_start": 307,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.replace",
+              "line_start": 314,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.pop",
+              "line_start": 315,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.get",
+              "line_start": 318,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.getmulti",
+              "line_start": 323,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "AsyncCursor.__getattr__",
+              "line_start": 362,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AsyncCursor.db",
+              "line_start": 269,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AsyncCursor.txn",
+              "line_start": 271,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 78,
+          "n_typed": 77,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 36,
+          "n_method_params": 40,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "AsyncEnvironment",
+          "line_start": 51,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.__init__",
+              "line_start": 57,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.__aenter__",
+              "line_start": 58,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.__aexit__",
+              "line_start": 59,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.begin",
+              "line_start": 62,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.path",
+              "line_start": 90,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.max_key_size",
+              "line_start": 91,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.max_readers",
+              "line_start": 92,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.flags",
+              "line_start": 93,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.stat",
+              "line_start": 97,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.info",
+              "line_start": 98,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncEnvironment.__getattr__",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 16,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 11,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AsyncTransaction",
+          "line_start": 100,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.__init__",
+              "line_start": 107,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.__aenter__",
+              "line_start": 110,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.__aexit__",
+              "line_start": 111,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.cursor",
+              "line_start": 118,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.id",
+              "line_start": 129,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.stat",
+              "line_start": 133,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.drop",
+              "line_start": 134,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.commit",
+              "line_start": 135,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.abort",
+              "line_start": 136,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.get",
+              "line_start": 139,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.put",
+              "line_start": 144,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.replace",
+              "line_start": 153,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.pop",
+              "line_start": 156,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.delete",
+              "line_start": 157,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AsyncTransaction.__getattr__",
+              "line_start": 284,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AsyncTransaction.env",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 38,
+          "n_typed": 37,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 15,
+          "n_method_params": 22,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "lmdb.aio",
+      "names": [
+        "AsyncCursor",
+        "AsyncEnvironment",
+        "AsyncTransaction",
+        "wrap"
+      ],
+      "n_typable": 135,
+      "n_typed": 132,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 62,
+      "n_method_params": 67,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 3,
       "n_type_ignores": 0
     },
     {
@@ -2610,6 +3429,22 @@
           "n_method_params": 0,
           "n_attrs": 0,
           "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "_Database",
+          "line_start": 1415,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [
@@ -2653,6 +3488,7 @@
         "Transaction",
         "TxnFullError",
         "VersionMismatchError",
+        "_Database",
         "enable_drop_gil",
         "version"
       ],
@@ -2664,7 +3500,7 @@
       "n_function_params": 1,
       "n_methods": 73,
       "n_method_params": 100,
-      "n_classes": 29,
+      "n_classes": 30,
       "n_attrs": 7,
       "n_properties": 0,
       "n_type_ignores": 2
@@ -3036,755 +3872,20 @@
       "n_attrs": 2,
       "n_properties": 0,
       "n_type_ignores": 1
-    },
-    {
-      "path": "lmdb/aio.pyi",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "wrap",
-          "line_start": 31,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "AsyncCursor",
-          "line_start": 161,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AsyncCursor.__init__",
-              "line_start": 168,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.__aenter__",
-              "line_start": 174,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.__aexit__",
-              "line_start": 175,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.iternext",
-              "line_start": 184,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.iternext_dup",
-              "line_start": 198,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.iternext_nodup",
-              "line_start": 212,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.iterprev",
-              "line_start": 226,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.iterprev_dup",
-              "line_start": 240,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.iterprev_nodup",
-              "line_start": 254,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.key",
-              "line_start": 276,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.value",
-              "line_start": 277,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.item",
-              "line_start": 278,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.close",
-              "line_start": 282,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.first",
-              "line_start": 283,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.first_dup",
-              "line_start": 284,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.last",
-              "line_start": 285,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.last_dup",
-              "line_start": 286,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.prev",
-              "line_start": 287,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.prev_dup",
-              "line_start": 288,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.prev_nodup",
-              "line_start": 289,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.next",
-              "line_start": 290,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.next_dup",
-              "line_start": 291,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.next_nodup",
-              "line_start": 292,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.set_key",
-              "line_start": 293,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.set_key_dup",
-              "line_start": 294,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.set_range",
-              "line_start": 295,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.set_range_dup",
-              "line_start": 296,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.delete",
-              "line_start": 297,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.count",
-              "line_start": 298,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.put",
-              "line_start": 299,
-              "n_typed": 6,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 6,
-              "n_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.putmulti",
-              "line_start": 307,
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.replace",
-              "line_start": 314,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.pop",
-              "line_start": 315,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.get",
-              "line_start": 318,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.getmulti",
-              "line_start": 323,
-              "n_typed": 6,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 6,
-              "n_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "AsyncCursor.__getattr__",
-              "line_start": 362,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "AsyncCursor.db",
-              "line_start": 269,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "AsyncCursor.txn",
-              "line_start": 271,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 78,
-          "n_typed": 77,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_methods": 36,
-          "n_method_params": 40,
-          "n_attrs": 0,
-          "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "AsyncEnvironment",
-          "line_start": 51,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.__init__",
-              "line_start": 57,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.__aenter__",
-              "line_start": 58,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.__aexit__",
-              "line_start": 59,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.begin",
-              "line_start": 62,
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.path",
-              "line_start": 90,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.max_key_size",
-              "line_start": 91,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.max_readers",
-              "line_start": 92,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.flags",
-              "line_start": 93,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.stat",
-              "line_start": 97,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.info",
-              "line_start": 98,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncEnvironment.__getattr__",
-              "line_start": 203,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 16,
-          "n_typed": 15,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_methods": 11,
-          "n_method_params": 5,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "AsyncTransaction",
-          "line_start": 100,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.__init__",
-              "line_start": 107,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.__aenter__",
-              "line_start": 110,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.__aexit__",
-              "line_start": 111,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.cursor",
-              "line_start": 118,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.id",
-              "line_start": 129,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.stat",
-              "line_start": 133,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.drop",
-              "line_start": 134,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.commit",
-              "line_start": 135,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.abort",
-              "line_start": 136,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.get",
-              "line_start": 139,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.put",
-              "line_start": 144,
-              "n_typed": 7,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.replace",
-              "line_start": 153,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.pop",
-              "line_start": 156,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.delete",
-              "line_start": 157,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "AsyncTransaction.__getattr__",
-              "line_start": 284,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "AsyncTransaction.env",
-              "line_start": 124,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 38,
-          "n_typed": 37,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_methods": 15,
-          "n_method_params": 22,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "lmdb.aio",
-      "names": [
-        "AsyncCursor",
-        "AsyncEnvironment",
-        "AsyncTransaction",
-        "wrap"
-      ],
-      "n_typable": 135,
-      "n_typed": 132,
-      "n_any": 0,
-      "n_untyped": 3,
-      "n_functions": 1,
-      "n_function_params": 2,
-      "n_methods": 62,
-      "n_method_params": 67,
-      "n_classes": 3,
-      "n_attrs": 0,
-      "n_properties": 3,
-      "n_type_ignores": 0
     }
   ],
   "typecheckers": {},
   "n_modules": 4,
-  "n_typable": 559,
-  "n_typed": 311,
+  "n_typable": 566,
+  "n_typed": 318,
   "n_any": 0,
   "n_untyped": 248,
   "n_functions": 27,
   "n_function_params": 41,
   "n_methods": 207,
   "n_method_params": 271,
-  "n_classes": 62,
-  "n_attrs": 10,
+  "n_classes": 64,
+  "n_attrs": 17,
   "n_properties": 3,
   "type_ignores": [
     {

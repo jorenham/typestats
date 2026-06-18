@@ -67,126 +67,6 @@
   },
   "module_reports": [
     {
-      "path": "typestats/projects.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "load_projects",
-          "line_start": 19,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "Project",
-          "line_start": 12,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Project.model_config",
-              "line_start": 13,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Project.name",
-              "line_start": 15,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Project.exclude",
-              "line_start": 16,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "typestats.projects",
-      "names": [
-        "Project",
-        "load_projects"
-      ],
-      "n_typable": 2,
-      "n_typed": 2,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_params": 1,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "typestats/check.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "report",
-          "line_start": 284,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "check",
-          "line_start": 308,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 6,
-          "n_params": 5
-        }
-      ],
-      "type_ignores": [],
-      "name": "typestats.check",
-      "names": [
-        "check",
-        "report"
-      ],
-      "n_typable": 9,
-      "n_typed": 9,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 2,
-      "n_function_params": 7,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
       "path": "typestats/__main__.py",
       "symbol_reports": [
         {
@@ -353,12 +233,30 @@
       "n_type_ignores": 0
     },
     {
-      "path": "typestats/stubs.py",
+      "path": "typestats/analyze.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "TypeForm",
+          "line_start": 66,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ANY",
+          "line_start": 161,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
           "kind": "function",
-          "name": "stubs_base_name",
-          "line_start": 13,
+          "name": "type_counts",
+          "line_start": 470,
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -367,30 +265,661 @@
         },
         {
           "kind": "function",
-          "name": "find_stubs_dir",
-          "line_start": 23,
+          "name": "collect_symbols",
+          "line_start": 1527,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "IgnoreComment",
+          "line_start": 495,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "IgnoreComment.__str__",
+              "line_start": 500,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "IgnoreComment.kind",
+              "line_start": 497,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "IgnoreComment.rules",
+              "line_start": 498,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ModuleSymbols",
+          "line_start": 507,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.imports",
+              "line_start": 509,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.imports_wildcard",
+              "line_start": 510,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.exports_explicit",
+              "line_start": 511,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.exports_explicit_dynamic",
+              "line_start": 512,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.exports_implicit",
+              "line_start": 513,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.symbols",
+              "line_start": 514,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.type_aliases",
+              "line_start": 515,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.ignore_comments",
+              "line_start": 516,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModuleSymbols.type_check_only",
+              "line_start": 517,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Property",
+          "line_start": 367,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Property.__str__",
+              "line_start": 374,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Property.to_unknown",
+              "line_start": 416,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Property.is_typed",
+              "line_start": 385,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Property.type_counts",
+              "line_start": 393,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Property.name",
+              "line_start": 369,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Property.fget",
+              "line_start": 370,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Property.fset",
+              "line_start": 371,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Property.fdel",
+              "line_start": 372,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "Symbol",
+          "line_start": 425,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Symbol.__str__",
+              "line_start": 430,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Symbol.name",
+              "line_start": 427,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Symbol.type_",
+              "line_start": 428,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TypeAlias",
+          "line_start": 485,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TypeAlias.__str__",
+              "line_start": 490,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TypeAlias.name",
+              "line_start": 487,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TypeAlias.value",
+              "line_start": 488,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "typestats.analyze",
+      "names": [
+        "ANY",
+        "IgnoreComment",
+        "ModuleSymbols",
+        "Property",
+        "Symbol",
+        "TypeAlias",
+        "TypeForm",
+        "collect_symbols",
+        "type_counts"
+      ],
+      "n_typable": 9,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 5,
+      "n_method_params": -4,
+      "n_classes": 5,
+      "n_attrs": 1,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "typestats/check.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "report",
+          "line_start": 284,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "check",
+          "line_start": 308,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "typestats.check",
+      "names": [
+        "check",
+        "report"
+      ],
+      "n_typable": 9,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "typestats/index.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "is_src_layout",
+          "line_start": 166,
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "list_sources",
+          "line_start": 192,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_py_typed",
+          "line_start": 221,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "collect_public_symbols",
+          "line_start": 456,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "merge_stubs_overlay",
+          "line_start": 733,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "PublicSymbols",
+          "line_start": 45,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PublicSymbols.symbols",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PublicSymbols.type_ignores",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PublicSymbols.py_typed",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PyTyped",
+          "line_start": 38,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PyTyped.NO",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PyTyped.YES",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PyTyped.PARTIAL",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PyTyped.STUBS",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "typestats.stubs",
+      "name": "typestats.index",
       "names": [
-        "find_stubs_dir",
-        "stubs_base_name"
+        "PublicSymbols",
+        "PyTyped",
+        "collect_public_symbols",
+        "get_py_typed",
+        "is_src_layout",
+        "list_sources",
+        "merge_stubs_overlay"
       ],
-      "n_typable": 4,
-      "n_typed": 4,
+      "n_typable": 17,
+      "n_typed": 17,
       "n_any": 0,
       "n_untyped": 0,
-      "n_functions": 2,
-      "n_function_params": 2,
+      "n_functions": 5,
+      "n_function_params": 12,
       "n_methods": 0,
       "n_method_params": 0,
-      "n_classes": 0,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "typestats/projects.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "load_projects",
+          "line_start": 19,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Project",
+          "line_start": 12,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Project.model_config",
+              "line_start": 13,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Project.name",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Project.exclude",
+              "line_start": 16,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "typestats.projects",
+      "names": [
+        "Project",
+        "load_projects"
+      ],
+      "n_typable": 2,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
@@ -1933,12 +2462,12 @@
       "n_type_ignores": 0
     },
     {
-      "path": "typestats/index.py",
+      "path": "typestats/stubs.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "is_src_layout",
-          "line_start": 166,
+          "name": "stubs_base_name",
+          "line_start": 13,
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -1947,162 +2476,62 @@
         },
         {
           "kind": "function",
-          "name": "list_sources",
-          "line_start": 192,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "get_py_typed",
-          "line_start": 221,
+          "name": "find_stubs_dir",
+          "line_start": 23,
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "collect_public_symbols",
-          "line_start": 456,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "merge_stubs_overlay",
-          "line_start": 733,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "PublicSymbols",
-          "line_start": 45,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "PublicSymbols.symbols",
-              "line_start": 49,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "PublicSymbols.type_ignores",
-              "line_start": 50,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "PublicSymbols.py_typed",
-              "line_start": 53,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "PyTyped",
-          "line_start": 38,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "PyTyped.NO",
-              "line_start": 39,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "PyTyped.YES",
-              "line_start": 40,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "PyTyped.PARTIAL",
-              "line_start": 41,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "PyTyped.STUBS",
-              "line_start": 42,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "typestats.index",
+      "name": "typestats.stubs",
       "names": [
-        "PublicSymbols",
-        "PyTyped",
-        "collect_public_symbols",
-        "get_py_typed",
-        "is_src_layout",
-        "list_sources",
-        "merge_stubs_overlay"
+        "find_stubs_dir",
+        "stubs_base_name"
       ],
-      "n_typable": 17,
-      "n_typed": 17,
+      "n_typable": 4,
+      "n_typed": 4,
       "n_any": 0,
       "n_untyped": 0,
-      "n_functions": 5,
-      "n_function_params": 12,
+      "n_functions": 2,
+      "n_function_params": 2,
       "n_methods": 0,
       "n_method_params": 0,
-      "n_classes": 2,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "typestats/subprocess.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "run",
+          "line_start": 13,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "typestats.subprocess",
+      "names": [
+        "run"
+      ],
+      "n_typable": 2,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
@@ -2207,435 +2636,6 @@
       "n_untyped": 0,
       "n_functions": 6,
       "n_function_params": 6,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "typestats/analyze.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "TypeForm",
-          "line_start": 66,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "ANY",
-          "line_start": 161,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "type_counts",
-          "line_start": 470,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "collect_symbols",
-          "line_start": 1527,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "IgnoreComment",
-          "line_start": 495,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "IgnoreComment.__str__",
-              "line_start": 500,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "IgnoreComment.kind",
-              "line_start": 497,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "IgnoreComment.rules",
-              "line_start": 498,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": -1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ModuleSymbols",
-          "line_start": 507,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.imports",
-              "line_start": 509,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.imports_wildcard",
-              "line_start": 510,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.exports_explicit",
-              "line_start": 511,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.exports_explicit_dynamic",
-              "line_start": 512,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.exports_implicit",
-              "line_start": 513,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.symbols",
-              "line_start": 514,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.type_aliases",
-              "line_start": 515,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.ignore_comments",
-              "line_start": 516,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "ModuleSymbols.type_check_only",
-              "line_start": 517,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Property",
-          "line_start": 367,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Property.__str__",
-              "line_start": 374,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "Property.to_unknown",
-              "line_start": 416,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Property.is_typed",
-              "line_start": 385,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Property.type_counts",
-              "line_start": 393,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Property.name",
-              "line_start": 369,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Property.fget",
-              "line_start": 370,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Property.fset",
-              "line_start": 371,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Property.fdel",
-              "line_start": 372,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 3,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": -1,
-          "n_attrs": 0,
-          "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "Symbol",
-          "line_start": 425,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Symbol.__str__",
-              "line_start": 430,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Symbol.name",
-              "line_start": 427,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Symbol.type_",
-              "line_start": 428,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": -1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "TypeAlias",
-          "line_start": 485,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TypeAlias.__str__",
-              "line_start": 490,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TypeAlias.name",
-              "line_start": 487,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "TypeAlias.value",
-              "line_start": 488,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": -1,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "typestats.analyze",
-      "names": [
-        "ANY",
-        "IgnoreComment",
-        "ModuleSymbols",
-        "Property",
-        "Symbol",
-        "TypeAlias",
-        "TypeForm",
-        "collect_symbols",
-        "type_counts"
-      ],
-      "n_typable": 9,
-      "n_typed": 9,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 2,
-      "n_function_params": 3,
-      "n_methods": 5,
-      "n_method_params": -4,
-      "n_classes": 5,
-      "n_attrs": 1,
-      "n_properties": 2,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "typestats/subprocess.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "run",
-          "line_start": 13,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "typestats.subprocess",
-      "names": [
-        "run"
-      ],
-      "n_typable": 2,
-      "n_typed": 2,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_params": 1,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,

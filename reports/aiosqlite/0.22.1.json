@@ -99,26 +99,26 @@
       "n_type_ignores": 0
     },
     {
-      "path": "aiosqlite/cursor.py",
+      "path": "aiosqlite/context.py",
       "symbol_reports": [
         {
+          "kind": "function",
+          "name": "contextmanager",
+          "line_start": 49,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
           "kind": "class",
-          "name": "Cursor",
-          "line_start": 12,
+          "name": "Result",
+          "line_start": 15,
           "methods": [
             {
               "kind": "function",
-              "name": "Cursor.__init__",
-              "line_start": 13,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Cursor.__aiter__",
+              "name": "Result.__init__",
               "line_start": 18,
               "n_typed": 1,
               "n_any": 0,
@@ -128,38 +128,28 @@
             },
             {
               "kind": "function",
-              "name": "Cursor.execute",
+              "name": "Result.send",
+              "line_start": 22,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Result.throw",
+              "line_start": 25,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Result.close",
               "line_start": 34,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Cursor.executemany",
-              "line_start": 43,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Cursor.executescript",
-              "line_start": 50,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Cursor.fetchone",
-              "line_start": 55,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -168,18 +158,8 @@
             },
             {
               "kind": "function",
-              "name": "Cursor.fetchmany",
-              "line_start": 59,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Cursor.fetchall",
-              "line_start": 66,
+              "name": "Result.__await__",
+              "line_start": 37,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -188,8 +168,8 @@
             },
             {
               "kind": "function",
-              "name": "Cursor.close",
-              "line_start": 70,
+              "name": "Result.__aenter__",
+              "line_start": 40,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -198,118 +178,44 @@
             },
             {
               "kind": "function",
-              "name": "Cursor.__aenter__",
-              "line_start": 106,
-              "n_typed": 0,
+              "name": "Result.__aexit__",
+              "line_start": 44,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Cursor.__aexit__",
-              "line_start": 109,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
             }
           ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Cursor.rowcount",
-              "line_start": 74,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Cursor.lastrowid",
-              "line_start": 78,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Cursor.arraysize",
-              "line_start": 82,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Cursor.description",
-              "line_start": 90,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Cursor.row_factory",
-              "line_start": 94,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Cursor.connection",
-              "line_start": 102,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Cursor.iter_chunk_size",
-              "line_start": 14,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 27,
-          "n_typed": 24,
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 7,
           "n_any": 0,
-          "n_untyped": 3,
-          "n_methods": 11,
-          "n_method_params": 7,
-          "n_attrs": 1,
-          "n_properties": 6
+          "n_untyped": 4,
+          "n_methods": 7,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "aiosqlite.cursor",
+      "name": "aiosqlite.context",
       "names": [
-        "Cursor"
+        "Result",
+        "contextmanager"
       ],
-      "n_typable": 27,
-      "n_typed": 24,
+      "n_typable": 13,
+      "n_typed": 9,
       "n_any": 0,
-      "n_untyped": 3,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 11,
-      "n_method_params": 7,
+      "n_untyped": 4,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 7,
+      "n_method_params": 4,
       "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 6,
+      "n_attrs": 0,
+      "n_properties": 0,
       "n_type_ignores": 0
     },
     {
@@ -658,26 +564,26 @@
       "n_type_ignores": 2
     },
     {
-      "path": "aiosqlite/context.py",
+      "path": "aiosqlite/cursor.py",
       "symbol_reports": [
         {
-          "kind": "function",
-          "name": "contextmanager",
-          "line_start": 49,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
           "kind": "class",
-          "name": "Result",
-          "line_start": 15,
+          "name": "Cursor",
+          "line_start": 12,
           "methods": [
             {
               "kind": "function",
-              "name": "Result.__init__",
+              "name": "Cursor.__init__",
+              "line_start": 13,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cursor.__aiter__",
               "line_start": 18,
               "n_typed": 1,
               "n_any": 0,
@@ -687,28 +593,38 @@
             },
             {
               "kind": "function",
-              "name": "Result.send",
-              "line_start": 22,
-              "n_typed": 1,
+              "name": "Cursor.execute",
+              "line_start": 34,
+              "n_typed": 3,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Cursor.executemany",
+              "line_start": 43,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Cursor.executescript",
+              "line_start": 50,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
             },
             {
               "kind": "function",
-              "name": "Result.throw",
-              "line_start": 25,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Result.close",
-              "line_start": 34,
+              "name": "Cursor.fetchone",
+              "line_start": 55,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -717,8 +633,18 @@
             },
             {
               "kind": "function",
-              "name": "Result.__await__",
-              "line_start": 37,
+              "name": "Cursor.fetchmany",
+              "line_start": 59,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cursor.fetchall",
+              "line_start": 66,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -727,8 +653,8 @@
             },
             {
               "kind": "function",
-              "name": "Result.__aenter__",
-              "line_start": 40,
+              "name": "Cursor.close",
+              "line_start": 70,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -737,44 +663,118 @@
             },
             {
               "kind": "function",
-              "name": "Result.__aexit__",
-              "line_start": 44,
-              "n_typed": 1,
+              "name": "Cursor.__aenter__",
+              "line_start": 106,
+              "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Cursor.__aexit__",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
               "n_typable": 1,
               "n_params": 0
             }
           ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 11,
-          "n_typed": 7,
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Cursor.rowcount",
+              "line_start": 74,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Cursor.lastrowid",
+              "line_start": 78,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Cursor.arraysize",
+              "line_start": 82,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Cursor.description",
+              "line_start": 90,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Cursor.row_factory",
+              "line_start": 94,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Cursor.connection",
+              "line_start": 102,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Cursor.iter_chunk_size",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 27,
+          "n_typed": 24,
           "n_any": 0,
-          "n_untyped": 4,
-          "n_methods": 7,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
+          "n_untyped": 3,
+          "n_methods": 11,
+          "n_method_params": 7,
+          "n_attrs": 1,
+          "n_properties": 6
         }
       ],
       "type_ignores": [],
-      "name": "aiosqlite.context",
+      "name": "aiosqlite.cursor",
       "names": [
-        "Result",
-        "contextmanager"
+        "Cursor"
       ],
-      "n_typable": 13,
-      "n_typed": 9,
+      "n_typable": 27,
+      "n_typed": 24,
       "n_any": 0,
-      "n_untyped": 4,
-      "n_functions": 1,
-      "n_function_params": 1,
-      "n_methods": 7,
-      "n_method_params": 4,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 11,
+      "n_method_params": 7,
       "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
+      "n_attrs": 1,
+      "n_properties": 6,
       "n_type_ignores": 0
     }
   ],

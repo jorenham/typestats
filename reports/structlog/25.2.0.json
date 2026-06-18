@@ -103,486 +103,112 @@
   },
   "module_reports": [
     {
-      "path": "structlog/contextvars.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "STRUCTLOG_KEY_PREFIX",
-          "line_start": 33,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "STRUCTLOG_KEY_PREFIX_LEN",
-          "line_start": 34,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_contextvars",
-          "line_start": 46,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "get_merged_contextvars",
-          "line_start": 62,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "merge_contextvars",
-          "line_start": 75,
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "clear_contextvars",
-          "line_start": 96,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "bind_contextvars",
-          "line_start": 112,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "reset_contextvars",
-          "line_start": 141,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "unbind_contextvars",
-          "line_start": 153,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "bound_contextvars",
-          "line_start": 169,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "structlog.contextvars",
-      "names": [
-        "STRUCTLOG_KEY_PREFIX",
-        "STRUCTLOG_KEY_PREFIX_LEN",
-        "bind_contextvars",
-        "bound_contextvars",
-        "clear_contextvars",
-        "get_contextvars",
-        "get_merged_contextvars",
-        "merge_contextvars",
-        "reset_contextvars",
-        "unbind_contextvars"
-      ],
-      "n_typable": 17,
-      "n_typed": 13,
-      "n_any": 3,
-      "n_untyped": 1,
-      "n_functions": 8,
-      "n_function_params": 8,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/tracebacks.py",
+      "path": "structlog/_base.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "safe_str",
-          "line_start": 106,
-          "n_typed": 1,
-          "n_any": 1,
+          "name": "get_context",
+          "line_start": 228,
+          "n_typed": 2,
+          "n_any": 0,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "to_repr",
-          "line_start": 114,
-          "n_typed": 4,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "extract",
-          "line_start": 176,
-          "n_typed": 10,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 10,
-          "n_params": 9
         },
         {
           "kind": "class",
-          "name": "ExceptionDictTransformer",
-          "line_start": 325,
+          "name": "BoundLoggerBase",
+          "line_start": 27,
           "methods": [
             {
               "kind": "function",
-              "name": "ExceptionDictTransformer.__init__",
-              "line_start": 382,
-              "n_typed": 8,
-              "n_any": 0,
+              "name": "BoundLoggerBase.__init__",
+              "line_start": 51,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
-              "n_typable": 8,
-              "n_params": 7
+              "n_typable": 3,
+              "n_params": 2
             },
             {
               "kind": "function",
-              "name": "ExceptionDictTransformer.__call__",
-              "line_start": 425,
+              "name": "BoundLoggerBase.__repr__",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "BoundLoggerBase.__eq__",
+              "line_start": 64,
               "n_typed": 2,
               "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BoundLoggerBase.__ne__",
+              "line_start": 70,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BoundLoggerBase.bind",
+              "line_start": 73,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BoundLoggerBase.unbind",
+              "line_start": 83,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BoundLoggerBase.try_unbind",
+              "line_start": 96,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BoundLoggerBase.new",
+              "line_start": 108,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
             }
           ],
           "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.show_locals",
-              "line_start": 403,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.locals_max_length",
-              "line_start": 404,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.locals_max_string",
-              "line_start": 405,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.locals_hide_dunder",
-              "line_start": 406,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.locals_hide_sunder",
-              "line_start": 407,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.suppress",
-              "line_start": 408,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.max_frames",
-              "line_start": 422,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ExceptionDictTransformer.use_rich",
-              "line_start": 423,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 18,
-          "n_typed": 11,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_methods": 2,
-          "n_method_params": 8,
-          "n_attrs": 8,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Frame",
-          "line_start": 55,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Frame.filename",
-              "line_start": 61,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Frame.lineno",
-              "line_start": 62,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Frame.name",
-              "line_start": 63,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Frame.locals",
-              "line_start": 64,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
+          "attrs": [],
+          "n_typable": 15,
+          "n_typed": 12,
+          "n_any": 3,
           "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Stack",
-          "line_start": 80,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Stack.exc_type",
-              "line_start": 89,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Stack.exc_value",
-              "line_start": 90,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Stack.exc_notes",
-              "line_start": 91,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Stack.syntax_error",
-              "line_start": 92,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Stack.is_cause",
-              "line_start": 93,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "Stack.frames",
-              "line_start": 94,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "SyntaxError_",
-          "line_start": 67,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.offset",
-              "line_start": 73,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.filename",
-              "line_start": 74,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.line",
-              "line_start": 75,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.lineno",
-              "line_start": 76,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SyntaxError_.msg",
-              "line_start": 77,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Trace",
-          "line_start": 97,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Trace.stacks",
-              "line_start": 103,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
+          "n_methods": 8,
+          "n_method_params": 7,
           "n_attrs": 0,
           "n_properties": 0
         }
@@ -591,33 +217,310 @@
         {
           "kind": "type",
           "rules": [
-            "assignment"
+            "attr-defined"
           ]
         }
       ],
-      "name": "structlog.tracebacks",
+      "name": "structlog._base",
       "names": [
-        "ExceptionDictTransformer",
-        "Frame",
-        "Stack",
-        "SyntaxError_",
-        "Trace",
-        "extract",
-        "safe_str",
-        "to_repr"
+        "BoundLoggerBase",
+        "get_context"
       ],
-      "n_typable": 35,
-      "n_typed": 26,
-      "n_any": 2,
-      "n_untyped": 7,
-      "n_functions": 3,
-      "n_function_params": 14,
-      "n_methods": 2,
-      "n_method_params": 8,
-      "n_classes": 5,
-      "n_attrs": 8,
+      "n_typable": 17,
+      "n_typed": 14,
+      "n_any": 3,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 8,
+      "n_method_params": 7,
+      "n_classes": 1,
+      "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 1
+    },
+    {
+      "path": "structlog/_config.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "getLogger",
+          "line_start": 140,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "is_configured",
+          "line_start": 78,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_config",
+          "line_start": 89,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_logger",
+          "line_start": 108,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "wrap_logger",
+          "line_start": 149,
+          "n_typed": 6,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "configure",
+          "line_start": 196,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "configure_once",
+          "line_start": 253,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "reset_defaults",
+          "line_start": 283,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "call-arg"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "method-assign"
+          ]
+        }
+      ],
+      "name": "structlog._config",
+      "names": [
+        "configure",
+        "configure_once",
+        "getLogger",
+        "get_config",
+        "get_logger",
+        "is_configured",
+        "reset_defaults",
+        "wrap_logger"
+      ],
+      "n_typable": 26,
+      "n_typed": 21,
+      "n_any": 5,
+      "n_untyped": 0,
+      "n_functions": 7,
+      "n_function_params": 19,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "structlog/_generic.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BoundLogger",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BoundLogger.__getattr__",
+              "line_start": 31,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BoundLogger.__getstate__",
+              "line_start": 43,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BoundLogger.__setstate__",
+              "line_start": 49,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "structlog._generic",
+      "names": [
+        "BoundLogger"
+      ],
+      "n_typable": 4,
+      "n_typed": 3,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "structlog/_log_levels.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "NAME_TO_LEVEL",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "add_log_level",
+          "line_start": 61,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "structlog._log_levels",
+      "names": [
+        "NAME_TO_LEVEL",
+        "add_log_level"
+      ],
+      "n_typable": 4,
+      "n_typed": 3,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "structlog/_native.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_filtering_bound_logger",
+          "line_start": 74,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        }
+      ],
+      "name": "structlog._native",
+      "names": [
+        "make_filtering_bound_logger"
+      ],
+      "n_typable": 2,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 3
     },
     {
       "path": "structlog/_output.py",
@@ -989,12 +892,30 @@
       "n_type_ignores": 0
     },
     {
-      "path": "structlog/testing.py",
+      "path": "structlog/contextvars.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "STRUCTLOG_KEY_PREFIX",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "STRUCTLOG_KEY_PREFIX_LEN",
+          "line_start": 34,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
           "kind": "function",
-          "name": "capture_logs",
-          "line_start": 65,
+          "name": "get_contextvars",
+          "line_start": 46,
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 0,
@@ -1002,16 +923,204 @@
           "n_params": 0
         },
         {
-          "kind": "class",
-          "name": "CapturedCall",
+          "kind": "function",
+          "name": "get_merged_contextvars",
+          "line_start": 62,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "merge_contextvars",
+          "line_start": 75,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "clear_contextvars",
+          "line_start": 96,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "bind_contextvars",
+          "line_start": 112,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "reset_contextvars",
           "line_start": 141,
-          "methods": [],
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "unbind_contextvars",
+          "line_start": 153,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bound_contextvars",
+          "line_start": 169,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "structlog.contextvars",
+      "names": [
+        "STRUCTLOG_KEY_PREFIX",
+        "STRUCTLOG_KEY_PREFIX_LEN",
+        "bind_contextvars",
+        "bound_contextvars",
+        "clear_contextvars",
+        "get_contextvars",
+        "get_merged_contextvars",
+        "merge_contextvars",
+        "reset_contextvars",
+        "unbind_contextvars"
+      ],
+      "n_typable": 17,
+      "n_typed": 13,
+      "n_any": 3,
+      "n_untyped": 1,
+      "n_functions": 8,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "structlog/dev.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "rich_traceback",
+          "line_start": 400,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "plain_traceback",
+          "line_start": 329,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "better_traceback",
+          "line_start": 413,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "ConsoleRenderer",
+          "line_start": 434,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer.__init__",
+              "line_start": 546,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer.__call__",
+              "line_start": 713,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ConsoleRenderer.get_default_level_styles",
+              "line_start": 752,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 16,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 14,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RichTracebackFormatter",
+          "line_start": 342,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RichTracebackFormatter.__call__",
+              "line_start": 373,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
           "properties": [],
           "attrs": [
             {
               "kind": "attr",
-              "name": "CapturedCall.method_name",
-              "line_start": 157,
+              "name": "RichTracebackFormatter.color_system",
+              "line_start": 357,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -1019,8 +1128,8 @@
             },
             {
               "kind": "attr",
-              "name": "CapturedCall.args",
-              "line_start": 158,
+              "name": "RichTracebackFormatter.show_locals",
+              "line_start": 360,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
@@ -1028,14 +1137,153 @@
             },
             {
               "kind": "attr",
-              "name": "CapturedCall.kwargs",
-              "line_start": 159,
+              "name": "RichTracebackFormatter.max_frames",
+              "line_start": 361,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.theme",
+              "line_start": 362,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.word_wrap",
+              "line_start": 363,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.extra_lines",
+              "line_start": 364,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.width",
+              "line_start": 365,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.indent_guides",
+              "line_start": 366,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.locals_max_length",
+              "line_start": 367,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.locals_max_string",
+              "line_start": 368,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.locals_hide_dunder",
+              "line_start": 369,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.locals_hide_sunder",
+              "line_start": 370,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RichTracebackFormatter.suppress",
+              "line_start": 371,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 0,
               "n_typable": 0
             }
           ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "assignment"
+          ]
+        }
+      ],
+      "name": "structlog.dev",
+      "names": [
+        "ConsoleRenderer",
+        "RichTracebackFormatter",
+        "better_traceback",
+        "plain_traceback",
+        "rich_traceback"
+      ],
+      "n_typable": 27,
+      "n_typed": 25,
+      "n_any": 1,
+      "n_untyped": 1,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 4,
+      "n_method_params": 16,
+      "n_classes": 2,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "structlog/exceptions.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DropEvent",
+          "line_start": 13,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
           "n_typable": 0,
           "n_typed": 0,
           "n_any": 0,
@@ -1044,244 +1292,23 @@
           "n_method_params": 0,
           "n_attrs": 0,
           "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "CapturingLogger",
-          "line_start": 162,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CapturingLogger.__init__",
-              "line_start": 176,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "CapturingLogger.__repr__",
-              "line_start": 179,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "CapturingLogger.__getattr__",
-              "line_start": 182,
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CapturingLogger.calls",
-              "line_start": 174,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 2,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_methods": 3,
-          "n_method_params": -2,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "CapturingLoggerFactory",
-          "line_start": 193,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "CapturingLoggerFactory.__init__",
-              "line_start": 210,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "CapturingLoggerFactory.__call__",
-              "line_start": 213,
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "CapturingLoggerFactory.logger",
-              "line_start": 208,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 3,
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "LogCapture",
-          "line_start": 36,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "LogCapture.__init__",
-              "line_start": 53,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "LogCapture.__call__",
-              "line_start": 56,
-              "n_typed": 3,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "LogCapture.entries",
-              "line_start": 51,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 2,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ReturnLogger",
-          "line_start": 95,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ReturnLogger.msg",
-              "line_start": 109,
-              "n_typed": 0,
-              "n_any": 3,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 3,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ReturnLoggerFactory",
-          "line_start": 123,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ReturnLoggerFactory.__init__",
-              "line_start": 134,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "ReturnLoggerFactory.__call__",
-              "line_start": 137,
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "structlog.testing",
+      "name": "structlog.exceptions",
       "names": [
-        "CapturedCall",
-        "CapturingLogger",
-        "CapturingLoggerFactory",
-        "LogCapture",
-        "ReturnLogger",
-        "ReturnLoggerFactory",
-        "capture_logs"
+        "DropEvent"
       ],
-      "n_typable": 16,
-      "n_typed": 9,
-      "n_any": 7,
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
       "n_untyped": 0,
-      "n_functions": 1,
+      "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 10,
-      "n_method_params": 2,
-      "n_classes": 6,
-      "n_attrs": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
@@ -2607,9 +2634,9 @@
         {
           "kind": "type",
           "rules": [
+            "union-attr",
             "arg-type",
-            "unused-ignore",
-            "union-attr"
+            "unused-ignore"
           ]
         },
         {
@@ -2645,9 +2672,9 @@
         {
           "kind": "type",
           "rules": [
+            "union-attr",
             "arg-type",
-            "unused-ignore",
-            "union-attr"
+            "unused-ignore"
           ]
         },
         {
@@ -2690,6 +2717,896 @@
       "n_attrs": 8,
       "n_properties": 6,
       "n_type_ignores": 10
+    },
+    {
+      "path": "structlog/testing.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "capture_logs",
+          "line_start": 65,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "CapturedCall",
+          "line_start": 141,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CapturedCall.method_name",
+              "line_start": 157,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CapturedCall.args",
+              "line_start": 158,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CapturedCall.kwargs",
+              "line_start": 159,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CapturingLogger",
+          "line_start": 162,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CapturingLogger.__init__",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "CapturingLogger.__repr__",
+              "line_start": 179,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "CapturingLogger.__getattr__",
+              "line_start": 182,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CapturingLogger.calls",
+              "line_start": 174,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": -2,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CapturingLoggerFactory",
+          "line_start": 193,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CapturingLoggerFactory.__init__",
+              "line_start": 210,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "CapturingLoggerFactory.__call__",
+              "line_start": 213,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CapturingLoggerFactory.logger",
+              "line_start": 208,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LogCapture",
+          "line_start": 36,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LogCapture.__init__",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "LogCapture.__call__",
+              "line_start": 56,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LogCapture.entries",
+              "line_start": 51,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ReturnLogger",
+          "line_start": 95,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ReturnLogger.msg",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ReturnLoggerFactory",
+          "line_start": 123,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ReturnLoggerFactory.__init__",
+              "line_start": 134,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ReturnLoggerFactory.__call__",
+              "line_start": 137,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "structlog.testing",
+      "names": [
+        "CapturedCall",
+        "CapturingLogger",
+        "CapturingLoggerFactory",
+        "LogCapture",
+        "ReturnLogger",
+        "ReturnLoggerFactory",
+        "capture_logs"
+      ],
+      "n_typable": 16,
+      "n_typed": 9,
+      "n_any": 7,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 10,
+      "n_method_params": 2,
+      "n_classes": 6,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "structlog/threadlocal.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "ThreadLocal",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TLLogger",
+          "line_start": 101,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "merge_threadlocal_context",
+          "line_start": 281,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "wrap_dict",
+          "line_start": 80,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "as_immutable",
+          "line_start": 104,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "tmp_bind",
+          "line_start": 137,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_threadlocal",
+          "line_start": 230,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_merged_threadlocal",
+          "line_start": 241,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "merge_threadlocal",
+          "line_start": 256,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "clear_threadlocal",
+          "line_start": 284,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "bind_threadlocal",
+          "line_start": 298,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "unbind_threadlocal",
+          "line_start": 312,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bound_threadlocal",
+          "line_start": 325,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "union-attr"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "union-attr"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "union-attr"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined",
+            "call-arg"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        }
+      ],
+      "name": "structlog.threadlocal",
+      "names": [
+        "TLLogger",
+        "ThreadLocal",
+        "as_immutable",
+        "bind_threadlocal",
+        "bound_threadlocal",
+        "clear_threadlocal",
+        "get_merged_threadlocal",
+        "get_threadlocal",
+        "merge_threadlocal",
+        "merge_threadlocal_context",
+        "tmp_bind",
+        "unbind_threadlocal",
+        "wrap_dict"
+      ],
+      "n_typable": 22,
+      "n_typed": 17,
+      "n_any": 4,
+      "n_untyped": 1,
+      "n_functions": 10,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 7
+    },
+    {
+      "path": "structlog/tracebacks.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "safe_str",
+          "line_start": 106,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "to_repr",
+          "line_start": 114,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "extract",
+          "line_start": 176,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 10,
+          "n_params": 9
+        },
+        {
+          "kind": "class",
+          "name": "ExceptionDictTransformer",
+          "line_start": 325,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ExceptionDictTransformer.__init__",
+              "line_start": 382,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "ExceptionDictTransformer.__call__",
+              "line_start": 425,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.show_locals",
+              "line_start": 403,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.locals_max_length",
+              "line_start": 404,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.locals_max_string",
+              "line_start": 405,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.locals_hide_dunder",
+              "line_start": 406,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.locals_hide_sunder",
+              "line_start": 407,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.suppress",
+              "line_start": 408,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.max_frames",
+              "line_start": 422,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ExceptionDictTransformer.use_rich",
+              "line_start": 423,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 18,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 2,
+          "n_method_params": 8,
+          "n_attrs": 8,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Frame",
+          "line_start": 55,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Frame.filename",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Frame.lineno",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Frame.name",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Frame.locals",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Stack",
+          "line_start": 80,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Stack.exc_type",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Stack.exc_value",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Stack.exc_notes",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Stack.syntax_error",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Stack.is_cause",
+              "line_start": 93,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Stack.frames",
+              "line_start": 94,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SyntaxError_",
+          "line_start": 67,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.offset",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.filename",
+              "line_start": 74,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.line",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.lineno",
+              "line_start": 76,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SyntaxError_.msg",
+              "line_start": 77,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Trace",
+          "line_start": 97,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Trace.stacks",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "assignment"
+          ]
+        }
+      ],
+      "name": "structlog.tracebacks",
+      "names": [
+        "ExceptionDictTransformer",
+        "Frame",
+        "Stack",
+        "SyntaxError_",
+        "Trace",
+        "extract",
+        "safe_str",
+        "to_repr"
+      ],
+      "n_typable": 35,
+      "n_typed": 26,
+      "n_any": 2,
+      "n_untyped": 7,
+      "n_functions": 3,
+      "n_function_params": 14,
+      "n_methods": 2,
+      "n_method_params": 8,
+      "n_classes": 5,
+      "n_attrs": 8,
+      "n_properties": 0,
+      "n_type_ignores": 1
     },
     {
       "path": "structlog/twisted.py",
@@ -3032,910 +3949,6 @@
       "n_attrs": 1,
       "n_properties": 0,
       "n_type_ignores": 7
-    },
-    {
-      "path": "structlog/_base.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "get_context",
-          "line_start": 228,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "BoundLoggerBase",
-          "line_start": 27,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.__init__",
-              "line_start": 51,
-              "n_typed": 2,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.__repr__",
-              "line_start": 61,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.__eq__",
-              "line_start": 64,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.__ne__",
-              "line_start": 70,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.bind",
-              "line_start": 73,
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.unbind",
-              "line_start": 83,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.try_unbind",
-              "line_start": 96,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "BoundLoggerBase.new",
-              "line_start": 108,
-              "n_typed": 1,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 15,
-          "n_typed": 12,
-          "n_any": 3,
-          "n_untyped": 0,
-          "n_methods": 8,
-          "n_method_params": 7,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "attr-defined"
-          ]
-        }
-      ],
-      "name": "structlog._base",
-      "names": [
-        "BoundLoggerBase",
-        "get_context"
-      ],
-      "n_typable": 17,
-      "n_typed": 14,
-      "n_any": 3,
-      "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_params": 1,
-      "n_methods": 8,
-      "n_method_params": 7,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 1
-    },
-    {
-      "path": "structlog/_config.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "getLogger",
-          "line_start": 140,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "is_configured",
-          "line_start": 78,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "get_config",
-          "line_start": 89,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "get_logger",
-          "line_start": 108,
-          "n_typed": 0,
-          "n_any": 3,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "wrap_logger",
-          "line_start": 149,
-          "n_typed": 6,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_typable": 8,
-          "n_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "configure",
-          "line_start": 196,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "configure_once",
-          "line_start": 253,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "reset_defaults",
-          "line_start": 283,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "call-arg"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "method-assign"
-          ]
-        }
-      ],
-      "name": "structlog._config",
-      "names": [
-        "configure",
-        "configure_once",
-        "getLogger",
-        "get_config",
-        "get_logger",
-        "is_configured",
-        "reset_defaults",
-        "wrap_logger"
-      ],
-      "n_typable": 26,
-      "n_typed": 21,
-      "n_any": 5,
-      "n_untyped": 0,
-      "n_functions": 7,
-      "n_function_params": 19,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 2
-    },
-    {
-      "path": "structlog/dev.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "rich_traceback",
-          "line_start": 400,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "function",
-          "name": "plain_traceback",
-          "line_start": 329,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "better_traceback",
-          "line_start": 413,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "class",
-          "name": "ConsoleRenderer",
-          "line_start": 434,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer.__init__",
-              "line_start": 546,
-              "n_typed": 11,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 11,
-              "n_params": 10
-            },
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer.__call__",
-              "line_start": 713,
-              "n_typed": 3,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "ConsoleRenderer.get_default_level_styles",
-              "line_start": 752,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 17,
-          "n_typed": 16,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_methods": 3,
-          "n_method_params": 14,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "RichTracebackFormatter",
-          "line_start": 342,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "RichTracebackFormatter.__call__",
-              "line_start": 373,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.color_system",
-              "line_start": 357,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.show_locals",
-              "line_start": 360,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.max_frames",
-              "line_start": 361,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.theme",
-              "line_start": 362,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.word_wrap",
-              "line_start": 363,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.extra_lines",
-              "line_start": 364,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.width",
-              "line_start": 365,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.indent_guides",
-              "line_start": 366,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.locals_max_length",
-              "line_start": 367,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.locals_max_string",
-              "line_start": 368,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.locals_hide_dunder",
-              "line_start": 369,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.locals_hide_sunder",
-              "line_start": 370,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "RichTracebackFormatter.suppress",
-              "line_start": 371,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 3,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "assignment"
-          ]
-        }
-      ],
-      "name": "structlog.dev",
-      "names": [
-        "ConsoleRenderer",
-        "RichTracebackFormatter",
-        "better_traceback",
-        "plain_traceback",
-        "rich_traceback"
-      ],
-      "n_typable": 27,
-      "n_typed": 25,
-      "n_any": 1,
-      "n_untyped": 1,
-      "n_functions": 2,
-      "n_function_params": 4,
-      "n_methods": 4,
-      "n_method_params": 16,
-      "n_classes": 2,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 1
-    },
-    {
-      "path": "structlog/_generic.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "BoundLogger",
-          "line_start": 18,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "BoundLogger.__getattr__",
-              "line_start": 31,
-              "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BoundLogger.__getstate__",
-              "line_start": 43,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "BoundLogger.__setstate__",
-              "line_start": 49,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_methods": 3,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "structlog._generic",
-      "names": [
-        "BoundLogger"
-      ],
-      "n_typable": 4,
-      "n_typed": 3,
-      "n_any": 1,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 3,
-      "n_method_params": 1,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/_log_levels.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "NAME_TO_LEVEL",
-          "line_start": 27,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "add_log_level",
-          "line_start": 61,
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "structlog._log_levels",
-      "names": [
-        "NAME_TO_LEVEL",
-        "add_log_level"
-      ],
-      "n_typable": 4,
-      "n_typed": 3,
-      "n_any": 1,
-      "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_params": 3,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/threadlocal.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "ThreadLocal",
-          "line_start": 46,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "TLLogger",
-          "line_start": 101,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "merge_threadlocal_context",
-          "line_start": 281,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "wrap_dict",
-          "line_start": 80,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "as_immutable",
-          "line_start": 104,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "tmp_bind",
-          "line_start": 137,
-          "n_typed": 2,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "get_threadlocal",
-          "line_start": 230,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "get_merged_threadlocal",
-          "line_start": 241,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "merge_threadlocal",
-          "line_start": 256,
-          "n_typed": 3,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "clear_threadlocal",
-          "line_start": 284,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "bind_threadlocal",
-          "line_start": 298,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "unbind_threadlocal",
-          "line_start": 312,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "bound_threadlocal",
-          "line_start": 325,
-          "n_typed": 1,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "union-attr"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "attr-defined"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "attr-defined"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "union-attr"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "union-attr"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "attr-defined",
-            "call-arg"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "attr-defined"
-          ]
-        }
-      ],
-      "name": "structlog.threadlocal",
-      "names": [
-        "TLLogger",
-        "ThreadLocal",
-        "as_immutable",
-        "bind_threadlocal",
-        "bound_threadlocal",
-        "clear_threadlocal",
-        "get_merged_threadlocal",
-        "get_threadlocal",
-        "merge_threadlocal",
-        "merge_threadlocal_context",
-        "tmp_bind",
-        "unbind_threadlocal",
-        "wrap_dict"
-      ],
-      "n_typable": 22,
-      "n_typed": 17,
-      "n_any": 4,
-      "n_untyped": 1,
-      "n_functions": 10,
-      "n_function_params": 11,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 7
-    },
-    {
-      "path": "structlog/exceptions.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "DropEvent",
-          "line_start": 13,
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "structlog.exceptions",
-      "names": [
-        "DropEvent"
-      ],
-      "n_typable": 0,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/__init__.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "twisted",
-          "line_start": 48,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "assignment"
-          ]
-        }
-      ],
-      "name": "structlog",
-      "names": [
-        "twisted"
-      ],
-      "n_typable": 1,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 1,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 1,
-      "n_properties": 0,
-      "n_type_ignores": 1
     },
     {
       "path": "structlog/typing.py",
@@ -4401,73 +4414,58 @@
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
-    },
-    {
-      "path": "structlog/_native.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "make_filtering_bound_logger",
-          "line_start": 74,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": [
-            "arg-type"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "arg-type"
-          ]
-        },
-        {
-          "kind": "type",
-          "rules": [
-            "arg-type"
-          ]
-        }
-      ],
-      "name": "structlog._native",
-      "names": [
-        "make_filtering_bound_logger"
-      ],
-      "n_typable": 2,
-      "n_typed": 2,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 1,
-      "n_function_params": 1,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 3
     }
   ],
   "typecheckers": {},
-  "n_modules": 17,
-  "n_typable": 592,
+  "n_modules": 16,
+  "n_typable": 591,
   "n_typed": 399,
   "n_any": 166,
-  "n_untyped": 27,
+  "n_untyped": 26,
   "n_functions": 42,
   "n_function_params": 79,
   "n_methods": 160,
   "n_method_params": 273,
   "n_classes": 48,
-  "n_attrs": 32,
+  "n_attrs": 31,
   "n_properties": 6,
   "type_ignores": [
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "call-arg"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "method-assign"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
     {
       "kind": "type",
       "rules": [
@@ -4489,9 +4487,9 @@
     {
       "kind": "type",
       "rules": [
+        "union-attr",
         "arg-type",
-        "unused-ignore",
-        "union-attr"
+        "unused-ignore"
       ]
     },
     {
@@ -4527,9 +4525,9 @@
     {
       "kind": "type",
       "rules": [
+        "union-attr",
         "arg-type",
-        "unused-ignore",
-        "union-attr"
+        "unused-ignore"
       ]
     },
     {
@@ -4542,73 +4540,6 @@
       "kind": "type",
       "rules": [
         "attr-defined"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "no-untyped-call"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "no-untyped-call"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "override"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "no-untyped-call"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type",
-        "operator"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "attr-defined"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "call-arg"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "method-assign"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "assignment"
       ]
     },
     {
@@ -4663,13 +4594,38 @@
     {
       "kind": "type",
       "rules": [
-        "arg-type"
+        "no-untyped-call"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-untyped-call"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-untyped-call"
       ]
     },
     {
       "kind": "type",
       "rules": [
         "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type",
+        "operator"
       ]
     },
     {
@@ -4679,5 +4635,5 @@
       ]
     }
   ],
-  "n_type_ignores": 34
+  "n_type_ignores": 33
 }

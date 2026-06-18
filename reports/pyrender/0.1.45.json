@@ -80,165 +80,156 @@
   },
   "module_reports": [
     {
-      "path": "pyrender/utils.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "format_color_vector",
-          "line_start": 5,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "format_color_array",
-          "line_start": 30,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "format_texture_source",
-          "line_start": 49,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.utils",
-      "names": [
-        "format_color_array",
-        "format_color_vector",
-        "format_texture_source"
-      ],
-      "n_typable": 9,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 9,
-      "n_functions": 3,
-      "n_function_params": 6,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/shader_program.py",
+      "path": "pyrender/camera.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "ShaderProgram",
-          "line_start": 79,
+          "name": "Camera",
+          "line_start": 14,
           "methods": [
             {
               "kind": "function",
-              "name": "ShaderProgram.__init__",
-              "line_start": 95,
+              "name": "Camera.__init__",
+              "line_start": 35,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             },
             {
               "kind": "function",
-              "name": "ShaderProgram.delete",
-              "line_start": 198,
+              "name": "Camera.get_projection_matrix",
+              "line_start": 81,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ShaderProgram.set_uniform",
-              "line_start": 203,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             }
           ],
-          "properties": [],
-          "attrs": [
+          "properties": [
             {
-              "kind": "attr",
-              "name": "ShaderProgram.vertex_shader",
-              "line_start": 98,
+              "kind": "property",
+              "name": "Camera.name",
+              "line_start": 43,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
+              "n_untyped": 2,
+              "n_typable": 2
             },
             {
-              "kind": "attr",
-              "name": "ShaderProgram.fragment_shader",
-              "line_start": 99,
+              "kind": "property",
+              "name": "Camera.znear",
+              "line_start": 55,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
+              "n_untyped": 2,
+              "n_typable": 2
             },
             {
-              "kind": "attr",
-              "name": "ShaderProgram.geometry_shader",
-              "line_start": 100,
+              "kind": "property",
+              "name": "Camera.zfar",
+              "line_start": 68,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ShaderProgram.defines",
-              "line_start": 102,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
+              "n_untyped": 2,
+              "n_typable": 2
             }
           ],
-          "n_typable": 13,
+          "attrs": [],
+          "n_typable": 12,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 13,
-          "n_methods": 3,
-          "n_method_params": 6,
-          "n_attrs": 4,
-          "n_properties": 0
+          "n_untyped": 12,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 3
         },
         {
           "kind": "class",
-          "name": "ShaderProgramCache",
-          "line_start": 12,
+          "name": "IntrinsicsCamera",
+          "line_start": 313,
           "methods": [
             {
               "kind": "function",
-              "name": "ShaderProgramCache.__init__",
-              "line_start": 16,
+              "name": "IntrinsicsCamera.__init__",
+              "line_start": 337,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
             },
             {
               "kind": "function",
-              "name": "ShaderProgramCache.get_program",
-              "line_start": 23,
+              "name": "IntrinsicsCamera.get_projection_matrix",
+              "line_start": 396,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.fx",
+              "line_start": 356,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.fy",
+              "line_start": 366,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.cx",
+              "line_start": 376,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "IntrinsicsCamera.cy",
+              "line_start": 386,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 18,
+          "n_methods": 2,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "OrthographicCamera",
+          "line_start": 209,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OrthographicCamera.__init__",
+              "line_start": 229,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 5,
@@ -247,54 +238,139 @@
             },
             {
               "kind": "function",
-              "name": "ShaderProgramCache.clear",
-              "line_start": 73,
+              "name": "OrthographicCamera.get_projection_matrix",
+              "line_start": 283,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             }
           ],
-          "properties": [],
-          "attrs": [
+          "properties": [
             {
-              "kind": "attr",
-              "name": "ShaderProgramCache.shader_dir",
-              "line_start": 18,
+              "kind": "property",
+              "name": "OrthographicCamera.xmag",
+              "line_start": 244,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OrthographicCamera.ymag",
+              "line_start": 257,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "OrthographicCamera.znear",
+              "line_start": 270,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
             }
           ],
-          "n_typable": 8,
+          "attrs": [],
+          "n_typable": 14,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 8,
-          "n_methods": 3,
-          "n_method_params": 4,
-          "n_attrs": 1,
-          "n_properties": 0
+          "n_untyped": 14,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "PerspectiveCamera",
+          "line_start": 95,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PerspectiveCamera.__init__",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "PerspectiveCamera.get_projection_matrix",
+              "line_start": 173,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "PerspectiveCamera.yfov",
+              "line_start": 132,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "PerspectiveCamera.zfar",
+              "line_start": 145,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "PerspectiveCamera.aspectRatio",
+              "line_start": 159,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 3
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.shader_program",
+      "name": "pyrender.camera",
       "names": [
-        "ShaderProgram",
-        "ShaderProgramCache"
+        "Camera",
+        "IntrinsicsCamera",
+        "OrthographicCamera",
+        "PerspectiveCamera"
       ],
-      "n_typable": 21,
+      "n_typable": 58,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 21,
+      "n_untyped": 58,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 6,
-      "n_method_params": 10,
-      "n_classes": 2,
-      "n_attrs": 5,
-      "n_properties": 0,
+      "n_methods": 8,
+      "n_method_params": 24,
+      "n_classes": 4,
+      "n_attrs": 0,
+      "n_properties": 13,
       "n_type_ignores": 0
     },
     {
@@ -370,34 +446,422 @@
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/version.py",
+      "path": "pyrender/font.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "__version__",
-          "line_start": 1,
+          "kind": "class",
+          "name": "Character",
+          "line_start": 50,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Character.__init__",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Character.texture",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Character.size",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Character.bearing",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Character.advance",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
+          "n_untyped": 8,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Font",
+          "line_start": 61,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Font.__init__",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Font.delete",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Font.render_string",
+              "line_start": 173,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Font.font_file",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Font.font_pt",
+              "line_start": 121,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 3,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "FontCache",
+          "line_start": 17,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FontCache.__init__",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "FontCache.get_font",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FontCache.clear",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FontCache.font_dir",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.version",
+      "name": "pyrender.font",
       "names": [
-        "__version__"
+        "Character",
+        "Font",
+        "FontCache"
       ],
-      "n_typable": 0,
+      "n_typable": 27,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 0,
+      "n_untyped": 27,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
+      "n_methods": 7,
+      "n_method_params": 11,
+      "n_classes": 3,
+      "n_attrs": 5,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/light.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DirectionalLight",
+          "line_start": 123,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DirectionalLight.__init__",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Light",
+          "line_start": 19,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Light.__init__",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Light.name",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Light.color",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Light.intensity",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Light.shadow_texture",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "PointLight",
+          "line_start": 187,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PointLight.__init__",
+              "line_start": 208,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "PointLight.range",
+              "line_start": 220,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "SpotLight",
+          "line_start": 261,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SpotLight.__init__",
+              "line_start": 296,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "SpotLight.innerConeAngle",
+              "line_start": 312,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpotLight.outerConeAngle",
+              "line_start": 324,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "SpotLight.range",
+              "line_start": 336,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.light",
+      "names": [
+        "DirectionalLight",
+        "Light",
+        "PointLight",
+        "SpotLight"
+      ],
+      "n_typable": 32,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 32,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 12,
+      "n_classes": 4,
       "n_attrs": 0,
-      "n_properties": 0,
+      "n_properties": 8,
       "n_type_ignores": 0
     },
     {
@@ -716,6 +1180,157 @@
       "n_type_ignores": 0
     },
     {
+      "path": "pyrender/mesh.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Mesh",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Mesh.__init__",
+              "line_start": 31,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Mesh.from_points",
+              "line_start": 123,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Mesh.from_trimesh",
+              "line_start": 156,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Mesh.name",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.primitives",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.weights",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.is_visible",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.bounds",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.centroid",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.extents",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.scale",
+              "line_start": 108,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Mesh.is_transparent",
+              "line_start": 114,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 30,
+          "n_methods": 3,
+          "n_method_params": 14,
+          "n_attrs": 0,
+          "n_properties": 9
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.mesh",
+      "names": [
+        "Mesh"
+      ],
+      "n_typable": 30,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 30,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 14,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 9,
+      "n_type_ignores": 0
+    },
+    {
       "path": "pyrender/node.py",
       "symbol_reports": [
         {
@@ -866,17 +1481,17 @@
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/camera.py",
+      "path": "pyrender/offscreen.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "Camera",
-          "line_start": 14,
+          "name": "OffscreenRenderer",
+          "line_start": 11,
           "methods": [
             {
               "kind": "function",
-              "name": "Camera.__init__",
-              "line_start": 35,
+              "name": "OffscreenRenderer.__init__",
+              "line_start": 24,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 3,
@@ -885,514 +1500,8 @@
             },
             {
               "kind": "function",
-              "name": "Camera.get_projection_matrix",
-              "line_start": 81,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Camera.name",
-              "line_start": 43,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Camera.znear",
-              "line_start": 55,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Camera.zfar",
-              "line_start": 68,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 12,
-          "n_methods": 2,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "IntrinsicsCamera",
-          "line_start": 313,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "IntrinsicsCamera.__init__",
-              "line_start": 337,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "IntrinsicsCamera.get_projection_matrix",
-              "line_start": 396,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.fx",
-              "line_start": 356,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.fy",
-              "line_start": 366,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.cx",
-              "line_start": 376,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "IntrinsicsCamera.cy",
-              "line_start": 386,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 18,
-          "n_methods": 2,
-          "n_method_params": 8,
-          "n_attrs": 0,
-          "n_properties": 4
-        },
-        {
-          "kind": "class",
-          "name": "OrthographicCamera",
-          "line_start": 209,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OrthographicCamera.__init__",
-              "line_start": 229,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "OrthographicCamera.get_projection_matrix",
-              "line_start": 283,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.xmag",
-              "line_start": 244,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.ymag",
-              "line_start": 257,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OrthographicCamera.znear",
-              "line_start": 270,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 14,
-          "n_methods": 2,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 3
-        },
-        {
-          "kind": "class",
-          "name": "PerspectiveCamera",
-          "line_start": 95,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PerspectiveCamera.__init__",
-              "line_start": 117,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "PerspectiveCamera.get_projection_matrix",
-              "line_start": 173,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.yfov",
-              "line_start": 132,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.zfar",
-              "line_start": 145,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "PerspectiveCamera.aspectRatio",
-              "line_start": 159,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 14,
-          "n_methods": 2,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.camera",
-      "names": [
-        "Camera",
-        "IntrinsicsCamera",
-        "OrthographicCamera",
-        "PerspectiveCamera"
-      ],
-      "n_typable": 58,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 58,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 8,
-      "n_method_params": 24,
-      "n_classes": 4,
-      "n_attrs": 0,
-      "n_properties": 13,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/viewer.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "Viewer",
-          "line_start": 38,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Viewer.__init__",
-              "line_start": 176,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.close_external",
-              "line_start": 483,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.save_gif",
-              "line_start": 493,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_close",
-              "line_start": 517,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_draw",
-              "line_start": 554,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_resize",
-              "line_start": 598,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_press",
-              "line_start": 610,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_drag",
-              "line_start": 633,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_release",
-              "line_start": 638,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_mouse_scroll",
-              "line_start": 643,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 5,
-              "n_typable": 5,
-              "n_params": 4
-            },
-            {
-              "kind": "function",
-              "name": "Viewer.on_key_press",
-              "line_start": 663,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Viewer.scene",
-              "line_start": 351,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.viewport_size",
-              "line_start": 357,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.render_lock",
-              "line_start": 363,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.is_active",
-              "line_start": 375,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.run_in_thread",
-              "line_start": 382,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.render_flags",
-              "line_start": 388,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.viewer_flags",
-              "line_start": 416,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Viewer.registered_keys",
-              "line_start": 463,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 51,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 51,
-          "n_methods": 11,
-          "n_method_params": 29,
-          "n_attrs": 0,
-          "n_properties": 8
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.viewer",
-      "names": [
-        "Viewer"
-      ],
-      "n_typable": 51,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 51,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 11,
-      "n_method_params": 29,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 8,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/trackball.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "Trackball",
-          "line_start": 8,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Trackball.__init__",
-              "line_start": 16,
+              "name": "OffscreenRenderer.render",
+              "line_start": 63,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -1401,156 +1510,30 @@
             },
             {
               "kind": "function",
-              "name": "Trackball.set_state",
-              "line_start": 55,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Trackball.resize",
-              "line_start": 67,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Trackball.down",
-              "line_start": 77,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Trackball.drag",
-              "line_start": 89,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Trackball.scroll",
-              "line_start": 162,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Trackball.rotate",
-              "line_start": 196,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Trackball.pose",
-              "line_start": 49,
+              "name": "OffscreenRenderer.delete",
+              "line_start": 116,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 18,
-          "n_methods": 7,
-          "n_method_params": 10,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.trackball",
-      "names": [
-        "Trackball"
-      ],
-      "n_typable": 18,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 18,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_params": 10,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 1,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/light.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "DirectionalLight",
-          "line_start": 123,
-          "methods": [
+              "n_typable": 1,
+              "n_params": 0
+            },
             {
               "kind": "function",
-              "name": "DirectionalLight.__init__",
-              "line_start": 143,
+              "name": "OffscreenRenderer.__del__",
+              "line_start": 153,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 3,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_methods": 1,
-          "n_method_params": 2,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Light",
-          "line_start": 19,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Light.__init__",
-              "line_start": 34,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "Light.name",
-              "line_start": 50,
+              "name": "OffscreenRenderer.viewport_width",
+              "line_start": 33,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1558,8 +1541,8 @@
             },
             {
               "kind": "property",
-              "name": "Light.color",
-              "line_start": 62,
+              "name": "OffscreenRenderer.viewport_height",
+              "line_start": 43,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1567,17 +1550,136 @@
             },
             {
               "kind": "property",
-              "name": "Light.intensity",
+              "name": "OffscreenRenderer.point_size",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_methods": 4,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.offscreen",
+      "names": [
+        "OffscreenRenderer"
+      ],
+      "n_typable": 14,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 14,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/platforms/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Platform",
+          "line_start": 6,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Platform.__init__",
+              "line_start": 18,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Platform.init_context",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Platform.make_current",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Platform.make_uncurrent",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Platform.delete_context",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Platform.supports_framebuffers",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Platform.__del__",
               "line_start": 72,
               "n_typed": 0,
               "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Platform.viewport_width",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
               "n_untyped": 2,
               "n_typable": 2
             },
             {
               "kind": "property",
-              "name": "Light.shadow_texture",
-              "line_start": 82,
+              "name": "Platform.viewport_height",
+              "line_start": 32,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -1589,167 +1691,52 @@
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 11,
-          "n_methods": 1,
-          "n_method_params": 2,
+          "n_methods": 7,
+          "n_method_params": 0,
           "n_attrs": 0,
-          "n_properties": 4
-        },
-        {
-          "kind": "class",
-          "name": "PointLight",
-          "line_start": 187,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PointLight.__init__",
-              "line_start": 208,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "PointLight.range",
-              "line_start": 220,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_methods": 1,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 1
-        },
-        {
-          "kind": "class",
-          "name": "SpotLight",
-          "line_start": 261,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "SpotLight.__init__",
-              "line_start": 296,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_typable": 6,
-              "n_params": 5
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "SpotLight.innerConeAngle",
-              "line_start": 312,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpotLight.outerConeAngle",
-              "line_start": 324,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "SpotLight.range",
-              "line_start": 336,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 12,
-          "n_methods": 1,
-          "n_method_params": 5,
-          "n_attrs": 0,
-          "n_properties": 3
+          "n_properties": 2
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.light",
+      "name": "pyrender.platforms.base",
       "names": [
-        "DirectionalLight",
-        "Light",
-        "PointLight",
-        "SpotLight"
+        "Platform"
       ],
-      "n_typable": 32,
+      "n_typable": 11,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 32,
+      "n_untyped": 11,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 4,
-      "n_method_params": 12,
-      "n_classes": 4,
+      "n_methods": 7,
+      "n_method_params": 0,
+      "n_classes": 1,
       "n_attrs": 0,
-      "n_properties": 8,
+      "n_properties": 2,
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/renderer.py",
+      "path": "pyrender/platforms/egl.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "Renderer",
-          "line_start": 22,
+          "name": "EGLPlatform",
+          "line_start": 113,
           "methods": [
             {
               "kind": "function",
-              "name": "Renderer.__init__",
-              "line_start": 40,
-              "n_typed": 0,
+              "name": "EGLPlatform.__init__",
+              "line_start": 117,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 3,
+              "n_untyped": 2,
               "n_typable": 3,
               "n_params": 2
             },
             {
               "kind": "function",
-              "name": "Renderer.render",
-              "line_start": 100,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.render_text",
-              "line_start": 156,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 9,
-              "n_typable": 9,
-              "n_params": 8
-            },
-            {
-              "kind": "function",
-              "name": "Renderer.read_color_buf",
-              "line_start": 221,
+              "name": "EGLPlatform.init_context",
+              "line_start": 126,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1758,8 +1745,8 @@
             },
             {
               "kind": "function",
-              "name": "Renderer.read_depth_buf",
-              "line_start": 248,
+              "name": "EGLPlatform.make_current",
+              "line_start": 194,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1768,8 +1755,8 @@
             },
             {
               "kind": "function",
-              "name": "Renderer.delete",
-              "line_start": 285,
+              "name": "EGLPlatform.make_uncurrent",
+              "line_start": 201,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
@@ -1778,81 +1765,251 @@
             },
             {
               "kind": "function",
-              "name": "Renderer.__del__",
-              "line_start": 314,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Renderer.viewport_width",
-              "line_start": 70,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Renderer.viewport_height",
-              "line_start": 80,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Renderer.point_size",
-              "line_start": 90,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Renderer.dpscale",
-              "line_start": 41,
+              "name": "EGLPlatform.delete_context",
+              "line_start": 206,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
-              "n_typable": 1
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EGLPlatform.supports_framebuffers",
+              "line_start": 215,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
             }
           ],
-          "n_typable": 26,
-          "n_typed": 0,
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 1,
           "n_any": 0,
-          "n_untyped": 26,
-          "n_methods": 7,
-          "n_method_params": 12,
-          "n_attrs": 1,
-          "n_properties": 3
+          "n_untyped": 7,
+          "n_methods": 6,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.renderer",
+      "name": "pyrender.platforms.egl",
       "names": [
-        "Renderer"
+        "EGLPlatform"
       ],
-      "n_typable": 26,
-      "n_typed": 0,
+      "n_typable": 8,
+      "n_typed": 1,
       "n_any": 0,
-      "n_untyped": 26,
+      "n_untyped": 7,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_params": 12,
+      "n_methods": 6,
+      "n_method_params": 2,
       "n_classes": 1,
-      "n_attrs": 1,
-      "n_properties": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/platforms/osmesa.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "OSMesaPlatform",
+          "line_start": 7,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OSMesaPlatform.__init__",
+              "line_start": 12,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "OSMesaPlatform.init_context",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OSMesaPlatform.make_current",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OSMesaPlatform.make_uncurrent",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OSMesaPlatform.delete_context",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OSMesaPlatform.supports_framebuffers",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 6,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.platforms.osmesa",
+      "names": [
+        "OSMesaPlatform"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/platforms/pyglet_platform.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "PygletPlatform",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PygletPlatform.__init__",
+              "line_start": 16,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PygletPlatform.init_context",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PygletPlatform.make_current",
+              "line_start": 65,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PygletPlatform.make_uncurrent",
+              "line_start": 69,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PygletPlatform.delete_context",
+              "line_start": 76,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PygletPlatform.supports_framebuffers",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 6,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.platforms.pyglet_platform",
+      "names": [
+        "PygletPlatform"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
       "n_type_ignores": 0
     },
     {
@@ -2087,17 +2244,27 @@
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/mesh.py",
+      "path": "pyrender/renderer.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "Mesh",
-          "line_start": 16,
+          "name": "Renderer",
+          "line_start": 22,
           "methods": [
             {
               "kind": "function",
-              "name": "Mesh.__init__",
-              "line_start": 31,
+              "name": "Renderer.__init__",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.render",
+              "line_start": 100,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 4,
@@ -2106,181 +2273,60 @@
             },
             {
               "kind": "function",
-              "name": "Mesh.from_points",
-              "line_start": 123,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_typable": 6,
-              "n_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "Mesh.from_trimesh",
+              "name": "Renderer.render_text",
               "line_start": 156,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Mesh.name",
-              "line_start": 39,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.primitives",
-              "line_start": 51,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.weights",
-              "line_start": 62,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.is_visible",
-              "line_start": 72,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.bounds",
-              "line_start": 82,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.centroid",
-              "line_start": 95,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.extents",
-              "line_start": 102,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.scale",
-              "line_start": 108,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Mesh.is_transparent",
-              "line_start": 114,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 30,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 30,
-          "n_methods": 3,
-          "n_method_params": 14,
-          "n_attrs": 0,
-          "n_properties": 9
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.mesh",
-      "names": [
-        "Mesh"
-      ],
-      "n_typable": 30,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 30,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 3,
-      "n_method_params": 14,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 9,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/texture.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "Texture",
-          "line_start": 14,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Texture.__init__",
-              "line_start": 40,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 8,
-              "n_typable": 8,
-              "n_params": 7
+              "n_untyped": 9,
+              "n_typable": 9,
+              "n_params": 8
             },
             {
               "kind": "function",
-              "name": "Texture.is_transparent",
-              "line_start": 150,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Texture.delete",
-              "line_start": 160,
+              "name": "Renderer.read_color_buf",
+              "line_start": 221,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1,
               "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.read_depth_buf",
+              "line_start": 248,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.delete",
+              "line_start": 285,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Renderer.__del__",
+              "line_start": 314,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "Texture.name",
-              "line_start": 61,
+              "name": "Renderer.viewport_width",
+              "line_start": 70,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2288,8 +2334,8 @@
             },
             {
               "kind": "property",
-              "name": "Texture.sampler",
-              "line_start": 73,
+              "name": "Renderer.viewport_height",
+              "line_start": 80,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -2297,86 +2343,51 @@
             },
             {
               "kind": "property",
-              "name": "Texture.source",
-              "line_start": 85,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.source_channels",
-              "line_start": 100,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.width",
-              "line_start": 110,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.height",
-              "line_start": 120,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.tex_type",
-              "line_start": 130,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Texture.data_format",
-              "line_start": 140,
+              "name": "Renderer.point_size",
+              "line_start": 90,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
               "n_typable": 2
             }
           ],
-          "attrs": [],
-          "n_typable": 27,
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Renderer.dpscale",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 26,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 27,
-          "n_methods": 3,
-          "n_method_params": 8,
-          "n_attrs": 0,
-          "n_properties": 8
+          "n_untyped": 26,
+          "n_methods": 7,
+          "n_method_params": 12,
+          "n_attrs": 1,
+          "n_properties": 3
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.texture",
+      "name": "pyrender.renderer",
       "names": [
-        "Texture"
+        "Renderer"
       ],
-      "n_typable": 27,
+      "n_typable": 26,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 27,
+      "n_untyped": 26,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 3,
-      "n_method_params": 8,
+      "n_methods": 7,
+      "n_method_params": 12,
       "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 8,
+      "n_attrs": 1,
+      "n_properties": 3,
       "n_type_ignores": 0
     },
     {
@@ -2472,324 +2483,6 @@
       "n_classes": 1,
       "n_attrs": 0,
       "n_properties": 5,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/offscreen.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "OffscreenRenderer",
-          "line_start": 11,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.__init__",
-              "line_start": 24,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.render",
-              "line_start": 63,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.delete",
-              "line_start": 116,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OffscreenRenderer.__del__",
-              "line_start": 153,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.viewport_width",
-              "line_start": 33,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.viewport_height",
-              "line_start": 43,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "OffscreenRenderer.point_size",
-              "line_start": 53,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 14,
-          "n_methods": 4,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 3
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.offscreen",
-      "names": [
-        "OffscreenRenderer"
-      ],
-      "n_typable": 14,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 14,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 4,
-      "n_method_params": 4,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 3,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/font.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "Character",
-          "line_start": 50,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Character.__init__",
-              "line_start": 54,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 4,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Character.texture",
-              "line_start": 55,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Character.size",
-              "line_start": 56,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Character.bearing",
-              "line_start": 57,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "Character.advance",
-              "line_start": 58,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_methods": 1,
-          "n_method_params": 3,
-          "n_attrs": 4,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Font",
-          "line_start": 61,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Font.__init__",
-              "line_start": 72,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "Font.delete",
-              "line_start": 169,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Font.render_string",
-              "line_start": 173,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_typable": 6,
-              "n_params": 5
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Font.font_file",
-              "line_start": 111,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            },
-            {
-              "kind": "property",
-              "name": "Font.font_pt",
-              "line_start": 121,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 13,
-          "n_methods": 3,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "FontCache",
-          "line_start": 17,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "FontCache.__init__",
-              "line_start": 21,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "FontCache.get_font",
-              "line_start": 28,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "FontCache.clear",
-              "line_start": 44,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "FontCache.font_dir",
-              "line_start": 23,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 6,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_methods": 3,
-          "n_method_params": 2,
-          "n_attrs": 1,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.font",
-      "names": [
-        "Character",
-        "Font",
-        "FontCache"
-      ],
-      "n_typable": 27,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 27,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_params": 11,
-      "n_classes": 3,
-      "n_attrs": 5,
-      "n_properties": 2,
       "n_type_ignores": 0
     },
     {
@@ -3122,17 +2815,191 @@
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/platforms/base.py",
+      "path": "pyrender/shader_program.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "Platform",
-          "line_start": 6,
+          "name": "ShaderProgram",
+          "line_start": 79,
           "methods": [
             {
               "kind": "function",
-              "name": "Platform.__init__",
+              "name": "ShaderProgram.__init__",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ShaderProgram.delete",
+              "line_start": 198,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ShaderProgram.set_uniform",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.vertex_shader",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.fragment_shader",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.geometry_shader",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ShaderProgram.defines",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 3,
+          "n_method_params": 6,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ShaderProgramCache",
+          "line_start": 12,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ShaderProgramCache.__init__",
+              "line_start": 16,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ShaderProgramCache.get_program",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ShaderProgramCache.clear",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ShaderProgramCache.shader_dir",
               "line_start": 18,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.shader_program",
+      "names": [
+        "ShaderProgram",
+        "ShaderProgramCache"
+      ],
+      "n_typable": 21,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 21,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 10,
+      "n_classes": 2,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/texture.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Texture",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Texture.__init__",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "Texture.is_transparent",
+              "line_start": 150,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3141,70 +3008,20 @@
             },
             {
               "kind": "function",
-              "name": "Platform.init_context",
-              "line_start": 42,
+              "name": "Texture.delete",
+              "line_start": 160,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 1,
               "n_typable": 1,
               "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Platform.make_current",
-              "line_start": 48,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Platform.make_uncurrent",
-              "line_start": 54,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Platform.delete_context",
-              "line_start": 60,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Platform.supports_framebuffers",
-              "line_start": 66,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Platform.__del__",
-              "line_start": 72,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
             }
           ],
           "properties": [
             {
               "kind": "property",
-              "name": "Platform.viewport_width",
-              "line_start": 22,
+              "name": "Texture.name",
+              "line_start": 61,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3212,8 +3029,62 @@
             },
             {
               "kind": "property",
-              "name": "Platform.viewport_height",
-              "line_start": 32,
+              "name": "Texture.sampler",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.source",
+              "line_start": 85,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.source_channels",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.width",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.height",
+              "line_start": 120,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.tex_type",
+              "line_start": 130,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Texture.data_format",
+              "line_start": 140,
               "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
@@ -3221,329 +3092,458 @@
             }
           ],
           "attrs": [],
-          "n_typable": 11,
+          "n_typable": 27,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 11,
-          "n_methods": 7,
-          "n_method_params": 0,
+          "n_untyped": 27,
+          "n_methods": 3,
+          "n_method_params": 8,
           "n_attrs": 0,
-          "n_properties": 2
+          "n_properties": 8
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.platforms.base",
+      "name": "pyrender.texture",
       "names": [
-        "Platform"
+        "Texture"
       ],
-      "n_typable": 11,
+      "n_typable": 27,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 11,
+      "n_untyped": 27,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 7,
-      "n_method_params": 0,
+      "n_methods": 3,
+      "n_method_params": 8,
       "n_classes": 1,
       "n_attrs": 0,
-      "n_properties": 2,
+      "n_properties": 8,
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/platforms/osmesa.py",
+      "path": "pyrender/trackball.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "OSMesaPlatform",
-          "line_start": 7,
+          "name": "Trackball",
+          "line_start": 8,
           "methods": [
             {
               "kind": "function",
-              "name": "OSMesaPlatform.__init__",
-              "line_start": 12,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "OSMesaPlatform.init_context",
-              "line_start": 17,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OSMesaPlatform.make_current",
-              "line_start": 39,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OSMesaPlatform.make_uncurrent",
-              "line_start": 47,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OSMesaPlatform.delete_context",
-              "line_start": 52,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "OSMesaPlatform.supports_framebuffers",
-              "line_start": 58,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 7,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 7,
-          "n_methods": 6,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "pyrender.platforms.osmesa",
-      "names": [
-        "OSMesaPlatform"
-      ],
-      "n_typable": 7,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 7,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 6,
-      "n_method_params": 1,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "pyrender/platforms/pyglet_platform.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "PygletPlatform",
-          "line_start": 11,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "PygletPlatform.__init__",
+              "name": "Trackball.__init__",
               "line_start": 16,
               "n_typed": 0,
               "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Trackball.set_state",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
               "n_untyped": 2,
               "n_typable": 2,
               "n_params": 1
             },
             {
               "kind": "function",
-              "name": "PygletPlatform.init_context",
-              "line_start": 20,
+              "name": "Trackball.resize",
+              "line_start": 67,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
             },
             {
               "kind": "function",
-              "name": "PygletPlatform.make_current",
-              "line_start": 65,
+              "name": "Trackball.down",
+              "line_start": 77,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
             },
             {
               "kind": "function",
-              "name": "PygletPlatform.make_uncurrent",
-              "line_start": 69,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "PygletPlatform.delete_context",
-              "line_start": 76,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "PygletPlatform.supports_framebuffers",
+              "name": "Trackball.drag",
               "line_start": 89,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Trackball.scroll",
+              "line_start": 162,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Trackball.rotate",
+              "line_start": 196,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             }
           ],
-          "properties": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Trackball.pose",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
           "attrs": [],
-          "n_typable": 7,
+          "n_typable": 18,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
-          "n_methods": 6,
-          "n_method_params": 1,
+          "n_untyped": 18,
+          "n_methods": 7,
+          "n_method_params": 10,
           "n_attrs": 0,
-          "n_properties": 0
+          "n_properties": 1
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.platforms.pyglet_platform",
+      "name": "pyrender.trackball",
       "names": [
-        "PygletPlatform"
+        "Trackball"
       ],
-      "n_typable": 7,
+      "n_typable": 18,
       "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 7,
+      "n_untyped": 18,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 6,
-      "n_method_params": 1,
+      "n_methods": 7,
+      "n_method_params": 10,
       "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "format_color_vector",
+          "line_start": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "format_color_array",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "format_texture_source",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.utils",
+      "names": [
+        "format_color_array",
+        "format_color_vector",
+        "format_texture_source"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
       "n_attrs": 0,
       "n_properties": 0,
       "n_type_ignores": 0
     },
     {
-      "path": "pyrender/platforms/egl.py",
+      "path": "pyrender/version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pyrender.version",
+      "names": [
+        "__version__"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pyrender/viewer.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "EGLPlatform",
-          "line_start": 113,
+          "name": "Viewer",
+          "line_start": 38,
           "methods": [
             {
               "kind": "function",
-              "name": "EGLPlatform.__init__",
-              "line_start": 117,
-              "n_typed": 1,
+              "name": "Viewer.__init__",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.close_external",
+              "line_start": 483,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.save_gif",
+              "line_start": 493,
+              "n_typed": 0,
               "n_any": 0,
               "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_close",
+              "line_start": 517,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_draw",
+              "line_start": 554,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Viewer.on_resize",
+              "line_start": 598,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
               "n_typable": 3,
               "n_params": 2
             },
             {
               "kind": "function",
-              "name": "EGLPlatform.init_context",
-              "line_start": 126,
+              "name": "Viewer.on_mouse_press",
+              "line_start": 610,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
             },
             {
               "kind": "function",
-              "name": "EGLPlatform.make_current",
-              "line_start": 194,
+              "name": "Viewer.on_mouse_drag",
+              "line_start": 633,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
             },
             {
               "kind": "function",
-              "name": "EGLPlatform.make_uncurrent",
-              "line_start": 201,
+              "name": "Viewer.on_mouse_release",
+              "line_start": 638,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
             },
             {
               "kind": "function",
-              "name": "EGLPlatform.delete_context",
-              "line_start": 206,
+              "name": "Viewer.on_mouse_scroll",
+              "line_start": 643,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
             },
             {
               "kind": "function",
-              "name": "EGLPlatform.supports_framebuffers",
-              "line_start": 215,
+              "name": "Viewer.on_key_press",
+              "line_start": 663,
               "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
             }
           ],
-          "properties": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Viewer.scene",
+              "line_start": 351,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.viewport_size",
+              "line_start": 357,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.render_lock",
+              "line_start": 363,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.is_active",
+              "line_start": 375,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.run_in_thread",
+              "line_start": 382,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.render_flags",
+              "line_start": 388,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.viewer_flags",
+              "line_start": 416,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Viewer.registered_keys",
+              "line_start": 463,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2
+            }
+          ],
           "attrs": [],
-          "n_typable": 8,
-          "n_typed": 1,
+          "n_typable": 51,
+          "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 7,
-          "n_methods": 6,
-          "n_method_params": 2,
+          "n_untyped": 51,
+          "n_methods": 11,
+          "n_method_params": 29,
           "n_attrs": 0,
-          "n_properties": 0
+          "n_properties": 8
         }
       ],
       "type_ignores": [],
-      "name": "pyrender.platforms.egl",
+      "name": "pyrender.viewer",
       "names": [
-        "EGLPlatform"
+        "Viewer"
       ],
-      "n_typable": 8,
-      "n_typed": 1,
+      "n_typable": 51,
+      "n_typed": 0,
       "n_any": 0,
-      "n_untyped": 7,
+      "n_untyped": 51,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 6,
-      "n_method_params": 2,
+      "n_methods": 11,
+      "n_method_params": 29,
       "n_classes": 1,
       "n_attrs": 0,
-      "n_properties": 0,
+      "n_properties": 8,
       "n_type_ignores": 0
     }
   ],
