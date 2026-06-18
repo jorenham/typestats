@@ -58,6 +58,120 @@ function displayModuleName(moduleName, packageName) {
   return moduleName
 }
 
+// Adapt a `pyrefly coverage report` into the PackageReport shape the renderer expects.
+function isPyreflyReport(raw) {
+  return (
+    Boolean(raw) &&
+    Array.isArray(raw.module_reports) &&
+    Boolean(raw.summary) &&
+    raw.package == null
+  )
+}
+
+function pyreflyTopPackage(modules) {
+  const tops = new Set(
+    modules.map(m => String(m.name || "").split(".")[0]).filter(Boolean),
+  )
+  return tops.size === 1 ? [...tops][0] : ""
+}
+
+const PYREFLY_LEAF_KINDS = new Set(["attr", "function", "property"])
+
+function pyreflyLeaf(sym, name) {
+  // attrs are single slots: clamp each count to 0/1
+  const clamp = sym.kind === "attr" ? n => Math.min(n, 1) : n => n
+  const n_typed = clamp(sym.n_typed)
+  const n_any = clamp(sym.n_any)
+  const n_untyped = clamp(sym.n_untyped)
+  return {
+    kind: sym.kind,
+    name,
+    line_start: sym.location ? sym.location.line : null,
+    n_typed,
+    n_any,
+    n_untyped,
+    n_typable: n_typed + n_any + n_untyped,
+  }
+}
+
+function convertPyreflyModule(pm) {
+  const prefix = pm.name + "."
+  const short = name => (name.startsWith(prefix) ? name.slice(prefix.length) : name)
+  const symbols = pm.symbol_reports || []
+
+  const classes = new Map()
+  for (const s of symbols) if (s.kind === "class") classes.set(s.name, s)
+
+  const members = new Map()
+  const topLevel = []
+  for (const s of symbols) {
+    if (s.kind === "class") continue
+    if (!PYREFLY_LEAF_KINDS.has(s.kind)) {
+      console.warn(`Skipping unexpected pyrefly symbol kind: ${s.kind}`)
+      continue
+    }
+    const parent = s.name.slice(0, s.name.lastIndexOf("."))
+    if (classes.has(parent)) {
+      if (!members.has(parent)) members.set(parent, [])
+      members.get(parent).push(s)
+    } else {
+      topLevel.push(s)
+    }
+  }
+
+  const symbol_reports = topLevel.map(s => pyreflyLeaf(s, short(s.name)))
+  for (const [fqn, cls] of classes) {
+    const mem = members.get(fqn) || []
+    const leaves = mem.map(s => pyreflyLeaf(s, short(s.name)))
+    const sum = key => leaves.reduce((acc, m) => acc + (m[key] || 0), 0)
+    symbol_reports.push({
+      kind: "class",
+      name: short(cls.name),
+      line_start: cls.location ? cls.location.line : null,
+      methods: leaves.filter(m => m.kind === "function"),
+      properties: leaves.filter(m => m.kind === "property"),
+      attrs: leaves.filter(m => m.kind === "attr"),
+      n_typed: sum("n_typed"),
+      n_any: sum("n_any"),
+      n_untyped: sum("n_untyped"),
+      n_typable: sum("n_typable"),
+    })
+  }
+
+  return {
+    name: pm.name,
+    path: pm.path,
+    n_typed: pm.n_typed,
+    n_any: pm.n_any,
+    n_untyped: pm.n_untyped,
+    n_typable: pm.n_typable,
+    n_type_ignores: pm.n_type_ignores,
+    symbol_reports,
+    type_ignores: (pm.type_ignores || []).map(ti => ({
+      kind: ti.kind,
+      rules: ti.codes ?? null,
+    })),
+  }
+}
+
+function normalizePyreflyReport(raw) {
+  const modules = raw.module_reports.map(convertPyreflyModule)
+  const summary = raw.summary || {}
+  return {
+    ...summary,
+    schema_version: raw.schema_version,
+    package: pyreflyTopPackage(raw.module_reports),
+    version: null,
+    base_version: null,
+    stubs_only: "no",
+    py_typed: null,
+    pypi: null,
+    metadata: null,
+    module_reports: modules,
+    n_modules: summary.n_modules ?? modules.length,
+  }
+}
+
 function mermaidPie(slices) {
   const lines = [
     "---",

@@ -35,14 +35,17 @@
 
 ## Quick start
 
-Check the type-annotation coverage of any installed package:
+> [!WARNING]
+> The `typestats` CLI is deprecated; use [`pyrefly coverage`](https://pyrefly.org/)
+> `check`/`report` instead.
+
+Check a package's public type-annotation coverage by pointing `pyrefly coverage check` at
+its source, or omit the path to check the current project (pyrefly finds the nearest
+config):
 
 ```bash
-$ typestats check scipy-stubs
-coverage:   100.00%
-typable:    13589
-typed:      13554
-any:           35
+$ pyrefly coverage check --public-only src/yourpackage
+ INFO type coverage 100.00% (13589 of 13589 typable)
 ```
 
 ## Contributing
