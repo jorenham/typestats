@@ -149,7 +149,7 @@ function schemaWarning(root, report) {
   }
   return (
     `This report was generated with an older version of <code>typestats</code>. ` +
-    `Please upgrade to <code>typestats>=${minVersion}</code> and regenerate it.`
+    `Please upgrade to <code>typestats>=${escapeHtml(minVersion)}</code> and regenerate it.`
   )
 }
 
@@ -351,8 +351,8 @@ function renderModulesTable(report) {
       <td>${nameCell}</td>
       <td style="text-align:right">${fmtPct(cov)}</td>
       <td style="text-align:right">${fmtPct(covStrict)}</td>
-      <td style="text-align:right">${m.n_typable}</td>
-      <td style="text-align:right">${m.n_type_ignores}</td>
+      <td style="text-align:right">${fmtInt(m.n_typable)}</td>
+      <td style="text-align:right">${fmtInt(m.n_type_ignores)}</td>
     </tr>`
   }
 
@@ -394,7 +394,7 @@ function renderIncompleteAnnotations(report) {
     const hasLines = sec.rows.some(r => r.line_start != null)
     html += `<span id="${sec.slug}"></span>
     <details class="${admonitionType}">
-      <summary><code>${escapeHtml(sec.displayName)}</code> (${sec.nUntyped} missing, ${sec.nAny} any)</summary>
+      <summary><code>${escapeHtml(sec.displayName)}</code> (${fmtInt(sec.nUntyped)} missing, ${fmtInt(sec.nAny)} any)</summary>
       <table data-no-sort>
         <thead><tr>
           ${hasLines ? '<th style="text-align:right"><abbr title="Source line number">Line</abbr></th>' : ""}
@@ -407,14 +407,14 @@ function renderIncompleteAnnotations(report) {
 
     for (const row of sec.rows) {
       const kindBadge = kindLabel(row.kind)
-      const line = row.line_start != null ? `${row.line_start}` : ""
+      const line = row.line_start != null ? Number(row.line_start) : ""
       html += `<tr>
         ${hasLines ? `<td class="num" style="text-align:right">${line}</td>` : ""}
         <td>${kindBadge}</td>
         <td><code>${escapeHtml(row.name)}</code></td>
-        <td class="num" style="text-align:right">${row.n_typed + row.n_any + row.n_untyped}</td>
-        <td class="num" style="text-align:right">${row.n_typed + row.n_any}</td>
-        <td class="num" style="text-align:right">${row.n_any}</td>
+        <td class="num" style="text-align:right">${fmtInt(row.n_typed + row.n_any + row.n_untyped)}</td>
+        <td class="num" style="text-align:right">${fmtInt(row.n_typed + row.n_any)}</td>
+        <td class="num" style="text-align:right">${fmtInt(row.n_any)}</td>
       </tr>`
     }
 
@@ -501,7 +501,7 @@ function renderTypeIgnores(report) {
   for (const [flavor, count] of sorted) {
     html += `<tr>
       <td><code>${escapeHtml(flavor)}</code></td>
-      <td style="text-align:right">${count}</td>
+      <td style="text-align:right">${fmtInt(count)}</td>
     </tr>`
   }
 
