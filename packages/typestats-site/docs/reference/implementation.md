@@ -2,12 +2,12 @@
 
 ## Pipeline
 
-The analysis pipeline is shared between two commands:
+The analysis pipeline backs `typestats-site collect`, which fetches packages from PyPI into a
+temporary venv and exports results for the dashboard (running all steps 1--9 below). It is
+not intended for direct use by end-users.
 
-- `typestats check`: analyzes a package already installed in the current environment.
-  Runs steps 2--8 below.
-- `typestats collect`: fetches packages from PyPI into a temporary venv and exports results
-  for the dashboard. Runs all steps (1--9). Not intended for direct use by end-users.
+`typestats check` and `typestats report` no longer use this pipeline; they delegate to
+`pyrefly coverage check` and `pyrefly coverage report` respectively.
 
 ```mermaid
 flowchart TD
@@ -30,9 +30,8 @@ flowchart TD
 
 For a given project:
 
-1. **Fetch** (`collect` only): query PyPI for the latest version, install the package (and any
+1. **Fetch**: query PyPI for the latest version, install the package (and any
    companion stub package) into a temporary venv via `uv pip install --no-deps`.
-   `check` skips this step and uses the package as installed in the current environment.
 2. **Graph**: compute the import graph using `ruff analyze graph`.
 3. **Filter**: keep only files transitively reachable from public modules (skip tests, tools,
    etc.).
@@ -46,8 +45,7 @@ For a given project:
 7. **Merge stubs**: when the input is a stubs package (`{project}-stubs` or `types-{project}`),
    overlay its `.pyi` types onto the base package per-module.
 8. **Measure**: compute coverage and other statistics.
-9. **Export** (`collect` only): output the results for the dashboard.
-   `check` prints coverage to stdout instead.
+9. **Export**: output the results for the dashboard.
 
 ## Symbol collection
 

@@ -1,13 +1,17 @@
 # ruff: noqa: T201, PLC0415
 
 import dataclasses
-import logging
+import sys
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Final
 
 import anyio
 import tyro
 from tyro.conf import Positional, arg
+
+_DEPRECATION: Final = (
+    "The `typestats` CLI is deprecated; use the `pyrefly coverage` commands instead."
+)
 
 
 @dataclasses.dataclass
@@ -19,31 +23,35 @@ class Version:
 class Report:
     """Generate a JSON type-coverage report for the current project.
 
+    Deprecated: prefer `pyrefly coverage report`, which this now wraps.
     The JSON report is written to stdout.
     Redirect it to a file with `typestats report > report.json`.
     """
 
     paths: Positional[tuple[str, ...]] = dataclasses.field(default_factory=tuple)
     """
-    Optional paths to pass to `pyrefly report`. When omitted pyrefly discovers
-    sources automatically.
+    Optional paths to pass to `pyrefly coverage report`. When omitted pyrefly
+    discovers sources automatically.
     """
 
     exclude: tuple[str, ...] = ()
     """Glob patterns for modules to exclude from analysis."""
 
     verbose: Annotated[bool, arg(aliases=["-v"])] = False
-    """Enable verbose (INFO-level) logging."""
+    """Deprecated no-op, kept for compatibility; pyrefly controls output."""
 
 
 @dataclasses.dataclass
 class Check:
-    """Check type-annotation coverage for the current project."""
+    """Check type-annotation coverage for the current project.
+
+    Deprecated: prefer `pyrefly coverage check`, which this now wraps.
+    """
 
     paths: Positional[tuple[str, ...]] = dataclasses.field(default_factory=tuple)
     """
-    Optional paths to pass to `pyrefly report`. When omitted pyrefly discovers
-    sources automatically.
+    Optional paths to pass to `pyrefly coverage check`. When omitted pyrefly
+    discovers sources automatically.
     """
 
     strict: bool = False
@@ -53,7 +61,8 @@ class Check:
     """Minimum coverage percentage (0-100). Exit with code 1 when below."""
 
     fail_under_from: Path | None = None
-    """Read a previous JSON report and use its coverage as `--fail-under`."""
+    """Read a previous `pyrefly coverage report` JSON and use its coverage as
+    `--fail-under`."""
 
     concise: bool = False
     """Hide source code snippets; show only file paths and line numbers."""
@@ -62,13 +71,15 @@ class Check:
     """Glob patterns for modules to exclude from analysis."""
 
     verbose: Annotated[bool, arg(aliases=["-v"])] = False
-    """Enable verbose (INFO-level) logging."""
+    """Deprecated no-op, kept for compatibility; pyrefly controls output."""
 
 
 type _Command = Version | Report | Check
 
 
 async def _run(cmd: _Command) -> None:
+    print(_DEPRECATION, file=sys.stderr)
+
     match cmd:
         case Version():
             from importlib.metadata import version
@@ -78,9 +89,6 @@ async def _run(cmd: _Command) -> None:
         case Report():
             from typestats.check import report
 
-            if cmd.verbose:
-                logging.getLogger().setLevel(logging.INFO)
-
             await report(
                 *cmd.paths,
                 exclude=cmd.exclude,
@@ -88,9 +96,6 @@ async def _run(cmd: _Command) -> None:
 
         case Check():
             from typestats.check import check
-
-            if cmd.verbose:
-                logging.getLogger().setLevel(logging.INFO)
 
             await check(
                 *cmd.paths,
@@ -105,15 +110,11 @@ async def _run(cmd: _Command) -> None:
 
 
 def app() -> None:
-
-    logging.basicConfig(
-        format="%(asctime)s :: %(name)s :: %(levelname)s :: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-        level=logging.WARNING,
-    )
-
     prog = "typestats"
-    desc = "Type annotation coverage statistics for Python packages."
+    desc = (
+        "Type annotation coverage statistics for Python packages. "
+        "DEPRECATED: use the `pyrefly coverage` commands instead."
+    )
 
     cmd = tyro.cli(Version | Report | Check, prog=prog, description=desc)
     anyio.run(_run, cmd)
