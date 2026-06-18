@@ -22,7 +22,7 @@ function fmtPct(ratio) {
 }
 
 function fmtInt(n) {
-  return n.toLocaleString("en")
+  return Number(n).toLocaleString("en")
 }
 
 function extractProjectUrls(pkg, metadata) {
@@ -184,7 +184,7 @@ function mermaidPie(slices) {
     "pie",
   ]
   for (const s of slices) {
-    if (s.value) lines.push(`    "${s.label}" : ${s.value}`)
+    if (s.value) lines.push(`    "${s.label}" : ${Number(s.value)}`)
   }
   return `<pre class="mermaid">${lines.join("\n")}</pre>`
 }
