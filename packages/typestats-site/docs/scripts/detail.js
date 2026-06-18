@@ -98,7 +98,7 @@ async function loadReport(root, text, label) {
   try {
     report = parseReportText(text, label)
   } catch (err) {
-    showUploadError(root, err.message)
+    showUploadError(root, escapeHtml(err instanceof Error ? err.message : err))
     return
   }
   try {
@@ -114,7 +114,7 @@ async function loadReport(root, text, label) {
 }
 
 async function handleUpload(root, file) {
-  await loadReport(root, await file.text(), `<code>${escapeHtml(file.name)}</code>`)
+  await loadReport(root, await file.text(), file.name)
 }
 
 async function handlePaste(root, text) {
@@ -178,7 +178,7 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
   if (pkg) {
     const urls = extractProjectUrls(pkg, report.metadata)
     for (const u of [urls.pypi, urls.repo].filter(Boolean)) {
-      navLinks.push(`<a href="${escapeHtml(u)}">${new URL(u).hostname}</a>`)
+      navLinks.push(`<a href="${escapeHtml(u)}">${escapeHtml(new URL(u).hostname)}</a>`)
     }
   }
   if (hasDiff)
@@ -229,7 +229,7 @@ function renderOverview(report) {
   let metaBody = ""
   if (released) {
     metaHead += `<th><abbr title="Release date on PyPI">Released</abbr></th>`
-    metaBody += `<td>${released}</td>`
+    metaBody += `<td>${escapeHtml(released)}</td>`
   }
   metaHead += `<th><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>`
   metaBody += `<td class="pypi-downloads" data-package="${escapeHtml(report.package)}"></td>`
@@ -342,7 +342,7 @@ function renderModulesTable(report) {
     const cov = coverage(m.n_typed, m.n_any, m.n_typable)
     const covStrict = coverage(m.n_typed, m.n_any, m.n_typable, true)
 
-    let nameCell = `<code>${displayName}</code>`
+    let nameCell = `<code>${escapeHtml(displayName)}</code>`
     if (slug) {
       nameCell += ` <a data-scroll-to="${slug}" title="Incomplete annotations" style="cursor:pointer">${iconIncomplete()}</a>`
     }
@@ -394,7 +394,7 @@ function renderIncompleteAnnotations(report) {
     const hasLines = sec.rows.some(r => r.line_start != null)
     html += `<span id="${sec.slug}"></span>
     <details class="${admonitionType}">
-      <summary><code>${sec.displayName}</code> (${sec.nUntyped} missing, ${sec.nAny} any)</summary>
+      <summary><code>${escapeHtml(sec.displayName)}</code> (${sec.nUntyped} missing, ${sec.nAny} any)</summary>
       <table data-no-sort>
         <thead><tr>
           ${hasLines ? '<th style="text-align:right"><abbr title="Source line number">Line</abbr></th>' : ""}
@@ -411,7 +411,7 @@ function renderIncompleteAnnotations(report) {
       html += `<tr>
         ${hasLines ? `<td class="num" style="text-align:right">${line}</td>` : ""}
         <td>${kindBadge}</td>
-        <td><code>${row.name}</code></td>
+        <td><code>${escapeHtml(row.name)}</code></td>
         <td class="num" style="text-align:right">${row.n_typed + row.n_any + row.n_untyped}</td>
         <td class="num" style="text-align:right">${row.n_typed + row.n_any}</td>
         <td class="num" style="text-align:right">${row.n_any}</td>
@@ -500,7 +500,7 @@ function renderTypeIgnores(report) {
 
   for (const [flavor, count] of sorted) {
     html += `<tr>
-      <td><code>${flavor}</code></td>
+      <td><code>${escapeHtml(flavor)}</code></td>
       <td style="text-align:right">${count}</td>
     </tr>`
   }
