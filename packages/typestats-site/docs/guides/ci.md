@@ -1,18 +1,23 @@
 # CI integration
 
-`typestats check` can be used in CI to enforce type-annotation coverage on every pull
-request.
+Type-annotation coverage can be enforced in CI on every pull request.
 Below are two GitHub Actions workflow examples: one with a fixed coverage threshold, and
 one that prevents coverage from dropping below the base branch level.
+
+!!! tip "When to use which"
+
+    `pyrefly coverage check` handles the fixed-threshold case directly. The backslide
+    workflow uses the deprecated `typestats` CLI for its `--fail-under-from` flag, which
+    has no `pyrefly coverage` equivalent.
 
 ## Fixed threshold
 
 The simplest approach is to set a fixed `--fail-under` value.
 The workflow installs your package using [uv](https://docs.astral.sh/uv/) and runs
-`typestats check` with the desired minimum coverage percentage.
+`pyrefly coverage check` with the desired minimum coverage percentage.
 
-```yaml title=".github/workflows/typestats.yml" hl_lines="23 24"
-name: typestats
+```yaml title=".github/workflows/pyrefly.yml" hl_lines="23 24"
+name: pyrefly
 permissions: read-all
 
 on:
@@ -34,11 +39,11 @@ jobs:
       - uses: astral-sh/setup-uv@v7
       - name: uv sync
         run: uv sync --no-dev
-      - name: typestats check
-        run: uv run typestats check --strict --fail-under 90 your-package
+      - name: pyrefly coverage check
+        run: uv run --no-dev --with pyrefly pyrefly coverage check --public-only --strict --fail-under 90 src/yourpackage
 ```
 
-Replace `your-package` with the name of your package and `90` with the desired minimum
+Replace `src/yourpackage` with the path to your package and `90` with the desired minimum
 coverage percentage.
 
 ## Preventing coverage backslide
@@ -51,6 +56,12 @@ The workflow runs `typestats report` on the base branch first to generate a JSON
 then checks the PR branch with `--fail-under-from` pointed at that
 JSON report file. The flag reads the base coverage from the report and uses it as the
 threshold automatically.
+
+!!! note "Baseline format"
+
+    `--fail-under-from` expects a `typestats report` (i.e. `pyrefly coverage report`)
+    JSON. If you upgrade `typestats` across the deprecation boundary, regenerate the
+    baseline so it carries the current schema; a stale report fails with a clear error.
 
 ```yaml title=".github/workflows/typestats.yml"
 name: typestats
@@ -77,17 +88,17 @@ jobs:
         run: |
           git checkout "${{ github.event.pull_request.base.sha }}"
           uv sync --no-dev
-          uv run typestats report your-package > base-report.json
+          uv run typestats report src/yourpackage > base-report.json
           git checkout "${{ github.event.pull_request.head.sha }}"
 
       - name: uv sync
         run: uv sync --no-dev
 
       - name: typestats check (head)
-        run: uv run typestats check --strict --fail-under-from base-report.json your-package
+        run: uv run typestats check --strict --fail-under-from base-report.json src/yourpackage
 ```
 
-Replace `your-package` with the name of your package.
+Replace `src/yourpackage` with the path to your package.
 
 !!! note "About `--strict`"
 
@@ -96,4 +107,4 @@ Replace `your-package` with the name of your package.
     not annotating it at all: it opts out of all type-checker guarantees for that symbol.
 
     If you prefer to count `Any` as typed, remove the `--strict` flag from the
-    `typestats check` commands.
+    check commands.
