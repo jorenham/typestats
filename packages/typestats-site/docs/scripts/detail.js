@@ -32,13 +32,13 @@ function showUploadZone(root) {
 
   root.innerHTML = `<div class="upload-zone" tabindex="0" role="button" aria-label="Upload a JSON report file">
     <p>Drop a <code>.json</code> report here, or click to select a file.</p>
-    <p class="upload-hint">Generate one with <code>typestats report &lt;package&gt; &gt; report.json</code></p>
+    <p class="upload-hint">Generate one with <code>pyrefly coverage report &gt; report.json</code></p>
     <input type="file" accept=".json,application/json" hidden>
   </div>
   <details class="paste-section">
     <summary>Or paste JSON directly</summary>
-    <label for="paste-json" class="sr-only">Paste typestats JSON report</label>
-    <textarea id="paste-json" class="paste-area" placeholder="Paste typestats JSON report here..."></textarea>
+    <label for="paste-json" class="sr-only">Paste a pyrefly coverage report JSON</label>
+    <textarea id="paste-json" class="paste-area" placeholder="Paste a pyrefly coverage report JSON here..."></textarea>
     <button class="paste-btn" type="button">Load report</button>
   </details>`
 
@@ -77,25 +77,33 @@ function showUploadZone(root) {
   })
 }
 
-async function handleUpload(root, file) {
-  root.innerHTML = "<p>Loading report...</p>"
+// Accepts a typestats PackageReport or a pyrefly coverage report; throws on bad input.
+function parseReportText(text, label) {
+  let raw
   try {
-    const text = await file.text()
-    let report
-    try {
-      report = JSON.parse(text)
-    } catch {
-      showUploadError(root, `<code>${escapeHtml(file.name)}</code> is not valid JSON.`)
-      return
-    }
-    if (!report.package || !report.version || !report.module_reports) {
-      showUploadError(
-        root,
-        `<code>${escapeHtml(file.name)}</code> is not a valid typestats report (missing required fields).`,
-      )
-      return
-    }
-    const warn = schemaWarning(root, report)
+    raw = JSON.parse(text)
+  } catch {
+    throw new Error(`${label} is not valid JSON.`)
+  }
+  if (raw && raw.package && raw.version && raw.module_reports) return raw
+  if (isPyreflyReport(raw)) return normalizePyreflyReport(raw)
+  throw new Error(
+    `${label} is not a valid typestats or pyrefly coverage report (missing required fields).`,
+  )
+}
+
+async function loadReport(root, text, label) {
+  root.innerHTML = "<p>Loading report...</p>"
+  let report
+  try {
+    report = parseReportText(text, label)
+  } catch (err) {
+    showUploadError(root, err.message)
+    return
+  }
+  try {
+    // pyrefly reports have no version; skip the typestats schema check
+    const warn = report.version ? schemaWarning(root, report) : null
     await renderDetail(root, report, null, report.version, warn)
   } catch (err) {
     showUploadError(
@@ -105,32 +113,13 @@ async function handleUpload(root, file) {
   }
 }
 
+async function handleUpload(root, file) {
+  await loadReport(root, await file.text(), `<code>${escapeHtml(file.name)}</code>`)
+}
+
 async function handlePaste(root, text) {
   if (!text.trim()) return
-  root.innerHTML = "<p>Loading report...</p>"
-  try {
-    let report
-    try {
-      report = JSON.parse(text)
-    } catch {
-      showUploadError(root, "Pasted text is not valid JSON.")
-      return
-    }
-    if (!report.package || !report.version || !report.module_reports) {
-      showUploadError(
-        root,
-        "Pasted JSON is not a valid typestats report (missing required fields).",
-      )
-      return
-    }
-    const warn = schemaWarning(root, report)
-    await renderDetail(root, report, null, report.version, warn)
-  } catch (err) {
-    showUploadError(
-      root,
-      `Failed to render report: ${escapeHtml(err instanceof Error ? err.message : err)}`,
-    )
-  }
+  await loadReport(root, text, "Pasted JSON")
 }
 
 function showUploadError(root, message) {
@@ -169,11 +158,12 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
   const baseVer = report.base_version
   const hasDiff = manifestEntry && manifestEntry.versions.length >= 2
 
-  document.title = `${pkg} ${version} - typestats`
+  const verLabel = version ? ` ${version}` : ""
+  document.title = `${pkg}${verLabel} - typestats`
 
   const pageH1 = document.querySelector("h1")
   if (pageH1) {
-    let heading = `${pkg} ${version}`
+    let heading = `${pkg}${verLabel}`
     if (baseVer) heading += ` (${baseVer})`
     pageH1.textContent = heading
   }
@@ -184,10 +174,13 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
       `<div class="admonition warning"><p class="admonition-title">Report compatibility warning</p><p>${warning}</p></div>`,
     )
   }
-  const urls = extractProjectUrls(pkg, report.metadata)
-  const navLinks = [urls.pypi, urls.repo]
-    .filter(Boolean)
-    .map(u => `<a href="${escapeHtml(u)}">${new URL(u).hostname}</a>`)
+  const navLinks = []
+  if (pkg) {
+    const urls = extractProjectUrls(pkg, report.metadata)
+    for (const u of [urls.pypi, urls.repo].filter(Boolean)) {
+      navLinks.push(`<a href="${escapeHtml(u)}">${new URL(u).hostname}</a>`)
+    }
+  }
   if (hasDiff)
     navLinks.push(
       `<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`,
@@ -240,8 +233,10 @@ function renderOverview(report) {
   }
   metaHead += `<th><abbr title="Monthly downloads from PyPI">Downloads</abbr></th>`
   metaBody += `<td class="pypi-downloads" data-package="${escapeHtml(report.package)}"></td>`
-  metaHead += `<th><code>py.typed</code></th>`
-  metaBody += `<td>${iconPyTyped(pyTyped)}</td>`
+  if (pyTyped) {
+    metaHead += `<th><code>py.typed</code></th>`
+    metaBody += `<td>${iconPyTyped(pyTyped)}</td>`
+  }
   if (stubsLabel) {
     metaHead += `<th>stubs-only</th>`
     metaBody += `<td>${stubsLabel}</td>`
