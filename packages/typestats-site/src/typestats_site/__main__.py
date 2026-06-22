@@ -3,7 +3,6 @@
 import contextlib
 import dataclasses
 import datetime as dt
-import logging
 from pathlib import Path
 from typing import Annotated
 
@@ -11,6 +10,7 @@ import anyio
 import tyro
 
 from typestats_site import PROJECTS_PATH
+from typestats_site._logging import setup_logging
 
 
 def _relative_default(p: str) -> str:
@@ -118,11 +118,7 @@ async def _run(cmd: Collect | Dashboard | Preview) -> None:
 
 
 def app() -> None:
-    logging.basicConfig(
-        format="%(asctime)s :: %(name)s :: %(levelname)s :: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-        level=logging.INFO,
-    )
+    setup_logging()
 
     prog = "typestats-site"
     desc = "Dashboard site generation and PyPI collection for typestats."
