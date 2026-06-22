@@ -23,6 +23,7 @@ from typestats.schema import SCHEMA_VERSION
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
 from ._http import retry_client
+from ._logging import log_context
 from ._pypi import (
     FileDetail,
     available_versions,
@@ -50,7 +51,7 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
     async for json_file in data_dir.rglob("*.json"):
         await json_file.unlink()
         removed += 1
-        _logger.debug("  removed %s", json_file)
+        _logger.debug("removed %s", json_file)
 
     async for child in data_dir.iterdir():
         if await child.is_dir():
@@ -89,16 +90,13 @@ class _ProjectCollector:
     base_available: dict[Version, FileDetail] | None
     base_install_cache: dict[str, anyio.Path] = dataclasses.field(default_factory=dict)
 
-    def log(self, level: int, version: Version, msg: str, /, *args: object) -> None:
-        _logger.log(level, f"  %s %s - {msg}", self.project.name, version, *args)  # noqa: G004
-
     async def collect_version(self, version: Version, out: Path) -> bool:
         project = self.project
 
         try:
             sp = await install_to_venv(self.work_dir, project.name, str(version))
         except subprocess.CalledProcessError:
-            self.log(logging.WARNING, version, "install failed, skipping")
+            _logger.warning("install failed, skipping")
             return False
 
         # detect *-stubs/ dirs not derivable from the project name
@@ -122,12 +120,7 @@ class _ProjectCollector:
                 sp,
             )
             if base_ver is None:
-                self.log(
-                    logging.WARNING,
-                    version,
-                    "no matching %s version, skipping",
-                    base_name,
-                )
+                _logger.warning("no matching %s version, skipping", base_name)
                 return False
 
             base_ver_str = str(base_ver)
@@ -163,7 +156,7 @@ class _ProjectCollector:
 
         json_bytes = report.model_dump_json(indent=2).encode()
         out.write_bytes(json_bytes)  # noqa: ASYNC240
-        self.log(logging.INFO, version, "wrote %s", out)
+        _logger.info("wrote %s", out)
 
         return True
 
@@ -207,21 +200,22 @@ async def collect_project(  # noqa: PLR0913
 
     written: list[Path] = []
     for version in sorted(eligible):
-        out = project_data_dir / f"{version}.json"
-        if out.is_file():
-            if _is_current_schema(out):
-                collector.log(logging.INFO, version, "already collected, skipping")
-                continue
-            collector.log(logging.INFO, version, "outdated schema, re-collecting")
-            out.unlink()
+        with log_context(f"{project.name} {version}"):
+            out = project_data_dir / f"{version}.json"
+            if out.is_file():
+                if _is_current_schema(out):
+                    _logger.debug("already collected, skipping")
+                    continue
+                _logger.debug("outdated schema, re-collecting")
+                out.unlink()
 
-        collector.log(logging.INFO, version, "analyzing...")
+            _logger.debug("analyzing")
 
-        try:
-            if await collector.collect_version(version, out):
-                written.append(out)
-        finally:
-            await remove_venv(work_dir, project.name, str(version))
+            try:
+                if await collector.collect_version(version, out):
+                    written.append(out)
+            finally:
+                await remove_venv(work_dir, project.name, str(version))
 
     return written
 
@@ -264,23 +258,24 @@ async def collect_all(
                 # Per-project subdir: no cross-project venv sharing, safe to reap.
                 project_work_dir = work_dir / project.name
                 await project_work_dir.mkdir()
-                try:
-                    written.extend(
-                        await collect_project(
-                            project,
-                            client,
-                            data_dir,
-                            project_work_dir,
-                            backfill_since=backfill_since,
-                            backfill_limit=backfill_limit,
-                        ),
-                    )
-                except Exception:
-                    _logger.exception("  %s - failed, skipping", project.name)
-                finally:
-                    # sync because an `await` here can be cancelled mid-cleanup.
-                    clear_venv_locks(project_work_dir)
-                    shutil.rmtree(project_work_dir, ignore_errors=True)
+                with log_context(project.name):
+                    try:
+                        written.extend(
+                            await collect_project(
+                                project,
+                                client,
+                                data_dir,
+                                project_work_dir,
+                                backfill_since=backfill_since,
+                                backfill_limit=backfill_limit,
+                            ),
+                        )
+                    except Exception:
+                        _logger.exception("failed, skipping")
+                    finally:
+                        # sync because an `await` here can be cancelled mid-cleanup.
+                        clear_venv_locks(project_work_dir)
+                        shutil.rmtree(project_work_dir, ignore_errors=True)
 
         async with anyio.create_task_group() as tg:
             for project in projects:
