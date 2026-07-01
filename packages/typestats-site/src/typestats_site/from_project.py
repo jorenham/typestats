@@ -75,7 +75,7 @@ async def from_project(
                 base_version=str(base_ver),
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(dist_file),
-                pyrefly_paths=await discover_packages(sp),
+                pyrefly_paths=await discover_packages(sp, dist_name=project.name),
             ),
         )
 
@@ -86,6 +86,6 @@ async def from_project(
         FromPathOptions(
             exclude=project.exclude,
             pypi=PypiInfo.from_file_detail(dist_file),
-            pyrefly_paths=await discover_packages(sp),
+            pyrefly_paths=await discover_packages(sp, dist_name=project.name),
         ),
     )

@@ -312,6 +312,36 @@ class TestDiscoverPackages:
         assert result == (str(pkg.resolve()),)
         assert Path(result[0]).is_absolute()
 
+    @pytest.mark.parametrize(
+        ("module", "distinfo", "dist_name"),
+        [
+            ("mypkg", "mypkg-1.0.0.dist-info", "mypkg"),
+            ("my_mod.py", "My_Mod-2.0.dist-info", "My-Mod"),
+        ],
+        ids=["package", "normalized-file"],
+    )
+    async def test_scopes_to_dist_modules(
+        self, tmp_path: Path, module: str, distinfo: str, dist_name: str
+    ) -> None:
+        """With dist_name, only that distribution's own modules are returned."""
+        target = tmp_path / module
+        if module.endswith(".py"):
+            target.write_text("")
+            record = f"{module},,\n"
+        else:
+            target.mkdir()
+            (target / "__init__.py").write_text("")
+            record = f"{module}/__init__.py,,\n"
+
+        dep = tmp_path / "dep"  # installed dependency, not part of the distribution
+        dep.mkdir()
+        (dep / "__init__.py").write_text("")
+        (tmp_path / distinfo).mkdir()
+        (tmp_path / distinfo / "RECORD").write_text(record)
+
+        result = await discover_packages(tmp_path, dist_name=dist_name)
+        assert result == (str(target.resolve()),)
+
     async def test_mixed_package_and_module(self, tmp_path: Path) -> None:
         pkg = tmp_path / "mypkg"
         pkg.mkdir()

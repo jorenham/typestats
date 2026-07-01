@@ -1,5 +1,6 @@
 import logging
 import os
+import re
 import shutil
 import subprocess
 from typing import Final
@@ -121,14 +122,59 @@ async def _is_top_level_module(p: anyio.Path) -> bool:
     return p.suffix in {".py", ".pyi"} and p.stem.isidentifier()
 
 
-async def discover_packages(site_packages: StrPath, /) -> tuple[str, ...]:
-    """Return absolute paths of top-level packages/modules in *site_packages*.
+def _normalize_dist(name: str) -> str:
+    """PEP 503 normalized distribution name."""
+    return re.sub(r"[-_.]+", "-", name).lower()
 
-    Includes both package dirs (with `__init__.py[i]`) and single-file modules
-    (e.g. `six.py`). Falls back to *site_packages* itself when nothing matches.
+
+def _import_name(entry: str) -> str:
+    """Import name of a top-level `site-packages` entry (a `.py[i]` file's stem)."""
+    return re.sub(r"\.pyi?$", "", entry)
+
+
+async def _dist_modules(sp: anyio.Path, dist_name: str) -> set[str] | None:
+    """Import names installed by *dist_name* (from its `RECORD`), or `None`."""
+    target = _normalize_dist(dist_name)
+    async for child in sp.iterdir():
+        if child.suffix != ".dist-info":
+            continue
+
+        if _normalize_dist(child.stem.split("-", 1)[0]) != target:
+            continue
+
+        record = child / "RECORD"
+        if not await record.exists():
+            return None
+
+        names: set[str] = set()
+        for line in (await record.read_text()).splitlines():
+            top = line.split(",", 1)[0].split("/", 1)[0]
+            if not top or top.startswith(".") or top.endswith((".dist-info", ".data")):
+                continue
+            names.add(_import_name(top))
+        return names
+
+    return None
+
+
+async def discover_packages(
+    site_packages: StrPath,
+    /,
+    dist_name: str | None = None,
+) -> tuple[str, ...]:
+    """Absolute paths of top-level modules in *site_packages*.
+
+    With *dist_name*, only that distribution's own modules (not its installed
+    dependencies) are returned. Falls back to *site_packages* when empty.
     """
     sp = await anyio.Path(site_packages).resolve()
-    found = [str(p) async for p in sp.iterdir() if await _is_top_level_module(p)]
+    names = await _dist_modules(sp, dist_name) if dist_name else None
+    found = [
+        str(p)
+        async for p in sp.iterdir()
+        if await _is_top_level_module(p)
+        and (names is None or _import_name(p.name) in names)
+    ]
     return tuple(found) or (str(sp),)
 
 
