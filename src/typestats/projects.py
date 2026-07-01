@@ -14,6 +14,7 @@ class Project(BaseModel):
 
     name: str
     exclude: tuple[str, ...] = Field(default=())
+    no_deps: bool = False
 
 
 def load_projects(path: StrPath) -> list[Project]:

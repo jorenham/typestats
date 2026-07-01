@@ -183,7 +183,7 @@ class TestCollectProject:
             json=_pypi_detail_json(name, version),
         )
 
-        async def _fail(*_args: object) -> Never:  # noqa: RUF029
+        async def _fail(*_args: object, **_kwargs: object) -> Never:  # noqa: RUF029
             raise subprocess.CalledProcessError(1, ["uv", "pip", "install"])
 
         monkeypatch.setattr("typestats_site.collect.install_to_venv", _fail)

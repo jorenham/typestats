@@ -39,7 +39,9 @@ async def from_project(
         RuntimeError: If no matching base package version can be found.
     """
     ver, dist_file = await _pypi.latest_distribution(client, project.name)
-    sp = await _uv.install_to_venv(out_dir, project.name, str(ver))
+    sp = await _uv.install_to_venv(
+        out_dir, project.name, str(ver), no_deps=project.no_deps
+    )
     base_name = stubs_base_name(project.name)
 
     # e.g. boto3-stubs-lite ships a boto3-stubs/ directory
@@ -59,7 +61,9 @@ async def from_project(
             prefix = ".".join(str(c) for c in ver.release[:2])
             msg = f"no {base_name} version matching {prefix}.* found"
             raise RuntimeError(msg)
-        base_sp = await _uv.install_to_venv(out_dir, base_name, str(base_ver))
+        base_sp = await _uv.install_to_venv(
+            out_dir, base_name, str(base_ver), no_deps=project.no_deps
+        )
 
         return await PackageReport.from_path(
             base_name,

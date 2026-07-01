@@ -46,7 +46,14 @@ async def create_venv(path: StrPath, /) -> anyio.Path:
     return path / "bin" / "python"
 
 
-async def install(python: StrPath, project: str, version: str, /) -> None:
+async def install(
+    python: StrPath,
+    project: str,
+    version: str,
+    /,
+    *,
+    no_deps: bool = False,
+) -> None:
     base_args = (
         "uv",
         "pip",
@@ -57,11 +64,14 @@ async def install(python: StrPath, project: str, version: str, /) -> None:
         str(anyio.Path(python)),
     )
     spec = f"{project}=={version}"
-    try:
-        await _subprocess_run(*base_args, spec)
-    except subprocess.CalledProcessError:
-        _logger.warning("deps install failed for %s; retrying --no-deps", spec)
-        await _subprocess_run(*base_args, "--no-deps", spec)
+    if not no_deps:
+        try:
+            await _subprocess_run(*base_args, spec)
+        except subprocess.CalledProcessError:
+            _logger.warning("deps install failed for %s; retrying --no-deps", spec)
+        else:
+            return
+    await _subprocess_run(*base_args, "--no-deps", spec)
 
 
 def _venv_path(work_dir: StrPath, project: str, version: str, /) -> anyio.Path:
@@ -73,6 +83,8 @@ async def install_to_venv(
     project: str,
     version: str,
     /,
+    *,
+    no_deps: bool = False,
 ) -> anyio.Path:
     """Create a venv, install *project*, and return the `site-packages` path."""
     venv_path = _venv_path(work_dir, project, version)
@@ -81,7 +93,7 @@ async def install_to_venv(
     async with lock:
         if not await venv_path.is_dir():
             python = await create_venv(venv_path)
-            await install(python, project, version)
+            await install(python, project, version, no_deps=no_deps)
         return await site_packages_dir(venv_path)
 
 

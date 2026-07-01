@@ -94,7 +94,9 @@ class _ProjectCollector:
         project = self.project
 
         try:
-            sp = await install_to_venv(self.work_dir, project.name, str(version))
+            sp = await install_to_venv(
+                self.work_dir, project.name, str(version), no_deps=project.no_deps
+            )
         except subprocess.CalledProcessError:
             _logger.warning("install failed, skipping")
             return False
@@ -126,7 +128,9 @@ class _ProjectCollector:
             base_ver_str = str(base_ver)
             base_sp = self.base_install_cache.get(base_ver_str)
             if base_sp is None:
-                base_sp = await install_to_venv(self.work_dir, base_name, base_ver_str)
+                base_sp = await install_to_venv(
+                    self.work_dir, base_name, base_ver_str, no_deps=project.no_deps
+                )
                 self.base_install_cache[base_ver_str] = base_sp
 
             report = await PackageReport.from_path(
