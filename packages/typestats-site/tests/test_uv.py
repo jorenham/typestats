@@ -67,7 +67,7 @@ class TestCreateVenv:
 class TestInstall:
     pytestmark = pytest.mark.anyio
 
-    async def test_runs_uv_pip_install(
+    async def test_installs_with_deps(
         self,
         tmp_path: Path,
         monkeypatch: pytest.MonkeyPatch,
@@ -83,9 +83,53 @@ class TestInstall:
         mock.assert_awaited_once()
         args = mock.call_args[0][0]
         assert args[0] == "uv"
-        assert "--no-deps" in args
+        assert "--no-deps" not in args
+        assert "--no-cache" in args
         assert f"--python={python}" in args or str(python) in args
         assert "mypkg==1.0.0" in args
+
+    async def test_falls_back_to_no_deps(
+        self,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        mock = AsyncMock(
+            side_effect=[
+                subprocess.CompletedProcess(args=[], returncode=1, stderr=b"boom"),
+                subprocess.CompletedProcess(args=[], returncode=0),
+            ],
+        )
+        monkeypatch.setattr("anyio.run_process", mock)
+
+        python = tmp_path / "venv" / "bin" / "python"
+        await install(python, "mypkg", "1.0.0")
+
+        assert mock.await_count == 2
+        first_args = mock.call_args_list[0][0][0]
+        second_args = mock.call_args_list[1][0][0]
+        assert "--no-deps" not in first_args
+        assert "--no-deps" in second_args
+        assert "mypkg==1.0.0" in second_args
+
+    async def test_reraises_when_no_deps_also_fails(
+        self,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        mock = AsyncMock(
+            return_value=subprocess.CompletedProcess(
+                args=[],
+                returncode=1,
+                stderr=b"boom",
+            ),
+        )
+        monkeypatch.setattr("anyio.run_process", mock)
+
+        python = tmp_path / "venv" / "bin" / "python"
+        with pytest.raises(subprocess.CalledProcessError):
+            await install(python, "mypkg", "1.0.0")
+
+        assert mock.await_count == 2
 
 
 class TestSitePackagesDir:
