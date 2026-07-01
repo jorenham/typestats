@@ -26,6 +26,13 @@ jobs:
       contents: write # push collected data to the data branch
     environment: reports
     steps:
+      - name: free disk space
+        run: |
+          sudo rm -rf /usr/lib/jvm /usr/share/dotnet /usr/share/swift /usr/local/.ghcup /usr/local/lib/android /opt/ghc || true
+          docker system prune -af || true
+          docker builder prune -af || true
+          df -h /
+
       - name: checkout main
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
