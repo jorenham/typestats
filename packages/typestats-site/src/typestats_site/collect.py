@@ -109,7 +109,7 @@ class _ProjectCollector:
                 self.base_available = await available_versions(self.client, detected)
 
         pypi = PypiInfo.from_file_detail(self.eligible[version])
-        pyrefly_paths = await discover_packages(sp)
+        pyrefly_paths = await discover_packages(sp, dist_name=project.name)
 
         if base_name := self.base_name:
             assert self.base_available is not None
