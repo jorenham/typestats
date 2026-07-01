@@ -1,5 +1,7 @@
+import logging
 import os
 import shutil
+import subprocess
 from typing import Final
 
 import anyio
@@ -7,6 +9,8 @@ import anyio.to_thread
 
 from typestats._type import StrPath
 from typestats.subprocess import run as _subprocess_run
+
+_logger: Final = logging.getLogger(__name__)
 
 __all__ = (
     "PYTHON_VERSION",
@@ -43,17 +47,21 @@ async def create_venv(path: StrPath, /) -> anyio.Path:
 
 
 async def install(python: StrPath, project: str, version: str, /) -> None:
-    await _subprocess_run(
+    base_args = (
         "uv",
         "pip",
         "install",
-        "--no-deps",
         "--no-config",
         "--no-cache",
         "--python",
         str(anyio.Path(python)),
-        f"{project}=={version}",
     )
+    spec = f"{project}=={version}"
+    try:
+        await _subprocess_run(*base_args, spec)
+    except subprocess.CalledProcessError:
+        _logger.warning("deps install failed for %s; retrying --no-deps", spec)
+        await _subprocess_run(*base_args, "--no-deps", spec)
 
 
 def _venv_path(work_dir: StrPath, project: str, version: str, /) -> anyio.Path:
