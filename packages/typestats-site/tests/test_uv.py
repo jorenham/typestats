@@ -88,6 +88,24 @@ class TestInstall:
         assert f"--python={python}" in args or str(python) in args
         assert "mypkg==1.0.0" in args
 
+    async def test_no_deps_skips_dep_resolution(
+        self,
+        tmp_path: Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        mock = AsyncMock(
+            return_value=subprocess.CompletedProcess(args=[], returncode=0),
+        )
+        monkeypatch.setattr("anyio.run_process", mock)
+
+        python = tmp_path / "venv" / "bin" / "python"
+        await install(python, "mypkg", "1.0.0", no_deps=True)
+
+        mock.assert_awaited_once()
+        args = mock.call_args[0][0]
+        assert "--no-deps" in args
+        assert "mypkg==1.0.0" in args
+
     async def test_falls_back_to_no_deps(
         self,
         tmp_path: Path,

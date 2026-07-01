@@ -24,6 +24,7 @@ def mock_uv_factory(
             work_dir: anyio.Path,
             project: str,
             version: str,
+            **_kwargs: object,
         ) -> anyio.Path:
             sp = anyio.Path(work_dir) / f"{project}-{version}" / "site-packages"
             await sp.mkdir(parents=True, exist_ok=True)

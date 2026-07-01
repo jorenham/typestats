@@ -18,6 +18,12 @@ class TestProject:
         assert p.name == "numpy"
         assert p.exclude == ("tests/**", "benchmarks/**")
 
+    def test_no_deps_default(self) -> None:
+        assert Project(name="pandas").no_deps is False
+
+    def test_with_no_deps(self) -> None:
+        assert Project(name="torch", no_deps=True).no_deps is True
+
     def test_frozen(self) -> None:
         p = Project(name="numpy")
         with pytest.raises(ValidationError):
@@ -41,6 +47,11 @@ projects = [
         assert len(projects) == 2
         assert projects[0] == Project(name="numpy", exclude=("numpy/typing/tests/**",))
         assert projects[1] == Project(name="scipy-stubs")
+
+    def test_load_no_deps(self, tmp_path: Path) -> None:
+        toml_path = tmp_path / "projects.toml"
+        toml_path.write_text('[[projects]]\nname = "torch"\nno_deps = true\n')
+        assert load_projects(toml_path) == [Project(name="torch", no_deps=True)]
 
     def test_empty_projects_list(self, tmp_path: Path) -> None:
         toml_path = tmp_path / "projects.toml"
