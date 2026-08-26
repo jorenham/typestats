@@ -3,7 +3,7 @@ import itertools
 import logging
 import operator
 import sys
-from collections.abc import Mapping
+from collections.abc import Callable, Mapping
 from datetime import date
 from typing import Any, Final, Literal, NotRequired, TypedDict
 
@@ -24,15 +24,19 @@ from typestats.metadata import read_pkg_metadata
 
 __all__ = (
     "available_versions",
+    "available_versions_from_detail",
     "base_specifier_from_metadata",
+    "best_wheels",
     "fetch_project_detail",
     "latest_distribution",
+    "latest_distribution_from_detail",
     "latest_version",
     "match_version",
     "match_version_from_specifier",
     "parse_file_version",
     "resolve_base_version",
     "versions_since",
+    "versions_since_from_detail",
 )
 
 
@@ -152,6 +156,16 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
         matches_cp = any(t.interpreter.startswith(cp_tag) for t in tags)
         return 0 if is_pure else 1, 0 if matches_cp else 1, f["size"]
 
+    return _best_by_version(files, _rank)
+
+
+def _best_by_version(
+    files: list[FileDetail],
+    rank: Callable[[FileDetail], tuple[int, ...]],
+    /,
+) -> dict[Version, FileDetail]:
+    """The lowest-`rank` file per version, skipping invalid filenames."""
+
     def _version(f: FileDetail, /) -> Version | None:
         try:
             return parse_file_version(f["filename"])
@@ -162,7 +176,7 @@ def _best_distribution(details: ProjectDetail, /) -> dict[Version, FileDetail]:
     versioned = [(f, v) for f in files if (v := _version(f)) is not None]
     versioned.sort(key=operator.itemgetter(1))
     return {
-        version: min((f for f, _ in group), key=_rank)
+        version: min((f for f, _ in group), key=rank)
         for version, group in itertools.groupby(versioned, key=operator.itemgetter(1))
     }
 
@@ -172,6 +186,33 @@ def parse_file_version(fname: str, /) -> Version:
     return parse(fname)[1]
 
 
+def _wheel_rank(file: FileDetail, /) -> tuple[int, int, int, int]:
+    _, _, _, tags = parse_wheel_filename(file["filename"])
+    pure = any(t.platform == "any" for t in tags)
+    linux = any("linux" in t.platform for t in tags)
+    versions = ("".join(filter(str.isdigit, t.interpreter)) for t in tags)
+    interpreter = max((int(digits) for digits in versions if digits), default=0)
+    return 0 if pure else 1, 0 if pure or linux else 1, -interpreter, file["size"]
+
+
+def best_wheels(detail: ProjectDetail, /) -> dict[Version, FileDetail]:
+    """The best wheel per version: pure > linux > newest interpreter > smallest."""
+    files = [
+        f
+        for f in detail["files"]
+        if not f.get("yanked", False) and f["filename"].endswith(".whl")
+    ]
+    return _best_by_version(files, _wheel_rank)
+
+
+def available_versions_from_detail(
+    detail: ProjectDetail,
+    /,
+) -> dict[Version, FileDetail]:
+    """All non-prerelease versions with their best distribution."""
+    return {v: f for v, f in _best_distribution(detail).items() if not v.is_prerelease}
+
+
 async def available_versions(
     client: httpx.AsyncClient,
     project_name: str,
@@ -179,7 +220,7 @@ async def available_versions(
 ) -> dict[Version, FileDetail]:
     """All non-prerelease versions with their best distribution."""
     detail = await fetch_project_detail(client, project_name)
-    return {v: f for v, f in _best_distribution(detail).items() if not v.is_prerelease}
+    return available_versions_from_detail(detail)
 
 
 def match_version(
@@ -192,7 +233,7 @@ def match_version(
     Compares up to the first two release components, so a target with
     fewer than two components uses a shorter prefix.
 
-    Returns `None` when no matching version is available.
+    Returns `None` when no matching version is available
     """
     prefix = target.release[:2]
     matching = [v for v in available if v.release[:2] == prefix]
@@ -266,16 +307,23 @@ async def resolve_base_version(
     return match_version(base_available, stubs_version)
 
 
+def latest_distribution_from_detail(
+    detail: ProjectDetail,
+    /,
+) -> tuple[Version, FileDetail]:
+    best = _best_distribution(detail)
+    stable = {v: f for v, f in best.items() if not v.is_prerelease}
+    ver = max(stable or best)
+    return ver, best[ver]
+
+
 async def latest_distribution(
     client: httpx.AsyncClient,
     project_name: str,
     /,
 ) -> tuple[Version, FileDetail]:
     detail = await fetch_project_detail(client, project_name)
-    best = _best_distribution(detail)
-    stable = {v: f for v, f in best.items() if not v.is_prerelease}
-    ver = max(stable or best)
-    return ver, best[ver]
+    return latest_distribution_from_detail(detail)
 
 
 async def latest_version(client: httpx.AsyncClient, project_name: str, /) -> Version:
@@ -283,9 +331,8 @@ async def latest_version(client: httpx.AsyncClient, project_name: str, /) -> Ver
     return ver
 
 
-async def versions_since(
-    client: httpx.AsyncClient,
-    project_name: str,
+def versions_since_from_detail(
+    detail: ProjectDetail,
     since: date,
     /,
     *,
@@ -298,7 +345,6 @@ async def versions_since(
     non-prerelease version is always included even if it predates `since`.
     When `limit` is set, only the most recent `limit` versions are returned.
     """
-    detail = await fetch_project_detail(client, project_name)
     result: dict[Version, FileDetail] = {}
     latest: tuple[Version, FileDetail] | None = None
     for version, file in _best_distribution(detail).items():
@@ -319,3 +365,19 @@ async def versions_since(
         result = dict(sorted(result.items(), reverse=True)[:limit])
 
     return result
+
+
+async def versions_since(
+    client: httpx.AsyncClient,
+    project_name: str,
+    since: date,
+    /,
+    *,
+    include_latest: bool = False,
+    limit: int | None = None,
+) -> dict[Version, FileDetail]:
+    """Non-yanked final versions since `since` (see `versions_since_from_detail`)."""
+    detail = await fetch_project_detail(client, project_name)
+    return versions_since_from_detail(
+        detail, since, include_latest=include_latest, limit=limit
+    )

@@ -12,13 +12,9 @@ from typestats.report import PackageReport, StubsOnly
 from typestats_site.from_project import from_project
 
 if TYPE_CHECKING:
-    from collections.abc import Callable
+    from typestats_site._pypi import FileDetail
+    from typestats_site._testing import PyPIMocker
 
-    from pytest_httpx import HTTPXMock
-
-type MockUv = Callable[..., None]
-
-_PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 _FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "fixtures"
 
 
@@ -28,34 +24,10 @@ class TestFromProject:
     _PKG = "mypkg"
     _STUBS_PKG = f"{_PKG}-stubs"
 
-    @staticmethod
-    def _pypi_detail_json(name: str, version: str) -> dict[str, object]:
-        filename = f"{name}-{version}.tar.gz"
-        return {
-            "name": name,
-            "versions": [version],
-            "meta": {"api-version": "1.0"},
-            "files": [
-                {
-                    "filename": filename,
-                    "hashes": {"sha256": "abc123def456"},
-                    "size": 98765,
-                    "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
-                    "upload-time": "2025-03-01T10:00:00Z",
-                    "requires-python": ">=3.10",
-                },
-            ],
-        }
-
-    def _mock_pypi(
-        self,
-        httpx_mock: "HTTPXMock",
-        name: str,
-        version: str,
-    ) -> None:
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=self._pypi_detail_json(name, version),
+    def _mock_base(self, pypi: "PyPIMocker", version: str, /) -> None:
+        pypi.project(
+            self._PKG,
+            pypi.wheel(self._PKG, version, _FIXTURES / "stubs_base"),
         )
 
     @staticmethod
@@ -71,44 +43,29 @@ class TestFromProject:
             return await from_project(project, client, tmp_path)
 
     @staticmethod
-    def _assert_pypi_defaults(report: PackageReport) -> None:
+    def _assert_pypi_matches(report: PackageReport, file: "FileDetail") -> None:
         assert report.pypi is not None
-        assert report.pypi.upload_time == "2025-03-01T10:00:00Z"
+        assert report.pypi.upload_time == file.get("upload-time")
         assert report.pypi.requires_python == ">=3.10"
-        assert report.pypi.size == 98765
-        assert report.pypi.sha256 == "abc123def456"
+        assert report.pypi.size == file["size"]
+        assert report.pypi.sha256 == file["hashes"]["sha256"]
 
-    async def test_base_package(
-        self,
-        tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
-    ) -> None:
-        self._mock_pypi(httpx_mock, self._PKG, "2.5.0")
-        mock_uv({(self._PKG, "2.5.0"): _FIXTURES / "stubs_base"})
+    async def test_base_package(self, tmp_path: Path, pypi: "PyPIMocker") -> None:
+        file = pypi.wheel(self._PKG, "2.5.0", _FIXTURES / "stubs_base")
+        pypi.project(self._PKG, file)
 
         report = await self._run(self._PKG, tmp_path)
 
         assert report.package == self._PKG
         assert report.version == "2.5.0"
         assert report.stubs_only is StubsOnly.NO
-        self._assert_pypi_defaults(report)
+        self._assert_pypi_matches(report, file)
 
-    async def test_stubs_package(
-        self,
-        tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
-    ) -> None:
-        """Stubs project installs base + stubs in separate venvs."""
-        self._mock_pypi(httpx_mock, self._STUBS_PKG, "3.0.0.1")
-        self._mock_pypi(httpx_mock, self._PKG, "3.0.0")
-        mock_uv(
-            {
-                (self._STUBS_PKG, "3.0.0.1"): _FIXTURES / "stubs_overlay",
-                (self._PKG, "3.0.0"): _FIXTURES / "stubs_base",
-            },
-        )
+    async def test_stubs_package(self, tmp_path: Path, pypi: "PyPIMocker") -> None:
+        """Stubs project fetches base + stubs separately."""
+        file = pypi.wheel(self._STUBS_PKG, "3.0.0.1", _FIXTURES / "stubs_overlay")
+        pypi.project(self._STUBS_PKG, file)
+        self._mock_base(pypi, "3.0.0")
 
         report = await self._run(self._STUBS_PKG, tmp_path)
 
@@ -116,24 +73,18 @@ class TestFromProject:
         assert report.version == "3.0.0.1"
         assert report.stubs_only is StubsOnly.THIRD_PARTY
         assert report.py_typed is PyTyped.STUBS
-        self._assert_pypi_defaults(report)
+        self._assert_pypi_matches(report, file)
 
     async def test_typeshed_stubs_package(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
-        """Typeshed `types-{name}` project installs base + stubs."""
+        """Typeshed `types-{name}` project fetches base + stubs."""
         typeshed_name = f"types-{self._PKG}"
-        self._mock_pypi(httpx_mock, typeshed_name, "3.0.0.1")
-        self._mock_pypi(httpx_mock, self._PKG, "3.0.0")
-        mock_uv(
-            {
-                (typeshed_name, "3.0.0.1"): _FIXTURES / "stubs_overlay",
-                (self._PKG, "3.0.0"): _FIXTURES / "stubs_base",
-            },
-        )
+        file = pypi.wheel(typeshed_name, "3.0.0.1", _FIXTURES / "stubs_overlay")
+        pypi.project(typeshed_name, file)
+        self._mock_base(pypi, "3.0.0")
 
         report = await self._run(typeshed_name, tmp_path)
 
@@ -141,17 +92,15 @@ class TestFromProject:
         assert report.version == "3.0.0.1"
         assert report.stubs_only is StubsOnly.TYPESHED
         assert report.py_typed is PyTyped.STUBS
-        self._assert_pypi_defaults(report)
+        self._assert_pypi_matches(report, file)
 
     async def test_exclude_passed_through(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Exclude list forwarded to from_path."""
-        self._mock_pypi(httpx_mock, self._PKG, "1.0.0")
-        mock_uv({(self._PKG, "1.0.0"): _FIXTURES / "stubs_base"})
+        self._mock_base(pypi, "1.0.0")
 
         report = await self._run(
             self._PKG,
@@ -165,19 +114,15 @@ class TestFromProject:
     async def test_stubs_lite_detected(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """*-stubs-lite detected as stubs-only."""
         stubs_lite_name = f"{self._PKG}-stubs-lite"
-        self._mock_pypi(httpx_mock, stubs_lite_name, "1.0.0")
-        self._mock_pypi(httpx_mock, self._PKG, "1.0.0")
-        mock_uv(
-            {
-                (stubs_lite_name, "1.0.0"): _FIXTURES / "stubs_overlay",
-                (self._PKG, "1.0.0"): _FIXTURES / "stubs_base",
-            },
+        pypi.project(
+            stubs_lite_name,
+            pypi.wheel(stubs_lite_name, "1.0.0", _FIXTURES / "stubs_overlay"),
         )
+        self._mock_base(pypi, "1.0.0")
 
         report = await self._run(stubs_lite_name, tmp_path)
 
@@ -187,18 +132,14 @@ class TestFromProject:
     async def test_stubs_version_from_metadata(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Third-party stubs with divergent version resolved via metadata."""
-        self._mock_pypi(httpx_mock, self._STUBS_PKG, "0.4.0")
-        self._mock_pypi(httpx_mock, self._PKG, "1.0.0")
-        mock_uv(
-            {
-                (self._STUBS_PKG, "0.4.0"): _FIXTURES / "stubs_overlay_meta",
-                (self._PKG, "1.0.0"): _FIXTURES / "stubs_base",
-            },
+        pypi.project(
+            self._STUBS_PKG,
+            pypi.wheel(self._STUBS_PKG, "0.4.0", _FIXTURES / "stubs_overlay_meta"),
         )
+        self._mock_base(pypi, "1.0.0")
 
         report = await self._run(self._STUBS_PKG, tmp_path)
 
@@ -210,18 +151,14 @@ class TestFromProject:
     async def test_stubs_version_fallback_without_metadata(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Third-party stubs without metadata fall back to major.minor match."""
-        self._mock_pypi(httpx_mock, self._STUBS_PKG, "3.0.0.1")
-        self._mock_pypi(httpx_mock, self._PKG, "3.0.0")
-        mock_uv(
-            {
-                (self._STUBS_PKG, "3.0.0.1"): _FIXTURES / "stubs_overlay",
-                (self._PKG, "3.0.0"): _FIXTURES / "stubs_base",
-            },
+        pypi.project(
+            self._STUBS_PKG,
+            pypi.wheel(self._STUBS_PKG, "3.0.0.1", _FIXTURES / "stubs_overlay"),
         )
+        self._mock_base(pypi, "3.0.0")
 
         report = await self._run(self._STUBS_PKG, tmp_path)
 
@@ -233,19 +170,15 @@ class TestFromProject:
     async def test_typeshed_uses_major_minor(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Typeshed `types-` packages always use major.minor, ignoring metadata."""
         typeshed_name = f"types-{self._PKG}"
-        self._mock_pypi(httpx_mock, typeshed_name, "3.0.0.1")
-        self._mock_pypi(httpx_mock, self._PKG, "3.0.0")
-        mock_uv(
-            {
-                (typeshed_name, "3.0.0.1"): _FIXTURES / "stubs_overlay",
-                (self._PKG, "3.0.0"): _FIXTURES / "stubs_base",
-            },
+        pypi.project(
+            typeshed_name,
+            pypi.wheel(typeshed_name, "3.0.0.1", _FIXTURES / "stubs_overlay"),
         )
+        self._mock_base(pypi, "3.0.0")
 
         report = await self._run(typeshed_name, tmp_path)
 

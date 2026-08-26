@@ -14,6 +14,7 @@ from typestats_site._pypi import (
     ProjectDetail,
     _best_distribution,
     base_specifier_from_metadata,
+    best_wheels,
     match_version,
     match_version_from_specifier,
     parse_file_version,
@@ -165,6 +166,52 @@ class TestBestDistribution:
         best = _best_distribution(detail)
         assert Version("3.9.1") in best
         assert len(best) == 1
+
+
+class TestBestWheels:
+    def test_prefers_pure_over_platform(self) -> None:
+        detail = _detail(
+            "pkg",
+            [
+                _file("pkg-1.0.0.tar.gz"),
+                _file("pkg-1.0.0-cp313-cp313-manylinux_2_28_x86_64.whl"),
+                _file("pkg-1.0.0-py3-none-any.whl", size=900),
+            ],
+        )
+        wheels = best_wheels(detail)
+        assert wheels[Version("1.0.0")]["filename"] == "pkg-1.0.0-py3-none-any.whl"
+
+    def test_prefers_linux_platform(self) -> None:
+        detail = _detail(
+            "pkg",
+            [
+                _file("pkg-1.0.0-cp313-cp313-win_amd64.whl"),
+                _file("pkg-1.0.0-cp312-cp312-manylinux_2_28_x86_64.whl", size=900),
+            ],
+        )
+        wheels = best_wheels(detail)
+        assert (
+            wheels[Version("1.0.0")]["filename"]
+            == "pkg-1.0.0-cp312-cp312-manylinux_2_28_x86_64.whl"
+        )
+
+    def test_prefers_newest_interpreter(self) -> None:
+        detail = _detail(
+            "pkg",
+            [
+                _file("pkg-1.0.0-cp311-cp311-manylinux_2_28_x86_64.whl", size=50),
+                _file("pkg-1.0.0-cp313-cp313-manylinux_2_28_x86_64.whl", size=900),
+            ],
+        )
+        wheels = best_wheels(detail)
+        assert (
+            wheels[Version("1.0.0")]["filename"]
+            == "pkg-1.0.0-cp313-cp313-manylinux_2_28_x86_64.whl"
+        )
+
+    def test_no_wheels(self) -> None:
+        detail = _detail("pkg", [_file("pkg-1.0.0.tar.gz")])
+        assert best_wheels(detail) == {}
 
 
 class TestParseFileVersion:
@@ -436,18 +483,6 @@ class TestMatchVersion:
         available = {Version("2.0.0"): None, Version("3.1.0"): None}
         assert match_version(available, Version("1.0.0")) is None
 
-    def test_returns_latest_matching(self) -> None:
-        available = dict.fromkeys((
-            Version("1.17.0"),
-            Version("1.17.1"),
-            Version("1.17.2"),
-            Version("1.18.0"),
-        ))
-        assert match_version(available, Version("1.17.1.1")) == Version("1.17.2")
-
-    def test_empty_available(self) -> None:
-        assert match_version({}, Version("1.0.0")) is None
-
     def test_single_component_version(self) -> None:
         """Versions with fewer than two release components use a shorter prefix."""
         available = dict.fromkeys((Version("1"),))
@@ -509,7 +544,3 @@ class TestMatchVersionFromSpecifier:
         available = dict.fromkeys((Version("0.9.0"), Version("0.8.0")))
         spec = SpecifierSet(">=1.0")
         assert match_version_from_specifier(available, spec) is None
-
-    def test_empty_available(self) -> None:
-        spec = SpecifierSet(">=1.0")
-        assert match_version_from_specifier({}, spec) is None

@@ -1,4 +1,4 @@
-"""Adapter that converts `pyrefly report` JSON output to typestats Pydantic models."""
+"""Adapter for `pyrefly coverage report` JSON output to typestats Pydantic models."""
 
 import json
 import sys
@@ -42,7 +42,7 @@ async def run_pyrefly_report(
     project_excludes: Sequence[str] = (),
     search_paths: Sequence[str] = (),
 ) -> list[_ModuleReport]:
-    """Run `pyrefly report` and return its `module_reports`.
+    """Run `pyrefly coverage report` and return its `module_reports`.
 
     `paths` are forwarded as positional args; pyrefly auto-discovers when empty.
     `cwd` lets pyrefly resolve project structure from a different directory.
@@ -54,6 +54,7 @@ async def run_pyrefly_report(
         sys.executable,
         "-m",
         "pyrefly",
+        "coverage",
         "report",
         "--prefer-stubs=true",
         "--public-only",

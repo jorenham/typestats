@@ -506,7 +506,7 @@ class FromPathOptions:
     `base_version`: stubs' base-package version, recorded alongside *version*.
     `exclude`: glob patterns forwarded to pyrefly's `--project-excludes`.
     `pypi`: distribution metadata to embed in the report.
-    `pyrefly_paths`: positional paths forwarded to `pyrefly report`; empty
+    `pyrefly_paths`: positional paths forwarded to `pyrefly coverage report`; empty
         triggers pyrefly's project-checking mode.
     """
 
@@ -661,7 +661,7 @@ class PackageReport(BaseModel):
         """Build a `PackageReport` by analysing the package at *path*.
 
         See `FromPathOptions` for stubs overlay, exclusion, and metadata knobs.
-        Runs `pyrefly report` and `discover_configs` concurrently.
+        Runs `pyrefly coverage report` and `discover_configs` concurrently.
         """
         display = opts.project or pkg
 

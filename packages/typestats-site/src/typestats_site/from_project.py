@@ -1,4 +1,6 @@
-"""Build a `PackageReport` for a PyPI project (install + analyze)."""
+"""Build a `PackageReport` for a PyPI project (download + analyze)."""
+
+from pathlib import Path
 
 import httpx
 
@@ -7,7 +9,8 @@ from typestats.projects import Project
 from typestats.report import FromPathOptions, PackageReport
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
-from . import _pypi, _uv
+from . import _pypi
+from ._extract import fetch_dist
 from ._report import PypiInfo
 from ._uv import discover_packages
 
@@ -22,34 +25,39 @@ async def from_project(
 ) -> PackageReport:
     """Build a `PackageReport` by downloading and analyzing a PyPI project.
 
-    Handles both regular packages and stubs packages (installing base +
-    stubs in separate venvs for the latter).  Recognized stubs patterns:
-    `{name}-stubs` (third-party) and `types-{name}` (typeshed).
-
-    When the project name doesn't match a known stubs pattern, the
-    installed site-packages is scanned for `*-stubs/` directories (e.g.
-    `boto3-stubs-lite` ships a `boto3-stubs/` directory).
-
-    For third-party stubs packages, the base package version is resolved
-    from `Requires-Dist` metadata when available.  For typeshed `types-`
-    packages (and as a fallback), the base version is matched on the first
-    two release components (major.minor).
+    Unpacks the wheel when available (venv install for sdist-only releases). For a
+    stubs package (`{name}-stubs`, `types-{name}`, or a detected bundled `*-stubs/`
+    directory), the base package is fetched separately, with its version resolved from
+    `Requires-Dist` when declared, or by matching major.minor otherwise.
 
     Raises:
         RuntimeError: If no matching base package version can be found.
     """
-    ver, dist_file = await _pypi.latest_distribution(client, project.name)
-    sp = await _uv.install_to_venv(
-        out_dir, project.name, str(ver), no_deps=project.no_deps
+    detail = await _pypi.fetch_project_detail(client, project.name)
+    ver, dist_file = _pypi.latest_distribution_from_detail(detail)
+    sp = await fetch_dist(
+        client,
+        out_dir,
+        project.name,
+        str(ver),
+        _pypi.best_wheels(detail).get(ver),
+        no_deps=project.no_deps,
     )
+    pyrefly_paths = await discover_packages(sp, dist_name=project.name)
     base_name = stubs_base_name(project.name)
 
-    # e.g. boto3-stubs-lite ships a boto3-stubs/ directory
-    if base_name is None and (detected := await find_stubs_dir(sp)) is not None:
+    # e.g. boto3-stubs-lite ships a boto3-stubs/ directory; only the project's
+    # own dirs count (a venv also contains dependencies' files)
+    if (
+        base_name is None
+        and (detected := await find_stubs_dir(sp)) is not None
+        and any(Path(p).name == f"{detected}-stubs" for p in pyrefly_paths)
+    ):
         base_name = detected
 
     if base_name is not None:
-        base_available = await _pypi.available_versions(client, base_name)
+        base_detail = await _pypi.fetch_project_detail(client, base_name)
+        base_available = _pypi.available_versions_from_detail(base_detail)
         base_ver = await _pypi.resolve_base_version(
             project.name,
             base_name,
@@ -61,8 +69,13 @@ async def from_project(
             prefix = ".".join(str(c) for c in ver.release[:2])
             msg = f"no {base_name} version matching {prefix}.* found"
             raise RuntimeError(msg)
-        base_sp = await _uv.install_to_venv(
-            out_dir, base_name, str(base_ver), no_deps=project.no_deps
+        base_sp = await fetch_dist(
+            client,
+            out_dir,
+            base_name,
+            str(base_ver),
+            _pypi.best_wheels(base_detail).get(base_ver),
+            no_deps=project.no_deps,
         )
 
         return await PackageReport.from_path(
@@ -75,7 +88,7 @@ async def from_project(
                 base_version=str(base_ver),
                 exclude=project.exclude,
                 pypi=PypiInfo.from_file_detail(dist_file),
-                pyrefly_paths=await discover_packages(sp, dist_name=project.name),
+                pyrefly_paths=pyrefly_paths,
             ),
         )
 
@@ -86,6 +99,6 @@ async def from_project(
         FromPathOptions(
             exclude=project.exclude,
             pypi=PypiInfo.from_file_detail(dist_file),
-            pyrefly_paths=await discover_packages(sp, dist_name=project.name),
+            pyrefly_paths=pyrefly_paths,
         ),
     )
