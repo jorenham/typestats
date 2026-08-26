@@ -669,7 +669,7 @@ class TestDefaultPyreflyExcludes:
     ) -> dict[str, tuple[str, ...]]:
         captured: dict[str, tuple[str, ...]] = {}
 
-        async def fake_pyrefly(*_paths: str, **kwargs: object) -> list[object]:  # noqa: RUF029
+        async def fake_pyrefly(*_paths: str, **kwargs: object) -> list[object]:  # ruff: ignore[unused-async]
             captured["project_excludes"] = cast(
                 "tuple[str, ...]", kwargs["project_excludes"]
             )

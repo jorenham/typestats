@@ -131,24 +131,24 @@ line-ending = "lf"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-  "ANN401", # flake8-annotations - any-type
-  "COM812", # missing-trailing-comma - conflicts with formatter
-  "S101", # flake8-bandit - assert
-  "S404", # flake8-bandit - suspicious-subprocess-import
+  "any-type", # flake8-annotations - any-type
+  "missing-trailing-comma", # missing-trailing-comma - conflicts with formatter
+  "assert", # flake8-bandit - assert
+  "suspicious-subprocess-import", # flake8-bandit - suspicious-subprocess-import
   "FBT", # flake8-boolean-trap
   "CPY", # flake8-copyright
   "FIX", # flake8-fixme
-  "TD003", # flake8-todos - missing-todo-link
+  "missing-todo-link", # flake8-todos - missing-todo-link
   "D", # pydocstyle
-  "DOC201", # pydoclint - docstring-missing-returns
-  "TRY003", # tryceratops - raise-vanilla-args
-  "RUF067", # ruff - non-empty-init-module
+  "docstring-missing-returns", # pydoclint - docstring-missing-returns
+  "raise-vanilla-args", # tryceratops - raise-vanilla-args
+  "non-empty-init-module", # ruff - non-empty-init-module
 ]
 
 [tool.ruff.lint.per-file-ignores]
 "packages/typestats-site/tests/**" = [
-  "PLC2701", # pylint - import-private-name
-  "PLR6301", # pylint - no-self-use
+  "import-private-name", # pylint - import-private-name
+  "no-self-use", # pylint - no-self-use
 ]
 
 [tool.ruff.lint.pylint]

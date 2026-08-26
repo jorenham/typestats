@@ -200,13 +200,13 @@ class _ProjectCollector:
             )
 
         json_bytes = report.model_dump_json(indent=2).encode()
-        out.write_bytes(json_bytes)  # noqa: ASYNC240
+        out.write_bytes(json_bytes)  # ruff: ignore[blocking-path-method-in-async-function]
         _logger.info("wrote %s", out)
 
         return True
 
 
-async def collect_project(  # noqa: PLR0913
+async def collect_project(  # ruff: ignore[too-many-arguments]
     project: Project,
     client: httpx.AsyncClient,
     data_dir: anyio.Path,
@@ -241,7 +241,7 @@ async def collect_project(  # noqa: PLR0913
         collector.set_base(base_name, await fetch_project_detail(client, base_name))
 
     project_data_dir = Path(data_dir, project.name)
-    project_data_dir.mkdir(parents=True, exist_ok=True)  # noqa: ASYNC240
+    project_data_dir.mkdir(parents=True, exist_ok=True)  # ruff: ignore[blocking-path-method-in-async-function]
 
     written: list[Path] = []
     for version in sorted(eligible):

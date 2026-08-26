@@ -24,7 +24,7 @@ def captured_argv(monkeypatch: pytest.MonkeyPatch) -> list[list[str]]:
     """Capture the argv `check`/`report` pass to `anyio.run_process`, faking exit 0."""
     captured: list[list[str]] = []
 
-    async def fake_run(command: list[str], /, **_kwargs: Any) -> Any:  # noqa: RUF029
+    async def fake_run(command: list[str], /, **_kwargs: Any) -> Any:  # ruff: ignore[unused-async]
         captured.append(command)
         return subprocess.CompletedProcess(command, returncode=0)
 
@@ -91,7 +91,7 @@ class TestCheckSubprocess:
         assert "--public-only" in argv
 
     async def test_propagates_exit_code(self, monkeypatch: pytest.MonkeyPatch) -> None:
-        async def fake_run(command: list[str], /, **_kwargs: Any) -> Any:  # noqa: RUF029
+        async def fake_run(command: list[str], /, **_kwargs: Any) -> Any:  # ruff: ignore[unused-async]
             return subprocess.CompletedProcess(command, returncode=7)
 
         monkeypatch.setattr("typestats.check.anyio.run_process", fake_run)
@@ -176,7 +176,7 @@ class TestPyreflyIntegration:
         pkg.mkdir()
         (pkg / "__init__.py").write_text("def f(x: int) -> int:\n    return x\n")
 
-        proc = subprocess.run(  # noqa: S603
+        proc = subprocess.run(  # ruff: ignore[subprocess-without-shell-equals-true]
             [sys.executable, "-m", "typestats", "check", str(pkg)],
             capture_output=True,
             text=True,

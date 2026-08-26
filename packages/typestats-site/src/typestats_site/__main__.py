@@ -1,4 +1,4 @@
-# ruff: noqa: PLC0415
+# ruff: file-ignore[import-outside-top-level]
 
 import contextlib
 import dataclasses
