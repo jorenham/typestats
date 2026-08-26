@@ -32,19 +32,41 @@ exclude = [
 ]
 
 [[projects]]
-name = "narwhals"
-
-[[projects]]
-name = "polars"
-
-[[projects]]
-name = "scipy-stubs"
+name = "thrift"
 
 [[projects]]
 name = "click"
 
 [[projects]]
+name = "vLLM"
+no_deps = true
+
+[[projects]]
+name = "later"
+
+[[projects]]
 name = "pytest"
+
+[[projects]]
+name = "Pillow"
+
+[[projects]]
+name = "tqdm"
+
+[[projects]]
+name = "types-tqdm"
+
+[[projects]]
+name = "omegaconf"
+exclude = [
+  "omegaconf/vendor/**",
+]
+
+[[projects]]
+name = "pydantic"
+
+[[projects]]
+name = "transformers"
 
 [[projects]]
 name = "PyYAML"
@@ -53,19 +75,43 @@ name = "PyYAML"
 name = "types-PyYAML"
 
 [[projects]]
+name = "opencv-python"
+
+[[projects]]
+name = "matplotlib"
+
+[[projects]]
+name = "scipy-stubs"
+
+[[projects]]
+name = "types-antlr4-python3-runtime"
+
+[[projects]]
+name = "result"
+
+[[projects]]
 name = "requests"
 
 [[projects]]
-name = "pytz"
+name = "django-stubs"
 
 [[projects]]
-name = "types-pytz"
+name = "triton"
 
 [[projects]]
-name = "tqdm"
+name = "helion"
+no_deps = true
 
 [[projects]]
-name = "types-tqdm"
+name = "tritonparse"
+no_deps = true
+
+[[projects]]
+name = "scikit-learn"
+exclude = [
+  "sklearn/**/tests/**",
+  "sklearn/externals/**",
+]
 
 [[projects]]
 name = "fire"
@@ -76,46 +122,132 @@ exclude = [
 ]
 
 [[projects]]
-name = "trimesh"
-
-[[projects]]
-name = "Pillow"
-
-[[projects]]
-name = "psutil"
-
-[[projects]]
-name = "types-psutil"
-
-[[projects]]
 name = "jinja2"
 exclude = [
   "src/jinja2/tests.py",
 ]
 
 [[projects]]
-name = "networkx"
+name = "hydra-core"
+exclude = [
+  "hydra/test_utils/**",
+]
 
 [[projects]]
-name = "types-networkx"
+name = "einops"
 
 [[projects]]
-name = "libcst"
+name = "opacus"
+no_deps = true
 
 [[projects]]
-name = "imageio"
+name = "pytorch-lightning"
+no_deps = true
 
 [[projects]]
-name = "fsspec"
+name = "lightning"
+no_deps = true
+
+[[projects]]
+name = "loguru"
+
+[[projects]]
+name = "protobuf"
+exclude = [
+  "google/protobuf/internal/**",
+]
+
+[[projects]]
+name = "types-protobuf"
+exclude = [
+  "google/protobuf/internal/**",
+]
+
+[[projects]]
+name = "overrides"
+
+[[projects]]
+name = "mcp"
+
+[[projects]]
+name = "plotly"
+
+# [[projects]]
+# name = "plotly-stubs"
+# installation issue due to mismatching version numbers
+
+[[projects]]
+name = "pyarrow-stubs"
+
+# [[projects]]
+# name = "mmcv"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "mmdet"
+no_deps = true
+
+[[projects]]
+name = "mmengine"
+no_deps = true
+
+[[projects]]
+name = "mmdet3d"
+no_deps = true
+
+[[projects]]
+name = "mmpose"
+no_deps = true
+
+[[projects]]
+name = "megatron-core"
+no_deps = true
+
+[[projects]]
+name = "sqlalchemy"
+
+[[projects]]
+name = "ipython"
+exclude = [
+  "IPython/external/**",
+  "IPython/testing/**",
+]
+
+[[projects]]
+name = "openai"
+
+[[projects]]
+name = "tabulate"
+
+[[projects]]
+name = "types-tabulate"
 
 [[projects]]
 name = "aiohttp"
 
 [[projects]]
-name = "h5py"
+name = "datasets"
 
 [[projects]]
-name = "matplotlib"
+name = "fastapi"
+
+[[projects]]
+name = "rich"
+
+[[projects]]
+name = "pyspark"
+exclude = [
+  "pyspark/cloudpickle/**",
+]
+
+[[projects]]
+name = "tensorboard"
+
+[[projects]]
+name = "jax"
+exclude = [
+  "jax/tools/**",
+]
 
 [[projects]]
 name = "regex"
@@ -124,7 +256,57 @@ name = "regex"
 name = "types-regex"
 
 [[projects]]
-name = "transformers"
+name = "hypothesis"
+exclude = [
+  "hypothesis/vendor/**",
+]
+
+[[projects]]
+name = "libcst"
+
+[[projects]]
+name = "langchain-core"
+
+[[projects]]
+name = "langchain"
+
+[[projects]]
+name = "langchain-community"
+
+[[projects]]
+name = "langchain-text-splitters"
+
+[[projects]]
+name = "langchain-openai"
+
+[[projects]]
+name = "langgraph"
+
+[[projects]]
+name = "sglang"
+no_deps = true
+
+[[projects]]
+name = "sgl-kernel"
+no_deps = true
+
+[[projects]]
+name = "psutil"
+
+[[projects]]
+name = "types-psutil"
+
+[[projects]]
+name = "packaging"
+
+[[projects]]
+name = "httpx"
+
+[[projects]]
+name = "pytz"
+
+[[projects]]
+name = "types-pytz"
 
 [[projects]]
 name = "seaborn"
@@ -136,13 +318,105 @@ exclude = [
 name = "types-seaborn"
 
 [[projects]]
-name = "boto3"
+name = "future"
 
 [[projects]]
-name = "boto3-stubs"
+name = "polars"
 
 [[projects]]
-name = "boto3-stubs-lite"
+name = "captum"
+no_deps = true
+
+[[projects]]
+name = "huggingface-hub"
+
+[[projects]]
+name = "safetensors"
+
+[[projects]]
+name = "diffusers"
+
+[[projects]]
+name = "trimesh"
+
+[[projects]]
+name = "tpu-inference"
+no_deps = true
+
+[[projects]]
+name = "soundfile"
+
+[[projects]]
+name = "ax-platform"
+no_deps = true
+
+[[projects]]
+name = "attrs"
+
+[[projects]]
+name = "submitit"
+
+[[projects]]
+name = "nvidia-cutlass"
+
+[[projects]]
+name = "types-pycocotools"
+
+[[projects]]
+name = "networkx"
+
+[[projects]]
+name = "types-networkx"
+
+[[projects]]
+name = "openhands"
+no_deps = true
+
+[[projects]]
+name = "unicorn"
+
+[[projects]]
+name = "timm"
+no_deps = true
+
+[[projects]]
+name = "dataclasses-json"
+
+[[projects]]
+name = "fsspec"
+
+[[projects]]
+name = "types-mysqlclient"
+
+[[projects]]
+name = "librosa"
+
+[[projects]]
+name = "imageio"
+
+[[projects]]
+name = "types-python-dateutil"
+
+# [[projects]]
+# name = "xformers"
+# no Python 3.13 wheels
+
+# [[projects]]
+# name = "flash-attn"
+# requires torch at build time
+
+[[projects]]
+name = "beautifulsoup4"
+
+[[projects]]
+name = "bpy"
+
+[[projects]]
+name = "fastvideo"
+no_deps = true
+
+[[projects]]
+name = "types-tensorflow"
 
 [[projects]]
 name = "botocore"
@@ -157,64 +431,7 @@ exclude = [
 ]
 
 [[projects]]
-name = "aiofiles"
-
-[[projects]]
-name = "types-aiofiles"
-
-[[projects]]
-name = "soundfile"
-
-[[projects]]
-name = "munch"
-
-[[projects]]
-name = "msgpack"
-
-[[projects]]
-name = "sqlalchemy"
-
-[[projects]]
-name = "einops"
-
-[[projects]]
-name = "librosa"
-
-[[projects]]
-name = "cloudpickle"
-
-[[projects]]
-name = "jsonpickle"
-
-[[projects]]
-name = "torch"
-no_deps = true
-
-[[projects]]
-name = "torchmetrics"
-no_deps = true
-
-[[projects]]
-name = "vLLM"
-no_deps = true
-
-[[projects]]
-name = "tabulate"
-
-[[projects]]
-name = "types-tabulate"
-
-[[projects]]
-name = "paramiko"
-
-[[projects]]
-name = "types-paramiko"
-
-[[projects]]
-name = "asyncclick"
-
-[[projects]]
-name = "sympy"
+name = "opt-einsum"
 
 [[projects]]
 name = "joblib"
@@ -229,92 +446,38 @@ exclude = [
 ]
 
 [[projects]]
-name = "thrift"
+name = "termcolor"
 
 [[projects]]
-name = "flatbuffers"
+name = "boto3"
 
 [[projects]]
-name = "decord"
+name = "boto3-stubs"
 
 [[projects]]
-name = "wandb"
-exclude = [
-  "wandb/vendor/**",
-]
+name = "boto3-stubs-lite"
 
 [[projects]]
-name = "av"
+name = "prettytable"
 
 [[projects]]
-name = "asyncssh"
+name = "h5py"
 
 [[projects]]
-name = "orjson"
-
-[[projects]]
-name = "simpy"
-
-[[projects]]
-name = "sqlparse"
-
-[[projects]]
-name = "ipywidgets"
-
-[[projects]]
-name = "nltk"
-exclude = [
-  "nltk/test/**",
-]
-
-[[projects]]
-name = "timm"
+name = "accelerate"
 no_deps = true
 
 [[projects]]
-name = "xgboost"
-
-[[projects]]
-name = "dill"
-
-[[projects]]
-name = "kornia"
-no_deps = true
-
-[[projects]]
-name = "mercantile"
-
-[[projects]]
-name = "urllib3"
-
-[[projects]]
-name = "ipython"
+name = "scikit-image"
 exclude = [
-  "IPython/external/**",
-  "IPython/testing/**",
+  "skimage/**/tests/**",
 ]
 
 [[projects]]
-name = "ipdb"
+name = "sympy"
 
 [[projects]]
-name = "lmdb"
-
-[[projects]]
-name = "pexpect"
-
-[[projects]]
-name = "types-pexpect"
-
-[[projects]]
-name = "lpips"
-no_deps = true
-
-[[projects]]
-name = "more-itertools"
-
-[[projects]]
-name = "gitpython"
+name = "msgspec"
 
 [[projects]]
 name = "shapely"
@@ -323,25 +486,209 @@ name = "shapely"
 name = "types-shapely"
 
 [[projects]]
-name = "parameterized"
+name = "tenacity"
 
 [[projects]]
-name = "datasets"
+name = "pytest-asyncio"
 
 [[projects]]
-name = "hypothesis"
+name = "claude-agent-sdk"
+
+[[projects]]
+name = "ray"
 exclude = [
-  "hypothesis/vendor/**",
+  "ray/tests/**",
 ]
 
 [[projects]]
-name = "prettytable"
+name = "uvicorn"
 
 [[projects]]
-name = "aioitertools"
+name = "beartype"
 
 [[projects]]
-name = "pydot"
+name = "flashinfer-python"
+no_deps = true
+
+# [[projects]]
+# name = "transformer-engine"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "botorch"
+no_deps = true
+
+[[projects]]
+name = "peft"
+no_deps = true
+
+[[projects]]
+name = "wandb"
+exclude = [
+  "wandb/vendor/**",
+]
+
+[[projects]]
+name = "streamlit"
+exclude = [
+  "streamlit/vendor/**",
+]
+
+[[projects]]
+name = "flask"
+
+[[projects]]
+name = "absl-py"
+
+[[projects]]
+name = "nltk"
+exclude = [
+  "nltk/test/**",
+]
+
+[[projects]]
+name = "openpyxl"
+
+[[projects]]
+name = "types-openpyxl"
+
+[[projects]]
+name = "pandera"
+
+[[projects]]
+name = "ltx-core"
+
+[[projects]]
+name = "ltx-pipelines"
+
+[[projects]]
+name = "av"
+
+[[projects]]
+name = "lmms-eval"
+no_deps = true
+
+[[projects]]
+name = "sentencepiece"
+
+[[projects]]
+name = "more-itertools"
+
+[[projects]]
+name = "fixit"
+
+[[projects]]
+name = "spdl"
+
+[[projects]]
+name = "ujson"
+
+[[projects]]
+name = "asyncclick"
+
+[[projects]]
+name = "flax"
+
+[[projects]]
+name = "python-dotenv"
+
+[[projects]]
+name = "xxhash"
+
+[[projects]]
+name = "anthropic"
+
+[[projects]]
+name = "urllib3"
+
+[[projects]]
+name = "webdataset"
+
+[[projects]]
+name = "cryptography"
+
+[[projects]]
+name = "cocotb"
+
+[[projects]]
+name = "pyzmq"
+
+[[projects]]
+name = "pynini"
+
+[[projects]]
+name = "msgpack"
+
+[[projects]]
+name = "statsmodels"
+exclude = [
+  "statsmodels/**/tests/**",
+]
+
+[[projects]]
+name = "paramiko"
+
+[[projects]]
+name = "types-paramiko"
+
+[[projects]]
+name = "orjson"
+
+[[projects]]
+name = "xgboost"
+
+[[projects]]
+name = "freezegun"
+
+[[projects]]
+name = "lxml"
+
+# [[projects]]
+# name = "aim"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "zstandard"
+
+[[projects]]
+name = "aiofiles"
+
+[[projects]]
+name = "types-aiofiles"
+
+[[projects]]
+name = "gpytorch"
+no_deps = true
+exclude = [
+  "gpytorch/test/**",
+]
+
+[[projects]]
+name = "cuda-python"
+
+[[projects]]
+name = "verl"
+no_deps = true
+
+[[projects]]
+name = "cloudpickle"
+
+# [[projects]]
+# name = "open3d"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "google-api-python-client-stubs"
+
+[[projects]]
+name = "gitpython"
+
+[[projects]]
+name = "lerobot"
+no_deps = true
+
+[[projects]]
+name = "flatbuffers"
 
 [[projects]]
 name = "jsonschema"
@@ -350,16 +697,746 @@ name = "jsonschema"
 name = "types-jsonschema"
 
 [[projects]]
-name = "pyzmq"
+name = "cachetools"
 
 [[projects]]
-name = "zstandard"
+name = "types-cachetools"
+
+[[projects]]
+name = "gradio"
+exclude = [
+  "gradio/test_data/**",
+]
+
+[[projects]]
+name = "easydict"
+
+[[projects]]
+name = "websockets"
+
+# [[projects]]
+# name = "tensorrt-llm"
+# no wheels on PyPI
+
+[[projects]]
+name = "starlette"
+
+[[projects]]
+name = "sentence-transformers"
+no_deps = true
+
+[[projects]]
+name = "tiktoken"
+
+[[projects]]
+name = "onnx"
+exclude = [
+  "onnx/backend/test/**",
+]
+
+# [[projects]]
+# name = "projectaria-tools"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "typer"
+
+[[projects]]
+name = "dacite"
+
+[[projects]]
+name = "duckdb"
+
+[[projects]]
+name = "textual"
+
+[[projects]]
+name = "alembic"
+
+[[projects]]
+name = "simpy"
+
+[[projects]]
+name = "mujoco"
+
+[[projects]]
+name = "jaxtyping"
+
+[[projects]]
+name = "dash"
+
+[[projects]]
+name = "opentelemetry-api"
+
+[[projects]]
+name = "gspread"
+
+[[projects]]
+name = "compressed-tensors"
+no_deps = true
+
+[[projects]]
+name = "playwright"
+
+[[projects]]
+name = "numba"
+exclude = [
+  "numba/cloudpickle/**",
+  "numba/cpython/**",
+  "numba/misc/**",
+  "numba/np/**",
+  "numba/parfors/**",
+  "numba/scripts/**",
+  "numba/testing/**",
+]
+
+[[projects]]
+name = "llvmlite"
+
+[[projects]]
+name = "pybase64"
+
+[[projects]]
+name = "ipywidgets"
+
+[[projects]]
+name = "kazoo"
+
+[[projects]]
+name = "lightgbm"
+
+[[projects]]
+name = "onnxruntime"
+
+# [[projects]]
+# name = "tensorrt"
+# no wheels on PyPI
+
+[[projects]]
+name = "modelscope"
+
+[[projects]]
+name = "tokenizers"
+
+[[projects]]
+name = "inspect-ai"
+
+[[projects]]
+name = "asyncssh"
+
+[[projects]]
+name = "ruamel.yaml"
+
+[[projects]]
+name = "prometheus-client"
+
+[[projects]]
+name = "browser-use"
+
+[[projects]]
+name = "trl"
+no_deps = true
+
+[[projects]]
+name = "open-clip-torch"
+no_deps = true
+
+[[projects]]
+name = "proto-plus"
+
+[[projects]]
+name = "cpe"
+
+[[projects]]
+name = "aioitertools"
+
+[[projects]]
+name = "llama-stack"
+no_deps = true
+
+[[projects]]
+name = "fastmcp"
+
+[[projects]]
+name = "openai-harmony"
+
+# [[projects]]
+# name = "cupy"
+# no wheels on PyPI
+
+[[projects]]
+name = "qwen-vl-utils"
+
+[[projects]]
+name = "uvloop"
+
+[[projects]]
+name = "deepdiff"
+
+[[projects]]
+name = "optype"
+
+[[projects]]
+name = "grpcio"
+
+# [[projects]]
+# name = "types-grpcio"
+# outdated, unmaintained, and incomplete
+
+[[projects]]
+name = "jsonlines"
+
+[[projects]]
+name = "filelock"
+
+[[projects]]
+name = "moviepy"
+
+[[projects]]
+name = "kornia"
+no_deps = true
+
+[[projects]]
+name = "linear-operator"
+no_deps = true
+exclude = [
+  "linear_operator/test/**",
+]
+
+[[projects]]
+name = "litellm"
+
+[[projects]]
+name = "pynvml"
+
+[[projects]]
+name = "ftfy"
+
+[[projects]]
+name = "mediapipe"
+
+[[projects]]
+name = "fasttext"
+
+[[projects]]
+name = "pydot"
+
+[[projects]]
+name = "albumentations"
+
+[[projects]]
+name = "pexpect"
+
+[[projects]]
+name = "types-pexpect"
+
+[[projects]]
+name = "jsonpickle"
+
+[[projects]]
+name = "graphiti-core"
+
+[[projects]]
+name = "fairseq2"
+no_deps = true
+
+[[projects]]
+name = "kubernetes"
+exclude = [
+  "kubernetes/e2e_test/**",
+]
+
+[[projects]]
+name = "fixtures"
+exclude = [
+  "fixtures/tests/**",
+]
+
+[[projects]]
+name = "sam3"
+no_deps = true
+
+[[projects]]
+name = "simple-parsing"
+
+[[projects]]
+name = "types-zstd"
+
+[[projects]]
+name = "selenium"
+
+[[projects]]
+name = "pillow-heif"
+
+[[projects]]
+name = "perfetto"
+
+[[projects]]
+name = "spacy"
+
+[[projects]]
+name = "apsw"
+exclude = [
+  "apsw/tests.py",
+  "apsw/tests/**",
+]
+
+[[projects]]
+name = "graphviz"
+
+[[projects]]
+name = "mistral-common"
+
+[[projects]]
+name = "tyro"
+
+[[projects]]
+name = "gymnasium" # formerly "gym"
+
+[[projects]]
+name = "diffsynth"
+no_deps = true
+
+[[projects]]
+name = "mediapy"
+
+[[projects]]
+name = "pyelftools"
+exclude = [
+  "elftools/construct/**",
+]
+
+[[projects]]
+name = "pint"
+exclude = [
+  "pint/testsuite/**",
+]
+
+[[projects]]
+name = "sqlparse"
+
+[[projects]]
+name = "python-pptx"
+
+[[projects]]
+name = "xpress"
+
+[[projects]]
+name = "furl"
+
+[[projects]]
+name = "pyannote-core"
+
+[[projects]]
+name = "conan"
+
+[[projects]]
+name = "nest-asyncio"
+
+[[projects]]
+name = "prompt-toolkit"
+
+[[projects]]
+name = "cosmos-predict2"
+no_deps = true
+
+[[projects]]
+name = "tornado"
+exclude = [
+  "tornado/test/**",
+]
+
+[[projects]]
+name = "lm-eval"
+no_deps = true
 
 [[projects]]
 name = "sacrebleu"
 
 [[projects]]
-name = "graphviz"
+name = "xfuser"
+no_deps = true
+
+[[projects]]
+name = "gepa"
+
+[[projects]]
+name = "typeguard"
+
+[[projects]]
+name = "dill"
+
+[[projects]]
+name = "ego4d"
+
+[[projects]]
+name = "python-box"
+
+[[projects]]
+name = "tensorboardX"
+
+# [[projects]]
+# name = "cinderx"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "swebench"
+
+[[projects]]
+name = "tree-sitter"
+
+[[projects]]
+name = "bitsandbytes"
+no_deps = true
+
+[[projects]]
+name = "usd-core"
+
+# [[projects]]
+# name = "isaaclab"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "pyjwt"
+
+[[projects]]
+name = "types-docutils"
+
+[[projects]]
+name = "cerberus"
+
+[[projects]]
+name = "types-docker"
+
+[[projects]]
+name = "httplib2"
+
+[[projects]]
+name = "types-httplib2"
+
+[[projects]]
+name = "PySide6"
+
+[[projects]]
+name = "types-braintree"
+
+[[projects]]
+name = "types-dateparser"
+
+[[projects]]
+name = "emoji"
+
+[[projects]]
+name = "gsplat"
+no_deps = true
+
+[[projects]]
+name = "importlib-resources"
+
+[[projects]]
+name = "levenshtein"
+
+[[projects]]
+name = "draccus"
+
+[[projects]]
+name = "PyQt5"
+
+[[projects]]
+name = "ops"
+
+[[projects]]
+name = "aepsych"
+no_deps = true
+
+[[projects]]
+name = "jiwer"
+
+[[projects]]
+name = "plyfile"
+
+[[projects]]
+name = "openenv"
+
+[[projects]]
+name = "anyio"
+
+[[projects]]
+name = "deepspeed"
+no_deps = true
+
+[[projects]]
+name = "partial-json-parser"
+
+[[projects]]
+name = "click-option-group"
+
+[[projects]]
+name = "werkzeug"
+
+[[projects]]
+name = "sphinx"
+
+[[projects]]
+name = "Faker"
+
+[[projects]]
+name = "koji"
+
+[[projects]]
+name = "dash-bootstrap-components"
+
+[[projects]]
+name = "types-editdistance"
+
+[[projects]]
+name = "pytest-mock"
+
+[[projects]]
+name = "types-Markdown"
+
+[[projects]]
+name = "json-repair"
+
+[[projects]]
+name = "recbole"
+no_deps = true
+
+[[projects]]
+name = "returns"
+
+[[projects]]
+name = "pydantic-ai"
+
+[[projects]]
+name = "pygltflib"
+
+[[projects]]
+name = "shap"
+exclude = [
+  "shap/benchmark/**",
+]
+
+[[projects]]
+name = "types-Pygments"
+
+[[projects]]
+name = "types-mock"
+
+[[projects]]
+name = "oci"
+
+[[projects]]
+name = "pyparsing"
+
+[[projects]]
+name = "defcon"
+
+[[projects]]
+name = "dnspython"
+
+[[projects]]
+name = "nbformat"
+
+[[projects]]
+name = "types-reportlab"
+
+[[projects]]
+name = "certifi"
+
+[[projects]]
+name = "jsonpath-ng"
+
+[[projects]]
+name = "scapy"
+
+[[projects]]
+name = "types-croniter"
+
+[[projects]]
+name = "mlx"
+
+[[projects]]
+name = "toolz"
+
+[[projects]]
+name = "toolz-stubs"
+
+[[projects]]
+name = "redis"
+
+[[projects]]
+name = "coremltools"
+
+[[projects]]
+name = "python-docx"
+
+[[projects]]
+name = "types-psycopg2"
+
+[[projects]]
+name = "pydantic-core"
+
+[[projects]]
+name = "speechbrain"
+no_deps = true
+
+[[projects]]
+name = "sqlglot"
+
+[[projects]]
+name = "lmcache"
+no_deps = true
+
+[[projects]]
+name = "google-auth-httplib2"
+
+[[projects]]
+name = "pycolmap"
+
+[[projects]]
+name = "west"
+
+[[projects]]
+name = "lmdb"
+
+[[projects]]
+name = "mteb"
+no_deps = true
+
+[[projects]]
+name = "types-pycurl"
+
+[[projects]]
+name = "pyfakefs"
+exclude = [
+  "pyfakefs/tests/**",
+]
+
+[[projects]]
+name = "openexr"
+
+[[projects]]
+name = "rapidfuzz"
+
+[[projects]]
+name = "structlog"
+
+[[projects]]
+name = "pyOpenSSL"
+
+[[projects]]
+name = "diskcache"
+
+[[projects]]
+name = "livekit"
+
+[[projects]]
+name = "mpi4py"
+
+[[projects]]
+name = "optuna"
+
+[[projects]]
+name = "PyVISA"
+
+[[projects]]
+name = "aws-cdk-lib"
+
+[[projects]]
+name = "msgraph-sdk"
+
+[[projects]]
+name = "retrying"
+
+[[projects]]
+name = "evaluate"
+
+[[projects]]
+name = "aiosqlite"
+
+[[projects]]
+name = "debugpy"
+
+[[projects]]
+name = "types-decorator"
+
+[[projects]]
+name = "gguf"
+
+[[projects]]
+name = "nuscenes-devkit"
+
+[[projects]]
+name = "drgn"
+
+[[projects]]
+name = "tomli"
+
+[[projects]]
+name = "evalplus"
+
+[[projects]]
+name = "fb-idb"
+
+# [[projects]]
+# name = "open-webui"
+# requires Python <3.13
+
+[[projects]]
+name = "plotnine"
+
+[[projects]]
+name = "sh"
+
+[[projects]]
+name = "testfixtures"
+
+[[projects]]
+name = "humanize"
+
+[[projects]]
+name = "pyvmomi"
+
+[[projects]]
+name = "djangorestframework-stubs"
+
+[[projects]]
+name = "shortuuid"
+exclude = [
+  "shortuuid/test_shortuuid.py",
+]
+
+[[projects]]
+name = "Deprecated"
+
+[[projects]]
+name = "types-Deprecated"
+
+[[projects]]
+name = "Unidecode"
+
+[[projects]]
+name = "narwhals"
+
+[[projects]]
+name = "munch"
+
+[[projects]]
+name = "decord"
+
+[[projects]]
+name = "mercantile"
+
+[[projects]]
+name = "ipdb"
+
+[[projects]]
+name = "lpips"
+no_deps = true
+
+[[projects]]
+name = "parameterized"
 
 [[projects]]
 name = "simplejson"
@@ -385,68 +1462,13 @@ name = "click-log"
 [[projects]]
 name = "types-click-log"
 
-[[projects]]
-name = "plotly"
-
-# [[projects]]
-# name = "plotly-stubs"
-# installation issue due to mismatching version numbers
-
-[[projects]]
-name = "spacy"
-
-[[projects]]
-name = "numba"
-exclude = [
-  "numba/cloudpickle/**",
-  "numba/cpython/**",
-  "numba/misc/**",
-  "numba/np/**",
-  "numba/parfors/**",
-  "numba/scripts/**",
-  "numba/testing/**",
-]
-
-[[projects]]
-name = "llvmlite"
-
-[[projects]]
-name = "openai"
-
-[[projects]]
-name = "uvloop"
-
-[[projects]]
-name = "streamlit"
-exclude = [
-  "streamlit/vendor/**",
-]
-
 # [[projects]]
 # name = "phpserialize"
 # last release <2021
 
-[[projects]]
-name = "gymnasium" # formerly "gym"
-
-[[projects]]
-name = "msgspec"
-
 # [[projects]]
 # name = "commentjson"
 # last release <2021
-
-[[projects]]
-name = "cachetools"
-
-[[projects]]
-name = "types-cachetools"
-
-[[projects]]
-name = "pint"
-exclude = [
-  "pint/testsuite/**",
-]
 
 [[projects]]
 name = "humanfriendly"
@@ -455,61 +1477,18 @@ exclude = [
   "humanfriendly/testing.py",
 ]
 
-[[projects]]
-name = "rich"
-
-[[projects]]
-name = "openpyxl"
-
-[[projects]]
-name = "types-openpyxl"
-
-[[projects]]
-name = "shap"
-exclude = [
-  "shap/benchmark/**",
-]
-
-[[projects]]
-name = "gradio"
-exclude = [
-  "gradio/test_data/**",
-]
-
 # [[projects]]
 # name = "oyaml"
 # last release <2021
 
 [[projects]]
-name = "toolz"
-
-[[projects]]
-name = "toolz-stubs"
-
-[[projects]]
 name = "yappi"
-
-[[projects]]
-name = "httplib2"
-
-[[projects]]
-name = "types-httplib2"
 
 [[projects]]
 name = "progressbar2"
 
 [[projects]]
-name = "dacite"
-
-[[projects]]
 name = "argcomplete"
-
-[[projects]]
-name = "grpcio"
-
-# [[projects]]
-# name = "types-grpcio"
-# outdated, unmaintained, and incomplete
 
 [[projects]]
 name = "pyserial"
@@ -521,32 +1500,10 @@ name = "types-pyserial"
 name = "folium"
 
 [[projects]]
-name = "structlog"
-
-[[projects]]
-name = "deepspeed"
-no_deps = true
-
-[[projects]]
-name = "openexr"
-
-[[projects]]
-name = "shortuuid"
-exclude = [
-  "shortuuid/test_shortuuid.py",
-]
-
-[[projects]]
 name = "pyrender"
 
 [[projects]]
 name = "backoff"
-
-[[projects]]
-name = "nbformat"
-
-[[projects]]
-name = "emoji"
 
 [[projects]]
 name = "mpmath"
@@ -562,9 +1519,6 @@ name = "typing-inspect"
 
 [[projects]]
 name = "astroid"
-
-[[projects]]
-name = "pandera"
 
 # [[projects]]
 # name = "astunparse"
@@ -587,9 +1541,6 @@ name = "aiogoogle"
 # last release <2021
 
 [[projects]]
-name = "sh"
-
-[[projects]]
 name = "nevergrad"
 exclude = [
   "nevergrad/**/test_*.py",
@@ -599,18 +1550,6 @@ exclude = [
 name = "prophet"
 
 [[projects]]
-name = "simple-parsing"
-
-[[projects]]
-name = "aiosqlite"
-
-[[projects]]
-name = "Deprecated"
-
-[[projects]]
-name = "types-Deprecated"
-
-[[projects]]
 name = "msgpack-numpy"
 
 [[projects]]
@@ -618,9 +1557,6 @@ name = "chevron"
 
 [[projects]]
 name = "types-chevron"
-
-[[projects]]
-name = "levenshtein"
 
 # [[projects]]
 # name = "toml"
@@ -633,9 +1569,6 @@ name = "types-toml"
 name = "json-tricks"
 
 [[projects]]
-name = "websockets"
-
-[[projects]]
 name = "geopandas"
 
 [[projects]]
@@ -646,32 +1579,14 @@ name = "types-geopandas"
 # last release <2021
 
 [[projects]]
-name = "dash"
-
-[[projects]]
-name = "click-option-group"
-
-[[projects]]
 name = "pystache"
-
-[[projects]]
-name = "dnspython"
-
-[[projects]]
-name = "pyjwt"
 
 [[projects]]
 name = "rawpy"
 
 [[projects]]
-name = "beautifulsoup4"
-
-[[projects]]
 name = "k-diffusion"
 no_deps = true
-
-[[projects]]
-name = "pydantic"
 
 [[projects]]
 name = "pudb"
@@ -688,29 +1603,101 @@ exclude = [
   "src/semver/_deprecated.py",
 ]
 
-[[projects]]
-name = "omegaconf"
-exclude = [
-  "omegaconf/vendor/**",
-]
+# the pytorch family
 
 [[projects]]
-name = "jax"
-exclude = [
-  "jax/tools/**",
-]
+name = "torch"
+no_deps = true
+
+# [[projects]]
+# name = "torchrec"
+# no Python 3.13 wheels
 
 [[projects]]
-name = "dask"
+name = "fbgemm-gpu"
+no_deps = true
 
 [[projects]]
-name = "optuna"
+name = "torchvision"
+no_deps = true
 
 [[projects]]
-name = "django-stubs"
+name = "torchmetrics"
+no_deps = true
 
 [[projects]]
-name = "wagtail"
+name = "torchtnt"
+no_deps = true
+
+[[projects]]
+name = "executorch"
+no_deps = true
+
+[[projects]]
+name = "torchaudio"
+no_deps = true
+
+[[projects]]
+name = "torchx"
+no_deps = true
+
+[[projects]]
+name = "torchao"
+no_deps = true
+
+[[projects]]
+name = "torchtune"
+no_deps = true
+
+[[projects]]
+name = "torchtitan"
+no_deps = true
+
+[[projects]]
+name = "tensordict"
+no_deps = true
+
+[[projects]]
+name = "torch-tensorrt"
+no_deps = true
+
+[[projects]]
+name = "torchcodec"
+no_deps = true
+
+[[projects]]
+name = "torch-xla"
+no_deps = true
+
+# [[projects]]
+# name = "torchtext"
+# no Python 3.13 wheels
+
+[[projects]]
+name = "torchdata"
+no_deps = true
+
+[[projects]]
+name = "torchrl"
+no_deps = true
+
+[[projects]]
+name = "torchax"
+no_deps = true
+
+[[projects]]
+name = "torch-geometric"
+no_deps = true
+
+[[projects]]
+name = "torchcomms"
+no_deps = true
+
+# [[projects]]
+# name = "torch-scatter"
+# requires torch at build time
+
+# :)
 
 [[projects]]
 name = "typestats"

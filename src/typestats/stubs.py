@@ -25,11 +25,17 @@ async def find_stubs_dir(root: anyio.Path) -> str | None:
 
     Scans direct children of *root* first, then `root/src/` to handle
     src-layout packages. Returns `None` when no stubs directory is found.
+    Ignores `_*-stubs/` (private-module stubs; `_*` is invalid on PyPI).
     """
     for parent in (root, root / "src"):
         if not await parent.is_dir():
             continue
         async for child in parent.iterdir():
-            if await child.is_dir() and child.name.endswith("-stubs"):
-                return child.name.removesuffix("-stubs")
+            name = child.name
+            if (
+                await child.is_dir()
+                and name.endswith("-stubs")
+                and not name.startswith("_")
+            ):
+                return name.removesuffix("-stubs")
     return None
