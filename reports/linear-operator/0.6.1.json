@@ -1,0 +1,6234 @@
+{
+  "schema_version": "1.0",
+  "package": "linear-operator",
+  "version": "0.6.1",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2026-02-27T23:43:18.716085Z",
+    "requires_python": ">=3.10",
+    "size": 181898,
+    "sha256": "3fba49a8080d16f822a5d870f462279cd6afbcf4ed670f4511b38fad96f61831"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "linear_operator"
+    ],
+    "Version": [
+      "0.6.1"
+    ],
+    "Summary": [
+      "A linear operator implementation, primarily designed for finite-dimensional positive definite operators (i.e. kernel matrices)."
+    ],
+    "Author": [
+      "Geoff Pleiss"
+    ],
+    "Author-email": [
+      "gpleiss@gmail.com"
+    ],
+    "License": [
+      "MIT"
+    ],
+    "Project-URL": [
+      "Documentation, https://linear_operator.readthedocs.io",
+      "Source, https://github.com/cornellius-gp/linear_operator/"
+    ],
+    "Classifier": [
+      "Development Status :: 2 - Pre-Alpha",
+      "Programming Language :: Python :: 3"
+    ],
+    "Requires-Python": [
+      ">=3.10"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "torch>=2.0",
+      "scipy",
+      "pre-commit; extra == \"dev\"",
+      "setuptools_scm; extra == \"dev\"",
+      "ufmt; extra == \"dev\"",
+      "twine; extra == \"dev\"",
+      "myst-parser; extra == \"docs\"",
+      "setuptools_scm; extra == \"docs\"",
+      "sphinx; extra == \"docs\"",
+      "six; extra == \"docs\"",
+      "sphinx_rtd_theme; extra == \"docs\"",
+      "sphinx-autodoc-typehints; extra == \"docs\"",
+      "flake8==5.0.4; extra == \"test\"",
+      "flake8-print==5.0.0; extra == \"test\"",
+      "pytest; extra == \"test\""
+    ],
+    "Provides-Extra": [
+      "dev",
+      "docs",
+      "test"
+    ],
+    "Dynamic": [
+      "author",
+      "author-email",
+      "classifier",
+      "description",
+      "description-content-type",
+      "license",
+      "license-file",
+      "project-url",
+      "provides-extra",
+      "requires-dist",
+      "requires-python",
+      "summary"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "linear_operator/beta_features.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "default_preconditioner",
+          "line_start": 25,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.beta_features",
+      "names": [
+        "default_preconditioner"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/functions/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "add_diagonal",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "add_jitter",
+          "line_start": 31,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "diagonalization",
+          "line_start": 50,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dsmm",
+          "line_start": 67,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "inv_quad",
+          "line_start": 82,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "inv_quad_logdet",
+          "line_start": 111,
+          "n_typed": 3,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "pivoted_cholesky",
+          "line_start": 133,
+          "n_typed": 3,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "root_decomposition",
+          "line_start": 162,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "root_inv_decomposition",
+          "line_start": 179,
+          "n_typed": 1,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "solve",
+          "line_start": 207,
+          "n_typed": 0,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "sqrt_inv_matmul",
+          "line_start": 241,
+          "n_typed": 0,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.functions",
+      "names": [
+        "add_diagonal",
+        "add_jitter",
+        "diagonalization",
+        "dsmm",
+        "inv_quad",
+        "inv_quad_logdet",
+        "pivoted_cholesky",
+        "root_decomposition",
+        "root_inv_decomposition",
+        "solve",
+        "sqrt_inv_matmul"
+      ],
+      "n_typable": 42,
+      "n_typed": 12,
+      "n_any": 30,
+      "n_untyped": 0,
+      "n_functions": 11,
+      "n_function_params": 31,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "to_dense",
+          "line_start": 3011,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "LinearOperator",
+          "line_start": 114,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearOperator.__init__",
+              "line_start": 149,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.abs",
+              "line_start": 923,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.add",
+              "line_start": 929,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.add_diagonal",
+              "line_start": 953,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.add_jitter",
+              "line_start": 1003,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.add_low_rank",
+              "line_start": 1019,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.cat_rows",
+              "line_start": 1151,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.cholesky",
+              "line_start": 1302,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.clone",
+              "line_start": 1317,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.cpu",
+              "line_start": 1328,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.cuda",
+              "line_start": 1348,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.detach",
+              "line_start": 1374,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.detach_",
+              "line_start": 1388,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.diagonal",
+              "line_start": 1402,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.diagonalization",
+              "line_start": 1430,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.dim",
+              "line_start": 1476,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.div",
+              "line_start": 1482,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.double",
+              "line_start": 1498,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.eigh",
+              "line_start": 1512,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.eigvalsh",
+              "line_start": 1535,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.evaluate_kernel",
+              "line_start": 1557,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.exp",
+              "line_start": 1564,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.expand",
+              "line_start": 1572,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.float",
+              "line_start": 1609,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.half",
+              "line_start": 1619,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.inv_quad",
+              "line_start": 1629,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.inv_quad_logdet",
+              "line_start": 1680,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.inverse",
+              "line_start": 1798,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.isclose",
+              "line_start": 1810,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.log",
+              "line_start": 1814,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.logdet",
+              "line_start": 1822,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.matmul",
+              "line_start": 1832,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.mul",
+              "line_start": 1869,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.ndimension",
+              "line_start": 1911,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.numel",
+              "line_start": 1917,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.numpy",
+              "line_start": 1924,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.permute",
+              "line_start": 1930,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.pivoted_cholesky",
+              "line_start": 1963,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.prod",
+              "line_start": 1998,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.repeat",
+              "line_start": 2030,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.representation",
+              "line_start": 2064,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.representation_tree",
+              "line_start": 2079,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.requires_grad_",
+              "line_start": 2105,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.reshape",
+              "line_start": 2116,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.rmatmul",
+              "line_start": 2126,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.root_decomposition",
+              "line_start": 2145,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.root_inv_decomposition",
+              "line_start": 2208,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.size",
+              "line_start": 2297,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.solve",
+              "line_start": 2312,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.solve_triangular",
+              "line_start": 2369,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.sqrt",
+              "line_start": 2402,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.sqrt_inv_matmul",
+              "line_start": 2410,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.squeeze",
+              "line_start": 2456,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.sub",
+              "line_start": 2473,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.sum",
+              "line_start": 2497,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.svd",
+              "line_start": 2540,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.t",
+              "line_start": 2583,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.to",
+              "line_start": 2594,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.to_dense",
+              "line_start": 2621,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.transpose",
+              "line_start": 2641,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.type",
+              "line_start": 2680,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.unsqueeze",
+              "line_start": 2715,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.zero_mean_mvn_samples",
+              "line_start": 2734,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__sub__",
+              "line_start": 2783,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__add__",
+              "line_start": 2789,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__getitem__",
+              "line_start": 2817,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__matmul__",
+              "line_start": 2928,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__rmatmul__",
+              "line_start": 2934,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__mul__",
+              "line_start": 2941,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__radd__",
+              "line_start": 2948,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__rmul__",
+              "line_start": 2955,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__rsub__",
+              "line_start": 2961,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__torch_function__",
+              "line_start": 2969,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperator.__truediv__",
+              "line_start": 2999,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "LinearOperator.batch_dim",
+              "line_start": 1143,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.batch_shape",
+              "line_start": 1147,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.device",
+              "line_start": 1370,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.dtype",
+              "line_start": 1508,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.is_square",
+              "line_start": 1806,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.matrix_shape",
+              "line_start": 1856,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.mT",
+              "line_start": 1860,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.ndim",
+              "line_start": 1907,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.requires_grad",
+              "line_start": 2091,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.shape",
+              "line_start": 2308,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "LinearOperator.T",
+              "line_start": 2574,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 170,
+          "n_typed": 96,
+          "n_any": 66,
+          "n_untyped": 8,
+          "n_methods": 74,
+          "n_method_params": 84,
+          "n_attrs": 0,
+          "n_properties": 11
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators._linear_operator",
+      "names": [
+        "LinearOperator",
+        "to_dense"
+      ],
+      "n_typable": 172,
+      "n_typed": 96,
+      "n_any": 68,
+      "n_untyped": 8,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 74,
+      "n_method_params": 84,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 11,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/added_diag_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AddedDiagLinearOperator",
+          "line_start": 21,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AddedDiagLinearOperator.__init__",
+              "line_start": 36,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AddedDiagLinearOperator.add_diagonal",
+              "line_start": 78,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AddedDiagLinearOperator.__add__",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AddedDiagLinearOperator.evaluate_kernel",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AddedDiagLinearOperator.preconditioner_override",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 3,
+          "n_any": 3,
+          "n_untyped": 2,
+          "n_methods": 4,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.added_diag_linear_operator",
+      "names": [
+        "AddedDiagLinearOperator"
+      ],
+      "n_typable": 8,
+      "n_typed": 3,
+      "n_any": 3,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/batch_repeat_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BatchRepeatLinearOperator",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BatchRepeatLinearOperator.__init__",
+              "line_start": 16,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BatchRepeatLinearOperator.add_jitter",
+              "line_start": 252,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BatchRepeatLinearOperator.inv_quad_logdet",
+              "line_start": 257,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BatchRepeatLinearOperator.repeat",
+              "line_start": 304,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BatchRepeatLinearOperator.base_linear_op",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BatchRepeatLinearOperator.batch_repeat",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 7,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 6,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.batch_repeat_linear_operator",
+      "names": [
+        "BatchRepeatLinearOperator"
+      ],
+      "n_typable": 12,
+      "n_typed": 7,
+      "n_any": 1,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 6,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/block_diag_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BlockDiagLinearOperator",
+          "line_start": 37,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BlockDiagLinearOperator.__init__",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BlockDiagLinearOperator.inv_quad_logdet",
+              "line_start": 164,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BlockDiagLinearOperator.matmul",
+              "line_start": 189,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BlockDiagLinearOperator.num_blocks",
+              "line_start": 64,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 4,
+          "n_any": 3,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.block_diag_linear_operator",
+      "names": [
+        "BlockDiagLinearOperator"
+      ],
+      "n_typable": 9,
+      "n_typed": 4,
+      "n_any": 3,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/block_interleaved_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BlockInterleavedLinearOperator",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BlockInterleavedLinearOperator.inv_quad_logdet",
+              "line_start": 130,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BlockInterleavedLinearOperator.num_blocks",
+              "line_start": 30,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.block_interleaved_linear_operator",
+      "names": [
+        "BlockInterleavedLinearOperator"
+      ],
+      "n_typable": 5,
+      "n_typed": 4,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/block_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BlockLinearOperator",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BlockLinearOperator.__init__",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BlockLinearOperator.zero_mean_mvn_samples",
+              "line_start": 171,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BlockLinearOperator.base_linear_op",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.block_linear_operator",
+      "names": [
+        "BlockLinearOperator"
+      ],
+      "n_typable": 5,
+      "n_typed": 1,
+      "n_any": 1,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/cat_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "cat",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "CatLinearOperator",
+          "line_start": 37,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CatLinearOperator.__init__",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CatLinearOperator.to_dense",
+              "line_start": 386,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CatLinearOperator.inv_quad_logdet",
+              "line_start": 391,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CatLinearOperator.to",
+              "line_start": 415,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CatLinearOperator.all_to",
+              "line_start": 436,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "CatLinearOperator.device",
+              "line_start": 403,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "CatLinearOperator.devices",
+              "line_start": 407,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "CatLinearOperator.device_count",
+              "line_start": 411,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CatLinearOperator.linear_ops",
+              "line_start": 87,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CatLinearOperator.cat_dim",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CatLinearOperator.output_device",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CatLinearOperator.cat_dim_sizes",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CatLinearOperator.cat_dim_cum_sizes",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CatLinearOperator.idx_to_tensor_idx",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 22,
+          "n_typed": 6,
+          "n_any": 3,
+          "n_untyped": 13,
+          "n_methods": 5,
+          "n_method_params": 8,
+          "n_attrs": 6,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.cat_linear_operator",
+      "names": [
+        "CatLinearOperator",
+        "cat"
+      ],
+      "n_typable": 26,
+      "n_typed": 6,
+      "n_any": 3,
+      "n_untyped": 17,
+      "n_functions": 1,
+      "n_function_params": 3,
+      "n_methods": 5,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 6,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/chol_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CholLinearOperator",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.__init__",
+              "line_start": 32,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.to_dense",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.inverse",
+              "line_start": 97,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.inv_quad",
+              "line_start": 107,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.inv_quad_logdet",
+              "line_start": 121,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.root_inv_decomposition",
+              "line_start": 167,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CholLinearOperator.solve",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CholLinearOperator.upper",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 8,
+          "n_any": 10,
+          "n_untyped": 1,
+          "n_methods": 7,
+          "n_method_params": 11,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.chol_linear_operator",
+      "names": [
+        "CholLinearOperator"
+      ],
+      "n_typable": 19,
+      "n_typed": 8,
+      "n_any": 10,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 11,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/constant_mul_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ConstantMulLinearOperator",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConstantMulLinearOperator.__init__",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConstantMulLinearOperator.to_dense",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ConstantMulLinearOperator.root_decomposition",
+              "line_start": 183,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ConstantMulLinearOperator.expanded_constant",
+              "line_start": 162,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ConstantMulLinearOperator.base_linear_op",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.constant_mul_linear_operator",
+      "names": [
+        "ConstantMulLinearOperator"
+      ],
+      "n_typable": 7,
+      "n_typed": 2,
+      "n_any": 2,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/dense_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "to_linear_operator",
+          "line_start": 107,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "DenseLinearOperator",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DenseLinearOperator.__init__",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DenseLinearOperator.to_dense",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DenseLinearOperator.__add__",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DenseLinearOperator.tensor",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.dense_linear_operator",
+      "names": [
+        "DenseLinearOperator",
+        "to_linear_operator"
+      ],
+      "n_typable": 7,
+      "n_typed": 1,
+      "n_any": 4,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 3,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/diag_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ConstantDiagLinearOperator",
+          "line_start": 303,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.__init__",
+              "line_start": 313,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.__add__",
+              "line_start": 324,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.abs",
+              "line_start": 385,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.exp",
+              "line_start": 391,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.inverse",
+              "line_start": 399,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.log",
+              "line_start": 407,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.matmul",
+              "line_start": 415,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.solve_triangular",
+              "line_start": 423,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ConstantDiagLinearOperator.sqrt",
+              "line_start": 428,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ConstantDiagLinearOperator.diag_values",
+              "line_start": 321,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ConstantDiagLinearOperator.diag_shape",
+              "line_start": 322,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 18,
+          "n_typed": 9,
+          "n_any": 7,
+          "n_untyped": 2,
+          "n_methods": 9,
+          "n_method_params": 7,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DiagLinearOperator",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.__init__",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.__add__",
+              "line_start": 27,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.abs",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.add_diagonal",
+              "line_start": 130,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.to_dense",
+              "line_start": 137,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.exp",
+              "line_start": 145,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.inverse",
+              "line_start": 153,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.inv_quad_logdet",
+              "line_start": 161,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.log",
+              "line_start": 193,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.matmul",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.solve",
+              "line_start": 232,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.solve_triangular",
+              "line_start": 242,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.sqrt",
+              "line_start": 252,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.sqrt_inv_matmul",
+              "line_start": 260,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DiagLinearOperator.zero_mean_mvn_samples",
+              "line_start": 273,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 30,
+          "n_typed": 13,
+          "n_any": 17,
+          "n_untyped": 0,
+          "n_methods": 15,
+          "n_method_params": 15,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.diag_linear_operator",
+      "names": [
+        "ConstantDiagLinearOperator",
+        "DiagLinearOperator"
+      ],
+      "n_typable": 48,
+      "n_typed": 22,
+      "n_any": 24,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 24,
+      "n_method_params": 22,
+      "n_classes": 2,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/identity_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "IdentityLinearOperator",
+          "line_start": 17,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.__init__",
+              "line_start": 27,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.abs",
+              "line_start": 172,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.exp",
+              "line_start": 175,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.inverse",
+              "line_start": 180,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.inv_quad_logdet",
+              "line_start": 185,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.log",
+              "line_start": 210,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.matmul",
+              "line_start": 217,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.solve",
+              "line_start": 230,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.sqrt",
+              "line_start": 240,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.sqrt_inv_matmul",
+              "line_start": 245,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.type",
+              "line_start": 257,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.zero_mean_mvn_samples",
+              "line_start": 262,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "IdentityLinearOperator.to",
+              "line_start": 268,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "IdentityLinearOperator.batch_shape",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "IdentityLinearOperator.dtype",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "IdentityLinearOperator.device",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "IdentityLinearOperator.diag_values",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "IdentityLinearOperator.diag_shape",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 33,
+          "n_typed": 12,
+          "n_any": 17,
+          "n_untyped": 4,
+          "n_methods": 13,
+          "n_method_params": 15,
+          "n_attrs": 2,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.identity_linear_operator",
+      "names": [
+        "IdentityLinearOperator"
+      ],
+      "n_typable": 33,
+      "n_typed": 12,
+      "n_any": 17,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 13,
+      "n_method_params": 15,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/interpolated_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "InterpolatedLinearOperator",
+          "line_start": 20,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InterpolatedLinearOperator.__init__",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "InterpolatedLinearOperator.matmul",
+              "line_start": 413,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InterpolatedLinearOperator.zero_mean_mvn_samples",
+              "line_start": 453,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InterpolatedLinearOperator.to",
+              "line_start": 463,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "InterpolatedLinearOperator.base_linear_op",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "InterpolatedLinearOperator.left_interp_indices",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "InterpolatedLinearOperator.left_interp_values",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "InterpolatedLinearOperator.right_interp_indices",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "InterpolatedLinearOperator.right_interp_values",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 12,
+          "n_methods": 4,
+          "n_method_params": 8,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.interpolated_linear_operator",
+      "names": [
+        "InterpolatedLinearOperator"
+      ],
+      "n_typable": 17,
+      "n_typed": 2,
+      "n_any": 3,
+      "n_untyped": 12,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/keops_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "KeOpsLinearOperator",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KeOpsLinearOperator.__init__",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "KeOpsLinearOperator.covar_mat",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KeOpsLinearOperator.x1",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KeOpsLinearOperator.x2",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KeOpsLinearOperator.covar_func",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KeOpsLinearOperator.params",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.keops_linear_operator",
+      "names": [
+        "KeOpsLinearOperator"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/kernel_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "KernelLinearOperator",
+          "line_start": 46,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KernelLinearOperator.__init__",
+              "line_start": 138,
+              "n_typed": 3,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "KernelLinearOperator.covar_mat",
+              "line_start": 256,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.batch_broadcast_shape",
+              "line_start": 221,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.x1",
+              "line_start": 222,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.x2",
+              "line_start": 223,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.tensor_params",
+              "line_start": 224,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.nontensor_params",
+              "line_start": 225,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.covar_func",
+              "line_start": 226,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.num_outputs_per_input",
+              "line_start": 227,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KernelLinearOperator.num_nonbatch_dimensions",
+              "line_start": 228,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 3,
+          "n_any": 4,
+          "n_untyped": 8,
+          "n_methods": 2,
+          "n_method_params": 5,
+          "n_attrs": 8,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.kernel_linear_operator",
+      "names": [
+        "KernelLinearOperator"
+      ],
+      "n_typable": 15,
+      "n_typed": 3,
+      "n_any": 4,
+      "n_untyped": 8,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 8,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/kronecker_product_added_diag_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "KroneckerProductAddedDiagLinearOperator",
+          "line_start": 49,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KroneckerProductAddedDiagLinearOperator.__init__",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductAddedDiagLinearOperator.inv_quad_logdet",
+              "line_start": 66,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductAddedDiagLinearOperator.__add__",
+              "line_start": 309,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KroneckerProductAddedDiagLinearOperator.diag_tensor",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "KroneckerProductAddedDiagLinearOperator.linear_op",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 3,
+          "n_any": 3,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.kronecker_product_added_diag_linear_operator",
+      "names": [
+        "KroneckerProductAddedDiagLinearOperator"
+      ],
+      "n_typable": 10,
+      "n_typed": 3,
+      "n_any": 3,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/kronecker_product_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "KroneckerProductDiagLinearOperator",
+          "line_start": 436,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KroneckerProductDiagLinearOperator.__init__",
+              "line_start": 445,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductDiagLinearOperator.abs",
+              "line_start": 510,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductDiagLinearOperator.exp",
+              "line_start": 516,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductDiagLinearOperator.inverse",
+              "line_start": 521,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductDiagLinearOperator.log",
+              "line_start": 532,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductDiagLinearOperator.sqrt",
+              "line_start": 537,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KroneckerProductDiagLinearOperator.upper",
+              "line_start": 449,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 6,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "KroneckerProductLinearOperator",
+          "line_start": 63,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.__init__",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.__add__",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.add_diagonal",
+              "line_start": 116,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.diagonalization",
+              "line_start": 147,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.inverse",
+              "line_start": 154,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.inv_quad_logdet",
+              "line_start": 163,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.root_decomposition",
+              "line_start": 286,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductLinearOperator.root_inv_decomposition",
+              "line_start": 300,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KroneckerProductLinearOperator.linear_ops",
+              "line_start": 96,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 10,
+          "n_any": 8,
+          "n_untyped": 1,
+          "n_methods": 8,
+          "n_method_params": 10,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "KroneckerProductTriangularLinearOperator",
+          "line_start": 382,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "KroneckerProductTriangularLinearOperator.__init__",
+              "line_start": 383,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductTriangularLinearOperator.inverse",
+              "line_start": 391,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "KroneckerProductTriangularLinearOperator.solve",
+              "line_start": 427,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KroneckerProductTriangularLinearOperator.upper",
+              "line_start": 389,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.kronecker_product_linear_operator",
+      "names": [
+        "KroneckerProductDiagLinearOperator",
+        "KroneckerProductLinearOperator",
+        "KroneckerProductTriangularLinearOperator"
+      ],
+      "n_typable": 33,
+      "n_typed": 17,
+      "n_any": 11,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 17,
+      "n_method_params": 13,
+      "n_classes": 3,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/linear_operator_representation_tree.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "LinearOperatorRepresentationTree",
+          "line_start": 7,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearOperatorRepresentationTree.__init__",
+              "line_start": 8,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LinearOperatorRepresentationTree.__call__",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LinearOperatorRepresentationTree.children",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.linear_operator_representation_tree",
+      "names": [
+        "LinearOperatorRepresentationTree"
+      ],
+      "n_typable": 4,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/low_rank_root_added_diag_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "LowRankRootAddedDiagLinearOperator",
+          "line_start": 20,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LowRankRootAddedDiagLinearOperator.__init__",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LowRankRootAddedDiagLinearOperator.chol_cap_mat",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LowRankRootAddedDiagLinearOperator.__add__",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LowRankRootAddedDiagLinearOperator.inv_quad_logdet",
+              "line_start": 112,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "LowRankRootAddedDiagLinearOperator.solve",
+              "line_start": 160,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 3,
+          "n_any": 6,
+          "n_untyped": 3,
+          "n_methods": 5,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.low_rank_root_added_diag_linear_operator",
+      "names": [
+        "LowRankRootAddedDiagLinearOperator"
+      ],
+      "n_typable": 12,
+      "n_typed": 3,
+      "n_any": 6,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_params": 7,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/low_rank_root_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "LowRankRootLinearOperator",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LowRankRootLinearOperator.add_diagonal",
+              "line_start": 20,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LowRankRootLinearOperator.__add__",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.low_rank_root_linear_operator",
+      "names": [
+        "LowRankRootLinearOperator"
+      ],
+      "n_typable": 4,
+      "n_typed": 1,
+      "n_any": 3,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/masked_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MaskedLinearOperator",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MaskedLinearOperator.__init__",
+              "line_start": 17,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "MaskedLinearOperator.to_dense",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MaskedLinearOperator.to",
+              "line_start": 125,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MaskedLinearOperator.base",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MaskedLinearOperator.row_mask",
+              "line_start": 33,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MaskedLinearOperator.col_mask",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MaskedLinearOperator.row_eq_col_mask",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 6,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.masked_linear_operator",
+      "names": [
+        "MaskedLinearOperator"
+      ],
+      "n_typable": 11,
+      "n_typed": 2,
+      "n_any": 3,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/matmul_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MatmulLinearOperator",
+          "line_start": 24,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MatmulLinearOperator.__init__",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MatmulLinearOperator.to_dense",
+              "line_start": 133,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MatmulLinearOperator.left_linear_op",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MatmulLinearOperator.right_linear_op",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.matmul_linear_operator",
+      "names": [
+        "MatmulLinearOperator"
+      ],
+      "n_typable": 5,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/mul_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MulLinearOperator",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MulLinearOperator.__init__",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MulLinearOperator.to_dense",
+              "line_start": 139,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MulLinearOperator.representation",
+              "line_start": 154,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MulLinearOperator.representation_tree",
+              "line_start": 161,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MulLinearOperator.left_linear_op",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "MulLinearOperator.right_linear_op",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 1,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.mul_linear_operator",
+      "names": [
+        "MulLinearOperator"
+      ],
+      "n_typable": 7,
+      "n_typed": 2,
+      "n_any": 1,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/permutation_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AbstractPermutationLinearOperator",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AbstractPermutationLinearOperator.inverse",
+              "line_start": 17,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AbstractPermutationLinearOperator.dtype",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "PermutationLinearOperator",
+          "line_start": 52,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PermutationLinearOperator.__init__",
+              "line_start": 67,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "PermutationLinearOperator.to_sparse",
+              "line_start": 142,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PermutationLinearOperator.perm",
+              "line_start": 96,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "PermutationLinearOperator.inv_perm",
+              "line_start": 97,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TransposePermutationLinearOperator",
+          "line_start": 152,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TransposePermutationLinearOperator.__init__",
+              "line_start": 165,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TransposePermutationLinearOperator.type",
+              "line_start": 193,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TransposePermutationLinearOperator.dtype",
+              "line_start": 189,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TransposePermutationLinearOperator.device",
+              "line_start": 197,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransposePermutationLinearOperator.n",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TransposePermutationLinearOperator.m",
+              "line_start": 170,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 2,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.permutation_linear_operator",
+      "names": [
+        "AbstractPermutationLinearOperator",
+        "PermutationLinearOperator",
+        "TransposePermutationLinearOperator"
+      ],
+      "n_typable": 15,
+      "n_typed": 4,
+      "n_any": 7,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_params": 3,
+      "n_classes": 3,
+      "n_attrs": 4,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/psd_sum_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "PsdSumLinearOperator",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PsdSumLinearOperator.zero_mean_mvn_samples",
+              "line_start": 15,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.psd_sum_linear_operator",
+      "names": [
+        "PsdSumLinearOperator"
+      ],
+      "n_typable": 2,
+      "n_typed": 1,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/root_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "RootLinearOperator",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RootLinearOperator.__init__",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RootLinearOperator.add_low_rank",
+              "line_start": 90,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "RootLinearOperator.root_decomposition",
+              "line_start": 100,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RootLinearOperator.to_dense",
+              "line_start": 121,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RootLinearOperator.root",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 6,
+          "n_any": 2,
+          "n_untyped": 3,
+          "n_methods": 4,
+          "n_method_params": 6,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.root_linear_operator",
+      "names": [
+        "RootLinearOperator"
+      ],
+      "n_typable": 11,
+      "n_typed": 6,
+      "n_any": 2,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 6,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/sum_batch_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SumBatchLinearOperator",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SumBatchLinearOperator.to_dense",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.sum_batch_linear_operator",
+      "names": [
+        "SumBatchLinearOperator"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/sum_kronecker_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SumKroneckerLinearOperator",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SumKroneckerLinearOperator.inv_quad_logdet",
+              "line_start": 97,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.sum_kronecker_linear_operator",
+      "names": [
+        "SumKroneckerLinearOperator"
+      ],
+      "n_typable": 4,
+      "n_typed": 3,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/sum_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SumLinearOperator",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SumLinearOperator.__init__",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SumLinearOperator.to_dense",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SumLinearOperator.__add__",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SumLinearOperator.linear_ops",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.sum_linear_operator",
+      "names": [
+        "SumLinearOperator"
+      ],
+      "n_typable": 6,
+      "n_typed": 0,
+      "n_any": 3,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/toeplitz_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ToeplitzLinearOperator",
+          "line_start": 12,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ToeplitzLinearOperator.__init__",
+              "line_start": 13,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ToeplitzLinearOperator.add_jitter",
+              "line_start": 76,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ToeplitzLinearOperator.column",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.toeplitz_linear_operator",
+      "names": [
+        "ToeplitzLinearOperator"
+      ],
+      "n_typable": 4,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/triangular_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "Allsor",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "TriangularLinearOperator",
+          "line_start": 25,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.__init__",
+              "line_start": 35,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.__add__",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.abs",
+              "line_start": 155,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.add_diagonal",
+              "line_start": 161,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.to_dense",
+              "line_start": 168,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.exp",
+              "line_start": 173,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.inv_quad_logdet",
+              "line_start": 181,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.inverse",
+              "line_start": 206,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.solve",
+              "line_start": 217,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TriangularLinearOperator.solve_triangular",
+              "line_start": 244,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TriangularLinearOperator.upper",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 23,
+          "n_typed": 11,
+          "n_any": 11,
+          "n_untyped": 1,
+          "n_methods": 10,
+          "n_method_params": 12,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.triangular_linear_operator",
+      "names": [
+        "Allsor",
+        "TriangularLinearOperator"
+      ],
+      "n_typable": 23,
+      "n_typed": 11,
+      "n_any": 11,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 10,
+      "n_method_params": 12,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/operators/zero_linear_operator.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ZeroLinearOperator",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.__init__",
+              "line_start": 23,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.add_diagonal",
+              "line_start": 130,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.div",
+              "line_start": 170,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.inv_quad",
+              "line_start": 173,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.inv_quad_logdet",
+              "line_start": 180,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.logdet",
+              "line_start": 191,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.matmul",
+              "line_start": 196,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.mul",
+              "line_start": 212,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.solve",
+              "line_start": 219,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.to_dense",
+              "line_start": 226,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.transpose",
+              "line_start": 232,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ZeroLinearOperator.__add__",
+              "line_start": 240,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ZeroLinearOperator.dtype",
+              "line_start": 30,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "ZeroLinearOperator.device",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ZeroLinearOperator.sizes",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 11,
+          "n_any": 19,
+          "n_untyped": 1,
+          "n_methods": 12,
+          "n_method_params": 16,
+          "n_attrs": 1,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.operators.zero_linear_operator",
+      "names": [
+        "ZeroLinearOperator"
+      ],
+      "n_typable": 31,
+      "n_typed": 11,
+      "n_any": 19,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 12,
+      "n_method_params": 16,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/settings.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "cg_tolerance",
+          "line_start": 216,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "cholesky_jitter",
+          "line_start": 194,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "cholesky_max_tries",
+          "line_start": 206,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ciq_samples",
+          "line_start": 226,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "debug",
+          "line_start": 265,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "deterministic_probes",
+          "line_start": 245,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "fast_computations",
+          "line_start": 278,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "fast_computations.__init__",
+              "line_start": 340,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "fast_computations.__enter__",
+              "line_start": 345,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "fast_computations.__exit__",
+              "line_start": 350,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "linalg_dtypes",
+          "line_start": 357,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "linalg_dtypes.__init__",
+              "line_start": 366,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "linalg_dtypes.__enter__",
+              "line_start": 373,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "linalg_dtypes.__exit__",
+              "line_start": 377,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "linalg_dtypes.symeig",
+              "line_start": 370,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "linalg_dtypes.cholesky",
+              "line_start": 371,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "max_cg_iterations",
+          "line_start": 383,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "max_cholesky_size",
+          "line_start": 394,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "max_lanczos_quadrature_iterations",
+          "line_start": 405,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "max_preconditioner_size",
+          "line_start": 417,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "max_root_decomposition_size",
+          "line_start": 428,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "memory_efficient",
+          "line_start": 441,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "min_preconditioning_size",
+          "line_start": 453,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "minres_tolerance",
+          "line_start": 464,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "num_contour_quadrature",
+          "line_start": 474,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "num_trace_samples",
+          "line_start": 484,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "preconditioner_tolerance",
+          "line_start": 496,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "skip_logdet_forward",
+          "line_start": 506,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stable_qr_cpu_threshold",
+          "line_start": 608,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "terminate_cg_by_size",
+          "line_start": 534,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "trace_mode",
+          "line_start": 544,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "tridiagonal_jitter",
+          "line_start": 562,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "use_toeplitz",
+          "line_start": 575,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "verbose_linalg",
+          "line_start": 587,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.settings",
+      "names": [
+        "cg_tolerance",
+        "cholesky_jitter",
+        "cholesky_max_tries",
+        "ciq_samples",
+        "debug",
+        "deterministic_probes",
+        "fast_computations",
+        "linalg_dtypes",
+        "max_cg_iterations",
+        "max_cholesky_size",
+        "max_lanczos_quadrature_iterations",
+        "max_preconditioner_size",
+        "max_root_decomposition_size",
+        "memory_efficient",
+        "min_preconditioning_size",
+        "minres_tolerance",
+        "num_contour_quadrature",
+        "num_trace_samples",
+        "preconditioner_tolerance",
+        "skip_logdet_forward",
+        "stable_qr_cpu_threshold",
+        "terminate_cg_by_size",
+        "trace_mode",
+        "tridiagonal_jitter",
+        "use_toeplitz",
+        "verbose_linalg"
+      ],
+      "n_typable": 12,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 4,
+      "n_classes": 26,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/cholesky.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "psd_safe_cholesky",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.cholesky",
+      "names": [
+        "psd_safe_cholesky"
+      ],
+      "n_typable": 6,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 1,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/contour_integral_quad.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "contour_integral_quad",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.contour_integral_quad",
+      "names": [
+        "contour_integral_quad"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 1,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/deprecation.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "bool_compat",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "DeprecationError",
+          "line_start": 17,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.deprecation",
+      "names": [
+        "DeprecationError",
+        "bool_compat"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/errors.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CachingError",
+          "line_start": 5,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NanError",
+          "line_start": 9,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NotPSDError",
+          "line_start": 13,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.errors",
+      "names": [
+        "CachingError",
+        "NanError",
+        "NotPSDError"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/getitem.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "IndexType",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.getitem",
+      "names": [
+        "IndexType"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/interpolation.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "left_interp",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "left_t_interp",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.interpolation",
+      "names": [
+        "left_interp",
+        "left_t_interp"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 2,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/lanczos.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "lanczos_tridiag",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_typable": 10,
+          "n_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "lanczos_tridiag_to_diag",
+          "line_start": 167,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.lanczos",
+      "names": [
+        "lanczos_tridiag",
+        "lanczos_tridiag_to_diag"
+      ],
+      "n_typable": 12,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 2,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/linear_cg.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "linear_cg",
+          "line_start": 99,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.linear_cg",
+      "names": [
+        "linear_cg"
+      ],
+      "n_typable": 11,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 11,
+      "n_functions": 1,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/memoize.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "cached",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "add_to_cache",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_from_cache",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "pop_from_cache",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "pop_from_cache_ignore_args",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "clear_cache_hook",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.memoize",
+      "names": [
+        "add_to_cache",
+        "cached",
+        "clear_cache_hook",
+        "get_from_cache",
+        "pop_from_cache",
+        "pop_from_cache_ignore_args"
+      ],
+      "n_typable": 27,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 27,
+      "n_functions": 6,
+      "n_function_params": 21,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/minres.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "minres",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_typable": 8,
+          "n_params": 7
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.minres",
+      "names": [
+        "minres"
+      ],
+      "n_typable": 8,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 1,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/permutation.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "apply_permutation",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "inverse_permutation",
+          "line_start": 91,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.permutation",
+      "names": [
+        "apply_permutation",
+        "inverse_permutation"
+      ],
+      "n_typable": 6,
+      "n_typed": 0,
+      "n_any": 3,
+      "n_untyped": 3,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/pinverse.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "stable_pinverse",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.pinverse",
+      "names": [
+        "stable_pinverse"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 2,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/qr.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "stable_qr",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.qr",
+      "names": [
+        "stable_qr"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/sparse.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_sparse_from_indices_and_values",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "bdsmm",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "sparse_eye",
+          "line_start": 134,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "sparse_getitem",
+          "line_start": 144,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "sparse_repeat",
+          "line_start": 213,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "to_sparse",
+          "line_start": 265,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.sparse",
+      "names": [
+        "bdsmm",
+        "make_sparse_from_indices_and_values",
+        "sparse_eye",
+        "sparse_getitem",
+        "sparse_repeat",
+        "to_sparse"
+      ],
+      "n_typable": 17,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 17,
+      "n_functions": 6,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/stochastic_lq.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "StochasticLQ",
+          "line_start": 9,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StochasticLQ.__init__",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "StochasticLQ.lanczos_batch",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "StochasticLQ.to_dense",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "StochasticLQ.max_iter",
+              "line_start": 31,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "StochasticLQ.num_random_probes",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.stochastic_lq",
+      "names": [
+        "StochasticLQ"
+      ],
+      "n_typable": 12,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 7,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/toeplitz.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "toeplitz",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "sym_toeplitz",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "toeplitz_getitem",
+          "line_start": 67,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "sym_toeplitz_getitem",
+          "line_start": 85,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "toeplitz_matmul",
+          "line_start": 98,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "sym_toeplitz_matmul",
+          "line_start": 152,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "sym_toeplitz_derivative_quadratic_form",
+          "line_start": 164,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.toeplitz",
+      "names": [
+        "sym_toeplitz",
+        "sym_toeplitz_derivative_quadratic_form",
+        "sym_toeplitz_getitem",
+        "sym_toeplitz_matmul",
+        "toeplitz",
+        "toeplitz_getitem",
+        "toeplitz_matmul"
+      ],
+      "n_typable": 24,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 24,
+      "n_functions": 7,
+      "n_function_params": 17,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/utils/warnings.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "NumericalWarning",
+          "line_start": 5,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PerformanceWarning",
+          "line_start": 13,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.utils.warnings",
+      "names": [
+        "NumericalWarning",
+        "PerformanceWarning"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "linear_operator/version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "version",
+          "line_start": 24,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 25,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "__version_tuple__",
+          "line_start": 26,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "version_tuple",
+          "line_start": 27,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "commit_id",
+          "line_start": 28,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "__commit_id__",
+          "line_start": 29,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "linear_operator.version",
+      "names": [
+        "__commit_id__",
+        "__version__",
+        "__version_tuple__",
+        "commit_id",
+        "version",
+        "version_tuple"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 53,
+  "n_typable": 781,
+  "n_typed": 255,
+  "n_any": 252,
+  "n_untyped": 274,
+  "n_functions": 45,
+  "n_function_params": 138,
+  "n_methods": 237,
+  "n_method_params": 267,
+  "n_classes": 71,
+  "n_attrs": 68,
+  "n_properties": 25,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}

@@ -1,0 +1,1517 @@
+{
+  "schema_version": "1.0",
+  "package": "ftfy",
+  "version": "6.3.1",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2024-10-26T00:50:35.149078Z",
+    "requires_python": ">=3.9",
+    "size": 308927,
+    "sha256": "9b3c3d90f84fb267fe64d375a07b7f8912d817cf86009ae134aa03e1819506ec"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.3"
+    ],
+    "Name": [
+      "ftfy"
+    ],
+    "Version": [
+      "6.3.1"
+    ],
+    "Summary": [
+      "Fixes mojibake and other problems with Unicode, after the fact"
+    ],
+    "Project-URL": [
+      "Homepage, https://ftfy.readthedocs.io/en/latest/",
+      "Documentation, https://ftfy.readthedocs.io/en/latest/",
+      "Repository, https://github.com/rspeer/python-ftfy",
+      "Issues, https://github.com/rspeer/python-ftfy/issues/",
+      "Changelog, https://github.com/rspeer/python-ftfy/blob/main/CHANGELOG.md",
+      "Blog, https://posts.arborelia.net"
+    ],
+    "Author-email": [
+      "Robyn Speer <rspeer@arborelia.net>"
+    ],
+    "License": [
+      "Apache-2.0"
+    ],
+    "License-File": [
+      "LICENSE.txt"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Requires-Dist": [
+      "wcwidth"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "ftfy/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FIXERS",
+          "line_start": 75,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "BYTES_ERROR_TEXT",
+          "line_start": 250,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ftfy",
+          "line_start": 606,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "fix_text",
+          "line_start": 290,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "fix_and_explain",
+          "line_start": 364,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "fix_encoding",
+          "line_start": 586,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "fix_encoding_and_explain",
+          "line_start": 424,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "fix_text_segment",
+          "line_start": 609,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "fix_file",
+          "line_start": 623,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "guess_bytes",
+          "line_start": 656,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "apply_plan",
+          "line_start": 727,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "explain_unicode",
+          "line_start": 768,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "ExplainedText",
+          "line_start": 61,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ExplainedText.text",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ExplainedText.explanation",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ExplanationStep",
+          "line_start": 35,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ExplanationStep.__repr__",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ExplanationStep.action",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ExplanationStep.parameter",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextFixerConfig",
+          "line_start": 91,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.unescape_html",
+              "line_start": 212,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.remove_terminal_escapes",
+              "line_start": 213,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.fix_encoding",
+              "line_start": 214,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.restore_byte_a0",
+              "line_start": 215,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.replace_lossy_sequences",
+              "line_start": 216,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.decode_inconsistent_utf8",
+              "line_start": 217,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.fix_c1_controls",
+              "line_start": 218,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.fix_latin_ligatures",
+              "line_start": 219,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.fix_character_width",
+              "line_start": 220,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.uncurl_quotes",
+              "line_start": 221,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.fix_line_breaks",
+              "line_start": 222,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.fix_surrogates",
+              "line_start": 223,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.remove_control_chars",
+              "line_start": 224,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.normalization",
+              "line_start": 225,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.max_decode_length",
+              "line_start": 226,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextFixerConfig.explain",
+              "line_start": 227,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "type-arg"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "ftfy",
+      "names": [
+        "BYTES_ERROR_TEXT",
+        "ExplainedText",
+        "ExplanationStep",
+        "FIXERS",
+        "TextFixerConfig",
+        "__version__",
+        "apply_plan",
+        "explain_unicode",
+        "fix_and_explain",
+        "fix_encoding",
+        "fix_encoding_and_explain",
+        "fix_file",
+        "fix_text",
+        "fix_text_segment",
+        "ftfy",
+        "guess_bytes"
+      ],
+      "n_typable": 33,
+      "n_typed": 27,
+      "n_any": 6,
+      "n_untyped": 0,
+      "n_functions": 9,
+      "n_function_params": 23,
+      "n_methods": 1,
+      "n_method_params": -1,
+      "n_classes": 3,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 3
+    },
+    {
+      "path": "ftfy/bad_codecs/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "UTF8_VAR_NAMES",
+          "line_start": 41,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "search_function",
+          "line_start": 55,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "ok",
+          "line_start": 89,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "ftfy.bad_codecs",
+      "names": [
+        "UTF8_VAR_NAMES",
+        "ok",
+        "search_function"
+      ],
+      "n_typable": 3,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "ftfy/bad_codecs/sloppy.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "REPLACEMENT_CHAR",
+          "line_start": 80,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CODECS",
+          "line_start": 156,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INCOMPLETE_ENCODINGS",
+          "line_start": 157,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "make_sloppy_codec",
+          "line_start": 83,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        }
+      ],
+      "name": "ftfy.bad_codecs.sloppy",
+      "names": [
+        "CODECS",
+        "INCOMPLETE_ENCODINGS",
+        "REPLACEMENT_CHAR",
+        "make_sloppy_codec"
+      ],
+      "n_typable": 2,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 3
+    },
+    {
+      "path": "ftfy/bad_codecs/utf8_variants.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "NAME",
+          "line_start": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CESU8_EXPR",
+          "line_start": 58,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CESU8_RE",
+          "line_start": 69,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SURROGATE_EXPR",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "NULL_EXPR",
+          "line_start": 77,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECIAL_BYTES_RE",
+          "line_start": 81,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "IncrementalEncoder",
+          "line_start": 233,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CODEC_INFO",
+          "line_start": 248,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "IncrementalDecoder",
+          "line_start": 84,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StreamReader",
+          "line_start": 242,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamReader.decode",
+              "line_start": 243,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StreamWriter",
+          "line_start": 236,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamWriter.encode",
+              "line_start": 237,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        }
+      ],
+      "name": "ftfy.bad_codecs.utf8_variants",
+      "names": [
+        "CESU8_EXPR",
+        "CESU8_RE",
+        "CODEC_INFO",
+        "IncrementalDecoder",
+        "IncrementalEncoder",
+        "NAME",
+        "NULL_EXPR",
+        "SPECIAL_BYTES_RE",
+        "SURROGATE_EXPR",
+        "StreamReader",
+        "StreamWriter"
+      ],
+      "n_typable": 9,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 4,
+      "n_classes": 3,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "ftfy/badness.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MOJIBAKE_CATEGORIES",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "BADNESS_RE",
+          "line_start": 274,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "sequence_weirdness",
+          "line_start": 390,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "badness",
+          "line_start": 403,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_bad",
+          "line_start": 412,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "ftfy.badness",
+      "names": [
+        "BADNESS_RE",
+        "MOJIBAKE_CATEGORIES",
+        "badness",
+        "is_bad",
+        "sequence_weirdness"
+      ],
+      "n_typable": 7,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 3,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "ftfy/chardata.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "CHARMAP_ENCODINGS",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SINGLE_QUOTE_RE",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DOUBLE_QUOTE_RE",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ENCODING_REGEXES",
+          "line_start": 59,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HTML_ENTITY_RE",
+          "line_start": 82,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HTML_ENTITIES",
+          "line_start": 83,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "CONTROL_CHARS",
+          "line_start": 119,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ALTERED_UTF8_RE",
+          "line_start": 159,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "LOSSY_UTF8_RE",
+          "line_start": 177,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "C1_CONTROL_RE",
+          "line_start": 193,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "LIGATURES",
+          "line_start": 207,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "WIDTH_MAP",
+          "line_start": 250,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "UTF8_CLUES",
+          "line_start": 260,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "UTF8_DETECTOR_RE",
+          "line_start": 679,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "possible_encoding",
+          "line_start": 86,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "ftfy.chardata",
+      "names": [
+        "ALTERED_UTF8_RE",
+        "C1_CONTROL_RE",
+        "CHARMAP_ENCODINGS",
+        "CONTROL_CHARS",
+        "DOUBLE_QUOTE_RE",
+        "ENCODING_REGEXES",
+        "HTML_ENTITIES",
+        "HTML_ENTITY_RE",
+        "LIGATURES",
+        "LOSSY_UTF8_RE",
+        "SINGLE_QUOTE_RE",
+        "UTF8_CLUES",
+        "UTF8_DETECTOR_RE",
+        "WIDTH_MAP",
+        "possible_encoding"
+      ],
+      "n_typable": 15,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 11,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 12,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "ftfy/cli.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "ENCODE_ERROR_TEXT_UNIX",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ENCODE_ERROR_TEXT_WINDOWS",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DECODE_ERROR_TEXT",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SAME_FILE_ERROR_TEXT",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 44,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "ftfy.cli",
+      "names": [
+        "DECODE_ERROR_TEXT",
+        "ENCODE_ERROR_TEXT_UNIX",
+        "ENCODE_ERROR_TEXT_WINDOWS",
+        "SAME_FILE_ERROR_TEXT",
+        "main"
+      ],
+      "n_typable": 1,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "ftfy/fixes.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "ANSI_RE",
+          "line_start": 142,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SURROGATE_RE",
+          "line_start": 258,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SURROGATE_PAIR_RE",
+          "line_start": 259,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ESCAPE_SEQUENCE_RE",
+          "line_start": 342,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "A_GRAVE_WORD_RE",
+          "line_start": 416,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_encoding_and_explain",
+          "line_start": 37,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_encoding",
+          "line_start": 49,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "apply_plan",
+          "line_start": 61,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "unescape_html",
+          "line_start": 94,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "remove_terminal_escapes",
+          "line_start": 145,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "uncurl_quotes",
+          "line_start": 158,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_latin_ligatures",
+          "line_start": 168,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_character_width",
+          "line_start": 186,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_line_breaks",
+          "line_start": 206,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "convert_surrogate_pair",
+          "line_start": 262,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_surrogates",
+          "line_start": 274,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "remove_control_chars",
+          "line_start": 297,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "remove_bom",
+          "line_start": 330,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "decode_escapes",
+          "line_start": 355,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "restore_byte_a0",
+          "line_start": 419,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "replace_lossy_sequences",
+          "line_start": 442,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "decode_inconsistent_utf8",
+          "line_start": 481,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_c1_controls",
+          "line_start": 505,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "ftfy.fixes",
+      "names": [
+        "ANSI_RE",
+        "A_GRAVE_WORD_RE",
+        "ESCAPE_SEQUENCE_RE",
+        "SURROGATE_PAIR_RE",
+        "SURROGATE_RE",
+        "apply_plan",
+        "convert_surrogate_pair",
+        "decode_escapes",
+        "decode_inconsistent_utf8",
+        "fix_c1_controls",
+        "fix_character_width",
+        "fix_encoding",
+        "fix_encoding_and_explain",
+        "fix_latin_ligatures",
+        "fix_line_breaks",
+        "fix_surrogates",
+        "remove_bom",
+        "remove_control_chars",
+        "remove_terminal_escapes",
+        "replace_lossy_sequences",
+        "restore_byte_a0",
+        "uncurl_quotes",
+        "unescape_html"
+      ],
+      "n_typable": 42,
+      "n_typed": 36,
+      "n_any": 1,
+      "n_untyped": 5,
+      "n_functions": 18,
+      "n_function_params": 19,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "ftfy/formatting.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "character_width",
+          "line_start": 16,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "monospaced_width",
+          "line_start": 37,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "display_ljust",
+          "line_start": 79,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "display_rjust",
+          "line_start": 113,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "display_center",
+          "line_start": 142,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "ftfy.formatting",
+      "names": [
+        "character_width",
+        "display_center",
+        "display_ljust",
+        "display_rjust",
+        "monospaced_width"
+      ],
+      "n_typable": 16,
+      "n_typed": 16,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 5,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 9,
+  "n_typable": 128,
+  "n_typed": 101,
+  "n_any": 7,
+  "n_untyped": 20,
+  "n_functions": 40,
+  "n_function_params": 60,
+  "n_methods": 3,
+  "n_method_params": 3,
+  "n_classes": 6,
+  "n_attrs": 22,
+  "n_properties": 0,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": [
+        "type-arg"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 8
+}

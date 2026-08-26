@@ -1,0 +1,1791 @@
+{
+  "schema_version": "1.0",
+  "package": "opt-einsum",
+  "version": "3.4.0",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2024-09-26T14:33:24.483253Z",
+    "requires_python": ">=3.8",
+    "size": 63004,
+    "sha256": "96ca72f1b886d148241348783498194c577fa30a8faac108586b14f1ba4473ac"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.3"
+    ],
+    "Name": [
+      "opt_einsum"
+    ],
+    "Version": [
+      "3.4.0"
+    ],
+    "Summary": [
+      "Path optimization of einsum functions."
+    ],
+    "Author-email": [
+      "Daniel Smith <dgasmith@icloud.com>"
+    ],
+    "License-Expression": [
+      "MIT"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Classifier": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Science/Research",
+      "License :: OSI Approved :: MIT License",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy",
+      "Topic :: Software Development :: Libraries :: Python Modules"
+    ],
+    "Requires-Python": [
+      ">=3.8"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "opt_einsum/_version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 11,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "opt_einsum._version",
+      "names": [
+        "__version__"
+      ],
+      "n_typable": 1,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "opt_einsum/backends/cupy.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "to_cupy",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "build_expression",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_constants",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "opt_einsum.backends.cupy",
+      "names": [
+        "build_expression",
+        "evaluate_constants",
+        "to_cupy"
+      ],
+      "n_typable": 8,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 3,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "opt_einsum/backends/dispatch.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_func",
+          "line_start": 74,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "has_einsum",
+          "line_start": 90,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_tensordot",
+          "line_start": 107,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "build_expression",
+          "line_start": 140,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_constants",
+          "line_start": 147,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "has_backend",
+          "line_start": 154,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.backends.dispatch",
+      "names": [
+        "build_expression",
+        "evaluate_constants",
+        "get_func",
+        "has_backend",
+        "has_einsum",
+        "has_tensordot"
+      ],
+      "n_typable": 18,
+      "n_typed": 8,
+      "n_any": 2,
+      "n_untyped": 8,
+      "n_functions": 6,
+      "n_function_params": 12,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/backends/jax.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "build_expression",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_constants",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.backends.jax",
+      "names": [
+        "build_expression",
+        "evaluate_constants"
+      ],
+      "n_typable": 6,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "opt_einsum/backends/object_arrays.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "object_einsum",
+          "line_start": 9,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.backends.object_arrays",
+      "names": [
+        "object_einsum"
+      ],
+      "n_typable": 3,
+      "n_typed": 1,
+      "n_any": 2,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/backends/tensorflow.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "to_tensorflow",
+          "line_start": 34,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "build_expression",
+          "line_start": 114,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_constants",
+          "line_start": 120,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.backends.tensorflow",
+      "names": [
+        "build_expression",
+        "evaluate_constants",
+        "to_tensorflow"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/backends/theano.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "to_theano",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "build_expression",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_constants",
+          "line_start": 40,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.backends.theano",
+      "names": [
+        "build_expression",
+        "evaluate_constants",
+        "to_theano"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/backends/torch.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "transpose",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "einsum",
+          "line_start": 41,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "tensordot",
+          "line_start": 51,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "to_torch",
+          "line_start": 100,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "build_expression",
+          "line_start": 110,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_constants",
+          "line_start": 125,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.backends.torch",
+      "names": [
+        "build_expression",
+        "einsum",
+        "evaluate_constants",
+        "tensordot",
+        "to_torch",
+        "transpose"
+      ],
+      "n_typable": 19,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 19,
+      "n_functions": 6,
+      "n_function_params": 13,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/blas.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "can_blas",
+          "line_start": 10,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "opt_einsum.blas",
+      "names": [
+        "can_blas"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "opt_einsum/contract.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "contract_path",
+          "line_start": 145,
+          "n_typed": 7,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "contract",
+          "line_start": 476,
+          "n_typed": 6,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "format_const_einsum_str",
+          "line_start": 714,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shape_only",
+          "line_start": 923,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "contract_expression",
+          "line_start": 931,
+          "n_typed": 7,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "class",
+          "name": "ContractExpression",
+          "line_start": 740,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ContractExpression.__init__",
+              "line_start": 745,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ContractExpression.evaluate_constants",
+              "line_start": 767,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ContractExpression.__call__",
+              "line_start": 852,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ContractExpression.__repr__",
+              "line_start": 907,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ContractExpression.__str__",
+              "line_start": 914,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ContractExpression.contraction",
+              "line_start": 752,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContractExpression.contraction_list",
+              "line_start": 753,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContractExpression.kwargs",
+              "line_start": 754,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContractExpression.num_args",
+              "line_start": 758,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 8,
+          "n_any": 3,
+          "n_untyped": 4,
+          "n_methods": 5,
+          "n_method_params": 6,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.contract",
+      "names": [
+        "ContractExpression",
+        "contract",
+        "contract_expression",
+        "contract_path",
+        "format_const_einsum_str",
+        "shape_only"
+      ],
+      "n_typable": 45,
+      "n_typed": 33,
+      "n_any": 8,
+      "n_untyped": 4,
+      "n_functions": 5,
+      "n_function_params": 25,
+      "n_methods": 5,
+      "n_method_params": 6,
+      "n_classes": 1,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 7
+    },
+    {
+      "path": "opt_einsum/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "compute_size_by_dict",
+          "line_start": 14,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "find_contraction",
+          "line_start": 50,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "flop_count",
+          "line_start": 106,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "opt_einsum.helpers",
+      "names": [
+        "compute_size_by_dict",
+        "find_contraction",
+        "flop_count"
+      ],
+      "n_typable": 12,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 3,
+      "n_function_params": 9,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "opt_einsum/parser.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "is_valid_einsum_char",
+          "line_start": 25,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_valid_einsum_chars_only",
+          "line_start": 41,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_symbol",
+          "line_start": 57,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "gen_unused_symbols",
+          "line_start": 83,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "convert_to_valid_einsum_chars",
+          "line_start": 102,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "alpha_canonicalize",
+          "line_start": 117,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "find_output_str",
+          "line_start": 137,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "find_output_shape",
+          "line_start": 156,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_shape",
+          "line_start": 175,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "possibly_convert_to_numpy",
+          "line_start": 195,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "parse_einsum_input",
+          "line_start": 289,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.parser",
+      "names": [
+        "alpha_canonicalize",
+        "convert_to_valid_einsum_chars",
+        "find_output_shape",
+        "find_output_str",
+        "gen_unused_symbols",
+        "get_shape",
+        "get_symbol",
+        "has_valid_einsum_chars_only",
+        "is_valid_einsum_char",
+        "parse_einsum_input",
+        "possibly_convert_to_numpy"
+      ],
+      "n_typable": 26,
+      "n_typed": 22,
+      "n_any": 4,
+      "n_untyped": 0,
+      "n_functions": 11,
+      "n_function_params": 15,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/path_random.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "random_greedy_128",
+          "line_start": 398,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "random_greedy",
+          "line_start": 386,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "RandomGreedy",
+          "line_start": 326,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RandomGreedy.__init__",
+              "line_start": 327,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "RandomGreedy.setup",
+              "line_start": 375,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "RandomGreedy.choose_fn",
+              "line_start": 359,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RandomGreedy.cost_fn",
+              "line_start": 353,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomGreedy.temperature",
+              "line_start": 354,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomGreedy.rel_temperature",
+              "line_start": 355,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomGreedy.nbranch",
+              "line_start": 356,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 8,
+          "n_any": 2,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 7,
+          "n_attrs": 4,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.path_random",
+      "names": [
+        "RandomGreedy",
+        "random_greedy",
+        "random_greedy_128"
+      ],
+      "n_typable": 21,
+      "n_typed": 12,
+      "n_any": 4,
+      "n_untyped": 5,
+      "n_functions": 1,
+      "n_function_params": 5,
+      "n_methods": 2,
+      "n_method_params": 7,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 1,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/paths.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "optimal",
+          "line_start": 201,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "branch",
+          "line_start": 497,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "greedy",
+          "line_start": 733,
+          "n_typed": 6,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dynamic_programming",
+          "line_start": 1309,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "auto",
+          "line_start": 1331,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "auto_hq",
+          "line_start": 1350,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_path_fn",
+          "line_start": 1388,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "BranchBound",
+          "line_start": 330,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BranchBound.__init__",
+              "line_start": 331,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BranchBound.__call__",
+              "line_start": 373,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BranchBound.path",
+              "line_start": 369,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BranchBound.nbranch",
+              "line_start": 360,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BranchBound.cutoff_flops_factor",
+              "line_start": 361,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BranchBound.minimize",
+              "line_start": 362,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BranchBound.cost_fn",
+              "line_start": 363,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BranchBound.better",
+              "line_start": 365,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BranchBound.best",
+              "line_start": 366,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BranchBound.best_progress",
+              "line_start": 367,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 12,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 7,
+          "n_attrs": 7,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "DynamicProgramming",
+          "line_start": 1108,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DynamicProgramming.__init__",
+              "line_start": 1143,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DynamicProgramming.__call__",
+              "line_start": 1148,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DynamicProgramming.minimize",
+              "line_start": 1144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DynamicProgramming.search_outer",
+              "line_start": 1145,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DynamicProgramming.cost_cap",
+              "line_start": 1146,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.paths",
+      "names": [
+        "BranchBound",
+        "DynamicProgramming",
+        "auto",
+        "auto_hq",
+        "branch",
+        "dynamic_programming",
+        "get_path_fn",
+        "greedy",
+        "optimal"
+      ],
+      "n_typable": 67,
+      "n_typed": 57,
+      "n_any": 3,
+      "n_untyped": 7,
+      "n_functions": 7,
+      "n_function_params": 32,
+      "n_methods": 4,
+      "n_method_params": 13,
+      "n_classes": 2,
+      "n_attrs": 10,
+      "n_properties": 1,
+      "n_type_ignores": 6
+    },
+    {
+      "path": "opt_einsum/sharing.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "currently_sharing",
+          "line_start": 33,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_sharing_cache",
+          "line_start": 38,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "shared_intermediates",
+          "line_start": 54,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "count_cached_ops",
+          "line_start": 84,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "transpose_cache_wrap",
+          "line_start": 113,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "einsum_cache_wrap",
+          "line_start": 156,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "to_backend_cache_wrap",
+          "line_start": 186,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "opt_einsum.sharing",
+      "names": [
+        "count_cached_ops",
+        "currently_sharing",
+        "einsum_cache_wrap",
+        "get_sharing_cache",
+        "shared_intermediates",
+        "to_backend_cache_wrap",
+        "transpose_cache_wrap"
+      ],
+      "n_typable": 13,
+      "n_typed": 6,
+      "n_any": 7,
+      "n_untyped": 0,
+      "n_functions": 7,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "opt_einsum/testing.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "build_shapes",
+          "line_start": 16,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "build_views",
+          "line_start": 45,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "rand_equation",
+          "line_start": 79,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "build_arrays_from_tuples",
+          "line_start": 213,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opt_einsum.testing",
+      "names": [
+        "build_arrays_from_tuples",
+        "build_shapes",
+        "build_views",
+        "rand_equation"
+      ],
+      "n_typable": 18,
+      "n_typed": 18,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_params": 14,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opt_einsum/typing.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TensorShapeType",
+          "line_start": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PathType",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ArrayType",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ArrayIndexType",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ContractionListType",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PathSearchFunctionType",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "OptimizeKind",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "BackendType",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "opt_einsum.typing",
+      "names": [
+        "ArrayIndexType",
+        "ArrayType",
+        "BackendType",
+        "ContractionListType",
+        "OptimizeKind",
+        "PathSearchFunctionType",
+        "PathType",
+        "TensorShapeType"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 17,
+  "n_typable": 280,
+  "n_typed": 175,
+  "n_any": 30,
+  "n_untyped": 75,
+  "n_functions": 63,
+  "n_function_params": 158,
+  "n_methods": 11,
+  "n_method_params": 26,
+  "n_classes": 4,
+  "n_attrs": 20,
+  "n_properties": 2,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 23
+}

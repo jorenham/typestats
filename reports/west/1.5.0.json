@@ -1,0 +1,4312 @@
+{
+  "schema_version": "1.0",
+  "package": "west",
+  "version": "1.5.0",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2025-09-23T14:45:52.443547Z",
+    "requires_python": ">=3.9",
+    "size": 149326,
+    "sha256": "7088fe0e9afe0719ebee95c51c529149f7bcfc919d83a8206d35fa9c683ed0a5"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "west"
+    ],
+    "Version": [
+      "1.5.0"
+    ],
+    "Summary": [
+      "Zephyr RTOS Project meta-tool"
+    ],
+    "Author-email": [
+      "Zephyr Project <devel@lists.zephyrproject.org>"
+    ],
+    "License": [
+      "Apache License\n                                   Version 2.0, January 2004\n                                http://www.apache.org/licenses/\n        \n           TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n        \n           1. Definitions.\n        \n              \"License\" shall mean the terms and conditions for use, reproduction,\n              and distribution as defined by Sections 1 through 9 of this document.\n        \n              \"Licensor\" shall mean the copyright owner or entity authorized by\n              the copyright owner that is granting the License.\n        \n              \"Legal Entity\" shall mean the union of the acting entity and all\n              other entities that control, are controlled by, or are under common\n              control with that entity. For the purposes of this definition,\n              \"control\" means (i) the power, direct or indirect, to cause the\n              direction or management of such entity, whether by contract or\n              otherwise, or (ii) ownership of fifty percent (50%) or more of the\n              outstanding shares, or (iii) beneficial ownership of such entity.\n        \n              \"You\" (or \"Your\") shall mean an individual or Legal Entity\n              exercising permissions granted by this License.\n        \n              \"Source\" form shall mean the preferred form for making modifications,\n              including but not limited to software source code, documentation\n              source, and configuration files.\n        \n              \"Object\" form shall mean any form resulting from mechanical\n              transformation or translation of a Source form, including but\n              not limited to compiled object code, generated documentation,\n              and conversions to other media types.\n        \n              \"Work\" shall mean the work of authorship, whether in Source or\n              Object form, made available under the License, as indicated by a\n              copyright notice that is included in or attached to the work\n              (an example is provided in the Appendix below).\n        \n              \"Derivative Works\" shall mean any work, whether in Source or Object\n              form, that is based on (or derived from) the Work and for which the\n              editorial revisions, annotations, elaborations, or other modifications\n              represent, as a whole, an original work of authorship. For the purposes\n              of this License, Derivative Works shall not include works that remain\n              separable from, or merely link (or bind by name) to the interfaces of,\n              the Work and Derivative Works thereof.\n        \n              \"Contribution\" shall mean any work of authorship, including\n              the original version of the Work and any modifications or additions\n              to that Work or Derivative Works thereof, that is intentionally\n              submitted to Licensor for inclusion in the Work by the copyright owner\n              or by an individual or Legal Entity authorized to submit on behalf of\n              the copyright owner. For the purposes of this definition, \"submitted\"\n              means any form of electronic, verbal, or written communication sent\n              to the Licensor or its representatives, including but not limited to\n              communication on electronic mailing lists, source code control systems,\n              and issue tracking systems that are managed by, or on behalf of, the\n              Licensor for the purpose of discussing and improving the Work, but\n              excluding communication that is conspicuously marked or otherwise\n              designated in writing by the copyright owner as \"Not a Contribution.\"\n        \n              \"Contributor\" shall mean Licensor and any individual or Legal Entity\n              on behalf of whom a Contribution has been received by Licensor and\n              subsequently incorporated within the Work.\n        \n           2. Grant of Copyright License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              copyright license to reproduce, prepare Derivative Works of,\n              publicly display, publicly perform, sublicense, and distribute the\n              Work and such Derivative Works in Source or Object form.\n        \n           3. Grant of Patent License. Subject to the terms and conditions of\n              this License, each Contributor hereby grants to You a perpetual,\n              worldwide, non-exclusive, no-charge, royalty-free, irrevocable\n              (except as stated in this section) patent license to make, have made,\n              use, offer to sell, sell, import, and otherwise transfer the Work,\n              where such license applies only to those patent claims licensable\n              by such Contributor that are necessarily infringed by their\n              Contribution(s) alone or by combination of their Contribution(s)\n              with the Work to which such Contribution(s) was submitted. If You\n              institute patent litigation against any entity (including a\n              cross-claim or counterclaim in a lawsuit) alleging that the Work\n              or a Contribution incorporated within the Work constitutes direct\n              or contributory patent infringement, then any patent licenses\n              granted to You under this License for that Work shall terminate\n              as of the date such litigation is filed.\n        \n           4. Redistribution. You may reproduce and distribute copies of the\n              Work or Derivative Works thereof in any medium, with or without\n              modifications, and in Source or Object form, provided that You\n              meet the following conditions:\n        \n              (a) You must give any other recipients of the Work or\n                  Derivative Works a copy of this License; and\n        \n              (b) You must cause any modified files to carry prominent notices\n                  stating that You changed the files; and\n        \n              (c) You must retain, in the Source form of any Derivative Works\n                  that You distribute, all copyright, patent, trademark, and\n                  attribution notices from the Source form of the Work,\n                  excluding those notices that do not pertain to any part of\n                  the Derivative Works; and\n        \n              (d) If the Work includes a \"NOTICE\" text file as part of its\n                  distribution, then any Derivative Works that You distribute must\n                  include a readable copy of the attribution notices contained\n                  within such NOTICE file, excluding those notices that do not\n                  pertain to any part of the Derivative Works, in at least one\n                  of the following places: within a NOTICE text file distributed\n                  as part of the Derivative Works; within the Source form or\n                  documentation, if provided along with the Derivative Works; or,\n                  within a display generated by the Derivative Works, if and\n                  wherever such third-party notices normally appear. The contents\n                  of the NOTICE file are for informational purposes only and\n                  do not modify the License. You may add Your own attribution\n                  notices within Derivative Works that You distribute, alongside\n                  or as an addendum to the NOTICE text from the Work, provided\n                  that such additional attribution notices cannot be construed\n                  as modifying the License.\n        \n              You may add Your own copyright statement to Your modifications and\n              may provide additional or different license terms and conditions\n              for use, reproduction, or distribution of Your modifications, or\n              for any such Derivative Works as a whole, provided Your use,\n              reproduction, and distribution of the Work otherwise complies with\n              the conditions stated in this License.\n        \n           5. Submission of Contributions. Unless You explicitly state otherwise,\n              any Contribution intentionally submitted for inclusion in the Work\n              by You to the Licensor shall be under the terms and conditions of\n              this License, without any additional terms or conditions.\n              Notwithstanding the above, nothing herein shall supersede or modify\n              the terms of any separate license agreement you may have executed\n              with Licensor regarding such Contributions.\n        \n           6. Trademarks. This License does not grant permission to use the trade\n              names, trademarks, service marks, or product names of the Licensor,\n              except as required for reasonable and customary use in describing the\n              origin of the Work and reproducing the content of the NOTICE file.\n        \n           7. Disclaimer of Warranty. Unless required by applicable law or\n              agreed to in writing, Licensor provides the Work (and each\n              Contributor provides its Contributions) on an \"AS IS\" BASIS,\n              WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or\n              implied, including, without limitation, any warranties or conditions\n              of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A\n              PARTICULAR PURPOSE. You are solely responsible for determining the\n              appropriateness of using or redistributing the Work and assume any\n              risks associated with Your exercise of permissions under this License.\n        \n           8. Limitation of Liability. In no event and under no legal theory,\n              whether in tort (including negligence), contract, or otherwise,\n              unless required by applicable law (such as deliberate and grossly\n              negligent acts) or agreed to in writing, shall any Contributor be\n              liable to You for damages, including any direct, indirect, special,\n              incidental, or consequential damages of any character arising as a\n              result of this License or out of the use or inability to use the\n              Work (including but not limited to damages for loss of goodwill,\n              work stoppage, computer failure or malfunction, or any and all\n              other commercial damages or losses), even if such Contributor\n              has been advised of the possibility of such damages.\n        \n           9. Accepting Warranty or Additional Liability. While redistributing\n              the Work or Derivative Works thereof, You may choose to offer,\n              and charge a fee for, acceptance of support, warranty, indemnity,\n              or other liability obligations and/or rights consistent with this\n              License. However, in accepting such obligations, You may act only\n              on Your own behalf and on Your sole responsibility, not on behalf\n              of any other Contributor, and only if You agree to indemnify,\n              defend, and hold each Contributor harmless for any liability\n              incurred by, or claims asserted against, such Contributor by reason\n              of your accepting any such warranty or additional liability.\n        \n           END OF TERMS AND CONDITIONS\n        \n           APPENDIX: How to apply the Apache License to your work.\n        \n              To apply the Apache License to your work, attach the following\n              boilerplate notice, with the fields enclosed by brackets \"{}\"\n              replaced with your own identifying information. (Don't include\n              the brackets!)  The text should be enclosed in the appropriate\n              comment syntax for the file format. We also recommend that a\n              file or class name and description of purpose be included on the\n              same \"printed page\" as the copyright notice for easier\n              identification within third-party archives.\n        \n           Copyright {yyyy} {name of copyright owner}\n        \n           Licensed under the Apache License, Version 2.0 (the \"License\");\n           you may not use this file except in compliance with the License.\n           You may obtain a copy of the License at\n        \n               http://www.apache.org/licenses/LICENSE-2.0\n        \n           Unless required by applicable law or agreed to in writing, software\n           distributed under the License is distributed on an \"AS IS\" BASIS,\n           WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n           See the License for the specific language governing permissions and\n           limitations under the License.\n        "
+    ],
+    "Project-URL": [
+      "Homepage, https://github.com/zephyrproject-rtos/west"
+    ],
+    "Classifier": [
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "License :: OSI Approved :: Apache Software License",
+      "Operating System :: POSIX :: Linux",
+      "Operating System :: MacOS :: MacOS X",
+      "Operating System :: Microsoft :: Windows"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/x-rst"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "colorama",
+      "PyYAML>=5.1",
+      "pykwalify",
+      "packaging"
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "west/app/config.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "CONFIG_DESCRIPTION",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CONFIG_EPILOG",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ALL",
+          "line_start": 77,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SYSTEM",
+          "line_start": 78,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GLOBAL",
+          "line_start": 79,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LOCAL",
+          "line_start": 80,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "Config",
+          "line_start": 83,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Config.__init__",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Config.do_add_parser",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Config.do_run",
+              "line_start": 133,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Config.list",
+              "line_start": 156,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Config.delete",
+              "line_start": 161,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Config.check_config",
+              "line_start": 183,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Config.read",
+              "line_start": 188,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Config.append",
+              "line_start": 197,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Config.write",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 17,
+          "n_methods": 9,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.app.config",
+      "names": [
+        "ALL",
+        "CONFIG_DESCRIPTION",
+        "CONFIG_EPILOG",
+        "Config",
+        "GLOBAL",
+        "LOCAL",
+        "SYSTEM"
+      ],
+      "n_typable": 17,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 17,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 9,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "west/app/main.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "BUILTIN_COMMAND_GROUPS",
+          "line_start": 1204,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "parse_early_args",
+          "line_start": 94,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "mve_msg",
+          "line_start": 1156,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "mie_msg",
+          "line_start": 1164,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "adjust_command_verbosity",
+          "line_start": 1182,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dump_traceback",
+          "line_start": 1188,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 1196,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Alias",
+          "line_start": 905,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Alias.__init__",
+              "line_start": 908,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Alias.do_add_parser",
+              "line_start": 914,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Alias.do_run",
+              "line_start": 921,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Alias.args",
+              "line_start": 911,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EarlyArgs",
+          "line_start": 70,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EarlyArgs.help",
+              "line_start": 85,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EarlyArgs.version",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EarlyArgs.zephyr_base",
+              "line_start": 87,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EarlyArgs.verbosity",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EarlyArgs.command_name",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EarlyArgs.unexpected_arguments",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Help",
+          "line_start": 861,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Help.__init__",
+              "line_start": 864,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Help.do_add_parser",
+              "line_start": 871,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Help.do_run",
+              "line_start": 879,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LogFormatter",
+          "line_start": 174,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LogFormatter.__init__",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LogHandler",
+          "line_start": 179,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LogHandler.__init__",
+              "line_start": 181,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LogHandler.emit",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WestApp",
+          "line_start": 192,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WestApp.__init__",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.run",
+              "line_start": 235,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.load_manifest",
+              "line_start": 280,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.handle_builtin_manifest_load_err",
+              "line_start": 305,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.load_extension_specs",
+              "line_start": 388,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.load_aliases",
+              "line_start": 431,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.handle_extension_command_error",
+              "line_start": 439,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.setup_parsers",
+              "line_start": 457,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.make_parsers",
+              "line_start": 492,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.run_command",
+              "line_start": 534,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.handle_early_arg_errors",
+              "line_start": 643,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.handle_unknown_command",
+              "line_start": 654,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.print_usage_and_exit",
+              "line_start": 665,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.setup_west_logging",
+              "line_start": 669,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.run_builtin",
+              "line_start": 685,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.run_extension",
+              "line_start": 700,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestApp.set_zephyr_base",
+              "line_start": 742,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "WestApp.topdir",
+              "line_start": 204,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.config",
+              "line_start": 205,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.manifest",
+              "line_start": 206,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.mle",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.builtins",
+              "line_start": 208,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.extensions",
+              "line_start": 209,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.aliases",
+              "line_start": 210,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.builtin_groups",
+              "line_start": 211,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.extension_groups",
+              "line_start": 212,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.west_parser",
+              "line_start": 213,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.subparser_gen",
+              "line_start": 214,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.cmd",
+              "line_start": 215,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestApp.queued_io",
+              "line_start": 216,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 43,
+          "n_methods": 17,
+          "n_method_params": 13,
+          "n_attrs": 13,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WestArgumentParser",
+          "line_start": 930,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.__init__",
+              "line_start": 943,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.print_help",
+              "line_start": 950,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.format_help",
+              "line_start": 954,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.format_west_optional",
+              "line_start": 1046,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.format_command",
+              "line_start": 1061,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.format_extension_spec",
+              "line_start": 1065,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.format_thing_and_help",
+              "line_start": 1069,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.add_argument",
+              "line_start": 1102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestArgumentParser.error",
+              "line_start": 1125,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "WestArgumentParser.west_optionals",
+              "line_start": 946,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestArgumentParser.west_app",
+              "line_start": 947,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 31,
+          "n_methods": 9,
+          "n_method_params": 20,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WestHelpAction",
+          "line_start": 924,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WestHelpAction.__call__",
+              "line_start": 926,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.app.main",
+      "names": [
+        "Alias",
+        "BUILTIN_COMMAND_GROUPS",
+        "EarlyArgs",
+        "Help",
+        "LogFormatter",
+        "LogHandler",
+        "WestApp",
+        "WestArgumentParser",
+        "WestHelpAction",
+        "adjust_command_verbosity",
+        "dump_traceback",
+        "main",
+        "mie_msg",
+        "mve_msg",
+        "parse_early_args"
+      ],
+      "n_typable": 109,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 107,
+      "n_functions": 6,
+      "n_function_params": 7,
+      "n_methods": 36,
+      "n_method_params": 44,
+      "n_classes": 8,
+      "n_attrs": 16,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "west/app/project.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "GREP_EPILOG",
+          "line_start": 1986,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "WEST_DIR",
+          "line_start": 2384,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MANIFEST_URL_DEFAULT",
+          "line_start": 2387,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ACTIVE_PROJECTS_HELP",
+          "line_start": 2393,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ACTIVE_CLONED_PROJECTS_HELP",
+          "line_start": 2407,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "projects_unknown",
+          "line_start": 2360,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "Compare",
+          "line_start": 753,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Compare.__init__",
+              "line_start": 754,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Compare.do_add_parser",
+              "line_start": 782,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Compare.do_run",
+              "line_start": 805,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Compare.compare",
+              "line_start": 870,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Compare.print_rev_info",
+              "line_start": 875,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Compare.print_status",
+              "line_start": 904,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 6,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DelayFormat",
+          "line_start": 2418,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DelayFormat.__init__",
+              "line_start": 2421,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DelayFormat.__format__",
+              "line_start": 2431,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DelayFormat.obj",
+              "line_start": 2428,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DelayFormat.as_str",
+              "line_start": 2429,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": -1,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Diff",
+          "line_start": 915,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Diff.__init__",
+              "line_start": 916,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Diff.do_add_parser",
+              "line_start": 925,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Diff.do_run",
+              "line_start": 937,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ForAll",
+          "line_start": 1907,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ForAll.__init__",
+              "line_start": 1908,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ForAll.do_add_parser",
+              "line_start": 1940,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ForAll.do_run",
+              "line_start": 1961,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Grep",
+          "line_start": 2088,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Grep.__init__",
+              "line_start": 2110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Grep.do_add_parser",
+              "line_start": 2117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Grep.do_run",
+              "line_start": 2131,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Grep.tool",
+              "line_start": 2173,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Grep.tool_path",
+              "line_start": 2179,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Grep.tool_args",
+              "line_start": 2198,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 6,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Init",
+          "line_start": 147,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Init.__init__",
+              "line_start": 149,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Init.do_add_parser",
+              "line_start": 182,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Init.do_run",
+              "line_start": 230,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Init.die_already",
+              "line_start": 261,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Init.local",
+              "line_start": 264,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Init.bootstrap",
+              "line_start": 295,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Init.create",
+              "line_start": 406,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 15,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 7,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "List",
+          "line_start": 416,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "List.__init__",
+              "line_start": 417,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "List.do_add_parser",
+              "line_start": 425,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "List.do_run",
+              "line_start": 483,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ManifestCommand",
+          "line_start": 577,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ManifestCommand.__init__",
+              "line_start": 581,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ManifestCommand.do_add_parser",
+              "line_start": 621,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ManifestCommand.do_run",
+              "line_start": 647,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ProjectCommandLogFormatter",
+          "line_start": 2445,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProjectCommandLogFormatter.__init__",
+              "line_start": 2447,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ProjectCommandLogHandler",
+          "line_start": 2451,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ProjectCommandLogHandler.__init__",
+              "line_start": 2453,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ProjectCommandLogHandler.emit",
+              "line_start": 2458,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ProjectCommandLogHandler.command",
+              "line_start": 2455,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SelfUpdate",
+          "line_start": 2246,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SelfUpdate.__init__",
+              "line_start": 2247,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "SelfUpdate.do_add_parser",
+              "line_start": 2253,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SelfUpdate.do_run",
+              "line_start": 2256,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Status",
+          "line_start": 981,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Status.__init__",
+              "line_start": 982,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Status.do_add_parser",
+              "line_start": 994,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Status.do_run",
+              "line_start": 1004,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Topdir",
+          "line_start": 2228,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Topdir.__init__",
+              "line_start": 2229,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Topdir.do_add_parser",
+              "line_start": 2240,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Topdir.do_run",
+              "line_start": 2243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Update",
+          "line_start": 1033,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Update.__init__",
+              "line_start": 1035,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Update.do_add_parser",
+              "line_start": 1055,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.do_run",
+              "line_start": 1200,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Update.init_state",
+              "line_start": 1212,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.update_all",
+              "line_start": 1249,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Update.update_importer",
+              "line_start": 1280,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Update.update_some",
+              "line_start": 1317,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Update.toplevel_projects",
+              "line_start": 1347,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Update.fetch_strategy",
+              "line_start": 1382,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Update.update_submodules",
+              "line_start": 1395,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.update",
+              "line_start": 1453,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.post_checkout_help",
+              "line_start": 1536,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Update.ensure_cloned",
+              "line_start": 1566,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Update.create_auto_cache_info",
+              "line_start": 1581,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Update.handle_auto_cache",
+              "line_start": 1592,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.init_project",
+              "line_start": 1620,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.project_auto_cache",
+              "line_start": 1677,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.project_cache",
+              "line_start": 1686,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Update.set_new_manifest_rev",
+              "line_start": 1721,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Update.fetch",
+              "line_start": 1735,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Update.clean_refs_west",
+              "line_start": 1809,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Update.ensure_head_ok",
+              "line_start": 1830,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Update.manifest_rev_sha",
+              "line_start": 1858,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Update.decide_update_strategy",
+              "line_start": 1873,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Update.project_is_active",
+              "line_start": 1904,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 65,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 65,
+          "n_methods": 25,
+          "n_method_params": 40,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.app.project",
+      "names": [
+        "ACTIVE_CLONED_PROJECTS_HELP",
+        "ACTIVE_PROJECTS_HELP",
+        "Compare",
+        "DelayFormat",
+        "Diff",
+        "ForAll",
+        "GREP_EPILOG",
+        "Grep",
+        "Init",
+        "List",
+        "MANIFEST_URL_DEFAULT",
+        "ManifestCommand",
+        "ProjectCommandLogFormatter",
+        "ProjectCommandLogHandler",
+        "SelfUpdate",
+        "Status",
+        "Topdir",
+        "Update",
+        "WEST_DIR",
+        "projects_unknown"
+      ],
+      "n_typable": 149,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 144,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 70,
+      "n_method_params": 73,
+      "n_classes": 14,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "west/commands.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CommandContextError",
+          "line_start": 62,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CommandError",
+          "line_start": 55,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CommandError.__init__",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CommandError.returncode",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WestCommand",
+          "line_start": 122,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WestCommand.__init__",
+              "line_start": 125,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.add_pre_run_hook",
+              "line_start": 160,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.run",
+              "line_start": 171,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.add_parser",
+              "line_start": 202,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.do_add_parser",
+              "line_start": 222,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.do_run",
+              "line_start": 237,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.check_call",
+              "line_start": 311,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.check_output",
+              "line_start": 318,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.run_subprocess",
+              "line_start": 325,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.die_if_no_git",
+              "line_start": 332,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.dbg",
+              "line_start": 409,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.inf",
+              "line_start": 421,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.banner",
+              "line_start": 449,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.small_banner",
+              "line_start": 455,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.wrn",
+              "line_start": 460,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.err",
+              "line_start": 484,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WestCommand.die",
+              "line_start": 511,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "WestCommand.has_manifest",
+              "line_start": 254,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "WestCommand.has_config",
+              "line_start": 280,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "WestCommand.git_version_info",
+              "line_start": 340,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "WestCommand.color_ui",
+              "line_start": 526,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "WestCommand.name",
+              "line_start": 149,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestCommand.help",
+              "line_start": 150,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestCommand.description",
+              "line_start": 151,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestCommand.accepts_unknown_args",
+              "line_start": 152,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestCommand.requires_workspace",
+              "line_start": 153,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestCommand.verbosity",
+              "line_start": 154,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WestCommand.topdir",
+              "line_start": 155,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 64,
+          "n_typed": 35,
+          "n_any": 0,
+          "n_untyped": 29,
+          "n_methods": 17,
+          "n_method_params": 36,
+          "n_attrs": 7,
+          "n_properties": 4
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "west.commands",
+      "names": [
+        "CommandContextError",
+        "CommandError",
+        "WestCommand"
+      ],
+      "n_typable": 66,
+      "n_typed": 35,
+      "n_any": 0,
+      "n_untyped": 31,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 18,
+      "n_method_params": 36,
+      "n_classes": 3,
+      "n_attrs": 8,
+      "n_properties": 4,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "west/configuration.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "config",
+          "line_start": 419,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "read_config",
+          "line_start": 426,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "update_config",
+          "line_start": 459,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "delete_config",
+          "line_start": 495,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "ConfigFile",
+          "line_start": 129,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ConfigFile.ALL",
+              "line_start": 139,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ConfigFile.SYSTEM",
+              "line_start": 140,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ConfigFile.GLOBAL",
+              "line_start": 141,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ConfigFile.LOCAL",
+              "line_start": 142,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Configuration",
+          "line_start": 144,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Configuration.__init__",
+              "line_start": 163,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.get",
+              "line_start": 181,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.getboolean",
+              "line_start": 192,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.getint",
+              "line_start": 206,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.getfloat",
+              "line_start": 217,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.set",
+              "line_start": 255,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.delete",
+              "line_start": 308,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Configuration.items",
+              "line_start": 370,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 26,
+          "n_typed": 25,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 8,
+          "n_method_params": 18,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MalformedConfig",
+          "line_start": 50,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.configuration",
+      "names": [
+        "ConfigFile",
+        "Configuration",
+        "MalformedConfig",
+        "config",
+        "delete_config",
+        "read_config",
+        "update_config"
+      ],
+      "n_typable": 42,
+      "n_typed": 39,
+      "n_any": 2,
+      "n_untyped": 1,
+      "n_functions": 3,
+      "n_function_params": 12,
+      "n_methods": 8,
+      "n_method_params": 18,
+      "n_classes": 3,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "west/log.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "VERBOSE_NONE",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "VERBOSE_NORMAL",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "VERBOSE_VERY",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "VERBOSE_EXTREME",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "VERBOSE",
+          "line_start": 42,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INF_COLOR",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "WRN_COLOR",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ERR_COLOR",
+          "line_start": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "deprecated",
+          "line_start": 54,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_verbosity",
+          "line_start": 59,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dbg",
+          "line_start": 67,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "inf",
+          "line_start": 81,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "banner",
+          "line_start": 108,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "small_banner",
+          "line_start": 115,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "wrn",
+          "line_start": 121,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "err",
+          "line_start": 143,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "die",
+          "line_start": 165,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "msg",
+          "line_start": 177,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "use_color",
+          "line_start": 199,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.log",
+      "names": [
+        "ERR_COLOR",
+        "INF_COLOR",
+        "VERBOSE",
+        "VERBOSE_EXTREME",
+        "VERBOSE_NONE",
+        "VERBOSE_NORMAL",
+        "VERBOSE_VERY",
+        "WRN_COLOR",
+        "banner",
+        "dbg",
+        "deprecated",
+        "die",
+        "err",
+        "inf",
+        "msg",
+        "set_verbosity",
+        "small_banner",
+        "use_color",
+        "wrn"
+      ],
+      "n_typable": 26,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 25,
+      "n_functions": 11,
+      "n_function_params": 15,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "west/manifest.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MANIFEST_PROJECT_INDEX",
+          "line_start": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MANIFEST_REV_BRANCH",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "QUAL_MANIFEST_REV_BRANCH",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "QUAL_REFS_WEST",
+          "line_start": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SCHEMA_VERSION",
+          "line_start": 62,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "WestCommandsType",
+          "line_start": 79,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ImportedContentType",
+          "line_start": 83,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ImporterType",
+          "line_start": 84,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ImapFilterFnType",
+          "line_start": 90,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GroupFilterType",
+          "line_start": 93,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GroupsType",
+          "line_start": 96,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ProjectFilterType",
+          "line_start": 135,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ManifestDataType",
+          "line_start": 175,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SubmodulesType",
+          "line_start": 189,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "RawGroupType",
+          "line_start": 613,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "manifest_path",
+          "line_start": 509,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "validate",
+          "line_start": 537,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_group",
+          "line_start": 615,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "ImportFlag",
+          "line_start": 703,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ImportFlag.DEFAULT",
+              "line_start": 724,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ImportFlag.IGNORE",
+              "line_start": 727,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ImportFlag.FORCE_PROJECTS",
+              "line_start": 730,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ImportFlag.IGNORE_PROJECTS",
+              "line_start": 734,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MalformedManifest",
+          "line_start": 651,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Manifest",
+          "line_start": 1211,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Manifest.from_topdir",
+              "line_start": 1218,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.from_file",
+              "line_start": 1241,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.from_data",
+              "line_start": 1311,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.__init__",
+              "line_start": 1336,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.get_projects",
+              "line_start": 1543,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.as_dict",
+              "line_start": 1637,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.as_frozen_dict",
+              "line_start": 1648,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.as_yaml",
+              "line_start": 1691,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.as_frozen_yaml",
+              "line_start": 1703,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Manifest.is_active",
+              "line_start": 1728,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Manifest.projects",
+              "line_start": 1716,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Manifest.path",
+              "line_start": 1822,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Manifest.posixpath",
+              "line_start": 1827,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Manifest.repo_posixpath",
+              "line_start": 1833,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Manifest.abspath",
+              "line_start": 1461,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.relative_path",
+              "line_start": 1462,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.yaml_path",
+              "line_start": 1463,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.repo_path",
+              "line_start": 1464,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.repo_abspath",
+              "line_start": 1465,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.topdir",
+              "line_start": 1466,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.has_imports",
+              "line_start": 1478,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.group_filter",
+              "line_start": 1482,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Manifest.userdata",
+              "line_start": 1507,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 49,
+          "n_typed": 44,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 10,
+          "n_method_params": 26,
+          "n_attrs": 9,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "ManifestImportFailed",
+          "line_start": 655,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ManifestImportFailed.__init__",
+              "line_start": 665,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ManifestImportFailed.__str__",
+              "line_start": 670,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ManifestImportFailed.project",
+              "line_start": 667,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestImportFailed.imp",
+              "line_start": 668,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ManifestProject",
+          "line_start": 1115,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ManifestProject.__repr__",
+              "line_start": 1144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ManifestProject.__init__",
+              "line_start": 1150,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ManifestProject.as_dict",
+              "line_start": 1198,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ManifestProject.abspath",
+              "line_start": 1191,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ManifestProject.name",
+              "line_start": 1165,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.description",
+              "line_start": 1168,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.url",
+              "line_start": 1169,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.submodules",
+              "line_start": 1170,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.revision",
+              "line_start": 1171,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.remote_name",
+              "line_start": 1172,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.clone_depth",
+              "line_start": 1173,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.groups",
+              "line_start": 1174,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.userdata",
+              "line_start": 1175,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.topdir",
+              "line_start": 1184,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestProject.west_commands",
+              "line_start": 1189,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 11,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "ManifestVersionError",
+          "line_start": 681,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ManifestVersionError.__init__",
+              "line_start": 686,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ManifestVersionError.version",
+              "line_start": 688,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ManifestVersionError.file",
+              "line_start": 691,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PFR",
+          "line_start": 98,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PFR.ACTIVE",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PFR.INACTIVE",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PFR.NONE",
+              "line_start": 105,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Project",
+          "line_start": 756,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Project.__eq__",
+              "line_start": 789,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Project.__repr__",
+              "line_start": 792,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Project.__str__",
+              "line_start": 801,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Project.__init__",
+              "line_start": 805,
+              "n_typed": 12,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 12,
+              "n_params": 11
+            },
+            {
+              "kind": "function",
+              "name": "Project.as_dict",
+              "line_start": 881,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Project.git",
+              "line_start": 918,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Project.sha",
+              "line_start": 984,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Project.is_ancestor_of",
+              "line_start": 1000,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Project.is_up_to_date_with",
+              "line_start": 1025,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Project.is_up_to_date",
+              "line_start": 1040,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Project.is_cloned",
+              "line_start": 1051,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Project.read_at",
+              "line_start": 1071,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Project.listdir_at",
+              "line_start": 1085,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Project.path",
+              "line_start": 851,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Project.abspath",
+              "line_start": 864,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Project.posixpath",
+              "line_start": 871,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Project.name_and_path",
+              "line_start": 877,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Project.name",
+              "line_start": 838,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.description",
+              "line_start": 839,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.url",
+              "line_start": 840,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.submodules",
+              "line_start": 841,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.revision",
+              "line_start": 842,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.clone_depth",
+              "line_start": 843,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.west_commands",
+              "line_start": 845,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.topdir",
+              "line_start": 846,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.remote_name",
+              "line_start": 847,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.groups",
+              "line_start": 848,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Project.userdata",
+              "line_start": 849,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 61,
+          "n_typed": 49,
+          "n_any": 1,
+          "n_untyped": 11,
+          "n_methods": 13,
+          "n_method_params": 32,
+          "n_attrs": 11,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "ProjectFilterElt",
+          "line_start": 108,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ProjectFilterElt.pattern",
+              "line_start": 112,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ProjectFilterElt.make_active",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Submodule",
+          "line_start": 182,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Submodule.path",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Submodule.name",
+              "line_start": 186,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "west.manifest",
+      "names": [
+        "GroupFilterType",
+        "GroupsType",
+        "ImapFilterFnType",
+        "ImportFlag",
+        "ImportedContentType",
+        "ImporterType",
+        "MANIFEST_PROJECT_INDEX",
+        "MANIFEST_REV_BRANCH",
+        "MalformedManifest",
+        "Manifest",
+        "ManifestDataType",
+        "ManifestImportFailed",
+        "ManifestProject",
+        "ManifestVersionError",
+        "PFR",
+        "Project",
+        "ProjectFilterElt",
+        "ProjectFilterType",
+        "QUAL_MANIFEST_REV_BRANCH",
+        "QUAL_REFS_WEST",
+        "RawGroupType",
+        "SCHEMA_VERSION",
+        "Submodule",
+        "SubmodulesType",
+        "WestCommandsType",
+        "is_group",
+        "manifest_path",
+        "validate"
+      ],
+      "n_typable": 140,
+      "n_typed": 116,
+      "n_any": 4,
+      "n_untyped": 20,
+      "n_functions": 3,
+      "n_function_params": 2,
+      "n_methods": 29,
+      "n_method_params": 61,
+      "n_classes": 10,
+      "n_attrs": 35,
+      "n_properties": 9,
+      "n_type_ignores": 3
+    },
+    {
+      "path": "west/util.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "PathType",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "WEST_DIR",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "escapes_directory",
+          "line_start": 25,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "quote_sh_list",
+          "line_start": 42,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "wrap",
+          "line_start": 46,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "west_dir",
+          "line_start": 54,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "west_topdir",
+          "line_start": 65,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "WestNotFound",
+          "line_start": 51,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.util",
+      "names": [
+        "PathType",
+        "WEST_DIR",
+        "WestNotFound",
+        "escapes_directory",
+        "quote_sh_list",
+        "west_dir",
+        "west_topdir",
+        "wrap"
+      ],
+      "n_typable": 13,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 5,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "west/version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "west.version",
+      "names": [
+        "__version__"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 9,
+  "n_typable": 563,
+  "n_typed": 211,
+  "n_any": 6,
+  "n_untyped": 346,
+  "n_functions": 29,
+  "n_function_params": 46,
+  "n_methods": 170,
+  "n_method_params": 240,
+  "n_classes": 40,
+  "n_attrs": 64,
+  "n_properties": 13,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 4
+}

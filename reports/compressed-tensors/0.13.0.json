@@ -1,0 +1,6309 @@
+{
+  "schema_version": "1.0",
+  "package": "compressed-tensors",
+  "version": "0.13.0",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2025-12-16T16:03:55.397221Z",
+    "requires_python": null,
+    "size": 200995,
+    "sha256": "23893824d3498ea3f1a829f14a8fa85f9a5e76a34c711a038b8d7c619ca9a67c"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "compressed-tensors"
+    ],
+    "Version": [
+      "0.13.0"
+    ],
+    "Summary": [
+      "Library for utilization of compressed safetensors of neural network models"
+    ],
+    "Home-page": [
+      "https://github.com/vllm-project/compressed-tensors"
+    ],
+    "Author": [
+      "Neuralmagic, Inc."
+    ],
+    "Author-email": [
+      "support@neuralmagic.com"
+    ],
+    "License": [
+      "Apache 2.0"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "torch>=1.7.0",
+      "transformers",
+      "pydantic>=2.0",
+      "loguru",
+      "black==22.12.0; extra == \"dev\"",
+      "isort==5.8.0; extra == \"dev\"",
+      "wheel>=0.36.2; extra == \"dev\"",
+      "flake8>=3.8.3; extra == \"dev\"",
+      "pytest>=6.0.0; extra == \"dev\"",
+      "nbconvert>=7.16.3; extra == \"dev\"",
+      "accelerate; extra == \"accelerate\""
+    ],
+    "Provides-Extra": [
+      "dev",
+      "accelerate"
+    ],
+    "Dynamic": [
+      "author",
+      "author-email",
+      "description",
+      "description-content-type",
+      "home-page",
+      "license",
+      "license-file",
+      "provides-extra",
+      "requires-dist",
+      "summary"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "compressed_tensors/base.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "QUANTIZATION_CONFIG_NAME",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPARSITY_CONFIG_NAME",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRANSFORM_CONFIG_NAME",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "COMPRESSION_VERSION_NAME",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "QUANTIZATION_METHOD_NAME",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.base",
+      "names": [
+        "COMPRESSION_VERSION_NAME",
+        "QUANTIZATION_CONFIG_NAME",
+        "QUANTIZATION_METHOD_NAME",
+        "SPARSITY_CONFIG_NAME",
+        "TRANSFORM_CONFIG_NAME"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BaseCompressor",
+          "line_start": 30,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseCompressor.__init__",
+              "line_start": 61,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.compression_param_info",
+              "line_start": 66,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.compress",
+              "line_start": 90,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.decompress",
+              "line_start": 105,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.compress_module",
+              "line_start": 125,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.compress_weight",
+              "line_start": 152,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.decompress_module",
+              "line_start": 165,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseCompressor.decompress_weight",
+              "line_start": 192,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BaseCompressor.compression_param_names",
+              "line_start": 81,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BaseCompressor.config",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 23,
+          "n_typed": 12,
+          "n_any": 5,
+          "n_untyped": 6,
+          "n_methods": 8,
+          "n_method_params": 13,
+          "n_attrs": 1,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.base",
+      "names": [
+        "BaseCompressor"
+      ],
+      "n_typable": 23,
+      "n_typed": 12,
+      "n_any": 5,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 8,
+      "n_method_params": 13,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "save_compressed",
+          "line_start": 34,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load_compressed",
+          "line_start": 70,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "save_compressed_model",
+          "line_start": 111,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.helpers",
+      "names": [
+        "load_compressed",
+        "save_compressed",
+        "save_compressed_model"
+      ],
+      "n_typable": 13,
+      "n_typed": 10,
+      "n_any": 1,
+      "n_untyped": 2,
+      "n_functions": 3,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/model_compressors/model_compressor.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "map_module_to_scheme",
+          "line_start": 896,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "ModelCompressor",
+          "line_start": 87,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ModelCompressor.from_pretrained",
+              "line_start": 115,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.from_compression_config",
+              "line_start": 132,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.from_pretrained_model",
+              "line_start": 170,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.parse_sparsity_config",
+              "line_start": 232,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.parse_quantization_config",
+              "line_start": 253,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.__init__",
+              "line_start": 309,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.get_missing_module_keys",
+              "line_start": 347,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.get_unexpected_file_keys",
+              "line_start": 396,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.compress_model",
+              "line_start": 453,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.decompress_model",
+              "line_start": 541,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.compress",
+              "line_start": 621,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.decompress",
+              "line_start": 678,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ModelCompressor.update_config",
+              "line_start": 769,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelCompressor.compression_formats",
+              "line_start": 319,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModelCompressor.sparsity_compressor",
+              "line_start": 321,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModelCompressor.quantization_compressor",
+              "line_start": 322,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 38,
+          "n_typed": 23,
+          "n_any": 7,
+          "n_untyped": 8,
+          "n_methods": 13,
+          "n_method_params": 22,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.model_compressors.model_compressor",
+      "names": [
+        "ModelCompressor",
+        "map_module_to_scheme"
+      ],
+      "n_typable": 40,
+      "n_typed": 24,
+      "n_any": 8,
+      "n_untyped": 8,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 13,
+      "n_method_params": 22,
+      "n_classes": 1,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/quantized_compressors/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BaseQuantizationCompressor",
+          "line_start": 37,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseQuantizationCompressor.compress",
+              "line_start": 69,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "BaseQuantizationCompressor.decompress",
+              "line_start": 170,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BaseQuantizationCompressor.decompress_from_state_dict",
+              "line_start": 220,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseQuantizationCompressor.decompress_module_from_state_dict",
+              "line_start": 239,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 4,
+          "n_method_params": 13,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.quantized_compressors.base",
+      "names": [
+        "BaseQuantizationCompressor"
+      ],
+      "n_typable": 17,
+      "n_typed": 16,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 13,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/quantized_compressors/fp4_quantized.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "pack_fp4_to_uint8",
+          "line_start": 160,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "unpack_fp4_from_uint8",
+          "line_start": 212,
+          "n_typed": 3,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "NVFP4PackedCompressor",
+          "line_start": 43,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NVFP4PackedCompressor.compression_param_info",
+              "line_start": 63,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NVFP4PackedCompressor.compress_scale",
+              "line_start": 84,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NVFP4PackedCompressor.compress_weight",
+              "line_start": 92,
+              "n_typed": 5,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "NVFP4PackedCompressor.decompress_weight",
+              "line_start": 119,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "NVFP4PackedCompressor.compression_param_names",
+              "line_start": 50,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 18,
+          "n_typed": 12,
+          "n_any": 6,
+          "n_untyped": 0,
+          "n_methods": 4,
+          "n_method_params": 13,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.quantized_compressors.fp4_quantized",
+      "names": [
+        "NVFP4PackedCompressor",
+        "pack_fp4_to_uint8",
+        "unpack_fp4_from_uint8"
+      ],
+      "n_typable": 25,
+      "n_typed": 15,
+      "n_any": 10,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 5,
+      "n_methods": 4,
+      "n_method_params": 13,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/quantized_compressors/naive_quantized.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "FloatQuantizationCompressor",
+          "line_start": 148,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "IntQuantizationCompressor",
+          "line_start": 139,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NaiveQuantizationCompressor",
+          "line_start": 36,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NaiveQuantizationCompressor.compression_param_info",
+              "line_start": 57,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NaiveQuantizationCompressor.compress_weight",
+              "line_start": 73,
+              "n_typed": 6,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "NaiveQuantizationCompressor.decompress_weight",
+              "line_start": 116,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "NaiveQuantizationCompressor.compression_param_names",
+              "line_start": 44,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 15,
+          "n_typed": 11,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.quantized_compressors.naive_quantized",
+      "names": [
+        "FloatQuantizationCompressor",
+        "IntQuantizationCompressor",
+        "NaiveQuantizationCompressor"
+      ],
+      "n_typable": 15,
+      "n_typed": 11,
+      "n_any": 4,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 11,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/quantized_compressors/pack_quantized.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "pack_to_int32",
+          "line_start": 186,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "unpack_from_int32",
+          "line_start": 249,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "PackedQuantizationCompressor",
+          "line_start": 32,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PackedQuantizationCompressor.compression_param_info",
+              "line_start": 52,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "PackedQuantizationCompressor.compress_weight",
+              "line_start": 88,
+              "n_typed": 6,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "PackedQuantizationCompressor.decompress_weight",
+              "line_start": 147,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "PackedQuantizationCompressor.compression_param_names",
+              "line_start": 38,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 15,
+          "n_typed": 11,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.quantized_compressors.pack_quantized",
+      "names": [
+        "PackedQuantizationCompressor",
+        "pack_to_int32",
+        "unpack_from_int32"
+      ],
+      "n_typable": 24,
+      "n_typed": 15,
+      "n_any": 9,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 7,
+      "n_methods": 3,
+      "n_method_params": 11,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/sparse_compressors/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BaseSparseCompressor",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseSparseCompressor.compress",
+              "line_start": 66,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BaseSparseCompressor.decompress",
+              "line_start": 109,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "BaseSparseCompressor.decompress_from_state_dict",
+              "line_start": 158,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseSparseCompressor.should_compress",
+              "line_start": 187,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 13,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 4,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.sparse_compressors.base",
+      "names": [
+        "BaseSparseCompressor"
+      ],
+      "n_typable": 14,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 10,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/sparse_compressors/dense.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DenseCompressor",
+          "line_start": 27,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DenseCompressor.compress",
+              "line_start": 41,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DenseCompressor.decompress",
+              "line_start": 44,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "DenseCompressor.decompress_from_state_dict",
+              "line_start": 49,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DenseCompressor.decompress_module_from_state_dict",
+              "line_start": 56,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "DenseCompressor.compression_param_names",
+              "line_start": 33,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 12,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 4,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.sparse_compressors.dense",
+      "names": [
+        "DenseCompressor"
+      ],
+      "n_typable": 14,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 9,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/sparse_compressors/sparse_24_bitmask.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sparse24_bitmask_compress",
+          "line_start": 162,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "sparse24_bitmask_decompress",
+          "line_start": 206,
+          "n_typed": 0,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_24_bytemasks",
+          "line_start": 227,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Sparse24BitMaskCompressor",
+          "line_start": 36,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskCompressor.compress_weight",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskCompressor.decompress_weight",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Sparse24BitMaskCompressor.compression_param_names",
+              "line_start": 43,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "Sparse24BitMaskTensor",
+          "line_start": 70,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskTensor.from_dense",
+              "line_start": 85,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskTensor.from_compressed_data",
+              "line_start": 109,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskTensor.decompress",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskTensor.curr_memory_size_bytes",
+              "line_start": 133,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskTensor.dict",
+              "line_start": 143,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Sparse24BitMaskTensor.__repr__",
+              "line_start": 158,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Sparse24BitMaskTensor.shape",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Sparse24BitMaskTensor.compressed",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Sparse24BitMaskTensor.bitmask",
+              "line_start": 83,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 8,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_methods": 6,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.sparse_compressors.sparse_24_bitmask",
+      "names": [
+        "Sparse24BitMaskCompressor",
+        "Sparse24BitMaskTensor",
+        "get_24_bytemasks",
+        "sparse24_bitmask_compress",
+        "sparse24_bitmask_decompress"
+      ],
+      "n_typable": 27,
+      "n_typed": 11,
+      "n_any": 9,
+      "n_untyped": 7,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 8,
+      "n_method_params": 9,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/sparse_compressors/sparse_bitmask.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "bitmask_compress",
+          "line_start": 131,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bitmask_decompress",
+          "line_start": 152,
+          "n_typed": 0,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "BitmaskCompressor",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BitmaskCompressor.compress_weight",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BitmaskCompressor.decompress_weight",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BitmaskCompressor.compression_param_names",
+              "line_start": 41,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "BitmaskTensor",
+          "line_start": 60,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BitmaskTensor.__init__",
+              "line_start": 71,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BitmaskTensor.from_dense",
+              "line_start": 83,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BitmaskTensor.decompress",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BitmaskTensor.curr_memory_size_bytes",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BitmaskTensor.dict",
+              "line_start": 115,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BitmaskTensor.__repr__",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BitmaskTensor.shape",
+              "line_start": 78,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BitmaskTensor.compressed",
+              "line_start": 79,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BitmaskTensor.bitmask",
+              "line_start": 80,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BitmaskTensor.row_offsets",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 5,
+          "n_any": 5,
+          "n_untyped": 5,
+          "n_methods": 6,
+          "n_method_params": 5,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.sparse_compressors.sparse_bitmask",
+      "names": [
+        "BitmaskCompressor",
+        "BitmaskTensor",
+        "bitmask_compress",
+        "bitmask_decompress"
+      ],
+      "n_typable": 27,
+      "n_typed": 7,
+      "n_any": 10,
+      "n_untyped": 10,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 8,
+      "n_method_params": 8,
+      "n_classes": 2,
+      "n_attrs": 4,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/compressors/sparse_quantized_compressors/marlin_24.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "compress_weight_24",
+          "line_start": 206,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "pack_weight_24",
+          "line_start": 228,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "pack_scales_24",
+          "line_start": 253,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "marlin_permute_weights",
+          "line_start": 213,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "Marlin24Compressor",
+          "line_start": 42,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Marlin24Compressor.validate_quant_compatability",
+              "line_start": 49,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Marlin24Compressor.validate_sparsity_structure",
+              "line_start": 96,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Marlin24Compressor.compress",
+              "line_start": 124,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Marlin24Compressor.decompress",
+              "line_start": 198,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Marlin24Compressor.compression_param_names",
+              "line_start": 116,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 15,
+          "n_typed": 12,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_methods": 4,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.compressors.sparse_quantized_compressors.marlin_24",
+      "names": [
+        "Marlin24Compressor",
+        "compress_weight_24",
+        "marlin_permute_weights",
+        "pack_scales_24",
+        "pack_weight_24"
+      ],
+      "n_typable": 31,
+      "n_typed": 15,
+      "n_any": 7,
+      "n_untyped": 9,
+      "n_functions": 4,
+      "n_function_params": 12,
+      "n_methods": 4,
+      "n_method_params": 10,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/config/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CompressionFormat",
+          "line_start": 25,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.dense",
+              "line_start": 27,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.sparse_bitmask",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.sparse_24_bitmask",
+              "line_start": 29,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.int_quantized",
+              "line_start": 30,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.float_quantized",
+              "line_start": 31,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.naive_quantized",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.pack_quantized",
+              "line_start": 33,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.marlin_24",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.mixed_precision",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.nvfp4_pack_quantized",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CompressionFormat.mxfp4_pack_quantized",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SparsityCompressionConfig",
+          "line_start": 97,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SparsityCompressionConfig.format",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SparsityCompressionConfig.targets",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SparsityCompressionConfig.ignore",
+              "line_start": 112,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SparsityCompressionConfig.global_sparsity",
+              "line_start": 113,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SparsityCompressionConfig.sparsity_structure",
+              "line_start": 114,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SparsityStructure",
+          "line_start": 40,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SparsityStructure.__new__",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SparsityStructure.TWO_FOUR",
+              "line_start": 77,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SparsityStructure.UNSTRUCTURED",
+              "line_start": 78,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SparsityStructure.ZERO_ZERO",
+              "line_start": 79,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.config.base",
+      "names": [
+        "CompressionFormat",
+        "SparsityCompressionConfig",
+        "SparsityStructure"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 1,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/config/dense.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DenseSparsityConfig",
+          "line_start": 23,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DenseSparsityConfig.format",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "DenseSparsityConfig.global_sparsity",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "DenseSparsityConfig.sparsity_structure",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.config.dense",
+      "names": [
+        "DenseSparsityConfig"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/config/format.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "infer_and_set_per_module_quantization_format",
+          "line_start": 131,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.config.format",
+      "names": [
+        "infer_and_set_per_module_quantization_format"
+      ],
+      "n_typable": 4,
+      "n_typed": 3,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/config/sparse_24_bitmask.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Sparse24BitMaskConfig",
+          "line_start": 27,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Sparse24BitMaskConfig.format",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Sparse24BitMaskConfig.global_sparsity",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Sparse24BitMaskConfig.sparsity_structure",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.config.sparse_24_bitmask",
+      "names": [
+        "Sparse24BitMaskConfig"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/config/sparse_bitmask.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BitmaskConfig",
+          "line_start": 23,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BitmaskConfig.format",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "BitmaskConfig.global_sparsity",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "BitmaskConfig.sparsity_structure",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.config.sparse_bitmask",
+      "names": [
+        "BitmaskConfig"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/linear/compressed_linear.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CompressedLinear",
+          "line_start": 33,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CompressedLinear.__init__",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CompressedLinear.from_linear",
+              "line_start": 48,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CompressedLinear.forward",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.linear.compressed_linear",
+      "names": [
+        "CompressedLinear"
+      ],
+      "n_typable": 8,
+      "n_typed": 2,
+      "n_any": 3,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/logger.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "configure_logger",
+          "line_start": 43,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "LoggerConfig",
+          "line_start": 34,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LoggerConfig.disabled",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "LoggerConfig.clear_loggers",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "LoggerConfig.console_log_level",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "LoggerConfig.log_file",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "LoggerConfig.log_file_level",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.logger",
+      "names": [
+        "LoggerConfig",
+        "configure_logger"
+      ],
+      "n_typable": 2,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/modeling/attention.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "IMPL_ATTR",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "initialize_hooked_attention",
+          "line_start": 101,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "register_query_hook",
+          "line_start": 127,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "QuantizedAttentionImpl",
+          "line_start": 42,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizedAttentionImpl.__init__",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QuantizedAttentionImpl.forward",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 4,
+              "n_untyped": 3,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizedAttentionImpl.config",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 5,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.modeling.attention",
+      "names": [
+        "IMPL_ATTR",
+        "QuantizedAttentionImpl",
+        "initialize_hooked_attention",
+        "register_query_hook"
+      ],
+      "n_typable": 15,
+      "n_typed": 1,
+      "n_any": 9,
+      "n_untyped": 5,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 2,
+      "n_method_params": 6,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/modeling/kvcache.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "KV_CACHE_ATTR",
+          "line_start": 37,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "initialize_hooked_kv_cache",
+          "line_start": 125,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "register_key_hook",
+          "line_start": 140,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "register_value_hook",
+          "line_start": 163,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "QuantizedKVCache",
+          "line_start": 40,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizedKVCache.__init__",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizedKVCache.update",
+              "line_start": 60,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QuantizedKVCache.forward",
+              "line_start": 63,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 2,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "QuantizedKVCache.add_past_key_values",
+              "line_start": 90,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizedKVCache.config",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizedKVCache.attn_module",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizedKVCache.past_key_values",
+              "line_start": 58,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 4,
+          "n_any": 4,
+          "n_untyped": 7,
+          "n_methods": 4,
+          "n_method_params": 8,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.modeling.kvcache",
+      "names": [
+        "KV_CACHE_ATTR",
+        "QuantizedKVCache",
+        "initialize_hooked_kv_cache",
+        "register_key_hook",
+        "register_value_hook"
+      ],
+      "n_typable": 24,
+      "n_typed": 6,
+      "n_any": 10,
+      "n_untyped": 8,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 4,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/lifecycle/apply.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "load_pretrained_quantization_parameters",
+          "line_start": 61,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "apply_quantization_config",
+          "line_start": 112,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.lifecycle.apply",
+      "names": [
+        "apply_quantization_config",
+        "load_pretrained_quantization_parameters"
+      ],
+      "n_typable": 8,
+      "n_typed": 4,
+      "n_any": 2,
+      "n_untyped": 2,
+      "n_functions": 2,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/lifecycle/compressed.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "compress_quantized_weights",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.lifecycle.compressed",
+      "names": [
+        "compress_quantized_weights"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/lifecycle/forward.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "quantize",
+          "line_start": 44,
+          "n_typed": 4,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "dequantize",
+          "line_start": 84,
+          "n_typed": 5,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "fake_quantize",
+          "line_start": 156,
+          "n_typed": 3,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "wrap_module_forward_quantized",
+          "line_start": 356,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "forward_quantize",
+          "line_start": 414,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.lifecycle.forward",
+      "names": [
+        "dequantize",
+        "fake_quantize",
+        "forward_quantize",
+        "quantize",
+        "wrap_module_forward_quantized"
+      ],
+      "n_typable": 31,
+      "n_typed": 15,
+      "n_any": 15,
+      "n_untyped": 1,
+      "n_functions": 5,
+      "n_function_params": 26,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/lifecycle/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "enable_quantization",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "disable_quantization",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.lifecycle.helpers",
+      "names": [
+        "disable_quantization",
+        "enable_quantization"
+      ],
+      "n_typable": 4,
+      "n_typed": 0,
+      "n_any": 2,
+      "n_untyped": 2,
+      "n_functions": 2,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/lifecycle/initialize.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "initialize_module_for_quantization",
+          "line_start": 61,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "is_attention_module",
+          "line_start": 146,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "initialize_attn_qparams",
+          "line_start": 277,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "initialize_qparams",
+          "line_start": 154,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.lifecycle.initialize",
+      "names": [
+        "initialize_attn_qparams",
+        "initialize_module_for_quantization",
+        "initialize_qparams",
+        "is_attention_module"
+      ],
+      "n_typable": 17,
+      "n_typed": 8,
+      "n_any": 5,
+      "n_untyped": 4,
+      "n_functions": 4,
+      "n_function_params": 13,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/quant_args.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "round_to_quantized_type_dtype",
+          "line_start": 409,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "round_to_quantized_type_args",
+          "line_start": 437,
+          "n_typed": 2,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "ActivationOrdering",
+          "line_start": 132,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ActivationOrdering.get_aliases",
+              "line_start": 149,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ActivationOrdering.GROUP",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ActivationOrdering.WEIGHT",
+              "line_start": 144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ActivationOrdering.DYNAMIC",
+              "line_start": 146,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ActivationOrdering.STATIC",
+              "line_start": 147,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "BFLOAT16_DATA",
+          "line_start": 89,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DynamicType",
+          "line_start": 117,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DynamicType.LOCAL",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FP4_E2M1_DATA",
+          "line_start": 57,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FP4_E2M1_DATA.cast_to_fp4",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FP8_E4M3_DATA",
+          "line_start": 80,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FloatArgs",
+          "line_start": 48,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationArgs",
+          "line_start": 157,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.serialize_dtype",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_type",
+              "line_start": 209,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_group",
+              "line_start": 216,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_block_structure",
+              "line_start": 229,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_strategy",
+              "line_start": 253,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_actorder",
+              "line_start": 260,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_dynamic",
+              "line_start": 270,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.validate_model_after",
+              "line_start": 276,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.pytorch_dtype",
+              "line_start": 386,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationArgs.get_observer",
+              "line_start": 402,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.num_bits",
+              "line_start": 178,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.type",
+              "line_start": 179,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.symmetric",
+              "line_start": 180,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.group_size",
+              "line_start": 181,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.strategy",
+              "line_start": 182,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.block_structure",
+              "line_start": 183,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.dynamic",
+              "line_start": 184,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.actorder",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.scale_dtype",
+              "line_start": 186,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.zp_dtype",
+              "line_start": 187,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.observer",
+              "line_start": 188,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.observer_kwargs",
+              "line_start": 195,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationArgs.model_config",
+              "line_start": 406,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 8,
+          "n_any": 2,
+          "n_untyped": 7,
+          "n_methods": 10,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationStrategy",
+          "line_start": 103,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.TENSOR",
+              "line_start": 108,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.CHANNEL",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.GROUP",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.BLOCK",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.TOKEN",
+              "line_start": 112,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.TENSOR_GROUP",
+              "line_start": 113,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStrategy.ATTN_HEAD",
+              "line_start": 114,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationType",
+          "line_start": 94,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizationType.INT",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationType.FLOAT",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.quant_args",
+      "names": [
+        "ActivationOrdering",
+        "BFLOAT16_DATA",
+        "DynamicType",
+        "FP4_E2M1_DATA",
+        "FP8_E4M3_DATA",
+        "FloatArgs",
+        "QuantizationArgs",
+        "QuantizationStrategy",
+        "QuantizationType",
+        "round_to_quantized_type_args",
+        "round_to_quantized_type_dtype"
+      ],
+      "n_typable": 30,
+      "n_typed": 12,
+      "n_any": 9,
+      "n_untyped": 9,
+      "n_functions": 2,
+      "n_function_params": 8,
+      "n_methods": 12,
+      "n_method_params": 8,
+      "n_classes": 9,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/quant_config.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LIFECYCLE_ORDER",
+          "line_start": 93,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_QUANTIZATION_METHOD",
+          "line_start": 100,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_QUANTIZATION_FORMAT",
+          "line_start": 101,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationConfig",
+          "line_start": 104,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizationConfig.model_post_init",
+              "line_start": 145,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationConfig.to_dict",
+              "line_start": 158,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationConfig.from_pretrained",
+              "line_start": 162,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationConfig.requires_calibration_data",
+              "line_start": 267,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.config_groups",
+              "line_start": 134,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.quant_method",
+              "line_start": 135,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.kv_cache_scheme",
+              "line_start": 136,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.format",
+              "line_start": 137,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.quantization_status",
+              "line_start": 138,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.global_compression_ratio",
+              "line_start": 139,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.ignore",
+              "line_start": 140,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.run_compressed",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationConfig.model_config",
+              "line_start": 282,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationStatus",
+          "line_start": 38,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizationStatus.lifecycle_order",
+              "line_start": 57,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationStatus.__ge__",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationStatus.__gt__",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationStatus.__lt__",
+              "line_start": 78,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationStatus.__le__",
+              "line_start": 85,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizationStatus.INITIALIZED",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStatus.CALIBRATION",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStatus.FROZEN",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationStatus.COMPRESSED",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 5,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.quant_config",
+      "names": [
+        "DEFAULT_QUANTIZATION_FORMAT",
+        "DEFAULT_QUANTIZATION_METHOD",
+        "LIFECYCLE_ORDER",
+        "QuantizationConfig",
+        "QuantizationStatus"
+      ],
+      "n_typable": 16,
+      "n_typed": 3,
+      "n_any": 1,
+      "n_untyped": 12,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 9,
+      "n_method_params": 7,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/quant_metadata.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "KVCacheScaleType",
+          "line_start": 24,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "KVCacheScaleType.KEY",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "KVCacheScaleType.VALUE",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationMetadata",
+          "line_start": 29,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizationMetadata.all_qparam_names",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QuantizationMetadata.clear_all_qparams",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.quant_metadata",
+      "names": [
+        "KVCacheScaleType",
+        "QuantizationMetadata"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/quant_scheme.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "preset_name_to_scheme",
+          "line_start": 124,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "is_preset_scheme",
+          "line_start": 146,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "QuantizationScheme",
+          "line_start": 37,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantizationScheme.validate_model_after",
+              "line_start": 56,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantizationScheme.targets",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationScheme.weights",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationScheme.input_activations",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationScheme.output_activations",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationScheme.format",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "QuantizationScheme.model_config",
+              "line_start": 116,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.quant_scheme",
+      "names": [
+        "QuantizationScheme",
+        "is_preset_scheme",
+        "preset_name_to_scheme"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 1,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/utils/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "KV_CACHE_TARGETS",
+          "line_start": 60,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "calculate_qparams",
+          "line_start": 65,
+          "n_typed": 3,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "calculate_range",
+          "line_start": 210,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "compute_dynamic_scales_and_zp",
+          "line_start": 151,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "is_module_quantized",
+          "line_start": 239,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_model_quantized",
+          "line_start": 262,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "module_type",
+          "line_start": 273,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "iter_named_leaf_modules",
+          "line_start": 283,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "iter_named_quantizable_modules",
+          "line_start": 314,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_torch_bit_depth",
+          "line_start": 360,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "can_quantize",
+          "line_start": 375,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "is_kv_cache_quant_scheme",
+          "line_start": 395,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "generate_gparam",
+          "line_start": 416,
+          "n_typed": 3,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "strategy_cdiv",
+          "line_start": 439,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.utils.helpers",
+      "names": [
+        "KV_CACHE_TARGETS",
+        "calculate_qparams",
+        "calculate_range",
+        "can_quantize",
+        "compute_dynamic_scales_and_zp",
+        "generate_gparam",
+        "get_torch_bit_depth",
+        "is_kv_cache_quant_scheme",
+        "is_model_quantized",
+        "is_module_quantized",
+        "iter_named_leaf_modules",
+        "iter_named_quantizable_modules",
+        "module_type",
+        "strategy_cdiv"
+      ],
+      "n_typable": 44,
+      "n_typed": 29,
+      "n_any": 13,
+      "n_untyped": 2,
+      "n_functions": 13,
+      "n_function_params": 31,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/quantization/utils/mxfp4_utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "should_generatre_mxfp4_scales",
+          "line_start": 33,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "maybe_convert_from_mxfp4_exp",
+          "line_start": 37,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "round_to_power_2",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "generate_mxfp4_scales",
+          "line_start": 90,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.quantization.utils.mxfp4_utils",
+      "names": [
+        "generate_mxfp4_scales",
+        "maybe_convert_from_mxfp4_exp",
+        "round_to_power_2",
+        "should_generatre_mxfp4_scales"
+      ],
+      "n_typable": 9,
+      "n_typed": 2,
+      "n_any": 6,
+      "n_untyped": 1,
+      "n_functions": 4,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/registry/registry.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "standardize_lookup_name",
+          "line_start": 40,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "register",
+          "line_start": 203,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_from_registry",
+          "line_start": 243,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "registered_names",
+          "line_start": 280,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "registered_aliases",
+          "line_start": 288,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "RegistryMixin",
+          "line_start": 68,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RegistryMixin.register",
+              "line_start": 121,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RegistryMixin.register_value",
+              "line_start": 142,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RegistryMixin.load_from_registry",
+              "line_start": 162,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RegistryMixin.get_value_from_registry",
+              "line_start": 175,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RegistryMixin.registered_names",
+              "line_start": 188,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RegistryMixin.registered_aliases",
+              "line_start": 195,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 10,
+          "n_any": 1,
+          "n_untyped": 3,
+          "n_methods": 6,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.registry.registry",
+      "names": [
+        "RegistryMixin",
+        "get_from_registry",
+        "register",
+        "registered_aliases",
+        "registered_names",
+        "standardize_lookup_name"
+      ],
+      "n_typable": 30,
+      "n_typed": 23,
+      "n_any": 3,
+      "n_untyped": 4,
+      "n_functions": 5,
+      "n_function_params": 11,
+      "n_methods": 6,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/apply.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "apply_transform_config",
+          "line_start": 26,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.apply",
+      "names": [
+        "apply_transform_config"
+      ],
+      "n_typable": 3,
+      "n_typed": 1,
+      "n_any": 1,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/factory/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "TransformBase",
+          "line_start": 195,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TransformBase.forward",
+              "line_start": 204,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TransformBase.right_inverse",
+              "line_start": 208,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TransformBase.__repr__",
+              "line_start": 212,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TransformFactory",
+          "line_start": 53,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TransformFactory.__init__",
+              "line_start": 64,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TransformFactory.from_scheme",
+              "line_start": 71,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TransformFactory.create_transform",
+              "line_start": 83,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TransformFactory.apply_to_model",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransformFactory.name",
+              "line_start": 65,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TransformFactory.scheme",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TransformFactory.generator",
+              "line_start": 67,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 4,
+          "n_any": 5,
+          "n_untyped": 6,
+          "n_methods": 4,
+          "n_method_params": 8,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.factory.base",
+      "names": [
+        "TransformBase",
+        "TransformFactory"
+      ],
+      "n_typable": 19,
+      "n_typed": 4,
+      "n_any": 9,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 9,
+      "n_classes": 2,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/factory/hadamard.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "HadamardFactory",
+          "line_start": 31,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HadamardFactory.__init__",
+              "line_start": 41,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "HadamardFactory.create_transform",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HadamardFactory.weights",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HadamardFactory.perms",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "HadamardTransform",
+          "line_start": 85,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HadamardTransform.__init__",
+              "line_start": 88,
+              "n_typed": 2,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "HadamardTransform.forward",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HadamardTransform.weight",
+              "line_start": 97,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HadamardTransform.perm",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HadamardTransform.scheme",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HadamardTransform.args",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HadamardTransform.module_type",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 2,
+          "n_any": 5,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 5,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.factory.hadamard",
+      "names": [
+        "HadamardFactory",
+        "HadamardTransform"
+      ],
+      "n_typable": 20,
+      "n_typed": 4,
+      "n_any": 8,
+      "n_untyped": 8,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 9,
+      "n_classes": 2,
+      "n_attrs": 7,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/factory/matrix_multiply.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "high_precision_invert",
+          "line_start": 112,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "RandomMatrixFactory",
+          "line_start": 30,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RandomMatrixFactory.__init__",
+              "line_start": 40,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RandomMatrixFactory.create_transform",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RandomMatrixFactory.weights",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomMatrixFactory.inverses",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RandomMatrixTransform",
+          "line_start": 80,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RandomMatrixTransform.__init__",
+              "line_start": 81,
+              "n_typed": 1,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RandomMatrixTransform.forward",
+              "line_start": 94,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RandomMatrixTransform.right_inverse",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RandomMatrixTransform.weight",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomMatrixTransform.scheme",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomMatrixTransform.args",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RandomMatrixTransform.module_type",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 1,
+          "n_any": 9,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.factory.matrix_multiply",
+      "names": [
+        "RandomMatrixFactory",
+        "RandomMatrixTransform",
+        "high_precision_invert"
+      ],
+      "n_typable": 22,
+      "n_typed": 3,
+      "n_any": 14,
+      "n_untyped": 5,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 5,
+      "n_method_params": 9,
+      "n_classes": 2,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/factory/random_hadamard.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "RandomHadamardFactory",
+          "line_start": 21,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.factory.random_hadamard",
+      "names": [
+        "RandomHadamardFactory"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/transform_args.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "TransformArgs",
+          "line_start": 59,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TransformArgs.wrap_singleton",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TransformArgs.is_online",
+              "line_start": 82,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransformArgs.targets",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformArgs.location",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformArgs.inverse",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformArgs.ignore",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformArgs.model_config",
+              "line_start": 85,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TransformLocation",
+          "line_start": 24,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TransformLocation.is_online",
+              "line_start": 48,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransformLocation.INPUT",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformLocation.WEIGHT_INPUT",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformLocation.WEIGHT_OUTPUT",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformLocation.OUTPUT",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformLocation.K_CACHE",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformLocation.Q_ATTN",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.transform_args",
+      "names": [
+        "TransformArgs",
+        "TransformLocation"
+      ],
+      "n_typable": 4,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 1,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/transform_config.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "TransformConfig",
+          "line_start": 24,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransformConfig.config_groups",
+              "line_start": 33,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformConfig.model_config",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.transform_config",
+      "names": [
+        "TransformConfig"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/transform_scheme.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "TransformScheme",
+          "line_start": 26,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TransformScheme.type",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformScheme.apply",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformScheme.randomize",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformScheme.requires_grad",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformScheme.head_dim",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformScheme.precision",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TransformScheme.model_config",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.transform_scheme",
+      "names": [
+        "TransformScheme"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/utils/hadamard.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "deterministic_hadamard_matrix",
+          "line_start": 33,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "random_hadamard_matrix",
+          "line_start": 65,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "is_pow2",
+          "line_start": 92,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.utils.hadamard",
+      "names": [
+        "deterministic_hadamard_matrix",
+        "is_pow2",
+        "random_hadamard_matrix"
+      ],
+      "n_typable": 11,
+      "n_typed": 5,
+      "n_any": 6,
+      "n_untyped": 0,
+      "n_functions": 3,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/transform/utils/matrix.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_transform_size",
+          "line_start": 24,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "apply_transform_weight",
+          "line_start": 65,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.transform.utils.matrix",
+      "names": [
+        "apply_transform_weight",
+        "get_transform_size"
+      ],
+      "n_typable": 9,
+      "n_typed": 5,
+      "n_any": 4,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/helpers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "infer_compressor_from_model_config",
+          "line_start": 67,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "fix_fsdp_module_name",
+          "line_start": 91,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "tensor_follows_mask_structure",
+          "line_start": 104,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "replace_module",
+          "line_start": 129,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "is_compressed_tensors_config",
+          "line_start": 141,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "getattr_chain",
+          "line_start": 156,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "deprecated",
+          "line_start": 187,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "shard_tensor",
+          "line_start": 248,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "combine_shards",
+          "line_start": 280,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "pack_bitmasks",
+          "line_start": 313,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "unpack_bitmasks",
+          "line_start": 327,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "patch_attr",
+          "line_start": 353,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "patch_attrs",
+          "line_start": 382,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_num_attn_heads",
+          "line_start": 443,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_num_kv_heads",
+          "line_start": 464,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_head_dim",
+          "line_start": 481,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Aliasable",
+          "line_start": 217,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Aliasable.get_aliases",
+              "line_start": 226,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Aliasable.__eq__",
+              "line_start": 230,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Aliasable.__hash__",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ParameterizedDefaultDict",
+          "line_start": 410,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ParameterizedDefaultDict.__init__",
+              "line_start": 419,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ParameterizedDefaultDict.__missing__",
+              "line_start": 423,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ParameterizedDefaultDict.get",
+              "line_start": 431,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ParameterizedDefaultDict.default_factory",
+              "line_start": 420,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.helpers",
+      "names": [
+        "Aliasable",
+        "ParameterizedDefaultDict",
+        "combine_shards",
+        "deprecated",
+        "fix_fsdp_module_name",
+        "get_head_dim",
+        "get_num_attn_heads",
+        "get_num_kv_heads",
+        "getattr_chain",
+        "infer_compressor_from_model_config",
+        "is_compressed_tensors_config",
+        "pack_bitmasks",
+        "patch_attr",
+        "patch_attrs",
+        "replace_module",
+        "shard_tensor",
+        "tensor_follows_mask_structure",
+        "unpack_bitmasks"
+      ],
+      "n_typable": 57,
+      "n_typed": 27,
+      "n_any": 17,
+      "n_untyped": 13,
+      "n_functions": 16,
+      "n_function_params": 31,
+      "n_methods": 6,
+      "n_method_params": 3,
+      "n_classes": 2,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/internal.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "InternalModule",
+          "line_start": 21,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.internal",
+      "names": [
+        "InternalModule"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/match.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "match_named_modules",
+          "line_start": 43,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "is_match",
+          "line_start": 353,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "match_named_parameters",
+          "line_start": 82,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "match_targets",
+          "line_start": 125,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_lowest_common_ancestor_name",
+          "line_start": 163,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "match_modules_set",
+          "line_start": 189,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "is_narrow_match",
+          "line_start": 393,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.match",
+      "names": [
+        "get_lowest_common_ancestor_name",
+        "is_match",
+        "is_narrow_match",
+        "match_modules_set",
+        "match_named_modules",
+        "match_named_parameters",
+        "match_targets"
+      ],
+      "n_typable": 34,
+      "n_typed": 28,
+      "n_any": 6,
+      "n_untyped": 0,
+      "n_functions": 7,
+      "n_function_params": 27,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/offload.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_offloaded_device",
+          "line_start": 118,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_offloaded_params",
+          "line_start": 597,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_execution_device",
+          "line_start": 163,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "update_parameter_data",
+          "line_start": 133,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "update_offload_parameter",
+          "line_start": 223,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "cast_to_device",
+          "line_start": 150,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "register_offload_parameter",
+          "line_start": 183,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "delete_offload_parameter",
+          "line_start": 256,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "disable_hf_hook",
+          "line_start": 270,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "disable_offload",
+          "line_start": 379,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "align_modules",
+          "line_start": 396,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "align_module_device",
+          "line_start": 618,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "register_offload_module",
+          "line_start": 418,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "delete_offload_module",
+          "line_start": 475,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "offloaded_dispatch",
+          "line_start": 489,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "remove_dispatch",
+          "line_start": 548,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "disable_offloading",
+          "line_start": 563,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.offload",
+      "names": [
+        "align_module_device",
+        "align_modules",
+        "cast_to_device",
+        "delete_offload_module",
+        "delete_offload_parameter",
+        "disable_hf_hook",
+        "disable_offload",
+        "disable_offloading",
+        "get_execution_device",
+        "get_offloaded_device",
+        "has_offloaded_params",
+        "offloaded_dispatch",
+        "register_offload_module",
+        "register_offload_parameter",
+        "remove_dispatch",
+        "update_offload_parameter",
+        "update_parameter_data"
+      ],
+      "n_typable": 49,
+      "n_typed": 14,
+      "n_any": 24,
+      "n_untyped": 11,
+      "n_functions": 17,
+      "n_function_params": 32,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/permutations_24.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_permutations_24",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.permutations_24",
+      "names": [
+        "get_permutations_24"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/safetensors_load.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_safetensors_folder",
+          "line_start": 42,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_safetensors_header",
+          "line_start": 84,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "match_param_name",
+          "line_start": 99,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "merge_names",
+          "line_start": 115,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_weight_mappings",
+          "line_start": 128,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_nested_weight_mappings",
+          "line_start": 182,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_nested_mappings_from_state_dict",
+          "line_start": 251,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_quantization_parameter_to_path_mapping",
+          "line_start": 294,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_quantization_param",
+          "line_start": 308,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.safetensors_load",
+      "names": [
+        "get_nested_mappings_from_state_dict",
+        "get_nested_weight_mappings",
+        "get_quantization_parameter_to_path_mapping",
+        "get_safetensors_folder",
+        "get_safetensors_header",
+        "get_weight_mappings",
+        "is_quantization_param",
+        "match_param_name",
+        "merge_names"
+      ],
+      "n_typable": 25,
+      "n_typed": 25,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 9,
+      "n_function_params": 16,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/utils/semi_structured_conversions.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sparse_semi_structured_from_dense_cutlass",
+          "line_start": 78,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "sparse_semi_structured_to_dense_cutlass",
+          "line_start": 216,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "mask_creator",
+          "line_start": 313,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "possibly-undefined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "possibly-undefined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "possibly-undefined"
+          ]
+        }
+      ],
+      "name": "compressed_tensors.utils.semi_structured_conversions",
+      "names": [
+        "mask_creator",
+        "sparse_semi_structured_from_dense_cutlass",
+        "sparse_semi_structured_to_dense_cutlass"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 3,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 3
+    },
+    {
+      "path": "compressed_tensors/utils/type.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TorchDtype",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.utils.type",
+      "names": [
+        "TorchDtype"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "compressed_tensors/version.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "version",
+          "line_start": 15,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 16,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "__version_tuple__",
+          "line_start": 17,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "version_tuple",
+          "line_start": 18,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "compressed_tensors.version",
+      "names": [
+        "__version__",
+        "__version_tuple__",
+        "version",
+        "version_tuple"
+      ],
+      "n_typable": 4,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 53,
+  "n_typable": 791,
+  "n_typed": 398,
+  "n_any": 233,
+  "n_untyped": 160,
+  "n_functions": 124,
+  "n_function_params": 294,
+  "n_methods": 128,
+  "n_method_params": 204,
+  "n_classes": 54,
+  "n_attrs": 33,
+  "n_properties": 8,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": [
+        "possibly-undefined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "possibly-undefined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "possibly-undefined"
+      ]
+    }
+  ],
+  "n_type_ignores": 3
+}

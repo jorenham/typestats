@@ -1,0 +1,4774 @@
+{
+  "schema_version": "1.0",
+  "package": "evaluate",
+  "version": "0.4.4",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2025-06-20T17:48:19.424705Z",
+    "requires_python": ">=3.8.0",
+    "size": 65816,
+    "sha256": "e02b9bae6a70cccb3bd1c1e46d28de4e9d00b9b76f2889ad48b7b51fa58373a4"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.1"
+    ],
+    "Name": [
+      "evaluate"
+    ],
+    "Version": [
+      "0.4.4"
+    ],
+    "Summary": [
+      "HuggingFace community-driven open-source library of evaluation"
+    ],
+    "Home-page": [
+      "https://github.com/huggingface/evaluate"
+    ],
+    "Author": [
+      "HuggingFace Inc."
+    ],
+    "Author-email": [
+      "leandro@huggingface.co"
+    ],
+    "License": [
+      "Apache 2.0"
+    ],
+    "Download-URL": [
+      "https://github.com/huggingface/evaluate/tags"
+    ],
+    "Keywords": [
+      "metrics machine learning evaluate evaluation"
+    ],
+    "Platform": [
+      "UNKNOWN"
+    ],
+    "Classifier": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Education",
+      "Intended Audience :: Science/Research",
+      "License :: OSI Approved :: Apache Software License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.8",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Topic :: Scientific/Engineering :: Artificial Intelligence"
+    ],
+    "Requires-Python": [
+      ">=3.8.0"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "datasets>=2.0.0",
+      "numpy>=1.17",
+      "dill",
+      "pandas",
+      "requests>=2.19.0",
+      "tqdm>=4.62.1",
+      "xxhash",
+      "multiprocess",
+      "fsspec[http]>=2021.05.0",
+      "huggingface-hub>=0.7.0",
+      "packaging",
+      "importlib-metadata; python_version < \"3.8\"",
+      "absl-py; extra == \"dev\"",
+      "charcut>=1.1.1; extra == \"dev\"",
+      "cer>=1.2.0; extra == \"dev\"",
+      "nltk; extra == \"dev\"",
+      "pytest; extra == \"dev\"",
+      "pytest-datadir; extra == \"dev\"",
+      "pytest-xdist; extra == \"dev\"",
+      "numpy<2.0.0; extra == \"dev\"",
+      "tensorflow!=2.6.0,!=2.6.1,<=2.10,>=2.3; extra == \"dev\"",
+      "torch; extra == \"dev\"",
+      "accelerate; extra == \"dev\"",
+      "bert-score>=0.3.6; extra == \"dev\"",
+      "rouge-score>=0.1.2; extra == \"dev\"",
+      "sacrebleu; extra == \"dev\"",
+      "sacremoses; extra == \"dev\"",
+      "scipy>=1.10.0; extra == \"dev\"",
+      "seqeval; extra == \"dev\"",
+      "scikit-learn; extra == \"dev\"",
+      "jiwer; extra == \"dev\"",
+      "sentencepiece; extra == \"dev\"",
+      "transformers; extra == \"dev\"",
+      "mauve-text; extra == \"dev\"",
+      "trectools; extra == \"dev\"",
+      "toml>=0.10.1; extra == \"dev\"",
+      "requests-file>=1.5.1; extra == \"dev\"",
+      "tldextract>=3.1.0; extra == \"dev\"",
+      "texttable>=1.6.3; extra == \"dev\"",
+      "unidecode>=1.3.4; extra == \"dev\"",
+      "Werkzeug>=1.0.1; extra == \"dev\"",
+      "six~=1.15.0; extra == \"dev\"",
+      "black~=22.0; extra == \"dev\"",
+      "flake8>=3.8.3; extra == \"dev\"",
+      "isort>=5.0.0; extra == \"dev\"",
+      "pyyaml>=5.3.1; extra == \"dev\"",
+      "s3fs; extra == \"docs\"",
+      "transformers; extra == \"evaluator\"",
+      "scipy>=1.7.1; extra == \"evaluator\"",
+      "black~=22.0; extra == \"quality\"",
+      "flake8>=3.8.3; extra == \"quality\"",
+      "isort>=5.0.0; extra == \"quality\"",
+      "pyyaml>=5.3.1; extra == \"quality\"",
+      "cookiecutter; extra == \"template\"",
+      "gradio>=3.0.0; extra == \"template\"",
+      "tensorflow!=2.6.0,!=2.6.1,>=2.2.0; extra == \"tensorflow\"",
+      "tensorflow-gpu!=2.6.0,!=2.6.1,>=2.2.0; extra == \"tensorflow-gpu\"",
+      "absl-py; extra == \"tests\"",
+      "charcut>=1.1.1; extra == \"tests\"",
+      "cer>=1.2.0; extra == \"tests\"",
+      "nltk; extra == \"tests\"",
+      "pytest; extra == \"tests\"",
+      "pytest-datadir; extra == \"tests\"",
+      "pytest-xdist; extra == \"tests\"",
+      "numpy<2.0.0; extra == \"tests\"",
+      "tensorflow!=2.6.0,!=2.6.1,<=2.10,>=2.3; extra == \"tests\"",
+      "torch; extra == \"tests\"",
+      "accelerate; extra == \"tests\"",
+      "bert-score>=0.3.6; extra == \"tests\"",
+      "rouge-score>=0.1.2; extra == \"tests\"",
+      "sacrebleu; extra == \"tests\"",
+      "sacremoses; extra == \"tests\"",
+      "scipy>=1.10.0; extra == \"tests\"",
+      "seqeval; extra == \"tests\"",
+      "scikit-learn; extra == \"tests\"",
+      "jiwer; extra == \"tests\"",
+      "sentencepiece; extra == \"tests\"",
+      "transformers; extra == \"tests\"",
+      "mauve-text; extra == \"tests\"",
+      "trectools; extra == \"tests\"",
+      "toml>=0.10.1; extra == \"tests\"",
+      "requests-file>=1.5.1; extra == \"tests\"",
+      "tldextract>=3.1.0; extra == \"tests\"",
+      "texttable>=1.6.3; extra == \"tests\"",
+      "unidecode>=1.3.4; extra == \"tests\"",
+      "Werkzeug>=1.0.1; extra == \"tests\"",
+      "six~=1.15.0; extra == \"tests\"",
+      "torch; extra == \"torch\""
+    ],
+    "Provides-Extra": [
+      "dev",
+      "docs",
+      "evaluator",
+      "quality",
+      "template",
+      "tensorflow",
+      "tensorflow_gpu",
+      "tests",
+      "torch"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "evaluate/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SCRIPTS_VERSION",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate",
+      "names": [
+        "SCRIPTS_VERSION",
+        "__version__"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/commands/evaluate_cli.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "INSTRUCTIONS",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 48,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.commands.evaluate_cli",
+      "names": [
+        "INSTRUCTIONS",
+        "logger",
+        "main"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/config.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "S3_METRICS_BUCKET_PREFIX",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CLOUDFRONT_METRICS_DISTRIB_PREFIX",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "REPO_METRICS_URL",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "REPO_MEASUREMENTS_URL",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "REPO_COMPARISONS_URL",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "EVALUATION_MODULE_TYPES",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HF_ENDPOINT",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HF_LIST_ENDPOINT",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HUB_EVALUATE_URL",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HUB_DEFAULT_VERSION",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PY_VERSION",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ENV_VARS_TRUE_VALUES",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ENV_VARS_TRUE_AND_AUTO_VALUES",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PANDAS_VERSION",
+          "line_start": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PYARROW_VERSION",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "USE_TF",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "USE_TORCH",
+          "line_start": 47,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "USE_JAX",
+          "line_start": 48,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TORCH_VERSION",
+          "line_start": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TORCH_AVAILABLE",
+          "line_start": 51,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TF_VERSION",
+          "line_start": 64,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TF_AVAILABLE",
+          "line_start": 65,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "package",
+          "line_start": 71,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "JAX_VERSION",
+          "line_start": 100,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "JAX_AVAILABLE",
+          "line_start": 101,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_XDG_CACHE_HOME",
+          "line_start": 116,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "XDG_CACHE_HOME",
+          "line_start": 117,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_HF_CACHE_HOME",
+          "line_start": 118,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HF_CACHE_HOME",
+          "line_start": 119,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_HF_EVALUATE_CACHE",
+          "line_start": 121,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HF_EVALUATE_CACHE",
+          "line_start": 122,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_HF_METRICS_CACHE",
+          "line_start": 124,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HF_METRICS_CACHE",
+          "line_start": 125,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_HF_MODULES_CACHE",
+          "line_start": 127,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HF_MODULES_CACHE",
+          "line_start": 128,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DOWNLOADED_DATASETS_DIR",
+          "line_start": 130,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_DOWNLOADED_EVALUATE_PATH",
+          "line_start": 131,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DOWNLOADED_EVALUATE_PATH",
+          "line_start": 132,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "EXTRACTED_EVALUATE_DIR",
+          "line_start": 134,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_EXTRACTED_EVALUATE_PATH",
+          "line_start": 135,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "EXTRACTED_EVALUATE_PATH",
+          "line_start": 136,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HF_UPDATE_DOWNLOAD_COUNTS",
+          "line_start": 139,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HF_EVALUATE_OFFLINE",
+          "line_start": 144,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LICENSE_FILENAME",
+          "line_start": 148,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "METRIC_INFO_FILENAME",
+          "line_start": 149,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DATASETDICT_JSON_FILENAME",
+          "line_start": 150,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MODULE_NAME_FOR_DYNAMIC_MODULES",
+          "line_start": 152,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HF_HUB_ALLOWED_TASKS",
+          "line_start": 154,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.config",
+      "names": [
+        "CLOUDFRONT_METRICS_DISTRIB_PREFIX",
+        "DATASETDICT_JSON_FILENAME",
+        "DEFAULT_DOWNLOADED_EVALUATE_PATH",
+        "DEFAULT_EXTRACTED_EVALUATE_PATH",
+        "DEFAULT_HF_CACHE_HOME",
+        "DEFAULT_HF_EVALUATE_CACHE",
+        "DEFAULT_HF_METRICS_CACHE",
+        "DEFAULT_HF_MODULES_CACHE",
+        "DEFAULT_XDG_CACHE_HOME",
+        "DOWNLOADED_DATASETS_DIR",
+        "DOWNLOADED_EVALUATE_PATH",
+        "ENV_VARS_TRUE_AND_AUTO_VALUES",
+        "ENV_VARS_TRUE_VALUES",
+        "EVALUATION_MODULE_TYPES",
+        "EXTRACTED_EVALUATE_DIR",
+        "EXTRACTED_EVALUATE_PATH",
+        "HF_CACHE_HOME",
+        "HF_ENDPOINT",
+        "HF_EVALUATE_CACHE",
+        "HF_EVALUATE_OFFLINE",
+        "HF_HUB_ALLOWED_TASKS",
+        "HF_LIST_ENDPOINT",
+        "HF_METRICS_CACHE",
+        "HF_MODULES_CACHE",
+        "HF_UPDATE_DOWNLOAD_COUNTS",
+        "HUB_DEFAULT_VERSION",
+        "HUB_EVALUATE_URL",
+        "JAX_AVAILABLE",
+        "JAX_VERSION",
+        "LICENSE_FILENAME",
+        "METRIC_INFO_FILENAME",
+        "MODULE_NAME_FOR_DYNAMIC_MODULES",
+        "PANDAS_VERSION",
+        "PYARROW_VERSION",
+        "PY_VERSION",
+        "REPO_COMPARISONS_URL",
+        "REPO_MEASUREMENTS_URL",
+        "REPO_METRICS_URL",
+        "S3_METRICS_BUCKET_PREFIX",
+        "TF_AVAILABLE",
+        "TF_VERSION",
+        "TORCH_AVAILABLE",
+        "TORCH_VERSION",
+        "USE_JAX",
+        "USE_TF",
+        "USE_TORCH",
+        "XDG_CACHE_HOME",
+        "logger",
+        "package"
+      ],
+      "n_typable": 29,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 29,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 29,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluation_suite/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "import_main_class",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "EvaluationSuite",
+          "line_start": 59,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EvaluationSuite.__init__",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationSuite.load",
+              "line_start": 75,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationSuite.__repr__",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationSuite.assert_suite_nonempty",
+              "line_start": 96,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationSuite.run",
+              "line_start": 102,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EvaluationSuite.name",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 5,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SubTask",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SubTask.__post_init__",
+              "line_start": 27,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SubTask.task_type",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SubTask.data",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SubTask.subset",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SubTask.split",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SubTask.data_preprocessor",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SubTask.args_for_task",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluation_suite",
+      "names": [
+        "EvaluationSuite",
+        "SubTask",
+        "import_main_class",
+        "logger"
+      ],
+      "n_typable": 13,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 6,
+      "n_method_params": 3,
+      "n_classes": 2,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TRANSFORMERS_AVAILABLE",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SUPPORTED_EVALUATOR_TASKS",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_supported_tasks",
+          "line_start": 82,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "check_task",
+          "line_start": 89,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "evaluator",
+          "line_start": 113,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator",
+      "names": [
+        "SUPPORTED_EVALUATOR_TASKS",
+        "TRANSFORMERS_AVAILABLE",
+        "check_task",
+        "evaluator",
+        "get_supported_tasks"
+      ],
+      "n_typable": 6,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 3,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/audio_classification.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AudioClassificationEvaluator",
+          "line_start": 81,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AudioClassificationEvaluator.__init__",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AudioClassificationEvaluator.predictions_processor",
+              "line_start": 94,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AudioClassificationEvaluator.compute",
+              "line_start": 100,
+              "n_typed": 16,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 16,
+              "n_params": 15
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 21,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 18,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.audio_classification",
+      "names": [
+        "AudioClassificationEvaluator",
+        "TASK_DOCUMENTATION"
+      ],
+      "n_typable": 21,
+      "n_typed": 16,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 18,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/automatic_speech_recognition.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AutomaticSpeechRecognitionEvaluator",
+          "line_start": 47,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AutomaticSpeechRecognitionEvaluator.__init__",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AutomaticSpeechRecognitionEvaluator.predictions_processor",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "AutomaticSpeechRecognitionEvaluator.compute",
+              "line_start": 63,
+              "n_typed": 15,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 15,
+              "n_params": 14
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 20,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 17,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.automatic_speech_recognition",
+      "names": [
+        "AutomaticSpeechRecognitionEvaluator",
+        "TASK_DOCUMENTATION"
+      ],
+      "n_typable": 20,
+      "n_typed": 15,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 17,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/base.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "SCIPY_AVAILABLE",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TRANSFORMERS_AVAILABLE",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "EVALUTOR_COMPUTE_START_DOCSTRING",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "EVALUATOR_COMPUTE_RETURN_DOCSTRING",
+          "line_start": 94,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "Evaluator",
+          "line_start": 102,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Evaluator.__init__",
+              "line_start": 112,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.predictions_processor",
+              "line_start": 211,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.compute",
+              "line_start": 218,
+              "n_typed": 16,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 16,
+              "n_params": 15
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.check_for_mismatch_in_device_setup",
+              "line_start": 281,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.check_required_columns",
+              "line_start": 295,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.get_dataset_split",
+              "line_start": 321,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.load_data",
+              "line_start": 350,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.prepare_data",
+              "line_start": 390,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 3,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.prepare_pipeline",
+              "line_start": 422,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.prepare_metric",
+              "line_start": 480,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.call_pipeline",
+              "line_start": 511,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Evaluator.compute_metric",
+              "line_start": 517,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Evaluator.task",
+              "line_start": 121,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Evaluator.default_metric_name",
+              "line_start": 122,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 61,
+          "n_typed": 34,
+          "n_any": 3,
+          "n_untyped": 24,
+          "n_methods": 12,
+          "n_method_params": 47,
+          "n_attrs": 2,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.base",
+      "names": [
+        "EVALUATOR_COMPUTE_RETURN_DOCSTRING",
+        "EVALUTOR_COMPUTE_START_DOCSTRING",
+        "Evaluator",
+        "SCIPY_AVAILABLE",
+        "TRANSFORMERS_AVAILABLE",
+        "logger"
+      ],
+      "n_typable": 64,
+      "n_typed": 34,
+      "n_any": 3,
+      "n_untyped": 27,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 12,
+      "n_method_params": 47,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/image_classification.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "ImageClassificationEvaluator",
+          "line_start": 49,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ImageClassificationEvaluator.__init__",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ImageClassificationEvaluator.predictions_processor",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ImageClassificationEvaluator.compute",
+              "line_start": 68,
+              "n_typed": 16,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 16,
+              "n_params": 15
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 21,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 18,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.image_classification",
+      "names": [
+        "ImageClassificationEvaluator",
+        "TASK_DOCUMENTATION"
+      ],
+      "n_typable": 21,
+      "n_typed": 16,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 18,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/question_answering.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TRANSFORMERS_AVAILABLE",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION",
+          "line_start": 42,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuestionAnsweringEvaluator",
+          "line_start": 78,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuestionAnsweringEvaluator.__init__",
+              "line_start": 93,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuestionAnsweringEvaluator.prepare_data",
+              "line_start": 96,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "QuestionAnsweringEvaluator.is_squad_v2_format",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QuestionAnsweringEvaluator.predictions_processor",
+              "line_start": 138,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "QuestionAnsweringEvaluator.compute",
+              "line_start": 147,
+              "n_typed": 17,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 17,
+              "n_params": 16
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 32,
+          "n_typed": 25,
+          "n_any": 2,
+          "n_untyped": 5,
+          "n_methods": 5,
+          "n_method_params": 27,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.question_answering",
+      "names": [
+        "QuestionAnsweringEvaluator",
+        "TASK_DOCUMENTATION",
+        "TRANSFORMERS_AVAILABLE",
+        "logger"
+      ],
+      "n_typable": 34,
+      "n_typed": 25,
+      "n_any": 2,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_params": 27,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/text2text_generation.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION_KWARGS",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEXT2TEXT_TASK_DOCSTRING_EXAMPLE",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SUMMARIZATION_TASK_DOCSTRING_EXAMPLE",
+          "line_start": 55,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRANSLATION_TASK_DOCSTRING_EXAMPLE",
+          "line_start": 72,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "SummarizationEvaluator",
+          "line_start": 152,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SummarizationEvaluator.__init__",
+              "line_start": 163,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SummarizationEvaluator.compute",
+              "line_start": 166,
+              "n_typed": 15,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 15,
+              "n_params": 14
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 15,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Text2TextGenerationEvaluator",
+          "line_start": 88,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Text2TextGenerationEvaluator.__init__",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Text2TextGenerationEvaluator.predictions_processor",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Text2TextGenerationEvaluator.compute",
+              "line_start": 105,
+              "n_typed": 15,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 15,
+              "n_params": 14
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 20,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 17,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TranslationEvaluator",
+          "line_start": 211,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TranslationEvaluator.__init__",
+              "line_start": 222,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TranslationEvaluator.compute",
+              "line_start": 225,
+              "n_typed": 15,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 15,
+              "n_params": 14
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 15,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.text2text_generation",
+      "names": [
+        "SUMMARIZATION_TASK_DOCSTRING_EXAMPLE",
+        "SummarizationEvaluator",
+        "TASK_DOCUMENTATION_KWARGS",
+        "TEXT2TEXT_TASK_DOCSTRING_EXAMPLE",
+        "TRANSLATION_TASK_DOCSTRING_EXAMPLE",
+        "Text2TextGenerationEvaluator",
+        "TranslationEvaluator"
+      ],
+      "n_typable": 54,
+      "n_typed": 45,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 47,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/text_classification.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextClassificationEvaluator",
+          "line_start": 51,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TextClassificationEvaluator.__init__",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TextClassificationEvaluator.prepare_data",
+              "line_start": 65,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "TextClassificationEvaluator.predictions_processor",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TextClassificationEvaluator.compute",
+              "line_start": 89,
+              "n_typed": 17,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 17,
+              "n_params": 16
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 27,
+          "n_typed": 21,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 4,
+          "n_method_params": 23,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.text_classification",
+      "names": [
+        "TASK_DOCUMENTATION",
+        "TextClassificationEvaluator"
+      ],
+      "n_typable": 27,
+      "n_typed": 21,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 23,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/text_generation.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION_KWARGS",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextGenerationEvaluator",
+          "line_start": 31,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TextGenerationEvaluator.predictions_processor",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TextGenerationEvaluator.__init__",
+              "line_start": 49,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TextGenerationEvaluator.prepare_data",
+              "line_start": 53,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 2,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TextGenerationEvaluator.predictions_prefix",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 9,
+          "n_methods": 3,
+          "n_method_params": 9,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.text_generation",
+      "names": [
+        "TASK_DOCUMENTATION_KWARGS",
+        "TextGenerationEvaluator"
+      ],
+      "n_typable": 13,
+      "n_typed": 3,
+      "n_any": 1,
+      "n_untyped": 9,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 9,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/token_classification.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TASK_DOCUMENTATION",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "TokenClassificationEvaluator",
+          "line_start": 90,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TokenClassificationEvaluator.__init__",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TokenClassificationEvaluator.predictions_processor",
+              "line_start": 105,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TokenClassificationEvaluator.words_to_offsets",
+              "line_start": 144,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TokenClassificationEvaluator.prepare_data",
+              "line_start": 167,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "TokenClassificationEvaluator.prepare_pipeline",
+              "line_start": 199,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "TokenClassificationEvaluator.compute",
+              "line_start": 218,
+              "n_typed": 15,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 15,
+              "n_params": 14
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 34,
+          "n_typed": 26,
+          "n_any": 2,
+          "n_untyped": 6,
+          "n_methods": 6,
+          "n_method_params": 28,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.token_classification",
+      "names": [
+        "TASK_DOCUMENTATION",
+        "TokenClassificationEvaluator"
+      ],
+      "n_typable": 34,
+      "n_typed": 26,
+      "n_any": 2,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 28,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/evaluator/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "choose_split",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "DatasetColumn",
+          "line_start": 4,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DatasetColumn.__init__",
+              "line_start": 7,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DatasetColumn.__len__",
+              "line_start": 11,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "DatasetColumn.__getitem__",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DatasetColumn.__iter__",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DatasetColumn.dataset",
+              "line_start": 8,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DatasetColumn.key",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 5,
+          "n_methods": 4,
+          "n_method_params": 1,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DatasetColumnPair",
+          "line_start": 41,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DatasetColumnPair.__init__",
+              "line_start": 44,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "DatasetColumnPair.__len__",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "DatasetColumnPair.__getitem__",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DatasetColumnPair.__iter__",
+              "line_start": 77,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DatasetColumnPair.dataset",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DatasetColumnPair.first_col",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DatasetColumnPair.second_col",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DatasetColumnPair.first_key",
+              "line_start": 65,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DatasetColumnPair.second_key",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 8,
+          "n_methods": 4,
+          "n_method_params": 4,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.evaluator.utils",
+      "names": [
+        "DatasetColumn",
+        "DatasetColumnPair",
+        "choose_split"
+      ],
+      "n_typable": 23,
+      "n_typed": 5,
+      "n_any": 2,
+      "n_untyped": 16,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 8,
+      "n_method_params": 5,
+      "n_classes": 2,
+      "n_attrs": 7,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/hub.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "push_to_hub",
+          "line_start": 14,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 16,
+          "n_params": 15
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.hub",
+      "names": [
+        "logger",
+        "push_to_hub"
+      ],
+      "n_typable": 17,
+      "n_typed": 15,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 15,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/info.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "ComparisonInfo",
+          "line_start": 134,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ComparisonInfo.module_type",
+              "line_start": 144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EvaluationModuleInfo",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EvaluationModuleInfo.__post_init__",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModuleInfo.write_to_directory",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModuleInfo.from_directory",
+              "line_start": 92,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModuleInfo.from_dict",
+              "line_start": 115,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.description",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.citation",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.features",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.inputs_description",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.homepage",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.license",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.codebase_urls",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.reference_urls",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.streamable",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.format",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.module_type",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.module_name",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.config_name",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModuleInfo.experiment_id",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 4,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MeasurementInfo",
+          "line_start": 147,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MeasurementInfo.module_type",
+              "line_start": 157,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MetricInfo",
+          "line_start": 121,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MetricInfo.module_type",
+              "line_start": 131,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.info",
+      "names": [
+        "ComparisonInfo",
+        "EvaluationModuleInfo",
+        "MeasurementInfo",
+        "MetricInfo",
+        "logger"
+      ],
+      "n_typable": 7,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 2,
+      "n_classes": 4,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/inspect.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "list_evaluation_modules",
+          "line_start": 35,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "inspect_evaluation_module",
+          "line_start": 105,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "SplitsNotFoundError",
+          "line_start": 31,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.inspect",
+      "names": [
+        "SplitsNotFoundError",
+        "inspect_evaluation_module",
+        "list_evaluation_modules",
+        "logger"
+      ],
+      "n_typable": 10,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 2,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/loading.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ALL_ALLOWED_EXTENSIONS",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "init_dynamic_modules",
+          "line_start": 56,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "import_main_class",
+          "line_start": 74,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "files_to_hash",
+          "line_start": 91,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "convert_github_url",
+          "line_start": 111,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "increase_load_count",
+          "line_start": 130,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_imports",
+          "line_start": 139,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "evaluation_module_factory",
+          "line_start": 559,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 689,
+          "n_typed": 12,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 13,
+          "n_params": 12
+        },
+        {
+          "kind": "class",
+          "name": "CachedEvaluationModuleFactory",
+          "line_start": 511,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CachedEvaluationModuleFactory.__init__",
+              "line_start": 517,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CachedEvaluationModuleFactory.get_module",
+              "line_start": 528,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CachedEvaluationModuleFactory.name",
+              "line_start": 523,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CachedEvaluationModuleFactory.module_type",
+              "line_start": 524,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CachedEvaluationModuleFactory.dynamic_modules_path",
+              "line_start": 525,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "HubEvaluationModuleFactory",
+          "line_start": 443,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HubEvaluationModuleFactory.__init__",
+              "line_start": 446,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "HubEvaluationModuleFactory.download_loading_script",
+              "line_start": 464,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "HubEvaluationModuleFactory.get_module",
+              "line_start": 471,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HubEvaluationModuleFactory.name",
+              "line_start": 455,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HubEvaluationModuleFactory.module_type",
+              "line_start": 456,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HubEvaluationModuleFactory.revision",
+              "line_start": 457,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HubEvaluationModuleFactory.download_config",
+              "line_start": 458,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HubEvaluationModuleFactory.download_mode",
+              "line_start": 459,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HubEvaluationModuleFactory.dynamic_modules_path",
+              "line_start": 460,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 3,
+          "n_method_params": 6,
+          "n_attrs": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ImportableModule",
+          "line_start": 389,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ImportableModule.module_path",
+              "line_start": 391,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ImportableModule.hash",
+              "line_start": 392,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LocalEvaluationModuleFactory",
+          "line_start": 400,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LocalEvaluationModuleFactory.__init__",
+              "line_start": 403,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "LocalEvaluationModuleFactory.get_module",
+              "line_start": 418,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LocalEvaluationModuleFactory.path",
+              "line_start": 411,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LocalEvaluationModuleFactory.module_type",
+              "line_start": 412,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LocalEvaluationModuleFactory.name",
+              "line_start": 413,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LocalEvaluationModuleFactory.download_config",
+              "line_start": 414,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LocalEvaluationModuleFactory.download_mode",
+              "line_start": 415,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LocalEvaluationModuleFactory.dynamic_modules_path",
+              "line_start": 416,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 6,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.loading",
+      "names": [
+        "ALL_ALLOWED_EXTENSIONS",
+        "CachedEvaluationModuleFactory",
+        "HubEvaluationModuleFactory",
+        "ImportableModule",
+        "LocalEvaluationModuleFactory",
+        "convert_github_url",
+        "evaluation_module_factory",
+        "files_to_hash",
+        "get_imports",
+        "import_main_class",
+        "increase_load_count",
+        "init_dynamic_modules",
+        "load",
+        "logger"
+      ],
+      "n_typable": 71,
+      "n_typed": 49,
+      "n_any": 0,
+      "n_untyped": 22,
+      "n_functions": 8,
+      "n_function_params": 28,
+      "n_methods": 7,
+      "n_method_params": 12,
+      "n_classes": 4,
+      "n_attrs": 16,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/module.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 41,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "summarize_if_long_list",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "combine",
+          "line_start": 1008,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "CombinedEvaluations",
+          "line_start": 872,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CombinedEvaluations.__init__",
+              "line_start": 873,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CombinedEvaluations.add",
+              "line_start": 895,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CombinedEvaluations.add_batch",
+              "line_start": 920,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CombinedEvaluations.compute",
+              "line_start": 944,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CombinedEvaluations.evaluation_module_names",
+              "line_start": 876,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CombinedEvaluations.evaluation_modules",
+              "line_start": 878,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CombinedEvaluations.force_prefix",
+              "line_start": 893,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 17,
+          "n_methods": 4,
+          "n_method_params": 10,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Comparison",
+          "line_start": 812,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EvaluationModule",
+          "line_start": 149,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EvaluationModule.__init__",
+              "line_start": 180,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.__len__",
+              "line_start": 253,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.__repr__",
+              "line_start": 259,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.compute",
+              "line_start": 415,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.add_batch",
+              "line_start": 488,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.add",
+              "line_start": 548,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.download_and_prepare",
+              "line_start": 677,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationModule.__del__",
+              "line_start": 723,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.config_name",
+              "line_start": 195,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.num_process",
+              "line_start": 210,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.process_id",
+              "line_start": 211,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.max_concurrent_cache_files",
+              "line_start": 212,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.keep_in_memory",
+              "line_start": 214,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.data_dir",
+              "line_start": 216,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.seed",
+              "line_start": 219,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.timeout",
+              "line_start": 222,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.selected_feature_format",
+              "line_start": 234,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.buf_writer",
+              "line_start": 235,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.writer",
+              "line_start": 236,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.writer_batch_size",
+              "line_start": 237,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.data",
+              "line_start": 238,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.cache_file_name",
+              "line_start": 242,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.filelock",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.rendez_vous_lock",
+              "line_start": 244,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.file_paths",
+              "line_start": 247,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationModule.filelocks",
+              "line_start": 248,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 44,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 29,
+          "n_methods": 8,
+          "n_method_params": 18,
+          "n_attrs": 18,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EvaluationModuleInfoMixin",
+          "line_start": 83,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EvaluationModuleInfoMixin.__init__",
+              "line_start": 88,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.info",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.name",
+              "line_start": 96,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.experiment_id",
+              "line_start": 100,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.description",
+              "line_start": 104,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.citation",
+              "line_start": 108,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.features",
+              "line_start": 112,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.inputs_description",
+              "line_start": 116,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.homepage",
+              "line_start": 120,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.license",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.codebase_urls",
+              "line_start": 128,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.reference_urls",
+              "line_start": 132,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.streamable",
+              "line_start": 136,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.format",
+              "line_start": 140,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "EvaluationModuleInfoMixin.module_type",
+              "line_start": 144,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 15,
+          "n_typed": 13,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 14
+        },
+        {
+          "kind": "class",
+          "name": "FileFreeLock",
+          "line_start": 44,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FileFreeLock.__init__",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "FileFreeLock.is_locked",
+              "line_start": 66,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FileFreeLock.filelock",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "Measurement",
+          "line_start": 842,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Metric",
+          "line_start": 782,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.module",
+      "names": [
+        "CombinedEvaluations",
+        "Comparison",
+        "EvaluationModule",
+        "EvaluationModuleInfoMixin",
+        "FileFreeLock",
+        "Measurement",
+        "Metric",
+        "combine",
+        "logger",
+        "summarize_if_long_list"
+      ],
+      "n_typable": 87,
+      "n_typed": 29,
+      "n_any": 1,
+      "n_untyped": 57,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 14,
+      "n_method_params": 30,
+      "n_classes": 7,
+      "n_attrs": 23,
+      "n_properties": 15,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/naming.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "camelcase_to_snakecase",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "snakecase_to_camelcase",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "filename_prefix_for_name",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "filename_prefix_for_split",
+          "line_start": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "filepattern_for_dataset_split",
+          "line_start": 60,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "filename_for_dataset_split",
+          "line_start": 68,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "filepath_for_dataset_split",
+          "line_start": 75,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.naming",
+      "names": [
+        "camelcase_to_snakecase",
+        "filename_for_dataset_split",
+        "filename_prefix_for_name",
+        "filename_prefix_for_split",
+        "filepath_for_dataset_split",
+        "filepattern_for_dataset_split",
+        "snakecase_to_camelcase"
+      ],
+      "n_typable": 23,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 23,
+      "n_functions": 7,
+      "n_function_params": 16,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/saving.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.saving",
+      "names": [
+        "save"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/utils/file_utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 34,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "INCOMPLETE_SUFFIX",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "T",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "init_hf_modules",
+          "line_start": 41,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_remote_url",
+          "line_start": 60,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_local_path",
+          "line_start": 65,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_relative_path",
+          "line_start": 72,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "relative_to_absolute_path",
+          "line_start": 76,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "hf_bucket_url",
+          "line_start": 82,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "head_hf_s3",
+          "line_start": 90,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "http_head",
+          "line_start": 373,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "hf_hub_url",
+          "line_start": 99,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "url_or_path_join",
+          "line_start": 104,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "url_or_path_parent",
+          "line_start": 111,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "hash_url_to_filename",
+          "line_start": 118,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "cached_path",
+          "line_start": 142,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_from_cache",
+          "line_start": 399,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 13,
+          "n_params": 12
+        },
+        {
+          "kind": "function",
+          "name": "get_datasets_user_agent",
+          "line_start": 209,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_authentication_headers_for_url",
+          "line_start": 225,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "ftp_head",
+          "line_start": 319,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "ftp_get",
+          "line_start": 329,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "http_get",
+          "line_start": 339,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_typable": 10,
+          "n_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "request_etag",
+          "line_start": 391,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "add_start_docstrings",
+          "line_start": 581,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "add_end_docstrings",
+          "line_start": 589,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "estimate_dataset_size",
+          "line_start": 597,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "readline",
+          "line_start": 601,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "OfflineModeIsEnabled",
+          "line_start": 242,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.utils.file_utils",
+      "names": [
+        "INCOMPLETE_SUFFIX",
+        "OfflineModeIsEnabled",
+        "T",
+        "add_end_docstrings",
+        "add_start_docstrings",
+        "cached_path",
+        "estimate_dataset_size",
+        "ftp_get",
+        "ftp_head",
+        "get_authentication_headers_for_url",
+        "get_datasets_user_agent",
+        "get_from_cache",
+        "hash_url_to_filename",
+        "head_hf_s3",
+        "hf_bucket_url",
+        "hf_hub_url",
+        "http_get",
+        "http_head",
+        "init_hf_modules",
+        "is_local_path",
+        "is_relative_path",
+        "is_remote_url",
+        "logger",
+        "readline",
+        "relative_to_absolute_path",
+        "request_etag",
+        "url_or_path_join",
+        "url_or_path_parent"
+      ],
+      "n_typable": 92,
+      "n_typed": 37,
+      "n_any": 0,
+      "n_untyped": 55,
+      "n_functions": 24,
+      "n_function_params": 67,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/utils/gradio.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "REGEX_YAML_BLOCK",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "infer_gradio_input_types",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "json_to_string_type",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "parse_readme",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "parse_gradio_data",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_test_cases",
+          "line_start": 71,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "launch_gradio_widget",
+          "line_start": 92,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.utils.gradio",
+      "names": [
+        "REGEX_YAML_BLOCK",
+        "infer_gradio_input_types",
+        "json_to_string_type",
+        "launch_gradio_widget",
+        "logger",
+        "parse_gradio_data",
+        "parse_readme",
+        "parse_test_cases"
+      ],
+      "n_typable": 17,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 17,
+      "n_functions": 6,
+      "n_function_params": 9,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/utils/logging.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "log_levels",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "tqdm",
+          "line_start": 216,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_logger",
+          "line_start": 78,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_verbosity",
+          "line_start": 85,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_verbosity",
+          "line_start": 104,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "set_verbosity_info",
+          "line_start": 113,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_verbosity_warning",
+          "line_start": 123,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_verbosity_debug",
+          "line_start": 133,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_verbosity_error",
+          "line_start": 143,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "disable_propagation",
+          "line_start": 153,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "enable_propagation",
+          "line_start": 160,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "is_progress_bar_enabled",
+          "line_start": 219,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "enable_progress_bar",
+          "line_start": 225,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "disable_progress_bar",
+          "line_start": 231,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "EmptyTqdm",
+          "line_start": 172,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmptyTqdm.__init__",
+              "line_start": 175,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EmptyTqdm.__iter__",
+              "line_start": 178,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EmptyTqdm.__getattr__",
+              "line_start": 181,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EmptyTqdm.__enter__",
+              "line_start": 189,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "EmptyTqdm.__exit__",
+              "line_start": 192,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 5,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.utils.logging",
+      "names": [
+        "EmptyTqdm",
+        "disable_progress_bar",
+        "disable_propagation",
+        "enable_progress_bar",
+        "enable_propagation",
+        "get_logger",
+        "get_verbosity",
+        "is_progress_bar_enabled",
+        "log_levels",
+        "set_verbosity",
+        "set_verbosity_debug",
+        "set_verbosity_error",
+        "set_verbosity_info",
+        "set_verbosity_warning",
+        "tqdm"
+      ],
+      "n_typable": 21,
+      "n_typed": 8,
+      "n_any": 0,
+      "n_untyped": 13,
+      "n_functions": 12,
+      "n_function_params": 2,
+      "n_methods": 5,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evaluate/visualization.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "radar_plot",
+          "line_start": 138,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "ComplexRadar",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ComplexRadar.__init__",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "ComplexRadar.plot",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ComplexRadar.use_legend",
+              "line_start": 133,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ComplexRadar.format_cfg",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ComplexRadar.angle",
+              "line_start": 69,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ComplexRadar.ranges",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ComplexRadar.ax",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ComplexRadar.ax1",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ComplexRadar.plot_counter",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 19,
+          "n_methods": 3,
+          "n_method_params": 10,
+          "n_attrs": 6,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evaluate.visualization",
+      "names": [
+        "ComplexRadar",
+        "radar_plot"
+      ],
+      "n_typable": 25,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 25,
+      "n_functions": 1,
+      "n_function_params": 5,
+      "n_methods": 3,
+      "n_method_params": 10,
+      "n_classes": 1,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 26,
+  "n_typable": 734,
+  "n_typed": 361,
+  "n_any": 11,
+  "n_untyped": 362,
+  "n_functions": 70,
+  "n_function_params": 159,
+  "n_methods": 93,
+  "n_method_params": 297,
+  "n_classes": 34,
+  "n_attrs": 100,
+  "n_properties": 15,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}

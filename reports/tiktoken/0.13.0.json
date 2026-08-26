@@ -1,0 +1,620 @@
+{
+  "schema_version": "1.0",
+  "package": "tiktoken",
+  "version": "0.13.0",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2026-05-15T04:51:27.153717Z",
+    "requires_python": ">=3.9",
+    "size": 38986,
+    "sha256": "c9435714c3a84c2319499de9a300c0e604449dd0799ff246458b3bb6a7f433c1"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "tiktoken"
+    ],
+    "Version": [
+      "0.13.0"
+    ],
+    "Summary": [
+      "tiktoken is a fast BPE tokeniser for use with OpenAI's models"
+    ],
+    "Author": [
+      "Shantanu Jain"
+    ],
+    "Author-email": [
+      "shantanu@openai.com"
+    ],
+    "License": [
+      "MIT License\n        \n        Copyright (c) 2022 OpenAI, Shantanu Jain\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\n        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\n        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\n        SOFTWARE.\n        "
+    ],
+    "Project-URL": [
+      "homepage, https://github.com/openai/tiktoken",
+      "repository, https://github.com/openai/tiktoken",
+      "changelog, https://github.com/openai/tiktoken/blob/main/CHANGELOG.md"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "regex",
+      "requests",
+      "blobfile>=3; extra == \"blobfile\""
+    ],
+    "Provides-Extra": [
+      "blobfile"
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "tiktoken/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tiktoken",
+      "names": [
+        "__version__"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tiktoken/core.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "raise_disallowed_special_token",
+          "line_start": 441,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Encoding",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Encoding.__init__",
+              "line_start": 17,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.__repr__",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode_ordinary",
+              "line_start": 66,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode",
+              "line_start": 82,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode_to_numpy",
+              "line_start": 138,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode_ordinary_batch",
+              "line_start": 164,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode_batch",
+              "line_start": 178,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode_with_unstable",
+              "line_start": 208,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.encode_single_token",
+              "line_start": 245,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode_bytes",
+              "line_start": 265,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode",
+              "line_start": 275,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode_single_token_bytes",
+              "line_start": 289,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode_tokens_bytes",
+              "line_start": 303,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode_with_offsets",
+              "line_start": 312,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode_batch",
+              "line_start": 337,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.decode_bytes_batch",
+              "line_start": 345,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.token_byte_values",
+              "line_start": 356,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.is_special_token",
+              "line_start": 368,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.__getstate__",
+              "line_start": 409,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.__setstate__",
+              "line_start": 422,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Encoding.eot_token",
+              "line_start": 360,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.special_tokens_set",
+              "line_start": 364,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.n_vocab",
+              "line_start": 372,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Encoding.name",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Encoding.max_token_value",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 58,
+          "n_typed": 55,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_methods": 20,
+          "n_method_params": 33,
+          "n_attrs": 2,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "tiktoken.core",
+      "names": [
+        "Encoding",
+        "raise_disallowed_special_token"
+      ],
+      "n_typable": 60,
+      "n_typed": 57,
+      "n_any": 1,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 20,
+      "n_method_params": 33,
+      "n_classes": 1,
+      "n_attrs": 2,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tiktoken/load.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "read_file",
+          "line_start": 8,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "check_hash",
+          "line_start": 30,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "read_file_cached",
+          "line_start": 35,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "data_gym_to_mergeable_bpe_ranks",
+          "line_start": 89,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dump_tiktoken_bpe",
+          "line_start": 147,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "load_tiktoken_bpe",
+          "line_start": 159,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "tiktoken.load",
+      "names": [
+        "check_hash",
+        "data_gym_to_mergeable_bpe_ranks",
+        "dump_tiktoken_bpe",
+        "load_tiktoken_bpe",
+        "read_file",
+        "read_file_cached"
+      ],
+      "n_typable": 20,
+      "n_typed": 20,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 6,
+      "n_function_params": 14,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tiktoken/model.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MODEL_PREFIX_TO_ENCODING",
+          "line_start": 7,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "MODEL_TO_ENCODING",
+          "line_start": 29,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "encoding_name_for_model",
+          "line_start": 88,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "encoding_for_model",
+          "line_start": 113,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "tiktoken.model",
+      "names": [
+        "MODEL_PREFIX_TO_ENCODING",
+        "MODEL_TO_ENCODING",
+        "encoding_for_model",
+        "encoding_name_for_model"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tiktoken/registry.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "ENCODINGS",
+          "line_start": 15,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ENCODING_CONSTRUCTORS",
+          "line_start": 16,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_encoding",
+          "line_start": 63,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "list_encoding_names",
+          "line_start": 91,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tiktoken.registry",
+      "names": [
+        "ENCODINGS",
+        "ENCODING_CONSTRUCTORS",
+        "get_encoding",
+        "list_encoding_names"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 5,
+  "n_typable": 91,
+  "n_typed": 88,
+  "n_any": 1,
+  "n_untyped": 2,
+  "n_functions": 11,
+  "n_function_params": 18,
+  "n_methods": 20,
+  "n_method_params": 33,
+  "n_classes": 1,
+  "n_attrs": 6,
+  "n_properties": 3,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}

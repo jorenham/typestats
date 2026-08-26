@@ -1,0 +1,4800 @@
+{
+  "schema_version": "1.0",
+  "package": "httpx",
+  "version": "0.28.1",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2024-12-06T15:37:23.222462Z",
+    "requires_python": ">=3.8",
+    "size": 141406,
+    "sha256": "75e98c5f16b0f35b567856f597f06ff2270a374470a5c2392242528e3e3e42fc"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.3"
+    ],
+    "Name": [
+      "httpx"
+    ],
+    "Version": [
+      "0.28.1"
+    ],
+    "Summary": [
+      "The next generation HTTP client."
+    ],
+    "Project-URL": [
+      "Changelog, https://github.com/encode/httpx/blob/master/CHANGELOG.md",
+      "Documentation, https://www.python-httpx.org",
+      "Homepage, https://github.com/encode/httpx",
+      "Source, https://github.com/encode/httpx"
+    ],
+    "Author-email": [
+      "Tom Christie <tom@tomchristie.com>"
+    ],
+    "License": [
+      "BSD-3-Clause"
+    ],
+    "Classifier": [
+      "Development Status :: 4 - Beta",
+      "Environment :: Web Environment",
+      "Framework :: AsyncIO",
+      "Framework :: Trio",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: BSD License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.8",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Topic :: Internet :: WWW/HTTP"
+    ],
+    "Requires-Python": [
+      ">=3.8"
+    ],
+    "Requires-Dist": [
+      "anyio",
+      "certifi",
+      "httpcore==1.*",
+      "idna",
+      "brotli; (platform_python_implementation == 'CPython') and extra == 'brotli'",
+      "brotlicffi; (platform_python_implementation != 'CPython') and extra == 'brotli'",
+      "click==8.*; extra == 'cli'",
+      "pygments==2.*; extra == 'cli'",
+      "rich<14,>=10; extra == 'cli'",
+      "h2<5,>=3; extra == 'http2'",
+      "socksio==1.*; extra == 'socks'",
+      "zstandard>=0.18.0; extra == 'zstd'"
+    ],
+    "Provides-Extra": [
+      "brotli",
+      "cli",
+      "http2",
+      "socks",
+      "zstd"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "httpx/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 18,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "httpx",
+      "names": [
+        "main"
+      ],
+      "n_typable": 1,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "httpx/__version__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__title__",
+          "line_start": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "__description__",
+          "line_start": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx.__version__",
+      "names": [
+        "__description__",
+        "__title__",
+        "__version__"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_api.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "request",
+          "line_start": 39,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 16,
+          "n_params": 15
+        },
+        {
+          "kind": "function",
+          "name": "stream",
+          "line_start": 123,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 16,
+          "n_params": 15
+        },
+        {
+          "kind": "function",
+          "name": "get",
+          "line_start": 174,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "options",
+          "line_start": 210,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "head",
+          "line_start": 246,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "post",
+          "line_start": 282,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 15,
+          "n_params": 14
+        },
+        {
+          "kind": "function",
+          "name": "put",
+          "line_start": 323,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 15,
+          "n_params": 14
+        },
+        {
+          "kind": "function",
+          "name": "patch",
+          "line_start": 364,
+          "n_typed": 15,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 15,
+          "n_params": 14
+        },
+        {
+          "kind": "function",
+          "name": "delete",
+          "line_start": 405,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 11,
+          "n_params": 10
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._api",
+      "names": [
+        "delete",
+        "get",
+        "head",
+        "options",
+        "patch",
+        "post",
+        "put",
+        "request",
+        "stream"
+      ],
+      "n_typable": 121,
+      "n_typed": 121,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 9,
+      "n_function_params": 112,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_auth.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Auth",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Auth.auth_flow",
+              "line_start": 38,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Auth.sync_auth_flow",
+              "line_start": 62,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Auth.async_auth_flow",
+              "line_start": 87,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "BasicAuth",
+          "line_start": 126,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BasicAuth.__init__",
+              "line_start": 132,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BasicAuth.auth_flow",
+              "line_start": 135,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DigestAuth",
+          "line_start": 175,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DigestAuth.__init__",
+              "line_start": 187,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "DigestAuth.auth_flow",
+              "line_start": 193,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NetRCAuth",
+          "line_start": 145,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NetRCAuth.__init__",
+              "line_start": 150,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NetRCAuth.auth_flow",
+              "line_start": 157,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._auth",
+      "names": [
+        "Auth",
+        "BasicAuth",
+        "DigestAuth",
+        "NetRCAuth"
+      ],
+      "n_typable": 17,
+      "n_typed": 17,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 9,
+      "n_method_params": 8,
+      "n_classes": 4,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_client.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "USE_CLIENT_DEFAULT",
+          "line_start": 114,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "AsyncClient",
+          "line_start": 1307,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncClient.__init__",
+              "line_start": 1353,
+              "n_typed": 19,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 19,
+              "n_params": 18
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.request",
+              "line_start": 1485,
+              "n_typed": 14,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 14,
+              "n_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.stream",
+              "line_start": 1542,
+              "n_typed": 14,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 14,
+              "n_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.send",
+              "line_start": 1594,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.get",
+              "line_start": 1751,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.options",
+              "line_start": 1780,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.head",
+              "line_start": 1809,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.post",
+              "line_start": 1838,
+              "n_typed": 13,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 13,
+              "n_params": 12
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.put",
+              "line_start": 1875,
+              "n_typed": 13,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 13,
+              "n_params": 12
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.patch",
+              "line_start": 1912,
+              "n_typed": 13,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 13,
+              "n_params": 12
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.delete",
+              "line_start": 1949,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.aclose",
+              "line_start": 1978,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.__aenter__",
+              "line_start": 1990,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncClient.__aexit__",
+              "line_start": 2008,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 130,
+          "n_typed": 130,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 14,
+          "n_method_params": 116,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Client",
+          "line_start": 594,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Client.__init__",
+              "line_start": 639,
+              "n_typed": 19,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 19,
+              "n_params": 18
+            },
+            {
+              "kind": "function",
+              "name": "Client.request",
+              "line_start": 771,
+              "n_typed": 14,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 14,
+              "n_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "Client.stream",
+              "line_start": 827,
+              "n_typed": 14,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 14,
+              "n_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "Client.send",
+              "line_start": 879,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Client.get",
+              "line_start": 1036,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Client.options",
+              "line_start": 1065,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Client.head",
+              "line_start": 1094,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Client.post",
+              "line_start": 1123,
+              "n_typed": 13,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 13,
+              "n_params": 12
+            },
+            {
+              "kind": "function",
+              "name": "Client.put",
+              "line_start": 1160,
+              "n_typed": 13,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 13,
+              "n_params": 12
+            },
+            {
+              "kind": "function",
+              "name": "Client.patch",
+              "line_start": 1197,
+              "n_typed": 13,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 13,
+              "n_params": 12
+            },
+            {
+              "kind": "function",
+              "name": "Client.delete",
+              "line_start": 1234,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Client.close",
+              "line_start": 1263,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Client.__enter__",
+              "line_start": 1275,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Client.__exit__",
+              "line_start": 1293,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 130,
+          "n_typed": 130,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 14,
+          "n_method_params": 116,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._client",
+      "names": [
+        "AsyncClient",
+        "Client",
+        "USE_CLIENT_DEFAULT"
+      ],
+      "n_typable": 261,
+      "n_typed": 260,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 28,
+      "n_method_params": 232,
+      "n_classes": 2,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_config.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "create_ssl_context",
+          "line_start": 23,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "Limits",
+          "line_start": 159,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Limits.__init__",
+              "line_start": 173,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Limits.__eq__",
+              "line_start": 184,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Limits.__repr__",
+              "line_start": 192,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Limits.max_connections",
+              "line_start": 180,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Limits.max_keepalive_connections",
+              "line_start": 181,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Limits.keepalive_expiry",
+              "line_start": 182,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Proxy",
+          "line_start": 201,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Proxy.__init__",
+              "line_start": 202,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Proxy.__repr__",
+              "line_start": 235,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Proxy.raw_auth",
+              "line_start": 226,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Proxy.url",
+              "line_start": 221,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Proxy.auth",
+              "line_start": 222,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Proxy.headers",
+              "line_start": 223,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Proxy.ssl_context",
+              "line_start": 224,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 4,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "Timeout",
+          "line_start": 72,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Timeout.__init__",
+              "line_start": 86,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.as_dict",
+              "line_start": 132,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.__eq__",
+              "line_start": 140,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Timeout.__repr__",
+              "line_start": 149,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Timeout.connect",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Timeout.read",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Timeout.write",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Timeout.pool",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 7,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 4,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._config",
+      "names": [
+        "Limits",
+        "Proxy",
+        "Timeout",
+        "create_ssl_context"
+      ],
+      "n_typable": 33,
+      "n_typed": 20,
+      "n_any": 2,
+      "n_untyped": 11,
+      "n_functions": 1,
+      "n_function_params": 3,
+      "n_methods": 9,
+      "n_method_params": 8,
+      "n_classes": 3,
+      "n_attrs": 11,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_content.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ByteStream",
+          "line_start": 31,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteStream.__init__",
+              "line_start": 32,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ByteStream.__iter__",
+              "line_start": 35,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ByteStream.__aiter__",
+              "line_start": 38,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "httpx._content",
+      "names": [
+        "ByteStream"
+      ],
+      "n_typable": 3,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "httpx/_exceptions.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CloseError",
+          "line_start": 193,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ConnectError",
+          "line_start": 187,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ConnectTimeout",
+          "line_start": 140,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CookieConflict",
+          "line_start": 280,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CookieConflict.__init__",
+              "line_start": 287,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DecodingError",
+          "line_start": 243,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "HTTPError",
+          "line_start": 74,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPError.__init__",
+              "line_start": 92,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "HTTPError.request",
+              "line_start": 96,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "HTTPStatusError",
+          "line_start": 258,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPStatusError.__init__",
+              "line_start": 265,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HTTPStatusError.request",
+              "line_start": 267,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HTTPStatusError.response",
+              "line_start": 268,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "InvalidURL",
+          "line_start": 271,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InvalidURL.__init__",
+              "line_start": 276,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LocalProtocolError",
+          "line_start": 222,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NetworkError",
+          "line_start": 167,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PoolTimeout",
+          "line_start": 158,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ProtocolError",
+          "line_start": 216,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ProxyError",
+          "line_start": 202,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ReadError",
+          "line_start": 175,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ReadTimeout",
+          "line_start": 146,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RemoteProtocolError",
+          "line_start": 232,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RequestError",
+          "line_start": 107,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RequestError.__init__",
+              "line_start": 112,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RequestNotRead",
+          "line_start": 353,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RequestNotRead.__init__",
+              "line_start": 358,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ResponseNotRead",
+          "line_start": 340,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ResponseNotRead.__init__",
+              "line_start": 345,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StreamClosed",
+          "line_start": 327,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamClosed.__init__",
+              "line_start": 333,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StreamConsumed",
+          "line_start": 309,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamConsumed.__init__",
+              "line_start": 315,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StreamError",
+          "line_start": 297,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamError.__init__",
+              "line_start": 305,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TimeoutException",
+          "line_start": 132,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TooManyRedirects",
+          "line_start": 249,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TransportError",
+          "line_start": 123,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UnsupportedProtocol",
+          "line_start": 208,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WriteError",
+          "line_start": 181,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WriteTimeout",
+          "line_start": 152,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._exceptions",
+      "names": [
+        "CloseError",
+        "ConnectError",
+        "ConnectTimeout",
+        "CookieConflict",
+        "DecodingError",
+        "HTTPError",
+        "HTTPStatusError",
+        "InvalidURL",
+        "LocalProtocolError",
+        "NetworkError",
+        "PoolTimeout",
+        "ProtocolError",
+        "ProxyError",
+        "ReadError",
+        "ReadTimeout",
+        "RemoteProtocolError",
+        "RequestError",
+        "RequestNotRead",
+        "ResponseNotRead",
+        "StreamClosed",
+        "StreamConsumed",
+        "StreamError",
+        "TimeoutException",
+        "TooManyRedirects",
+        "TransportError",
+        "UnsupportedProtocol",
+        "WriteError",
+        "WriteTimeout"
+      ],
+      "n_typable": 13,
+      "n_typed": 11,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 10,
+      "n_method_params": -1,
+      "n_classes": 28,
+      "n_attrs": 2,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_models.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Cookies",
+          "line_start": 1079,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Cookies.__init__",
+              "line_start": 1084,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.extract_cookies",
+              "line_start": 1101,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.set_cookie_header",
+              "line_start": 1110,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.set",
+              "line_start": 1117,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.get",
+              "line_start": 1143,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.delete",
+              "line_start": 1168,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.clear",
+              "line_start": 1192,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.update",
+              "line_start": 1205,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__setitem__",
+              "line_start": 1210,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__getitem__",
+              "line_start": 1213,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__delitem__",
+              "line_start": 1219,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__len__",
+              "line_start": 1222,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__iter__",
+              "line_start": 1225,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__bool__",
+              "line_start": 1228,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Cookies.__repr__",
+              "line_start": 1233,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Cookies.jar",
+              "line_start": 1086,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 31,
+          "n_typed": 30,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 15,
+          "n_method_params": 15,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Headers",
+          "line_start": 139,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Headers.__init__",
+              "line_start": 144,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Headers.keys",
+              "line_start": 202,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.values",
+              "line_start": 205,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.items",
+              "line_start": 216,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.multi_items",
+              "line_start": 231,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.get",
+              "line_start": 242,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Headers.get_list",
+              "line_start": 252,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Headers.update",
+              "line_start": 274,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Headers.copy",
+              "line_start": 281,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__getitem__",
+              "line_start": 284,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__setitem__",
+              "line_start": 304,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__delitem__",
+              "line_start": 328,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__contains__",
+              "line_start": 346,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__iter__",
+              "line_start": 350,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__len__",
+              "line_start": 353,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__eq__",
+              "line_start": 356,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Headers.__repr__",
+              "line_start": 366,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Headers.encoding",
+              "line_start": 166,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Headers.raw",
+              "line_start": 195,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 27,
+          "n_typed": 23,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_methods": 17,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "Request",
+          "line_start": 382,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Request.__init__",
+              "line_start": 383,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "Request.read",
+              "line_start": 468,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Request.aread",
+              "line_start": 482,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Request.__repr__",
+              "line_start": 496,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Request.__getstate__",
+              "line_start": 501,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Request.__setstate__",
+              "line_start": 508,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Request.content",
+              "line_start": 462,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Request.method",
+              "line_start": 398,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Request.url",
+              "line_start": 399,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Request.headers",
+              "line_start": 400,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Request.extensions",
+              "line_start": 401,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Request.stream",
+              "line_start": 420,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 22,
+          "n_typed": 17,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 6,
+          "n_method_params": 10,
+          "n_attrs": 5,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "Response",
+          "line_start": 515,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Response.__init__",
+              "line_start": 516,
+              "n_typed": 10,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "Response.raise_for_status",
+              "line_start": 794,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.json",
+              "line_start": 831,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.__repr__",
+              "line_start": 859,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Response.__getstate__",
+              "line_start": 862,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.__setstate__",
+              "line_start": 869,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.read",
+              "line_start": 876,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.iter_bytes",
+              "line_start": 884,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.iter_text",
+              "line_start": 907,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.iter_lines",
+              "line_start": 926,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.iter_raw",
+              "line_start": 935,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.close",
+              "line_start": 961,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.aread",
+              "line_start": 974,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.aiter_bytes",
+              "line_start": 982,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.aiter_text",
+              "line_start": 1007,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.aiter_lines",
+              "line_start": 1028,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Response.aiter_raw",
+              "line_start": 1037,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Response.aclose",
+              "line_start": 1065,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Response.elapsed",
+              "line_start": 578,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Response.request",
+              "line_start": 595,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Response.http_version",
+              "line_start": 610,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.reason_phrase",
+              "line_start": 619,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.url",
+              "line_start": 628,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.content",
+              "line_start": 635,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.text",
+              "line_start": 641,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.encoding",
+              "line_start": 652,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "Response.charset_encoding",
+              "line_start": 688,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.is_informational",
+              "line_start": 724,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.is_success",
+              "line_start": 731,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.is_redirect",
+              "line_start": 738,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.is_client_error",
+              "line_start": 750,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.is_server_error",
+              "line_start": 757,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.is_error",
+              "line_start": 764,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.has_redirect_location",
+              "line_start": 771,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.cookies",
+              "line_start": 834,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.links",
+              "line_start": 841,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Response.num_bytes_downloaded",
+              "line_start": 855,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Response.status_code",
+              "line_start": 531,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.headers",
+              "line_start": 532,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.next_request",
+              "line_start": 538,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.extensions",
+              "line_start": 540,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.history",
+              "line_start": 541,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.is_closed",
+              "line_start": 543,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.is_stream_consumed",
+              "line_start": 544,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.default_encoding",
+              "line_start": 546,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Response.stream",
+              "line_start": 551,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 66,
+          "n_typed": 55,
+          "n_any": 3,
+          "n_untyped": 8,
+          "n_methods": 18,
+          "n_method_params": 17,
+          "n_attrs": 9,
+          "n_properties": 19
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "httpx._models",
+      "names": [
+        "Cookies",
+        "Headers",
+        "Request",
+        "Response"
+      ],
+      "n_typable": 146,
+      "n_typed": 125,
+      "n_any": 7,
+      "n_untyped": 14,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 56,
+      "n_method_params": 49,
+      "n_classes": 4,
+      "n_attrs": 15,
+      "n_properties": 22,
+      "n_type_ignores": 5
+    },
+    {
+      "path": "httpx/_status_codes.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "codes",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "codes.__new__",
+              "line_start": 28,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "codes.__str__",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "codes.get_reason_phrase",
+              "line_start": 38,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "codes.is_informational",
+              "line_start": 45,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "codes.is_success",
+              "line_start": 52,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "codes.is_redirect",
+              "line_start": 59,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "codes.is_client_error",
+              "line_start": 66,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "codes.is_server_error",
+              "line_start": 73,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "codes.is_error",
+              "line_start": 80,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "codes.CONTINUE",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.SWITCHING_PROTOCOLS",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PROCESSING",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.EARLY_HINTS",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.OK",
+              "line_start": 94,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.CREATED",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.ACCEPTED",
+              "line_start": 96,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NON_AUTHORITATIVE_INFORMATION",
+              "line_start": 97,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NO_CONTENT",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.RESET_CONTENT",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PARTIAL_CONTENT",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.MULTI_STATUS",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.ALREADY_REPORTED",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.IM_USED",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.MULTIPLE_CHOICES",
+              "line_start": 106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.MOVED_PERMANENTLY",
+              "line_start": 107,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.FOUND",
+              "line_start": 108,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.SEE_OTHER",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NOT_MODIFIED",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.USE_PROXY",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.TEMPORARY_REDIRECT",
+              "line_start": 112,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PERMANENT_REDIRECT",
+              "line_start": 113,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.BAD_REQUEST",
+              "line_start": 116,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.UNAUTHORIZED",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PAYMENT_REQUIRED",
+              "line_start": 118,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.FORBIDDEN",
+              "line_start": 119,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NOT_FOUND",
+              "line_start": 120,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.METHOD_NOT_ALLOWED",
+              "line_start": 121,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NOT_ACCEPTABLE",
+              "line_start": 122,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PROXY_AUTHENTICATION_REQUIRED",
+              "line_start": 123,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.REQUEST_TIMEOUT",
+              "line_start": 124,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.CONFLICT",
+              "line_start": 125,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.GONE",
+              "line_start": 126,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.LENGTH_REQUIRED",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PRECONDITION_FAILED",
+              "line_start": 128,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.REQUEST_ENTITY_TOO_LARGE",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.REQUEST_URI_TOO_LONG",
+              "line_start": 130,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.UNSUPPORTED_MEDIA_TYPE",
+              "line_start": 131,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.REQUESTED_RANGE_NOT_SATISFIABLE",
+              "line_start": 132,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.EXPECTATION_FAILED",
+              "line_start": 133,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.IM_A_TEAPOT",
+              "line_start": 134,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.MISDIRECTED_REQUEST",
+              "line_start": 135,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.UNPROCESSABLE_ENTITY",
+              "line_start": 136,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.LOCKED",
+              "line_start": 137,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.FAILED_DEPENDENCY",
+              "line_start": 138,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.TOO_EARLY",
+              "line_start": 139,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.UPGRADE_REQUIRED",
+              "line_start": 140,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.PRECONDITION_REQUIRED",
+              "line_start": 141,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.TOO_MANY_REQUESTS",
+              "line_start": 142,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.REQUEST_HEADER_FIELDS_TOO_LARGE",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.UNAVAILABLE_FOR_LEGAL_REASONS",
+              "line_start": 144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.INTERNAL_SERVER_ERROR",
+              "line_start": 147,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NOT_IMPLEMENTED",
+              "line_start": 148,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.BAD_GATEWAY",
+              "line_start": 149,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.SERVICE_UNAVAILABLE",
+              "line_start": 150,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.GATEWAY_TIMEOUT",
+              "line_start": 151,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.HTTP_VERSION_NOT_SUPPORTED",
+              "line_start": 152,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.VARIANT_ALSO_NEGOTIATES",
+              "line_start": 153,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.INSUFFICIENT_STORAGE",
+              "line_start": 154,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.LOOP_DETECTED",
+              "line_start": 155,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NOT_EXTENDED",
+              "line_start": 156,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "codes.NETWORK_AUTHENTICATION_REQUIRED",
+              "line_start": 157,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 17,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 9,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "httpx._status_codes",
+      "names": [
+        "codes"
+      ],
+      "n_typable": 17,
+      "n_typed": 17,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 9,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "httpx/_transports/asgi.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ASGITransport",
+          "line_start": 63,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ASGITransport.__init__",
+              "line_start": 87,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ASGITransport.handle_async_request",
+              "line_start": 99,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ASGITransport.app",
+              "line_start": 94,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ASGITransport.raise_app_exceptions",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ASGITransport.root_path",
+              "line_start": 96,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ASGITransport.client",
+              "line_start": 97,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._transports.asgi",
+      "names": [
+        "ASGITransport"
+      ],
+      "n_typable": 10,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_transports/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AsyncBaseTransport",
+          "line_start": 65,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncBaseTransport.__aenter__",
+              "line_start": 66,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncBaseTransport.__aexit__",
+              "line_start": 69,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncBaseTransport.handle_async_request",
+              "line_start": 77,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncBaseTransport.aclose",
+              "line_start": 85,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 4,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "BaseTransport",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseTransport.__enter__",
+              "line_start": 15,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseTransport.__exit__",
+              "line_start": 18,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseTransport.handle_request",
+              "line_start": 26,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTransport.close",
+              "line_start": 61,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 4,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._transports.base",
+      "names": [
+        "AsyncBaseTransport",
+        "BaseTransport"
+      ],
+      "n_typable": 10,
+      "n_typed": 10,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 8,
+      "n_method_params": 2,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_transports/default.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AsyncHTTPTransport",
+          "line_start": 279,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncHTTPTransport.__init__",
+              "line_start": 280,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "AsyncHTTPTransport.__aenter__",
+              "line_start": 361,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncHTTPTransport.__aexit__",
+              "line_start": 365,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncHTTPTransport.handle_async_request",
+              "line_start": 374,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncHTTPTransport.aclose",
+              "line_start": 405,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 16,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "HTTPTransport",
+          "line_start": 135,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HTTPTransport.__init__",
+              "line_start": 136,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "HTTPTransport.__enter__",
+              "line_start": 217,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "HTTPTransport.__exit__",
+              "line_start": 221,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "HTTPTransport.handle_request",
+              "line_start": 230,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "HTTPTransport.close",
+              "line_start": 261,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 16,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._transports.default",
+      "names": [
+        "AsyncHTTPTransport",
+        "HTTPTransport"
+      ],
+      "n_typable": 32,
+      "n_typed": 32,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 10,
+      "n_method_params": 22,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_transports/mock.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MockTransport",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MockTransport.__init__",
+              "line_start": 16,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MockTransport.handle_request",
+              "line_start": 19,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MockTransport.handle_async_request",
+              "line_start": 29,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MockTransport.handler",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._transports.mock",
+      "names": [
+        "MockTransport"
+      ],
+      "n_typable": 6,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_transports/wsgi.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "WSGITransport",
+          "line_start": 44,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WSGITransport.__init__",
+              "line_start": 77,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "WSGITransport.handle_request",
+              "line_start": 91,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "WSGITransport.app",
+              "line_start": 85,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WSGITransport.raise_app_exceptions",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WSGITransport.script_name",
+              "line_start": 87,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WSGITransport.remote_addr",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "WSGITransport.wsgi_errors",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 5,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._transports.wsgi",
+      "names": [
+        "WSGITransport"
+      ],
+      "n_typable": 12,
+      "n_typed": 7,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_types.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AsyncByteStream",
+          "line_start": 106,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncByteStream.__aiter__",
+              "line_start": 107,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncByteStream.aclose",
+              "line_start": 113,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SyncByteStream",
+          "line_start": 92,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SyncByteStream.__iter__",
+              "line_start": 93,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SyncByteStream.close",
+              "line_start": 99,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._types",
+      "names": [
+        "AsyncByteStream",
+        "SyncByteStream"
+      ],
+      "n_typable": 4,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 0,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "httpx/_urls.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "QueryParams",
+          "line_start": 420,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QueryParams.__init__",
+              "line_start": 425,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.keys",
+              "line_start": 463,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.values",
+              "line_start": 474,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.items",
+              "line_start": 486,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.multi_items",
+              "line_start": 498,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.get",
+              "line_start": 512,
+              "n_typed": 0,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.get_list",
+              "line_start": 526,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.set",
+              "line_start": 537,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.add",
+              "line_start": 552,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.remove",
+              "line_start": 567,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.merge",
+              "line_start": 582,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__getitem__",
+              "line_start": 600,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__contains__",
+              "line_start": 603,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__iter__",
+              "line_start": 606,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__len__",
+              "line_start": 609,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__bool__",
+              "line_start": 612,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__hash__",
+              "line_start": 615,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__eq__",
+              "line_start": 618,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__str__",
+              "line_start": 623,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__repr__",
+              "line_start": 626,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.update",
+              "line_start": 631,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QueryParams.__setitem__",
+              "line_start": 637,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 31,
+          "n_typed": 22,
+          "n_any": 9,
+          "n_untyped": 0,
+          "n_methods": 22,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "URL",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "URL.__init__",
+              "line_start": 77,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "URL.copy_with",
+              "line_start": 327,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "URL.copy_set_param",
+              "line_start": 342,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "URL.copy_add_param",
+              "line_start": 345,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "URL.copy_remove_param",
+              "line_start": 348,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "URL.copy_merge_params",
+              "line_start": 351,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "URL.join",
+              "line_start": 354,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "URL.__hash__",
+              "line_start": 368,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "URL.__eq__",
+              "line_start": 371,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "URL.__str__",
+              "line_start": 374,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "URL.__repr__",
+              "line_start": 377,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "URL.scheme",
+              "line_start": 126,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.raw_scheme",
+              "line_start": 134,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.userinfo",
+              "line_start": 142,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.username",
+              "line_start": 150,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.password",
+              "line_start": 159,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.host",
+              "line_start": 168,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.raw_host",
+              "line_start": 195,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.port",
+              "line_start": 217,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.netloc",
+              "line_start": 233,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.path",
+              "line_start": 244,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.query",
+              "line_start": 257,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.params",
+              "line_start": 274,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.raw_path",
+              "line_start": 282,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.fragment",
+              "line_start": 299,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.is_absolute_url",
+              "line_start": 307,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.is_relative_url",
+              "line_start": 319,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "URL.raw",
+              "line_start": 403,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 35,
+          "n_typed": 30,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_methods": 11,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 17
+        }
+      ],
+      "type_ignores": [],
+      "name": "httpx._urls",
+      "names": [
+        "QueryParams",
+        "URL"
+      ],
+      "n_typable": 66,
+      "n_typed": 52,
+      "n_any": 14,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 33,
+      "n_method_params": 16,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 17,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 17,
+  "n_typable": 752,
+  "n_typed": 691,
+  "n_any": 23,
+  "n_untyped": 38,
+  "n_functions": 11,
+  "n_function_params": 115,
+  "n_methods": 186,
+  "n_method_params": 355,
+  "n_classes": 54,
+  "n_attrs": 39,
+  "n_properties": 41,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 9
+}

@@ -1,0 +1,5153 @@
+{
+  "schema_version": "1.0",
+  "package": "tokenizers",
+  "version": "0.21.4",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2025-07-28T15:48:54.325823Z",
+    "requires_python": ">=3.9",
+    "size": 351253,
+    "sha256": "fa23f85fbc9a02ec5c6978da172cdcbac23498c3ca9f3645c5c68740ac007880"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "tokenizers"
+    ],
+    "Version": [
+      "0.21.4"
+    ],
+    "Classifier": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Education",
+      "Intended Audience :: Science/Research",
+      "License :: OSI Approved :: Apache Software License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3 :: Only",
+      "Topic :: Scientific/Engineering :: Artificial Intelligence"
+    ],
+    "Requires-Dist": [
+      "huggingface-hub>=0.16.4,<1.0",
+      "pytest ; extra == 'testing'",
+      "requests ; extra == 'testing'",
+      "numpy ; extra == 'testing'",
+      "datasets ; extra == 'testing'",
+      "black==22.3 ; extra == 'testing'",
+      "ruff ; extra == 'testing'",
+      "sphinx ; extra == 'docs'",
+      "sphinx-rtd-theme ; extra == 'docs'",
+      "setuptools-rust ; extra == 'docs'",
+      "tokenizers[testing] ; extra == 'dev'"
+    ],
+    "Provides-Extra": [
+      "testing",
+      "docs",
+      "dev"
+    ],
+    "Keywords": [
+      "NLP,tokenizer,BPE,transformer,deep learning"
+    ],
+    "Author-email": [
+      "Nicolas Patry <patry.nicolas@protonmail.com>, Anthony Moi <anthony@huggingface.co>"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/markdown; charset=UTF-8; variant=GFM"
+    ],
+    "Project-URL": [
+      "Homepage, https://github.com/huggingface/tokenizers",
+      "Source, https://github.com/huggingface/tokenizers"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "tokenizers/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "Offsets",
+          "line_start": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TextInputSequence",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PreTokenizedInputSequence",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TextEncodeInput",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PreTokenizedEncodeInput",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "InputSequence",
+          "line_start": 45,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "EncodeInput",
+          "line_start": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AddedToken",
+          "line_start": 2,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AddedToken.__init__",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AddedToken.content",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AddedToken.lstrip",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AddedToken.normalized",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AddedToken.rstrip",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AddedToken.single_word",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AddedToken.special",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 6
+        },
+        {
+          "kind": "class",
+          "name": "Encoding",
+          "line_start": 82,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Encoding.char_to_token",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.char_to_word",
+              "line_start": 115,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.merge",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.pad",
+              "line_start": 198,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.set_sequence_id",
+              "line_start": 234,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.token_to_chars",
+              "line_start": 255,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.token_to_sequence",
+              "line_start": 272,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.token_to_word",
+              "line_start": 288,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.truncate",
+              "line_start": 317,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.word_to_chars",
+              "line_start": 367,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Encoding.word_to_tokens",
+              "line_start": 382,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Encoding.attention_mask",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.ids",
+              "line_start": 130,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.n_sequences",
+              "line_start": 160,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.offsets",
+              "line_start": 170,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.overflowing",
+              "line_start": 183,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.sequence_ids",
+              "line_start": 220,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.special_tokens_mask",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.tokens",
+              "line_start": 305,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.type_ids",
+              "line_start": 336,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.word_ids",
+              "line_start": 349,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Encoding.words",
+              "line_start": 398,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 44,
+          "n_methods": 11,
+          "n_method_params": 22,
+          "n_attrs": 0,
+          "n_properties": 11
+        },
+        {
+          "kind": "class",
+          "name": "NormalizedString",
+          "line_start": 420,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NormalizedString.append",
+              "line_start": 432,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.clear",
+              "line_start": 438,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.filter",
+              "line_start": 444,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.for_each",
+              "line_start": 450,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.lowercase",
+              "line_start": 456,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.lstrip",
+              "line_start": 462,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.map",
+              "line_start": 468,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.nfc",
+              "line_start": 477,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.nfd",
+              "line_start": 483,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.nfkc",
+              "line_start": 489,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.nfkd",
+              "line_start": 495,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.prepend",
+              "line_start": 508,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.replace",
+              "line_start": 514,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.rstrip",
+              "line_start": 527,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.slice",
+              "line_start": 533,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.split",
+              "line_start": 539,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.strip",
+              "line_start": 557,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "NormalizedString.uppercase",
+              "line_start": 563,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "NormalizedString.normalized",
+              "line_start": 501,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 29,
+          "n_methods": 18,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "PreTokenizedString",
+          "line_start": 569,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PreTokenizedString.__init__",
+              "line_start": 587,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "PreTokenizedString.get_splits",
+              "line_start": 590,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "PreTokenizedString.normalize",
+              "line_start": 611,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PreTokenizedString.split",
+              "line_start": 623,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PreTokenizedString.to_encoding",
+              "line_start": 638,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "PreTokenizedString.tokenize",
+              "line_start": 656,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 6,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Regex",
+          "line_start": 667,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Regex.__init__",
+              "line_start": 671,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Token",
+          "line_start": 674,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Tokenizer",
+          "line_start": 677,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Tokenizer.__init__",
+              "line_start": 687,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.add_special_tokens",
+              "line_start": 690,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.add_tokens",
+              "line_start": 711,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.decode",
+              "line_start": 728,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.decode_batch",
+              "line_start": 746,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.enable_padding",
+              "line_start": 769,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.enable_truncation",
+              "line_start": 799,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.encode",
+              "line_start": 820,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.encode_batch",
+              "line_start": 859,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.encode_batch_fast",
+              "line_start": 897,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.from_buffer",
+              "line_start": 946,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.from_file",
+              "line_start": 960,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.from_pretrained",
+              "line_start": 975,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.from_str",
+              "line_start": 996,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.get_added_tokens_decoder",
+              "line_start": 1011,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.get_vocab",
+              "line_start": 1020,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.get_vocab_size",
+              "line_start": 1033,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.id_to_token",
+              "line_start": 1046,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.no_padding",
+              "line_start": 1066,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.no_truncation",
+              "line_start": 1072,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.num_special_tokens_to_add",
+              "line_start": 1085,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.post_process",
+              "line_start": 1106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.save",
+              "line_start": 1147,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.to_str",
+              "line_start": 1160,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.token_to_id",
+              "line_start": 1173,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.train",
+              "line_start": 1186,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Tokenizer.train_from_iterator",
+              "line_start": 1203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Tokenizer.decoder",
+              "line_start": 762,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.encode_special_tokens",
+              "line_start": 933,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.model",
+              "line_start": 1059,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.normalizer",
+              "line_start": 1078,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.padding",
+              "line_start": 1093,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.post_processor",
+              "line_start": 1133,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.pre_tokenizer",
+              "line_start": 1140,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Tokenizer.truncation",
+              "line_start": 1227,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 83,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 83,
+          "n_methods": 27,
+          "n_method_params": 48,
+          "n_attrs": 0,
+          "n_properties": 8
+        },
+        {
+          "kind": "class",
+          "name": "OffsetReferential",
+          "line_start": 60,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OffsetReferential.ORIGINAL",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "OffsetReferential.NORMALIZED",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "OffsetType",
+          "line_start": 65,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OffsetType.BYTE",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "OffsetType.CHAR",
+              "line_start": 67,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SplitDelimiterBehavior",
+          "line_start": 70,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SplitDelimiterBehavior.REMOVED",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SplitDelimiterBehavior.ISOLATED",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SplitDelimiterBehavior.MERGED_WITH_PREVIOUS",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SplitDelimiterBehavior.MERGED_WITH_NEXT",
+              "line_start": 74,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SplitDelimiterBehavior.CONTIGUOUS",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers",
+      "names": [
+        "AddedToken",
+        "EncodeInput",
+        "Encoding",
+        "InputSequence",
+        "NormalizedString",
+        "OffsetReferential",
+        "OffsetType",
+        "Offsets",
+        "PreTokenizedEncodeInput",
+        "PreTokenizedInputSequence",
+        "PreTokenizedString",
+        "Regex",
+        "SplitDelimiterBehavior",
+        "TextEncodeInput",
+        "TextInputSequence",
+        "Token",
+        "Tokenizer"
+      ],
+      "n_typable": 182,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 182,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 64,
+      "n_method_params": 92,
+      "n_classes": 10,
+      "n_attrs": 0,
+      "n_properties": 26,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/decoders/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BPEDecoder",
+          "line_start": 30,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BPEDecoder.__init__",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BPEDecoder.decode",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ByteFallback",
+          "line_start": 55,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteFallback.__init__",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ByteFallback.decode",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ByteLevel",
+          "line_start": 79,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteLevel.__init__",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.decode",
+              "line_start": 89,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CTC",
+          "line_start": 102,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CTC.__init__",
+              "line_start": 115,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "CTC.decode",
+              "line_start": 118,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DecodeStream",
+          "line_start": 2,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DecodeStream.__init__",
+              "line_start": 7,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Decoder",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Decoder.decode",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Fuse",
+          "line_start": 131,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Fuse.__init__",
+              "line_start": 138,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Fuse.decode",
+              "line_start": 141,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Metaspace",
+          "line_start": 154,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Metaspace.__init__",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Metaspace.decode",
+              "line_start": 172,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Replace",
+          "line_start": 185,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Replace.__init__",
+              "line_start": 192,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Replace.decode",
+              "line_start": 195,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Sequence",
+          "line_start": 208,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sequence.__init__",
+              "line_start": 216,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Sequence.decode",
+              "line_start": 219,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Strip",
+          "line_start": 232,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Strip.__init__",
+              "line_start": 237,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Strip.decode",
+              "line_start": 240,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WordPiece",
+          "line_start": 253,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WordPiece.__init__",
+              "line_start": 265,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.decode",
+              "line_start": 268,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.decoders",
+      "names": [
+        "BPEDecoder",
+        "ByteFallback",
+        "ByteLevel",
+        "CTC",
+        "DecodeStream",
+        "Decoder",
+        "Fuse",
+        "Metaspace",
+        "Replace",
+        "Sequence",
+        "Strip",
+        "WordPiece"
+      ],
+      "n_typable": 38,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 38,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 22,
+      "n_method_params": 16,
+      "n_classes": 12,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/implementations/base_tokenizer.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "Offsets",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "BaseTokenizer",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.__init__",
+              "line_start": 15,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.__repr__",
+              "line_start": 19,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.num_special_tokens_to_add",
+              "line_start": 25,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.get_vocab",
+              "line_start": 33,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.get_added_tokens_decoder",
+              "line_start": 45,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.get_vocab_size",
+              "line_start": 53,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.enable_padding",
+              "line_start": 65,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.no_padding",
+              "line_start": 107,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.enable_truncation",
+              "line_start": 121,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.no_truncation",
+              "line_start": 137,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.add_tokens",
+              "line_start": 151,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.add_special_tokens",
+              "line_start": 164,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.normalize",
+              "line_start": 180,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.encode",
+              "line_start": 192,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.encode_batch",
+              "line_start": 225,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.decode",
+              "line_start": 262,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.decode_batch",
+              "line_start": 280,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.token_to_id",
+              "line_start": 298,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.id_to_token",
+              "line_start": 310,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.save_model",
+              "line_start": 322,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.save",
+              "line_start": 334,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.to_str",
+              "line_start": 343,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseTokenizer.post_process",
+              "line_start": 355,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.padding",
+              "line_start": 111,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.truncation",
+              "line_start": 141,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.model",
+              "line_start": 380,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.normalizer",
+              "line_start": 388,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.pre_tokenizer",
+              "line_start": 396,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.post_processor",
+              "line_start": 404,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            },
+            {
+              "kind": "property",
+              "name": "BaseTokenizer.decoder",
+              "line_start": 412,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2
+            }
+          ],
+          "attrs": [],
+          "n_typable": 71,
+          "n_typed": 62,
+          "n_any": 1,
+          "n_untyped": 8,
+          "n_methods": 23,
+          "n_method_params": 36,
+          "n_attrs": 0,
+          "n_properties": 7
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.implementations.base_tokenizer",
+      "names": [
+        "BaseTokenizer",
+        "Offsets"
+      ],
+      "n_typable": 71,
+      "n_typed": 62,
+      "n_any": 1,
+      "n_untyped": 8,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 23,
+      "n_method_params": 36,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 7,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/implementations/bert_wordpiece.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BertWordPieceTokenizer",
+          "line_start": 12,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BertWordPieceTokenizer.__init__",
+              "line_start": 15,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "BertWordPieceTokenizer.from_file",
+              "line_start": 81,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BertWordPieceTokenizer.train",
+              "line_start": 86,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "BertWordPieceTokenizer.train_from_iterator",
+              "line_start": 118,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 33,
+          "n_typed": 29,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 29,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.implementations.bert_wordpiece",
+      "names": [
+        "BertWordPieceTokenizer"
+      ],
+      "n_typable": 33,
+      "n_typed": 29,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 29,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/implementations/byte_level_bpe.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ByteLevelBPETokenizer",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteLevelBPETokenizer.__init__",
+              "line_start": 16,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevelBPETokenizer.from_file",
+              "line_start": 74,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevelBPETokenizer.train",
+              "line_start": 79,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevelBPETokenizer.train_from_iterator",
+              "line_start": 100,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 26,
+          "n_typed": 22,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 22,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.implementations.byte_level_bpe",
+      "names": [
+        "ByteLevelBPETokenizer"
+      ],
+      "n_typable": 26,
+      "n_typed": 22,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 22,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/implementations/char_level_bpe.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "CharBPETokenizer",
+          "line_start": 9,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CharBPETokenizer.__init__",
+              "line_start": 25,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "CharBPETokenizer.from_file",
+              "line_start": 92,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CharBPETokenizer.train",
+              "line_start": 97,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "CharBPETokenizer.train_from_iterator",
+              "line_start": 123,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 32,
+          "n_typed": 28,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 28,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.implementations.char_level_bpe",
+      "names": [
+        "CharBPETokenizer"
+      ],
+      "n_typable": 32,
+      "n_typed": 28,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 28,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/implementations/sentencepiece_bpe.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SentencePieceBPETokenizer",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SentencePieceBPETokenizer.__init__",
+              "line_start": 16,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "SentencePieceBPETokenizer.from_file",
+              "line_start": 49,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "SentencePieceBPETokenizer.train",
+              "line_start": 54,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "SentencePieceBPETokenizer.train_from_iterator",
+              "line_start": 78,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 28,
+          "n_typed": 24,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 24,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.implementations.sentencepiece_bpe",
+      "names": [
+        "SentencePieceBPETokenizer"
+      ],
+      "n_typable": 28,
+      "n_typed": 24,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 24,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/implementations/sentencepiece_unigram.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SentencePieceUnigramTokenizer",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SentencePieceUnigramTokenizer.__init__",
+              "line_start": 17,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "SentencePieceUnigramTokenizer.train",
+              "line_start": 44,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "SentencePieceUnigramTokenizer.train_from_iterator",
+              "line_start": 92,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "SentencePieceUnigramTokenizer.from_spm",
+              "line_start": 146,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 20,
+          "n_typed": 17,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 4,
+          "n_method_params": 16,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.implementations.sentencepiece_unigram",
+      "names": [
+        "SentencePieceUnigramTokenizer"
+      ],
+      "n_typable": 20,
+      "n_typed": 17,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 16,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/models/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BPE",
+          "line_start": 82,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BPE.__init__",
+              "line_start": 119,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "BPE.from_file",
+              "line_start": 134,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "BPE.get_trainer",
+              "line_start": 160,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BPE.id_to_token",
+              "line_start": 172,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BPE.read_file",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BPE.save",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BPE.token_to_id",
+              "line_start": 227,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BPE.tokenize",
+              "line_start": 240,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 29,
+          "n_methods": 8,
+          "n_method_params": 21,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Model",
+          "line_start": 2,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Model.get_trainer",
+              "line_start": 11,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Model.id_to_token",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Model.save",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Model.token_to_id",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Model.tokenize",
+              "line_start": 69,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 5,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Unigram",
+          "line_start": 253,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Unigram.__init__",
+              "line_start": 261,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Unigram.get_trainer",
+              "line_start": 264,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Unigram.id_to_token",
+              "line_start": 276,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Unigram.save",
+              "line_start": 289,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Unigram.token_to_id",
+              "line_start": 309,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Unigram.tokenize",
+              "line_start": 322,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 6,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WordLevel",
+          "line_start": 335,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WordLevel.__init__",
+              "line_start": 348,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.from_file",
+              "line_start": 351,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.get_trainer",
+              "line_start": 374,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.id_to_token",
+              "line_start": 386,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.read_file",
+              "line_start": 399,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.save",
+              "line_start": 417,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.token_to_id",
+              "line_start": 437,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordLevel.tokenize",
+              "line_start": 450,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 17,
+          "n_methods": 8,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WordPiece",
+          "line_start": 463,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WordPiece.__init__",
+              "line_start": 477,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.from_file",
+              "line_start": 480,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.get_trainer",
+              "line_start": 503,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.id_to_token",
+              "line_start": 515,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.read_file",
+              "line_start": 528,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.save",
+              "line_start": 547,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.token_to_id",
+              "line_start": 567,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WordPiece.tokenize",
+              "line_start": 580,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 18,
+          "n_methods": 8,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.models",
+      "names": [
+        "BPE",
+        "Model",
+        "Unigram",
+        "WordLevel",
+        "WordPiece"
+      ],
+      "n_typable": 87,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 87,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 35,
+      "n_method_params": 52,
+      "n_classes": 5,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/normalizers/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "NORMALIZERS",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "unicode_normalizer_from_str",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "BertNormalizer",
+          "line_start": 43,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BertNormalizer.__init__",
+              "line_start": 65,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BertNormalizer.normalize",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BertNormalizer.normalize_str",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ByteLevel",
+          "line_start": 102,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteLevel.__init__",
+              "line_start": 106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.normalize",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.normalize_str",
+              "line_start": 125,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Lowercase",
+          "line_start": 143,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Lowercase.__init__",
+              "line_start": 147,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Lowercase.normalize",
+              "line_start": 150,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Lowercase.normalize_str",
+              "line_start": 166,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NFC",
+          "line_start": 184,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NFC.__init__",
+              "line_start": 188,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "NFC.normalize",
+              "line_start": 191,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NFC.normalize_str",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NFD",
+          "line_start": 225,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NFD.__init__",
+              "line_start": 229,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "NFD.normalize",
+              "line_start": 232,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NFD.normalize_str",
+              "line_start": 248,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NFKC",
+          "line_start": 266,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NFKC.__init__",
+              "line_start": 270,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "NFKC.normalize",
+              "line_start": 273,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NFKC.normalize_str",
+              "line_start": 289,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NFKD",
+          "line_start": 307,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NFKD.__init__",
+              "line_start": 311,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "NFKD.normalize",
+              "line_start": 314,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "NFKD.normalize_str",
+              "line_start": 330,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Nmt",
+          "line_start": 348,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Nmt.__init__",
+              "line_start": 352,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Nmt.normalize",
+              "line_start": 355,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Nmt.normalize_str",
+              "line_start": 371,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Normalizer",
+          "line_start": 2,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Normalizer.normalize",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Normalizer.normalize_str",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Precompiled",
+          "line_start": 389,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Precompiled.__init__",
+              "line_start": 394,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Precompiled.normalize",
+              "line_start": 397,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Precompiled.normalize_str",
+              "line_start": 413,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Prepend",
+          "line_start": 431,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Prepend.__init__",
+              "line_start": 435,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Prepend.normalize",
+              "line_start": 438,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Prepend.normalize_str",
+              "line_start": 454,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Replace",
+          "line_start": 472,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Replace.__init__",
+              "line_start": 476,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Replace.normalize",
+              "line_start": 479,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Replace.normalize_str",
+              "line_start": 495,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Sequence",
+          "line_start": 513,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sequence.normalize",
+              "line_start": 522,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Sequence.normalize_str",
+              "line_start": 538,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Strip",
+          "line_start": 556,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Strip.__init__",
+              "line_start": 560,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Strip.normalize",
+              "line_start": 563,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Strip.normalize_str",
+              "line_start": 579,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StripAccents",
+          "line_start": 597,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StripAccents.__init__",
+              "line_start": 601,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "StripAccents.normalize",
+              "line_start": 604,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "StripAccents.normalize_str",
+              "line_start": 620,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.normalizers",
+      "names": [
+        "BertNormalizer",
+        "ByteLevel",
+        "Lowercase",
+        "NFC",
+        "NFD",
+        "NFKC",
+        "NFKD",
+        "NORMALIZERS",
+        "Nmt",
+        "Normalizer",
+        "Precompiled",
+        "Prepend",
+        "Replace",
+        "Sequence",
+        "Strip",
+        "StripAccents",
+        "unicode_normalizer_from_str"
+      ],
+      "n_typable": 72,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 72,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 43,
+      "n_method_params": 27,
+      "n_classes": 15,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/pre_tokenizers/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BertPreTokenizer",
+          "line_start": 46,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BertPreTokenizer.__init__",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "BertPreTokenizer.pre_tokenize",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BertPreTokenizer.pre_tokenize_str",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ByteLevel",
+          "line_start": 93,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteLevel.__init__",
+              "line_start": 108,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.alphabet",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.pre_tokenize",
+              "line_start": 125,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.pre_tokenize_str",
+              "line_start": 142,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 4,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CharDelimiterSplit",
+          "line_start": 162,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CharDelimiterSplit.pre_tokenize",
+              "line_start": 170,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "CharDelimiterSplit.pre_tokenize_str",
+              "line_start": 187,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Digits",
+          "line_start": 207,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Digits.__init__",
+              "line_start": 221,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Digits.pre_tokenize",
+              "line_start": 224,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Digits.pre_tokenize_str",
+              "line_start": 241,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FixedLength",
+          "line_start": 261,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FixedLength.__init__",
+              "line_start": 273,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "FixedLength.pre_tokenize",
+              "line_start": 276,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "FixedLength.pre_tokenize_str",
+              "line_start": 293,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Metaspace",
+          "line_start": 313,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Metaspace.__init__",
+              "line_start": 332,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Metaspace.pre_tokenize",
+              "line_start": 335,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Metaspace.pre_tokenize_str",
+              "line_start": 352,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PreTokenizer",
+          "line_start": 2,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PreTokenizer.pre_tokenize",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PreTokenizer.pre_tokenize_str",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Punctuation",
+          "line_start": 372,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Punctuation.__init__",
+              "line_start": 382,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Punctuation.pre_tokenize",
+              "line_start": 385,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Punctuation.pre_tokenize_str",
+              "line_start": 402,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Sequence",
+          "line_start": 422,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sequence.__init__",
+              "line_start": 426,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Sequence.pre_tokenize",
+              "line_start": 429,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Sequence.pre_tokenize_str",
+              "line_start": 446,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Split",
+          "line_start": 466,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Split.__init__",
+              "line_start": 489,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Split.pre_tokenize",
+              "line_start": 492,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Split.pre_tokenize_str",
+              "line_start": 509,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UnicodeScripts",
+          "line_start": 529,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UnicodeScripts.__init__",
+              "line_start": 536,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "UnicodeScripts.pre_tokenize",
+              "line_start": 539,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UnicodeScripts.pre_tokenize_str",
+              "line_start": 556,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Whitespace",
+          "line_start": 576,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Whitespace.__init__",
+              "line_start": 607,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Whitespace.pre_tokenize",
+              "line_start": 610,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Whitespace.pre_tokenize_str",
+              "line_start": 627,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WhitespaceSplit",
+          "line_start": 647,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WhitespaceSplit.__init__",
+              "line_start": 651,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "WhitespaceSplit.pre_tokenize",
+              "line_start": 654,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "WhitespaceSplit.pre_tokenize_str",
+              "line_start": 671,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.pre_tokenizers",
+      "names": [
+        "BertPreTokenizer",
+        "ByteLevel",
+        "CharDelimiterSplit",
+        "Digits",
+        "FixedLength",
+        "Metaspace",
+        "PreTokenizer",
+        "Punctuation",
+        "Sequence",
+        "Split",
+        "UnicodeScripts",
+        "Whitespace",
+        "WhitespaceSplit"
+      ],
+      "n_typable": 65,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 65,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 38,
+      "n_method_params": 27,
+      "n_classes": 13,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/processors/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BertProcessing",
+          "line_start": 41,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BertProcessing.__init__",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BertProcessing.num_special_tokens_to_add",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BertProcessing.process",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ByteLevel",
+          "line_start": 91,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ByteLevel.__init__",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.num_special_tokens_to_add",
+              "line_start": 105,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ByteLevel.process",
+              "line_start": 118,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PostProcessor",
+          "line_start": 2,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PostProcessor.num_special_tokens_to_add",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PostProcessor.process",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RobertaProcessing",
+          "line_start": 137,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RobertaProcessing.__init__",
+              "line_start": 164,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RobertaProcessing.num_special_tokens_to_add",
+              "line_start": 167,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RobertaProcessing.process",
+              "line_start": 180,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Sequence",
+          "line_start": 199,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Sequence.__init__",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Sequence.num_special_tokens_to_add",
+              "line_start": 210,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Sequence.process",
+              "line_start": 223,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TemplateProcessing",
+          "line_start": 242,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TemplateProcessing.__init__",
+              "line_start": 309,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TemplateProcessing.num_special_tokens_to_add",
+              "line_start": 312,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TemplateProcessing.process",
+              "line_start": 325,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 3,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.processors",
+      "names": [
+        "BertProcessing",
+        "ByteLevel",
+        "PostProcessor",
+        "RobertaProcessing",
+        "Sequence",
+        "TemplateProcessing"
+      ],
+      "n_typable": 47,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 47,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 17,
+      "n_method_params": 30,
+      "n_classes": 6,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/tools/visualizer.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "dirname",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "css_filename",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "f",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "css",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "AnnotationList",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PartialIntList",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "HTMLBody",
+          "line_start": 375,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "Aligned",
+          "line_start": 63,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Annotation",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Annotation.__init__",
+              "line_start": 21,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Annotation.start",
+              "line_start": 17,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Annotation.end",
+              "line_start": 18,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Annotation.label",
+              "line_start": 19,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CharState",
+          "line_start": 36,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CharState.__init__",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CharState.partition_key",
+              "line_start": 56,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "CharState.token_ix",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "CharState.is_multitoken",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CharState.char_ix",
+              "line_start": 37,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CharState.anno_ix",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CharState.tokens",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 3,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "CharStateKey",
+          "line_start": 31,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CharStateKey.token_ix",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CharStateKey.anno_ix",
+              "line_start": 33,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EncodingVisualizer",
+          "line_start": 67,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EncodingVisualizer.__init__",
+              "line_start": 86,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EncodingVisualizer.__call__",
+              "line_start": 108,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "EncodingVisualizer.calculate_label_colors",
+              "line_start": 153,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "EncodingVisualizer.consecutive_chars_to_html",
+              "line_start": 182,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EncodingVisualizer.tokenizer",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingVisualizer.default_to_notebook",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EncodingVisualizer.annotation_coverter",
+              "line_start": 105,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 16,
+          "n_typed": 12,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 9,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.tools.visualizer",
+      "names": [
+        "Aligned",
+        "Annotation",
+        "AnnotationList",
+        "CharState",
+        "CharStateKey",
+        "EncodingVisualizer",
+        "HTMLBody",
+        "PartialIntList",
+        "css",
+        "css_filename",
+        "dirname",
+        "f"
+      ],
+      "n_typable": 36,
+      "n_typed": 22,
+      "n_any": 0,
+      "n_untyped": 14,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 7,
+      "n_method_params": 11,
+      "n_classes": 5,
+      "n_attrs": 13,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tokenizers/trainers/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BpeTrainer",
+          "line_start": 10,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Trainer",
+          "line_start": 2,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UnigramTrainer",
+          "line_start": 49,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UnigramTrainer.__init__",
+              "line_start": 83,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 1,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WordLevelTrainer",
+          "line_start": 95,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WordPieceTrainer",
+          "line_start": 113,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WordPieceTrainer.__init__",
+              "line_start": 145,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 1,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tokenizers.trainers",
+      "names": [
+        "BpeTrainer",
+        "Trainer",
+        "UnigramTrainer",
+        "WordLevelTrainer",
+        "WordPieceTrainer"
+      ],
+      "n_typable": 15,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 15,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 13,
+      "n_classes": 5,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 14,
+  "n_typable": 752,
+  "n_typed": 204,
+  "n_any": 1,
+  "n_untyped": 547,
+  "n_functions": 2,
+  "n_function_params": 3,
+  "n_methods": 271,
+  "n_method_params": 423,
+  "n_classes": 77,
+  "n_attrs": 13,
+  "n_properties": 35,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}

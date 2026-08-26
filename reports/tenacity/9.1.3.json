@@ -1,0 +1,3607 @@
+{
+  "schema_version": "1.0",
+  "package": "tenacity",
+  "version": "9.1.3",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2026-02-05T06:33:12.866203Z",
+    "requires_python": ">=3.10",
+    "size": 49002,
+    "sha256": "a6724c947aa717087e2531f883bde5c9188f603f6669a9b8d54eb998e604c12a"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "tenacity"
+    ],
+    "Version": [
+      "9.1.3"
+    ],
+    "Summary": [
+      "Retry code until it succeeds"
+    ],
+    "Home-page": [
+      "https://github.com/jd/tenacity"
+    ],
+    "Author": [
+      "Julien Danjou"
+    ],
+    "Author-email": [
+      "julien@danjou.info"
+    ],
+    "License": [
+      "Apache 2.0"
+    ],
+    "Classifier": [
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: Apache Software License",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Topic :: Utilities"
+    ],
+    "Requires-Python": [
+      ">=3.10"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Provides-Extra": [
+      "doc",
+      "test"
+    ],
+    "Requires-Dist": [
+      "reno; extra == \"doc\"",
+      "sphinx; extra == \"doc\"",
+      "pytest; extra == \"test\"",
+      "tornado>=4.5; extra == \"test\"",
+      "typeguard; extra == \"test\""
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "tenacity/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "WrappedFn",
+          "line_start": 101,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "NO_RESULT",
+          "line_start": 128,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "retry",
+          "line_start": 588,
+          "n_typed": 12,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "class",
+          "name": "AttemptManager",
+          "line_start": 192,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AttemptManager.__init__",
+              "line_start": 195,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AttemptManager.__enter__",
+              "line_start": 198,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AttemptManager.__exit__",
+              "line_start": 201,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AttemptManager.retry_state",
+              "line_start": 196,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 3,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "BaseAction",
+          "line_start": 139,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseAction.__repr__",
+              "line_start": 151,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "BaseAction.__str__",
+              "line_start": 157,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": -2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "BaseRetrying",
+          "line_start": 216,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseRetrying.__init__",
+              "line_start": 217,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.copy",
+              "line_start": 242,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.__repr__",
+              "line_start": 275,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.wraps",
+              "line_start": 318,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.begin",
+              "line_start": 344,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.iter",
+              "line_start": 368,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.__iter__",
+              "line_start": 434,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BaseRetrying.__call__",
+              "line_start": 448,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BaseRetrying.statistics",
+              "line_start": 286,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BaseRetrying.iter_state",
+              "line_start": 312,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.sleep",
+              "line_start": 230,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.stop",
+              "line_start": 231,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.wait",
+              "line_start": 232,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.retry",
+              "line_start": 233,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.before",
+              "line_start": 234,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.after",
+              "line_start": 235,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.before_sleep",
+              "line_start": 236,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.reraise",
+              "line_start": 237,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.retry_error_cls",
+              "line_start": 239,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseRetrying.retry_error_callback",
+              "line_start": 240,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 43,
+          "n_typed": 31,
+          "n_any": 2,
+          "n_untyped": 10,
+          "n_methods": 8,
+          "n_method_params": 23,
+          "n_attrs": 10,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "DoAttempt",
+          "line_start": 131,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DoSleep",
+          "line_start": 135,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Future",
+          "line_start": 486,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Future.__init__",
+              "line_start": 489,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Future.construct",
+              "line_start": 498,
+              "n_typed": 3,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Future.failed",
+              "line_start": 493,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Future.attempt_number",
+              "line_start": 491,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 1,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "RetryAction",
+          "line_start": 161,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RetryAction.__init__",
+              "line_start": 165,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RetryAction.sleep",
+              "line_start": 166,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RetryCallState",
+          "line_start": 511,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RetryCallState.__init__",
+              "line_start": 514,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RetryCallState.prepare_for_next_attempt",
+              "line_start": 551,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RetryCallState.set_result",
+              "line_start": 557,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RetryCallState.set_exception",
+              "line_start": 563,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "RetryCallState.__repr__",
+              "line_start": 574,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "RetryCallState.seconds_since_start",
+              "line_start": 545,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RetryCallState.start_time",
+              "line_start": 522,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.retry_object",
+              "line_start": 524,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.fn",
+              "line_start": 526,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.args",
+              "line_start": 528,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.kwargs",
+              "line_start": 530,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.attempt_number",
+              "line_start": 533,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.outcome",
+              "line_start": 535,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.outcome_timestamp",
+              "line_start": 537,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.idle_for",
+              "line_start": 539,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.next_action",
+              "line_start": 541,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RetryCallState.upcoming_sleep",
+              "line_start": 543,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 21,
+          "n_typed": 13,
+          "n_any": 3,
+          "n_untyped": 5,
+          "n_methods": 5,
+          "n_method_params": 4,
+          "n_attrs": 11,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "RetryError",
+          "line_start": 176,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RetryError.__init__",
+              "line_start": 179,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RetryError.reraise",
+              "line_start": 183,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RetryError.__str__",
+              "line_start": 188,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RetryError.last_attempt",
+              "line_start": 180,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 3,
+          "n_method_params": -1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Retrying",
+          "line_start": 458,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Retrying.__call__",
+              "line_start": 461,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TryAgain",
+          "line_start": 124,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "no-any-return"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "no-any-return"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "return-value"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "no-any-return"
+          ]
+        }
+      ],
+      "name": "tenacity",
+      "names": [
+        "AttemptManager",
+        "BaseAction",
+        "BaseRetrying",
+        "DoAttempt",
+        "DoSleep",
+        "Future",
+        "NO_RESULT",
+        "RetryAction",
+        "RetryCallState",
+        "RetryError",
+        "Retrying",
+        "TryAgain",
+        "WrappedFn",
+        "retry"
+      ],
+      "n_typable": 97,
+      "n_typed": 69,
+      "n_any": 8,
+      "n_untyped": 20,
+      "n_functions": 1,
+      "n_function_params": 11,
+      "n_methods": 25,
+      "n_method_params": 30,
+      "n_classes": 11,
+      "n_attrs": 26,
+      "n_properties": 4,
+      "n_type_ignores": 9
+    },
+    {
+      "path": "tenacity/after.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "after_nothing",
+          "line_start": 25,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "after_log",
+          "line_start": 29,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "tenacity.after",
+      "names": [
+        "after_log",
+        "after_nothing"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tenacity/asyncio/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "WrappedFn",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AsyncRetrying",
+          "line_start": 67,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.__init__",
+              "line_start": 68,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.__call__",
+              "line_start": 104,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.iter",
+              "line_start": 151,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.__iter__",
+              "line_start": 160,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.__aiter__",
+              "line_start": 163,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.__anext__",
+              "line_start": 168,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AsyncRetrying.wraps",
+              "line_start": 181,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 21,
+          "n_typed": 19,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_methods": 7,
+          "n_method_params": 14,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "no-any-return"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "misc"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "attr-defined"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "return-value"
+          ]
+        }
+      ],
+      "name": "tenacity.asyncio",
+      "names": [
+        "AsyncRetrying",
+        "WrappedFn"
+      ],
+      "n_typable": 21,
+      "n_typed": 19,
+      "n_any": 2,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 14,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 18
+    },
+    {
+      "path": "tenacity/asyncio/retry.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "RetryBaseT",
+          "line_start": 54,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "async_retry_base",
+          "line_start": 26,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "async_retry_base.__call__",
+              "line_start": 29,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "async_retry_base.__and__",
+              "line_start": 33,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "async_retry_base.__rand__",
+              "line_start": 38,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "async_retry_base.__or__",
+              "line_start": 43,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "async_retry_base.__ror__",
+              "line_start": 48,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_all",
+          "line_start": 113,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_all.__init__",
+              "line_start": 116,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_all.__call__",
+              "line_start": 119,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_all.retries",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_any",
+          "line_start": 98,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_any.__init__",
+              "line_start": 101,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_any.__call__",
+              "line_start": 104,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_any.retries",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_exception",
+          "line_start": 59,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_exception.__init__",
+              "line_start": 62,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_exception.__call__",
+              "line_start": 67,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_exception.predicate",
+              "line_start": 65,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_result",
+          "line_start": 80,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_result.__init__",
+              "line_start": 83,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_result.__call__",
+              "line_start": 88,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_result.predicate",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override",
+            "misc"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override",
+            "misc"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "override"
+          ]
+        }
+      ],
+      "name": "tenacity.asyncio.retry",
+      "names": [
+        "RetryBaseT",
+        "async_retry_base",
+        "retry_all",
+        "retry_any",
+        "retry_if_exception",
+        "retry_if_result"
+      ],
+      "n_typable": 26,
+      "n_typed": 22,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 13,
+      "n_method_params": 9,
+      "n_classes": 5,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 9
+    },
+    {
+      "path": "tenacity/before.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "before_nothing",
+          "line_start": 25,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "before_log",
+          "line_start": 29,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "tenacity.before",
+      "names": [
+        "before_log",
+        "before_nothing"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tenacity/before_sleep.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "before_sleep_nothing",
+          "line_start": 25,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "before_sleep_log",
+          "line_start": 29,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "tenacity.before_sleep",
+      "names": [
+        "before_sleep_log",
+        "before_sleep_nothing"
+      ],
+      "n_typable": 7,
+      "n_typed": 7,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tenacity/nap.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sleep",
+          "line_start": 25,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "sleep_using_event",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "sleep_using_event.__init__",
+              "line_start": 37,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "sleep_using_event.__call__",
+              "line_start": 40,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "sleep_using_event.event",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tenacity.nap",
+      "names": [
+        "sleep",
+        "sleep_using_event"
+      ],
+      "n_typable": 6,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tenacity/retry.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "RetryBaseT",
+          "line_start": 45,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "retry_never",
+          "line_start": 55,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "retry_always",
+          "line_start": 65,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "retry_all",
+          "line_start": 275,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_all.__init__",
+              "line_start": 278,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_all.__call__",
+              "line_start": 281,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_all.retries",
+              "line_start": 279,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_any",
+          "line_start": 265,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_any.__init__",
+              "line_start": 268,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_any.__call__",
+              "line_start": 271,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_any.retries",
+              "line_start": 269,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_base",
+          "line_start": 25,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_base.__call__",
+              "line_start": 28,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "retry_base.__and__",
+              "line_start": 32,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "retry_base.__rand__",
+              "line_start": 35,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "retry_base.__or__",
+              "line_start": 38,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "retry_base.__ror__",
+              "line_start": 41,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_exception",
+          "line_start": 68,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_exception.__init__",
+              "line_start": 71,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_exception.__call__",
+              "line_start": 74,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_exception.predicate",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_exception_cause_type",
+          "line_start": 142,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_exception_cause_type.__init__",
+              "line_start": 149,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_exception_cause_type.__call__",
+              "line_start": 158,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_exception_cause_type.exception_cause_types",
+              "line_start": 156,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_exception_message",
+          "line_start": 204,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_exception_message.__init__",
+              "line_start": 207,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_exception_type",
+          "line_start": 87,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_exception_type.__init__",
+              "line_start": 90,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_exception_type.exception_types",
+              "line_start": 97,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_not_exception_message",
+          "line_start": 239,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_not_exception_message.__init__",
+              "line_start": 242,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_not_exception_message.__call__",
+              "line_start": 252,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_not_exception_message.predicate",
+              "line_start": 250,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_not_exception_type",
+          "line_start": 101,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_not_exception_type.__init__",
+              "line_start": 104,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_not_exception_type.exception_types",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_not_result",
+          "line_start": 188,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_not_result.__init__",
+              "line_start": 191,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_not_result.__call__",
+              "line_start": 194,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_not_result.predicate",
+              "line_start": 192,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_if_result",
+          "line_start": 172,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_if_result.__init__",
+              "line_start": 175,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_if_result.__call__",
+              "line_start": 178,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_if_result.predicate",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "retry_unless_exception_type",
+          "line_start": 115,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "retry_unless_exception_type.__init__",
+              "line_start": 118,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "retry_unless_exception_type.__call__",
+              "line_start": 128,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "retry_unless_exception_type.exception_types",
+              "line_start": 125,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tenacity.retry",
+      "names": [
+        "RetryBaseT",
+        "retry_all",
+        "retry_always",
+        "retry_any",
+        "retry_base",
+        "retry_if_exception",
+        "retry_if_exception_cause_type",
+        "retry_if_exception_message",
+        "retry_if_exception_type",
+        "retry_if_not_exception_message",
+        "retry_if_not_exception_type",
+        "retry_if_not_result",
+        "retry_if_result",
+        "retry_never",
+        "retry_unless_exception_type"
+      ],
+      "n_typable": 51,
+      "n_typed": 39,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 24,
+      "n_method_params": 15,
+      "n_classes": 12,
+      "n_attrs": 12,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tenacity/stop.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "StopBaseT",
+          "line_start": 41,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "stop_never",
+          "line_start": 71,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "stop_after_attempt",
+          "line_start": 84,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_after_attempt.__init__",
+              "line_start": 87,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "stop_after_attempt.__call__",
+              "line_start": 90,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "stop_after_attempt.max_attempt_number",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stop_after_delay",
+          "line_start": 94,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_after_delay.__init__",
+              "line_start": 104,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "stop_after_delay.__call__",
+              "line_start": 107,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "stop_after_delay.max_delay",
+              "line_start": 105,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stop_all",
+          "line_start": 54,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_all.__init__",
+              "line_start": 57,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "stop_all.__call__",
+              "line_start": 60,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "stop_all.stops",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stop_any",
+          "line_start": 44,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_any.__init__",
+              "line_start": 47,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "stop_any.__call__",
+              "line_start": 50,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "stop_any.stops",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stop_base",
+          "line_start": 27,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_base.__call__",
+              "line_start": 30,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "stop_base.__and__",
+              "line_start": 34,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "stop_base.__or__",
+              "line_start": 37,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stop_before_delay",
+          "line_start": 113,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_before_delay.__init__",
+              "line_start": 121,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "stop_before_delay.__call__",
+              "line_start": 124,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "stop_before_delay.max_delay",
+              "line_start": 122,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "stop_when_event_set",
+          "line_start": 74,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "stop_when_event_set.__init__",
+              "line_start": 77,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "stop_when_event_set.__call__",
+              "line_start": 80,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "stop_when_event_set.event",
+              "line_start": 78,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tenacity.stop",
+      "names": [
+        "StopBaseT",
+        "stop_after_attempt",
+        "stop_after_delay",
+        "stop_all",
+        "stop_any",
+        "stop_base",
+        "stop_before_delay",
+        "stop_never",
+        "stop_when_event_set"
+      ],
+      "n_typable": 31,
+      "n_typed": 24,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 15,
+      "n_method_params": 9,
+      "n_classes": 7,
+      "n_attrs": 7,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tenacity/tornadoweb.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "TornadoRetrying",
+          "line_start": 31,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TornadoRetrying.__init__",
+              "line_start": 32,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TornadoRetrying.__call__",
+              "line_start": 40,
+              "n_typed": 2,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TornadoRetrying.sleep",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 3,
+          "n_any": 3,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "untyped-decorator"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "arg-type"
+          ]
+        }
+      ],
+      "name": "tenacity.tornadoweb",
+      "names": [
+        "TornadoRetrying"
+      ],
+      "n_typable": 7,
+      "n_typed": 3,
+      "n_any": 3,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "tenacity/wait.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "WaitBaseT",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_base",
+          "line_start": 27,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_base.__call__",
+              "line_start": 30,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "wait_base.__add__",
+              "line_start": 34,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "wait_base.__radd__",
+              "line_start": 37,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_chain",
+          "line_start": 91,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_chain.__init__",
+              "line_start": 107,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "wait_chain.__call__",
+              "line_start": 110,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_chain.strategies",
+              "line_start": 108,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_combine",
+          "line_start": 81,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_combine.__init__",
+              "line_start": 84,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "wait_combine.__call__",
+              "line_start": 87,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_combine.wait_funcs",
+              "line_start": 85,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_exception",
+          "line_start": 116,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_exception.__init__",
+              "line_start": 142,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "wait_exception.__call__",
+              "line_start": 145,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_exception.predicate",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_exponential",
+          "line_start": 177,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_exponential.__init__",
+              "line_start": 190,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "wait_exponential.__call__",
+              "line_start": 202,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_exponential.multiplier",
+              "line_start": 197,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_exponential.min",
+              "line_start": 198,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_exponential.max",
+              "line_start": 199,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_exponential.exp_base",
+              "line_start": 200,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_exponential_jitter",
+          "line_start": 242,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_exponential_jitter.__init__",
+              "line_start": 254,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "wait_exponential_jitter.__call__",
+              "line_start": 266,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_exponential_jitter.initial",
+              "line_start": 261,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_exponential_jitter.max",
+              "line_start": 262,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_exponential_jitter.exp_base",
+              "line_start": 263,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_exponential_jitter.jitter",
+              "line_start": 264,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_fixed",
+          "line_start": 49,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_fixed.__init__",
+              "line_start": 52,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "wait_fixed.__call__",
+              "line_start": 55,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_fixed.wait_fixed",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_incrementing",
+          "line_start": 155,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_incrementing.__init__",
+              "line_start": 162,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "wait_incrementing.__call__",
+              "line_start": 172,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_incrementing.start",
+              "line_start": 168,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_incrementing.increment",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_incrementing.max",
+              "line_start": 170,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_none",
+          "line_start": 59,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_none.__init__",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_random",
+          "line_start": 66,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_random.__init__",
+              "line_start": 69,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "wait_random.__call__",
+              "line_start": 75,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "wait_random.wait_random_min",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "wait_random.wait_random_max",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "wait_random_exponential",
+          "line_start": 211,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "wait_random_exponential.__call__",
+              "line_start": 237,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "comparison-overlap"
+          ]
+        }
+      ],
+      "name": "tenacity.wait",
+      "names": [
+        "WaitBaseT",
+        "wait_base",
+        "wait_chain",
+        "wait_combine",
+        "wait_exception",
+        "wait_exponential",
+        "wait_exponential_jitter",
+        "wait_fixed",
+        "wait_incrementing",
+        "wait_none",
+        "wait_random",
+        "wait_random_exponential"
+      ],
+      "n_typable": 58,
+      "n_typed": 41,
+      "n_any": 0,
+      "n_untyped": 17,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 21,
+      "n_method_params": 20,
+      "n_classes": 11,
+      "n_attrs": 17,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 11,
+  "n_typable": 315,
+  "n_typed": 240,
+  "n_any": 13,
+  "n_untyped": 62,
+  "n_functions": 8,
+  "n_function_params": 24,
+  "n_methods": 109,
+  "n_method_params": 102,
+  "n_classes": 49,
+  "n_attrs": 68,
+  "n_properties": 4,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": [
+        "no-any-return"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-any-return"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "return-value"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-any-return"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "no-any-return"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "misc"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "attr-defined"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "return-value"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override",
+        "misc"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override",
+        "misc"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "override"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "untyped-decorator"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "comparison-overlap"
+      ]
+    }
+  ],
+  "n_type_ignores": 39
+}

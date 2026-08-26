@@ -1,0 +1,846 @@
+{
+  "schema_version": "1.0",
+  "package": "safetensors",
+  "version": "0.8.0",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2026-06-09T07:52:25.563398Z",
+    "requires_python": ">=3.10",
+    "size": 325846,
+    "sha256": "fabaf3e0f18a6618d9b36560682562157f77c2b71fcffc7b432be2baed9d753d"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "safetensors"
+    ],
+    "Version": [
+      "0.8.0"
+    ],
+    "Classifier": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Education",
+      "Intended Audience :: Science/Research",
+      "License :: OSI Approved :: Apache Software License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Topic :: Scientific/Engineering :: Artificial Intelligence",
+      "Typing :: Typed"
+    ],
+    "Requires-Dist": [
+      "safetensors[torch] ; extra == 'all'",
+      "safetensors[numpy] ; extra == 'all'",
+      "safetensors[jax] ; extra == 'all'",
+      "safetensors[paddlepaddle] ; extra == 'all'",
+      "safetensors[convert] ; extra == 'all'",
+      "safetensors[quality] ; extra == 'all'",
+      "safetensors[testing] ; extra == 'all'",
+      "safetensors[torch] ; extra == 'convert'",
+      "huggingface-hub>=1.4 ; extra == 'convert'",
+      "safetensors[all] ; extra == 'dev'",
+      "safetensors[pinned-tf] ; extra == 'dev'",
+      "safetensors[numpy] ; extra == 'jax'",
+      "flax>=0.6.3 ; extra == 'jax'",
+      "jax>=0.3.25 ; extra == 'jax'",
+      "jaxlib>=0.3.25 ; extra == 'jax'",
+      "mlx>=0.0.9 ; extra == 'mlx'",
+      "numpy>=1.24.6 ; extra == 'numpy'",
+      "safetensors[numpy] ; extra == 'paddlepaddle'",
+      "paddlepaddle>=2.4.1 ; extra == 'paddlepaddle'",
+      "safetensors[numpy] ; extra == 'pinned-tf'",
+      "tensorflow==2.18.0 ; extra == 'pinned-tf'",
+      "ruff ; extra == 'quality'",
+      "safetensors[numpy] ; extra == 'tensorflow'",
+      "tensorflow>=2.11.0 ; extra == 'tensorflow'",
+      "safetensors[numpy] ; extra == 'testing'",
+      "h5py>=3.7.0 ; extra == 'testing'",
+      "setuptools-rust>=1.12.0 ; extra == 'testing'",
+      "pytest>=9.0 ; extra == 'testing'",
+      "pytest-benchmark>=5.2 ; extra == 'testing'",
+      "hypothesis>=6.70.2 ; extra == 'testing'",
+      "fsspec>=2024.6.0 ; extra == 'testing'",
+      "s3fs>=2024.6.0 ; extra == 'testing'",
+      "safetensors[numpy] ; extra == 'tf-nightly'",
+      "tf-nightly ; extra == 'tf-nightly'",
+      "safetensors[numpy] ; extra == 'torch'",
+      "torch>=2.4 ; extra == 'torch'"
+    ],
+    "Provides-Extra": [
+      "all",
+      "convert",
+      "dev",
+      "jax",
+      "mlx",
+      "numpy",
+      "paddlepaddle",
+      "pinned-tf",
+      "quality",
+      "tensorflow",
+      "testing",
+      "tf-nightly",
+      "torch"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Author-email": [
+      "Nicolas Patry <patry.nicolas@protonmail.com>, Luc Georges <luc@huggingface.co>, Daniël De Kok <daniel.dekok@huggingface.co>"
+    ],
+    "Requires-Python": [
+      ">=3.10"
+    ],
+    "Description-Content-Type": [
+      "text/markdown; charset=UTF-8; variant=GFM"
+    ],
+    "Project-URL": [
+      "Homepage, https://github.com/huggingface/safetensors",
+      "Source, https://github.com/huggingface/safetensors"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "safetensors/__init__.pyi",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 16,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "deserialize",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "serialize",
+          "line_start": 34,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "serialize_file",
+          "line_start": 62,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "class",
+          "name": "SafetensorError",
+          "line_start": 291,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SafetensorError.add_note",
+              "line_start": 295,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "SafetensorError.with_traceback",
+              "line_start": 302,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TensorSpec",
+          "line_start": 93,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TensorSpec.__init__",
+              "line_start": 112,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TensorSpec.data_len",
+              "line_start": 122,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TensorSpec.data_ptr",
+              "line_start": 129,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TensorSpec.dtype",
+              "line_start": 136,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TensorSpec.shape",
+              "line_start": 145,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "safe_open",
+          "line_start": 154,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "safe_open.__init__",
+              "line_start": 176,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.__enter__",
+              "line_start": 179,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.__exit__",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.get_slice",
+              "line_start": 191,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.get_tensor",
+              "line_start": 213,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.get_tensors",
+              "line_start": 236,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.keys",
+              "line_start": 261,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.metadata",
+              "line_start": 271,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "safe_open.offset_keys",
+              "line_start": 281,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 9,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors",
+      "names": [
+        "SafetensorError",
+        "TensorSpec",
+        "__version__",
+        "deserialize",
+        "safe_open",
+        "serialize",
+        "serialize_file"
+      ],
+      "n_typable": 36,
+      "n_typed": 17,
+      "n_any": 0,
+      "n_untyped": 19,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 12,
+      "n_method_params": 10,
+      "n_classes": 3,
+      "n_attrs": 1,
+      "n_properties": 4,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "safetensors/flax.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 11,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "save_file",
+          "line_start": 40,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 75,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_file",
+          "line_start": 102,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors.flax",
+      "names": [
+        "load",
+        "load_file",
+        "save",
+        "save_file"
+      ],
+      "n_typable": 12,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "safetensors/mlx.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 10,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "save_file",
+          "line_start": 41,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 76,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_file",
+          "line_start": 103,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors.mlx",
+      "names": [
+        "load",
+        "load_file",
+        "save",
+        "save_file"
+      ],
+      "n_typable": 12,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "safetensors/numpy.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 28,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "save_file",
+          "line_start": 61,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 98,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_file",
+          "line_start": 125,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors.numpy",
+      "names": [
+        "load",
+        "load_file",
+        "save",
+        "save_file"
+      ],
+      "n_typable": 12,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "safetensors/paddle.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "NPDTYPES",
+          "line_start": 207,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 18,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "save_file",
+          "line_start": 51,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 88,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "load_file",
+          "line_start": 119,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors.paddle",
+      "names": [
+        "NPDTYPES",
+        "load",
+        "load_file",
+        "save",
+        "save_file"
+      ],
+      "n_typable": 14,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 4,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "safetensors/tensorflow.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 10,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "save_file",
+          "line_start": 41,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 76,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_file",
+          "line_start": 103,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors.tensorflow",
+      "names": [
+        "load",
+        "load_file",
+        "save",
+        "save_file"
+      ],
+      "n_typable": 12,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "safetensors/torch.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "storage_ptr",
+          "line_start": 16,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "storage_size",
+          "line_start": 36,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "save_model",
+          "line_start": 145,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "save_file",
+          "line_start": 288,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load_model",
+          "line_start": 194,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "load_file",
+          "line_start": 328,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "save",
+          "line_start": 253,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "load",
+          "line_start": 363,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "safetensors.torch",
+      "names": [
+        "load",
+        "load_file",
+        "load_model",
+        "save",
+        "save_file",
+        "save_model",
+        "storage_ptr",
+        "storage_size"
+      ],
+      "n_typable": 28,
+      "n_typed": 22,
+      "n_any": 4,
+      "n_untyped": 2,
+      "n_functions": 8,
+      "n_function_params": 20,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 7,
+  "n_typable": 126,
+  "n_typed": 100,
+  "n_any": 4,
+  "n_untyped": 22,
+  "n_functions": 31,
+  "n_function_params": 68,
+  "n_methods": 12,
+  "n_method_params": 10,
+  "n_classes": 3,
+  "n_attrs": 1,
+  "n_properties": 4,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}

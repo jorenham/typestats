@@ -1,0 +1,3318 @@
+{
+  "schema_version": "1.0",
+  "package": "evalplus",
+  "version": "0.3.1",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2024-10-20T20:08:27.844855Z",
+    "requires_python": ">=3.9",
+    "size": 606441,
+    "sha256": "732352dba404d96dd97a1593b3209fd50a09f543bfe37058a0bacf3fd23025da"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.1"
+    ],
+    "Name": [
+      "evalplus"
+    ],
+    "Version": [
+      "0.3.1"
+    ],
+    "Summary": [
+      "\"EvalPlus for rigourous evaluation of LLM-synthesized code\""
+    ],
+    "Home-page": [
+      "https://github.com/evalplus/evalplus"
+    ],
+    "License": [
+      "Apache-2.0"
+    ],
+    "Platform": [
+      "any"
+    ],
+    "Classifier": [
+      "Operating System :: OS Independent",
+      "Programming Language :: Python :: 3",
+      "License :: OSI Approved :: Apache Software License"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "wget >=3.2",
+      "tempdir >=0.7.1",
+      "multipledispatch >=0.6.0",
+      "appdirs >=1.4.4",
+      "numpy >=1.19.5",
+      "tqdm >=4.56.0",
+      "termcolor >=2.0.0",
+      "fire >=0.6.0",
+      "openai >=1.11.1",
+      "tree-sitter >=0.22.0",
+      "tree-sitter-python >=0.21.0",
+      "rich >=12.3.0",
+      "transformers >=4.43.0",
+      "stop-sequencer >=1.2.3",
+      "anthropic >=0.34.1",
+      "google-generativeai >=0.7.2",
+      "datasets >=2.21.0",
+      "psutil >=5.9.0",
+      "Pympler >=1.0.1 ; extra == 'perf'",
+      "cirron >=0.4 ; extra == 'perf'",
+      "vllm >=0.5.1 ; extra == 'vllm'"
+    ],
+    "Provides-Extra": [
+      "perf",
+      "vllm"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "evalplus/codegen.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "codegen",
+          "line_start": 11,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "run_codegen",
+          "line_start": 127,
+          "n_typed": 19,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 20,
+          "n_params": 19
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 235,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.codegen",
+      "names": [
+        "codegen",
+        "main",
+        "run_codegen"
+      ],
+      "n_typable": 30,
+      "n_typed": 22,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 3,
+      "n_function_params": 27,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/config.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "DEFAULT_GT_TIME_LIMIT_FACTOR",
+          "line_start": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_MIN_TIME_LIMIT",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PERF_PROFILE_ROUNDS",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PERF_RAM_GB_PER_PROC",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PERF_EVAL_TIMEOUT_SECOND",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PERF_CURATE_TIMEOUT_SECOND",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PREF_CURATE_MIN_INSTRUCTION",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.config",
+      "names": [
+        "DEFAULT_GT_TIME_LIMIT_FACTOR",
+        "DEFAULT_MIN_TIME_LIMIT",
+        "PERF_CURATE_TIMEOUT_SECOND",
+        "PERF_EVAL_TIMEOUT_SECOND",
+        "PERF_PROFILE_ROUNDS",
+        "PERF_RAM_GB_PER_PROC",
+        "PREF_CURATE_MIN_INSTRUCTION"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/data/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_evalperf_data",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.data",
+      "names": [
+        "get_evalperf_data"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/data/humaneval.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "HUMANEVAL_PLUS_VERSION",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HUMANEVAL_OVERRIDE_PATH",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_human_eval_plus_hash",
+          "line_start": 31,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_human_eval_plus",
+          "line_start": 42,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_human_eval",
+          "line_start": 69,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.data.humaneval",
+      "names": [
+        "HUMANEVAL_OVERRIDE_PATH",
+        "HUMANEVAL_PLUS_VERSION",
+        "get_human_eval",
+        "get_human_eval_plus",
+        "get_human_eval_plus_hash"
+      ],
+      "n_typable": 11,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 3,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/data/mbpp.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MBPP_PLUS_VERSION",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MBPP_OVERRIDE_PATH",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "mbpp_serialize_inputs",
+          "line_start": 34,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "mbpp_deserialize_inputs",
+          "line_start": 47,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_mbpp",
+          "line_start": 161,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_mbpp_plus",
+          "line_start": 181,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_mbpp_plus_hash",
+          "line_start": 195,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.data.mbpp",
+      "names": [
+        "MBPP_OVERRIDE_PATH",
+        "MBPP_PLUS_VERSION",
+        "get_mbpp",
+        "get_mbpp_plus",
+        "get_mbpp_plus_hash",
+        "mbpp_deserialize_inputs",
+        "mbpp_serialize_inputs"
+      ],
+      "n_typable": 17,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 5,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/data/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "CACHE_DIR",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_dataset_metadata",
+          "line_start": 14,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "make_cache",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "write_jsonl",
+          "line_start": 48,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "stream_jsonl",
+          "line_start": 74,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_solutions",
+          "line_start": 91,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "write_directory",
+          "line_start": 136,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "completeness_check",
+          "line_start": 152,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "to_raw",
+          "line_start": 165,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.data.utils",
+      "names": [
+        "CACHE_DIR",
+        "completeness_check",
+        "get_dataset_metadata",
+        "load_solutions",
+        "make_cache",
+        "stream_jsonl",
+        "to_raw",
+        "write_directory",
+        "write_jsonl"
+      ],
+      "n_typable": 26,
+      "n_typed": 14,
+      "n_any": 0,
+      "n_untyped": 12,
+      "n_functions": 8,
+      "n_function_params": 17,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/eval/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "PASS",
+          "line_start": 87,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FAIL",
+          "line_start": 88,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TIMEOUT",
+          "line_start": 89,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "compatible_eval_result",
+          "line_start": 49,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "estimate_pass_at_k",
+          "line_start": 59,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "query_maximum_memory_bytes",
+          "line_start": 99,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "is_floats",
+          "line_start": 111,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "unsafe_execute",
+          "line_start": 122,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "untrusted_check",
+          "line_start": 223,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "evaluate_files",
+          "line_start": 284,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 11,
+          "n_params": 10
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.eval",
+      "names": [
+        "FAIL",
+        "PASS",
+        "TIMEOUT",
+        "compatible_eval_result",
+        "estimate_pass_at_k",
+        "evaluate_files",
+        "is_floats",
+        "query_maximum_memory_bytes",
+        "unsafe_execute",
+        "untrusted_check"
+      ],
+      "n_typable": 43,
+      "n_typed": 31,
+      "n_any": 1,
+      "n_untyped": 11,
+      "n_functions": 7,
+      "n_function_params": 36,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/eval/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "swallow_io",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "time_limit",
+          "line_start": 42,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "create_tempdir",
+          "line_start": 55,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "chdir",
+          "line_start": 62,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "reliability_guard",
+          "line_start": 102,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "TimeoutException",
+          "line_start": 77,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "WriteOnlyStringIO",
+          "line_start": 81,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WriteOnlyStringIO.read",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WriteOnlyStringIO.readline",
+              "line_start": 87,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WriteOnlyStringIO.readlines",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WriteOnlyStringIO.readable",
+              "line_start": 93,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 4,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "redirect_stdin",
+          "line_start": 98,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "evalplus.eval.utils",
+      "names": [
+        "TimeoutException",
+        "WriteOnlyStringIO",
+        "chdir",
+        "create_tempdir",
+        "redirect_stdin",
+        "reliability_guard",
+        "swallow_io",
+        "time_limit"
+      ],
+      "n_typable": 20,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 18,
+      "n_functions": 5,
+      "n_function_params": 3,
+      "n_methods": 4,
+      "n_method_params": 8,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "evalplus/evalperf.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "rule",
+          "line_start": 59,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "not_none",
+          "line_start": 63,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "correctness_check",
+          "line_start": 67,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_evalplus_data",
+          "line_start": 86,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "table_print",
+          "line_start": 102,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "correctness_worker",
+          "line_start": 115,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "perf_worker",
+          "line_start": 140,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "script",
+          "line_start": 292,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 10,
+          "n_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 529,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.evalperf",
+      "names": [
+        "correctness_check",
+        "correctness_worker",
+        "get_evalplus_data",
+        "main",
+        "not_none",
+        "perf_worker",
+        "rule",
+        "script",
+        "table_print"
+      ],
+      "n_typable": 35,
+      "n_typed": 27,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 9,
+      "n_function_params": 26,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/evaluate.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "Result",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_groundtruth",
+          "line_start": 42,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "check_correctness",
+          "line_start": 79,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "evaluate",
+          "line_start": 127,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 13,
+          "n_params": 12
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 356,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.evaluate",
+      "names": [
+        "Result",
+        "check_correctness",
+        "evaluate",
+        "get_groundtruth",
+        "main"
+      ],
+      "n_typable": 29,
+      "n_typed": 19,
+      "n_any": 0,
+      "n_untyped": 10,
+      "n_functions": 4,
+      "n_function_params": 25,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BaseGen",
+          "line_start": 5,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BaseGen.__init__",
+              "line_start": 6,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BaseGen.generate",
+              "line_start": 20,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BaseGen.contract",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseGen.entry_point",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseGen.seed_pool",
+              "line_start": 16,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseGen.new_inputs",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BaseGen.seed_hash",
+              "line_start": 18,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen",
+      "names": [
+        "BaseGen"
+      ],
+      "n_typable": 10,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/chatgpt_gen.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "ChatGPTGen",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ChatGPTGen.__init__",
+              "line_start": 15,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "ChatGPTGen.seed_selection",
+              "line_start": 26,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ChatGPTGen.chatgpt_generate",
+              "line_start": 46,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ChatGPTGen.generate",
+              "line_start": 67,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ChatGPTGen.gd_code",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ChatGPTGen.prompt_messages",
+              "line_start": 18,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ChatGPTGen.iteration",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ChatGPTGen.client",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 4,
+          "n_method_params": 5,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen.chatgpt_gen",
+      "names": [
+        "ChatGPTGen"
+      ],
+      "n_typable": 13,
+      "n_typed": 8,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/mut_gen.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MutateGen",
+          "line_start": 9,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MutateGen.__init__",
+              "line_start": 10,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "MutateGen.seed_selection",
+              "line_start": 13,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MutateGen.mutate",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "MutateGen.generate",
+              "line_start": 21,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 5,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_methods": 4,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen.mut_gen",
+      "names": [
+        "MutateGen"
+      ],
+      "n_typable": 8,
+      "n_typed": 5,
+      "n_any": 2,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/type_mut.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MAX_MULTI_STEP_SIZE",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MUTATE_BOUND_SIZE",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "NoneType",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "TypedMutGen",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TypedMutGen.__init__",
+              "line_start": 35,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.seed_selection",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.mutate",
+              "line_start": 51,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.typed_gen",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.any_gen",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.typed_mutate",
+              "line_start": 153,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.fetch_ingredient",
+              "line_start": 275,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.typed_fetch",
+              "line_start": 278,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TypedMutGen.generate",
+              "line_start": 321,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TypedMutGen.timeout",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TypedMutGen.ingredients",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 7,
+          "n_any": 1,
+          "n_untyped": 11,
+          "n_methods": 9,
+          "n_method_params": 8,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "use_ingredient",
+          "line_start": 19,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "use_ingredient.__init__",
+              "line_start": 20,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "use_ingredient.__call__",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "use_ingredient.prob",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen.type_mut",
+      "names": [
+        "MAX_MULTI_STEP_SIZE",
+        "MUTATE_BOUND_SIZE",
+        "NoneType",
+        "TypedMutGen",
+        "use_ingredient"
+      ],
+      "n_typable": 24,
+      "n_typed": 8,
+      "n_any": 1,
+      "n_untyped": 15,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 11,
+      "n_method_params": 9,
+      "n_classes": 2,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/util/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "trusted_exec",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "trusted_check_exec",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen.util",
+      "names": [
+        "trusted_check_exec",
+        "trusted_exec"
+      ],
+      "n_typable": 10,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 10,
+      "n_functions": 2,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/util/anthropic_request.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "handler",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "make_auto_request",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 2,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen.util.anthropic_request",
+      "names": [
+        "handler",
+        "make_auto_request"
+      ],
+      "n_typable": 7,
+      "n_typed": 0,
+      "n_any": 2,
+      "n_untyped": 5,
+      "n_functions": 2,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/gen/util/openai_request.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_request",
+          "line_start": 8,
+          "n_typed": 5,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "handler",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "make_auto_request",
+          "line_start": 43,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.gen.util.openai_request",
+      "names": [
+        "handler",
+        "make_auto_request",
+        "make_request"
+      ],
+      "n_typable": 14,
+      "n_typed": 5,
+      "n_any": 3,
+      "n_untyped": 6,
+      "n_functions": 3,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/inputgen.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "insert_contract_into_code",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "input_generation",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 79,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "SetEncoder",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SetEncoder.default",
+              "line_start": 16,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.inputgen",
+      "names": [
+        "SetEncoder",
+        "input_generation",
+        "insert_contract_into_code",
+        "main"
+      ],
+      "n_typable": 10,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 10,
+      "n_functions": 3,
+      "n_function_params": 5,
+      "n_methods": 1,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/lecacy_sanitize.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "remove_unindented_lines",
+          "line_start": 23,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "to_four_space_indents",
+          "line_start": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "sanitize",
+          "line_start": 60,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "script",
+          "line_start": 119,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 194,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.lecacy_sanitize",
+      "names": [
+        "main",
+        "remove_unindented_lines",
+        "sanitize",
+        "script",
+        "to_four_space_indents"
+      ],
+      "n_typable": 20,
+      "n_typed": 15,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 5,
+      "n_function_params": 15,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/perf/profile.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_max_ram_gb",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "default_parallelism",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "simple_test_profiler",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "are_profiles_broken",
+          "line_start": 46,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "physical_runtime_profiler",
+          "line_start": 50,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "num_instruction_profiler",
+          "line_start": 57,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_instruction_count_shared_mem",
+          "line_start": 70,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 10,
+          "n_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "profile",
+          "line_start": 132,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 9,
+          "n_params": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.perf.profile",
+      "names": [
+        "are_profiles_broken",
+        "default_parallelism",
+        "get_instruction_count_shared_mem",
+        "get_max_ram_gb",
+        "num_instruction_profiler",
+        "physical_runtime_profiler",
+        "profile",
+        "simple_test_profiler"
+      ],
+      "n_typable": 31,
+      "n_typed": 20,
+      "n_any": 0,
+      "n_untyped": 11,
+      "n_functions": 8,
+      "n_function_params": 23,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/perf/sampling.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "insert_contract",
+          "line_start": 22,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "post_process",
+          "line_start": 58,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "sample_one_input",
+          "line_start": 80,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 181,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.perf.sampling",
+      "names": [
+        "insert_contract",
+        "main",
+        "post_process",
+        "sample_one_input"
+      ],
+      "n_typable": 14,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 4,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/perf/sas.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "fewshot_cot",
+          "line_start": 15,
+          "n_typed": 5,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 101,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.perf.sas",
+      "names": [
+        "fewshot_cot",
+        "main"
+      ],
+      "n_typable": 13,
+      "n_typed": 9,
+      "n_any": 1,
+      "n_untyped": 3,
+      "n_functions": 2,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/perf/select_pe_inputs.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "script",
+          "line_start": 15,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 119,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.perf.select_pe_inputs",
+      "names": [
+        "main",
+        "script"
+      ],
+      "n_typable": 5,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/perf/select_pe_tasks.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "cv",
+          "line_start": 18,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "filter_by_profile_size",
+          "line_start": 28,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "filter_by_compute_cost",
+          "line_start": 43,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "filter_by_cv",
+          "line_start": 64,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "thresh_fn",
+          "line_start": 82,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "adaptive_seg1d",
+          "line_start": 86,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "filter_by_clustering",
+          "line_start": 102,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "brief_list_repr",
+          "line_start": 118,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "script",
+          "line_start": 127,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 233,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.perf.select_pe_tasks",
+      "names": [
+        "adaptive_seg1d",
+        "brief_list_repr",
+        "cv",
+        "filter_by_clustering",
+        "filter_by_compute_cost",
+        "filter_by_cv",
+        "filter_by_profile_size",
+        "main",
+        "script",
+        "thresh_fn"
+      ],
+      "n_typable": 33,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 20,
+      "n_functions": 10,
+      "n_function_params": 23,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_model",
+          "line_start": 4,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 14,
+          "n_params": 13
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider",
+      "names": [
+        "make_model"
+      ],
+      "n_typable": 14,
+      "n_typed": 7,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 1,
+      "n_function_params": 13,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/anthropic.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AnthropicDecoder",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnthropicDecoder.__init__",
+              "line_start": 11,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AnthropicDecoder.codegen",
+              "line_start": 15,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AnthropicDecoder.is_direct_completion",
+              "line_start": 45,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AnthropicDecoder.client",
+              "line_start": 13,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.anthropic",
+      "names": [
+        "AnthropicDecoder"
+      ],
+      "n_typable": 8,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/base.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DecoderBase",
+          "line_start": 7,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DecoderBase.__init__",
+              "line_start": 8,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "DecoderBase.codegen",
+              "line_start": 31,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "DecoderBase.is_direct_completion",
+              "line_start": 37,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "DecoderBase.__repr__",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "DecoderBase.__str__",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DecoderBase.name",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.batch_size",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.temperature",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.eos",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.skip_special_tokens",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.max_new_tokens",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.dtype",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.trust_remote_code",
+              "line_start": 27,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.instruction_prefix",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DecoderBase.response_prefix",
+              "line_start": 29,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 23,
+          "n_typed": 13,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 5,
+          "n_method_params": 8,
+          "n_attrs": 10,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.base",
+      "names": [
+        "DecoderBase"
+      ],
+      "n_typable": 23,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 10,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 10,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/google.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_request",
+          "line_start": 12,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "make_auto_request",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "GeminiDecoder",
+          "line_start": 57,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GeminiDecoder.__init__",
+              "line_start": 58,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GeminiDecoder.codegen",
+              "line_start": 63,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "GeminiDecoder.is_direct_completion",
+              "line_start": 95,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GeminiDecoder.client",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 4,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.google",
+      "names": [
+        "GeminiDecoder",
+        "make_auto_request",
+        "make_request"
+      ],
+      "n_typable": 17,
+      "n_typed": 10,
+      "n_any": 3,
+      "n_untyped": 4,
+      "n_functions": 2,
+      "n_function_params": 7,
+      "n_methods": 3,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/hf.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "HuggingFaceDecoder",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "HuggingFaceDecoder.__init__",
+              "line_start": 15,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "HuggingFaceDecoder.is_direct_completion",
+              "line_start": 47,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "HuggingFaceDecoder.codegen",
+              "line_start": 50,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "HuggingFaceDecoder.device",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HuggingFaceDecoder.skip_special_tokens",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HuggingFaceDecoder.force_base_prompt",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HuggingFaceDecoder.tokenizer",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "HuggingFaceDecoder.model",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.hf",
+      "names": [
+        "HuggingFaceDecoder"
+      ],
+      "n_typable": 15,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 7,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/openai.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "OpenAIChatDecoder",
+          "line_start": 10,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OpenAIChatDecoder.__init__",
+              "line_start": 11,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "OpenAIChatDecoder.codegen",
+              "line_start": 17,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "OpenAIChatDecoder.is_direct_completion",
+              "line_start": 39,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OpenAIChatDecoder.client",
+              "line_start": 13,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.openai",
+      "names": [
+        "OpenAIChatDecoder"
+      ],
+      "n_typable": 9,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/utility.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "EOS",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "extra_eos_for_direct_completion",
+          "line_start": 13,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "make_raw_chat_prompt",
+          "line_start": 25,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.utility",
+      "names": [
+        "EOS",
+        "extra_eos_for_direct_completion",
+        "make_raw_chat_prompt"
+      ],
+      "n_typable": 7,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 2,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/provider/vllm.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "VllmDecoder",
+          "line_start": 13,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "VllmDecoder.__init__",
+              "line_start": 14,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "VllmDecoder.is_direct_completion",
+              "line_start": 39,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "VllmDecoder.codegen",
+              "line_start": 42,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "VllmDecoder.force_base_prompt",
+              "line_start": 31,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "VllmDecoder.tokenizer",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "VllmDecoder.llm",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.provider.vllm",
+      "names": [
+        "VllmDecoder"
+      ],
+      "n_typable": 13,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 7,
+      "n_classes": 1,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/sanitize.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "CLASS_TYPE",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FUNCTION_TYPE",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "IMPORT_TYPE",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "IDENTIFIER_TYPE",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ATTRIBUTE_TYPE",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "RETURN_TYPE",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "EXPRESSION_TYPE",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ASSIGNMENT_TYPE",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "code_extract",
+          "line_start": 30,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_deps",
+          "line_start": 47,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_function_dependency",
+          "line_start": 63,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_definition_name",
+          "line_start": 77,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "traverse_tree",
+          "line_start": 83,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_return_statement",
+          "line_start": 102,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "extract_target_code_or_empty",
+          "line_start": 110,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "sanitize",
+          "line_start": 168,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "script",
+          "line_start": 175,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 246,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.sanitize",
+      "names": [
+        "ASSIGNMENT_TYPE",
+        "ATTRIBUTE_TYPE",
+        "CLASS_TYPE",
+        "EXPRESSION_TYPE",
+        "FUNCTION_TYPE",
+        "IDENTIFIER_TYPE",
+        "IMPORT_TYPE",
+        "RETURN_TYPE",
+        "code_extract",
+        "extract_target_code_or_empty",
+        "get_definition_name",
+        "get_deps",
+        "get_function_dependency",
+        "has_return_statement",
+        "main",
+        "sanitize",
+        "script",
+        "traverse_tree"
+      ],
+      "n_typable": 25,
+      "n_typed": 19,
+      "n_any": 3,
+      "n_untyped": 3,
+      "n_functions": 10,
+      "n_function_params": 15,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/syncheck.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "syntax_check",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "script",
+          "line_start": 24,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 111,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.syncheck",
+      "names": [
+        "main",
+        "script",
+        "syntax_check"
+      ],
+      "n_typable": 9,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "evalplus/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "progress",
+          "line_start": 10,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "evalplus.utils",
+      "names": [
+        "progress"
+      ],
+      "n_typable": 2,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 35,
+  "n_typable": 566,
+  "n_typed": 320,
+  "n_any": 16,
+  "n_untyped": 230,
+  "n_functions": 105,
+  "n_function_params": 313,
+  "n_methods": 46,
+  "n_method_params": 65,
+  "n_classes": 15,
+  "n_attrs": 37,
+  "n_properties": 0,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 2
+}

@@ -1,0 +1,6585 @@
+{
+  "schema_version": "1.0",
+  "package": "bitsandbytes",
+  "version": "0.48.2",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2025-10-29T21:40:36.389304Z",
+    "requires_python": ">=3.9",
+    "size": 33764723,
+    "sha256": "defbfa374d93809de3811cd2bca6978d1d51ecaa39f5bdd2018e1394a4886603"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "bitsandbytes"
+    ],
+    "Version": [
+      "0.48.2"
+    ],
+    "Summary": [
+      "k-bit optimizers and matrix multiplication routines."
+    ],
+    "Author-email": [
+      "Tim Dettmers <dettmers@cs.washington.edu>"
+    ],
+    "Maintainer-email": [
+      "Titus von Köller <titus@huggingface.co>, Matthew Douglas <matthew.douglas@huggingface.co>"
+    ],
+    "License-Expression": [
+      "MIT"
+    ],
+    "Project-URL": [
+      "homepage, https://github.com/bitsandbytes-foundation/bitsandbytes",
+      "changelog, https://github.com/bitsandbytes-foundation/bitsandbytes/blob/main/CHANGELOG.md",
+      "docs, https://huggingface.co/docs/bitsandbytes/main",
+      "issues, https://github.com/bitsandbytes-foundation/bitsandbytes/issues"
+    ],
+    "Keywords": [
+      "gpu,optimizers,optimization,8-bit,quantization,compression"
+    ],
+    "Classifier": [
+      "Development Status :: 4 - Beta",
+      "Environment :: GPU :: NVIDIA CUDA :: 11.8",
+      "Environment :: GPU :: NVIDIA CUDA :: 12",
+      "Environment :: GPU :: NVIDIA CUDA :: 13",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Science/Research",
+      "Operating System :: POSIX :: Linux",
+      "Operating System :: Microsoft :: Windows",
+      "Programming Language :: C++",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Topic :: Scientific/Engineering :: Artificial Intelligence"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "torch<3,>=2.3",
+      "numpy>=1.17",
+      "packaging>=20.9",
+      "pandas; extra == \"benchmark\"",
+      "matplotlib; extra == \"benchmark\"",
+      "hf-doc-builder==0.5.0; extra == \"docs\"",
+      "bitsandbytes[test]; extra == \"dev\"",
+      "build<2,>=1.0.0; extra == \"dev\"",
+      "ruff==0.11.2; extra == \"dev\"",
+      "pre-commit<4,>=3.5.0; extra == \"dev\"",
+      "wheel<1,>=0.42; extra == \"dev\"",
+      "einops~=0.8.0; extra == \"test\"",
+      "lion-pytorch==0.2.3; extra == \"test\"",
+      "pytest~=8.3; extra == \"test\"",
+      "scipy<2,>=1.11.4; extra == \"test\"",
+      "transformers<5,>=4.30.1; extra == \"test\""
+    ],
+    "Provides-Extra": [
+      "benchmark",
+      "docs",
+      "dev",
+      "test"
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "bitsandbytes/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "features",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "supported_torch_devices",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "__pdoc__",
+          "line_start": 72,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 78,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes",
+      "names": [
+        "__pdoc__",
+        "__version__",
+        "features",
+        "supported_torch_devices"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/cpu/ops.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.cpu.ops",
+      "names": [
+        "logger"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/cuda/ops.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "str2optimizer32bit",
+          "line_start": 544,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "str2optimizer8bit_blockwise",
+          "line_start": 579,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.cuda.ops",
+      "names": [
+        "str2optimizer32bit",
+        "str2optimizer8bit_blockwise"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/default/ops.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MOMENTUM",
+          "line_start": 306,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "RMSPROP",
+          "line_start": 307,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ADAGRAD",
+          "line_start": 308,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ADAM",
+          "line_start": 309,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LION",
+          "line_start": 311,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ADEMAMIX",
+          "line_start": 312,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "name2optimizer_id",
+          "line_start": 314,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.default.ops",
+      "names": [
+        "ADAGRAD",
+        "ADAM",
+        "ADEMAMIX",
+        "LION",
+        "MOMENTUM",
+        "RMSPROP",
+        "name2optimizer_id"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/triton/kernels_4bit.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "quantize_fp4_blockwise_kernel",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 5,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "quantize_nf4_blockwise_kernel",
+          "line_start": 85,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 5,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "quantize_4bit_blockwise_triton",
+          "line_start": 155,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "dequant_4bit_body_util",
+          "line_start": 180,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 6,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_fp4_tree",
+          "line_start": 202,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "dequant_fp4_body_util",
+          "line_start": 226,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 5,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_nf4_tree",
+          "line_start": 242,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dequant_nf4_body_util",
+          "line_start": 282,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 5,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dequant_4bit_kernel",
+          "line_start": 331,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 6,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "dequant_fp4_kernel",
+          "line_start": 368,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 5,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequant_nf4_kernel",
+          "line_start": 404,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 5,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_4bit_impl",
+          "line_start": 429,
+          "n_typed": 3,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_4bit_impl_passing_code",
+          "line_start": 453,
+          "n_typed": 2,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "quantize_4bit_blockwise_kernel",
+          "line_start": 493,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 6,
+          "n_typable": 9,
+          "n_params": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.triton.kernels_4bit",
+      "names": [
+        "dequant_4bit_body_util",
+        "dequant_4bit_kernel",
+        "dequant_fp4_body_util",
+        "dequant_fp4_kernel",
+        "dequant_nf4_body_util",
+        "dequant_nf4_kernel",
+        "dequantize_4bit_impl",
+        "dequantize_4bit_impl_passing_code",
+        "dequantize_fp4_tree",
+        "dequantize_nf4_tree",
+        "quantize_4bit_blockwise_kernel",
+        "quantize_4bit_blockwise_triton",
+        "quantize_fp4_blockwise_kernel",
+        "quantize_nf4_blockwise_kernel"
+      ],
+      "n_typable": 91,
+      "n_typed": 5,
+      "n_any": 25,
+      "n_untyped": 61,
+      "n_functions": 14,
+      "n_function_params": 77,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/triton/kernels_8bit_quant.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "dequant_8bit_kernel",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 6,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "dequant_8bit_blockwise_kernel_util",
+          "line_start": 179,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 6,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequant_8bit_blockwise",
+          "line_start": 45,
+          "n_typed": 1,
+          "n_any": 5,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "quantize_8bit_blockwise_kernel",
+          "line_start": 83,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 6,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "quantize_8bit_blockwise_kernel_util",
+          "line_start": 136,
+          "n_typed": 0,
+          "n_any": 3,
+          "n_untyped": 3,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "quantize_blockwise_triton",
+          "line_start": 107,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.triton.kernels_8bit_quant",
+      "names": [
+        "dequant_8bit_blockwise",
+        "dequant_8bit_blockwise_kernel_util",
+        "dequant_8bit_kernel",
+        "quantize_8bit_blockwise_kernel",
+        "quantize_8bit_blockwise_kernel_util",
+        "quantize_blockwise_triton"
+      ],
+      "n_typable": 43,
+      "n_typed": 1,
+      "n_any": 14,
+      "n_untyped": 28,
+      "n_functions": 6,
+      "n_function_params": 37,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/triton/kernels_optim.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MOMENTUM",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "RMSPROP",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ADAGRAD",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ADAM",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LION",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ADEMAMIX",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "name2optimizer_id",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "name2optimizer_32bit_fn",
+          "line_start": 311,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "name2optimizer_fn",
+          "line_start": 1066,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_32bit_impl",
+          "line_start": 339,
+          "n_typed": 15,
+          "n_any": 3,
+          "n_untyped": 1,
+          "n_typable": 19,
+          "n_params": 18
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_8bit_blockwise_pytorch",
+          "line_start": 562,
+          "n_typed": 15,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_typable": 20,
+          "n_params": 19
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_8bit_blockwise_triton_quant",
+          "line_start": 709,
+          "n_typed": 15,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_typable": 20,
+          "n_params": 19
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_8bit_blockwise_impl",
+          "line_start": 1076,
+          "n_typed": 14,
+          "n_any": 5,
+          "n_untyped": 1,
+          "n_typable": 20,
+          "n_params": 19
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.triton.kernels_optim",
+      "names": [
+        "ADAGRAD",
+        "ADAM",
+        "ADEMAMIX",
+        "LION",
+        "MOMENTUM",
+        "RMSPROP",
+        "name2optimizer_32bit_fn",
+        "name2optimizer_fn",
+        "name2optimizer_id",
+        "optimizer_update_32bit_impl",
+        "optimizer_update_8bit_blockwise_impl",
+        "optimizer_update_8bit_blockwise_pytorch",
+        "optimizer_update_8bit_blockwise_triton_quant"
+      ],
+      "n_typable": 79,
+      "n_typed": 59,
+      "n_any": 18,
+      "n_untyped": 2,
+      "n_functions": 4,
+      "n_function_params": 75,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/triton/ops.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "device_type",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "torch_accelerator_module",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "optimizer_update_8bit_blockwise_impl",
+          "line_start": 177,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "quantize_blockwise",
+          "line_start": 17,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_blockwise",
+          "line_start": 25,
+          "n_typed": 1,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_blockwise_inplace",
+          "line_start": 42,
+          "n_typed": 2,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "quantize_4bit",
+          "line_start": 67,
+          "n_typed": 3,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_4bit",
+          "line_start": 99,
+          "n_typed": 3,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_4bit_inplace",
+          "line_start": 128,
+          "n_typed": 4,
+          "n_any": 4,
+          "n_untyped": 0,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "gemv_4bit",
+          "line_start": 143,
+          "n_typed": 2,
+          "n_any": 5,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_8bit_blockwise",
+          "line_start": 180,
+          "n_typed": 14,
+          "n_any": 5,
+          "n_untyped": 1,
+          "n_typable": 20,
+          "n_params": 19
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_32bit",
+          "line_start": 257,
+          "n_typed": 15,
+          "n_any": 3,
+          "n_untyped": 1,
+          "n_typable": 19,
+          "n_params": 18
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.triton.ops",
+      "names": [
+        "dequantize_4bit",
+        "dequantize_4bit_inplace",
+        "dequantize_blockwise",
+        "dequantize_blockwise_inplace",
+        "device_type",
+        "gemv_4bit",
+        "optimizer_update_32bit",
+        "optimizer_update_8bit_blockwise",
+        "optimizer_update_8bit_blockwise_impl",
+        "quantize_4bit",
+        "quantize_blockwise",
+        "torch_accelerator_module"
+      ],
+      "n_typable": 84,
+      "n_typed": 46,
+      "n_any": 35,
+      "n_untyped": 3,
+      "n_functions": 9,
+      "n_function_params": 74,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "triton_available",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "CODE",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GAUDI_SW_VER",
+          "line_start": 83,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_gaudi_sw_version",
+          "line_start": 66,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.utils",
+      "names": [
+        "CODE",
+        "GAUDI_SW_VER",
+        "get_gaudi_sw_version",
+        "triton_available"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/backends/xpu/ops.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.backends.xpu.ops",
+      "names": [
+        "logger"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/cextension.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ROCM_GPU_ARCH",
+          "line_start": 300,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "HIP_ENVIRONMENT",
+          "line_start": 302,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "BNB_BACKEND",
+          "line_start": 303,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "lib",
+          "line_start": 313,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "error_msg",
+          "line_start": 318,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_cuda_bnb_library_path",
+          "line_start": 17,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_available_cuda_binary_versions",
+          "line_start": 81,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "parse_cuda_version",
+          "line_start": 96,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_native_library",
+          "line_start": 271,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "BNBNativeLibrary",
+          "line_start": 45,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BNBNativeLibrary.__init__",
+              "line_start": 49,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BNBNativeLibrary.__getattr__",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "BNBNativeLibrary.__getitem__",
+              "line_start": 67,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CudaBNBNativeLibrary",
+          "line_start": 71,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CudaBNBNativeLibrary.__init__",
+              "line_start": 74,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ErrorHandlerMockBNBNativeLibrary",
+          "line_start": 103,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ErrorHandlerMockBNBNativeLibrary.__init__",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ErrorHandlerMockBNBNativeLibrary.__getattr__",
+              "line_start": 259,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ErrorHandlerMockBNBNativeLibrary.__getitem__",
+              "line_start": 267,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ErrorHandlerMockBNBNativeLibrary.error_msg",
+              "line_start": 125,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ErrorHandlerMockBNBNativeLibrary.user_cuda_version",
+              "line_start": 126,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ErrorHandlerMockBNBNativeLibrary.available_versions",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ErrorHandlerMockBNBNativeLibrary.override_value",
+              "line_start": 128,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ErrorHandlerMockBNBNativeLibrary.requested_version",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ErrorHandlerMockBNBNativeLibrary.formatted_error",
+              "line_start": 139,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 3,
+          "n_method_params": 1,
+          "n_attrs": 6,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.cextension",
+      "names": [
+        "BNBNativeLibrary",
+        "BNB_BACKEND",
+        "CudaBNBNativeLibrary",
+        "ErrorHandlerMockBNBNativeLibrary",
+        "HIP_ENVIRONMENT",
+        "ROCM_GPU_ARCH",
+        "error_msg",
+        "get_available_cuda_binary_versions",
+        "get_cuda_bnb_library_path",
+        "get_native_library",
+        "lib",
+        "logger",
+        "parse_cuda_version"
+      ],
+      "n_typable": 27,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 18,
+      "n_functions": 4,
+      "n_function_params": 2,
+      "n_methods": 7,
+      "n_method_params": 2,
+      "n_classes": 3,
+      "n_attrs": 12,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/consts.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "DYNAMIC_LIBRARY_SUFFIX",
+          "line_start": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PACKAGE_DIR",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PACKAGE_GITHUB_URL",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "NONPYTORCH_DOC_URL",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.consts",
+      "names": [
+        "DYNAMIC_LIBRARY_SUFFIX",
+        "NONPYTORCH_DOC_URL",
+        "PACKAGE_DIR",
+        "PACKAGE_GITHUB_URL"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/cuda_specs.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_compute_capabilities",
+          "line_start": 22,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_cuda_version_tuple",
+          "line_start": 26,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_cuda_version_string",
+          "line_start": 45,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_cuda_specs",
+          "line_start": 54,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_rocm_gpu_arch",
+          "line_start": 81,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "CUDASpecs",
+          "line_start": 11,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "CUDASpecs.has_imma",
+              "line_start": 17,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CUDASpecs.highest_compute_capability",
+              "line_start": 13,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CUDASpecs.cuda_version_string",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "CUDASpecs.cuda_version_tuple",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.cuda_specs",
+      "names": [
+        "CUDASpecs",
+        "get_compute_capabilities",
+        "get_cuda_specs",
+        "get_cuda_version_string",
+        "get_cuda_version_tuple",
+        "get_rocm_gpu_arch"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 5,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 1,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/diagnostics/cuda.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "CUDART_PATH_PREFERRED_ENVVARS",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CUDART_PATH_IGNORED_ENVVARS",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CUDA_RUNTIME_LIB_PATTERNS",
+          "line_start": 34,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "find_cuda_libraries_in_path_list",
+          "line_start": 47,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_relevant_candidate_env_var",
+          "line_start": 69,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_potentially_lib_path_containing_env_vars",
+          "line_start": 82,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "find_cudart_libraries",
+          "line_start": 86,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "print_diagnostics",
+          "line_start": 158,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "print_runtime_diagnostics",
+          "line_start": 215,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.diagnostics.cuda",
+      "names": [
+        "CUDART_PATH_IGNORED_ENVVARS",
+        "CUDART_PATH_PREFERRED_ENVVARS",
+        "CUDA_RUNTIME_LIB_PATTERNS",
+        "find_cuda_libraries_in_path_list",
+        "find_cudart_libraries",
+        "get_potentially_lib_path_containing_env_vars",
+        "is_relevant_candidate_env_var",
+        "logger",
+        "print_diagnostics",
+        "print_runtime_diagnostics"
+      ],
+      "n_typable": 11,
+      "n_typed": 10,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 6,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/diagnostics/main.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "sanity_check",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_package_version",
+          "line_start": 45,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "show_environment",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.diagnostics.main",
+      "names": [
+        "get_package_version",
+        "main",
+        "sanity_check",
+        "show_environment"
+      ],
+      "n_typable": 5,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 4,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/diagnostics/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "HEADER_WIDTH",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "print_header",
+          "line_start": 6,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "print_dedented",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.diagnostics.utils",
+      "names": [
+        "HEADER_WIDTH",
+        "print_dedented",
+        "print_header"
+      ],
+      "n_typable": 6,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 2,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/functional.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "name2qmap",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "str2optimizer8bit",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FIRST_CUDA_DEVICE",
+          "line_start": 117,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "C",
+          "line_start": 2202,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_paged",
+          "line_start": 134,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "prefetch_tensor",
+          "line_start": 145,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_ptr",
+          "line_start": 378,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "elementwise_func",
+          "line_start": 155,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "fill",
+          "line_start": 182,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "create_linear_map",
+          "line_start": 190,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "create_normal_map",
+          "line_start": 209,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "create_fp8_map",
+          "line_start": 238,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "create_dynamic_map",
+          "line_start": 280,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "is_on_gpu",
+          "line_start": 335,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "quantize_blockwise",
+          "line_start": 570,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_blockwise",
+          "line_start": 641,
+          "n_typed": 5,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "get_4bit_type",
+          "line_start": 718,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "quantize_fp4",
+          "line_start": 800,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "quantize_4bit",
+          "line_start": 826,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "quantize_nf4",
+          "line_start": 813,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 4,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_fp4",
+          "line_start": 907,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_4bit",
+          "line_start": 931,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_nf4",
+          "line_start": 919,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "quantize",
+          "line_start": 1008,
+          "n_typed": 3,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "quantize_no_absmax",
+          "line_start": 1049,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "dequantize",
+          "line_start": 1028,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "dequantize_no_absmax",
+          "line_start": 1080,
+          "n_typed": 1,
+          "n_any": 3,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_32bit",
+          "line_start": 1112,
+          "n_typed": 14,
+          "n_any": 3,
+          "n_untyped": 1,
+          "n_typable": 18,
+          "n_params": 17
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_8bit",
+          "line_start": 1201,
+          "n_typed": 15,
+          "n_any": 6,
+          "n_untyped": 0,
+          "n_typable": 21,
+          "n_params": 20
+        },
+        {
+          "kind": "function",
+          "name": "optimizer_update_8bit_blockwise",
+          "line_start": 1338,
+          "n_typed": 14,
+          "n_any": 5,
+          "n_untyped": 1,
+          "n_typable": 20,
+          "n_params": 19
+        },
+        {
+          "kind": "function",
+          "name": "percentile_clipping",
+          "line_start": 1384,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "check_matmul",
+          "line_start": 1426,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "gemv_4bit",
+          "line_start": 1510,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 4,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "igemm",
+          "line_start": 1547,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 3,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "batched_igemm",
+          "line_start": 1648,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 3,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "int8_linear_matmul",
+          "line_start": 1744,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "int8_mm_dequant",
+          "line_start": 1770,
+          "n_typed": 2,
+          "n_any": 3,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_colrow_absmax",
+          "line_start": 1798,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_row_absmax",
+          "line_start": 1856,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "coo2csr",
+          "line_start": 1947,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coo2csc",
+          "line_start": 1956,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "coo_zeros",
+          "line_start": 1968,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "int8_double_quant",
+          "line_start": 1975,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "int8_vectorwise_dequant",
+          "line_start": 2026,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "int8_vectorwise_quant",
+          "line_start": 2040,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "spmm_coo",
+          "line_start": 2061,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "spmm_coo_very_sparse",
+          "line_start": 2128,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "COOSparseTensor",
+          "line_start": 1894,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "COOSparseTensor.__init__",
+              "line_start": 1895,
+              "n_typed": 3,
+              "n_any": 3,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "COOSparseTensor.rows",
+              "line_start": 1905,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "COOSparseTensor.cols",
+              "line_start": 1906,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "COOSparseTensor.nnz",
+              "line_start": 1907,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "COOSparseTensor.rowidx",
+              "line_start": 1908,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "COOSparseTensor.colidx",
+              "line_start": 1909,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "COOSparseTensor.values",
+              "line_start": 1910,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 3,
+          "n_any": 3,
+          "n_untyped": 6,
+          "n_methods": 1,
+          "n_method_params": 5,
+          "n_attrs": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CSCSparseTensor",
+          "line_start": 1930,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CSCSparseTensor.__init__",
+              "line_start": 1931,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CSCSparseTensor.rows",
+              "line_start": 1939,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSCSparseTensor.cols",
+              "line_start": 1940,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSCSparseTensor.nnz",
+              "line_start": 1941,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSCSparseTensor.colptr",
+              "line_start": 1942,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSCSparseTensor.rowidx",
+              "line_start": 1943,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSCSparseTensor.values",
+              "line_start": 1944,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 5,
+          "n_attrs": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CSRSparseTensor",
+          "line_start": 1913,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CSRSparseTensor.__init__",
+              "line_start": 1914,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CSRSparseTensor.rows",
+              "line_start": 1922,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSRSparseTensor.cols",
+              "line_start": 1923,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSRSparseTensor.nnz",
+              "line_start": 1924,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSRSparseTensor.rowptr",
+              "line_start": 1925,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSRSparseTensor.colidx",
+              "line_start": 1926,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "CSRSparseTensor.values",
+              "line_start": 1927,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 5,
+          "n_attrs": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CUBLAS_Context",
+          "line_start": 75,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CUBLAS_Context.__init__",
+              "line_start": 78,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "CUBLAS_Context.initialize",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CUBLAS_Context.get_instance",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CUBLAS_Context.get_context",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Cusparse_Context",
+          "line_start": 100,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Cusparse_Context.__init__",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "Cusparse_Context.initialize",
+              "line_start": 106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Cusparse_Context.get_instance",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "GlobalPageManager",
+          "line_start": 51,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GlobalPageManager.__init__",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "GlobalPageManager.initialize",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GlobalPageManager.get_instance",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GlobalPageManager.prefetch_all",
+              "line_start": 67,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 4,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "QuantState",
+          "line_start": 393,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "QuantState.__init__",
+              "line_start": 413,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "QuantState.__getitem__",
+              "line_start": 434,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantState.from_dict",
+              "line_start": 454,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "QuantState.as_dict",
+              "line_start": 505,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantState.to",
+              "line_start": 537,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "QuantState.__eq__",
+              "line_start": 546,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "QuantState.absmax",
+              "line_start": 424,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.shape",
+              "line_start": 425,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.code",
+              "line_start": 426,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.dtype",
+              "line_start": 427,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.blocksize",
+              "line_start": 428,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.quant_type",
+              "line_start": 429,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.offset",
+              "line_start": 430,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.state2",
+              "line_start": 431,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "QuantState.nested",
+              "line_start": 432,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 28,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 25,
+          "n_methods": 6,
+          "n_method_params": 13,
+          "n_attrs": 9,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.functional",
+      "names": [
+        "C",
+        "COOSparseTensor",
+        "CSCSparseTensor",
+        "CSRSparseTensor",
+        "CUBLAS_Context",
+        "Cusparse_Context",
+        "FIRST_CUDA_DEVICE",
+        "GlobalPageManager",
+        "QuantState",
+        "batched_igemm",
+        "check_matmul",
+        "coo2csc",
+        "coo2csr",
+        "coo_zeros",
+        "create_dynamic_map",
+        "create_fp8_map",
+        "create_linear_map",
+        "create_normal_map",
+        "dequantize",
+        "dequantize_4bit",
+        "dequantize_blockwise",
+        "dequantize_fp4",
+        "dequantize_nf4",
+        "dequantize_no_absmax",
+        "elementwise_func",
+        "fill",
+        "gemv_4bit",
+        "get_4bit_type",
+        "get_colrow_absmax",
+        "get_paged",
+        "get_ptr",
+        "get_row_absmax",
+        "igemm",
+        "int8_double_quant",
+        "int8_linear_matmul",
+        "int8_mm_dequant",
+        "int8_vectorwise_dequant",
+        "int8_vectorwise_quant",
+        "is_on_gpu",
+        "name2qmap",
+        "optimizer_update_32bit",
+        "optimizer_update_8bit",
+        "optimizer_update_8bit_blockwise",
+        "percentile_clipping",
+        "prefetch_tensor",
+        "quantize",
+        "quantize_4bit",
+        "quantize_blockwise",
+        "quantize_fp4",
+        "quantize_nf4",
+        "quantize_no_absmax",
+        "spmm_coo",
+        "spmm_coo_very_sparse",
+        "str2optimizer8bit"
+      ],
+      "n_typable": 333,
+      "n_typed": 106,
+      "n_any": 60,
+      "n_untyped": 167,
+      "n_functions": 43,
+      "n_function_params": 215,
+      "n_methods": 20,
+      "n_method_params": 27,
+      "n_classes": 7,
+      "n_attrs": 28,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/nn/modules.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "T",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "fix_4bit_weight_quant_state_from_module",
+          "line_start": 396,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "maybe_rearrange_weight",
+          "line_start": 706,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "class",
+          "name": "Embedding",
+          "line_start": 128,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Embedding.__init__",
+              "line_start": 133,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Embedding.reset_parameters",
+              "line_start": 177,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Embedding.forward",
+              "line_start": 193,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 10,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Embedding4bit",
+          "line_start": 774,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Embedding4bit.__init__",
+              "line_start": 795,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Embedding4bit.forward",
+              "line_start": 860,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Embedding4bit.dtype",
+              "line_start": 805,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Embedding4bit.weight",
+              "line_start": 807,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 8,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Embedding8bit",
+          "line_start": 727,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Embedding8bit.__init__",
+              "line_start": 747,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Embedding8bit.forward",
+              "line_start": 756,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Embedding8bit.dtype",
+              "line_start": 749,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Embedding8bit.weight",
+              "line_start": 751,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 6,
+          "n_methods": 2,
+          "n_method_params": 4,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EmbeddingFP4",
+          "line_start": 874,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmbeddingFP4.__init__",
+              "line_start": 875,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "EmbeddingNF4",
+          "line_start": 893,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EmbeddingNF4.__init__",
+              "line_start": 894,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Int8Params",
+          "line_start": 614,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Int8Params.__new__",
+              "line_start": 615,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Int8Params.cpu",
+              "line_start": 644,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Int8Params.cuda",
+              "line_start": 647,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Int8Params.xpu",
+              "line_start": 650,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Int8Params.__deepcopy__",
+              "line_start": 653,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Int8Params.to",
+              "line_start": 665,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 20,
+          "n_typed": 11,
+          "n_any": 1,
+          "n_untyped": 8,
+          "n_methods": 6,
+          "n_method_params": 14,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Linear4bit",
+          "line_start": 413,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Linear4bit.__init__",
+              "line_start": 446,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "Linear4bit.set_compute_type",
+              "line_start": 483,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Linear4bit.forward",
+              "line_start": 514,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Linear4bit.weight",
+              "line_start": 469,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Linear4bit.compute_dtype",
+              "line_start": 478,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Linear4bit.compute_type_is_set",
+              "line_start": 479,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Linear4bit.quant_state",
+              "line_start": 480,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Linear4bit.quant_storage",
+              "line_start": 481,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 16,
+          "n_methods": 3,
+          "n_method_params": 9,
+          "n_attrs": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Linear8bitLt",
+          "line_start": 912,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Linear8bitLt.__init__",
+              "line_start": 944,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Linear8bitLt.init_8bit_state",
+              "line_start": 1041,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Linear8bitLt.to",
+              "line_start": 1047,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Linear8bitLt.forward",
+              "line_start": 1062,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Linear8bitLt.state",
+              "line_start": 966,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Linear8bitLt.index",
+              "line_start": 967,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Linear8bitLt.weight",
+              "line_start": 975,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 16,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 13,
+          "n_methods": 4,
+          "n_method_params": 9,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LinearFP4",
+          "line_start": 535,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearFP4.__init__",
+              "line_start": 540,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 1,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LinearNF4",
+          "line_start": 571,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearNF4.__init__",
+              "line_start": 583,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 1,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "OutlierAwareLinear",
+          "line_start": 1079,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OutlierAwareLinear.__init__",
+              "line_start": 1080,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "OutlierAwareLinear.forward_with_outliers",
+              "line_start": 1085,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "OutlierAwareLinear.quantize_weight",
+              "line_start": 1088,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "OutlierAwareLinear.forward",
+              "line_start": 1091,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OutlierAwareLinear.outlier_dim",
+              "line_start": 1082,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "OutlierAwareLinear.is_quantized",
+              "line_start": 1083,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_methods": 4,
+          "n_method_params": 8,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Params4bit",
+          "line_start": 207,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Params4bit.__new__",
+              "line_start": 208,
+              "n_typed": 8,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.__getstate__",
+              "line_start": 237,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.__setstate__",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.__deepcopy__",
+              "line_start": 254,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.__copy__",
+              "line_start": 262,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.from_prequantized",
+              "line_start": 268,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 2,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.cpu",
+              "line_start": 310,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.cuda",
+              "line_start": 313,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.xpu",
+              "line_start": 316,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.to",
+              "line_start": 319,
+              "n_typed": 4,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Params4bit.__torch_function__",
+              "line_start": 355,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 40,
+          "n_typed": 20,
+          "n_any": 3,
+          "n_untyped": 17,
+          "n_methods": 11,
+          "n_method_params": 29,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StableEmbedding",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StableEmbedding.__init__",
+              "line_start": 48,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "StableEmbedding.reset_parameters",
+              "line_start": 95,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "StableEmbedding.forward",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "StableEmbedding.norm",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 9,
+          "n_any": 2,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 10,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SwitchBackLinearBnb",
+          "line_start": 1106,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SwitchBackLinearBnb.__init__",
+              "line_start": 1107,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "SwitchBackLinearBnb.init_8bit_state",
+              "line_start": 1130,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SwitchBackLinearBnb.forward",
+              "line_start": 1136,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SwitchBackLinearBnb.state",
+              "line_start": 1119,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SwitchBackLinearBnb.index",
+              "line_start": 1120,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "SwitchBackLinearBnb.weight",
+              "line_start": 1128,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_methods": 3,
+          "n_method_params": 8,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.nn.modules",
+      "names": [
+        "Embedding",
+        "Embedding4bit",
+        "Embedding8bit",
+        "EmbeddingFP4",
+        "EmbeddingNF4",
+        "Int8Params",
+        "Linear4bit",
+        "Linear8bitLt",
+        "LinearFP4",
+        "LinearNF4",
+        "OutlierAwareLinear",
+        "Params4bit",
+        "StableEmbedding",
+        "SwitchBackLinearBnb",
+        "T",
+        "fix_4bit_weight_quant_state_from_module",
+        "maybe_rearrange_weight"
+      ],
+      "n_typable": 199,
+      "n_typed": 53,
+      "n_any": 14,
+      "n_untyped": 132,
+      "n_functions": 2,
+      "n_function_params": 8,
+      "n_methods": 45,
+      "n_method_params": 126,
+      "n_classes": 14,
+      "n_attrs": 18,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/nn/parametrize.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "replace_parameter_4bit_prequantized",
+          "line_start": 42,
+          "n_typed": 2,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "replace_parameter_4bit",
+          "line_start": 62,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "Bnb4bitParametrization",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Bnb4bitParametrization.__init__",
+              "line_start": 24,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Bnb4bitParametrization.forward",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Bnb4bitParametrization.quant_state",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.nn.parametrize",
+      "names": [
+        "Bnb4bitParametrization",
+        "replace_parameter_4bit",
+        "replace_parameter_4bit_prequantized"
+      ],
+      "n_typable": 15,
+      "n_typed": 7,
+      "n_any": 5,
+      "n_untyped": 3,
+      "n_functions": 2,
+      "n_function_params": 9,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/nn/triton_based_modules.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "SwitchBackLinearGlobal",
+          "line_start": 227,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SwitchBackLinearGlobalMemEfficient",
+          "line_start": 228,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SwitchBackLinearVectorwise",
+          "line_start": 229,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "StandardLinear",
+          "line_start": 262,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StandardLinear.forward",
+              "line_start": 263,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StandardLinearFunction",
+          "line_start": 233,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StandardLinearFunction.forward",
+              "line_start": 234,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "StandardLinearFunction.backward",
+              "line_start": 244,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SwitchBackLinear",
+          "line_start": 154,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SwitchBackLinear.__init__",
+              "line_start": 155,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "SwitchBackLinear.prepare_for_eval",
+              "line_start": 184,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "SwitchBackLinear.forward",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SwitchBackLinear.vector_wise_quantization",
+              "line_start": 172,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.nn.triton_based_modules",
+      "names": [
+        "StandardLinear",
+        "StandardLinearFunction",
+        "SwitchBackLinear",
+        "SwitchBackLinearGlobal",
+        "SwitchBackLinearGlobalMemEfficient",
+        "SwitchBackLinearVectorwise"
+      ],
+      "n_typable": 24,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 19,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 14,
+      "n_classes": 3,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/adagrad.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Adagrad",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Adagrad.__init__",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Adagrad32bit",
+          "line_start": 143,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Adagrad32bit.__init__",
+              "line_start": 144,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Adagrad8bit",
+          "line_start": 75,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Adagrad8bit.__init__",
+              "line_start": 76,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.adagrad",
+      "names": [
+        "Adagrad",
+        "Adagrad32bit",
+        "Adagrad8bit"
+      ],
+      "n_typable": 33,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 33,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 30,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/adam.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Adam",
+          "line_start": 9,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Adam.__init__",
+              "line_start": 10,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Adam32bit",
+          "line_start": 142,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Adam32bit.__init__",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Adam8bit",
+          "line_start": 70,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Adam8bit.__init__",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdam",
+          "line_start": 203,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdam.__init__",
+              "line_start": 204,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdam32bit",
+          "line_start": 336,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdam32bit.__init__",
+              "line_start": 337,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdam8bit",
+          "line_start": 264,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdam8bit.__init__",
+              "line_start": 265,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.adam",
+      "names": [
+        "Adam",
+        "Adam32bit",
+        "Adam8bit",
+        "PagedAdam",
+        "PagedAdam32bit",
+        "PagedAdam8bit"
+      ],
+      "n_typable": 72,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 72,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 66,
+      "n_classes": 6,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/adamw.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AdamW",
+          "line_start": 9,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdamW.__init__",
+              "line_start": 10,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AdamW32bit",
+          "line_start": 142,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdamW32bit.__init__",
+              "line_start": 143,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AdamW8bit",
+          "line_start": 70,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdamW8bit.__init__",
+              "line_start": 71,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdamW",
+          "line_start": 203,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdamW.__init__",
+              "line_start": 204,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdamW32bit",
+          "line_start": 330,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdamW32bit.__init__",
+              "line_start": 331,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdamW8bit",
+          "line_start": 261,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdamW8bit.__init__",
+              "line_start": 262,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.adamw",
+      "names": [
+        "AdamW",
+        "AdamW32bit",
+        "AdamW8bit",
+        "PagedAdamW",
+        "PagedAdamW32bit",
+        "PagedAdamW8bit"
+      ],
+      "n_typable": 69,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 69,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 63,
+      "n_classes": 6,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/ademamix.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AdEMAMix",
+          "line_start": 107,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdEMAMix.__init__",
+              "line_start": 108,
+              "n_typed": 11,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            },
+            {
+              "kind": "function",
+              "name": "AdEMAMix.init_state",
+              "line_start": 140,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "AdEMAMix.update_step",
+              "line_start": 179,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 21,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 3,
+          "n_method_params": 18,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AdEMAMix32bit",
+          "line_start": 359,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdEMAMix32bit.__init__",
+              "line_start": 360,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AdEMAMix8bit",
+          "line_start": 274,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AdEMAMix8bit.__init__",
+              "line_start": 275,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdEMAMix",
+          "line_start": 330,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdEMAMix.__init__",
+              "line_start": 331,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdEMAMix32bit",
+          "line_start": 392,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdEMAMix32bit.__init__",
+              "line_start": 393,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedAdEMAMix8bit",
+          "line_start": 303,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedAdEMAMix8bit.__init__",
+              "line_start": 304,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.ademamix",
+      "names": [
+        "AdEMAMix",
+        "AdEMAMix32bit",
+        "AdEMAMix8bit",
+        "PagedAdEMAMix",
+        "PagedAdEMAMix32bit",
+        "PagedAdEMAMix8bit"
+      ],
+      "n_typable": 69,
+      "n_typed": 59,
+      "n_any": 0,
+      "n_untyped": 10,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 8,
+      "n_method_params": 61,
+      "n_classes": 6,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/lamb.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "LAMB",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LAMB.__init__",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 14,
+              "n_typable": 14,
+              "n_params": 13
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 14,
+          "n_methods": 1,
+          "n_method_params": 13,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LAMB32bit",
+          "line_start": 139,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LAMB32bit.__init__",
+              "line_start": 140,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 13,
+              "n_typable": 13,
+              "n_params": 12
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 1,
+          "n_method_params": 12,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LAMB8bit",
+          "line_start": 75,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LAMB8bit.__init__",
+              "line_start": 76,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 13,
+              "n_typable": 13,
+              "n_params": 12
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 1,
+          "n_method_params": 12,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.lamb",
+      "names": [
+        "LAMB",
+        "LAMB32bit",
+        "LAMB8bit"
+      ],
+      "n_typable": 40,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 40,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 37,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/lars.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "LARS",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LARS.__init__",
+              "line_start": 12,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LARS32bit",
+          "line_start": 128,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LARS32bit.__init__",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LARS8bit",
+          "line_start": 71,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LARS8bit.__init__",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PytorchLARS",
+          "line_start": 185,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PytorchLARS.__init__",
+              "line_start": 186,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 7,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "PytorchLARS.__setstate__",
+              "line_start": 215,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "PytorchLARS.step",
+              "line_start": 220,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 3,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.lars",
+      "names": [
+        "LARS",
+        "LARS32bit",
+        "LARS8bit",
+        "PytorchLARS"
+      ],
+      "n_typable": 42,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 42,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 36,
+      "n_classes": 4,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/lion.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Lion",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Lion.__init__",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Lion32bit",
+          "line_start": 115,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Lion32bit.__init__",
+              "line_start": 116,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 9,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 1,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Lion8bit",
+          "line_start": 63,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Lion8bit.__init__",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 9,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 1,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedLion",
+          "line_start": 167,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedLion.__init__",
+              "line_start": 168,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 9,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_methods": 1,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedLion32bit",
+          "line_start": 270,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedLion32bit.__init__",
+              "line_start": 271,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 1,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PagedLion8bit",
+          "line_start": 219,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PagedLion8bit.__init__",
+              "line_start": 220,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 8,
+              "n_typable": 8,
+              "n_params": 7
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 1,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.lion",
+      "names": [
+        "Lion",
+        "Lion32bit",
+        "Lion8bit",
+        "PagedLion",
+        "PagedLion32bit",
+        "PagedLion8bit"
+      ],
+      "n_typable": 53,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 53,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 47,
+      "n_classes": 6,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/optimizer.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "GlobalOptimManager",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GlobalOptimManager.__init__",
+              "line_start": 29,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "GlobalOptimManager.initialize",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GlobalOptimManager.get_instance",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "GlobalOptimManager.register_parameters",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "GlobalOptimManager.override_config",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "GlobalOptimManager.register_module_override",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 6,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MockArgs",
+          "line_start": 16,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MockArgs.__init__",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Optimizer1State",
+          "line_start": 591,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Optimizer1State.__init__",
+              "line_start": 592,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 14,
+              "n_typable": 14,
+              "n_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer1State.init_state",
+              "line_start": 669,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer1State.update_step",
+              "line_start": 713,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Optimizer1State.args",
+              "line_start": 663,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer1State.optimizer_name",
+              "line_start": 667,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 26,
+          "n_methods": 3,
+          "n_method_params": 21,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Optimizer2State",
+          "line_start": 347,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Optimizer2State.__init__",
+              "line_start": 348,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 15,
+              "n_typable": 17,
+              "n_params": 16
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer2State.init_state",
+              "line_start": 443,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer2State.update_step",
+              "line_start": 495,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Optimizer2State.args",
+              "line_start": 437,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer2State.optimizer_name",
+              "line_start": 441,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 29,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 27,
+          "n_methods": 3,
+          "n_method_params": 24,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Optimizer8bit",
+          "line_start": 113,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.__init__",
+              "line_start": 114,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.fill_qmap",
+              "line_start": 151,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.__setstate__",
+              "line_start": 155,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.load_state_dict",
+              "line_start": 158,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.to_gpu",
+              "line_start": 232,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.check_overrides",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.step",
+              "line_start": 262,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.get_config",
+              "line_start": 300,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.init_state",
+              "line_start": 320,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.update_step",
+              "line_start": 323,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 5,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.get_state_buffer",
+              "line_start": 326,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Optimizer8bit.prefetch_state",
+              "line_start": 336,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Optimizer8bit.initialized",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer8bit.name2qmap",
+              "line_start": 128,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer8bit.is_paged",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer8bit.page_mng",
+              "line_start": 130,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer8bit.mng",
+              "line_start": 132,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Optimizer8bit.non_castable_tensor_keys",
+              "line_start": 133,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 39,
+          "n_methods": 12,
+          "n_method_params": 21,
+          "n_attrs": 6,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.optimizer",
+      "names": [
+        "GlobalOptimManager",
+        "MockArgs",
+        "Optimizer1State",
+        "Optimizer2State",
+        "Optimizer8bit"
+      ],
+      "n_typable": 108,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 106,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 25,
+      "n_method_params": 73,
+      "n_classes": 5,
+      "n_attrs": 10,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/rmsprop.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "RMSprop",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RMSprop.__init__",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 12,
+              "n_typable": 12,
+              "n_params": 11
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RMSprop32bit",
+          "line_start": 135,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RMSprop32bit.__init__",
+              "line_start": 136,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RMSprop8bit",
+          "line_start": 72,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RMSprop8bit.__init__",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.rmsprop",
+      "names": [
+        "RMSprop",
+        "RMSprop32bit",
+        "RMSprop8bit"
+      ],
+      "n_typable": 34,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 34,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 31,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/optim/sgd.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "SGD",
+          "line_start": 8,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SGD.__init__",
+              "line_start": 9,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 11,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 1,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SGD32bit",
+          "line_start": 123,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SGD32bit.__init__",
+              "line_start": 124,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SGD8bit",
+          "line_start": 67,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SGD8bit.__init__",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.optim.sgd",
+      "names": [
+        "SGD",
+        "SGD32bit",
+        "SGD8bit"
+      ],
+      "n_typable": 31,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 31,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 28,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/research/nn/modules.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "T",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "LinearFP8Global",
+          "line_start": 45,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearFP8Global.__init__",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearFP8Global.forward",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LinearFP8Global.bw_code",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LinearFP8Global.fw_code",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LinearFP8Global.bsz",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LinearFP8Global.bsz2",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 8,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LinearFP8Mixed",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LinearFP8Mixed.__init__",
+              "line_start": 12,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "LinearFP8Mixed.forward",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LinearFP8Mixed.bw_code",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LinearFP8Mixed.fw_code",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LinearFP8Mixed.bsz",
+              "line_start": 19,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LinearFP8Mixed.bsz2",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 8,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.research.nn.modules",
+      "names": [
+        "LinearFP8Global",
+        "LinearFP8Mixed",
+        "T"
+      ],
+      "n_typable": 18,
+      "n_typed": 0,
+      "n_any": 2,
+      "n_untyped": 16,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 6,
+      "n_classes": 2,
+      "n_attrs": 8,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/dequantize_rowwise.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "dequantize_rowwise",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.dequantize_rowwise",
+      "names": [
+        "dequantize_rowwise"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 2,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/int8_matmul_mixed_dequantize.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "int8_matmul_mixed_dequantize",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "init_to_zero",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_configs_io_bound",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.int8_matmul_mixed_dequantize",
+      "names": [
+        "get_configs_io_bound",
+        "init_to_zero",
+        "int8_matmul_mixed_dequantize"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/int8_matmul_rowwise_dequantize.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "int8_matmul_rowwise_dequantize",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "init_to_zero",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_configs_io_bound",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.int8_matmul_rowwise_dequantize",
+      "names": [
+        "get_configs_io_bound",
+        "init_to_zero",
+        "int8_matmul_rowwise_dequantize"
+      ],
+      "n_typable": 9,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/matmul_perf_model.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_clock_rate_in_khz",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_tensorcore_tflops",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_simd_tflops",
+          "line_start": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_tflops",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "estimate_matmul_time",
+          "line_start": 60,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 15,
+          "n_typable": 15,
+          "n_params": 14
+        },
+        {
+          "kind": "function",
+          "name": "early_config_prune",
+          "line_start": 136,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.matmul_perf_model",
+      "names": [
+        "early_config_prune",
+        "estimate_matmul_time",
+        "get_clock_rate_in_khz",
+        "get_simd_tflops",
+        "get_tensorcore_tflops",
+        "get_tflops"
+      ],
+      "n_typable": 35,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 35,
+      "n_functions": 6,
+      "n_function_params": 29,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/quantize_columnwise_and_transpose.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "quantize_columnwise_and_transpose",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.quantize_columnwise_and_transpose",
+      "names": [
+        "quantize_columnwise_and_transpose"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/quantize_global.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "quantize_global_transpose",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "quantize_global",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.quantize_global",
+      "names": [
+        "quantize_global",
+        "quantize_global_transpose"
+      ],
+      "n_typable": 4,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 3,
+      "n_functions": 2,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/quantize_rowwise.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "quantize_rowwise",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.quantize_rowwise",
+      "names": [
+        "quantize_rowwise"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 1,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/triton/triton_utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "is_triton_available",
+          "line_start": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.triton.triton_utils",
+      "names": [
+        "is_triton_available"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "bitsandbytes/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LINEAR_8BIT_WEIGHTS_FORMAT_MAPPING",
+          "line_start": 197,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INVERSE_LINEAR_8BIT_WEIGHTS_FORMAT_MAPPING",
+          "line_start": 198,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "outlier_hook",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "find_outlier_dims",
+          "line_start": 83,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "execute_and_return",
+          "line_start": 101,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "replace_linear",
+          "line_start": 118,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "pack_dict_to_tensor",
+          "line_start": 163,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "unpack_tensor_to_dict",
+          "line_start": 180,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "sync_gpu",
+          "line_start": 201,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "OutlierTracer",
+          "line_start": 41,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OutlierTracer.__init__",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            },
+            {
+              "kind": "function",
+              "name": "OutlierTracer.initialize",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "OutlierTracer.is_initialized",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "OutlierTracer.get_hvalue",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "OutlierTracer.get_outliers",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "OutlierTracer.get_instance",
+              "line_start": 76,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 6,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "bitsandbytes.utils",
+      "names": [
+        "INVERSE_LINEAR_8BIT_WEIGHTS_FORMAT_MAPPING",
+        "LINEAR_8BIT_WEIGHTS_FORMAT_MAPPING",
+        "OutlierTracer",
+        "execute_and_return",
+        "find_outlier_dims",
+        "outlier_hook",
+        "pack_dict_to_tensor",
+        "replace_linear",
+        "sync_gpu",
+        "unpack_tensor_to_dict"
+      ],
+      "n_typable": 31,
+      "n_typed": 2,
+      "n_any": 1,
+      "n_untyped": 28,
+      "n_functions": 7,
+      "n_function_params": 16,
+      "n_methods": 6,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 40,
+  "n_typable": 1594,
+  "n_typed": 376,
+  "n_any": 179,
+  "n_untyped": 1039,
+  "n_functions": 127,
+  "n_function_params": 569,
+  "n_methods": 159,
+  "n_method_params": 650,
+  "n_classes": 77,
+  "n_attrs": 88,
+  "n_properties": 1,
+  "type_ignores": [],
+  "n_type_ignores": 0
+}
