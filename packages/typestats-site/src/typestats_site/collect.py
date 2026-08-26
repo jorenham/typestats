@@ -6,6 +6,7 @@ import datetime as dt
 import functools
 import json
 import logging
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -272,18 +273,25 @@ async def collect_all(
     *,
     backfill_since: dt.date,
     backfill_limit: int,
+    jobs: int | None = None,
 ) -> list[Path]:
     """Analyze every project in `projects_path` and write JSON reports.
 
     Collects all versions since `backfill_since` that haven't been collected yet,
     constrained to max `backfill_limit` versions per project, and at least the latest
-    version.
+    version.  At most `jobs` projects are collected concurrently, defaulting to the
+    CPU count (capped at 8) to keep the concurrent pyrefly processes from exhausting
+    memory on small machines.
     """
 
     data_dir = anyio.Path(data_dir)
 
     projects = load_projects(projects_path or PROJECTS_PATH)
-    _logger.info("Collecting data for %d projects...", len(projects))
+    if jobs is None:
+        jobs = min(8, os.cpu_count() or 8)
+    _logger.info(
+        "Collecting data for %d projects (%d at a time)...", len(projects), jobs
+    )
 
     # prune data for unlisted projects
     project_names = {p.name for p in projects}
@@ -294,7 +302,7 @@ async def collect_all(
                 await anyio.to_thread.run_sync(functools.partial(shutil.rmtree, child))
 
     written: list[Path] = []
-    limiter = anyio.CapacityLimiter(8)
+    limiter = anyio.CapacityLimiter(jobs)
     async with anyio.TemporaryDirectory() as tmp, retry_client() as client:
         work_dir = anyio.Path(tmp)
 
