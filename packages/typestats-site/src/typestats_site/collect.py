@@ -140,8 +140,15 @@ class _ProjectCollector:
             if detected is not None and any(
                 Path(p).name == f"{detected}-stubs" for p in pyrefly_paths
             ):
-                detail = await fetch_project_detail(self.client, detected)
-                self.set_base(detected, detail)
+                try:
+                    detail = await fetch_project_detail(self.client, detected)
+                except httpx.HTTPStatusError:
+                    _logger.warning(
+                        "detected stubs dir for %r, but no such PyPI project; ignoring",
+                        detected,
+                    )
+                else:
+                    self.set_base(detected, detail)
 
         if base_name := self.base_name:
             assert self.base_available is not None
