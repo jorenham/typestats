@@ -57,7 +57,7 @@ def _make_symbol_reports(
     ]
 
 
-def _minimal_report(  # noqa: PLR0913
+def _minimal_report(  # ruff: ignore[too-many-arguments]
     package: str = "mypkg",
     version: str = "1.0.0",
     *,

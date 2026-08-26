@@ -45,7 +45,7 @@ _logger: Final = logging.getLogger(__name__)
 
 def _find_repo_root() -> anyio.Path:
     out = subprocess.check_output(
-        ["git", "rev-parse", "--show-toplevel"],  # noqa: S607
+        ["git", "rev-parse", "--show-toplevel"],  # ruff: ignore[start-process-with-partial-path]
         cwd=str(ROOT),
         text=True,
         stderr=subprocess.PIPE,
@@ -57,7 +57,7 @@ async def _run(
     *args: str,
     cwd: anyio.Path = ROOT,
     env: dict[str, str] | None = None,
-    input: bytes | None = None,  # noqa: A002
+    input: bytes | None = None,  # ruff: ignore[builtin-argument-shadowing]
     stdout: int | None = subprocess.PIPE,
     stderr: int | None = None,
 ) -> bytes:
@@ -152,7 +152,7 @@ async def _serve(*args: str) -> None:
             async for chunk in proc.stdout:
                 for line in chunk.decode().splitlines():
                     if line and not line.startswith("+"):
-                        _logger.info(" " * len(_CMD) + " %s", line)  # noqa: G003
+                        _logger.info(" " * len(_CMD) + " %s", line)  # ruff: ignore[logging-string-concat]
     if proc.returncode:
         raise SystemExit(proc.returncode)
 

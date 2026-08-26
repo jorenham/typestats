@@ -153,7 +153,7 @@ class TestCollectProject:
         name, version = "mypkg", "2.5.0"
         pypi.project(name, pypi.sdist(name, version))
 
-        async def _fail(*_args: object, **_kwargs: object) -> Never:  # noqa: RUF029
+        async def _fail(*_args: object, **_kwargs: object) -> Never:  # ruff: ignore[unused-async]
             raise subprocess.CalledProcessError(1, ["uv", "pip", "install"])
 
         monkeypatch.setattr("typestats_site._uv.install_to_venv", _fail)

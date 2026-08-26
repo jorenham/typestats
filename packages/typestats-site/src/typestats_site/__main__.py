@@ -1,4 +1,4 @@
-# ruff: noqa: PLC0415
+# ruff: file-ignore[import-outside-top-level]
 
 import contextlib
 import dataclasses
@@ -61,6 +61,10 @@ class Collect:
     backfill_limit: _PositiveInt = 1
     """Maximum number of versions to backfill per project."""
 
+    jobs: _PositiveInt | None = None
+    """Maximum number of projects to collect concurrently.
+    Defaults to the CPU count, capped at 8."""
+
 
 @dataclasses.dataclass
 class Dashboard:
@@ -100,6 +104,7 @@ async def _run(cmd: Collect | Dashboard | Preview) -> None:
                 cmd.projects,
                 backfill_since=cmd.backfill_since,
                 backfill_limit=cmd.backfill_limit,
+                jobs=cmd.jobs,
             )
 
         case Dashboard():

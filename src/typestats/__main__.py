@@ -1,4 +1,4 @@
-# ruff: noqa: T201, PLC0415
+# ruff: file-ignore[print, import-outside-top-level]
 
 import dataclasses
 import sys
