@@ -122,7 +122,7 @@ async def fetch_project_detail(
     - https://peps.python.org/pep-0691/
     - https://docs.pypi.org/api/index-api/#json_1
     """
-    url = HOST.join(f"/simple/{project_name.lower()}/")
+    url = HOST.join(f"/simple/{canonicalize_name(project_name)}/")
     data = await _get_json(client, url, headers=HEADERS_SIMPLE_API)
     return ProjectDetail(data)
 
