@@ -15,12 +15,12 @@ _logger: Final = logging.getLogger(__name__)
 
 __all__ = (
     "PYTHON_VERSION",
-    "clear_venv_locks",
+    "clear_dist_locks",
     "create_venv",
     "discover_packages",
     "install",
     "install_to_venv",
-    "remove_venv",
+    "remove_dist",
     "site_packages_dir",
 )
 
@@ -28,9 +28,9 @@ __all__ = (
 # avoid slow source builds or installation failures.
 PYTHON_VERSION: Final = "3.13"
 
-# Serialize concurrent install_to_venv calls for the same venv path so two
-# tasks (e.g. a stubs project and its base project) don't race on `uv venv`.
-_venv_locks: Final[dict[str, anyio.Lock]] = {}
+# Serialize concurrent installs/unpacks of the same distribution so two tasks
+# (e.g. a stubs project and its base project) don't race on the directory.
+_dist_locks: Final[dict[str, anyio.Lock]] = {}
 
 
 async def create_venv(path: StrPath, /) -> anyio.Path:
@@ -75,7 +75,7 @@ async def install(
     await _subprocess_run(*base_args, "--no-deps", spec)
 
 
-def _venv_path(work_dir: StrPath, project: str, version: str, /) -> anyio.Path:
+def _dist_dir(work_dir: StrPath, project: str, version: str, /) -> anyio.Path:
     return anyio.Path(work_dir) / f"{project}-{version}"
 
 
@@ -88,9 +88,9 @@ async def install_to_venv(
     no_deps: bool = False,
 ) -> anyio.Path:
     """Create a venv, install *project*, and return the `site-packages` path."""
-    venv_path = _venv_path(work_dir, project, version)
+    venv_path = _dist_dir(work_dir, project, version)
 
-    lock = _venv_locks.setdefault(str(venv_path), anyio.Lock())
+    lock = _dist_locks.setdefault(str(venv_path), anyio.Lock())
     async with lock:
         if not await venv_path.is_dir():
             python = await create_venv(venv_path)
@@ -98,21 +98,21 @@ async def install_to_venv(
         return await site_packages_dir(venv_path)
 
 
-async def remove_venv(work_dir: StrPath, project: str, version: str, /) -> None:
-    """Remove a venv previously created by `install_to_venv` and free its lock."""
-    venv_path = _venv_path(work_dir, project, version)
-    _venv_locks.pop(str(venv_path), None)
-    if await venv_path.is_dir():
+async def remove_dist(work_dir: StrPath, project: str, version: str, /) -> None:
+    """Remove an `install_to_venv` / `extract_wheel` directory and free its lock."""
+    path = _dist_dir(work_dir, project, version)
+    _dist_locks.pop(str(path), None)
+    if await path.is_dir():
         await anyio.to_thread.run_sync(
-            lambda: shutil.rmtree(venv_path, ignore_errors=True),
+            lambda: shutil.rmtree(path, ignore_errors=True),
         )
 
 
-def clear_venv_locks(work_dir: StrPath, /) -> None:
-    """Drop `_venv_locks` entries for any venv under `work_dir`."""
+def clear_dist_locks(work_dir: StrPath, /) -> None:
+    """Drop `_dist_locks` entries for any distribution under `work_dir`."""
     prefix = os.fspath(work_dir) + os.sep
-    for key in [k for k in _venv_locks if k.startswith(prefix)]:
-        del _venv_locks[key]
+    for key in [k for k in _dist_locks if k.startswith(prefix)]:
+        del _dist_locks[key]
 
 
 async def _is_top_level_module(p: anyio.Path) -> bool:

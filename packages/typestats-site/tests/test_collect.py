@@ -17,85 +17,92 @@ from typestats_site.collect import clean_data, collect_all, collect_project
 if TYPE_CHECKING:
     from collections.abc import Callable
 
-    from pytest_httpx import HTTPXMock
+    from typestats_site._testing import PyPIMocker
 
 type MockUv = Callable[..., None]
 
-_PYPI_HOST = httpx.URL("https://files.pythonhosted.org")
 _FIXTURES = Path(__file__).resolve().parents[3] / "tests" / "fixtures"
 _BACKFILL_SINCE = date(2025, 1, 1)
 _BACKFILL_LIMIT = 10
 
 
-def _pypi_detail_json(
-    name: str,
-    version: str,
-    upload_time: str = "2025-06-01T00:00:00Z",
-) -> dict[str, object]:
-    filename = f"{name}-{version}.tar.gz"
-    return {
-        "name": name,
-        "versions": [version],
-        "meta": {"api-version": "1.0"},
-        "files": [
-            {
-                "filename": filename,
-                "hashes": {"sha256": "fake"},
-                "size": 0,
-                "upload-time": upload_time,
-                "url": str(_PYPI_HOST.join(f"/packages/{filename}")),
-            },
-        ],
-    }
+async def _collect(project: Project, tmp_path: Path, /) -> list[Path]:
+    async with httpx.AsyncClient() as client:
+        return await collect_project(
+            project,
+            client,
+            anyio.Path(tmp_path),
+            anyio.Path(tmp_path / "_work"),
+            backfill_since=_BACKFILL_SINCE,
+            backfill_limit=_BACKFILL_LIMIT,
+        )
 
 
 class TestCollectProject:
     pytestmark = pytest.mark.anyio
 
-    async def test_writes_json(
-        self,
-        tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
-    ) -> None:
+    async def test_writes_json(self, tmp_path: Path, pypi: "PyPIMocker") -> None:
         name, version = "mypkg", "2.5.0"
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
-        )
-        mock_uv(
-            {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats_site.collect.install_to_venv",
-        )
+        pypi.project(name, pypi.wheel(name, version, _FIXTURES / "stubs_base"))
 
-        project = Project(name=name)
-
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=name), tmp_path)
 
         assert len(results) == 1
         result = results[0]
         assert result.exists()
-        assert result == Path(data_dir, name, f"{version}.json")
+        assert result == Path(tmp_path, name, f"{version}.json")
 
         data = json.loads(result.read_text())
         assert data["package"] == name
         assert data["version"] == version
 
-    async def test_skips_existing(
+    async def test_sdist_falls_back_to_install(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
+        pypi: "PyPIMocker",
         mock_uv: MockUv,
     ) -> None:
+        """A wheel-less release is installed into a venv instead."""
+        name, version = "mypkg", "2.5.0"
+        pypi.project(name, pypi.sdist(name, version))
+        mock_uv({(name, version): _FIXTURES / "stubs_base"})
+
+        results = await _collect(Project(name=name), tmp_path)
+
+        assert len(results) == 1
+        data = json.loads(results[0].read_text())
+        assert data["package"] == name
+
+    async def test_ignores_dependency_stubs_dirs(
+        self,
+        tmp_path: Path,
+        pypi: "PyPIMocker",
+        mock_uv: MockUv,
+    ) -> None:
+        """A dependency's *-stubs/ dir doesn't make the project a stubs package."""
+        name, version = "mypkg", "1.0.0"
+
+        # a venv with the project itself plus a dependency's stubs
+        venv = tmp_path / "_venv"
+        (venv / name).mkdir(parents=True)
+        (venv / name / "__init__.py").write_text("x: int = 1\n")
+        (venv / "wrapt-stubs").mkdir()
+        (venv / "wrapt-stubs" / "__init__.pyi").write_text("y: int\n")
+        dist_info = venv / f"{name}-{version}.dist-info"
+        dist_info.mkdir()
+        (dist_info / "RECORD").write_text(f"{name}/__init__.py,,\n")
+
+        pypi.project(name, pypi.sdist(name, version))
+        mock_uv({(name, version): venv})
+
+        results = await _collect(Project(name=name), tmp_path)
+
+        assert len(results) == 1
+        data = json.loads(results[0].read_text())
+        assert data["package"] == name
+        assert data["base_version"] is None
+
+    async def test_skips_existing(self, tmp_path: Path, pypi: "PyPIMocker") -> None:
         """Current-schema JSON skips collection."""
         name, version = "mypkg", "2.5.0"
 
@@ -105,25 +112,10 @@ class TestCollectProject:
         out.parent.mkdir(parents=True)
         out.write_text(json.dumps({"schema_version": schema_ver}))
 
-        # Mock only the version check (no install should happen)
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
-        )
-        mock_uv({}, target="typestats_site.collect.install_to_venv")
+        # advertised-only: a download attempt would fail the test
+        pypi.project(name, pypi.wheel(name, version))
 
-        project = Project(name=name)
-
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=name), tmp_path)
 
         assert results == []
         # The file content should be unchanged
@@ -133,8 +125,7 @@ class TestCollectProject:
     async def test_recollects_outdated_schema(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Outdated schema triggers re-collection."""
         name, version = "mypkg", "2.5.0"
@@ -143,27 +134,9 @@ class TestCollectProject:
         out.parent.mkdir(parents=True)
         out.write_text(json.dumps({"schema_version": "0.0"}))
 
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
-        )
-        mock_uv(
-            {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats_site.collect.install_to_venv",
-        )
+        pypi.project(name, pypi.wheel(name, version, _FIXTURES / "stubs_base"))
 
-        project = Project(name=name)
-
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=name), tmp_path)
 
         assert len(results) == 1
         data = json.loads(out.read_text())
@@ -173,32 +146,19 @@ class TestCollectProject:
     async def test_skips_on_install_failure(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
+        pypi: "PyPIMocker",
         monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         """Install failure skips the version."""
         name, version = "mypkg", "2.5.0"
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
-        )
+        pypi.project(name, pypi.sdist(name, version))
 
         async def _fail(*_args: object, **_kwargs: object) -> Never:  # noqa: RUF029
             raise subprocess.CalledProcessError(1, ["uv", "pip", "install"])
 
-        monkeypatch.setattr("typestats_site.collect.install_to_venv", _fail)
+        monkeypatch.setattr("typestats_site._uv.install_to_venv", _fail)
 
-        project = Project(name=name)
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=name), tmp_path)
 
         assert results == []
 
@@ -206,21 +166,9 @@ class TestCollectProject:
 class TestCollectAll:
     pytestmark = pytest.mark.anyio
 
-    async def test_collects_projects(
-        self,
-        tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
-    ) -> None:
+    async def test_collects_projects(self, tmp_path: Path, pypi: "PyPIMocker") -> None:
         name, version = "mypkg", "1.0.0"
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
-        )
-        mock_uv(
-            {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats_site.collect.install_to_venv",
-        )
+        pypi.project(name, pypi.wheel(name, version, _FIXTURES / "stubs_base"))
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
@@ -241,22 +189,19 @@ class TestCollectAll:
     async def test_skips_already_collected(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         name, version = "mypkg", "1.0.0"
 
-        # Pre-create output
+        # Pre-create current-schema output
+        schema_ver = ".".join(map(str, SCHEMA_VERSION))
         data_dir = anyio.Path(tmp_path / "data")
         (tmp_path / "data" / name).mkdir(parents=True)
-        (tmp_path / "data" / name / f"{version}.json").write_text("{}")
-
-        # Mock only the version check
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
+        (tmp_path / "data" / name / f"{version}.json").write_text(
+            json.dumps({"schema_version": schema_ver}),
         )
-        mock_uv({}, target="typestats_site.collect.install_to_venv")
+
+        pypi.project(name, pypi.wheel(name, version))
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
@@ -272,19 +217,11 @@ class TestCollectAll:
     async def test_removes_unlisted_projects(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Unlisted project directories are removed."""
         name, version = "mypkg", "1.0.0"
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{name}/"),
-            json=_pypi_detail_json(name, version),
-        )
-        mock_uv(
-            {(name, version): _FIXTURES / "stubs_base"},
-            target="typestats_site.collect.install_to_venv",
-        )
+        pypi.project(name, pypi.wheel(name, version, _FIXTURES / "stubs_base"))
 
         # Pre-create data for an unlisted project
         data_dir = anyio.Path(tmp_path / "data")
@@ -311,112 +248,38 @@ class TestCollectAll:
 class TestBackfillCutoff:
     pytestmark = pytest.mark.anyio
 
-    async def test_skips_old_versions(
-        self,
-        tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
-    ) -> None:
+    async def test_skips_old_versions(self, tmp_path: Path, pypi: "PyPIMocker") -> None:
         name = "mypkg"
-        detail = {
-            "name": name,
-            "versions": ["0.9.0", "1.0.0"],
-            "meta": {"api-version": "1.0"},
-            "files": [
-                {
-                    "filename": f"{name}-0.9.0.tar.gz",
-                    "hashes": {"sha256": "a"},
-                    "size": 0,
-                    "upload-time": "2024-12-31T23:59:59Z",
-                    "url": str(
-                        _PYPI_HOST.join(f"/packages/{name}-0.9.0.tar.gz"),
-                    ),
-                },
-                {
-                    "filename": f"{name}-1.0.0.tar.gz",
-                    "hashes": {"sha256": "b"},
-                    "size": 0,
-                    "upload-time": "2025-01-01T00:00:00Z",
-                    "url": str(
-                        _PYPI_HOST.join(f"/packages/{name}-1.0.0.tar.gz"),
-                    ),
-                },
-            ],
-        }
-        httpx_mock.add_response(url=_PYPI_HOST.join(f"/simple/{name}/"), json=detail)
-        mock_uv(
-            {(name, "1.0.0"): _FIXTURES / "stubs_base"},
-            target="typestats_site.collect.install_to_venv",
+        pypi.project(
+            name,
+            pypi.wheel(name, "0.9.0", upload_time="2024-12-31T23:59:59Z"),
+            pypi.wheel(
+                name,
+                "1.0.0",
+                _FIXTURES / "stubs_base",
+                upload_time="2025-01-01T00:00:00Z",
+            ),
         )
 
-        project = Project(name=name)
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=name), tmp_path)
 
         # Only 1.0.0 should be collected (on the cutoff date), not 0.9.0
         assert len(results) == 1
-        assert results[0] == data_dir / name / "1.0.0.json"
+        assert results[0] == tmp_path / name / "1.0.0.json"
 
     async def test_collects_multiple_versions(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         name = "mypkg"
-        detail = {
-            "name": name,
-            "versions": ["1.0.0", "1.1.0"],
-            "meta": {"api-version": "1.0"},
-            "files": [
-                {
-                    "filename": f"{name}-1.0.0.tar.gz",
-                    "hashes": {"sha256": "a"},
-                    "size": 0,
-                    "upload-time": "2025-02-01T00:00:00Z",
-                    "url": str(
-                        _PYPI_HOST.join(f"/packages/{name}-1.0.0.tar.gz"),
-                    ),
-                },
-                {
-                    "filename": f"{name}-1.1.0.tar.gz",
-                    "hashes": {"sha256": "b"},
-                    "size": 0,
-                    "upload-time": "2025-03-01T00:00:00Z",
-                    "url": str(
-                        _PYPI_HOST.join(f"/packages/{name}-1.1.0.tar.gz"),
-                    ),
-                },
-            ],
-        }
-        httpx_mock.add_response(url=_PYPI_HOST.join(f"/simple/{name}/"), json=detail)
-        mock_uv(
-            {
-                (name, "1.0.0"): _FIXTURES / "stubs_base",
-                (name, "1.1.0"): _FIXTURES / "stubs_base",
-            },
-            target="typestats_site.collect.install_to_venv",
+        pypi.project(
+            name,
+            pypi.wheel(name, "1.0.0", _FIXTURES / "stubs_base"),
+            pypi.wheel(name, "1.1.0", _FIXTURES / "stubs_base"),
         )
 
-        project = Project(name=name)
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=name), tmp_path)
 
         assert len(results) == 2
         versions = {r.name.removesuffix(".json") for r in results}
@@ -425,69 +288,25 @@ class TestBackfillCutoff:
     async def test_collects_stubs_project(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
-        """Stubs projects install base + stubs and produce correct metadata."""
-        stubs_name = "mypkg-stubs"
-        base_name = "mypkg"
-        stubs_version = "1.0.0"
-        base_version = "1.0.1"
-
-        # Mock versions_since for the stubs project
-        stubs_detail = {
-            "name": stubs_name,
-            "versions": [stubs_version],
-            "meta": {"api-version": "1.0"},
-            "files": [
-                {
-                    "filename": f"{stubs_name}-{stubs_version}.tar.gz",
-                    "hashes": {"sha256": "a"},
-                    "size": 0,
-                    "upload-time": "2025-06-01T00:00:00Z",
-                    "url": str(
-                        _PYPI_HOST.join(
-                            f"/packages/{stubs_name}-{stubs_version}.tar.gz",
-                        ),
-                    ),
-                },
-            ],
-        }
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{stubs_name}/"),
-            json=stubs_detail,
+        """Stubs projects fetch base + stubs and produce correct metadata."""
+        stubs_name, stubs_version = "mypkg-stubs", "1.0.0"
+        base_name, base_version = "mypkg", "1.0.1"
+        pypi.project(
+            stubs_name,
+            pypi.wheel(stubs_name, stubs_version, _FIXTURES / "stubs_overlay"),
+        )
+        pypi.project(
+            base_name,
+            pypi.wheel(base_name, base_version, _FIXTURES / "stubs_base"),
         )
 
-        # Mock latest_version for the base project
-        base_detail = _pypi_detail_json(base_name, base_version)
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{base_name}/"),
-            json=base_detail,
-        )
-
-        mock_uv(
-            {
-                (base_name, base_version): _FIXTURES / "stubs_base",
-                (stubs_name, stubs_version): _FIXTURES / "stubs_overlay",
-            },
-            target="typestats_site.collect.install_to_venv",
-        )
-
-        project = Project(name=stubs_name)
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=stubs_name), tmp_path)
 
         assert len(results) == 1
         result = results[0]
-        assert result == Path(data_dir, stubs_name, f"{stubs_version}.json")
+        assert result == Path(tmp_path, stubs_name, f"{stubs_version}.json")
 
         data = json.loads(result.read_text())
         assert data["package"] == stubs_name
@@ -498,65 +317,21 @@ class TestBackfillCutoff:
     async def test_collects_stubs_lite_project(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
-        """A *-stubs-lite project installs base via directory detection."""
-        stubs_lite_name = "mypkg-stubs-lite"
-        base_name = "mypkg"
-        stubs_version = "1.0.0"
-        base_version = "1.0.1"
-
-        # Mock versions_since for the stubs-lite project
-        stubs_detail = {
-            "name": stubs_lite_name,
-            "versions": [stubs_version],
-            "meta": {"api-version": "1.0"},
-            "files": [
-                {
-                    "filename": f"{stubs_lite_name}-{stubs_version}.tar.gz",
-                    "hashes": {"sha256": "a"},
-                    "size": 0,
-                    "upload-time": "2025-06-01T00:00:00Z",
-                    "url": str(
-                        _PYPI_HOST.join(
-                            f"/packages/{stubs_lite_name}-{stubs_version}.tar.gz",
-                        ),
-                    ),
-                },
-            ],
-        }
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{stubs_lite_name}/"),
-            json=stubs_detail,
+        """A *-stubs-lite project fetches base via directory detection."""
+        stubs_lite_name, stubs_version = "mypkg-stubs-lite", "1.0.0"
+        base_name, base_version = "mypkg", "1.0.1"
+        pypi.project(
+            stubs_lite_name,
+            pypi.wheel(stubs_lite_name, stubs_version, _FIXTURES / "stubs_overlay"),
+        )
+        pypi.project(
+            base_name,
+            pypi.wheel(base_name, base_version, _FIXTURES / "stubs_base"),
         )
 
-        # Mock latest_version for the base project (discovered from directory)
-        base_detail = _pypi_detail_json(base_name, base_version)
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{base_name}/"),
-            json=base_detail,
-        )
-
-        mock_uv(
-            {
-                (stubs_lite_name, stubs_version): _FIXTURES / "stubs_overlay",
-                (base_name, base_version): _FIXTURES / "stubs_base",
-            },
-            target="typestats_site.collect.install_to_venv",
-        )
-
-        project = Project(name=stubs_lite_name)
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=stubs_lite_name), tmp_path)
 
         assert len(results) == 1
         data = json.loads(results[0].read_text())
@@ -566,39 +341,18 @@ class TestBackfillCutoff:
     async def test_skips_stubs_version_without_matching_base(
         self,
         tmp_path: Path,
-        httpx_mock: "HTTPXMock",
-        mock_uv: MockUv,
+        pypi: "PyPIMocker",
     ) -> None:
         """Stubs versions with no matching base major.minor are skipped."""
-        stubs_name = "mypkg-stubs"
-        base_name = "mypkg"
-        stubs_version = "2.0.0"
-        base_version = "1.0.0"
+        stubs_name, stubs_version = "mypkg-stubs", "2.0.0"
+        base_name, base_version = "mypkg", "1.0.0"
+        pypi.project(
+            stubs_name,
+            pypi.wheel(stubs_name, stubs_version, _FIXTURES / "stubs_overlay"),
+        )
+        pypi.project(base_name, pypi.wheel(base_name, base_version))
 
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{stubs_name}/"),
-            json=_pypi_detail_json(stubs_name, stubs_version),
-        )
-        httpx_mock.add_response(
-            url=_PYPI_HOST.join(f"/simple/{base_name}/"),
-            json=_pypi_detail_json(base_name, base_version),
-        )
-        mock_uv(
-            {(stubs_name, stubs_version): _FIXTURES / "stubs_overlay"},
-            target="typestats_site.collect.install_to_venv",
-        )
-
-        project = Project(name=stubs_name)
-        data_dir = anyio.Path(tmp_path)
-        async with httpx.AsyncClient() as client:
-            results = await collect_project(
-                project,
-                client,
-                data_dir,
-                anyio.Path(tmp_path / "_work"),
-                backfill_since=_BACKFILL_SINCE,
-                backfill_limit=_BACKFILL_LIMIT,
-            )
+        results = await _collect(Project(name=stubs_name), tmp_path)
 
         assert results == []
 

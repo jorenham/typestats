@@ -659,7 +659,7 @@ class TestPackageReportFromPath:
 
 
 class TestDefaultPyreflyExcludes:
-    """Regression: default exclude patterns reach `pyrefly report`."""
+    """Regression: default exclude patterns reach `pyrefly coverage report`."""
 
     pytestmark = pytest.mark.anyio
 

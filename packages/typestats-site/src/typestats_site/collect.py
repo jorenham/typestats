@@ -22,16 +22,20 @@ from typestats.report import FromPathOptions, PackageReport
 from typestats.schema import SCHEMA_VERSION
 from typestats.stubs import find_stubs_dir, stubs_base_name
 
+from ._extract import fetch_dist
 from ._http import retry_client
 from ._logging import log_context
 from ._pypi import (
     FileDetail,
-    available_versions,
+    ProjectDetail,
+    available_versions_from_detail,
+    best_wheels,
+    fetch_project_detail,
     resolve_base_version,
-    versions_since,
+    versions_since_from_detail,
 )
 from ._report import PypiInfo
-from ._uv import clear_venv_locks, discover_packages, install_to_venv, remove_venv
+from ._uv import clear_dist_locks, discover_packages, remove_dist
 
 __all__ = "clean_data", "collect_all"
 
@@ -86,30 +90,58 @@ class _ProjectCollector:
     client: httpx.AsyncClient
     work_dir: anyio.Path
     eligible: dict[Version, FileDetail]
-    base_name: str | None
-    base_available: dict[Version, FileDetail] | None
+    wheels: dict[Version, FileDetail]
+    base_name: str | None = None
+    base_available: dict[Version, FileDetail] | None = None
+    base_wheels: dict[Version, FileDetail] = dataclasses.field(default_factory=dict)
     base_install_cache: dict[str, anyio.Path] = dataclasses.field(default_factory=dict)
+
+    def set_base(self, name: str, detail: ProjectDetail, /) -> None:
+        self.base_name = name
+        self.base_available = available_versions_from_detail(detail)
+        self.base_wheels = best_wheels(detail)
+
+    async def _fetch_dist(
+        self,
+        name: str,
+        version: str,
+        wheel: FileDetail | None,
+        /,
+    ) -> anyio.Path:
+        return await fetch_dist(
+            self.client,
+            self.work_dir,
+            name,
+            version,
+            wheel,
+            no_deps=self.project.no_deps,
+        )
 
     async def collect_version(self, version: Version, out: Path) -> bool:
         project = self.project
 
         try:
-            sp = await install_to_venv(
-                self.work_dir, project.name, str(version), no_deps=project.no_deps
+            sp = await self._fetch_dist(
+                project.name,
+                str(version),
+                self.wheels.get(version),
             )
         except subprocess.CalledProcessError:
             _logger.warning("install failed, skipping")
             return False
 
-        # detect *-stubs/ dirs not derivable from the project name
-        if self.base_name is None:
-            detected = await find_stubs_dir(sp)
-            if detected is not None:
-                self.base_name = detected
-                self.base_available = await available_versions(self.client, detected)
-
         pypi = PypiInfo.from_file_detail(self.eligible[version])
         pyrefly_paths = await discover_packages(sp, dist_name=project.name)
+
+        # detect *-stubs/ dirs not derivable from the project name; only the
+        # project's own dirs count (a venv also contains dependencies' files)
+        if self.base_name is None:
+            detected = await find_stubs_dir(sp)
+            if detected is not None and any(
+                Path(p).name == f"{detected}-stubs" for p in pyrefly_paths
+            ):
+                detail = await fetch_project_detail(self.client, detected)
+                self.set_base(detected, detail)
 
         if base_name := self.base_name:
             assert self.base_available is not None
@@ -128,8 +160,10 @@ class _ProjectCollector:
             base_ver_str = str(base_ver)
             base_sp = self.base_install_cache.get(base_ver_str)
             if base_sp is None:
-                base_sp = await install_to_venv(
-                    self.work_dir, base_name, base_ver_str, no_deps=project.no_deps
+                base_sp = await self._fetch_dist(
+                    base_name,
+                    base_ver_str,
+                    self.base_wheels.get(base_ver),
                 )
                 self.base_install_cache[base_ver_str] = base_sp
 
@@ -181,23 +215,23 @@ async def collect_project(  # noqa: PLR0913
     collected yet, constrained to max `backfill_limit` versions per project, and at
     least the latest version.
     """
-    eligible = await versions_since(
-        client,
-        project.name,
+    detail = await fetch_project_detail(client, project.name)
+    eligible = versions_since_from_detail(
+        detail,
         backfill_since,
         include_latest=True,
         limit=backfill_limit,
     )
-    base_name = stubs_base_name(project.name)
-    base_available = await available_versions(client, base_name) if base_name else None
+
     collector = _ProjectCollector(
         project=project,
         client=client,
         work_dir=work_dir,
         eligible=eligible,
-        base_name=base_name,
-        base_available=base_available,
+        wheels=best_wheels(detail),
     )
+    if base_name := stubs_base_name(project.name):
+        collector.set_base(base_name, await fetch_project_detail(client, base_name))
 
     project_data_dir = Path(data_dir, project.name)
     project_data_dir.mkdir(parents=True, exist_ok=True)  # noqa: ASYNC240
@@ -219,7 +253,7 @@ async def collect_project(  # noqa: PLR0913
                 if await collector.collect_version(version, out):
                     written.append(out)
             finally:
-                await remove_venv(work_dir, project.name, str(version))
+                await remove_dist(work_dir, project.name, str(version))
 
     return written
 
@@ -278,7 +312,7 @@ async def collect_all(
                         _logger.exception("failed, skipping")
                     finally:
                         # sync because an `await` here can be cancelled mid-cleanup.
-                        clear_venv_locks(project_work_dir)
+                        clear_dist_locks(project_work_dir)
                         shutil.rmtree(project_work_dir, ignore_errors=True)
 
         async with anyio.create_task_group() as tg:
