@@ -20,12 +20,21 @@ PYPI_HOST: Final = httpx.URL("https://files.pythonhosted.org")
 _UPLOAD_TIME: Final = "2025-06-01T00:00:00Z"
 
 
-def _zip_dir(fixture: Path, /) -> bytes:
+def _zip_wheel(fixture: Path, dist_info: str, /) -> bytes:
+    """Zip `fixture` as a wheel, adding a `RECORD` unless it ships one."""
+    names = [
+        p.relative_to(fixture).as_posix()
+        for p in sorted(fixture.rglob("*"))
+        if p.is_file()
+    ]
+
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w") as zf:
-        for path in sorted(fixture.rglob("*")):
-            if path.is_file():
-                zf.write(path, path.relative_to(fixture))
+        for name in names:
+            zf.write(fixture / name, name)
+        if not any(n.endswith(".dist-info/RECORD") for n in names):
+            record = f"{dist_info}/RECORD"
+            zf.writestr(record, "".join(f"{n},,\n" for n in [*names, record]))
     return buf.getvalue()
 
 
@@ -46,8 +55,9 @@ class PyPIMocker:
     ) -> FileDetail:
         """A wheel file entry built by zipping `fixture` (its download is
         registered), or an advertised-only entry that must never be downloaded."""
-        content = b"" if fixture is None else _zip_dir(fixture)
-        filename = f"{name.replace('-', '_')}-{version}-py3-none-any.whl"
+        stem = f"{name.replace('-', '_')}-{version}"
+        content = b"" if fixture is None else _zip_wheel(fixture, f"{stem}.dist-info")
+        filename = f"{stem}-py3-none-any.whl"
         file = FileDetail(
             {
                 "filename": filename,

@@ -15,7 +15,7 @@ from typestats._type import StrPath
 
 from . import _uv
 from ._pypi import FileDetail
-from ._uv import _dist_dir, _dist_locks, _is_top_level_module
+from ._uv import _dist_dir, _dist_locks, dist_modules
 
 __all__ = ("extract_wheel", "fetch_dist")
 
@@ -104,13 +104,6 @@ async def extract_wheel(
         return dest
 
 
-async def _has_module(dist: anyio.Path, /) -> bool:
-    async for child in dist.iterdir():
-        if await _is_top_level_module(child):
-            return True
-    return False
-
-
 async def fetch_dist(  # ruff: ignore[too-many-arguments]
     client: httpx.AsyncClient,
     work_dir: StrPath,
@@ -135,7 +128,7 @@ async def fetch_dist(  # ruff: ignore[too-many-arguments]
                 version,
             )
         else:
-            if await _has_module(dist):
+            if await dist_modules(dist, project):
                 return dist
             # e.g. a meta-package like cuda-python; the modules come from its
             # dependencies, which only the venv install provides

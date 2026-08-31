@@ -3,10 +3,12 @@ import os
 import re
 import shutil
 import subprocess
+from importlib.metadata import Distribution, DistributionFinder, distributions
 from typing import Final
 
 import anyio
 import anyio.to_thread
+from packaging.requirements import Requirement
 
 from typestats._type import StrPath
 from typestats.subprocess import run as _subprocess_run
@@ -18,6 +20,7 @@ __all__ = (
     "clear_dist_locks",
     "create_venv",
     "discover_packages",
+    "dist_modules",
     "install",
     "install_to_venv",
     "remove_dist",
@@ -122,39 +125,50 @@ async def _is_top_level_module(p: anyio.Path) -> bool:
     return p.suffix in {".py", ".pyi"} and p.stem.isidentifier()
 
 
-def _normalize_dist(name: str) -> str:
-    """PEP 503 normalized distribution name."""
-    return re.sub(r"[-_.]+", "-", name).lower()
-
-
 def _import_name(entry: str) -> str:
     """Import name of a top-level `site-packages` entry (a `.py[i]` file's stem)."""
     return re.sub(r"\.pyi?$", "", entry)
 
 
-async def _dist_modules(sp: anyio.Path, dist_name: str) -> set[str] | None:
-    """Import names installed by *dist_name* (from its `RECORD`), or `None`."""
-    target = _normalize_dist(dist_name)
-    async for child in sp.iterdir():
-        if child.suffix != ".dist-info":
-            continue
+def _top_level_entries(dist: Distribution, /) -> set[str]:
+    """Names of the importable `site-packages` entries that *dist* installs."""
+    return {
+        top
+        for file in dist.files or ()
+        if (top := file.parts[0])
+        and _import_name(top).removesuffix("-stubs").isidentifier()
+    }
 
-        if _normalize_dist(child.stem.split("-", 1)[0]) != target:
-            continue
 
-        record = child / "RECORD"
-        if not await record.exists():
-            return None
+def _find_dist(sp: str, name: str, /) -> Distribution | None:
+    """The distribution installed as *name* in *sp*, matched PEP 503-normalized."""
+    context = DistributionFinder.Context(name=name, path=[sp])
+    return next(iter(distributions(context=context)), None)
 
-        names: set[str] = set()
-        for line in (await record.read_text()).splitlines():
-            top = line.split(",", 1)[0].split("/", 1)[0]
-            if not top or top.startswith(".") or top.endswith((".dist-info", ".data")):
-                continue
-            names.add(_import_name(top))
-        return names
 
-    return None
+def _dist_entries(sp: str, dist_name: str, /) -> set[str]:
+    """`_top_level_entries` of *dist_name*, or of its direct dependencies."""
+    dist = _find_dist(sp, dist_name)
+    if dist is None:
+        return set()
+
+    entries = _top_level_entries(dist)
+    if not entries:
+        # a meta-package (e.g. cuda-python) ships only its deps' modules
+        for spec in dist.requires or ():
+            req = Requirement(spec)
+            if (req.marker is None or "extra" not in str(req.marker)) and (
+                dep := _find_dist(sp, req.name)
+            ):
+                entries |= _top_level_entries(dep)
+    return entries
+
+
+async def dist_modules(site_packages: StrPath, dist_name: str, /) -> tuple[str, ...]:
+    """Absolute paths of the top-level modules *dist_name* installs there."""
+    sp = await anyio.Path(site_packages).resolve()
+    entries = await anyio.to_thread.run_sync(_dist_entries, str(sp), dist_name)
+    return tuple(sorted(str(sp / entry) for entry in entries))
 
 
 async def discover_packages(
@@ -164,17 +178,16 @@ async def discover_packages(
 ) -> tuple[str, ...]:
     """Absolute paths of top-level modules in *site_packages*.
 
-    With *dist_name*, only that distribution's own modules (not its installed
-    dependencies) are returned. Falls back to *site_packages* when empty.
+    With *dist_name*, only that distribution's modules are returned, per
+    `dist_modules`. Falls back to a scan of *site_packages* when empty.
     """
+    if dist_name and (own := await dist_modules(site_packages, dist_name)):
+        return own
+
     sp = await anyio.Path(site_packages).resolve()
-    names = await _dist_modules(sp, dist_name) if dist_name else None
-    found = [
-        str(p)
-        async for p in sp.iterdir()
-        if await _is_top_level_module(p)
-        and (names is None or _import_name(p.name) in names)
-    ]
+    if dist_name:
+        _logger.warning("no modules of %s found in %s", dist_name, sp)
+    found = [str(p) async for p in sp.iterdir() if await _is_top_level_module(p)]
     return tuple(found) or (str(sp),)
 
 
