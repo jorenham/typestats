@@ -151,6 +151,7 @@ class _IndexRow(NamedTuple):
     coverage_num: float
     coverage_strict_num: float
     n_typable: str
+    n_typable_num: int
     py_typed_sort: int
     py_typed: str
     stubs_link: str
@@ -185,6 +186,7 @@ class IndexPage(_Page):
                 coverage_num=round(cov * 100, 1),
                 coverage_strict_num=round(cov_strict * 100, 1),
                 n_typable=f"{r.n_typable:,}",
+                n_typable_num=r.n_typable,
                 py_typed_sort=r.py_typed.sort_key(),
                 py_typed=r.py_typed.name.lower(),
                 stubs_link=stubs_map.get(r.package, ""),

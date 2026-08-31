@@ -11,6 +11,7 @@ document$.subscribe(() => {
 
   const groups = bar.querySelectorAll(".filter-group:not(.filter-group--range)")
   const rangeGroup = bar.querySelector(".filter-group--range[data-filter='coverage']")
+  const capGroup = bar.querySelector(".filter-group--range[data-filter='typables']")
   const table = bar.nextElementSibling
   const rows = table?.querySelectorAll("tbody tr[data-py-typed]")
   if (!rows?.length) return
@@ -37,6 +38,30 @@ document$.subscribe(() => {
     return v >= lo && v <= hi
   }
 
+  const thumbCap = capGroup?.querySelector('input[data-thumb="cap"]')
+  const labelCap = capGroup?.querySelector("[data-range-cap]")
+
+  /** 1/2/5 steps below `max`, then `Infinity` for no cap. */
+  function capSteps(max) {
+    const steps = []
+    for (let e = 1; e <= 9; e++)
+      for (const m of [1, 2, 5]) {
+        const v = m * 10 ** e
+        if (v >= max && steps.length) return [...steps, Infinity]
+        steps.push(v)
+      }
+    return [...steps, Infinity]
+  }
+
+  function fmtCap(v) {
+    if (!isFinite(v)) return "\u221e"
+    return v >= 1000 ? v / 1000 + "k" : String(v)
+  }
+
+  const steps = thumbCap
+    ? capSteps(Math.max(...[...rows].map(r => +r.dataset.typables || 0)))
+    : []
+
   function apply() {
     lockWidths()
     const active = {}
@@ -46,6 +71,7 @@ document$.subscribe(() => {
     }
     const lo = thumbMin ? +thumbMin.value : 0
     const hi = thumbMax ? +thumbMax.value : 100
+    const cap = thumbCap ? steps[+thumbCap.value] : Infinity
     for (const row of rows) {
       let show = true
       for (const [key, val] of Object.entries(active))
@@ -54,6 +80,7 @@ document$.subscribe(() => {
         show =
           inRange(+row.dataset.coverage, lo, hi) &&
           inRange(+row.dataset.coverageStrict, lo, hi)
+      if (show && thumbCap) show = +row.dataset.typables <= cap
       row.style.display = show ? "" : "none"
     }
   }
@@ -68,6 +95,16 @@ document$.subscribe(() => {
         apply()
       })
     }
+  }
+
+  if (thumbCap) {
+    thumbCap.max = String(steps.length - 1)
+    thumbCap.value = thumbCap.max
+    if (labelCap) labelCap.textContent = fmtCap(steps[+thumbCap.value])
+    thumbCap.addEventListener("input", () => {
+      if (labelCap) labelCap.textContent = fmtCap(steps[+thumbCap.value])
+      apply()
+    })
   }
 
   for (const g of groups) {
