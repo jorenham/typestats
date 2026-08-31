@@ -105,7 +105,7 @@ class _SiteDirs(NamedTuple):
     async def build_site(
         self,
         **kwargs: Any,
-    ) -> tuple[list[PackageReport], dict[str, list[PackageReport]]]:
+    ) -> tuple[list[PackageReport], dict[str, list[str]]]:
         return await build_site(self.data, self.site, self.projects_toml, **kwargs)
 
 
@@ -513,30 +513,17 @@ class TestExtractProjectUrls:
 
 class TestBuildManifest:
     def test_single_package(self) -> None:
-        reports = {"mypkg": [_minimal_report("mypkg", "1.0.0")]}
-        manifest = json.loads(_build_manifest(reports))
+        manifest = json.loads(_build_manifest({"mypkg": ["1.0.0"]}))
         assert manifest == {"mypkg": {"versions": ["1.0.0"], "latest": "1.0.0"}}
 
     def test_multiple_versions(self) -> None:
-        reports = {
-            "mypkg": [
-                _minimal_report("mypkg", "1.0.0"),
-                _minimal_report("mypkg", "2.0.0"),
-            ],
-        }
-        manifest = json.loads(_build_manifest(reports))
+        manifest = json.loads(_build_manifest({"mypkg": ["1.0.0", "2.0.0"]}))
         assert manifest["mypkg"]["versions"] == ["1.0.0", "2.0.0"]
         assert manifest["mypkg"]["latest"] == "2.0.0"
 
     def test_multiple_packages(self) -> None:
-        reports = {
-            "alpha": [_minimal_report("alpha", "1.0.0")],
-            "beta": [
-                _minimal_report("beta", "1.0.0"),
-                _minimal_report("beta", "2.0.0"),
-            ],
-        }
-        manifest = json.loads(_build_manifest(reports))
+        versions = {"alpha": ["1.0.0"], "beta": ["1.0.0", "2.0.0"]}
+        manifest = json.loads(_build_manifest(versions))
         assert set(manifest.keys()) == {"alpha", "beta"}
 
     def test_empty(self) -> None:

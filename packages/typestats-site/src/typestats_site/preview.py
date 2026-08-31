@@ -103,7 +103,7 @@ async def _extract_into(into: anyio.Path, sha: str, repo_root: anyio.Path) -> No
 async def _watch_and_rebuild(
     reports_dir: anyio.Path,
     initial_reports: _PackageReports | None = None,
-    initial_all_reports: dict[str, _PackageReports] | None = None,
+    initial_versions: dict[str, list[str]] | None = None,
 ) -> None:
     watch_paths = (
         ROOT / "docs",
@@ -113,7 +113,7 @@ async def _watch_and_rebuild(
     )
     _logger.debug("Watching %s ...", ", ".join(p.name for p in watch_paths))
     cached_reports = initial_reports
-    cached_all_reports = initial_all_reports
+    cached_versions = initial_versions
     async for changes in watchfiles.awatch(*map(str, watch_paths)):
         changed = sorted({anyio.Path(c[1]).name for c in changes})
         _logger.info("Changed: %s -- rebuilding ...", ", ".join(changed))
@@ -125,13 +125,13 @@ async def _watch_and_rebuild(
         t0 = time.perf_counter()
         (
             cached_reports,
-            cached_all_reports,
+            cached_versions,
         ) = await typestats_site.dashboard.build_site(
             reports_dir,
             _SITE_DIR,
             PROJECTS_PATH,
             reports=None if invalidate else cached_reports,
-            all_reports=None if invalidate else cached_all_reports,
+            versions=None if invalidate else cached_versions,
         )
         _logger.info("Rebuilt in %.1fs", time.perf_counter() - t0)
 
@@ -176,14 +176,14 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
     reports_path = _REPORTS_DIR / "reports"
 
     initial_reports: _PackageReports | None = None
-    initial_all_reports: dict[str, _PackageReports] | None = None
+    initial_versions: dict[str, list[str]] | None = None
     if not clean and sha == sha_cached and await _REPORTS_DIR.exists():
         _logger.info("Data unchanged (%s), skipping extraction.", sha[:12])
     else:
         await _extract_into(_REPORTS_DIR, sha, repo_root)
 
         _logger.info("Building dashboard pages ...")
-        (initial_reports, initial_all_reports), _ = await asyncio.gather(
+        (initial_reports, initial_versions), _ = await asyncio.gather(
             typestats_site.dashboard.build_site(reports_path, _SITE_DIR, PROJECTS_PATH),
             _SITE_SHA.write_text(sha),
         )
@@ -196,7 +196,7 @@ async def preview(*, clean: bool = False, serve_args: Sequence[str] = ()) -> Non
                 _watch_and_rebuild,
                 reports_path,
                 initial_reports,
-                initial_all_reports,
+                initial_versions,
             )
             await _serve(*serve_args)
             tg.cancel_scope.cancel()
