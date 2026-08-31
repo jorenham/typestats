@@ -31,9 +31,9 @@ function showUploadZone(root) {
   if (pageH1) pageH1.textContent = "View report"
 
   root.innerHTML = `<div class="upload-zone" tabindex="0" role="button" aria-label="Upload a JSON report file">
-    <p>Drop a <code>.json</code> report here, or click to select a file.</p>
+    <p>Drop a <code>.json</code> or <code>.json.gz</code> report here, or click to select a file.</p>
     <p class="upload-hint">Generate one with <code>pyrefly coverage report &gt; report.json</code></p>
-    <input type="file" accept=".json,application/json" hidden>
+    <input type="file" accept=".json,.gz,application/json,application/gzip" hidden>
   </div>
   <details class="paste-section">
     <summary>Or paste JSON directly</summary>
@@ -114,7 +114,7 @@ async function loadReport(root, text, label) {
 }
 
 async function handleUpload(root, file) {
-  await loadReport(root, await file.text(), file.name)
+  await loadReport(root, await decodeReportText(await file.arrayBuffer()), file.name)
 }
 
 async function handlePaste(root, text) {
@@ -186,8 +186,8 @@ async function renderDetail(root, report, manifestEntry, version, warning = null
       `<a href="../history/#${encodeURIComponent(pkg)}">Version history</a>`,
     )
   if (manifestEntry) {
-    const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`
-    navLinks.push(`<a href="${jsonUrl}">Download JSON</a>`)
+    const jsonUrl = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json.gz`
+    navLinks.push(`<a href="${jsonUrl}">Download JSON (gzip)</a>`)
   }
   parts.push(`<p>${navLinks.join(" | ")}</p>`)
   parts.push(renderOverview(report))
