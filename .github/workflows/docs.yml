@@ -46,12 +46,30 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: checkout data
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: resolve data ref
+        id: data-ref
+        run: >-
+          echo "sha=$(git ls-remote "https://github.com/$GITHUB_REPOSITORY"
+          refs/heads/data | cut -f1)" >> "$GITHUB_OUTPUT"
+
+      - name: restore data cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          ref: data
           path: _data
-          persist-credentials: false
+          key: data-${{ steps.data-ref.outputs.sha }}
+          restore-keys: data-
+
+      - name: checkout data
+        env:
+          DATA_SHA: ${{ steps.data-ref.outputs.sha }}
+        run: |
+          if [ -d _data/.git ]; then
+            git -C _data fetch --depth=1 origin data
+            git -C _data checkout --force "$DATA_SHA"
+          else
+            git clone --depth=1 --branch=data --no-tags \
+              "https://github.com/$GITHUB_REPOSITORY" _data
+          fi
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
