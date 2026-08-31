@@ -22,8 +22,7 @@ if TYPE_CHECKING:
 
 
 def _read_report(path: Path, /) -> dict[str, Any]:
-    raw = path.read_bytes()
-    return json.loads(gzip.decompress(raw) if path.suffix == ".gz" else raw)
+    return json.loads(gzip.decompress(path.read_bytes()))
 
 
 def _write_report(path: Path, data: dict[str, Any], /) -> None:
@@ -132,27 +131,6 @@ class TestCollectProject:
         # The file content should be unchanged
         assert _read_report(out)["schema_version"] == schema_ver
 
-    async def test_skips_existing_uncompressed(
-        self,
-        tmp_path: Path,
-        pypi: "PyPIMocker",
-    ) -> None:
-        """An uncompressed report from before the gzip switch also skips."""
-        name, version = "mypkg", "2.5.0"
-
-        schema_ver = ".".join(map(str, SCHEMA_VERSION))
-        out = tmp_path / name / f"{version}.json"
-        out.parent.mkdir(parents=True)
-        out.write_text(json.dumps({"schema_version": schema_ver}))
-
-        # advertised-only: a download attempt would fail the test
-        pypi.project(name, pypi.wheel(name, version))
-
-        results = await _collect(Project(name=name), tmp_path)
-
-        assert results == []
-        assert not (tmp_path / name / f"{version}.json.gz").exists()
-
     async def test_recollects_outdated_schema(
         self,
         tmp_path: Path,
@@ -161,17 +139,15 @@ class TestCollectProject:
         """Outdated schema triggers re-collection."""
         name, version = "mypkg", "2.5.0"
 
-        stale = tmp_path / name / f"{version}.json"
-        stale.parent.mkdir(parents=True)
-        stale.write_text(json.dumps({"schema_version": "0.0"}))
+        out = tmp_path / name / f"{version}.json.gz"
+        _write_report(out, {"schema_version": "0.0"})
 
         pypi.project(name, pypi.wheel(name, version, _FIXTURES / "stubs_base"))
 
         results = await _collect(Project(name=name), tmp_path)
 
         assert len(results) == 1
-        assert not stale.exists()
-        data = _read_report(tmp_path / name / f"{version}.json.gz")
+        data = _read_report(out)
         assert data["schema_version"] == ".".join(map(str, SCHEMA_VERSION))
         assert data["package"] == name
 
@@ -228,9 +204,9 @@ class TestCollectAll:
         # Pre-create current-schema output
         schema_ver = ".".join(map(str, SCHEMA_VERSION))
         data_dir = anyio.Path(tmp_path / "data")
-        (tmp_path / "data" / name).mkdir(parents=True)
-        (tmp_path / "data" / name / f"{version}.json").write_text(
-            json.dumps({"schema_version": schema_ver}),
+        _write_report(
+            tmp_path / "data" / name / f"{version}.json.gz",
+            {"schema_version": schema_ver},
         )
 
         pypi.project(name, pypi.wheel(name, version))
@@ -259,7 +235,7 @@ class TestCollectAll:
         data_dir = anyio.Path(tmp_path / "data")
         unlisted = tmp_path / "data" / "oldpkg"
         unlisted.mkdir(parents=True)
-        (unlisted / "0.1.0.json").write_text("{}")
+        _write_report(unlisted / "0.1.0.json.gz", {})
 
         projects_toml = tmp_path / "projects.toml"
         projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
@@ -393,22 +369,21 @@ class TestCleanData:
     pytestmark = pytest.mark.anyio
 
     async def test_removes_json_files(self, tmp_path: Path) -> None:
-        """Both gzipped and pre-migration uncompressed reports are removed."""
         pkg_dir = tmp_path / "mypkg"
         pkg_dir.mkdir()
-        (pkg_dir / "1.0.0.json").write_text("{}")
+        _write_report(pkg_dir / "1.0.0.json.gz", {})
         _write_report(pkg_dir / "2.0.0.json.gz", {})
 
         removed = await clean_data(anyio.Path(tmp_path))
 
         assert removed == 2
-        assert not (pkg_dir / "1.0.0.json").exists()
+        assert not (pkg_dir / "1.0.0.json.gz").exists()
         assert not (pkg_dir / "2.0.0.json.gz").exists()
 
     async def test_removes_empty_subdirs(self, tmp_path: Path) -> None:
         pkg_dir = tmp_path / "mypkg"
         pkg_dir.mkdir()
-        (pkg_dir / "1.0.0.json").write_text("{}")
+        _write_report(pkg_dir / "1.0.0.json.gz", {})
 
         await clean_data(anyio.Path(tmp_path))
 
@@ -417,13 +392,13 @@ class TestCleanData:
     async def test_keeps_nonempty_subdirs(self, tmp_path: Path) -> None:
         pkg_dir = tmp_path / "mypkg"
         pkg_dir.mkdir()
-        (pkg_dir / "1.0.0.json").write_text("{}")
+        _write_report(pkg_dir / "1.0.0.json.gz", {})
         (pkg_dir / "notes.txt").write_text("keep me")
 
         await clean_data(anyio.Path(tmp_path))
 
         assert pkg_dir.exists()
-        assert not (pkg_dir / "1.0.0.json").exists()
+        assert not (pkg_dir / "1.0.0.json.gz").exists()
         assert (pkg_dir / "notes.txt").exists()
 
     async def test_nonexistent_dir(self, tmp_path: Path) -> None:

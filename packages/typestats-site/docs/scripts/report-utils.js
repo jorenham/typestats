@@ -256,8 +256,7 @@ async function fetchManifest() {
   return resp.json()
 }
 
-// Reports are stored gzipped, but uploads and older data are not: sniff the magic
-// bytes rather than trust the file name.
+// Stored reports are gzipped, uploaded ones are not: sniff the magic bytes.
 async function decodeReportText(buf) {
   const bytes = new Uint8Array(buf)
   if (bytes[0] !== 0x1f || bytes[1] !== 0x8b) return new TextDecoder().decode(buf)
@@ -266,9 +265,9 @@ async function decodeReportText(buf) {
 }
 
 async function fetchReport(pkg, version) {
-  const base = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}`
-  let resp = await fetch(`${base}.json.gz`)
-  if (!resp.ok) resp = await fetch(`${base}.json`)
+  const resp = await fetch(
+    `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json.gz`,
+  )
   if (!resp.ok)
     throw new Error(`Failed to fetch report for ${pkg}@${version}: ${resp.status}`)
   return JSON.parse(await decodeReportText(await resp.arrayBuffer()))
