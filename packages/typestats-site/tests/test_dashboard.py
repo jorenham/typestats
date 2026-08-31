@@ -314,6 +314,16 @@ class TestRenderIndex:
         assert 'data-thumb="min"' in md
         assert 'data-thumb="max"' in md
 
+    def test_filter_bar_typables_slider(self) -> None:
+        md = IndexPage([_minimal_report()]).render()
+        assert 'data-filter="typables"' in md
+        assert 'data-thumb="cap"' in md
+
+    def test_data_typables_attribute(self) -> None:
+        report = _minimal_report("pkg", "1.0.0", n_typed=8, n_any=2, n_untyped=10)
+        md = IndexPage([report]).render()
+        assert 'data-typables="20"' in _table_rows(md)[0]
+
 
 class TestBuildSite:
     pytestmark = pytest.mark.anyio
