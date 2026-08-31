@@ -1,0 +1,7015 @@
+{
+  "schema_version": "1.0",
+  "package": "swebench",
+  "version": "3.0.7",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2025-02-11T00:32:30.024487Z",
+    "requires_python": ">=3.8",
+    "size": 107680,
+    "sha256": "43a12b91ed161d414b67e5d3d4e2f1d8555a9636151791ac33dcd7cbd9e0f654"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.2"
+    ],
+    "Name": [
+      "swebench"
+    ],
+    "Version": [
+      "3.0.7"
+    ],
+    "Summary": [
+      "The official SWE-bench package - a benchmark for evaluating LMs on software engineering"
+    ],
+    "Home-page": [
+      "https://swebench.com"
+    ],
+    "Author": [
+      "John Yang"
+    ],
+    "Author-email": [
+      "byjohnyang@gmail.com"
+    ],
+    "Project-URL": [
+      "Documentation, https://github.com/swe-bench/SWE-bench",
+      "Bug Reports, http://github.com/swe-bench/SWE-bench/issues",
+      "Source Code, http://github.com/swe-bench/SWE-bench",
+      "Website, https://swebench.com"
+    ],
+    "Keywords": [
+      "nlp,benchmark,code"
+    ],
+    "Classifier": [
+      "Programming Language :: Python :: 3.8",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3 :: Only",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: OS Independent"
+    ],
+    "Requires-Python": [
+      ">=3.8"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Requires-Dist": [
+      "beautifulsoup4",
+      "chardet",
+      "datasets",
+      "docker",
+      "ghapi",
+      "GitPython",
+      "modal",
+      "pre-commit",
+      "python-dotenv",
+      "requests",
+      "rich",
+      "tenacity",
+      "tqdm",
+      "unidiff",
+      "anthropic; extra == \"inference\"",
+      "flash_attn; extra == \"inference\"",
+      "jedi; extra == \"inference\"",
+      "openai; extra == \"inference\"",
+      "peft; extra == \"inference\"",
+      "protobuf; extra == \"inference\"",
+      "sentencepiece; extra == \"inference\"",
+      "tiktoken; extra == \"inference\"",
+      "torch; extra == \"inference\"",
+      "transformers; extra == \"inference\"",
+      "triton; extra == \"inference\"",
+      "pytest; extra == \"test\"",
+      "pytest-cov; extra == \"test\""
+    ],
+    "Provides-Extra": [
+      "inference",
+      "test"
+    ],
+    "Dynamic": [
+      "author",
+      "author-email",
+      "classifier",
+      "description",
+      "description-content-type",
+      "home-page",
+      "keywords",
+      "project-url",
+      "provides-extra",
+      "requires-dist",
+      "requires-python",
+      "summary"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "swebench/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 1,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench",
+      "names": [
+        "__version__"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/collect/build_dataset.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "create_instance",
+          "line_start": 21,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "is_valid_pull",
+          "line_start": 51,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_valid_instance",
+          "line_start": 67,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_test_patch",
+          "line_start": 83,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 97,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.collect.build_dataset",
+      "names": [
+        "create_instance",
+        "has_test_patch",
+        "is_valid_instance",
+        "is_valid_pull",
+        "logger",
+        "main"
+      ],
+      "n_typable": 14,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 5,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/collect/build_dataset_ft.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 13,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.collect.build_dataset_ft",
+      "names": [
+        "main"
+      ],
+      "n_typable": 5,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/collect/get_tasks_pipeline.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "split_instances",
+          "line_start": 17,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "construct_data_files",
+          "line_start": 40,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 94,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.collect.get_tasks_pipeline",
+      "names": [
+        "construct_data_files",
+        "main",
+        "split_instances"
+      ],
+      "n_typable": 11,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 3,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/collect/get_top_pypi.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "gh_token",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "msg",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "api",
+          "line_start": 16,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_package_stats",
+          "line_start": 19,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.collect.get_top_pypi",
+      "names": [
+        "api",
+        "get_package_stats",
+        "gh_token",
+        "msg"
+      ],
+      "n_typable": 5,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/collect/print_pulls.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "log_all_pulls",
+          "line_start": 23,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 49,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.collect.print_pulls",
+      "names": [
+        "log_all_pulls",
+        "logger",
+        "main"
+      ],
+      "n_typable": 12,
+      "n_typed": 10,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 2,
+      "n_function_params": 9,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/collect/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PR_KEYWORDS",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "extract_problem_statement_and_hints",
+          "line_start": 228,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_problem_statement_and_hints_django",
+          "line_start": 331,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_patches",
+          "line_start": 305,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "Repo",
+          "line_start": 27,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Repo.__init__",
+              "line_start": 28,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Repo.call_api",
+              "line_start": 43,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Repo.extract_resolved_issues",
+              "line_start": 71,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Repo.get_all_loop",
+              "line_start": 104,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "Repo.get_all_issues",
+              "line_start": 165,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "Repo.get_all_pulls",
+              "line_start": 196,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 7,
+              "n_params": 6
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Repo.owner",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Repo.name",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Repo.token",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Repo.api",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Repo.repo",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 33,
+          "n_typed": 26,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 6,
+          "n_method_params": 22,
+          "n_attrs": 5,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.collect.utils",
+      "names": [
+        "PR_KEYWORDS",
+        "Repo",
+        "extract_patches",
+        "extract_problem_statement_and_hints",
+        "extract_problem_statement_and_hints_django",
+        "logger"
+      ],
+      "n_typable": 43,
+      "n_typed": 35,
+      "n_any": 0,
+      "n_untyped": 8,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 6,
+      "n_method_params": 22,
+      "n_classes": 1,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/constants/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_VERSION_TO_SPECS",
+          "line_start": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_INSTALL",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_EXT",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LATEST",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "USE_X86",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.constants",
+      "names": [
+        "LATEST",
+        "MAP_REPO_TO_EXT",
+        "MAP_REPO_TO_INSTALL",
+        "MAP_REPO_VERSION_TO_SPECS",
+        "USE_X86"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/constants/constants.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "BASE_IMAGE_BUILD_DIR",
+          "line_start": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ENV_IMAGE_BUILD_DIR",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "INSTANCE_IMAGE_BUILD_DIR",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "RUN_EVALUATION_LOG_DIR",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "RUN_VALIDATION_LOG_DIR",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "FAIL_TO_PASS",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FAIL_TO_FAIL",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PASS_TO_PASS",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PASS_TO_FAIL",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "KEY_INSTANCE_ID",
+          "line_start": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "KEY_MODEL",
+          "line_start": 51,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "KEY_PREDICTION",
+          "line_start": 52,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DOCKER_PATCH",
+          "line_start": 55,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DOCKER_USER",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DOCKER_WORKDIR",
+          "line_start": 57,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LOG_REPORT",
+          "line_start": 58,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LOG_INSTANCE",
+          "line_start": 59,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LOG_TEST_OUTPUT",
+          "line_start": 60,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "UTF8",
+          "line_start": 61,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "APPLY_PATCH_FAIL",
+          "line_start": 64,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "APPLY_PATCH_PASS",
+          "line_start": 65,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INSTALL_FAIL",
+          "line_start": 66,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INSTALL_PASS",
+          "line_start": 67,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "INSTALL_TIMEOUT",
+          "line_start": 68,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "RESET_FAILED",
+          "line_start": 69,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TESTS_ERROR",
+          "line_start": 70,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TESTS_FAILED",
+          "line_start": 71,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TESTS_PASSED",
+          "line_start": 72,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TESTS_TIMEOUT",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "START_TEST_OUTPUT",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "END_TEST_OUTPUT",
+          "line_start": 75,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "NON_TEST_EXTS",
+          "line_start": 90,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SWE_BENCH_URL_RAW",
+          "line_start": 103,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_DOCKER_SPECS",
+          "line_start": 104,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FAIL_ONLY_REPOS",
+          "line_start": 109,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "EvalType",
+          "line_start": 45,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EvalType.PASS_AND_FAIL",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "EvalType.FAIL_ONLY",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PatchType",
+          "line_start": 78,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "PatchType.__str__",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PatchType.PATCH_GOLD",
+              "line_start": 79,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PatchType.PATCH_PRED",
+              "line_start": 80,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PatchType.PATCH_PRED_TRY",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PatchType.PATCH_PRED_MINIMAL",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PatchType.PATCH_PRED_MINIMAL_TRY",
+              "line_start": 83,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PatchType.PATCH_TEST",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ResolvedStatus",
+          "line_start": 33,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ResolvedStatus.NO",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ResolvedStatus.PARTIAL",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ResolvedStatus.FULL",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SWEbenchInstance",
+          "line_start": 13,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.repo",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.instance_id",
+              "line_start": 15,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.base_commit",
+              "line_start": 16,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.patch",
+              "line_start": 17,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.test_patch",
+              "line_start": 18,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.problem_statement",
+              "line_start": 19,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.hints_text",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.created_at",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.version",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.FAIL_TO_PASS",
+              "line_start": 23,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.PASS_TO_PASS",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SWEbenchInstance.environment_setup_commit",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TestStatus",
+          "line_start": 38,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TestStatus.FAILED",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestStatus.PASSED",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestStatus.SKIPPED",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestStatus.ERROR",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestStatus.XFAIL",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.constants.constants",
+      "names": [
+        "APPLY_PATCH_FAIL",
+        "APPLY_PATCH_PASS",
+        "BASE_IMAGE_BUILD_DIR",
+        "DEFAULT_DOCKER_SPECS",
+        "DOCKER_PATCH",
+        "DOCKER_USER",
+        "DOCKER_WORKDIR",
+        "END_TEST_OUTPUT",
+        "ENV_IMAGE_BUILD_DIR",
+        "EvalType",
+        "FAIL_ONLY_REPOS",
+        "FAIL_TO_FAIL",
+        "FAIL_TO_PASS",
+        "INSTALL_FAIL",
+        "INSTALL_PASS",
+        "INSTALL_TIMEOUT",
+        "INSTANCE_IMAGE_BUILD_DIR",
+        "KEY_INSTANCE_ID",
+        "KEY_MODEL",
+        "KEY_PREDICTION",
+        "LOG_INSTANCE",
+        "LOG_REPORT",
+        "LOG_TEST_OUTPUT",
+        "NON_TEST_EXTS",
+        "PASS_TO_FAIL",
+        "PASS_TO_PASS",
+        "PatchType",
+        "RESET_FAILED",
+        "RUN_EVALUATION_LOG_DIR",
+        "RUN_VALIDATION_LOG_DIR",
+        "ResolvedStatus",
+        "START_TEST_OUTPUT",
+        "SWE_BENCH_URL_RAW",
+        "SWEbenchInstance",
+        "TESTS_ERROR",
+        "TESTS_FAILED",
+        "TESTS_PASSED",
+        "TESTS_TIMEOUT",
+        "TestStatus",
+        "UTF8"
+      ],
+      "n_typable": 5,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": -1,
+      "n_classes": 5,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/constants/javascript.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TEST_XVFB_PREFIX",
+          "line_start": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "XVFB_DEPS",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "X11_DEPS",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_CALYPSO",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_CHART_JS_TEMPLATE",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_CHART_JS",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "v",
+          "line_start": 84,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_MARKED",
+          "line_start": 87,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_P5_JS",
+          "line_start": 102,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "k",
+          "line_start": 124,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_REACT_PDF",
+          "line_start": 130,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_VERSION_TO_SPECS_JS",
+          "line_start": 152,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_INSTALL_JS",
+          "line_start": 161,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.constants.javascript",
+      "names": [
+        "MAP_REPO_TO_INSTALL_JS",
+        "MAP_REPO_VERSION_TO_SPECS_JS",
+        "SPECS_CALYPSO",
+        "SPECS_CHART_JS",
+        "SPECS_MARKED",
+        "SPECS_P5_JS",
+        "SPECS_REACT_PDF",
+        "TEST_CHART_JS_TEMPLATE",
+        "TEST_XVFB_PREFIX",
+        "X11_DEPS",
+        "XVFB_DEPS",
+        "k",
+        "v"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/constants/python.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TEST_PYTEST",
+          "line_start": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_PYTEST_VERBOSE",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_ASTROPY_PYTEST",
+          "line_start": 4,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_DJANGO",
+          "line_start": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_DJANGO_NO_PARALLEL",
+          "line_start": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_SEABORN",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_SEABORN_VERBOSE",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_SPHINX",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_SYMPY",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TEST_SYMPY_VERBOSE",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_SKLEARN",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_FLASK",
+          "line_start": 45,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_DJANGO",
+          "line_start": 95,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_REQUESTS",
+          "line_start": 178,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_SEABORN",
+          "line_start": 190,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_PYTEST",
+          "line_start": 249,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "k",
+          "line_start": 307,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_MATPLOTLIB",
+          "line_start": 375,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_SPHINX",
+          "line_start": 452,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_ASTROPY",
+          "line_start": 506,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_SYMPY",
+          "line_start": 588,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_PYLINT",
+          "line_start": 612,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "v",
+          "line_start": 649,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_XARRAY",
+          "line_start": 652,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_SQLFLUFF",
+          "line_start": 675,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_DBT_CORE",
+          "line_start": 703,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_PYVISTA",
+          "line_start": 730,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_ASTROID",
+          "line_start": 774,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_MARSHMALLOW",
+          "line_start": 797,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_PVLIB",
+          "line_start": 823,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_PYDICOM",
+          "line_start": 834,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SPECS_HUMANEVAL",
+          "line_start": 869,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_VERSION_TO_SPECS_PY",
+          "line_start": 872,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_INSTALL_PY",
+          "line_start": 896,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_REQS_PATHS",
+          "line_start": 900,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_ENV_YML_PATHS",
+          "line_start": 916,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "USE_X86_PY",
+          "line_start": 921,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.constants.python",
+      "names": [
+        "MAP_REPO_TO_ENV_YML_PATHS",
+        "MAP_REPO_TO_INSTALL_PY",
+        "MAP_REPO_TO_REQS_PATHS",
+        "MAP_REPO_VERSION_TO_SPECS_PY",
+        "SPECS_ASTROID",
+        "SPECS_ASTROPY",
+        "SPECS_DBT_CORE",
+        "SPECS_DJANGO",
+        "SPECS_FLASK",
+        "SPECS_HUMANEVAL",
+        "SPECS_MARSHMALLOW",
+        "SPECS_MATPLOTLIB",
+        "SPECS_PVLIB",
+        "SPECS_PYDICOM",
+        "SPECS_PYLINT",
+        "SPECS_PYTEST",
+        "SPECS_PYVISTA",
+        "SPECS_REQUESTS",
+        "SPECS_SEABORN",
+        "SPECS_SKLEARN",
+        "SPECS_SPHINX",
+        "SPECS_SQLFLUFF",
+        "SPECS_SYMPY",
+        "SPECS_XARRAY",
+        "TEST_ASTROPY_PYTEST",
+        "TEST_DJANGO",
+        "TEST_DJANGO_NO_PARALLEL",
+        "TEST_PYTEST",
+        "TEST_PYTEST_VERBOSE",
+        "TEST_SEABORN",
+        "TEST_SEABORN_VERBOSE",
+        "TEST_SPHINX",
+        "TEST_SYMPY",
+        "TEST_SYMPY_VERBOSE",
+        "USE_X86_PY",
+        "k",
+        "v"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/docker_build.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "ansi_escape",
+          "line_start": 31,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "setup_logger",
+          "line_start": 49,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "close_logger",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "build_image",
+          "line_start": 81,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "build_base_images",
+          "line_start": 169,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_env_configs_to_build",
+          "line_start": 214,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "build_env_images",
+          "line_start": 261,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "build_instance_images",
+          "line_start": 310,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "build_instance_image",
+          "line_start": 356,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "build_container",
+          "line_start": 425,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "class",
+          "name": "BuildImageError",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BuildImageError.__init__",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "BuildImageError.__str__",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BuildImageError.super_str",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BuildImageError.image_name",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BuildImageError.log_path",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "BuildImageError.logger",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.docker_build",
+      "names": [
+        "BuildImageError",
+        "ansi_escape",
+        "build_base_images",
+        "build_container",
+        "build_env_images",
+        "build_image",
+        "build_instance_image",
+        "build_instance_images",
+        "close_logger",
+        "get_env_configs_to_build",
+        "setup_logger"
+      ],
+      "n_typable": 54,
+      "n_typed": 35,
+      "n_any": 0,
+      "n_untyped": 19,
+      "n_functions": 9,
+      "n_function_params": 37,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/docker_utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "HEREDOC_DELIMITER",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "copy_to_container",
+          "line_start": 18,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "write_to_container",
+          "line_start": 54,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "remove_image",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "cleanup_container",
+          "line_start": 102,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "exec_run_with_timeout",
+          "line_start": 177,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "find_dependent_images",
+          "line_start": 222,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "list_images",
+          "line_start": 260,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "clean_images",
+          "line_start": 268,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "should_remove",
+          "line_start": 300,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.docker_utils",
+      "names": [
+        "HEREDOC_DELIMITER",
+        "clean_images",
+        "cleanup_container",
+        "copy_to_container",
+        "exec_run_with_timeout",
+        "find_dependent_images",
+        "list_images",
+        "remove_image",
+        "should_remove",
+        "write_to_container"
+      ],
+      "n_typable": 35,
+      "n_typed": 18,
+      "n_any": 0,
+      "n_untyped": 17,
+      "n_functions": 9,
+      "n_function_params": 26,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/dockerfiles/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_dockerfile_base",
+          "line_start": 28,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_dockerfile_env",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_dockerfile_instance",
+          "line_start": 47,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.dockerfiles",
+      "names": [
+        "get_dockerfile_base",
+        "get_dockerfile_env",
+        "get_dockerfile_instance"
+      ],
+      "n_typable": 13,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 13,
+      "n_functions": 3,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/grading.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "test_passed",
+          "line_start": 27,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "test_failed",
+          "line_start": 31,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_logs_eval",
+          "line_start": 38,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_eval_tests_report",
+          "line_start": 74,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "compute_fail_to_pass",
+          "line_start": 168,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "compute_pass_to_pass",
+          "line_start": 178,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_resolution_status",
+          "line_start": 189,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_eval_report",
+          "line_start": 209,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "swebench.harness.grading",
+      "names": [
+        "compute_fail_to_pass",
+        "compute_pass_to_pass",
+        "get_eval_report",
+        "get_eval_tests_report",
+        "get_logs_eval",
+        "get_resolution_status",
+        "test_failed",
+        "test_passed"
+      ],
+      "n_typable": 25,
+      "n_typed": 25,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 8,
+      "n_function_params": 17,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "swebench/harness/log_parsers/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_PARSER",
+          "line_start": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.log_parsers",
+      "names": [
+        "MAP_REPO_TO_PARSER"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/log_parsers/javascript.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_PARSER_JS",
+          "line_start": 180,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_calypso",
+          "line_start": 12,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_chart_js",
+          "line_start": 62,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_marked",
+          "line_start": 79,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_p5js",
+          "line_start": 91,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_react_pdf",
+          "line_start": 157,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.log_parsers.javascript",
+      "names": [
+        "MAP_REPO_TO_PARSER_JS",
+        "parse_log_calypso",
+        "parse_log_chart_js",
+        "parse_log_marked",
+        "parse_log_p5js",
+        "parse_log_react_pdf"
+      ],
+      "n_typable": 15,
+      "n_typed": 15,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 5,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/log_parsers/python.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "parse_log_astroid",
+          "line_start": 246,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_flask",
+          "line_start": 247,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_marshmallow",
+          "line_start": 248,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_pvlib",
+          "line_start": 249,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_pyvista",
+          "line_start": 250,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_sqlfluff",
+          "line_start": 251,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_xarray",
+          "line_start": 252,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_pydicom",
+          "line_start": 254,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_requests",
+          "line_start": 255,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_pylint",
+          "line_start": 256,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_astropy",
+          "line_start": 258,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_scikit",
+          "line_start": 259,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "parse_log_sphinx",
+          "line_start": 260,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_PARSER_PY",
+          "line_start": 263,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_pytest",
+          "line_start": 8,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_pytest_options",
+          "line_start": 30,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_django",
+          "line_start": 61,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_pytest_v2",
+          "line_start": 137,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_seaborn",
+          "line_start": 166,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_sympy",
+          "line_start": 192,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_log_matplotlib",
+          "line_start": 222,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.log_parsers.python",
+      "names": [
+        "MAP_REPO_TO_PARSER_PY",
+        "parse_log_astroid",
+        "parse_log_astropy",
+        "parse_log_django",
+        "parse_log_flask",
+        "parse_log_marshmallow",
+        "parse_log_matplotlib",
+        "parse_log_pvlib",
+        "parse_log_pydicom",
+        "parse_log_pylint",
+        "parse_log_pytest",
+        "parse_log_pytest_options",
+        "parse_log_pytest_v2",
+        "parse_log_pyvista",
+        "parse_log_requests",
+        "parse_log_scikit",
+        "parse_log_seaborn",
+        "parse_log_sphinx",
+        "parse_log_sqlfluff",
+        "parse_log_sympy",
+        "parse_log_xarray"
+      ],
+      "n_typable": 21,
+      "n_typed": 21,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 7,
+      "n_function_params": 14,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/log_parsers/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "ansi_escape",
+          "line_start": 6,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_eval_type",
+          "line_start": 17,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.log_parsers.utils",
+      "names": [
+        "ansi_escape",
+        "get_eval_type"
+      ],
+      "n_typable": 4,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/modal_eval/run_evaluation_modal.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "SANDBOX_ENTRYPOINT",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "LOCAL_SANDBOX_ENTRYPOINT_PATH",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "REMOTE_SANDBOX_ENTRYPOINT_PATH",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "app",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "swebench_image",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_log_dir",
+          "line_start": 200,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "run_instance_modal",
+          "line_start": 205,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "run_instances_modal",
+          "line_start": 372,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "ModalSandboxRuntime",
+          "line_start": 48,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ModalSandboxRuntime.__init__",
+              "line_start": 52,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ModalSandboxRuntime.write_file",
+              "line_start": 103,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ModalSandboxRuntime.exec",
+              "line_start": 106,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "ModalSandboxRuntime.__exit__",
+              "line_start": 126,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ModalSandboxRuntime.get_instance_image",
+              "line_start": 146,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModalSandboxRuntime.test_spec",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModalSandboxRuntime.image",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModalSandboxRuntime.sandbox",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModalSandboxRuntime.verbose",
+              "line_start": 56,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 8,
+          "n_any": 1,
+          "n_untyped": 6,
+          "n_methods": 5,
+          "n_method_params": 6,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TestOutput",
+          "line_start": 38,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TestOutput.instance_id",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestOutput.test_output",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestOutput.report_json_str",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestOutput.run_instance_log",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestOutput.patch_diff",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestOutput.log_dir",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestOutput.errored",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.modal_eval.run_evaluation_modal",
+      "names": [
+        "LOCAL_SANDBOX_ENTRYPOINT_PATH",
+        "ModalSandboxRuntime",
+        "REMOTE_SANDBOX_ENTRYPOINT_PATH",
+        "SANDBOX_ENTRYPOINT",
+        "TestOutput",
+        "app",
+        "get_log_dir",
+        "run_instance_modal",
+        "run_instances_modal",
+        "swebench_image"
+      ],
+      "n_typable": 33,
+      "n_typed": 22,
+      "n_any": 1,
+      "n_untyped": 10,
+      "n_functions": 3,
+      "n_function_params": 12,
+      "n_methods": 5,
+      "n_method_params": 6,
+      "n_classes": 2,
+      "n_attrs": 7,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/modal_eval/run_evaluation_modal_entrypoint.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "STDIO_RATE_LIMIT_BYTES_PER_SEC",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "exec",
+          "line_start": 15,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 104,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.modal_eval.run_evaluation_modal_entrypoint",
+      "names": [
+        "STDIO_RATE_LIMIT_BYTES_PER_SEC",
+        "exec",
+        "main"
+      ],
+      "n_typable": 4,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 2,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/modal_eval/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "validate_modal_credentials",
+          "line_start": 3,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.modal_eval.utils",
+      "names": [
+        "validate_modal_credentials"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/prepare_images.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "filter_dataset_to_build",
+          "line_start": 13,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 57,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.prepare_images",
+      "names": [
+        "filter_dataset_to_build",
+        "main"
+      ],
+      "n_typable": 16,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 10,
+      "n_functions": 2,
+      "n_function_params": 14,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/remove_containers.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.remove_containers",
+      "names": [
+        "main"
+      ],
+      "n_typable": 3,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/reporting.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_run_report",
+          "line_start": 17,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.reporting",
+      "names": [
+        "make_run_report"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 4,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/run_evaluation.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "GIT_APPLY_CMDS",
+          "line_start": 61,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "run_instance",
+          "line_start": 68,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "run_instances",
+          "line_start": 243,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "get_dataset_from_preds",
+          "line_start": 309,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 393,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 17,
+          "n_params": 16
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.run_evaluation",
+      "names": [
+        "GIT_APPLY_CMDS",
+        "get_dataset_from_preds",
+        "main",
+        "run_instance",
+        "run_instances"
+      ],
+      "n_typable": 46,
+      "n_typed": 42,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 4,
+      "n_function_params": 42,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/test_spec/create_scripts.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "make_repo_script_list",
+          "line_start": 14,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "make_env_script_list",
+          "line_start": 28,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "make_eval_script_list",
+          "line_start": 41,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 7,
+          "n_params": 6
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.test_spec.create_scripts",
+      "names": [
+        "make_env_script_list",
+        "make_eval_script_list",
+        "make_repo_script_list"
+      ],
+      "n_typable": 17,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 14,
+      "n_functions": 3,
+      "n_function_params": 14,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/test_spec/javascript.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_TEST_CMDS",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_test_cmds_calypso",
+          "line_start": 16,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_test_cmds",
+          "line_start": 54,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_download_img_commands",
+          "line_start": 63,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "make_repo_script_list_js",
+          "line_start": 81,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "make_env_script_list_js",
+          "line_start": 99,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "make_eval_script_list_js",
+          "line_start": 113,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 7,
+          "n_params": 6
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.test_spec.javascript",
+      "names": [
+        "MAP_REPO_TO_TEST_CMDS",
+        "get_download_img_commands",
+        "get_test_cmds",
+        "get_test_cmds_calypso",
+        "make_env_script_list_js",
+        "make_eval_script_list_js",
+        "make_repo_script_list_js"
+      ],
+      "n_typable": 23,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 17,
+      "n_functions": 6,
+      "n_function_params": 17,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/test_spec/python.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "HEADERS",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_environment_yml_by_commit",
+          "line_start": 23,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_environment_yml",
+          "line_start": 47,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_requirements_by_commit",
+          "line_start": 67,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_requirements",
+          "line_start": 114,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_test_directives",
+          "line_start": 133,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "make_repo_script_list_py",
+          "line_start": 167,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "make_env_script_list_py",
+          "line_start": 197,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "make_eval_script_list_py",
+          "line_start": 262,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 7,
+          "n_params": 6
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.test_spec.python",
+      "names": [
+        "HEADERS",
+        "get_environment_yml",
+        "get_environment_yml_by_commit",
+        "get_requirements",
+        "get_requirements_by_commit",
+        "get_test_directives",
+        "make_env_script_list_py",
+        "make_eval_script_list_py",
+        "make_repo_script_list_py"
+      ],
+      "n_typable": 31,
+      "n_typed": 17,
+      "n_any": 0,
+      "n_untyped": 14,
+      "n_functions": 8,
+      "n_function_params": 23,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/test_spec/test_spec.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_test_specs_from_dataset",
+          "line_start": 125,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "make_test_spec",
+          "line_start": 138,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "class",
+          "name": "TestSpec",
+          "line_start": 29,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TestSpec.get_instance_container_name",
+              "line_start": 95,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TestSpec.setup_env_script",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.eval_script",
+              "line_start": 54,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.install_repo_script",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.base_image_key",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.env_image_key",
+              "line_start": 67,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.instance_image_key",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.is_remote_image",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.base_dockerfile",
+              "line_start": 100,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.env_dockerfile",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.instance_dockerfile",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestSpec.platform",
+              "line_start": 115,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TestSpec.instance_id",
+              "line_start": 34,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.repo",
+              "line_start": 35,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.version",
+              "line_start": 36,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.repo_script_list",
+              "line_start": 37,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.eval_script_list",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.env_script_list",
+              "line_start": 39,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.arch",
+              "line_start": 40,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.FAIL_TO_PASS",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.PASS_TO_PASS",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.language",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.docker_specs",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.namespace",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.base_image_tag",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.env_image_tag",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestSpec.instance_image_tag",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 13,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 11
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.test_spec.test_spec",
+      "names": [
+        "TestSpec",
+        "get_test_specs_from_dataset",
+        "make_test_spec"
+      ],
+      "n_typable": 23,
+      "n_typed": 10,
+      "n_any": 0,
+      "n_untyped": 13,
+      "n_functions": 2,
+      "n_function_params": 8,
+      "n_methods": 1,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 11,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/harness/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "PATCH_PATTERN",
+          "line_start": 158,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PATCH_FILE_PATTERN",
+          "line_start": 162,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PATCH_HUNK_PATTERN",
+          "line_start": 163,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_predictions_from_file",
+          "line_start": 40,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "load_swebench_dataset",
+          "line_start": 123,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "run_threadpool",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "run_sequential",
+          "line_start": 104,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_first_idx",
+          "line_start": 169,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_last_idx",
+          "line_start": 176,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "strip_content",
+          "line_start": 183,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_hunk_stats",
+          "line_start": 195,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "extract_minimal_patch",
+          "line_start": 216,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "has_attribute_or_import_error",
+          "line_start": 246,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "str2bool",
+          "line_start": 277,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_repo_file",
+          "line_start": 291,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_modified_files",
+          "line_start": 302,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "EvaluationError",
+          "line_start": 24,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "EvaluationError.__init__",
+              "line_start": 25,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "EvaluationError.__str__",
+              "line_start": 31,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "EvaluationError.instance_id",
+              "line_start": 27,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationError.log_file",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "EvaluationError.logger",
+              "line_start": 29,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.harness.utils",
+      "names": [
+        "EvaluationError",
+        "PATCH_FILE_PATTERN",
+        "PATCH_HUNK_PATTERN",
+        "PATCH_PATTERN",
+        "extract_minimal_patch",
+        "get_first_idx",
+        "get_hunk_stats",
+        "get_last_idx",
+        "get_modified_files",
+        "get_predictions_from_file",
+        "get_repo_file",
+        "has_attribute_or_import_error",
+        "load_swebench_dataset",
+        "run_sequential",
+        "run_threadpool",
+        "str2bool",
+        "strip_content"
+      ],
+      "n_typable": 49,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 43,
+      "n_functions": 13,
+      "n_function_params": 27,
+      "n_methods": 2,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/llamao/distributed_attention.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DistributedAttention",
+          "line_start": 34,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DistributedAttention.__init__",
+              "line_start": 43,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DistributedAttention.forward",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 4,
+              "n_untyped": 1,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DistributedAttention.local_attn",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DistributedAttention.scatter_idx",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "DistributedAttention.gather_idx",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 2,
+          "n_any": 5,
+          "n_untyped": 4,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SeqAllToAll",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SeqAllToAll.forward",
+              "line_start": 15,
+              "n_typed": 2,
+              "n_any": 4,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "SeqAllToAll.backward",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 3,
+          "n_any": 6,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.llamao.distributed_attention",
+      "names": [
+        "DistributedAttention",
+        "SeqAllToAll"
+      ],
+      "n_typable": 20,
+      "n_typed": 5,
+      "n_any": 11,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 13,
+      "n_classes": 2,
+      "n_attrs": 3,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/llamao/modeling_flash_llama.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "rmsnorm_func",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "repeat_kv",
+          "line_start": 221,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "FlashRotaryEmbedding",
+          "line_start": 74,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FlashRotaryEmbedding.__init__",
+              "line_start": 92,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "FlashRotaryEmbedding.forward",
+              "line_start": 176,
+              "n_typed": 3,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FlashRotaryEmbedding.dim",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FlashRotaryEmbedding.base",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FlashRotaryEmbedding.pos_idx_in_fp32",
+              "line_start": 112,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FlashRotaryEmbedding.interleaved",
+              "line_start": 116,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FlashRotaryEmbedding.scale_base",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "FlashRotaryEmbedding.scaling_factor",
+              "line_start": 118,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 18,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 12,
+          "n_methods": 2,
+          "n_method_params": 10,
+          "n_attrs": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaAttention",
+          "line_start": 235,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaAttention.__init__",
+              "line_start": 238,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaAttention.forward",
+              "line_start": 280,
+              "n_typed": 8,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.config",
+              "line_start": 240,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.hidden_size",
+              "line_start": 241,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.num_heads",
+              "line_start": 242,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.head_dim",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.num_key_value_heads",
+              "line_start": 244,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.num_key_value_groups",
+              "line_start": 245,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.max_position_embeddings",
+              "line_start": 246,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.q_proj",
+              "line_start": 253,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.k_proj",
+              "line_start": 254,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.v_proj",
+              "line_start": 255,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.o_proj",
+              "line_start": 256,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.rotary_emb",
+              "line_start": 271,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaAttention.distributed_attn_func",
+              "line_start": 275,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 23,
+          "n_typed": 8,
+          "n_any": 2,
+          "n_untyped": 13,
+          "n_methods": 2,
+          "n_method_params": 8,
+          "n_attrs": 13,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaDecoderLayer",
+          "line_start": 375,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaDecoderLayer.__init__",
+              "line_start": 376,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaDecoderLayer.forward",
+              "line_start": 385,
+              "n_typed": 8,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaDecoderLayer.hidden_size",
+              "line_start": 378,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaDecoderLayer.self_attn",
+              "line_start": 379,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaDecoderLayer.mlp",
+              "line_start": 380,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaDecoderLayer.input_layernorm",
+              "line_start": 381,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaDecoderLayer.post_attention_layernorm",
+              "line_start": 382,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 15,
+          "n_typed": 8,
+          "n_any": 2,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 8,
+          "n_attrs": 5,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaForCausalLM",
+          "line_start": 615,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.__init__",
+              "line_start": 618,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.get_input_embeddings",
+              "line_start": 627,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.set_input_embeddings",
+              "line_start": 630,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.get_output_embeddings",
+              "line_start": 633,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.set_output_embeddings",
+              "line_start": 636,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.set_decoder",
+              "line_start": 639,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.get_decoder",
+              "line_start": 642,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.forward",
+              "line_start": 645,
+              "n_typed": 13,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 14,
+              "n_params": 13
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForCausalLM.prepare_inputs_for_generation",
+              "line_start": 740,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 6,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaForCausalLM.model",
+              "line_start": 620,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaForCausalLM.vocab_size",
+              "line_start": 621,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaForCausalLM.lm_head",
+              "line_start": 622,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 33,
+          "n_typed": 13,
+          "n_any": 1,
+          "n_untyped": 19,
+          "n_methods": 9,
+          "n_method_params": 21,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaForSequenceClassification",
+          "line_start": 774,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaForSequenceClassification.__init__",
+              "line_start": 775,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForSequenceClassification.get_input_embeddings",
+              "line_start": 784,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForSequenceClassification.set_input_embeddings",
+              "line_start": 787,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LlamaForSequenceClassification.forward",
+              "line_start": 790,
+              "n_typed": 10,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaForSequenceClassification.num_labels",
+              "line_start": 777,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaForSequenceClassification.model",
+              "line_start": 778,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaForSequenceClassification.score",
+              "line_start": 779,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 18,
+          "n_typed": 10,
+          "n_any": 1,
+          "n_untyped": 7,
+          "n_methods": 4,
+          "n_method_params": 11,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaMLP",
+          "line_start": 206,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaMLP.__init__",
+              "line_start": 207,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaMLP.forward",
+              "line_start": 217,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.config",
+              "line_start": 209,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.hidden_size",
+              "line_start": 210,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.intermediate_size",
+              "line_start": 211,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.gate_proj",
+              "line_start": 212,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.up_proj",
+              "line_start": 213,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.down_proj",
+              "line_start": 214,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaMLP.act_fn",
+              "line_start": 215,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 7,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaModel",
+          "line_start": 467,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaModel.__init__",
+              "line_start": 475,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaModel.get_input_embeddings",
+              "line_start": 488,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "LlamaModel.set_input_embeddings",
+              "line_start": 491,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LlamaModel.forward",
+              "line_start": 494,
+              "n_typed": 10,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 11,
+              "n_params": 10
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaModel.padding_idx",
+              "line_start": 477,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaModel.vocab_size",
+              "line_start": 478,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaModel.embed_tokens",
+              "line_start": 480,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaModel.layers",
+              "line_start": 481,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaModel.norm",
+              "line_start": 482,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "LlamaModel.gradient_checkpointing",
+              "line_start": 484,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 21,
+          "n_typed": 10,
+          "n_any": 2,
+          "n_untyped": 9,
+          "n_methods": 4,
+          "n_method_params": 11,
+          "n_attrs": 6,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaPreTrainedModel",
+          "line_start": 444,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LlamaRMSNorm",
+          "line_start": 57,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LlamaRMSNorm.__init__",
+              "line_start": 58,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "LlamaRMSNorm.forward",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "LlamaRMSNorm.weight",
+              "line_start": 63,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 2,
+          "n_method_params": 2,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.llamao.modeling_flash_llama",
+      "names": [
+        "FlashRotaryEmbedding",
+        "LlamaAttention",
+        "LlamaDecoderLayer",
+        "LlamaForCausalLM",
+        "LlamaForSequenceClassification",
+        "LlamaMLP",
+        "LlamaModel",
+        "LlamaPreTrainedModel",
+        "LlamaRMSNorm",
+        "logger",
+        "repeat_kv",
+        "rmsnorm_func"
+      ],
+      "n_typable": 151,
+      "n_typed": 54,
+      "n_any": 12,
+      "n_untyped": 85,
+      "n_functions": 2,
+      "n_function_params": 5,
+      "n_methods": 27,
+      "n_method_params": 72,
+      "n_classes": 9,
+      "n_attrs": 45,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/make_datasets/bm25_retrieval.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DOCUMENT_ENCODING_FUNCTIONS",
+          "line_start": 146,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "file_name_and_contents",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "file_name_and_documentation",
+          "line_start": 81,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "file_name_and_docs_jedi",
+          "line_start": 104,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "clone_repo",
+          "line_start": 153,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "build_documents",
+          "line_start": 174,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "make_index",
+          "line_start": 196,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "function",
+          "name": "get_remaining_instances",
+          "line_start": 276,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "search",
+          "line_start": 309,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "search_indexes",
+          "line_start": 349,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_missing_ids",
+          "line_start": 371,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_index_paths_worker",
+          "line_start": 386,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_index_paths",
+          "line_start": 415,
+          "n_typed": 6,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "get_root_dir",
+          "line_start": 453,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 461,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_typable": 8,
+          "n_params": 7
+        },
+        {
+          "kind": "class",
+          "name": "ContextManager",
+          "line_start": 25,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ContextManager.__init__",
+              "line_start": 46,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.__enter__",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.get_readme_files",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.__exit__",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ContextManager.repo_path",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContextManager.base_commit",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContextManager.verbose",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContextManager.repo",
+              "line_start": 50,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_methods": 4,
+          "n_method_params": 2,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.make_datasets.bm25_retrieval",
+      "names": [
+        "ContextManager",
+        "DOCUMENT_ENCODING_FUNCTIONS",
+        "build_documents",
+        "clone_repo",
+        "file_name_and_contents",
+        "file_name_and_docs_jedi",
+        "file_name_and_documentation",
+        "get_index_paths",
+        "get_index_paths_worker",
+        "get_missing_ids",
+        "get_remaining_instances",
+        "get_root_dir",
+        "logger",
+        "main",
+        "make_index",
+        "search",
+        "search_indexes"
+      ],
+      "n_typable": 74,
+      "n_typed": 6,
+      "n_any": 1,
+      "n_untyped": 67,
+      "n_functions": 14,
+      "n_function_params": 49,
+      "n_methods": 4,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/make_datasets/create_instance.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PATCH_EXAMPLE",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FULL_GENERATION_EXAMPLE",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "PROMPT_FUNCTIONS",
+          "line_start": 293,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "add_lines_list",
+          "line_start": 113,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "add_lines",
+          "line_start": 120,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "make_code_text",
+          "line_start": 124,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "make_code_text_edits_only",
+          "line_start": 136,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "prompt_style_2",
+          "line_start": 162,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "prompt_style_2_edits_only",
+          "line_start": 190,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "prompt_style_3",
+          "line_start": 218,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "full_file_gen",
+          "line_start": 256,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "ingest_files",
+          "line_start": 284,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "add_retrieval_results",
+          "line_start": 301,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_oracle_filenames",
+          "line_start": 323,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "add_text_inputs",
+          "line_start": 337,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 10,
+          "n_params": 9
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.make_datasets.create_instance",
+      "names": [
+        "FULL_GENERATION_EXAMPLE",
+        "PATCH_EXAMPLE",
+        "PROMPT_FUNCTIONS",
+        "add_lines",
+        "add_lines_list",
+        "add_retrieval_results",
+        "add_text_inputs",
+        "full_file_gen",
+        "get_oracle_filenames",
+        "ingest_files",
+        "logger",
+        "make_code_text",
+        "make_code_text_edits_only",
+        "prompt_style_2",
+        "prompt_style_2_edits_only",
+        "prompt_style_3"
+      ],
+      "n_typable": 39,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 38,
+      "n_functions": 12,
+      "n_function_params": 26,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/make_datasets/create_text_dataset.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_jsonl_file",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "instances_generator",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_training_and_eval_instances",
+          "line_start": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_fields",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "validate_arguments",
+          "line_start": 69,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "construct_output_filename",
+          "line_start": 87,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 100,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.make_datasets.create_text_dataset",
+      "names": [
+        "construct_output_filename",
+        "extract_fields",
+        "get_training_and_eval_instances",
+        "instances_generator",
+        "load_jsonl_file",
+        "logger",
+        "main",
+        "validate_arguments"
+      ],
+      "n_typable": 36,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 36,
+      "n_functions": 7,
+      "n_function_params": 28,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/make_datasets/eval_retrieval.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.make_datasets.eval_retrieval",
+      "names": [
+        "logger",
+        "main"
+      ],
+      "n_typable": 4,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/make_datasets/tokenize_dataset.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TOKENIZER_FUNCS",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "cl100k",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "llama",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_fields",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "extract_test_fields",
+          "line_start": 69,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "add_columns_from_dict",
+          "line_start": 88,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 98,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.make_datasets.tokenize_dataset",
+      "names": [
+        "TOKENIZER_FUNCS",
+        "add_columns_from_dict",
+        "cl100k",
+        "extract_fields",
+        "extract_test_fields",
+        "llama",
+        "logger",
+        "main"
+      ],
+      "n_typable": 28,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 28,
+      "n_functions": 6,
+      "n_function_params": 21,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/make_datasets/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "DIFF_PATTERN",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PATCH_PATTERN",
+          "line_start": 13,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PATCH_FILE_PATTERN",
+          "line_start": 17,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PATCH_HUNK_PATTERN",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_first_idx",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_last_idx",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "strip_content",
+          "line_start": 34,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_hunk_stats",
+          "line_start": 43,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "repair_patch",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "extract_minimal_patch",
+          "line_start": 87,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "extract_diff",
+          "line_start": 110,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_test",
+          "line_start": 137,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_imported_modules",
+          "line_start": 209,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "resolve_module_to_file",
+          "line_start": 219,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "ingest_file_directory_contents",
+          "line_start": 233,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "detect_encoding",
+          "line_start": 255,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "list_files",
+          "line_start": 264,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "ingest_directory_contents",
+          "line_start": 273,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "string_to_bool",
+          "line_start": 290,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "AutoContextManager",
+          "line_start": 179,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AutoContextManager.__init__",
+              "line_start": 182,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 4,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AutoContextManager.__exit__",
+              "line_start": 203,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AutoContextManager.tempdir",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "AutoContextManager.root_dir",
+              "line_start": 189,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "AutoContextManager.instance",
+              "line_start": 201,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ContextManager",
+          "line_start": 144,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ContextManager.__init__",
+              "line_start": 145,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 3,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.__enter__",
+              "line_start": 151,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.get_environment",
+              "line_start": 166,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.get_readme_files",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ContextManager.__exit__",
+              "line_start": 175,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ContextManager.repo_path",
+              "line_start": 146,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContextManager.old_dir",
+              "line_start": 147,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContextManager.base_commit",
+              "line_start": 148,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ContextManager.verbose",
+              "line_start": 149,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_methods": 5,
+          "n_method_params": 2,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.make_datasets.utils",
+      "names": [
+        "AutoContextManager",
+        "ContextManager",
+        "DIFF_PATTERN",
+        "PATCH_FILE_PATTERN",
+        "PATCH_HUNK_PATTERN",
+        "PATCH_PATTERN",
+        "detect_encoding",
+        "extract_diff",
+        "extract_minimal_patch",
+        "get_first_idx",
+        "get_hunk_stats",
+        "get_imported_modules",
+        "get_last_idx",
+        "ingest_directory_contents",
+        "ingest_file_directory_contents",
+        "is_test",
+        "list_files",
+        "repair_patch",
+        "resolve_module_to_file",
+        "string_to_bool",
+        "strip_content"
+      ],
+      "n_typable": 64,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 64,
+      "n_functions": 15,
+      "n_function_params": 26,
+      "n_methods": 7,
+      "n_method_params": 5,
+      "n_classes": 2,
+      "n_attrs": 11,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/run_api.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "MODEL_LIMITS",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MODEL_COST_PER_INPUT",
+          "line_start": 48,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MODEL_COST_PER_OUTPUT",
+          "line_start": 67,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ENGINES",
+          "line_start": 86,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "calc_cost",
+          "line_start": 93,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "call_chat",
+          "line_start": 113,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "gpt_tokenize",
+          "line_start": 162,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "claude_tokenize",
+          "line_start": 168,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "openai_inference",
+          "line_start": 174,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "call_anthropic",
+          "line_start": 245,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "call_anthropic_v2",
+          "line_start": 282,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "anthropic_inference",
+          "line_start": 323,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 7,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "parse_model_args",
+          "line_start": 406,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 442,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.run_api",
+      "names": [
+        "ENGINES",
+        "MODEL_COST_PER_INPUT",
+        "MODEL_COST_PER_OUTPUT",
+        "MODEL_LIMITS",
+        "anthropic_inference",
+        "calc_cost",
+        "call_anthropic",
+        "call_anthropic_v2",
+        "call_chat",
+        "claude_tokenize",
+        "gpt_tokenize",
+        "logger",
+        "main",
+        "openai_inference",
+        "parse_model_args"
+      ],
+      "n_typable": 57,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 53,
+      "n_functions": 10,
+      "n_function_params": 46,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/run_live.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 38,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_problem_statement",
+          "line_start": 41,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_readme_files",
+          "line_start": 53,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "make_instance",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 15,
+          "n_typable": 15,
+          "n_params": 14
+        },
+        {
+          "kind": "function",
+          "name": "parse_issue_url",
+          "line_start": 153,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 165,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 10,
+          "n_typable": 10,
+          "n_params": 9
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.run_live",
+      "names": [
+        "get_problem_statement",
+        "get_readme_files",
+        "logger",
+        "main",
+        "make_instance",
+        "parse_issue_url"
+      ],
+      "n_typable": 36,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 36,
+      "n_functions": 5,
+      "n_function_params": 30,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/inference/run_llama.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DEVICE_MAPS",
+          "line_start": 24,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_output_file",
+          "line_start": 26,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        },
+        {
+          "kind": "function",
+          "name": "load_model",
+          "line_start": 99,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "load_tokenizer",
+          "line_start": 151,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_data",
+          "line_start": 157,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "generate",
+          "line_start": 231,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
+          "name": "get_all_existing_ids",
+          "line_start": 313,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 333,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_typable": 12,
+          "n_params": 11
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.inference.run_llama",
+      "names": [
+        "DEVICE_MAPS",
+        "generate",
+        "get_all_existing_ids",
+        "get_output_file",
+        "load_data",
+        "load_model",
+        "load_tokenizer",
+        "logger",
+        "main"
+      ],
+      "n_typable": 53,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 53,
+      "n_functions": 7,
+      "n_function_params": 44,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/versioning/constants.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_VERSION_PATHS",
+          "line_start": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAP_REPO_TO_VERSION_PATTERNS",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SWE_BENCH_URL_RAW",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.versioning.constants",
+      "names": [
+        "MAP_REPO_TO_VERSION_PATHS",
+        "MAP_REPO_TO_VERSION_PATTERNS",
+        "SWE_BENCH_URL_RAW"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/versioning/get_versions.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "INSTALL_CMD",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_version",
+          "line_start": 51,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "map_version_to_task_instances",
+          "line_start": 99,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_versions_from_build",
+          "line_start": 124,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_versions_from_web",
+          "line_start": 190,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "merge_results",
+          "line_start": 213,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 243,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.versioning.get_versions",
+      "names": [
+        "INSTALL_CMD",
+        "get_version",
+        "get_versions_from_build",
+        "get_versions_from_web",
+        "logger",
+        "main",
+        "map_version_to_task_instances",
+        "merge_results"
+      ],
+      "n_typable": 17,
+      "n_typed": 8,
+      "n_any": 0,
+      "n_untyped": 9,
+      "n_functions": 6,
+      "n_function_params": 10,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "swebench/versioning/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_instances",
+          "line_start": 4,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "split_instances",
+          "line_start": 25,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "swebench.versioning.utils",
+      "names": [
+        "get_instances",
+        "split_instances"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 45,
+  "n_typable": 1101,
+  "n_typed": 391,
+  "n_any": 25,
+  "n_untyped": 685,
+  "n_functions": 191,
+  "n_function_params": 608,
+  "n_methods": 59,
+  "n_method_params": 122,
+  "n_classes": 25,
+  "n_attrs": 110,
+  "n_properties": 11,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 1
+}

@@ -1,0 +1,1798 @@
+{
+  "schema_version": "1.0",
+  "package": "tritonparse",
+  "version": "0.2.3",
+  "base_version": null,
+  "stubs_only": "no",
+  "py_typed": "NO",
+  "pypi": {
+    "upload_time": "2025-09-19T20:27:15.409829Z",
+    "requires_python": ">=3.10",
+    "size": 2621421,
+    "sha256": "666e203d9663b35dd7cf881ca5dead1fd78621c32aa015c9f7678b6f0e19b66f"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "tritonparse"
+    ],
+    "Version": [
+      "0.2.3"
+    ],
+    "Summary": [
+      "TritonParse: A Compiler Tracer, Visualizer, and mini-Reproducer Generator for Triton Kernels"
+    ],
+    "Author-email": [
+      "Yueming Hao <yhao@meta.com>"
+    ],
+    "License-Expression": [
+      "BSD-3-Clause"
+    ],
+    "Project-URL": [
+      "Homepage, https://github.com/meta-pytorch/tritonparse"
+    ],
+    "Requires-Python": [
+      ">=3.10"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Provides-Extra": [
+      "triton",
+      "pytorch-triton",
+      "test"
+    ],
+    "Requires-Dist": [
+      "triton>3.3.1; extra == \"triton\"",
+      "pytorch-triton>=3.4.0; extra == \"pytorch-triton\"",
+      "coverage>=7.0.0; extra == \"test\""
+    ],
+    "Dynamic": [
+      "license-file"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "tritonparse/common.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LOG_RANK_REGEX",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_fbcode",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "print_parsed_files_summary",
+          "line_start": 138,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "gzip_single_file",
+          "line_start": 189,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "copy_local_to_tmpdir",
+          "line_start": 217,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "parse_logs",
+          "line_start": 260,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "save_logs",
+          "line_start": 378,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "class",
+          "name": "Rank",
+          "line_start": 33,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Rank.__init__",
+              "line_start": 36,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "Rank.to_string",
+              "line_start": 50,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Rank.to_int",
+              "line_start": 64,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Rank.value",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Rank.is_default",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 7,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RankConfig",
+          "line_start": 74,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RankConfig.__init__",
+              "line_start": 77,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "RankConfig.from_cli_args",
+              "line_start": 95,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "RankConfig.to_rank",
+              "line_start": 126,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RankConfig.rank",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RankConfig.all_ranks",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "RankConfig.is_local",
+              "line_start": 93,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_methods": 3,
+          "n_method_params": 5,
+          "n_attrs": 3,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.common",
+      "names": [
+        "LOG_RANK_REGEX",
+        "Rank",
+        "RankConfig",
+        "copy_local_to_tmpdir",
+        "gzip_single_file",
+        "is_fbcode",
+        "parse_logs",
+        "print_parsed_files_summary",
+        "save_logs"
+      ],
+      "n_typable": 38,
+      "n_typed": 31,
+      "n_any": 0,
+      "n_untyped": 7,
+      "n_functions": 6,
+      "n_function_params": 13,
+      "n_methods": 6,
+      "n_method_params": 7,
+      "n_classes": 2,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/event_diff.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "SUMMARY_FIELDS",
+          "line_start": 8,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.event_diff",
+      "names": [
+        "SUMMARY_FIELDS"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/extract_source_mappings.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "parse_args",
+          "line_start": 25,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.extract_source_mappings",
+      "names": [
+        "logger",
+        "parse_args"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/ir_parser.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 7,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "LOC_PATTERN",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "CODE_LOC_PATTERN",
+          "line_start": 15,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "DIRECT_FILE_PATTERN",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "PTX_LOC_PATTERN",
+          "line_start": 22,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "AMDGCN_LOC_PATTERN",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "extract_loc_definitions",
+          "line_start": 34,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "extract_code_locations",
+          "line_start": 65,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "extract_ptx_amdgcn_mappings",
+          "line_start": 92,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.ir_parser",
+      "names": [
+        "AMDGCN_LOC_PATTERN",
+        "CODE_LOC_PATTERN",
+        "DIRECT_FILE_PATTERN",
+        "LOC_PATTERN",
+        "PTX_LOC_PATTERN",
+        "extract_code_locations",
+        "extract_loc_definitions",
+        "extract_ptx_amdgcn_mappings",
+        "logger"
+      ],
+      "n_typable": 14,
+      "n_typed": 8,
+      "n_any": 0,
+      "n_untyped": 6,
+      "n_functions": 3,
+      "n_function_params": 5,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 6,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/mapper.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "create_python_mapping",
+          "line_start": 9,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "create_ir_mapping",
+          "line_start": 28,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "create_bidirectional_mapping",
+          "line_start": 66,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.mapper",
+      "names": [
+        "create_bidirectional_mapping",
+        "create_ir_mapping",
+        "create_python_mapping",
+        "logger"
+      ],
+      "n_typable": 11,
+      "n_typed": 10,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 3,
+      "n_function_params": 7,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/reproducer/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "TRITON_KERNELS_CUSTOM_TYPES",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "create_args_from_json",
+          "line_start": 14,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.reproducer.utils",
+      "names": [
+        "TRITON_KERNELS_CUSTOM_TYPES",
+        "create_args_from_json"
+      ],
+      "n_typable": 2,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/shared_vars.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "DEFAULT_TRACE_FILE_PREFIX",
+          "line_start": 6,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DEFAULT_TRACE_FILE_PREFIX_WITHOUT_USER",
+          "line_start": 9,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.shared_vars",
+      "names": [
+        "DEFAULT_TRACE_FILE_PREFIX",
+        "DEFAULT_TRACE_FILE_PREFIX_WITHOUT_USER"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/source_type.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Source",
+          "line_start": 31,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Source.__init__",
+              "line_start": 34,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Source.source_str",
+              "line_start": 42,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Source.verbose",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Source.type",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "Source.value",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 4,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SourceType",
+          "line_start": 8,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SourceType.LOCAL",
+              "line_start": 11,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SourceType.LOCAL_FILE",
+              "line_start": 12,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.source_type",
+      "names": [
+        "Source",
+        "SourceType"
+      ],
+      "n_typable": 6,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 4,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 1,
+      "n_classes": 2,
+      "n_attrs": 4,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/sourcemap_utils.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "get_file_extension",
+          "line_start": 4,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.sourcemap_utils",
+      "names": [
+        "get_file_extension"
+      ],
+      "n_typable": 2,
+      "n_typed": 2,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/structured_logging.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "log",
+          "line_start": 27,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TEXT_FILE_EXTENSIONS",
+          "line_start": 29,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAX_FILE_SIZE",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRITONPARSE_NDJSON",
+          "line_start": 32,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRITON_TRACE_GZIP",
+          "line_start": 34,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "triton_trace_log",
+          "line_start": 35,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "triton_trace_folder",
+          "line_start": 37,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TRITONPARSE_DEBUG",
+          "line_start": 39,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRITONPARSE_KERNEL_ALLOWLIST",
+          "line_start": 41,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "TRITON_TRACE_LAUNCH",
+          "line_start": 45,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TRITON_TRACE_HANDLER",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "TORCH_INSTALLED",
+          "line_start": 51,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "create_triton_log_record",
+          "line_start": 84,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 11,
+          "n_typable": 11,
+          "n_params": 10
+        },
+        {
+          "kind": "function",
+          "name": "convert",
+          "line_start": 136,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "maybe_enable_debug_logging",
+          "line_start": 260,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "get_stack_trace",
+          "line_start": 288,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "parse_kernel_allowlist",
+          "line_start": 317,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "extract_kernel_name",
+          "line_start": 339,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "should_trace_kernel",
+          "line_start": 368,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_python_source_info",
+          "line_start": 402,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_file_content",
+          "line_start": 442,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "extract_metadata_from_src",
+          "line_start": 473,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "init_logs",
+          "line_start": 670,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "trace_structured_triton",
+          "line_start": 710,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "maybe_trace_triton",
+          "line_start": 758,
+          "n_typed": 4,
+          "n_any": 1,
+          "n_untyped": 2,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "extract_arg_info",
+          "line_start": 842,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "add_launch_metadata",
+          "line_start": 917,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "maybe_enable_trace_launch",
+          "line_start": 1059,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "init_basic",
+          "line_start": 1072,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "init",
+          "line_start": 1105,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "init_with_env",
+          "line_start": 1123,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "clear_logging_config",
+          "line_start": 1132,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "JITHookImpl",
+          "line_start": 931,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "JITHookImpl.__call__",
+              "line_start": 945,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 8,
+              "n_params": 7
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "LaunchHookImpl",
+          "line_start": 995,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "LaunchHookImpl.__call__",
+              "line_start": 1012,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TritonJsonFormatter",
+          "line_start": 491,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TritonJsonFormatter.format",
+              "line_start": 500,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TritonLogRecord",
+          "line_start": 58,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TritonLogRecord.__init__",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 10,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TritonLogRecord.metadata",
+              "line_start": 80,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TritonLogRecord.payload",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 12,
+          "n_methods": 1,
+          "n_method_params": 9,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TritonTraceHandler",
+          "line_start": 516,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TritonTraceHandler.__init__",
+              "line_start": 526,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TritonTraceHandler.get_root_dir",
+              "line_start": 538,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "TritonTraceHandler.emit",
+              "line_start": 583,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 2,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "TritonTraceHandler.close",
+              "line_start": 638,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TritonTraceHandler.root_dir",
+              "line_start": 530,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TritonTraceHandler.prefix",
+              "line_start": 531,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TritonTraceHandler.stream",
+              "line_start": 532,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "TritonTraceHandler.first_record",
+              "line_start": 533,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 10,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 8,
+          "n_methods": 4,
+          "n_method_params": 2,
+          "n_attrs": 4,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "tritonparse.structured_logging",
+      "names": [
+        "JITHookImpl",
+        "LaunchHookImpl",
+        "MAX_FILE_SIZE",
+        "TEXT_FILE_EXTENSIONS",
+        "TORCH_INSTALLED",
+        "TRITONPARSE_DEBUG",
+        "TRITONPARSE_KERNEL_ALLOWLIST",
+        "TRITONPARSE_NDJSON",
+        "TRITON_TRACE_GZIP",
+        "TRITON_TRACE_HANDLER",
+        "TRITON_TRACE_LAUNCH",
+        "TritonJsonFormatter",
+        "TritonLogRecord",
+        "TritonTraceHandler",
+        "add_launch_metadata",
+        "clear_logging_config",
+        "convert",
+        "create_triton_log_record",
+        "extract_arg_info",
+        "extract_file_content",
+        "extract_kernel_name",
+        "extract_metadata_from_src",
+        "extract_python_source_info",
+        "get_stack_trace",
+        "init",
+        "init_basic",
+        "init_logs",
+        "init_with_env",
+        "log",
+        "maybe_enable_debug_logging",
+        "maybe_enable_trace_launch",
+        "maybe_trace_triton",
+        "parse_kernel_allowlist",
+        "should_trace_kernel",
+        "trace_structured_triton",
+        "triton_trace_folder",
+        "triton_trace_log"
+      ],
+      "n_typable": 97,
+      "n_typed": 27,
+      "n_any": 1,
+      "n_untyped": 69,
+      "n_functions": 20,
+      "n_function_params": 38,
+      "n_methods": 8,
+      "n_method_params": 20,
+      "n_classes": 5,
+      "n_attrs": 11,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "tritonparse/tools/decompress_bin_ndjson.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "decompress_bin_ndjson",
+          "line_start": 20,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 83,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.tools.decompress_bin_ndjson",
+      "names": [
+        "decompress_bin_ndjson",
+        "main"
+      ],
+      "n_typable": 4,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 2,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/tools/format_fix.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "run_command",
+          "line_start": 24,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "run_usort",
+          "line_start": 51,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "run_ruff_check",
+          "line_start": 63,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "run_black",
+          "line_start": 75,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 87,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.tools.format_fix",
+      "names": [
+        "main",
+        "run_black",
+        "run_command",
+        "run_ruff_check",
+        "run_usort"
+      ],
+      "n_typable": 13,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 5,
+      "n_function_params": 8,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/tools/load_tensor.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "load_tensor",
+          "line_start": 15,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.tools.load_tensor",
+      "names": [
+        "load_tensor"
+      ],
+      "n_typable": 3,
+      "n_typed": 2,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/tools/prettify_ndjson.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "parse_line_ranges",
+          "line_start": 46,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "load_ndjson",
+          "line_start": 101,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "save_prettified_json",
+          "line_start": 204,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "main",
+          "line_start": 221,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.tools.prettify_ndjson",
+      "names": [
+        "load_ndjson",
+        "main",
+        "parse_line_ranges",
+        "save_prettified_json"
+      ],
+      "n_typable": 10,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 4,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/tp_logger.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 5,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.tp_logger",
+      "names": [
+        "logger"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/trace_processor.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 18,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "function",
+          "name": "generate_source_mappings",
+          "line_start": 21,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "process_ir",
+          "line_start": 81,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "parse_single_trace_content",
+          "line_start": 105,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "parse_single_file",
+          "line_start": 198,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.trace_processor",
+      "names": [
+        "generate_source_mappings",
+        "logger",
+        "parse_single_file",
+        "parse_single_trace_content",
+        "process_ir"
+      ],
+      "n_typable": 16,
+      "n_typed": 13,
+      "n_any": 0,
+      "n_untyped": 3,
+      "n_functions": 4,
+      "n_function_params": 11,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "tritonparse/utils.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "parser",
+          "line_start": 20,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "init_parser",
+          "line_start": 23,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "oss_run",
+          "line_start": 60,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 7,
+          "n_params": 6
+        },
+        {
+          "kind": "function",
+          "name": "unified_parse_from_cli",
+          "line_start": 116,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "unified_parse",
+          "line_start": 122,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 8,
+          "n_params": 7
+        }
+      ],
+      "type_ignores": [],
+      "name": "tritonparse.utils",
+      "names": [
+        "init_parser",
+        "oss_run",
+        "parser",
+        "unified_parse",
+        "unified_parse_from_cli"
+      ],
+      "n_typable": 17,
+      "n_typed": 12,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 4,
+      "n_function_params": 13,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 17,
+  "n_typable": 236,
+  "n_typed": 131,
+  "n_any": 2,
+  "n_untyped": 103,
+  "n_functions": 55,
+  "n_function_params": 107,
+  "n_methods": 15,
+  "n_method_params": 28,
+  "n_classes": 9,
+  "n_attrs": 31,
+  "n_properties": 0,
+  "type_ignores": [
+    {
+      "kind": "type",
+      "rules": null
+    }
+  ],
+  "n_type_ignores": 1
+}

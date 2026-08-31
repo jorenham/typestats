@@ -542,16 +542,6 @@
         },
         {
           "kind": "function",
-          "name": "vmap",
-          "line_start": 918,
-          "n_typed": 6,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 7,
-          "n_params": 6
-        },
-        {
-          "kind": "function",
           "name": "jacrev",
           "line_start": 712,
           "n_typed": 6,
@@ -579,6 +569,16 @@
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "vmap",
+          "line_start": 918,
+          "n_typed": 6,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
         },
         {
           "kind": "function",
@@ -762,16 +762,6 @@
         },
         {
           "kind": "function",
-          "name": "clear_caches",
-          "line_start": 3185,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
           "name": "live_arrays",
           "line_start": 3178,
           "n_typed": 0,
@@ -779,6 +769,16 @@
           "n_untyped": 2,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "clear_caches",
+          "line_start": 3185,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
         }
       ],
       "type_ignores": [
@@ -2084,8 +2084,8 @@
               "kind": "function",
               "name": "Array.__array__",
               "line_start": 229,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -2196,8 +2196,8 @@
               "kind": "property",
               "name": "Array.dtype",
               "line_start": 48,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1
             },
@@ -2385,8 +2385,8 @@
             }
           ],
           "n_typable": 302,
-          "n_typed": 283,
-          "n_any": 9,
+          "n_typed": 280,
+          "n_any": 12,
           "n_untyped": 10,
           "n_methods": 106,
           "n_method_params": 175,
@@ -2444,8 +2444,8 @@
         "ArrayLike"
       ],
       "n_typable": 302,
-      "n_typed": 283,
-      "n_any": 9,
+      "n_typed": 280,
+      "n_any": 12,
       "n_untyped": 10,
       "n_functions": 0,
       "n_function_params": 0,
@@ -3652,16 +3652,6 @@
         },
         {
           "kind": "function",
-          "name": "is_concrete",
-          "line_start": 1788,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "ensure_compile_time_eval",
           "line_start": 1506,
           "n_typed": 0,
@@ -3694,6 +3684,16 @@
           "kind": "function",
           "name": "shaped_abstractify",
           "line_start": 1734,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_concrete",
+          "line_start": 1788,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -6309,8 +6309,8 @@
         {
           "kind": "type",
           "rules": [
-            "assignment",
-            "annotation-type-mismatch"
+            "annotation-type-mismatch",
+            "assignment"
           ]
         },
         {
@@ -7804,8 +7804,8 @@
           "kind": "attr",
           "name": "float0",
           "line_start": 286,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 1
         },
@@ -7813,8 +7813,8 @@
           "kind": "function",
           "name": "canonicalize_dtype",
           "line_start": 350,
-          "n_typed": 2,
-          "n_any": 1,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -7941,8 +7941,8 @@
         "scalar_type_of"
       ],
       "n_typable": 17,
-      "n_typed": 12,
-      "n_any": 3,
+      "n_typed": 10,
+      "n_any": 5,
       "n_untyped": 2,
       "n_functions": 5,
       "n_function_params": 10,
@@ -8899,8 +8899,8 @@
         {
           "kind": "type",
           "rules": [
-            "invalid-annotation",
-            "unused-ignore"
+            "unused-ignore",
+            "invalid-annotation"
           ]
         },
         {
@@ -9113,15 +9113,15 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "bad-return-type"
+            "bad-return-type",
+            "unused-ignore"
           ]
         },
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "bad-return-type"
+            "bad-return-type",
+            "unused-ignore"
           ]
         },
         {
@@ -9131,8 +9131,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "attribute-error"
+            "attribute-error",
+            "unused-ignore"
           ]
         },
         {
@@ -9181,8 +9181,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "attribute-error"
+            "attribute-error",
+            "unused-ignore"
           ]
         },
         {
@@ -9212,8 +9212,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "bad-return-type"
+            "bad-return-type",
+            "unused-ignore"
           ]
         },
         {
@@ -9237,8 +9237,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "attribute-error"
+            "attribute-error",
+            "unused-ignore"
           ]
         },
         {
@@ -9248,8 +9248,8 @@
         {
           "kind": "type",
           "rules": [
-            "container-type-mismatch",
-            "unused-ignore"
+            "unused-ignore",
+            "container-type-mismatch"
           ]
         },
         {
@@ -9671,16 +9671,6 @@
         },
         {
           "kind": "function",
-          "name": "add_tangents",
-          "line_start": 1236,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "is_undefined_primal",
           "line_start": 471,
           "n_typed": 0,
@@ -9723,6 +9713,16 @@
           "kind": "function",
           "name": "defjvp2",
           "line_start": 1224,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "add_tangents",
+          "line_start": 1236,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -10188,16 +10188,6 @@
         },
         {
           "kind": "function",
-          "name": "bdim_at_front",
-          "line_start": 1198,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
           "name": "defreducer",
           "line_start": 1060,
           "n_typed": 0,
@@ -10210,6 +10200,16 @@
           "kind": "function",
           "name": "broadcast",
           "line_start": 1141,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "bdim_at_front",
+          "line_start": 1198,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -10363,8 +10363,8 @@
           "kind": "function",
           "name": "dense_int_elements",
           "line_start": 93,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -10373,8 +10373,8 @@
           "kind": "function",
           "name": "dense_bool_elements",
           "line_start": 98,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10383,8 +10383,8 @@
           "kind": "function",
           "name": "dense_bool_array",
           "line_start": 107,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10413,8 +10413,8 @@
           "kind": "function",
           "name": "shape_tensor",
           "line_start": 113,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10443,8 +10443,8 @@
           "kind": "function",
           "name": "dtype_to_ir_type",
           "line_start": 186,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10473,8 +10473,8 @@
           "kind": "function",
           "name": "ir_attribute",
           "line_start": 438,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10483,8 +10483,8 @@
           "kind": "function",
           "name": "module_to_string",
           "line_start": 590,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -10493,8 +10493,8 @@
           "kind": "function",
           "name": "module_to_bytecode",
           "line_start": 598,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10503,8 +10503,8 @@
           "kind": "function",
           "name": "make_ir_context",
           "line_start": 618,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 1,
           "n_params": 0
@@ -10573,8 +10573,8 @@
           "kind": "function",
           "name": "lower_jaxpr_to_fun",
           "line_start": 1547,
-          "n_typed": 21,
-          "n_any": 0,
+          "n_typed": 20,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 21,
           "n_params": 20
@@ -10603,8 +10603,8 @@
           "kind": "function",
           "name": "merge_mlir_modules",
           "line_start": 3117,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 3,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -10760,8 +10760,8 @@
               "kind": "function",
               "name": "LoweringRule.__call__",
               "line_start": 921,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 4,
               "n_params": 3
@@ -10770,8 +10770,8 @@
           "properties": [],
           "attrs": [],
           "n_typable": 4,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 1,
           "n_method_params": 3,
@@ -10952,8 +10952,8 @@
               "kind": "function",
               "name": "ModuleContext.__init__",
               "line_start": 780,
-              "n_typed": 14,
-              "n_any": 1,
+              "n_typed": 10,
+              "n_any": 5,
               "n_untyped": 1,
               "n_typable": 16,
               "n_params": 15
@@ -11167,8 +11167,8 @@
             }
           ],
           "n_typable": 26,
-          "n_typed": 19,
-          "n_any": 4,
+          "n_typed": 15,
+          "n_any": 8,
           "n_untyped": 3,
           "n_methods": 6,
           "n_method_params": 19,
@@ -11259,8 +11259,8 @@
               "kind": "function",
               "name": "TokenSet.get",
               "line_start": 1518,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -11319,8 +11319,8 @@
           "properties": [],
           "attrs": [],
           "n_typable": 12,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 9,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 8,
           "n_method_params": 4,
@@ -11579,8 +11579,8 @@
         "unflatten_ir_values_like_types"
       ],
       "n_typable": 170,
-      "n_typed": 142,
-      "n_any": 8,
+      "n_typed": 122,
+      "n_any": 28,
       "n_untyped": 20,
       "n_functions": 25,
       "n_function_params": 88,
@@ -11781,8 +11781,8 @@
               "name": "DynamicJaxprTracer.aval",
               "line_start": 1678,
               "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
+              "n_any": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
@@ -11815,8 +11815,8 @@
           ],
           "n_typable": 14,
           "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 9,
+          "n_any": 1,
+          "n_untyped": 8,
           "n_methods": 5,
           "n_method_params": 4,
           "n_attrs": 4,
@@ -12151,8 +12151,8 @@
       ],
       "n_typable": 62,
       "n_typed": 44,
-      "n_any": 1,
-      "n_untyped": 17,
+      "n_any": 2,
+      "n_untyped": 16,
       "n_functions": 6,
       "n_function_params": 18,
       "n_methods": 16,
@@ -12336,8 +12336,8 @@
               "kind": "function",
               "name": "MeshComputation.__init__",
               "line_start": 2491,
-              "n_typed": 6,
-              "n_any": 1,
+              "n_typed": 5,
+              "n_any": 2,
               "n_untyped": 1,
               "n_typable": 8,
               "n_params": 7
@@ -12346,8 +12346,8 @@
               "kind": "function",
               "name": "MeshComputation.stablehlo",
               "line_start": 2509,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -12395,8 +12395,8 @@
             }
           ],
           "n_typable": 15,
-          "n_typed": 9,
-          "n_any": 1,
+          "n_typed": 7,
+          "n_any": 3,
           "n_untyped": 5,
           "n_methods": 4,
           "n_method_params": 9,
@@ -12739,8 +12739,8 @@
         "xla_pmap_p"
       ],
       "n_typable": 89,
-      "n_typed": 41,
-      "n_any": 2,
+      "n_typed": 39,
+      "n_any": 4,
       "n_untyped": 46,
       "n_functions": 5,
       "n_function_params": 23,
@@ -13291,16 +13291,6 @@
         },
         {
           "kind": "function",
-          "name": "conv_general_permutations",
-          "line_start": 917,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "conv_transpose_shape_tuple",
           "line_start": 857,
           "n_typed": 0,
@@ -13308,6 +13298,16 @@
           "n_untyped": 6,
           "n_typable": 6,
           "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "conv_general_permutations",
+          "line_start": 917,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "class",
@@ -14377,8 +14377,8 @@
           "kind": "function",
           "name": "transpose",
           "line_start": 2960,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -16365,8 +16365,8 @@
         "xor_p"
       ],
       "n_typable": 472,
-      "n_typed": 322,
-      "n_any": 3,
+      "n_typed": 321,
+      "n_any": 4,
       "n_untyped": 147,
       "n_functions": 112,
       "n_function_params": 248,
@@ -16918,16 +16918,6 @@
         },
         {
           "kind": "function",
-          "name": "axis_index",
-          "line_start": 718,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "pbroadcast",
           "line_start": 299,
           "n_typed": 0,
@@ -17008,6 +16998,16 @@
         },
         {
           "kind": "function",
+          "name": "axis_index",
+          "line_start": 718,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "axis_size",
           "line_start": 766,
           "n_typed": 2,
@@ -17028,16 +17028,6 @@
         },
         {
           "kind": "function",
-          "name": "psum_scatter",
-          "line_start": 2095,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
           "name": "all_gather_invariant",
           "line_start": 1871,
           "n_typed": 2,
@@ -17045,6 +17035,16 @@
           "n_untyped": 3,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "psum_scatter",
+          "line_start": 2095,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
         }
       ],
       "type_ignores": [
@@ -17205,8 +17205,8 @@
           "kind": "function",
           "name": "dynamic_slice",
           "line_start": 116,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -17215,8 +17215,8 @@
           "kind": "function",
           "name": "dynamic_update_slice",
           "line_start": 185,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -17315,8 +17315,8 @@
           "kind": "function",
           "name": "slice_in_dim",
           "line_start": 942,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17325,8 +17325,8 @@
           "kind": "function",
           "name": "index_in_dim",
           "line_start": 1017,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -17335,8 +17335,8 @@
           "kind": "function",
           "name": "dynamic_slice_in_dim",
           "line_start": 1077,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17345,8 +17345,8 @@
           "kind": "function",
           "name": "dynamic_index_in_dim",
           "line_start": 1142,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17355,8 +17355,8 @@
           "kind": "function",
           "name": "dynamic_update_slice_in_dim",
           "line_start": 1201,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17365,8 +17365,8 @@
           "kind": "function",
           "name": "dynamic_update_index_in_dim",
           "line_start": 1272,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17617,8 +17617,8 @@
         "slice_p"
       ],
       "n_typable": 132,
-      "n_typed": 121,
-      "n_any": 0,
+      "n_typed": 112,
+      "n_any": 9,
       "n_untyped": 11,
       "n_functions": 18,
       "n_function_params": 102,
@@ -18921,18 +18921,18 @@
               "kind": "attr",
               "name": "AbstractMesh.axis_names",
               "line_start": 489,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
               "kind": "attr",
               "name": "AbstractMesh.axis_types",
               "line_start": 490,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
@@ -18955,9 +18955,9 @@
             }
           ],
           "n_typable": 29,
-          "n_typed": 4,
+          "n_typed": 6,
           "n_any": 0,
-          "n_untyped": 25,
+          "n_untyped": 23,
           "n_methods": 8,
           "n_method_params": 7,
           "n_attrs": 5,
@@ -19027,8 +19027,8 @@
               "kind": "function",
               "name": "Mesh.__new__",
               "line_start": 248,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 4,
               "n_params": 3
@@ -19218,8 +19218,8 @@
           ],
           "attrs": [],
           "n_typable": 24,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 20,
           "n_methods": 10,
           "n_method_params": 4,
@@ -19301,9 +19301,9 @@
         "use_abstract_mesh"
       ],
       "n_typable": 59,
-      "n_typed": 10,
-      "n_any": 0,
-      "n_untyped": 49,
+      "n_typed": 11,
+      "n_any": 1,
+      "n_untyped": 47,
       "n_functions": 1,
       "n_function_params": 0,
       "n_methods": 23,
@@ -19329,8 +19329,8 @@
           "kind": "function",
           "name": "create_device_mesh",
           "line_start": 763,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -19339,8 +19339,8 @@
           "kind": "function",
           "name": "create_hybrid_device_mesh",
           "line_start": 835,
-          "n_typed": 7,
-          "n_any": 0,
+          "n_typed": 6,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 7,
           "n_params": 6
@@ -19359,8 +19359,8 @@
         "device_kind_handler_dict"
       ],
       "n_typable": 13,
-      "n_typed": 13,
-      "n_any": 0,
+      "n_typed": 11,
+      "n_any": 2,
       "n_untyped": 0,
       "n_functions": 2,
       "n_function_params": 10,
@@ -21253,8 +21253,8 @@
           "kind": "function",
           "name": "result_type",
           "line_start": 465,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -21503,8 +21503,8 @@
           "kind": "function",
           "name": "concatenate",
           "line_start": 4541,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -21661,16 +21661,6 @@
         },
         {
           "kind": "function",
-          "name": "nonzero",
-          "line_start": 3617,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
           "name": "select",
           "line_start": 2785,
           "n_typed": 4,
@@ -21683,8 +21673,8 @@
           "kind": "function",
           "name": "stack",
           "line_start": 4365,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -21821,6 +21811,16 @@
         },
         {
           "kind": "function",
+          "name": "nonzero",
+          "line_start": 3617,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
           "name": "arange",
           "line_start": 5862,
           "n_typed": 6,
@@ -21903,8 +21903,8 @@
           "kind": "function",
           "name": "vstack",
           "line_start": 4646,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -21913,8 +21913,8 @@
           "kind": "function",
           "name": "hstack",
           "line_start": 4707,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -21923,8 +21923,8 @@
           "kind": "function",
           "name": "dstack",
           "line_start": 4768,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -21933,8 +21933,8 @@
           "kind": "function",
           "name": "column_stack",
           "line_start": 4830,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -21943,8 +21943,8 @@
           "kind": "function",
           "name": "choose",
           "line_start": 4891,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -22774,8 +22774,8 @@
         "where"
       ],
       "n_typable": 558,
-      "n_typed": 522,
-      "n_any": 12,
+      "n_typed": 514,
+      "n_any": 20,
       "n_untyped": 24,
       "n_functions": 138,
       "n_function_params": 420,
@@ -22851,16 +22851,6 @@
         },
         {
           "kind": "function",
-          "name": "solve",
-          "line_start": 1315,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "det",
           "line_start": 695,
           "n_typed": 2,
@@ -22918,6 +22908,16 @@
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "solve",
+          "line_start": 1315,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "function",
@@ -24277,8 +24277,8 @@
           "kind": "function",
           "name": "lexsort",
           "line_start": 358,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -24295,8 +24295,8 @@
         "sort_complex"
       ],
       "n_typable": 27,
-      "n_typed": 27,
-      "n_any": 0,
+      "n_typed": 26,
+      "n_any": 1,
       "n_untyped": 0,
       "n_functions": 6,
       "n_function_params": 21,
@@ -25419,16 +25419,6 @@
         },
         {
           "kind": "function",
-          "name": "isnan",
-          "line_start": 3619,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "mod",
           "line_start": 3135,
           "n_typed": 3,
@@ -25556,6 +25546,16 @@
           "n_untyped": 3,
           "n_typable": 3,
           "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "isnan",
+          "line_start": 3619,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "function",
@@ -26084,8 +26084,8 @@
           "kind": "function",
           "name": "lower_as_mlir",
           "line_start": 1536,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 7,
           "n_typable": 8,
           "n_params": 7
@@ -26501,8 +26501,8 @@
               "kind": "function",
               "name": "MemorySpace.__call__",
               "line_start": 258,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 3,
               "n_params": 2
@@ -26567,8 +26567,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 2,
@@ -26682,8 +26682,8 @@
         "squeezed"
       ],
       "n_typable": 36,
-      "n_typed": 21,
-      "n_any": 3,
+      "n_typed": 19,
+      "n_any": 5,
       "n_untyped": 12,
       "n_functions": 2,
       "n_function_params": 14,
@@ -27411,8 +27411,8 @@
               "kind": "function",
               "name": "MemorySpace.__call__",
               "line_start": 172,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 3,
               "n_params": 2
@@ -27494,8 +27494,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 3,
           "n_methods": 3,
           "n_method_params": 2,
@@ -27533,16 +27533,16 @@
               "kind": "attr",
               "name": "PrefetchScalarGridSpec.scratch_shapes",
               "line_start": 223,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             }
           ],
           "n_typable": 6,
-          "n_typed": 3,
+          "n_typed": 4,
           "n_any": 2,
-          "n_untyped": 1,
+          "n_untyped": 0,
           "n_methods": 1,
           "n_method_params": 4,
           "n_attrs": 1,
@@ -27654,8 +27654,8 @@
       ],
       "n_typable": 31,
       "n_typed": 24,
-      "n_any": 2,
-      "n_untyped": 5,
+      "n_any": 3,
+      "n_untyped": 4,
       "n_functions": 1,
       "n_function_params": 3,
       "n_methods": 8,
@@ -30097,8 +30097,8 @@
               "kind": "function",
               "name": "MemoryRefTransform.to_gpu_transform_attr",
               "line_start": 531,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -30127,8 +30127,8 @@
           "properties": [],
           "attrs": [],
           "n_typable": 6,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 4,
           "n_method_params": 2,
@@ -30154,8 +30154,8 @@
               "kind": "function",
               "name": "MemorySpace.__call__",
               "line_start": 143,
-              "n_typed": 7,
-              "n_any": 0,
+              "n_typed": 6,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 7,
               "n_params": 6
@@ -30201,8 +30201,8 @@
             }
           ],
           "n_typable": 7,
-          "n_typed": 7,
-          "n_any": 0,
+          "n_typed": 6,
+          "n_any": 1,
           "n_untyped": 0,
           "n_methods": 2,
           "n_method_params": 5,
@@ -30577,8 +30577,8 @@
               "kind": "function",
               "name": "SwizzleTransform.to_gpu_transform_attr",
               "line_start": 858,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -30617,8 +30617,8 @@
             }
           ],
           "n_typable": 9,
-          "n_typed": 8,
-          "n_any": 0,
+          "n_typed": 7,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 7,
           "n_method_params": 2,
@@ -30710,8 +30710,8 @@
               "kind": "function",
               "name": "TilingTransform.to_gpu_transform_attr",
               "line_start": 571,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -30730,8 +30730,8 @@
             }
           ],
           "n_typable": 6,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 4,
           "n_method_params": 2,
@@ -30787,8 +30787,8 @@
               "kind": "function",
               "name": "TransposeTransform.to_gpu_transform_attr",
               "line_start": 695,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -30807,8 +30807,8 @@
             }
           ],
           "n_typable": 6,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 5,
           "n_method_params": 1,
@@ -30959,8 +30959,8 @@
         "untile_ref"
       ],
       "n_typable": 103,
-      "n_typed": 74,
-      "n_any": 3,
+      "n_typed": 69,
+      "n_any": 8,
       "n_untyped": 26,
       "n_functions": 7,
       "n_function_params": 18,
@@ -33409,9 +33409,9 @@
           "line_start": 2041,
           "n_typed": 6,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 8,
-          "n_params": 7
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
         },
         {
           "kind": "function",
@@ -33626,12 +33626,12 @@
         "weibull_min",
         "wrap_key_data"
       ],
-      "n_typable": 234,
+      "n_typable": 232,
       "n_typed": 219,
       "n_any": 0,
-      "n_untyped": 15,
+      "n_untyped": 13,
       "n_functions": 46,
-      "n_function_params": 187,
+      "n_function_params": 185,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
@@ -37083,8 +37083,8 @@
         },
         {
           "kind": "function",
-          "name": "logcdf",
-          "line_start": 222,
+          "name": "sf",
+          "line_start": 188,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -37093,8 +37093,8 @@
         },
         {
           "kind": "function",
-          "name": "sf",
-          "line_start": 188,
+          "name": "logcdf",
+          "line_start": 222,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -37732,8 +37732,8 @@
               "kind": "function",
               "name": "PmapSharding.__init__",
               "line_start": 199,
-              "n_typed": 1,
-              "n_any": 1,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -37891,8 +37891,8 @@
               "kind": "attr",
               "name": "PmapSharding.devices",
               "line_start": 195,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1
             },
@@ -37907,8 +37907,8 @@
             }
           ],
           "n_typable": 25,
-          "n_typed": 19,
-          "n_any": 2,
+          "n_typed": 17,
+          "n_any": 4,
           "n_untyped": 4,
           "n_methods": 11,
           "n_method_params": 7,
@@ -38304,8 +38304,8 @@
         "set_mesh"
       ],
       "n_typable": 72,
-      "n_typed": 48,
-      "n_any": 5,
+      "n_typed": 46,
+      "n_any": 7,
       "n_untyped": 19,
       "n_functions": 1,
       "n_function_params": 4,
@@ -40165,8 +40165,8 @@
           "kind": "function",
           "name": "lower_module_to_custom_call",
           "line_start": 616,
-          "n_typed": 20,
-          "n_any": 1,
+          "n_typed": 18,
+          "n_any": 3,
           "n_untyped": 0,
           "n_typable": 21,
           "n_params": 20
@@ -40175,8 +40175,8 @@
           "kind": "function",
           "name": "as_tpu_kernel",
           "line_start": 666,
-          "n_typed": 16,
-          "n_any": 1,
+          "n_typed": 15,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 17,
           "n_params": 16
@@ -40189,8 +40189,8 @@
         "lower_module_to_custom_call"
       ],
       "n_typable": 38,
-      "n_typed": 36,
-      "n_any": 2,
+      "n_typed": 33,
+      "n_any": 5,
       "n_untyped": 0,
       "n_functions": 2,
       "n_function_params": 36,
@@ -41352,16 +41352,6 @@
         },
         {
           "kind": "function",
-          "name": "make_schedule",
-          "line_start": 553,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "momentum",
           "line_start": 239,
           "n_typed": 2,
@@ -41369,6 +41359,16 @@
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "make_schedule",
+          "line_start": 553,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "function",
@@ -43734,6 +43734,16 @@
         },
         {
           "kind": "function",
+          "name": "fact",
+          "line_start": 172,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "jet_fun",
           "line_start": 175,
           "n_typed": 0,
@@ -43751,16 +43761,6 @@
           "n_untyped": 6,
           "n_typable": 6,
           "n_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "fact",
-          "line_start": 172,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
         },
         {
           "kind": "function",
@@ -44651,8 +44651,8 @@
           "kind": "function",
           "name": "fragmented_array_to_ir",
           "line_start": 157,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -44661,8 +44661,8 @@
           "kind": "function",
           "name": "wrap_transformed_memref",
           "line_start": 212,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 4,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -44671,8 +44671,8 @@
           "kind": "function",
           "name": "unwrap_transformed_memref",
           "line_start": 228,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 3,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -44681,8 +44681,8 @@
           "kind": "function",
           "name": "swizzle_and_transforms_from_transforms_attr",
           "line_start": 714,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -44691,8 +44691,8 @@
           "kind": "function",
           "name": "transformed_smem_ref_type",
           "line_start": 765,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -44701,8 +44701,8 @@
           "kind": "function",
           "name": "reinterpret_smem_ref",
           "line_start": 823,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -44711,8 +44711,8 @@
           "kind": "function",
           "name": "inline_block",
           "line_start": 1750,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -44721,8 +44721,8 @@
           "kind": "function",
           "name": "lower_mgpu_dialect",
           "line_start": 2144,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 4,
           "n_params": 3
@@ -44736,8 +44736,8 @@
               "kind": "function",
               "name": "LoweringContext.check_collective",
               "line_start": 67,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -44746,8 +44746,8 @@
               "kind": "function",
               "name": "LoweringContext.lower_op",
               "line_start": 83,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -44820,8 +44820,8 @@
             }
           ],
           "n_typable": 4,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 1,
           "n_methods": 2,
           "n_method_params": 2,
@@ -44871,8 +44871,8 @@
         "wrap_transformed_memref"
       ],
       "n_typable": 39,
-      "n_typed": 30,
-      "n_any": 0,
+      "n_typed": 12,
+      "n_any": 18,
       "n_untyped": 9,
       "n_functions": 8,
       "n_function_params": 20,
@@ -46024,28 +46024,8 @@
           "kind": "function",
           "name": "addf",
           "line_start": 3146,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "mulf",
-          "line_start": 3152,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "subf",
-          "line_start": 3149,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -46059,6 +46039,26 @@
           "n_untyped": 0,
           "n_typable": 10,
           "n_params": 9
+        },
+        {
+          "kind": "function",
+          "name": "subf",
+          "line_start": 3149,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "mulf",
+          "line_start": 3152,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "function",
@@ -46084,8 +46084,8 @@
           "kind": "function",
           "name": "copy_tiled",
           "line_start": 3353,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 4,
           "n_params": 3
@@ -46099,8 +46099,8 @@
               "kind": "function",
               "name": "FragmentedArray.__init__",
               "line_start": 895,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -46109,8 +46109,8 @@
               "kind": "function",
               "name": "FragmentedArray.load_strided",
               "line_start": 947,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 3,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -46509,8 +46509,8 @@
               "kind": "function",
               "name": "FragmentedArray.bitcast",
               "line_start": 1633,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -46549,8 +46549,8 @@
               "kind": "function",
               "name": "FragmentedArray.astype",
               "line_start": 1735,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -46559,8 +46559,8 @@
               "kind": "function",
               "name": "FragmentedArray.reduce",
               "line_start": 2065,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 3,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -46649,8 +46649,8 @@
               "kind": "function",
               "name": "FragmentedArray.store_untiled",
               "line_start": 2478,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 3,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -46659,8 +46659,8 @@
               "kind": "function",
               "name": "FragmentedArray.load_untiled",
               "line_start": 2498,
-              "n_typed": 6,
-              "n_any": 0,
+              "n_typed": 5,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 6,
               "n_params": 5
@@ -46699,8 +46699,8 @@
               "kind": "function",
               "name": "FragmentedArray.transfer_tiled2",
               "line_start": 2695,
-              "n_typed": 5,
-              "n_any": 0,
+              "n_typed": 4,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 6,
               "n_params": 5
@@ -46740,8 +46740,8 @@
               "kind": "property",
               "name": "FragmentedArray.mlir_dtype",
               "line_start": 1011,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1
             }
@@ -46776,8 +46776,8 @@
             }
           ],
           "n_typable": 160,
-          "n_typed": 81,
-          "n_any": 0,
+          "n_typed": 72,
+          "n_any": 9,
           "n_untyped": 79,
           "n_methods": 63,
           "n_method_params": 95,
@@ -46819,8 +46819,8 @@
               "kind": "function",
               "name": "StaggeredTransferPlan.select",
               "line_start": 2988,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -46829,8 +46829,8 @@
               "kind": "function",
               "name": "StaggeredTransferPlan.select_if_group",
               "line_start": 2992,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 3,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -46886,8 +46886,8 @@
             }
           ],
           "n_typable": 7,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 4,
           "n_untyped": 1,
           "n_methods": 2,
           "n_method_params": 4,
@@ -46923,8 +46923,8 @@
               "kind": "function",
               "name": "TiledLayout.registers_element_type",
               "line_start": 422,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -47095,8 +47095,8 @@
             }
           ],
           "n_typable": 22,
-          "n_typed": 22,
-          "n_any": 0,
+          "n_typed": 20,
+          "n_any": 2,
           "n_untyped": 0,
           "n_methods": 10,
           "n_method_params": 6,
@@ -47249,8 +47249,8 @@
               "kind": "function",
               "name": "TransferPlan.select",
               "line_start": 2942,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -47259,8 +47259,8 @@
               "kind": "function",
               "name": "TransferPlan.select_if_group",
               "line_start": 2949,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 3,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -47269,8 +47269,8 @@
           "properties": [],
           "attrs": [],
           "n_typable": 6,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 4,
           "n_untyped": 0,
           "n_methods": 2,
           "n_method_params": 4,
@@ -47286,8 +47286,8 @@
               "kind": "function",
               "name": "TrivialTransferPlan.select",
               "line_start": 2963,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -47296,8 +47296,8 @@
               "kind": "function",
               "name": "TrivialTransferPlan.select_if_group",
               "line_start": 2967,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 3,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -47316,8 +47316,8 @@
           ],
           "attrs": [],
           "n_typable": 7,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 4,
           "n_untyped": 1,
           "n_methods": 2,
           "n_method_params": 4,
@@ -47343,8 +47343,8 @@
               "kind": "function",
               "name": "WGSplatFragLayout.registers_element_type",
               "line_start": 623,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -47393,8 +47393,8 @@
             }
           ],
           "n_typable": 10,
-          "n_typed": 7,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 2,
           "n_untyped": 3,
           "n_methods": 5,
           "n_method_params": 5,
@@ -47420,8 +47420,8 @@
               "kind": "function",
               "name": "WGStridedFragLayout.from_shaped_type",
               "line_start": 653,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -47430,8 +47430,8 @@
               "kind": "function",
               "name": "WGStridedFragLayout.registers_element_type",
               "line_start": 674,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -47499,8 +47499,8 @@
             }
           ],
           "n_typable": 11,
-          "n_typed": 8,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 3,
           "n_untyped": 3,
           "n_methods": 7,
           "n_method_params": 4,
@@ -47572,8 +47572,8 @@
         "tmem_native_layout"
       ],
       "n_typable": 291,
-      "n_typed": 186,
-      "n_any": 0,
+      "n_typed": 150,
+      "n_any": 36,
       "n_untyped": 105,
       "n_functions": 9,
       "n_function_params": 28,
@@ -47618,8 +47618,8 @@
           "kind": "function",
           "name": "in_layouts",
           "line_start": 29,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47628,8 +47628,8 @@
           "kind": "function",
           "name": "out_layouts",
           "line_start": 40,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47638,8 +47638,8 @@
           "kind": "function",
           "name": "in_transforms",
           "line_start": 51,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47648,8 +47648,8 @@
           "kind": "function",
           "name": "out_transforms",
           "line_start": 62,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47658,8 +47658,8 @@
           "kind": "function",
           "name": "in_tmem_layouts",
           "line_start": 73,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47668,8 +47668,8 @@
           "kind": "function",
           "name": "out_tmem_layouts",
           "line_start": 84,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47678,8 +47678,8 @@
           "kind": "function",
           "name": "should_have_in_tmem_layout",
           "line_start": 95,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47688,8 +47688,8 @@
           "kind": "function",
           "name": "should_have_out_tmem_layout",
           "line_start": 103,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47698,8 +47698,8 @@
           "kind": "function",
           "name": "should_have_tmem_layout",
           "line_start": 111,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47708,8 +47708,8 @@
           "kind": "function",
           "name": "has_in_tmem_layouts_set",
           "line_start": 116,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47718,8 +47718,8 @@
           "kind": "function",
           "name": "has_out_tmem_layouts_set",
           "line_start": 120,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47728,8 +47728,8 @@
           "kind": "function",
           "name": "should_have_in_layout",
           "line_start": 124,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47738,8 +47738,8 @@
           "kind": "function",
           "name": "should_have_out_layout",
           "line_start": 129,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47748,8 +47748,8 @@
           "kind": "function",
           "name": "should_have_layout",
           "line_start": 134,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47758,8 +47758,8 @@
           "kind": "function",
           "name": "has_in_layouts_set",
           "line_start": 139,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47768,8 +47768,8 @@
           "kind": "function",
           "name": "has_out_layouts_set",
           "line_start": 143,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47778,8 +47778,8 @@
           "kind": "function",
           "name": "has_any_layout_set",
           "line_start": 147,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47788,8 +47788,8 @@
           "kind": "function",
           "name": "has_in_transforms_set",
           "line_start": 151,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47798,8 +47798,8 @@
           "kind": "function",
           "name": "has_out_transforms_set",
           "line_start": 155,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47808,8 +47808,8 @@
           "kind": "function",
           "name": "attr_element",
           "line_start": 159,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -47818,8 +47818,8 @@
           "kind": "function",
           "name": "is_transformable_smem_memref",
           "line_start": 215,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47828,8 +47828,8 @@
           "kind": "function",
           "name": "should_have_in_transforms",
           "line_start": 200,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47838,8 +47838,8 @@
           "kind": "function",
           "name": "should_have_out_transforms",
           "line_start": 205,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47848,8 +47848,8 @@
           "kind": "function",
           "name": "should_have_transforms",
           "line_start": 210,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47858,8 +47858,8 @@
           "kind": "function",
           "name": "value_layout",
           "line_start": 261,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47868,8 +47868,8 @@
           "kind": "function",
           "name": "value_transforms",
           "line_start": 273,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -47878,8 +47878,8 @@
           "kind": "function",
           "name": "traverse_op",
           "line_start": 292,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 6,
           "n_params": 5
@@ -47997,8 +47997,8 @@
         "value_transforms"
       ],
       "n_typable": 62,
-      "n_typed": 59,
-      "n_any": 0,
+      "n_typed": 29,
+      "n_any": 30,
       "n_untyped": 3,
       "n_functions": 27,
       "n_function_params": 33,
@@ -48110,8 +48110,8 @@
               "kind": "function",
               "name": "CollapseLeadingIndicesTransform.apply",
               "line_start": 202,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -48170,8 +48170,8 @@
             }
           ],
           "n_typable": 9,
-          "n_typed": 9,
-          "n_any": 0,
+          "n_typed": 7,
+          "n_any": 2,
           "n_untyped": 0,
           "n_methods": 4,
           "n_method_params": 4,
@@ -48197,8 +48197,8 @@
               "kind": "function",
               "name": "LaunchContext.cluster_idx",
               "line_start": 448,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -48207,8 +48207,8 @@
               "kind": "function",
               "name": "LaunchContext.async_copy",
               "line_start": 864,
-              "n_typed": 10,
-              "n_any": 1,
+              "n_typed": 7,
+              "n_any": 4,
               "n_untyped": 3,
               "n_typable": 14,
               "n_params": 13
@@ -48217,8 +48217,8 @@
               "kind": "function",
               "name": "LaunchContext.async_prefetch",
               "line_start": 1321,
-              "n_typed": 7,
-              "n_any": 1,
+              "n_typed": 3,
+              "n_any": 5,
               "n_untyped": 1,
               "n_typable": 9,
               "n_params": 8
@@ -48247,8 +48247,8 @@
               "kind": "function",
               "name": "LaunchContext.to_remote",
               "line_start": 1428,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 1,
               "n_typable": 3,
               "n_params": 2
@@ -48257,8 +48257,8 @@
               "kind": "function",
               "name": "LaunchContext.device_id",
               "line_start": 1450,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -48322,8 +48322,8 @@
             }
           ],
           "n_typable": 38,
-          "n_typed": 26,
-          "n_any": 2,
+          "n_typed": 14,
+          "n_any": 14,
           "n_untyped": 10,
           "n_methods": 8,
           "n_method_params": 30,
@@ -48339,8 +48339,8 @@
               "kind": "function",
               "name": "MemRefTransform.apply",
               "line_start": 46,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -48389,8 +48389,8 @@
           "properties": [],
           "attrs": [],
           "n_typable": 10,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 8,
+          "n_any": 2,
           "n_untyped": 0,
           "n_methods": 5,
           "n_method_params": 5,
@@ -48457,8 +48457,8 @@
               "kind": "function",
               "name": "Scratch.__init__",
               "line_start": 302,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -48467,8 +48467,8 @@
               "kind": "function",
               "name": "Scratch.device_ptr",
               "line_start": 373,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -48506,8 +48506,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 2,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 0,
@@ -48523,8 +48523,8 @@
               "kind": "function",
               "name": "TileTransform.apply",
               "line_start": 85,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -48592,8 +48592,8 @@
             }
           ],
           "n_typable": 10,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 8,
+          "n_any": 2,
           "n_untyped": 0,
           "n_methods": 5,
           "n_method_params": 5,
@@ -48619,8 +48619,8 @@
               "kind": "function",
               "name": "TransposeTransform.apply",
               "line_start": 175,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -48679,8 +48679,8 @@
             }
           ],
           "n_typable": 10,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 8,
+          "n_any": 2,
           "n_untyped": 0,
           "n_methods": 6,
           "n_method_params": 4,
@@ -48737,8 +48737,8 @@
         "c"
       ],
       "n_typable": 82,
-      "n_typed": 69,
-      "n_any": 2,
+      "n_typed": 47,
+      "n_any": 24,
       "n_untyped": 11,
       "n_functions": 0,
       "n_function_params": 0,
@@ -48873,8 +48873,8 @@
           "kind": "function",
           "name": "is_vector",
           "line_start": 432,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -48883,8 +48883,8 @@
           "kind": "function",
           "name": "vector_operands_and_results",
           "line_start": 1120,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -48923,8 +48923,8 @@
           "kind": "function",
           "name": "is_terminator",
           "line_start": 1244,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -48933,8 +48933,8 @@
           "kind": "function",
           "name": "infer_layout",
           "line_start": 1248,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -49106,8 +49106,8 @@
               "kind": "property",
               "name": "OperandOrResult.value",
               "line_start": 70,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1
             },
@@ -49151,8 +49151,8 @@
             }
           ],
           "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_methods": 1,
           "n_method_params": -1,
@@ -49224,8 +49224,8 @@
         "vector_operands_and_results"
       ],
       "n_typable": 44,
-      "n_typed": 42,
-      "n_any": 0,
+      "n_typed": 37,
+      "n_any": 5,
       "n_untyped": 2,
       "n_functions": 16,
       "n_function_params": 21,
@@ -49243,8 +49243,8 @@
           "kind": "function",
           "name": "to_splat_fragmented_layout_attr",
           "line_start": 32,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49253,8 +49253,8 @@
           "kind": "function",
           "name": "from_splat_fragmented_layout_attr",
           "line_start": 39,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49263,8 +49263,8 @@
           "kind": "function",
           "name": "is_splat_fragmented_layout",
           "line_start": 57,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49273,8 +49273,8 @@
           "kind": "function",
           "name": "to_strided_fragmented_layout_attr",
           "line_start": 66,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49283,8 +49283,8 @@
           "kind": "function",
           "name": "from_strided_fragmented_layout_attr",
           "line_start": 76,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49293,8 +49293,8 @@
           "kind": "function",
           "name": "is_strided_fragmented_layout",
           "line_start": 97,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49303,8 +49303,8 @@
           "kind": "function",
           "name": "to_tiled_layout_attr",
           "line_start": 109,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49313,8 +49313,8 @@
           "kind": "function",
           "name": "from_tiled_layout_attr",
           "line_start": 141,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49323,8 +49323,8 @@
           "kind": "function",
           "name": "is_tiled_layout",
           "line_start": 184,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49333,8 +49333,8 @@
           "kind": "function",
           "name": "to_layout_attr",
           "line_start": 188,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49343,8 +49343,8 @@
           "kind": "function",
           "name": "from_layout_attr",
           "line_start": 209,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49393,8 +49393,8 @@
           "kind": "function",
           "name": "is_tile_transform",
           "line_start": 356,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49403,8 +49403,8 @@
           "kind": "function",
           "name": "is_transpose_transform",
           "line_start": 365,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49413,8 +49413,8 @@
           "kind": "function",
           "name": "is_swizzle_transform",
           "line_start": 373,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49423,8 +49423,8 @@
           "kind": "function",
           "name": "to_transform_attr",
           "line_start": 377,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49433,8 +49433,8 @@
           "kind": "function",
           "name": "from_transform_attr",
           "line_start": 390,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -49465,8 +49465,8 @@
         "to_transform_attr"
       ],
       "n_typable": 43,
-      "n_typed": 43,
-      "n_any": 0,
+      "n_typed": 25,
+      "n_any": 18,
       "n_untyped": 0,
       "n_functions": 20,
       "n_function_params": 23,
@@ -49533,8 +49533,8 @@
           "kind": "function",
           "name": "tiled_memref_shape",
           "line_start": 27,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -49543,8 +49543,8 @@
           "kind": "function",
           "name": "create_descriptor",
           "line_start": 43,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 7,
           "n_params": 6
@@ -49553,8 +49553,8 @@
           "kind": "function",
           "name": "encode_descriptor",
           "line_start": 209,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 2,
           "n_typable": 6,
           "n_params": 5
@@ -49615,8 +49615,8 @@
         "tiled_memref_shape"
       ],
       "n_typable": 17,
-      "n_typed": 12,
-      "n_any": 0,
+      "n_typed": 9,
+      "n_any": 3,
       "n_untyped": 5,
       "n_functions": 4,
       "n_function_params": 13,
@@ -49704,8 +49704,8 @@
               "kind": "function",
               "name": "OnDeviceProfiler.__init__",
               "line_start": 294,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -49807,8 +49807,8 @@
             }
           ],
           "n_typable": 16,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 2,
           "n_untyped": 10,
           "n_methods": 3,
           "n_method_params": 5,
@@ -49834,8 +49834,8 @@
               "kind": "function",
               "name": "ProfilerSpec.mlir_buffer_type",
               "line_start": 189,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -49844,8 +49844,8 @@
               "kind": "function",
               "name": "ProfilerSpec.jax_buffer_type",
               "line_start": 197,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -49913,8 +49913,8 @@
             }
           ],
           "n_typable": 20,
-          "n_typed": 14,
-          "n_any": 0,
+          "n_typed": 12,
+          "n_any": 2,
           "n_untyped": 6,
           "n_methods": 7,
           "n_method_params": 11,
@@ -49940,8 +49940,8 @@
         "measure"
       ],
       "n_typable": 44,
-      "n_typed": 26,
-      "n_any": 0,
+      "n_typed": 22,
+      "n_any": 4,
       "n_untyped": 18,
       "n_functions": 1,
       "n_function_params": 3,
@@ -50031,8 +50031,8 @@
           "kind": "function",
           "name": "create_instr_descriptor",
           "line_start": 46,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 2,
           "n_typable": 8,
           "n_params": 7
@@ -50041,8 +50041,8 @@
           "kind": "function",
           "name": "create_scaled_f8f6f4_instr_descriptor",
           "line_start": 144,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 2,
           "n_typable": 3,
           "n_params": 2
@@ -50051,8 +50051,8 @@
           "kind": "function",
           "name": "create_scaled_f4_instr_descriptor",
           "line_start": 155,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 2,
           "n_typable": 3,
           "n_params": 2
@@ -50061,8 +50061,8 @@
           "kind": "function",
           "name": "mma",
           "line_start": 164,
-          "n_typed": 11,
-          "n_any": 0,
+          "n_typed": 8,
+          "n_any": 3,
           "n_untyped": 0,
           "n_typable": 11,
           "n_params": 10
@@ -50081,8 +50081,8 @@
           "kind": "function",
           "name": "commit_arrive",
           "line_start": 648,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -50101,8 +50101,8 @@
           "kind": "function",
           "name": "tmem_alloc",
           "line_start": 702,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -50111,8 +50111,8 @@
           "kind": "function",
           "name": "tmem_dealloc",
           "line_start": 725,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -50211,8 +50211,8 @@
           "kind": "function",
           "name": "async_copy_scales_smem_to_tmem",
           "line_start": 1381,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -50221,8 +50221,8 @@
           "kind": "function",
           "name": "async_copy_sparse_metadata_smem_to_tmem",
           "line_start": 1444,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -50293,8 +50293,8 @@
               "kind": "function",
               "name": "TMEMRef.from_alloc",
               "line_start": 990,
-              "n_typed": 5,
-              "n_any": 0,
+              "n_typed": 4,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 6,
               "n_params": 5
@@ -50380,8 +50380,8 @@
             }
           ],
           "n_typable": 14,
-          "n_typed": 11,
-          "n_any": 0,
+          "n_typed": 10,
+          "n_any": 1,
           "n_untyped": 3,
           "n_methods": 5,
           "n_method_params": 8,
@@ -50429,8 +50429,8 @@
         "wait_tmem_load"
       ],
       "n_typable": 86,
-      "n_typed": 74,
-      "n_any": 0,
+      "n_typed": 62,
+      "n_any": 12,
       "n_untyped": 12,
       "n_functions": 20,
       "n_function_params": 45,
@@ -50466,8 +50466,8 @@
           "kind": "function",
           "name": "infer_wgmma_transforms",
           "line_start": 166,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -50476,8 +50476,8 @@
           "kind": "function",
           "name": "infer_tcgen05_mma_transforms",
           "line_start": 186,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -50486,8 +50486,8 @@
           "kind": "function",
           "name": "infer_transforms",
           "line_start": 467,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -50503,8 +50503,8 @@
         "infer_wgmma_transforms"
       ],
       "n_typable": 6,
-      "n_typed": 5,
-      "n_any": 0,
+      "n_typed": 2,
+      "n_any": 3,
       "n_untyped": 1,
       "n_functions": 3,
       "n_function_params": 3,
@@ -50612,8 +50612,8 @@
           "kind": "function",
           "name": "gpu_address_space_to_nvptx",
           "line_start": 52,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -50622,8 +50622,8 @@
           "kind": "function",
           "name": "ptr_as_memref",
           "line_start": 67,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 2,
           "n_typable": 4,
           "n_params": 3
@@ -50632,6 +50632,16 @@
           "kind": "function",
           "name": "pack_array",
           "line_start": 98,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_contiguous_strides",
+          "line_start": 111,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -50650,16 +50660,6 @@
         },
         {
           "kind": "function",
-          "name": "get_contiguous_strides",
-          "line_start": 111,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "debug_print",
           "line_start": 147,
           "n_typed": 0,
@@ -50667,16 +50667,6 @@
           "n_untyped": 5,
           "n_typable": 5,
           "n_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "single_thread",
-          "line_start": 304,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 2,
-          "n_params": 1
         },
         {
           "kind": "function",
@@ -50730,6 +50720,16 @@
         },
         {
           "kind": "function",
+          "name": "single_thread",
+          "line_start": 304,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "clock",
           "line_start": 330,
           "n_typed": 0,
@@ -50762,8 +50762,8 @@
           "kind": "function",
           "name": "bytewidth",
           "line_start": 358,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -50772,8 +50772,8 @@
           "kind": "function",
           "name": "bitwidth",
           "line_start": 383,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -50782,8 +50782,8 @@
           "kind": "function",
           "name": "bitwidth_impl",
           "line_start": 364,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 2,
           "n_params": 1
@@ -50792,8 +50792,8 @@
           "kind": "function",
           "name": "memref_slice",
           "line_start": 405,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -50812,8 +50812,8 @@
           "kind": "function",
           "name": "memref_unfold",
           "line_start": 590,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 2,
           "n_typable": 4,
           "n_params": 3
@@ -50822,8 +50822,8 @@
           "kind": "function",
           "name": "memref_fold",
           "line_start": 552,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 2,
           "n_typable": 4,
           "n_params": 3
@@ -50832,8 +50832,8 @@
           "kind": "function",
           "name": "memref_reshape",
           "line_start": 510,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -50842,8 +50842,8 @@
           "kind": "function",
           "name": "memref_unsqueeze",
           "line_start": 632,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -50852,8 +50852,8 @@
           "kind": "function",
           "name": "memref_transpose",
           "line_start": 657,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -50912,8 +50912,8 @@
           "kind": "function",
           "name": "cluster_collective_mask",
           "line_start": 1386,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -50952,8 +50952,8 @@
           "kind": "function",
           "name": "dtype_to_ir_type",
           "line_start": 1418,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -50972,8 +50972,8 @@
           "kind": "function",
           "name": "getelementptr",
           "line_start": 1434,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 3,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -50992,8 +50992,8 @@
           "kind": "function",
           "name": "shfl_bfly",
           "line_start": 1447,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -51002,8 +51002,8 @@
           "kind": "function",
           "name": "bitcast",
           "line_start": 1513,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -51012,8 +51012,8 @@
           "kind": "function",
           "name": "prmt",
           "line_start": 1497,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 3,
           "n_untyped": 1,
           "n_typable": 4,
           "n_params": 3
@@ -51032,8 +51032,8 @@
           "kind": "function",
           "name": "vector_slice",
           "line_start": 1554,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -51042,8 +51042,8 @@
           "kind": "function",
           "name": "vector_concat",
           "line_start": 1566,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -51062,8 +51062,8 @@
           "kind": "function",
           "name": "smem",
           "line_start": 1637,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 1,
           "n_params": 0
@@ -51072,8 +51072,8 @@
           "kind": "function",
           "name": "tmem",
           "line_start": 1642,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 1,
           "n_params": 0
@@ -51082,8 +51082,8 @@
           "kind": "function",
           "name": "is_smem_ref",
           "line_start": 1647,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -51092,8 +51092,8 @@
           "kind": "function",
           "name": "is_tmem_ref",
           "line_start": 1659,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -51107,8 +51107,8 @@
               "kind": "function",
               "name": "BarrierRef.initialize",
               "line_start": 772,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -51127,8 +51127,8 @@
               "kind": "function",
               "name": "BarrierRef.__getitem__",
               "line_start": 801,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -51157,8 +51157,8 @@
               "kind": "function",
               "name": "BarrierRef.update_parities",
               "line_start": 836,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -51167,8 +51167,8 @@
               "kind": "function",
               "name": "BarrierRef.arrive",
               "line_start": 844,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 3,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 5,
               "n_params": 4
@@ -51177,8 +51177,8 @@
               "kind": "function",
               "name": "BarrierRef.arrive_expect_tx",
               "line_start": 876,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 1,
               "n_typable": 3,
               "n_params": 2
@@ -51234,8 +51234,8 @@
             }
           ],
           "n_typable": 22,
-          "n_typed": 15,
-          "n_any": 0,
+          "n_typed": 9,
+          "n_any": 6,
           "n_untyped": 7,
           "n_methods": 9,
           "n_method_params": 13,
@@ -51251,8 +51251,8 @@
               "kind": "function",
               "name": "CollectiveBarrierRef.initialize",
               "line_start": 988,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 3,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -51330,8 +51330,8 @@
             }
           ],
           "n_typable": 15,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 10,
           "n_methods": 6,
           "n_method_params": 9,
@@ -51347,8 +51347,8 @@
               "kind": "function",
               "name": "DialectBarrierRef.initialize",
               "line_start": 899,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -51367,8 +51367,8 @@
               "kind": "function",
               "name": "DialectBarrierRef.__getitem__",
               "line_start": 930,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -51397,8 +51397,8 @@
               "kind": "function",
               "name": "DialectBarrierRef.update_parities",
               "line_start": 940,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -51417,8 +51417,8 @@
               "kind": "function",
               "name": "DialectBarrierRef.arrive_expect_tx",
               "line_start": 946,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -51437,8 +51437,8 @@
               "kind": "function",
               "name": "DialectBarrierRef.as_barrier_memref",
               "line_start": 953,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -51447,8 +51447,8 @@
               "kind": "function",
               "name": "DialectBarrierRef.from_barrier_memref",
               "line_start": 959,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -51467,8 +51467,8 @@
             }
           ],
           "n_typable": 20,
-          "n_typed": 12,
-          "n_any": 0,
+          "n_typed": 6,
+          "n_any": 6,
           "n_untyped": 8,
           "n_methods": 11,
           "n_method_params": 9,
@@ -51585,8 +51585,8 @@
               "kind": "function",
               "name": "Partition.get_base",
               "line_start": 1234,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -51651,8 +51651,8 @@
             }
           ],
           "n_typable": 13,
-          "n_typed": 12,
-          "n_any": 0,
+          "n_typed": 11,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 2,
           "n_method_params": 5,
@@ -51668,8 +51668,8 @@
               "kind": "function",
               "name": "Partition1D.__init__",
               "line_start": 1251,
-              "n_typed": 4,
-              "n_any": 0,
+              "n_typed": 3,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 4,
               "n_params": 3
@@ -51678,8 +51678,8 @@
               "kind": "function",
               "name": "Partition1D.get_base",
               "line_start": 1277,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -51688,8 +51688,8 @@
               "kind": "function",
               "name": "Partition1D.refine",
               "line_start": 1280,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 4,
               "n_params": 3
@@ -51727,8 +51727,8 @@
             }
           ],
           "n_typable": 13,
-          "n_typed": 11,
-          "n_any": 0,
+          "n_typed": 7,
+          "n_any": 4,
           "n_untyped": 2,
           "n_methods": 3,
           "n_method_params": 7,
@@ -51744,8 +51744,8 @@
               "kind": "function",
               "name": "SemaphoreRef.signal",
               "line_start": 1085,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 2,
               "n_untyped": 1,
               "n_typable": 4,
               "n_params": 3
@@ -51754,8 +51754,8 @@
               "kind": "function",
               "name": "SemaphoreRef.wait",
               "line_start": 1107,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 4,
               "n_params": 3
@@ -51774,8 +51774,8 @@
             }
           ],
           "n_typable": 8,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 3,
           "n_untyped": 2,
           "n_methods": 2,
           "n_method_params": 6,
@@ -51900,8 +51900,8 @@
         "when"
       ],
       "n_typable": 220,
-      "n_typed": 122,
-      "n_any": 0,
+      "n_typed": 66,
+      "n_any": 56,
       "n_untyped": 98,
       "n_functions": 49,
       "n_function_params": 73,
@@ -51947,8 +51947,8 @@
           "kind": "function",
           "name": "wgmma_m64",
           "line_start": 114,
-          "n_typed": 9,
-          "n_any": 0,
+          "n_typed": 6,
+          "n_any": 3,
           "n_untyped": 2,
           "n_typable": 11,
           "n_params": 10
@@ -51957,8 +51957,8 @@
           "kind": "function",
           "name": "wgmma",
           "line_start": 289,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 2,
           "n_untyped": 1,
           "n_typable": 5,
           "n_params": 4
@@ -52052,8 +52052,8 @@
         "wgmma_m64"
       ],
       "n_typable": 33,
-      "n_typed": 20,
-      "n_any": 0,
+      "n_typed": 15,
+      "n_any": 5,
       "n_untyped": 13,
       "n_functions": 3,
       "n_function_params": 15,
@@ -52094,16 +52094,6 @@
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "host_local_array_to_global_array",
-          "line_start": 267,
-          "n_typed": 1,
-          "n_any": 2,
-          "n_untyped": 1,
-          "n_typable": 4,
-          "n_params": 3
         },
         {
           "kind": "function",
@@ -52149,6 +52139,16 @@
           "kind": "function",
           "name": "host_local_array_to_global_array_impl",
           "line_start": 232,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "host_local_array_to_global_array",
+          "line_start": 267,
           "n_typed": 1,
           "n_any": 2,
           "n_untyped": 1,
@@ -53386,8 +53386,8 @@
           "kind": "function",
           "name": "all_gather_lhs_matmul",
           "line_start": 26,
-          "n_typed": 9,
-          "n_any": 0,
+          "n_typed": 8,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 10,
           "n_params": 9
@@ -53399,8 +53399,8 @@
         "all_gather_lhs_matmul"
       ],
       "n_typable": 10,
-      "n_typed": 9,
-      "n_any": 0,
+      "n_typed": 8,
+      "n_any": 1,
       "n_untyped": 1,
       "n_functions": 1,
       "n_function_params": 9,
@@ -54614,8 +54614,8 @@
           "kind": "function",
           "name": "matmul",
           "line_start": 43,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 7,
           "n_params": 6
@@ -54628,8 +54628,8 @@
         "matmul_kernel"
       ],
       "n_typable": 12,
-      "n_typed": 6,
-      "n_any": 0,
+      "n_typed": 5,
+      "n_any": 1,
       "n_untyped": 6,
       "n_functions": 2,
       "n_function_params": 10,
@@ -54687,8 +54687,8 @@
           "kind": "function",
           "name": "assert_is_supported_dtype",
           "line_start": 47,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -54697,8 +54697,8 @@
           "kind": "function",
           "name": "select_input_dtype",
           "line_start": 52,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -54715,8 +54715,8 @@
         "tpu_kind"
       ],
       "n_typable": 9,
-      "n_typed": 9,
-      "n_any": 0,
+      "n_typed": 7,
+      "n_any": 2,
       "n_untyped": 0,
       "n_functions": 6,
       "n_function_params": 3,
@@ -54771,8 +54771,8 @@
           "kind": "function",
           "name": "gmm",
           "line_start": 305,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 9,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 10,
           "n_params": 9
@@ -54781,8 +54781,8 @@
           "kind": "function",
           "name": "tgmm",
           "line_start": 564,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 9,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 10,
           "n_params": 9
@@ -54799,8 +54799,8 @@
         "tgmm"
       ],
       "n_typable": 27,
-      "n_typed": 26,
-      "n_any": 1,
+      "n_typed": 24,
+      "n_any": 3,
       "n_untyped": 0,
       "n_functions": 3,
       "n_function_params": 24,
@@ -55006,8 +55006,8 @@
           "kind": "function",
           "name": "from_int8",
           "line_start": 48,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -55036,8 +55036,8 @@
           "kind": "function",
           "name": "unquantize_from_int8",
           "line_start": 94,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -55091,8 +55091,8 @@
         "unquantize_from_int8"
       ],
       "n_typable": 14,
-      "n_typed": 14,
-      "n_any": 0,
+      "n_typed": 12,
+      "n_any": 2,
       "n_untyped": 0,
       "n_functions": 5,
       "n_function_params": 9,
@@ -55955,8 +55955,8 @@
           "kind": "function",
           "name": "make_attention_reference",
           "line_start": 364,
-          "n_typed": 4,
-          "n_any": 1,
+          "n_typed": 3,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -56342,8 +56342,8 @@
         "partial"
       ],
       "n_typable": 89,
-      "n_typed": 50,
-      "n_any": 1,
+      "n_typed": 49,
+      "n_any": 2,
       "n_untyped": 38,
       "n_functions": 6,
       "n_function_params": 58,
@@ -56361,8 +56361,8 @@
           "kind": "function",
           "name": "make_causal_mask",
           "line_start": 57,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -56371,8 +56371,8 @@
           "kind": "function",
           "name": "make_local_attention_mask",
           "line_start": 76,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -56381,8 +56381,8 @@
           "kind": "function",
           "name": "make_chunk_attention_mask",
           "line_start": 95,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -56391,8 +56391,8 @@
           "kind": "function",
           "name": "make_random_mask",
           "line_start": 124,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -56530,8 +56530,8 @@
               "kind": "function",
               "name": "FullMask.__getitem__",
               "line_start": 544,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -56570,8 +56570,8 @@
           ],
           "attrs": [],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 4,
           "n_method_params": 0,
@@ -56663,8 +56663,8 @@
               "kind": "function",
               "name": "LogicalAnd.__getitem__",
               "line_start": 169,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -56712,8 +56712,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 1,
@@ -56739,8 +56739,8 @@
               "kind": "function",
               "name": "LogicalOr.__getitem__",
               "line_start": 147,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -56788,8 +56788,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 1,
@@ -56805,8 +56805,8 @@
               "kind": "function",
               "name": "Mask.__getitem__",
               "line_start": 33,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -56855,8 +56855,8 @@
           ],
           "attrs": [],
           "n_typable": 7,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 4,
           "n_method_params": 2,
@@ -56882,8 +56882,8 @@
               "kind": "function",
               "name": "MultiHeadMask.__getitem__",
               "line_start": 203,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -56932,8 +56932,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 4,
           "n_method_params": 0,
@@ -56959,8 +56959,8 @@
               "kind": "function",
               "name": "NumpyMask.__getitem__",
               "line_start": 506,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -57009,8 +57009,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 4,
           "n_method_params": 0,
@@ -57036,8 +57036,8 @@
         "make_random_mask"
       ],
       "n_typable": 66,
-      "n_typed": 54,
-      "n_any": 0,
+      "n_typed": 44,
+      "n_any": 10,
       "n_untyped": 12,
       "n_functions": 4,
       "n_function_params": 10,
@@ -59959,16 +59959,6 @@
         },
         {
           "kind": "function",
-          "name": "bcsr_extract",
-          "line_start": 389,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
           "name": "bcsr_todense",
           "line_start": 312,
           "n_typed": 2,
@@ -59976,6 +59966,16 @@
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bcsr_extract",
+          "line_start": 389,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
         },
         {
           "kind": "function",
@@ -60592,16 +60592,6 @@
         },
         {
           "kind": "function",
-          "name": "csr_fromdense",
-          "line_start": 302,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
           "name": "csr_todense",
           "line_start": 215,
           "n_typed": 2,
@@ -60609,6 +60599,16 @@
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "csr_fromdense",
+          "line_start": 302,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
         },
         {
           "kind": "function",
@@ -61063,8 +61063,8 @@
           "kind": "function",
           "name": "rand_bcoo",
           "line_start": 183,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 6,
           "n_params": 5
@@ -61073,8 +61073,8 @@
           "kind": "function",
           "name": "rand_bcsr",
           "line_start": 191,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 6,
           "n_params": 5
@@ -61269,8 +61269,8 @@
         "rand_sparse"
       ],
       "n_typable": 35,
-      "n_typed": 16,
-      "n_any": 0,
+      "n_typed": 14,
+      "n_any": 2,
       "n_untyped": 19,
       "n_functions": 7,
       "n_function_params": 20,
@@ -65983,8 +65983,8 @@
           "kind": "function",
           "name": "choose",
           "line_start": 265,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -66003,8 +66003,8 @@
           "kind": "function",
           "name": "column_stack",
           "line_start": 277,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -66033,8 +66033,8 @@
           "kind": "function",
           "name": "concatenate",
           "line_start": 287,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -66343,8 +66343,8 @@
           "kind": "function",
           "name": "dstack",
           "line_start": 363,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -66823,8 +66823,8 @@
           "kind": "function",
           "name": "hstack",
           "line_start": 544,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -66963,8 +66963,8 @@
           "kind": "function",
           "name": "isdtype",
           "line_start": 590,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -67153,8 +67153,8 @@
           "kind": "function",
           "name": "lexsort",
           "line_start": 611,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -67933,8 +67933,8 @@
           "kind": "function",
           "name": "result_type",
           "line_start": 826,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -68193,8 +68193,8 @@
           "kind": "function",
           "name": "stack",
           "line_start": 887,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -68593,8 +68593,8 @@
           "kind": "function",
           "name": "vstack",
           "line_start": 1021,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -69298,8 +69298,8 @@
         "zeros_like"
       ],
       "n_typable": 1446,
-      "n_typed": 1348,
-      "n_any": 80,
+      "n_typed": 1338,
+      "n_any": 90,
       "n_untyped": 18,
       "n_functions": 323,
       "n_function_params": 984,
@@ -69405,12 +69405,12 @@
   ],
   "typecheckers": {},
   "n_modules": 301,
-  "n_typable": 12513,
-  "n_typed": 8701,
-  "n_any": 400,
-  "n_untyped": 3412,
+  "n_typable": 12511,
+  "n_typed": 8399,
+  "n_any": 706,
+  "n_untyped": 3406,
   "n_functions": 2182,
-  "n_function_params": 6954,
+  "n_function_params": 6952,
   "n_methods": 1122,
   "n_method_params": 1329,
   "n_classes": 327,
@@ -69620,8 +69620,8 @@
     {
       "kind": "type",
       "rules": [
-        "assignment",
-        "annotation-type-mismatch"
+        "annotation-type-mismatch",
+        "assignment"
       ]
     },
     {
@@ -69927,7 +69927,120 @@
     {
       "kind": "type",
       "rules": [
-        "invalid-annotation",
+        "unused-ignore",
+        "invalid-annotation"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "unused-ignore",
+        "attribute-error"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "bad-return-type",
+        "unused-ignore"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "bad-return-type",
         "unused-ignore"
       ]
     },
@@ -69938,121 +70051,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "attribute-error"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "unused-ignore",
-        "bad-return-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "unused-ignore",
-        "bad-return-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "unused-ignore",
-        "attribute-error"
+        "attribute-error",
+        "unused-ignore"
       ]
     },
     {
@@ -70101,8 +70101,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "attribute-error"
+        "attribute-error",
+        "unused-ignore"
       ]
     },
     {
@@ -70132,8 +70132,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "bad-return-type"
+        "bad-return-type",
+        "unused-ignore"
       ]
     },
     {
@@ -70157,8 +70157,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "attribute-error"
+        "attribute-error",
+        "unused-ignore"
       ]
     },
     {
@@ -70168,8 +70168,8 @@
     {
       "kind": "type",
       "rules": [
-        "container-type-mismatch",
-        "unused-ignore"
+        "unused-ignore",
+        "container-type-mismatch"
       ]
     },
     {

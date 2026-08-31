@@ -62,7 +62,7 @@
   },
   "module_reports": [
     {
-      "path": "attributes/__init__.py",
+      "path": "opentelemetry/attributes/__init__.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -246,7 +246,7 @@
           "rules": null
         }
       ],
-      "name": "attributes",
+      "name": "opentelemetry.attributes",
       "names": [
         "BoundedAttributes"
       ],
@@ -264,7 +264,7 @@
       "n_type_ignores": 11
     },
     {
-      "path": "baggage/__init__.py",
+      "path": "opentelemetry/baggage/__init__.py",
       "symbol_reports": [
         {
           "kind": "function",
@@ -318,7 +318,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "baggage",
+      "name": "opentelemetry.baggage",
       "names": [
         "clear",
         "get_all",
@@ -340,52 +340,17 @@
       "n_type_ignores": 0
     },
     {
-      "path": "composite.py",
+      "path": "opentelemetry/baggage/propagation/__init__.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "logger",
-          "line_start": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
           "kind": "class",
-          "name": "CompositeHTTPPropagator",
-          "line_start": 76,
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "CompositePropagator",
-          "line_start": 14,
+          "name": "W3CBaggagePropagator",
+          "line_start": 71,
           "methods": [
             {
               "kind": "function",
-              "name": "CompositePropagator.__init__",
-              "line_start": 22,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "CompositePropagator.extract",
-              "line_start": 27,
+              "name": "W3CBaggagePropagator.extract",
+              "line_start": 79,
               "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
@@ -394,8 +359,8 @@
             },
             {
               "kind": "function",
-              "name": "CompositePropagator.inject",
-              "line_start": 44,
+              "name": "W3CBaggagePropagator.inject",
+              "line_start": 139,
               "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
@@ -406,8 +371,8 @@
           "properties": [
             {
               "kind": "property",
-              "name": "CompositePropagator.fields",
-              "line_start": 60,
+              "name": "W3CBaggagePropagator.fields",
+              "line_start": 166,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -415,43 +380,36 @@
             }
           ],
           "attrs": [],
-          "n_typable": 10,
-          "n_typed": 10,
+          "n_typable": 9,
+          "n_typed": 9,
           "n_any": 0,
           "n_untyped": 0,
-          "n_methods": 3,
+          "n_methods": 2,
           "n_method_params": 6,
           "n_attrs": 0,
           "n_properties": 1
         }
       ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": null
-        }
-      ],
-      "name": "composite",
+      "type_ignores": [],
+      "name": "opentelemetry.baggage.propagation",
       "names": [
-        "CompositeHTTPPropagator",
-        "CompositePropagator",
-        "logger"
+        "W3CBaggagePropagator"
       ],
-      "n_typable": 11,
-      "n_typed": 10,
+      "n_typable": 9,
+      "n_typed": 9,
       "n_any": 0,
-      "n_untyped": 1,
+      "n_untyped": 0,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 3,
+      "n_methods": 2,
       "n_method_params": 6,
-      "n_classes": 2,
-      "n_attrs": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
       "n_properties": 1,
-      "n_type_ignores": 1
+      "n_type_ignores": 0
     },
     {
-      "path": "context/__init__.py",
+      "path": "opentelemetry/context/__init__.py",
       "symbol_reports": [
         {
           "kind": "function",
@@ -515,7 +473,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "context",
+      "name": "opentelemetry.context",
       "names": [
         "attach",
         "create_key",
@@ -538,7 +496,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "context.py",
+      "path": "opentelemetry/context/context.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -569,7 +527,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "context",
+      "name": "opentelemetry.context.context",
       "names": [
         "Context"
       ],
@@ -587,7 +545,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "contextvars_context.py",
+      "path": "opentelemetry/context/contextvars_context.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -648,7 +606,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "contextvars_context",
+      "name": "opentelemetry.context.contextvars_context",
       "names": [
         "ContextVarsRuntimeContext"
       ],
@@ -666,7 +624,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "environment_variables/__init__.py",
+      "path": "opentelemetry/environment_variables/__init__.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -742,7 +700,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "environment_variables",
+      "name": "opentelemetry.environment_variables",
       "names": [
         "OTEL_LOGS_EXPORTER",
         "OTEL_METRICS_EXPORTER",
@@ -767,17 +725,347 @@
       "n_type_ignores": 0
     },
     {
-      "path": "instrument.py",
+      "path": "opentelemetry/metrics/_internal/__init__.py",
       "symbol_reports": [
         {
-          "kind": "attr",
-          "name": "InstrumentT",
-          "line_start": 48,
-          "n_typed": 0,
+          "kind": "function",
+          "name": "get_meter",
+          "line_start": 822,
+          "n_typed": 6,
           "n_any": 0,
           "n_untyped": 0,
-          "n_typable": 0
+          "n_typable": 6,
+          "n_params": 5
         },
+        {
+          "kind": "function",
+          "name": "get_meter_provider",
+          "line_start": 864,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_meter_provider",
+          "line_start": 855,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Meter",
+          "line_start": 182,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Meter.__init__",
+              "line_start": 189,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_counter",
+              "line_start": 286,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_up_down_counter",
+              "line_start": 302,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_observable_counter",
+              "line_start": 318,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_histogram",
+              "line_start": 415,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_gauge",
+              "line_start": 433,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_observable_gauge",
+              "line_start": 449,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "Meter.create_observable_up_down_counter",
+              "line_start": 469,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Meter.name",
+              "line_start": 202,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Meter.version",
+              "line_start": 209,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Meter.schema_url",
+              "line_start": 216,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 38,
+          "n_typed": 38,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 8,
+          "n_method_params": 27,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "MeterProvider",
+          "line_start": 88,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MeterProvider.get_meter",
+              "line_start": 93,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NoOpMeter",
+          "line_start": 640,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_counter",
+              "line_start": 646,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_gauge",
+              "line_start": 667,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_up_down_counter",
+              "line_start": 685,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_observable_counter",
+              "line_start": 705,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_histogram",
+              "line_start": 731,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_observable_gauge",
+              "line_start": 764,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "NoOpMeter.create_observable_up_down_counter",
+              "line_start": 790,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 32,
+          "n_typed": 32,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 7,
+          "n_method_params": 25,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "NoOpMeterProvider",
+          "line_start": 130,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "NoOpMeterProvider.get_meter",
+              "line_start": 133,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportReturnType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opentelemetry.metrics._internal",
+      "names": [
+        "Meter",
+        "MeterProvider",
+        "NoOpMeter",
+        "NoOpMeterProvider",
+        "get_meter",
+        "get_meter_provider",
+        "set_meter_provider"
+      ],
+      "n_typable": 89,
+      "n_typed": 89,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 3,
+      "n_function_params": 6,
+      "n_methods": 17,
+      "n_method_params": 60,
+      "n_classes": 4,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 3
+    },
+    {
+      "path": "opentelemetry/metrics/_internal/instrument.py",
+      "symbol_reports": [
         {
           "kind": "attr",
           "name": "CallbackT",
@@ -1280,7 +1568,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "instrument",
+      "name": "opentelemetry.metrics._internal.instrument",
       "names": [
         "Asynchronous",
         "CallbackOptions",
@@ -1289,7 +1577,6 @@
         "Gauge",
         "Histogram",
         "Instrument",
-        "InstrumentT",
         "NoOpCounter",
         "NoOpGauge",
         "NoOpHistogram",
@@ -1317,7 +1604,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "observation.py",
+      "path": "opentelemetry/metrics/_internal/observation.py",
       "symbol_reports": [
         {
           "kind": "class",
@@ -1396,7 +1683,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "observation",
+      "name": "opentelemetry.metrics._internal.observation",
       "names": [
         "Observation"
       ],
@@ -1414,7 +1701,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "propagate/__init__.py",
+      "path": "opentelemetry/propagate/__init__.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -1515,7 +1802,7 @@
           ]
         }
       ],
-      "name": "propagate",
+      "name": "opentelemetry.propagate",
       "names": [
         "environ_propagators",
         "extract",
@@ -1540,17 +1827,52 @@
       "n_type_ignores": 4
     },
     {
-      "path": "propagation/__init__.py",
+      "path": "opentelemetry/propagators/composite.py",
       "symbol_reports": [
         {
+          "kind": "attr",
+          "name": "logger",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
           "kind": "class",
-          "name": "W3CBaggagePropagator",
-          "line_start": 71,
+          "name": "CompositeHTTPPropagator",
+          "line_start": 76,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "CompositePropagator",
+          "line_start": 14,
           "methods": [
             {
               "kind": "function",
-              "name": "W3CBaggagePropagator.extract",
-              "line_start": 79,
+              "name": "CompositePropagator.__init__",
+              "line_start": 22,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "CompositePropagator.extract",
+              "line_start": 27,
               "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
@@ -1559,8 +1881,8 @@
             },
             {
               "kind": "function",
-              "name": "W3CBaggagePropagator.inject",
-              "line_start": 139,
+              "name": "CompositePropagator.inject",
+              "line_start": 44,
               "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
@@ -1571,8 +1893,248 @@
           "properties": [
             {
               "kind": "property",
-              "name": "W3CBaggagePropagator.fields",
-              "line_start": 166,
+              "name": "CompositePropagator.fields",
+              "line_start": 60,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 10,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opentelemetry.propagators.composite",
+      "names": [
+        "CompositeHTTPPropagator",
+        "CompositePropagator",
+        "logger"
+      ],
+      "n_typable": 11,
+      "n_typed": 10,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 6,
+      "n_classes": 2,
+      "n_attrs": 1,
+      "n_properties": 1,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "opentelemetry/propagators/textmap.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "CarrierT",
+          "line_start": 10,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CarrierValT",
+          "line_start": 12,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "default_getter",
+          "line_start": 87,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "default_setter",
+          "line_start": 107,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "class",
+          "name": "DefaultGetter",
+          "line_start": 63,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DefaultGetter.get",
+              "line_start": 64,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "DefaultGetter.keys",
+              "line_start": 82,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DefaultSetter",
+          "line_start": 90,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DefaultSetter.set",
+              "line_start": 91,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Getter",
+          "line_start": 15,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Getter.get",
+              "line_start": 20,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Getter.keys",
+              "line_start": 34,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Setter",
+          "line_start": 46,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Setter.set",
+              "line_start": 51,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextMapPropagator",
+          "line_start": 110,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TextMapPropagator.extract",
+              "line_start": 119,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TextMapPropagator.inject",
+              "line_start": 147,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TextMapPropagator.fields",
+              "line_start": 172,
               "n_typed": 1,
               "n_any": 0,
               "n_untyped": 0,
@@ -1590,26 +2152,301 @@
           "n_properties": 1
         }
       ],
-      "type_ignores": [],
-      "name": "propagation",
-      "names": [
-        "W3CBaggagePropagator"
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
       ],
-      "n_typable": 9,
-      "n_typed": 9,
+      "name": "opentelemetry.propagators.textmap",
+      "names": [
+        "CarrierT",
+        "CarrierValT",
+        "DefaultGetter",
+        "DefaultSetter",
+        "Getter",
+        "Setter",
+        "TextMapPropagator",
+        "default_getter",
+        "default_setter"
+      ],
+      "n_typable": 29,
+      "n_typed": 29,
       "n_any": 0,
       "n_untyped": 0,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_params": 6,
-      "n_classes": 1,
-      "n_attrs": 0,
+      "n_methods": 8,
+      "n_method_params": 18,
+      "n_classes": 5,
+      "n_attrs": 2,
       "n_properties": 1,
-      "n_type_ignores": 0
+      "n_type_ignores": 2
     },
     {
-      "path": "propagation/__init__.py",
+      "path": "opentelemetry/trace/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "use_span",
+          "line_start": 584,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "get_tracer",
+          "line_start": 524,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "get_tracer_provider",
+          "line_start": 568,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "set_tracer_provider",
+          "line_start": 559,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Link",
+          "line_start": 121,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Link.__init__",
+              "line_start": 129,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Link.attributes",
+              "line_start": 137,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Link.dropped_attributes",
+              "line_start": 141,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "SpanKind",
+          "line_start": 151,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SpanKind.INTERNAL",
+              "line_start": 160,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SpanKind.SERVER",
+              "line_start": 164,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SpanKind.CLIENT",
+              "line_start": 167,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SpanKind.PRODUCER",
+              "line_start": 172,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SpanKind.CONSUMER",
+              "line_start": 177,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Tracer",
+          "line_start": 269,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Tracer.start_span",
+              "line_start": 276,
+              "n_typed": 9,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Tracer.start_as_current_span",
+              "line_start": 330,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 19,
+          "n_typed": 19,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 17,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TracerProvider",
+          "line_start": 180,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TracerProvider.get_tracer",
+              "line_start": 181,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "opentelemetry.trace",
+      "names": [
+        "Link",
+        "SpanKind",
+        "Tracer",
+        "TracerProvider",
+        "get_tracer",
+        "get_tracer_provider",
+        "set_tracer_provider",
+        "use_span"
+      ],
+      "n_typable": 42,
+      "n_typed": 42,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 4,
+      "n_function_params": 10,
+      "n_methods": 4,
+      "n_method_params": 22,
+      "n_classes": 4,
+      "n_attrs": 0,
+      "n_properties": 2,
+      "n_type_ignores": 4
+    },
+    {
+      "path": "opentelemetry/trace/propagation/__init__.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -1642,7 +2479,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "propagation",
+      "name": "opentelemetry.trace.propagation",
       "names": [
         "SPAN_KEY",
         "get_current_span",
@@ -1662,314 +2499,81 @@
       "n_type_ignores": 0
     },
     {
-      "path": "re.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "parse_headers",
-          "line_start": 51,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "parse_env_headers",
-          "line_start": 58,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "re",
-      "names": [
-        "parse_env_headers",
-        "parse_headers"
-      ],
-      "n_typable": 5,
-      "n_typed": 5,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 2,
-      "n_function_params": 3,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "severity/__init__.py",
+      "path": "opentelemetry/trace/propagation/tracecontext.py",
       "symbol_reports": [
         {
           "kind": "class",
-          "name": "SeverityNumber",
-          "line_start": 7,
-          "methods": [],
-          "properties": [],
-          "attrs": [
+          "name": "TraceContextTextMapPropagator",
+          "line_start": 13,
+          "methods": [
             {
-              "kind": "attr",
-              "name": "SeverityNumber.UNSPECIFIED",
-              "line_start": 20,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.TRACE",
-              "line_start": 21,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.TRACE2",
-              "line_start": 22,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.TRACE3",
-              "line_start": 23,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.TRACE4",
+              "kind": "function",
+              "name": "TraceContextTextMapPropagator.extract",
               "line_start": 24,
-              "n_typed": 0,
+              "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
-              "n_typable": 0
+              "n_typable": 4,
+              "n_params": 3
             },
             {
-              "kind": "attr",
-              "name": "SeverityNumber.DEBUG",
-              "line_start": 25,
-              "n_typed": 0,
+              "kind": "function",
+              "name": "TraceContextTextMapPropagator.inject",
+              "line_start": 77,
+              "n_typed": 4,
               "n_any": 0,
               "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.DEBUG2",
-              "line_start": 26,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.DEBUG3",
-              "line_start": 27,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.DEBUG4",
-              "line_start": 28,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.INFO",
-              "line_start": 29,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.INFO2",
-              "line_start": 30,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.INFO3",
-              "line_start": 31,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.INFO4",
-              "line_start": 32,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.WARN",
-              "line_start": 33,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.WARN2",
-              "line_start": 34,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.WARN3",
-              "line_start": 35,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.WARN4",
-              "line_start": 36,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.ERROR",
-              "line_start": 37,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.ERROR2",
-              "line_start": 38,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.ERROR3",
-              "line_start": 39,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.ERROR4",
-              "line_start": 40,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.FATAL",
-              "line_start": 41,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.FATAL2",
-              "line_start": 42,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.FATAL3",
-              "line_start": 43,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SeverityNumber.FATAL4",
-              "line_start": 44,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
+              "n_typable": 4,
+              "n_params": 3
             }
           ],
-          "n_typable": 0,
-          "n_typed": 0,
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TraceContextTextMapPropagator.fields",
+              "line_start": 99,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 9,
+          "n_typed": 9,
           "n_any": 0,
           "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
+          "n_methods": 2,
+          "n_method_params": 6,
           "n_attrs": 0,
-          "n_properties": 0
+          "n_properties": 1
         }
       ],
-      "type_ignores": [],
-      "name": "severity",
-      "names": [
-        "SeverityNumber"
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
       ],
-      "n_typable": 0,
-      "n_typed": 0,
+      "name": "opentelemetry.trace.propagation.tracecontext",
+      "names": [
+        "TraceContextTextMapPropagator"
+      ],
+      "n_typable": 9,
+      "n_typed": 9,
       "n_any": 0,
       "n_untyped": 0,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_params": 0,
+      "n_methods": 2,
+      "n_method_params": 6,
       "n_classes": 1,
       "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
+      "n_properties": 1,
+      "n_type_ignores": 1
     },
     {
-      "path": "span.py",
+      "path": "opentelemetry/trace/span.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -2656,7 +3260,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "span",
+      "name": "opentelemetry.trace.span",
       "names": [
         "DEFAULT_TRACE_OPTIONS",
         "DEFAULT_TRACE_STATE",
@@ -2686,7 +3290,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "status.py",
+      "path": "opentelemetry/trace/status.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -2807,7 +3411,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "status",
+      "name": "opentelemetry.trace.status",
       "names": [
         "Status",
         "StatusCode",
@@ -2827,292 +3431,12 @@
       "n_type_ignores": 0
     },
     {
-      "path": "textmap.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "CarrierT",
-          "line_start": 10,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "CarrierValT",
-          "line_start": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "default_getter",
-          "line_start": 87,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "default_setter",
-          "line_start": 107,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1
-        },
-        {
-          "kind": "class",
-          "name": "DefaultGetter",
-          "line_start": 63,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DefaultGetter.get",
-              "line_start": 64,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "DefaultGetter.keys",
-              "line_start": 82,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "DefaultSetter",
-          "line_start": 90,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "DefaultSetter.set",
-              "line_start": 91,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Getter",
-          "line_start": 15,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Getter.get",
-              "line_start": 20,
-              "n_typed": 3,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "Getter.keys",
-              "line_start": 34,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Setter",
-          "line_start": 46,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Setter.set",
-              "line_start": 51,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "TextMapPropagator",
-          "line_start": 110,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TextMapPropagator.extract",
-              "line_start": 119,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "TextMapPropagator.inject",
-              "line_start": 147,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "TextMapPropagator.fields",
-              "line_start": 172,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 9,
-          "n_typed": 9,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": null
-        },
-        {
-          "kind": "type",
-          "rules": null
-        }
-      ],
-      "name": "textmap",
-      "names": [
-        "CarrierT",
-        "CarrierValT",
-        "DefaultGetter",
-        "DefaultSetter",
-        "Getter",
-        "Setter",
-        "TextMapPropagator",
-        "default_getter",
-        "default_setter"
-      ],
-      "n_typable": 29,
-      "n_typed": 29,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 8,
-      "n_method_params": 18,
-      "n_classes": 5,
-      "n_attrs": 2,
-      "n_properties": 1,
-      "n_type_ignores": 2
-    },
-    {
-      "path": "trace/__init__.py",
+      "path": "opentelemetry/util/re.py",
       "symbol_reports": [
         {
           "kind": "function",
-          "name": "use_span",
-          "line_start": 584,
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "get_tracer",
-          "line_start": 524,
-          "n_typed": 6,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "get_tracer_provider",
-          "line_start": 568,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "set_tracer_provider",
-          "line_start": 559,
+          "name": "parse_headers",
+          "line_start": 51,
           "n_typed": 2,
           "n_any": 0,
           "n_untyped": 0,
@@ -3120,296 +3444,37 @@
           "n_params": 1
         },
         {
-          "kind": "class",
-          "name": "Link",
-          "line_start": 121,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Link.__init__",
-              "line_start": 129,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "Link.attributes",
-              "line_start": 137,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "Link.dropped_attributes",
-              "line_start": 141,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 4,
-          "n_typed": 4,
+          "kind": "function",
+          "name": "parse_env_headers",
+          "line_start": 58,
+          "n_typed": 3,
           "n_any": 0,
           "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "SpanKind",
-          "line_start": 151,
-          "methods": [],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "SpanKind.INTERNAL",
-              "line_start": 160,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SpanKind.SERVER",
-              "line_start": 164,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SpanKind.CLIENT",
-              "line_start": 167,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SpanKind.PRODUCER",
-              "line_start": 172,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            },
-            {
-              "kind": "attr",
-              "name": "SpanKind.CONSUMER",
-              "line_start": 177,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0
-            }
-          ],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Tracer",
-          "line_start": 269,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Tracer.start_span",
-              "line_start": 276,
-              "n_typed": 9,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 9,
-              "n_params": 8
-            },
-            {
-              "kind": "function",
-              "name": "Tracer.start_as_current_span",
-              "line_start": 330,
-              "n_typed": 10,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 10,
-              "n_params": 9
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 19,
-          "n_typed": 19,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 17,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "TracerProvider",
-          "line_start": 180,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TracerProvider.get_tracer",
-              "line_start": 181,
-              "n_typed": 5,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 5,
-              "n_params": 4
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 5,
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 4,
-          "n_attrs": 0,
-          "n_properties": 0
+          "n_typable": 3,
+          "n_params": 2
         }
       ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": null
-        },
-        {
-          "kind": "type",
-          "rules": null
-        },
-        {
-          "kind": "type",
-          "rules": null
-        },
-        {
-          "kind": "type",
-          "rules": null
-        }
-      ],
-      "name": "trace",
+      "type_ignores": [],
+      "name": "opentelemetry.util.re",
       "names": [
-        "Link",
-        "SpanKind",
-        "Tracer",
-        "TracerProvider",
-        "get_tracer",
-        "get_tracer_provider",
-        "set_tracer_provider",
-        "use_span"
+        "parse_env_headers",
+        "parse_headers"
       ],
-      "n_typable": 42,
-      "n_typed": 42,
+      "n_typable": 5,
+      "n_typed": 5,
       "n_any": 0,
       "n_untyped": 0,
-      "n_functions": 4,
-      "n_function_params": 10,
-      "n_methods": 4,
-      "n_method_params": 22,
-      "n_classes": 4,
+      "n_functions": 2,
+      "n_function_params": 3,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
       "n_attrs": 0,
-      "n_properties": 2,
-      "n_type_ignores": 4
+      "n_properties": 0,
+      "n_type_ignores": 0
     },
     {
-      "path": "tracecontext.py",
-      "symbol_reports": [
-        {
-          "kind": "class",
-          "name": "TraceContextTextMapPropagator",
-          "line_start": 13,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TraceContextTextMapPropagator.extract",
-              "line_start": 24,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "TraceContextTextMapPropagator.inject",
-              "line_start": 77,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "TraceContextTextMapPropagator.fields",
-              "line_start": 99,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [],
-          "n_typable": 9,
-          "n_typed": 9,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 2,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [
-        {
-          "kind": "type",
-          "rules": null
-        }
-      ],
-      "name": "tracecontext",
-      "names": [
-        "TraceContextTextMapPropagator"
-      ],
-      "n_typable": 9,
-      "n_typed": 9,
-      "n_any": 0,
-      "n_untyped": 0,
-      "n_functions": 0,
-      "n_function_params": 0,
-      "n_methods": 2,
-      "n_method_params": 6,
-      "n_classes": 1,
-      "n_attrs": 0,
-      "n_properties": 1,
-      "n_type_ignores": 1
-    },
-    {
-      "path": "types.py",
+      "path": "opentelemetry/util/types.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -3449,7 +3514,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "types",
+      "name": "opentelemetry.util.types",
       "names": [
         "AnyValue",
         "AttributeValue",
@@ -3470,1913 +3535,7 @@
       "n_type_ignores": 0
     },
     {
-      "path": "typing_extensions.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "AbstractSet",
-          "line_start": 116,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "AnyStr",
-          "line_start": 117,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "BinaryIO",
-          "line_start": 118,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Callable",
-          "line_start": 119,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Collection",
-          "line_start": 120,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Container",
-          "line_start": 121,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Dict",
-          "line_start": 122,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "FrozenSet",
-          "line_start": 124,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Hashable",
-          "line_start": 127,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "IO",
-          "line_start": 128,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "ItemsView",
-          "line_start": 129,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Iterable",
-          "line_start": 130,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Iterator",
-          "line_start": 131,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "KeysView",
-          "line_start": 132,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "List",
-          "line_start": 133,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Mapping",
-          "line_start": 134,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "MappingView",
-          "line_start": 135,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Match",
-          "line_start": 136,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "MutableMapping",
-          "line_start": 137,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "MutableSequence",
-          "line_start": 138,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "MutableSet",
-          "line_start": 139,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Optional",
-          "line_start": 140,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Pattern",
-          "line_start": 141,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Reversible",
-          "line_start": 142,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Sequence",
-          "line_start": 143,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Set",
-          "line_start": 144,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Sized",
-          "line_start": 145,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "TextIO",
-          "line_start": 146,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Tuple",
-          "line_start": 147,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Union",
-          "line_start": 148,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "ValuesView",
-          "line_start": 149,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "cast",
-          "line_start": 150,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "no_type_check",
-          "line_start": 151,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Sentinel",
-          "line_start": 271,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "NoReturn",
-          "line_start": 290,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "ClassVar",
-          "line_start": 332,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Final",
-          "line_start": 388,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "final",
-          "line_start": 392,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Literal",
-          "line_start": 463,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Type",
-          "line_start": 605,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Awaitable",
-          "line_start": 609,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Coroutine",
-          "line_start": 610,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "AsyncIterable",
-          "line_start": 611,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "AsyncIterator",
-          "line_start": 612,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Deque",
-          "line_start": 613,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "DefaultDict",
-          "line_start": 614,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "OrderedDict",
-          "line_start": 615,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Counter",
-          "line_start": 616,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "ChainMap",
-          "line_start": 617,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Text",
-          "line_start": 618,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "TYPE_CHECKING",
-          "line_start": 619,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Protocol",
-          "line_start": 724,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "runtime_checkable",
-          "line_start": 905,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "runtime",
-          "line_start": 960,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsInt",
-          "line_start": 966,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsFloat",
-          "line_start": 967,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsComplex",
-          "line_start": 968,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsBytes",
-          "line_start": 969,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsIndex",
-          "line_start": 970,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsAbs",
-          "line_start": 971,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "SupportsRound",
-          "line_start": 972,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "NoDefault",
-          "line_start": 1090,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "NoExtraItems",
-          "line_start": 1110,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "get_origin",
-          "line_start": 1683,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "get_args",
-          "line_start": 1684,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Concatenate",
-          "line_start": 2252,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Unpack",
-          "line_start": 2590,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "dataclass_transform",
-          "line_start": 2884,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "deprecated",
-          "line_start": 3016,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "NamedTuple",
-          "line_start": 3432,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "NewType",
-          "line_start": 3657,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "CapsuleType",
-          "line_start": 4030,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "no_type_check_decorator",
-          "line_start": 4413,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1
-        },
-        {
-          "kind": "attr",
-          "name": "Generic",
-          "line_start": 4420,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "ForwardRef",
-          "line_start": 4421,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "Annotated",
-          "line_start": 4422,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "disjoint_base",
-          "line_start": 432,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "IntVar",
-          "line_start": 456,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "overload",
-          "line_start": 548,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_overloads",
-          "line_start": 588,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "clear_overloads",
-          "line_start": 599,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "TypedDict",
-          "line_start": 1446,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "is_typeddict",
-          "line_start": 1511,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "assert_type",
-          "line_start": 1529,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "get_type_hints",
-          "line_start": 1573,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "TypeAlias",
-          "line_start": 1737,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "TypeGuard",
-          "line_start": 2275,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "TypeIs",
-          "line_start": 2328,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "TypeForm",
-          "line_start": 2381,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "LiteralString",
-          "line_start": 2409,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "Self",
-          "line_start": 2432,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "Never",
-          "line_start": 2453,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "Required",
-          "line_start": 2484,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "NotRequired",
-          "line_start": 2504,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "ReadOnly",
-          "line_start": 2525,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "reveal_type",
-          "line_start": 2826,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "assert_never",
-          "line_start": 2855,
-          "n_typed": 0,
-          "n_any": 2,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "override",
-          "line_start": 2977,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_original_bases",
-          "line_start": 3624,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "is_protocol",
-          "line_start": 3940,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_protocol_members",
-          "line_start": 3961,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "evaluate_forward_ref",
-          "line_start": 4259,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_typable": 8,
-          "n_params": 7
-        },
-        {
-          "kind": "function",
-          "name": "type_repr",
-          "line_start": 4351,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "class",
-          "name": "Buffer",
-          "line_start": 3594,
-          "methods": [],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 0,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 0,
-          "n_method_params": 0,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Doc",
-          "line_start": 3985,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Doc.__init__",
-              "line_start": 4002,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "Doc.__repr__",
-              "line_start": 4005,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "Doc.__hash__",
-              "line_start": 4008,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "Doc.__eq__",
-              "line_start": 4011,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "Doc.documentation",
-              "line_start": 4003,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_methods": 4,
-          "n_method_params": -1,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ParamSpec",
-          "line_start": 1938,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ParamSpec.__new__",
-              "line_start": 1894,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__init_subclass__",
-              "line_start": 1931,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__init__",
-              "line_start": 1996,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_typable": 6,
-              "n_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__repr__",
-              "line_start": 2011,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__hash__",
-              "line_start": 2022,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__eq__",
-              "line_start": 2025,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__reduce__",
-              "line_start": 2028,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpec.__call__",
-              "line_start": 2032,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 3,
-              "n_typable": 3,
-              "n_params": 2
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "ParamSpec.args",
-              "line_start": 1988,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "property",
-              "name": "ParamSpec.kwargs",
-              "line_start": 1992,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ParamSpec.__covariant__",
-              "line_start": 2000,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ParamSpec.__contravariant__",
-              "line_start": 2001,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ParamSpec.__infer_variance__",
-              "line_start": 2002,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "ParamSpec.__bound__",
-              "line_start": 2003,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 25,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 25,
-          "n_methods": 8,
-          "n_method_params": 11,
-          "n_attrs": 4,
-          "n_properties": 2
-        },
-        {
-          "kind": "class",
-          "name": "ParamSpecArgs",
-          "line_start": 1835,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ParamSpecArgs.__init__",
-              "line_start": 1847,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpecArgs.__repr__",
-              "line_start": 1850,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpecArgs.__eq__",
-              "line_start": 1853,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ParamSpecArgs.__origin__",
-              "line_start": 1848,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_methods": 3,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "ParamSpecKwargs",
-          "line_start": 1858,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "ParamSpecKwargs.__init__",
-              "line_start": 1870,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpecKwargs.__repr__",
-              "line_start": 1873,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "ParamSpecKwargs.__eq__",
-              "line_start": 1876,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "ParamSpecKwargs.__origin__",
-              "line_start": 1871,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 4,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_methods": 3,
-          "n_method_params": 0,
-          "n_attrs": 1,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Reader",
-          "line_start": 1045,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Reader.read",
-              "line_start": 1054,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "TypeAliasType",
-          "line_start": 3774,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__init__",
-              "line_start": 3802,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 3,
-              "n_params": 2
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__setattr__",
-              "line_start": 3839,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__delattr__",
-              "line_start": 3844,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__repr__",
-              "line_start": 3861,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__getitem__",
-              "line_start": 3891,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__reduce__",
-              "line_start": 3908,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__init_subclass__",
-              "line_start": 3911,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__call__",
-              "line_start": 3918,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__or__",
-              "line_start": 3923,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeAliasType.__ror__",
-              "line_start": 3930,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TypeAliasType.__value__",
-              "line_start": 3807,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TypeAliasType.__parameters__",
-              "line_start": 3832,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 16,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 14,
-          "n_methods": 10,
-          "n_method_params": 4,
-          "n_attrs": 2,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "TypeVar",
-          "line_start": 1781,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TypeVar.__new__",
-              "line_start": 1786,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 8,
-              "n_typable": 8,
-              "n_params": 7
-            },
-            {
-              "kind": "function",
-              "name": "TypeVar.__init_subclass__",
-              "line_start": 1815,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 8,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 8,
-          "n_methods": 2,
-          "n_method_params": 6,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "TypeVarTuple",
-          "line_start": 2732,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__new__",
-              "line_start": 2662,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 7,
-              "n_typable": 7,
-              "n_params": 6
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__init_subclass__",
-              "line_start": 2728,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__iter__",
-              "line_start": 2779,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__init__",
-              "line_start": 2782,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 6,
-              "n_typable": 6,
-              "n_params": 5
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__repr__",
-              "line_start": 2798,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__hash__",
-              "line_start": 2809,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__eq__",
-              "line_start": 2812,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "TypeVarTuple.__reduce__",
-              "line_start": 2815,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [],
-          "attrs": [
-            {
-              "kind": "attr",
-              "name": "TypeVarTuple.__covariant__",
-              "line_start": 2785,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TypeVarTuple.__contravariant__",
-              "line_start": 2786,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TypeVarTuple.__infer_variance__",
-              "line_start": 2787,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TypeVarTuple.__bound__",
-              "line_start": 2788,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            },
-            {
-              "kind": "attr",
-              "name": "TypeVarTuple.__unpacked__",
-              "line_start": 2796,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
-              "n_typable": 1
-            }
-          ],
-          "n_typable": 24,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 24,
-          "n_methods": 8,
-          "n_method_params": 11,
-          "n_attrs": 5,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "Writer",
-          "line_start": 1062,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "Writer.write",
-              "line_start": 1071,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2,
-              "n_params": 1
-            }
-          ],
-          "properties": [],
-          "attrs": [],
-          "n_typable": 2,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_methods": 1,
-          "n_method_params": 1,
-          "n_attrs": 0,
-          "n_properties": 0
-        },
-        {
-          "kind": "class",
-          "name": "sentinel",
-          "line_start": 182,
-          "methods": [
-            {
-              "kind": "function",
-              "name": "sentinel.__init__",
-              "line_start": 189,
-              "n_typed": 4,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 4,
-              "n_params": 3
-            },
-            {
-              "kind": "function",
-              "name": "sentinel.__init_subclass__",
-              "line_start": 223,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "sentinel.__setattr__",
-              "line_start": 232,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            },
-            {
-              "kind": "function",
-              "name": "sentinel.__repr__",
-              "line_start": 250,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 0,
-              "n_params": -1
-            },
-            {
-              "kind": "function",
-              "name": "sentinel.__or__",
-              "line_start": 261,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "sentinel.__ror__",
-              "line_start": 264,
-              "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 2,
-              "n_typable": 2,
-              "n_params": 1
-            },
-            {
-              "kind": "function",
-              "name": "sentinel.__reduce__",
-              "line_start": 267,
-              "n_typed": 1,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 1,
-              "n_params": 0
-            }
-          ],
-          "properties": [
-            {
-              "kind": "property",
-              "name": "sentinel.__name__",
-              "line_start": 242,
-              "n_typed": 2,
-              "n_any": 0,
-              "n_untyped": 0,
-              "n_typable": 2
-            }
-          ],
-          "attrs": [],
-          "n_typable": 12,
-          "n_typed": 8,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_methods": 7,
-          "n_method_params": 3,
-          "n_attrs": 0,
-          "n_properties": 1
-        }
-      ],
-      "type_ignores": [],
-      "name": "typing_extensions",
-      "names": [
-        "AbstractSet",
-        "Annotated",
-        "AnyStr",
-        "AsyncIterable",
-        "AsyncIterator",
-        "Awaitable",
-        "BinaryIO",
-        "Buffer",
-        "Callable",
-        "CapsuleType",
-        "ChainMap",
-        "ClassVar",
-        "Collection",
-        "Concatenate",
-        "Container",
-        "Coroutine",
-        "Counter",
-        "DefaultDict",
-        "Deque",
-        "Dict",
-        "Doc",
-        "Final",
-        "ForwardRef",
-        "FrozenSet",
-        "Generic",
-        "Hashable",
-        "IO",
-        "IntVar",
-        "ItemsView",
-        "Iterable",
-        "Iterator",
-        "KeysView",
-        "List",
-        "Literal",
-        "LiteralString",
-        "Mapping",
-        "MappingView",
-        "Match",
-        "MutableMapping",
-        "MutableSequence",
-        "MutableSet",
-        "NamedTuple",
-        "Never",
-        "NewType",
-        "NoDefault",
-        "NoExtraItems",
-        "NoReturn",
-        "NotRequired",
-        "Optional",
-        "OrderedDict",
-        "ParamSpec",
-        "ParamSpecArgs",
-        "ParamSpecKwargs",
-        "Pattern",
-        "Protocol",
-        "ReadOnly",
-        "Reader",
-        "Required",
-        "Reversible",
-        "Self",
-        "Sentinel",
-        "Sequence",
-        "Set",
-        "Sized",
-        "SupportsAbs",
-        "SupportsBytes",
-        "SupportsComplex",
-        "SupportsFloat",
-        "SupportsIndex",
-        "SupportsInt",
-        "SupportsRound",
-        "TYPE_CHECKING",
-        "Text",
-        "TextIO",
-        "Tuple",
-        "Type",
-        "TypeAlias",
-        "TypeAliasType",
-        "TypeForm",
-        "TypeGuard",
-        "TypeIs",
-        "TypeVar",
-        "TypeVarTuple",
-        "TypedDict",
-        "Union",
-        "Unpack",
-        "ValuesView",
-        "Writer",
-        "assert_never",
-        "assert_type",
-        "cast",
-        "clear_overloads",
-        "dataclass_transform",
-        "deprecated",
-        "disjoint_base",
-        "evaluate_forward_ref",
-        "final",
-        "get_args",
-        "get_origin",
-        "get_original_bases",
-        "get_overloads",
-        "get_protocol_members",
-        "get_type_hints",
-        "is_protocol",
-        "is_typeddict",
-        "no_type_check",
-        "no_type_check_decorator",
-        "overload",
-        "override",
-        "reveal_type",
-        "runtime",
-        "runtime_checkable",
-        "sentinel",
-        "type_repr"
-      ],
-      "n_typable": 211,
-      "n_typed": 25,
-      "n_any": 2,
-      "n_untyped": 184,
-      "n_functions": 27,
-      "n_function_params": 47,
-      "n_methods": 47,
-      "n_method_params": 36,
-      "n_classes": 11,
-      "n_attrs": 50,
-      "n_properties": 3,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "version/__init__.py",
+      "path": "opentelemetry/version/__init__.py",
       "symbol_reports": [
         {
           "kind": "attr",
@@ -5389,7 +3548,7 @@
         }
       ],
       "type_ignores": [],
-      "name": "version",
+      "name": "opentelemetry.version",
       "names": [
         "__version__"
       ],
@@ -5408,17 +3567,17 @@
     }
   ],
   "typecheckers": {},
-  "n_modules": 22,
-  "n_typable": 570,
-  "n_typed": 370,
-  "n_any": 2,
-  "n_untyped": 198,
-  "n_functions": 52,
-  "n_function_params": 89,
-  "n_methods": 147,
-  "n_method_params": 192,
-  "n_classes": 54,
-  "n_attrs": 65,
+  "n_modules": 21,
+  "n_typable": 448,
+  "n_typed": 434,
+  "n_any": 0,
+  "n_untyped": 14,
+  "n_functions": 28,
+  "n_function_params": 48,
+  "n_methods": 117,
+  "n_method_params": 216,
+  "n_classes": 46,
+  "n_attrs": 15,
   "n_properties": 24,
   "type_ignores": [
     {
@@ -5464,6 +3623,16 @@
     {
       "kind": "type",
       "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportReturnType"
+      ]
     },
     {
       "kind": "type",
@@ -5516,7 +3685,11 @@
     {
       "kind": "type",
       "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
     }
   ],
-  "n_type_ignores": 23
+  "n_type_ignores": 26
 }

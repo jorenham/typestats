@@ -1,0 +1,7222 @@
+{
+  "schema_version": "1.0",
+  "package": "pydantic-ai",
+  "version": "0.0.43",
+  "base_version": null,
+  "stubs_only": "yes (third party)",
+  "py_typed": "YES",
+  "pypi": {
+    "upload_time": "2025-03-21T09:07:14.822928Z",
+    "requires_python": ">=3.9",
+    "size": 11756814,
+    "sha256": "7fb144eeee16abda0956befbee2577071a77a403c3fd7bb4a71562765812e072"
+  },
+  "metadata": {
+    "Metadata-Version": [
+      "2.4"
+    ],
+    "Name": [
+      "pydantic-ai"
+    ],
+    "Version": [
+      "0.0.43"
+    ],
+    "Summary": [
+      "Agent Framework / shim to use Pydantic with LLMs"
+    ],
+    "Project-URL": [
+      "Homepage, https://ai.pydantic.dev",
+      "Source, https://github.com/pydantic/pydantic-ai",
+      "Documentation, https://ai.pydantic.dev",
+      "Changelog, https://github.com/pydantic/pydantic-ai/releases"
+    ],
+    "Author-email": [
+      "Samuel Colvin <samuel@pydantic.dev>, Marcelo Trylesinski <marcelotryle@gmail.com>, David Montague <david@pydantic.dev>, Alex Hall <alex@pydantic.dev>"
+    ],
+    "License-Expression": [
+      "MIT"
+    ],
+    "License-File": [
+      "LICENSE"
+    ],
+    "Classifier": [
+      "Development Status :: 4 - Beta",
+      "Framework :: Pydantic",
+      "Framework :: Pydantic :: 2",
+      "Intended Audience :: Developers",
+      "Intended Audience :: Information Technology",
+      "License :: OSI Approved :: MIT License",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.9",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Topic :: Internet",
+      "Topic :: Scientific/Engineering :: Artificial Intelligence",
+      "Topic :: Software Development :: Libraries :: Python Modules"
+    ],
+    "Requires-Python": [
+      ">=3.9"
+    ],
+    "Requires-Dist": [
+      "pydantic-ai-slim[anthropic,bedrock,cli,cohere,groq,mcp,mistral,openai,vertexai]==0.0.43",
+      "pydantic-ai-examples==0.0.43; extra == 'examples'",
+      "logfire>=2.3; extra == 'logfire'"
+    ],
+    "Provides-Extra": [
+      "examples",
+      "logfire"
+    ],
+    "Description-Content-Type": [
+      "text/markdown"
+    ]
+  },
+  "module_reports": [
+    {
+      "path": "pydantic_ai/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "__version__",
+          "line_start": 42,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai",
+      "names": [
+        "__version__"
+      ],
+      "n_typable": 1,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 1,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/agent.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "capture_run_messages",
+          "line_start": 46,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "EndStrategy",
+          "line_start": 47,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CallToolsNode",
+          "line_start": 48,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ModelRequestNode",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "UserPromptNode",
+          "line_start": 50,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "Agent",
+          "line_start": 75,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Agent.__init__",
+              "line_start": 143,
+              "n_typed": 15,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 15,
+              "n_params": 14
+            },
+            {
+              "kind": "function",
+              "name": "Agent.instrument_all",
+              "line_start": 235,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Agent.run",
+              "line_start": 240,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "Agent.iter",
+              "line_start": 333,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "Agent.run_sync",
+              "line_start": 495,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "Agent.run_stream",
+              "line_start": 584,
+              "n_typed": 10,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 10,
+              "n_params": 9
+            },
+            {
+              "kind": "function",
+              "name": "Agent.override",
+              "line_start": 755,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Agent.system_prompt",
+              "line_start": 793,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Agent.result_validator",
+              "line_start": 872,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Agent.tool",
+              "line_start": 929,
+              "n_typed": 7,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "Agent.tool_plain",
+              "line_start": 1025,
+              "n_typed": 7,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "Agent.is_model_request_node",
+              "line_start": 1250,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Agent.is_call_tools_node",
+              "line_start": 1260,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Agent.is_user_prompt_node",
+              "line_start": 1270,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Agent.is_end_node",
+              "line_start": 1280,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Agent.run_mcp_servers",
+              "line_start": 1290,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Agent.last_run_messages",
+              "line_start": 1226,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Agent.model",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Agent.name",
+              "line_start": 101,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Agent.end_strategy",
+              "line_start": 106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Agent.model_settings",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Agent.result_type",
+              "line_start": 116,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Agent.instrument",
+              "line_start": 121,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 91,
+          "n_typed": 85,
+          "n_any": 6,
+          "n_untyped": 0,
+          "n_methods": 16,
+          "n_method_params": 74,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "AgentRun",
+          "line_start": 1305,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentRun.__aiter__",
+              "line_start": 1404,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentRun.__anext__",
+              "line_start": 1410,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentRun.next",
+              "line_start": 1420,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRun.usage",
+              "line_start": 1496,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentRun.__repr__",
+              "line_start": 1500,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AgentRun.ctx",
+              "line_start": 1365,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AgentRun.next_node",
+              "line_start": 1372,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AgentRun.result",
+              "line_start": 1387,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "AgentRunResult",
+          "line_start": 1506,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentRunResult.all_messages",
+              "line_start": 1531,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRunResult.all_messages_json",
+              "line_start": 1548,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRunResult.new_messages",
+              "line_start": 1564,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRunResult.new_messages_json",
+              "line_start": 1580,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "AgentRunResult.usage",
+              "line_start": 1596,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AgentRunResult.data",
+              "line_start": 1510,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 9,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportPrivateUsage"
+          ]
+        },
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportArgumentType"
+          ]
+        },
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportReturnType"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.agent",
+      "names": [
+        "Agent",
+        "AgentRun",
+        "AgentRunResult",
+        "CallToolsNode",
+        "EndStrategy",
+        "ModelRequestNode",
+        "UserPromptNode",
+        "capture_run_messages"
+      ],
+      "n_typable": 108,
+      "n_typed": 102,
+      "n_any": 6,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 26,
+      "n_method_params": 78,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 4,
+      "n_type_ignores": 3
+    },
+    {
+      "path": "pydantic_ai/common_tools/duckduckgo.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "duckduckgo_search_tool",
+          "line_start": 62,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.common_tools.duckduckgo",
+      "names": [
+        "duckduckgo_search_tool"
+      ],
+      "n_typable": 3,
+      "n_typed": 1,
+      "n_any": 1,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/common_tools/tavily.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "tavily_search_tool",
+          "line_start": 71,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.common_tools.tavily",
+      "names": [
+        "tavily_search_tool"
+      ],
+      "n_typable": 2,
+      "n_typed": 1,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "pydantic_ai/exceptions.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AgentRunError",
+          "line_start": 47,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AgentRunError.__init__",
+              "line_start": 53,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "AgentRunError.__str__",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AgentRunError.message",
+              "line_start": 50,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": -1,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FallbackExceptionGroup",
+          "line_start": 114,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ModelHTTPError",
+          "line_start": 91,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ModelHTTPError.__init__",
+              "line_start": 106,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelHTTPError.status_code",
+              "line_start": 94,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModelHTTPError.model_name",
+              "line_start": 97,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "ModelHTTPError.body",
+              "line_start": 100,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 3,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ModelRetry",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ModelRetry.__init__",
+              "line_start": 31,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelRetry.message",
+              "line_start": 28,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UnexpectedModelBehavior",
+          "line_start": 65,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UnexpectedModelBehavior.__init__",
+              "line_start": 73,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UnexpectedModelBehavior.__str__",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UnexpectedModelBehavior.message",
+              "line_start": 68,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "UnexpectedModelBehavior.body",
+              "line_start": 70,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 2,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UsageLimitExceeded",
+          "line_start": 61,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UserError",
+          "line_start": 36,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UserError.__init__",
+              "line_start": 42,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UserError.message",
+              "line_start": 39,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 1,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.exceptions",
+      "names": [
+        "AgentRunError",
+        "FallbackExceptionGroup",
+        "ModelHTTPError",
+        "ModelRetry",
+        "UnexpectedModelBehavior",
+        "UsageLimitExceeded",
+        "UserError"
+      ],
+      "n_typable": 16,
+      "n_typed": 16,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 1,
+      "n_classes": 7,
+      "n_attrs": 8,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/format_as_xml.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "format_as_xml",
+          "line_start": 14,
+          "n_typed": 6,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportUnknownArgumentType"
+          ]
+        },
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportUnknownVariableType"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.format_as_xml",
+      "names": [
+        "format_as_xml"
+      ],
+      "n_typable": 7,
+      "n_typed": 6,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 6,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "pydantic_ai/mcp.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MCPServer",
+          "line_start": 30,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MCPServer.client_streams",
+              "line_start": 43,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MCPServer.list_tools",
+              "line_start": 54,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MCPServer.call_tool",
+              "line_start": 71,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "MCPServer.__aenter__",
+              "line_start": 83,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "MCPServer.__aexit__",
+              "line_start": 94,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 5,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MCPServerHTTP",
+          "line_start": 153,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MCPServerHTTP.client_streams",
+              "line_start": 191,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MCPServerHTTP.url",
+              "line_start": 185,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MCPServerStdio",
+          "line_start": 101,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MCPServerStdio.client_streams",
+              "line_start": 142,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MCPServerStdio.command",
+              "line_start": 129,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "MCPServerStdio.args",
+              "line_start": 132,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "MCPServerStdio.env",
+              "line_start": 135,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.mcp",
+      "names": [
+        "MCPServer",
+        "MCPServerHTTP",
+        "MCPServerStdio"
+      ],
+      "n_typable": 9,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 7,
+      "n_method_params": 2,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/messages.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "AudioMediaType",
+          "line_start": 126,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ImageMediaType",
+          "line_start": 127,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DocumentMediaType",
+          "line_start": 128,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "AudioFormat",
+          "line_start": 138,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ImageFormat",
+          "line_start": 139,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DocumentFormat",
+          "line_start": 140,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "UserContent",
+          "line_start": 195,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "tool_return_ta",
+          "line_start": 258,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "error_details_ta",
+          "line_start": 302,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ModelRequestPart",
+          "line_start": 364,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ModelResponsePart",
+          "line_start": 445,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ModelMessage",
+          "line_start": 499,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ModelMessagesTypeAdapter",
+          "line_start": 502,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ModelResponsePartDelta",
+          "line_start": 668,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ModelResponseStreamEvent",
+          "line_start": 716,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "AgentStreamEvent",
+          "line_start": 719,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "HandleResponseEvent",
+          "line_start": 752,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AudioUrl",
+          "line_start": 45,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AudioUrl.media_type",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AudioUrl.url",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "AudioUrl.kind",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 1
+        },
+        {
+          "kind": "class",
+          "name": "BinaryContent",
+          "line_start": 143,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BinaryContent.is_audio",
+              "line_start": 156,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BinaryContent.is_image",
+              "line_start": 161,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BinaryContent.is_document",
+              "line_start": 166,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BinaryContent.format",
+              "line_start": 180,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BinaryContent.data",
+              "line_start": 147,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "BinaryContent.media_type",
+              "line_start": 150,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "BinaryContent.kind",
+              "line_start": 153,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 4,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "DocumentUrl",
+          "line_start": 99,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "DocumentUrl.media_type",
+              "line_start": 109,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "DocumentUrl.format",
+              "line_start": 117,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DocumentUrl.url",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "DocumentUrl.kind",
+              "line_start": 106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "FinalResultEvent",
+          "line_start": 704,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FinalResultEvent.tool_name",
+              "line_start": 708,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FinalResultEvent.tool_call_id",
+              "line_start": 710,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FinalResultEvent.event_kind",
+              "line_start": 712,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FunctionToolCallEvent",
+          "line_start": 725,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FunctionToolCallEvent.__post_init__",
+              "line_start": 736,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FunctionToolCallEvent.part",
+              "line_start": 729,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FunctionToolCallEvent.call_id",
+              "line_start": 731,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FunctionToolCallEvent.event_kind",
+              "line_start": 733,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FunctionToolResultEvent",
+          "line_start": 740,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FunctionToolResultEvent.result",
+              "line_start": 744,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FunctionToolResultEvent.tool_call_id",
+              "line_start": 746,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FunctionToolResultEvent.event_kind",
+              "line_start": 748,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ImageUrl",
+          "line_start": 66,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "ImageUrl.media_type",
+              "line_start": 76,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "ImageUrl.format",
+              "line_start": 90,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ImageUrl.url",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ImageUrl.kind",
+              "line_start": 73,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "ModelRequest",
+          "line_start": 370,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelRequest.parts",
+              "line_start": 374,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelRequest.kind",
+              "line_start": 377,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ModelResponse",
+          "line_start": 449,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ModelResponse.otel_events",
+              "line_start": 468,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelResponse.parts",
+              "line_start": 453,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelResponse.model_name",
+              "line_start": 456,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelResponse.timestamp",
+              "line_start": 459,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelResponse.kind",
+              "line_start": 465,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PartDeltaEvent",
+          "line_start": 690,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PartDeltaEvent.index",
+              "line_start": 694,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PartDeltaEvent.delta",
+              "line_start": 697,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PartDeltaEvent.event_kind",
+              "line_start": 700,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "PartStartEvent",
+          "line_start": 672,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "PartStartEvent.index",
+              "line_start": 680,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PartStartEvent.part",
+              "line_start": 683,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "PartStartEvent.event_kind",
+              "line_start": 686,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "RetryPromptPart",
+          "line_start": 305,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RetryPromptPart.model_response",
+              "line_start": 340,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "RetryPromptPart.otel_event",
+              "line_start": 349,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RetryPromptPart.content",
+              "line_start": 321,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RetryPromptPart.tool_name",
+              "line_start": 328,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RetryPromptPart.tool_call_id",
+              "line_start": 331,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RetryPromptPart.timestamp",
+              "line_start": 334,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RetryPromptPart.part_kind",
+              "line_start": 337,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 1,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "SystemPromptPart",
+          "line_start": 19,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "SystemPromptPart.otel_event",
+              "line_start": 41,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "SystemPromptPart.content",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SystemPromptPart.timestamp",
+              "line_start": 29,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SystemPromptPart.dynamic_ref",
+              "line_start": 32,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "SystemPromptPart.part_kind",
+              "line_start": 38,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextPart",
+          "line_start": 381,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TextPart.has_content",
+              "line_start": 391,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TextPart.content",
+              "line_start": 385,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextPart.part_kind",
+              "line_start": 388,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "TextPartDelta",
+          "line_start": 508,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TextPartDelta.apply",
+              "line_start": 518,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TextPartDelta.content_delta",
+              "line_start": 512,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TextPartDelta.part_delta_kind",
+              "line_start": 515,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ToolCallPart",
+          "line_start": 396,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ToolCallPart.args_as_dict",
+              "line_start": 415,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ToolCallPart.args_as_json_str",
+              "line_start": 426,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ToolCallPart.has_content",
+              "line_start": 435,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ToolCallPart.tool_name",
+              "line_start": 400,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolCallPart.args",
+              "line_start": 403,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolCallPart.tool_call_id",
+              "line_start": 409,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolCallPart.part_kind",
+              "line_start": 412,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ToolCallPartDelta",
+          "line_start": 535,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ToolCallPartDelta.as_part",
+              "line_start": 558,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ToolCallPartDelta.apply",
+              "line_start": 573,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ToolCallPartDelta.tool_name_delta",
+              "line_start": 539,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolCallPartDelta.args_delta",
+              "line_start": 542,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolCallPartDelta.tool_call_id",
+              "line_start": 549,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolCallPartDelta.part_delta_kind",
+              "line_start": 555,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ToolReturnPart",
+          "line_start": 261,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ToolReturnPart.model_response_str",
+              "line_start": 280,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ToolReturnPart.model_response_object",
+              "line_start": 287,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "ToolReturnPart.otel_event",
+              "line_start": 295,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ToolReturnPart.tool_name",
+              "line_start": 265,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolReturnPart.content",
+              "line_start": 268,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolReturnPart.tool_call_id",
+              "line_start": 271,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolReturnPart.timestamp",
+              "line_start": 274,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolReturnPart.part_kind",
+              "line_start": 277,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UserPromptPart",
+          "line_start": 232,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UserPromptPart.otel_event",
+              "line_start": 249,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UserPromptPart.content",
+              "line_start": 240,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "UserPromptPart.timestamp",
+              "line_start": 243,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "UserPromptPart.part_kind",
+              "line_start": 246,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 0,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.messages",
+      "names": [
+        "AgentStreamEvent",
+        "AudioFormat",
+        "AudioMediaType",
+        "AudioUrl",
+        "BinaryContent",
+        "DocumentFormat",
+        "DocumentMediaType",
+        "DocumentUrl",
+        "FinalResultEvent",
+        "FunctionToolCallEvent",
+        "FunctionToolResultEvent",
+        "HandleResponseEvent",
+        "ImageFormat",
+        "ImageMediaType",
+        "ImageUrl",
+        "ModelMessage",
+        "ModelMessagesTypeAdapter",
+        "ModelRequest",
+        "ModelRequestPart",
+        "ModelResponse",
+        "ModelResponsePart",
+        "ModelResponsePartDelta",
+        "ModelResponseStreamEvent",
+        "PartDeltaEvent",
+        "PartStartEvent",
+        "RetryPromptPart",
+        "SystemPromptPart",
+        "TextPart",
+        "TextPartDelta",
+        "ToolCallPart",
+        "ToolCallPartDelta",
+        "ToolReturnPart",
+        "UserContent",
+        "UserPromptPart",
+        "error_details_ta",
+        "tool_return_ta"
+      ],
+      "n_typable": 29,
+      "n_typed": 19,
+      "n_any": 8,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 16,
+      "n_method_params": 1,
+      "n_classes": 19,
+      "n_attrs": 3,
+      "n_properties": 9,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "pydantic_ai/models/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "KnownModelName",
+          "line_start": 30,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ALLOW_MODEL_REQUESTS",
+          "line_start": 331,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "check_allow_model_requests",
+          "line_start": 342,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "override_allow_model_requests",
+          "line_start": 355,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "infer_model",
+          "line_start": 371,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "cached_async_http_client",
+          "line_start": 433,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "get_user_agent",
+          "line_start": 459,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "class",
+          "name": "Model",
+          "line_start": 230,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Model.request",
+              "line_start": 233,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "Model.request_stream",
+              "line_start": 243,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Model.model_name",
+              "line_start": 257,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Model.system",
+              "line_start": 263,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Model.base_url",
+              "line_start": 275,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 11,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "ModelRequestParameters",
+          "line_start": 221,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelRequestParameters.function_tools",
+              "line_start": 225,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelRequestParameters.allow_text_result",
+              "line_start": 226,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelRequestParameters.result_tools",
+              "line_start": 227,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "StreamedResponse",
+          "line_start": 281,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "StreamedResponse.__aiter__",
+              "line_start": 289,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "StreamedResponse.get",
+              "line_start": 308,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "StreamedResponse.usage",
+              "line_start": 314,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "StreamedResponse.model_name",
+              "line_start": 318,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "StreamedResponse.timestamp",
+              "line_start": 324,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportConstantRedefinition"
+          ]
+        },
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportConstantRedefinition"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.models",
+      "names": [
+        "ALLOW_MODEL_REQUESTS",
+        "KnownModelName",
+        "Model",
+        "ModelRequestParameters",
+        "StreamedResponse",
+        "cached_async_http_client",
+        "check_allow_model_requests",
+        "get_user_agent",
+        "infer_model",
+        "override_allow_model_requests"
+      ],
+      "n_typable": 25,
+      "n_typed": 25,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 5,
+      "n_function_params": 4,
+      "n_methods": 5,
+      "n_method_params": 6,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 5,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "pydantic_ai/models/anthropic.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LatestAnthropicModelNames",
+          "line_start": 71,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "AnthropicModelName",
+          "line_start": 79,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AnthropicModel",
+          "line_start": 97,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnthropicModel.__init__",
+              "line_start": 115,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "AnthropicModel.request",
+              "line_start": 177,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "AnthropicModel.request_stream",
+              "line_start": 189,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AnthropicModel.base_url",
+              "line_start": 173,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AnthropicModel.model_name",
+              "line_start": 203,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AnthropicModel.system",
+              "line_start": 208,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AnthropicModel.client",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 16,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "AnthropicModelSettings",
+          "line_start": 88,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AnthropicModelSettings.anthropic_metadata",
+              "line_start": 91,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AnthropicStreamedResponse",
+          "line_start": 482,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AnthropicStreamedResponse.model_name",
+              "line_start": 539,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AnthropicStreamedResponse.timestamp",
+              "line_start": 544,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "pydantic_ai.models.anthropic",
+      "names": [
+        "AnthropicModel",
+        "AnthropicModelName",
+        "AnthropicModelSettings",
+        "AnthropicStreamedResponse",
+        "LatestAnthropicModelNames"
+      ],
+      "n_typable": 18,
+      "n_typed": 18,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 10,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 5,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "pydantic_ai/models/bedrock.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LatestBedrockModelNames",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "BedrockModelName",
+          "line_start": 103,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "P",
+          "line_start": 111,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "T",
+          "line_start": 112,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "BedrockConverseModel",
+          "line_start": 115,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BedrockConverseModel.__init__",
+              "line_start": 134,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "BedrockConverseModel.request",
+              "line_start": 175,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "BedrockConverseModel.request_stream",
+              "line_start": 184,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BedrockConverseModel.model_name",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BedrockConverseModel.system",
+              "line_start": 129,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BedrockConverseModel.base_url",
+              "line_start": 171,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BedrockConverseModel.client",
+              "line_start": 119,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 13,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "BedrockStreamedResponse",
+          "line_start": 407,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BedrockStreamedResponse.timestamp",
+              "line_start": 464,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BedrockStreamedResponse.model_name",
+              "line_start": 468,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.bedrock",
+      "names": [
+        "BedrockConverseModel",
+        "BedrockModelName",
+        "BedrockStreamedResponse",
+        "LatestBedrockModelNames",
+        "P",
+        "T"
+      ],
+      "n_typable": 15,
+      "n_typed": 15,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 7,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/cohere.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LatestCohereModelNames",
+          "line_start": 56,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "CohereModelName",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "CohereModel",
+          "line_start": 88,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "CohereModel.__init__",
+              "line_start": 103,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "CohereModel.request",
+              "line_start": 135,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "CohereModel.base_url",
+              "line_start": 130,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "CohereModel.model_name",
+              "line_start": 145,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "CohereModel.system",
+              "line_start": 150,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "CohereModel.client",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 11,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 2,
+          "n_method_params": 6,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "CohereModelSettings",
+          "line_start": 82,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "pydantic_ai.models.cohere",
+      "names": [
+        "CohereModel",
+        "CohereModelName",
+        "CohereModelSettings",
+        "LatestCohereModelNames"
+      ],
+      "n_typable": 11,
+      "n_typed": 11,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 2,
+      "n_method_params": 6,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "pydantic_ai/models/fallback.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "FallbackModel",
+          "line_start": 21,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FallbackModel.__init__",
+              "line_start": 33,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FallbackModel.request",
+              "line_start": 53,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "FallbackModel.request_stream",
+              "line_start": 79,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "FallbackModel.model_name",
+              "line_start": 115,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "FallbackModel.system",
+              "line_start": 120,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "FallbackModel.base_url",
+              "line_start": 124,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FallbackModel.models",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 14,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.fallback",
+      "names": [
+        "FallbackModel"
+      ],
+      "n_typable": 14,
+      "n_typed": 14,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 8,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/function.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "DeltaToolCalls",
+          "line_start": 184,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "FunctionDef",
+          "line_start": 188,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "StreamFunctionDef",
+          "line_start": 192,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "AgentInfo",
+          "line_start": 148,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "AgentInfo.function_tools",
+              "line_start": 155,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "AgentInfo.allow_text_result",
+              "line_start": 161,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "AgentInfo.result_tools",
+              "line_start": 163,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "AgentInfo.model_settings",
+              "line_start": 165,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "DeltaToolCall",
+          "line_start": 169,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "DeltaToolCall.name",
+              "line_start": 176,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "DeltaToolCall.json_args",
+              "line_start": 178,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "DeltaToolCall.tool_call_id",
+              "line_start": 180,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "FunctionModel",
+          "line_start": 37,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FunctionModel.__init__",
+              "line_start": 50,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "FunctionModel.request",
+              "line_start": 86,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "FunctionModel.request_stream",
+              "line_start": 111,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "FunctionModel.model_name",
+              "line_start": 137,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "FunctionModel.system",
+              "line_start": 142,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "FunctionModel.function",
+              "line_start": 44,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "FunctionModel.stream_function",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 13,
+          "n_typed": 11,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 8,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "FunctionStreamedResponse",
+          "line_start": 202,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "FunctionStreamedResponse.__post_init__",
+              "line_start": 210,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0,
+              "n_params": -1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "FunctionStreamedResponse.model_name",
+              "line_start": 234,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "FunctionStreamedResponse.timestamp",
+              "line_start": 239,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": -1,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.function",
+      "names": [
+        "AgentInfo",
+        "DeltaToolCall",
+        "DeltaToolCalls",
+        "FunctionDef",
+        "FunctionModel",
+        "FunctionStreamedResponse",
+        "StreamFunctionDef"
+      ],
+      "n_typable": 15,
+      "n_typed": 13,
+      "n_any": 2,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 7,
+      "n_classes": 4,
+      "n_attrs": 0,
+      "n_properties": 4,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/gemini.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LatestGeminiModelNames",
+          "line_start": 49,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GeminiModelName",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "ApiKeyAuth",
+          "line_start": 384,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "ApiKeyAuth.headers",
+              "line_start": 390,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ApiKeyAuth.api_key",
+              "line_start": 388,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "AuthProtocol",
+          "line_start": 378,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AuthProtocol.headers",
+              "line_start": 381,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "GeminiModel",
+          "line_start": 78,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GeminiModel.__init__",
+              "line_start": 96,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "GeminiModel.request",
+              "line_start": 166,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "GeminiModel.request_stream",
+              "line_start": 179,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GeminiModel.auth",
+              "line_start": 156,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GeminiModel.base_url",
+              "line_start": 161,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GeminiModel.model_name",
+              "line_start": 192,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GeminiModel.system",
+              "line_start": 197,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GeminiModel.client",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 17,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 4
+        },
+        {
+          "kind": "class",
+          "name": "GeminiModelSettings",
+          "line_start": 72,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GeminiModelSettings.gemini_safety_settings",
+              "line_start": 75,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "GeminiSafetySettings",
+          "line_start": 499,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GeminiSafetySettings.category",
+              "line_start": 506,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "GeminiSafetySettings.threshold",
+              "line_start": 518,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "GeminiStreamedResponse",
+          "line_start": 395,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GeminiStreamedResponse.model_name",
+              "line_start": 463,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GeminiStreamedResponse.timestamp",
+              "line_start": 468,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.gemini",
+      "names": [
+        "ApiKeyAuth",
+        "AuthProtocol",
+        "GeminiModel",
+        "GeminiModelName",
+        "GeminiModelSettings",
+        "GeminiSafetySettings",
+        "GeminiStreamedResponse",
+        "LatestGeminiModelNames"
+      ],
+      "n_typable": 21,
+      "n_typed": 21,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_params": 10,
+      "n_classes": 6,
+      "n_attrs": 0,
+      "n_properties": 6,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/groq.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LatestGroqModelNames",
+          "line_start": 48,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GroqModelName",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "GroqModel",
+          "line_start": 79,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GroqModel.__init__",
+              "line_start": 93,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            },
+            {
+              "kind": "function",
+              "name": "GroqModel.request",
+              "line_start": 156,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "GroqModel.request_stream",
+              "line_start": 168,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GroqModel.base_url",
+              "line_start": 152,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GroqModel.model_name",
+              "line_start": 182,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GroqModel.system",
+              "line_start": 187,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GroqModel.client",
+              "line_start": 88,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 16,
+          "n_typed": 16,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 10,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "GroqModelSettings",
+          "line_start": 73,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "GroqStreamedResponse",
+          "line_start": 379,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GroqStreamedResponse.model_name",
+              "line_start": 412,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GroqStreamedResponse.timestamp",
+              "line_start": 417,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.groq",
+      "names": [
+        "GroqModel",
+        "GroqModelName",
+        "GroqModelSettings",
+        "GroqStreamedResponse",
+        "LatestGroqModelNames"
+      ],
+      "n_typable": 18,
+      "n_typed": 18,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 10,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/instrumented.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "MODEL_SETTING_ATTRIBUTES",
+          "line_start": 25,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "ANY_ADAPTER",
+          "line_start": 44,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "GEN_AI_SYSTEM_ATTRIBUTE",
+          "line_start": 93,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "GEN_AI_REQUEST_MODEL_ATTRIBUTE",
+          "line_start": 94,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "InstrumentationSettings",
+          "line_start": 47,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InstrumentationSettings.__init__",
+              "line_start": 64,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "InstrumentationSettings.tracer",
+              "line_start": 60,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "InstrumentationSettings.event_logger",
+              "line_start": 61,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "InstrumentationSettings.event_mode",
+              "line_start": 62,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 2,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "InstrumentedModel",
+          "line_start": 97,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.__init__",
+              "line_start": 107,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.request",
+              "line_start": 115,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.request_stream",
+              "line_start": 126,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.model_attributes",
+              "line_start": 216,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.event_to_dict",
+              "line_start": 235,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.messages_to_otel_events",
+              "line_start": 245,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "InstrumentedModel.serialize_any",
+              "line_start": 266,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "InstrumentedModel.settings",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 18,
+          "n_typed": 15,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_methods": 7,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": null
+        }
+      ],
+      "name": "pydantic_ai.models.instrumented",
+      "names": [
+        "ANY_ADAPTER",
+        "GEN_AI_REQUEST_MODEL_ATTRIBUTE",
+        "GEN_AI_SYSTEM_ATTRIBUTE",
+        "InstrumentationSettings",
+        "InstrumentedModel",
+        "MODEL_SETTING_ATTRIBUTES"
+      ],
+      "n_typable": 23,
+      "n_typed": 18,
+      "n_any": 3,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 8,
+      "n_method_params": 13,
+      "n_classes": 2,
+      "n_attrs": 2,
+      "n_properties": 0,
+      "n_type_ignores": 2
+    },
+    {
+      "path": "pydantic_ai/models/mistral.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "LatestMistralModelNames",
+          "line_start": 81,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MistralModelName",
+          "line_start": 86,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MistralToolCallId",
+          "line_start": 538,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "VALID_JSON_TYPE_MAPPING",
+          "line_start": 644,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "SIMPLE_JSON_TYPE_MAPPING",
+          "line_start": 654,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "MistralModel",
+          "line_start": 101,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MistralModel.__init__",
+              "line_start": 116,
+              "n_typed": 5,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            },
+            {
+              "kind": "function",
+              "name": "MistralModel.request",
+              "line_start": 180,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "MistralModel.request_stream",
+              "line_start": 193,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MistralModel.base_url",
+              "line_start": 176,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "MistralModel.model_name",
+              "line_start": 208,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "MistralModel.system",
+              "line_start": 213,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "MistralModel.client",
+              "line_start": 110,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "MistralModel.json_mode_schema_prompt",
+              "line_start": 111,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 17,
+          "n_typed": 16,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "MistralModelSettings",
+          "line_start": 95,
+          "methods": [],
+          "properties": [],
+          "attrs": [],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "MistralStreamedResponse",
+          "line_start": 541,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MistralStreamedResponse.model_name",
+              "line_start": 587,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "MistralStreamedResponse.timestamp",
+              "line_start": 592,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.mistral",
+      "names": [
+        "LatestMistralModelNames",
+        "MistralModel",
+        "MistralModelName",
+        "MistralModelSettings",
+        "MistralStreamedResponse",
+        "MistralToolCallId",
+        "SIMPLE_JSON_TYPE_MAPPING",
+        "VALID_JSON_TYPE_MAPPING"
+      ],
+      "n_typable": 20,
+      "n_typed": 19,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 11,
+      "n_classes": 3,
+      "n_attrs": 1,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/openai.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "OpenAIModelName",
+          "line_start": 63,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "OpenAISystemPromptRole",
+          "line_start": 75,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "OpenAIModel",
+          "line_start": 89,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OpenAIModel.__init__",
+              "line_start": 104,
+              "n_typed": 8,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 8,
+              "n_params": 7
+            },
+            {
+              "kind": "function",
+              "name": "OpenAIModel.request",
+              "line_start": 194,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "OpenAIModel.request_stream",
+              "line_start": 206,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "OpenAIModel.base_url",
+              "line_start": 190,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "OpenAIModel.model_name",
+              "line_start": 220,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "OpenAIModel.system",
+              "line_start": 225,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OpenAIModel.client",
+              "line_start": 98,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "OpenAIModel.system_prompt_role",
+              "line_start": 99,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 19,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 13,
+          "n_attrs": 0,
+          "n_properties": 3
+        },
+        {
+          "kind": "class",
+          "name": "OpenAIModelSettings",
+          "line_start": 78,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "OpenAIModelSettings.openai_reasoning_effort",
+              "line_start": 81,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "OpenAIStreamedResponse",
+          "line_start": 457,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "OpenAIStreamedResponse.model_name",
+              "line_start": 489,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "OpenAIStreamedResponse.timestamp",
+              "line_start": 494,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 2,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.openai",
+      "names": [
+        "OpenAIModel",
+        "OpenAIModelName",
+        "OpenAIModelSettings",
+        "OpenAIStreamedResponse",
+        "OpenAISystemPromptRole"
+      ],
+      "n_typable": 21,
+      "n_typed": 21,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 3,
+      "n_method_params": 13,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 5,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/test.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "TestModel",
+          "line_start": 50,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TestModel.request",
+              "line_start": 84,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TestModel.request_stream",
+              "line_start": 96,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "TestModel.gen_tool_args",
+              "line_start": 120,
+              "n_typed": 1,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TestModel.model_name",
+              "line_start": 110,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestModel.system",
+              "line_start": 115,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "TestModel.__test__",
+              "line_start": 64,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestModel.call_tools",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestModel.custom_result_text",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestModel.custom_result_args",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestModel.seed",
+              "line_start": 72,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "TestModel.last_model_request_parameters",
+              "line_start": 74,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 12,
+          "n_typed": 11,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 7,
+          "n_attrs": 0,
+          "n_properties": 2
+        },
+        {
+          "kind": "class",
+          "name": "TestStreamedResponse",
+          "line_start": 230,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "TestStreamedResponse.__post_init__",
+              "line_start": 239,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "TestStreamedResponse.model_name",
+              "line_start": 262,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "TestStreamedResponse.timestamp",
+              "line_start": 267,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "pyright",
+          "rules": [
+            "reportPrivateUsage"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.models.test",
+      "names": [
+        "TestModel",
+        "TestStreamedResponse"
+      ],
+      "n_typable": 15,
+      "n_typed": 14,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 7,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 4,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "pydantic_ai/models/vertexai.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "VERTEX_AI_URL_TEMPLATE",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "MAX_TOKEN_AGE",
+          "line_start": 198,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1
+        },
+        {
+          "kind": "attr",
+          "name": "VertexAiRegion",
+          "line_start": 226,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "BearerTokenAuth",
+          "line_start": 201,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BearerTokenAuth.headers",
+              "line_start": 208,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "BearerTokenAuth.credentials",
+              "line_start": 205,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "BearerTokenAuth.token_created",
+              "line_start": 206,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 1,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "VertexAIModel",
+          "line_start": 60,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "VertexAIModel.__init__",
+              "line_start": 75,
+              "n_typed": 7,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 7,
+              "n_params": 6
+            },
+            {
+              "kind": "function",
+              "name": "VertexAIModel.ainit",
+              "line_start": 120,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "VertexAIModel.request",
+              "line_start": 152,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "VertexAIModel.request_stream",
+              "line_start": 161,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "VertexAIModel.model_name",
+              "line_start": 172,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "VertexAIModel.system",
+              "line_start": 177,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "VertexAIModel.service_account_file",
+              "line_start": 65,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "VertexAIModel.project_id",
+              "line_start": 66,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "VertexAIModel.region",
+              "line_start": 67,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "VertexAIModel.model_publisher",
+              "line_start": 68,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "VertexAIModel.url_template",
+              "line_start": 69,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "VertexAIModel.client",
+              "line_start": 109,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 19,
+          "n_typed": 18,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 4,
+          "n_method_params": 12,
+          "n_attrs": 1,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.vertexai",
+      "names": [
+        "BearerTokenAuth",
+        "MAX_TOKEN_AGE",
+        "VERTEX_AI_URL_TEMPLATE",
+        "VertexAIModel",
+        "VertexAiRegion"
+      ],
+      "n_typable": 21,
+      "n_typed": 19,
+      "n_any": 0,
+      "n_untyped": 2,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 5,
+      "n_method_params": 12,
+      "n_classes": 2,
+      "n_attrs": 2,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/models/wrapper.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "WrapperModel",
+          "line_start": 14,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "WrapperModel.__init__",
+              "line_start": 24,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "WrapperModel.request",
+              "line_start": 27,
+              "n_typed": 1,
+              "n_any": 2,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "WrapperModel.request_stream",
+              "line_start": 30,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            },
+            {
+              "kind": "function",
+              "name": "WrapperModel.__getattr__",
+              "line_start": 48,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "WrapperModel.model_name",
+              "line_start": 40,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "WrapperModel.system",
+              "line_start": 44,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "WrapperModel.wrapped",
+              "line_start": 21,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 11,
+          "n_typed": 8,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_methods": 4,
+          "n_method_params": 5,
+          "n_attrs": 0,
+          "n_properties": 2
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.models.wrapper",
+      "names": [
+        "WrapperModel"
+      ],
+      "n_typable": 11,
+      "n_typed": 8,
+      "n_any": 2,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 2,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/__init__.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "InterfaceClient",
+          "line_start": 11,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "function",
+          "name": "infer_provider",
+          "line_start": 45,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "class",
+          "name": "Provider",
+          "line_start": 14,
+          "methods": [],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "Provider.name",
+              "line_start": 26,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Provider.base_url",
+              "line_start": 32,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "Provider.client",
+              "line_start": 38,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers",
+      "names": [
+        "InterfaceClient",
+        "Provider",
+        "infer_provider"
+      ],
+      "n_typable": 5,
+      "n_typed": 5,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 1,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/anthropic.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AnthropicProvider",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AnthropicProvider.__init__",
+              "line_start": 37,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AnthropicProvider.name",
+              "line_start": 25,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AnthropicProvider.base_url",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AnthropicProvider.client",
+              "line_start": 33,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.anthropic",
+      "names": [
+        "AnthropicProvider"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/azure.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "AzureProvider",
+          "line_start": 23,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "AzureProvider.__init__",
+              "line_start": 42,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "AzureProvider.name",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AzureProvider.base_url",
+              "line_start": 33,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "AzureProvider.client",
+              "line_start": 38,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.azure",
+      "names": [
+        "AzureProvider"
+      ],
+      "n_typable": 8,
+      "n_typed": 8,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/bedrock.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "BedrockProvider",
+          "line_start": 18,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "BedrockProvider.__init__",
+              "line_start": 33,
+              "n_typed": 5,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 5,
+              "n_params": 4
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "BedrockProvider.name",
+              "line_start": 21,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BedrockProvider.base_url",
+              "line_start": 25,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "BedrockProvider.client",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 8,
+          "n_typed": 8,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 4,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.providers.bedrock",
+      "names": [
+        "BedrockProvider"
+      ],
+      "n_typable": 8,
+      "n_typed": 8,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 4,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 1
+    },
+    {
+      "path": "pydantic_ai/providers/deepseek.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "DeepSeekProvider",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "DeepSeekProvider.__init__",
+              "line_start": 37,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "DeepSeekProvider.name",
+              "line_start": 25,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "DeepSeekProvider.base_url",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "DeepSeekProvider.client",
+              "line_start": 33,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.deepseek",
+      "names": [
+        "DeepSeekProvider"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/google_gla.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "GoogleGLAProvider",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GoogleGLAProvider.__init__",
+              "line_start": 26,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GoogleGLAProvider.name",
+              "line_start": 14,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GoogleGLAProvider.base_url",
+              "line_start": 18,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GoogleGLAProvider.client",
+              "line_start": 22,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 5,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_methods": 1,
+          "n_method_params": 1,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.google_gla",
+      "names": [
+        "GoogleGLAProvider"
+      ],
+      "n_typable": 5,
+      "n_typed": 4,
+      "n_any": 0,
+      "n_untyped": 1,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 1,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/google_vertex.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "GoogleVertexProvider",
+          "line_start": 31,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GoogleVertexProvider.__init__",
+              "line_start": 51,
+              "n_typed": 6,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 6,
+              "n_params": 5
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GoogleVertexProvider.name",
+              "line_start": 34,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GoogleVertexProvider.base_url",
+              "line_start": 38,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GoogleVertexProvider.client",
+              "line_start": 47,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "GoogleVertexProvider.service_account_file",
+              "line_start": 102,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "GoogleVertexProvider.service_account_info",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "GoogleVertexProvider.project_id",
+              "line_start": 104,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "GoogleVertexProvider.region",
+              "line_start": 105,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            },
+            {
+              "kind": "attr",
+              "name": "GoogleVertexProvider.model_publisher",
+              "line_start": 106,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 1,
+              "n_typable": 1
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 9,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_methods": 1,
+          "n_method_params": 5,
+          "n_attrs": 5,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": null
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        },
+        {
+          "kind": "type",
+          "rules": [
+            "reportUnknownMemberType"
+          ]
+        }
+      ],
+      "name": "pydantic_ai.providers.google_vertex",
+      "names": [
+        "GoogleVertexProvider"
+      ],
+      "n_typable": 14,
+      "n_typed": 9,
+      "n_any": 0,
+      "n_untyped": 5,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 5,
+      "n_classes": 1,
+      "n_attrs": 5,
+      "n_properties": 3,
+      "n_type_ignores": 10
+    },
+    {
+      "path": "pydantic_ai/providers/groq.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "GroqProvider",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "GroqProvider.__init__",
+              "line_start": 37,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "GroqProvider.name",
+              "line_start": 25,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GroqProvider.base_url",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "GroqProvider.client",
+              "line_start": 33,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.groq",
+      "names": [
+        "GroqProvider"
+      ],
+      "n_typable": 6,
+      "n_typed": 6,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/mistral.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "MistralProvider",
+          "line_start": 22,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "MistralProvider.__init__",
+              "line_start": 37,
+              "n_typed": 2,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "MistralProvider.name",
+              "line_start": 25,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "MistralProvider.base_url",
+              "line_start": 29,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "MistralProvider.client",
+              "line_start": 33,
+              "n_typed": 0,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 6,
+          "n_typed": 4,
+          "n_any": 2,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.mistral",
+      "names": [
+        "MistralProvider"
+      ],
+      "n_typable": 6,
+      "n_typed": 4,
+      "n_any": 2,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 2,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/providers/openai.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "OpenAIProvider",
+          "line_start": 21,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "OpenAIProvider.__init__",
+              "line_start": 36,
+              "n_typed": 4,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 4,
+              "n_params": 3
+            }
+          ],
+          "properties": [
+            {
+              "kind": "property",
+              "name": "OpenAIProvider.name",
+              "line_start": 24,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "OpenAIProvider.base_url",
+              "line_start": 28,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            },
+            {
+              "kind": "property",
+              "name": "OpenAIProvider.client",
+              "line_start": 32,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1
+            }
+          ],
+          "attrs": [],
+          "n_typable": 7,
+          "n_typed": 7,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 3
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.providers.openai",
+      "names": [
+        "OpenAIProvider"
+      ],
+      "n_typable": 7,
+      "n_typed": 7,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 1,
+      "n_method_params": 3,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 3,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/result.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "ResultDataT_inv",
+          "line_start": 21,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ResultDataT",
+          "line_start": 33,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ResultValidatorFunc",
+          "line_start": 36,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.result",
+      "names": [
+        "ResultDataT",
+        "ResultDataT_inv",
+        "ResultValidatorFunc"
+      ],
+      "n_typable": 0,
+      "n_typed": 0,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 0,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/settings.py",
+      "symbol_reports": [
+        {
+          "kind": "function",
+          "name": "merge_model_settings",
+          "line_start": 137,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "class",
+          "name": "ModelSettings",
+          "line_start": 12,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ModelSettings.max_tokens",
+              "line_start": 19,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.temperature",
+              "line_start": 33,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.top_p",
+              "line_start": 52,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.timeout",
+              "line_start": 70,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.parallel_tool_calls",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.seed",
+              "line_start": 92,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.presence_penalty",
+              "line_start": 103,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.frequency_penalty",
+              "line_start": 115,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ModelSettings.logit_bias",
+              "line_start": 127,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.settings",
+      "names": [
+        "ModelSettings",
+        "merge_model_settings"
+      ],
+      "n_typable": 3,
+      "n_typed": 3,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 1,
+      "n_function_params": 2,
+      "n_methods": 0,
+      "n_method_params": 0,
+      "n_classes": 1,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/tools.py",
+      "symbol_reports": [
+        {
+          "kind": "attr",
+          "name": "AgentDepsT",
+          "line_start": 35,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ToolParams",
+          "line_start": 74,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "SystemPromptFunc",
+          "line_start": 77,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ToolFuncContext",
+          "line_start": 88,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ToolFuncPlain",
+          "line_start": 93,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ToolFuncEither",
+          "line_start": 98,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ToolPrepareFunc",
+          "line_start": 106,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "DocstringFormat",
+          "line_start": 134,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "attr",
+          "name": "ObjectJsonSchema",
+          "line_start": 359,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 0
+        },
+        {
+          "kind": "class",
+          "name": "RunContext",
+          "line_start": 39,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "RunContext.replace_with",
+              "line_start": 62,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "RunContext.deps",
+              "line_start": 43,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.model",
+              "line_start": 45,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.usage",
+              "line_start": 47,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.prompt",
+              "line_start": 49,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.messages",
+              "line_start": 51,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.tool_call_id",
+              "line_start": 53,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.tool_name",
+              "line_start": 55,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.retry",
+              "line_start": 57,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "RunContext.run_step",
+              "line_start": 59,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 3,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 1,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "Tool",
+          "line_start": 162,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Tool.__init__",
+              "line_start": 185,
+              "n_typed": 8,
+              "n_any": 1,
+              "n_untyped": 0,
+              "n_typable": 9,
+              "n_params": 8
+            },
+            {
+              "kind": "function",
+              "name": "Tool.prepare_tool_def",
+              "line_start": 269,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Tool.run",
+              "line_start": 288,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Tool.function",
+              "line_start": 166,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.takes_ctx",
+              "line_start": 167,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.max_retries",
+              "line_start": 168,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.name",
+              "line_start": 169,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.description",
+              "line_start": 170,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.prepare",
+              "line_start": 171,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.docstring_format",
+              "line_start": 172,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.require_parameter_descriptions",
+              "line_start": 173,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Tool.current_retry",
+              "line_start": 183,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 14,
+          "n_typed": 13,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 11,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "ToolDefinition",
+          "line_start": 368,
+          "methods": [],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "ToolDefinition.name",
+              "line_start": 375,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolDefinition.description",
+              "line_start": 378,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolDefinition.parameters_json_schema",
+              "line_start": 381,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "ToolDefinition.outer_typed_dict_key",
+              "line_start": 384,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 0,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 0,
+          "n_method_params": 0,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.tools",
+      "names": [
+        "AgentDepsT",
+        "DocstringFormat",
+        "ObjectJsonSchema",
+        "RunContext",
+        "SystemPromptFunc",
+        "Tool",
+        "ToolDefinition",
+        "ToolFuncContext",
+        "ToolFuncEither",
+        "ToolFuncPlain",
+        "ToolParams",
+        "ToolPrepareFunc"
+      ],
+      "n_typable": 17,
+      "n_typed": 16,
+      "n_any": 1,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 4,
+      "n_method_params": 13,
+      "n_classes": 3,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    },
+    {
+      "path": "pydantic_ai/usage.py",
+      "symbol_reports": [
+        {
+          "kind": "class",
+          "name": "Usage",
+          "line_start": 11,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "Usage.incr",
+              "line_start": 31,
+              "n_typed": 3,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 3,
+              "n_params": 2
+            },
+            {
+              "kind": "function",
+              "name": "Usage.__add__",
+              "line_start": 50,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "Usage.opentelemetry_attributes",
+              "line_start": 59,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "Usage.requests",
+              "line_start": 20,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Usage.request_tokens",
+              "line_start": 22,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Usage.response_tokens",
+              "line_start": 24,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Usage.total_tokens",
+              "line_start": 26,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "Usage.details",
+              "line_start": 28,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 6,
+          "n_typed": 6,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 3,
+          "n_attrs": 0,
+          "n_properties": 0
+        },
+        {
+          "kind": "class",
+          "name": "UsageLimits",
+          "line_start": 70,
+          "methods": [
+            {
+              "kind": "function",
+              "name": "UsageLimits.has_token_limits",
+              "line_start": 89,
+              "n_typed": 1,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 1,
+              "n_params": 0
+            },
+            {
+              "kind": "function",
+              "name": "UsageLimits.check_before_request",
+              "line_start": 102,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            },
+            {
+              "kind": "function",
+              "name": "UsageLimits.check_tokens",
+              "line_start": 108,
+              "n_typed": 2,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 2,
+              "n_params": 1
+            }
+          ],
+          "properties": [],
+          "attrs": [
+            {
+              "kind": "attr",
+              "name": "UsageLimits.request_limit",
+              "line_start": 80,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "UsageLimits.request_tokens_limit",
+              "line_start": 82,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "UsageLimits.response_tokens_limit",
+              "line_start": 84,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            },
+            {
+              "kind": "attr",
+              "name": "UsageLimits.total_tokens_limit",
+              "line_start": 86,
+              "n_typed": 0,
+              "n_any": 0,
+              "n_untyped": 0,
+              "n_typable": 0
+            }
+          ],
+          "n_typable": 5,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_methods": 3,
+          "n_method_params": 2,
+          "n_attrs": 0,
+          "n_properties": 0
+        }
+      ],
+      "type_ignores": [],
+      "name": "pydantic_ai.usage",
+      "names": [
+        "Usage",
+        "UsageLimits"
+      ],
+      "n_typable": 11,
+      "n_typed": 11,
+      "n_any": 0,
+      "n_untyped": 0,
+      "n_functions": 0,
+      "n_function_params": 0,
+      "n_methods": 6,
+      "n_method_params": 5,
+      "n_classes": 2,
+      "n_attrs": 0,
+      "n_properties": 0,
+      "n_type_ignores": 0
+    }
+  ],
+  "typecheckers": {},
+  "n_modules": 36,
+  "n_typable": 525,
+  "n_typed": 481,
+  "n_any": 28,
+  "n_untyped": 16,
+  "n_functions": 10,
+  "n_function_params": 16,
+  "n_methods": 130,
+  "n_method_params": 250,
+  "n_classes": 85,
+  "n_attrs": 22,
+  "n_properties": 97,
+  "type_ignores": [
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportPrivateUsage"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportArgumentType"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportReturnType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportUnknownArgumentType"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportUnknownVariableType"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportConstantRedefinition"
+      ]
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportConstantRedefinition"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "pyright",
+      "rules": [
+        "reportPrivateUsage"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "reportUnknownMemberType"
+      ]
+    }
+  ],
+  "n_type_ignores": 25
+}

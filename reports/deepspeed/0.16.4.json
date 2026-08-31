@@ -13,7 +13,7 @@
   },
   "metadata": {
     "Metadata-Version": [
-      "2.4"
+      "2.2"
     ],
     "Name": [
       "deepspeed"
@@ -65,7 +65,10 @@
       "pydantic>=2.0.0",
       "torch",
       "tqdm",
+      "nvidia-ml-py",
+      "cupy-cuda12x; extra == \"1bit\"",
       "mpi4py; extra == \"1bit-mpi\"",
+      "cupy-cuda12x; extra == \"1bit-mpi\"",
       "autodoc_pydantic>=2.0.0; extra == \"readthedocs\"",
       "docutils<0.18; extra == \"readthedocs\"",
       "hjson; extra == \"readthedocs\"",
@@ -114,51 +117,52 @@
       "diffusers>=0.25.0; extra == \"sd\"",
       "triton>=2.1.0; extra == \"sd\"",
       "triton==2.1.0; extra == \"triton\"",
-      "pytest-randomly; extra == \"all\"",
-      "tabulate; extra == \"all\"",
-      "transformers>=4.39.0; extra == \"all\"",
-      "sphinx; extra == \"all\"",
-      "triton==2.1.0; extra == \"all\"",
-      "sentencepiece; extra == \"all\"",
-      "docutils<0.18; extra == \"all\"",
-      "tqdm; extra == \"all\"",
-      "pydantic>=2.0.0; extra == \"all\"",
-      "sphinx_rtd_theme; extra == \"all\"",
-      "recommonmark; extra == \"all\"",
-      "pytest>=7.2.0; extra == \"all\"",
-      "hjson; extra == \"all\"",
-      "xgboost; extra == \"all\"",
-      "tensorboard; extra == \"all\"",
       "comet_ml>=3.41.0; extra == \"all\"",
-      "pytest-xdist; extra == \"all\"",
-      "torchvision; extra == \"all\"",
-      "future; extra == \"all\"",
-      "wandb; extra == \"all\"",
-      "lm-eval==0.3.0; extra == \"all\"",
-      "diffusers>=0.25.0; extra == \"all\"",
-      "accelerate; extra == \"all\"",
-      "deepspeed-kernels; sys_platform == \"linux\" and extra == \"all\"",
-      "autodoc_pydantic>=2.0.0; extra == \"all\"",
-      "clang-format==18.1.3; extra == \"all\"",
-      "transformers>=4.32.1; extra == \"all\"",
-      "py-cpuinfo; extra == \"all\"",
-      "importlib-metadata>=4; extra == \"all\"",
-      "triton>=2.1.0; extra == \"all\"",
-      "packaging; extra == \"all\"",
-      "mpi4py; extra == \"all\"",
       "pre-commit>=3.2.0; extra == \"all\"",
-      "sphinx-rtd-theme; extra == \"all\"",
-      "psutil; extra == \"all\"",
-      "neural-compressor==2.1.0; extra == \"all\"",
-      "pytest-forked; extra == \"all\"",
-      "google; extra == \"all\"",
-      "mup; extra == \"all\"",
-      "safetensors; extra == \"all\"",
-      "protobuf; extra == \"all\"",
-      "qtorch==0.3.0; extra == \"all\"",
       "qtorch; extra == \"all\"",
+      "py-cpuinfo; extra == \"all\"",
+      "safetensors; extra == \"all\"",
+      "diffusers>=0.25.0; extra == \"all\"",
+      "deepspeed-kernels; sys_platform == \"linux\" and extra == \"all\"",
+      "xgboost; extra == \"all\"",
+      "accelerate; extra == \"all\"",
+      "sentencepiece; extra == \"all\"",
+      "triton==1.0.0; extra == \"all\"",
+      "sphinx-rtd-theme; extra == \"all\"",
+      "transformers>=4.32.1; extra == \"all\"",
+      "packaging; extra == \"all\"",
+      "pytest-forked; extra == \"all\"",
+      "mpi4py; extra == \"all\"",
+      "docutils<0.18; extra == \"all\"",
+      "pytest-randomly; extra == \"all\"",
+      "sphinx_rtd_theme; extra == \"all\"",
+      "clang-format==18.1.3; extra == \"all\"",
+      "tabulate; extra == \"all\"",
+      "importlib-metadata>=4; extra == \"all\"",
+      "qtorch==0.3.0; extra == \"all\"",
+      "transformers>=4.39.0; extra == \"all\"",
+      "pytest-xdist; extra == \"all\"",
+      "pydantic>=2.0.0; extra == \"all\"",
       "torch; extra == \"all\"",
-      "triton==1.0.0; extra == \"all\""
+      "tqdm; extra == \"all\"",
+      "lm-eval==0.3.0; extra == \"all\"",
+      "google; extra == \"all\"",
+      "autodoc_pydantic>=2.0.0; extra == \"all\"",
+      "neural-compressor==2.1.0; extra == \"all\"",
+      "triton>=2.1.0; extra == \"all\"",
+      "recommonmark; extra == \"all\"",
+      "tensorboard; extra == \"all\"",
+      "triton==2.1.0; extra == \"all\"",
+      "torchvision; extra == \"all\"",
+      "cupy-cuda12x; extra == \"all\"",
+      "mup; extra == \"all\"",
+      "wandb; extra == \"all\"",
+      "hjson; extra == \"all\"",
+      "future; extra == \"all\"",
+      "pytest>=7.2.0; extra == \"all\"",
+      "sphinx; extra == \"all\"",
+      "psutil; extra == \"all\"",
+      "protobuf; extra == \"all\""
     ],
     "Provides-Extra": [
       "1bit",
@@ -182,7 +186,6 @@
       "description-content-type",
       "home-page",
       "license",
-      "license-file",
       "project-url",
       "provides-extra",
       "requires-dist",
@@ -7882,16 +7885,6 @@
         },
         {
           "kind": "function",
-          "name": "clean_up",
-          "line_start": 401,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "get_job_id",
           "line_start": 288,
           "n_typed": 0,
@@ -7909,6 +7902,16 @@
           "n_untyped": 1,
           "n_typable": 1,
           "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "clean_up",
+          "line_start": 401,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "class",
@@ -10256,16 +10259,6 @@
         },
         {
           "kind": "function",
-          "name": "dump_param_fragment",
-          "line_start": 179,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_typable": 9,
-          "n_params": 8
-        },
-        {
-          "kind": "function",
           "name": "extract_zero_shards_stage3",
           "line_start": 152,
           "n_typed": 0,
@@ -10283,6 +10276,16 @@
           "n_untyped": 2,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "dump_param_fragment",
+          "line_start": 179,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
         },
         {
           "kind": "function",
@@ -10375,6 +10378,16 @@
         },
         {
           "kind": "function",
+          "name": "get_model_3d_descriptor",
+          "line_start": 73,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "flatten_dp_dimension",
           "line_start": 89,
           "n_typed": 0,
@@ -10392,16 +10405,6 @@
           "n_untyped": 3,
           "n_typable": 3,
           "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "get_model_3d_descriptor",
-          "line_start": 73,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
         },
         {
           "kind": "class",
@@ -10768,8 +10771,8 @@
         },
         {
           "kind": "function",
-          "name": "merge_state",
-          "line_start": 100,
+          "name": "merge_state_list",
+          "line_start": 92,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -10778,8 +10781,8 @@
         },
         {
           "kind": "function",
-          "name": "merge_state_list",
-          "line_start": 92,
+          "name": "merge_state",
+          "line_start": 100,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -11867,26 +11870,6 @@
         },
         {
           "kind": "function",
-          "name": "get_rank",
-          "line_start": 553,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "reduce_scatter",
-          "line_start": 451,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 9,
-          "n_typable": 9,
-          "n_params": 8
-        },
-        {
-          "kind": "function",
           "name": "all_gather_into_tensor",
           "line_start": 302,
           "n_typed": 0,
@@ -12037,6 +12020,16 @@
         },
         {
           "kind": "function",
+          "name": "reduce_scatter",
+          "line_start": 451,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 9,
+          "n_typable": 9,
+          "n_params": 8
+        },
+        {
+          "kind": "function",
           "name": "has_all_reduce_coalesced",
           "line_start": 464,
           "n_typed": 0,
@@ -12117,6 +12110,16 @@
         },
         {
           "kind": "function",
+          "name": "get_rank",
+          "line_start": 553,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "get_local_rank",
           "line_start": 573,
           "n_typed": 0,
@@ -12167,8 +12170,28 @@
         },
         {
           "kind": "function",
+          "name": "mpi_discovery",
+          "line_start": 694,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
           "name": "in_aml",
           "line_start": 739,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "in_aws_sm",
+          "line_start": 744,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -12204,26 +12227,6 @@
           "n_untyped": 2,
           "n_typable": 2,
           "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "mpi_discovery",
-          "line_start": 694,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "in_aws_sm",
-          "line_start": 744,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
         },
         {
           "kind": "class",
@@ -14057,8 +14060,8 @@
         },
         {
           "kind": "function",
-          "name": "student_initialization",
-          "line_start": 192,
+          "name": "redundancy_clean",
+          "line_start": 148,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -14067,8 +14070,8 @@
         },
         {
           "kind": "function",
-          "name": "redundancy_clean",
-          "line_start": 148,
+          "name": "student_initialization",
+          "line_start": 192,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -14106,66 +14109,6 @@
           "kind": "function",
           "name": "get_compression_config",
           "line_start": 11,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_weight_quantization",
-          "line_start": 65,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_activation_quantization",
-          "line_start": 154,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_sparse_pruning",
-          "line_start": 216,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_row_pruning",
-          "line_start": 289,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_head_pruning",
-          "line_start": 342,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_channel_pruning",
-          "line_start": 400,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -14214,6 +14157,16 @@
         },
         {
           "kind": "function",
+          "name": "get_weight_quantization",
+          "line_start": 65,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "get_weight_quantization_shared_parameters",
           "line_start": 80,
           "n_typed": 0,
@@ -14226,6 +14179,16 @@
           "kind": "function",
           "name": "get_weight_quantization_different_groups",
           "line_start": 130,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_activation_quantization",
+          "line_start": 154,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -14254,6 +14217,16 @@
         },
         {
           "kind": "function",
+          "name": "get_sparse_pruning",
+          "line_start": 216,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "get_sparse_pruning_shared_parameters",
           "line_start": 232,
           "n_typed": 0,
@@ -14266,6 +14239,16 @@
           "kind": "function",
           "name": "get_sparse_pruning_different_groups",
           "line_start": 269,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_row_pruning",
+          "line_start": 289,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -14294,6 +14277,16 @@
         },
         {
           "kind": "function",
+          "name": "get_head_pruning",
+          "line_start": 342,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "get_head_pruning_shared_parameters",
           "line_start": 357,
           "n_typed": 0,
@@ -14306,6 +14299,16 @@
           "kind": "function",
           "name": "get_head_pruning_different_groups",
           "line_start": 381,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_channel_pruning",
+          "line_start": 400,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -38930,16 +38933,16 @@
               "kind": "attr",
               "name": "LinearAllreduce.support_training",
               "line_start": 308,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             }
           ],
           "n_typable": 12,
-          "n_typed": 0,
+          "n_typed": 1,
           "n_any": 0,
-          "n_untyped": 12,
+          "n_untyped": 11,
           "n_methods": 4,
           "n_method_params": 5,
           "n_attrs": 3,
@@ -39025,16 +39028,16 @@
               "kind": "attr",
               "name": "LinearLayer.support_training",
               "line_start": 378,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             }
           ],
           "n_typable": 18,
-          "n_typed": 0,
+          "n_typed": 1,
           "n_any": 0,
-          "n_untyped": 18,
+          "n_untyped": 17,
           "n_methods": 5,
           "n_method_params": 10,
           "n_attrs": 3,
@@ -39720,9 +39723,9 @@
         "set_autotp_mode"
       ],
       "n_typable": 152,
-      "n_typed": 16,
+      "n_typed": 18,
       "n_any": 18,
-      "n_untyped": 118,
+      "n_untyped": 116,
       "n_functions": 4,
       "n_function_params": 3,
       "n_methods": 44,
@@ -40169,16 +40172,6 @@
         },
         {
           "kind": "function",
-          "name": "replace_module",
-          "line_start": 619,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
           "name": "revert_transformer_layer",
           "line_start": 550,
           "n_typed": 0,
@@ -40186,6 +40179,16 @@
           "n_untyped": 5,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "replace_module",
+          "line_start": 619,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
         },
         {
           "kind": "function",
@@ -43483,26 +43486,6 @@
         },
         {
           "kind": "function",
-          "name": "get_ftd_map",
-          "line_start": 121,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "get_sweep_config_dict",
-          "line_start": 127,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "validate_arguments",
           "line_start": 50,
           "n_typed": 0,
@@ -43510,26 +43493,6 @@
           "n_untyped": 2,
           "n_typable": 2,
           "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "async_io_setup",
-          "line_start": 252,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
-          "name": "gds_io_setup",
-          "line_start": 256,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
         },
         {
           "kind": "function",
@@ -43545,6 +43508,26 @@
           "kind": "function",
           "name": "dump_cmd_lines",
           "line_start": 115,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_ftd_map",
+          "line_start": 121,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_sweep_config_dict",
+          "line_start": 127,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -43605,6 +43588,26 @@
           "kind": "function",
           "name": "script_path",
           "line_start": 248,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "async_io_setup",
+          "line_start": 252,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
+        },
+        {
+          "kind": "function",
+          "name": "gds_io_setup",
+          "line_start": 256,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 1,
@@ -43895,176 +43898,6 @@
       "n_untyped": 0,
       "n_functions": 0,
       "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "deepspeed/nvme/test_ds_aio.py",
-      "symbol_reports": [
-        {
-          "kind": "function",
-          "name": "ds_io_main",
-          "line_start": 15,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        }
-      ],
-      "type_ignores": [],
-      "name": "deepspeed.nvme.test_ds_aio",
-      "names": [
-        "ds_io_main"
-      ],
-      "n_typable": 1,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 1,
-      "n_functions": 1,
-      "n_function_params": 0,
-      "n_methods": 0,
-      "n_method_params": 0,
-      "n_classes": 0,
-      "n_attrs": 0,
-      "n_properties": 0,
-      "n_type_ignores": 0
-    },
-    {
-      "path": "deepspeed/nvme/test_ds_aio_utils.py",
-      "symbol_reports": [
-        {
-          "kind": "attr",
-          "name": "BYTES_PER_GB",
-          "line_start": 12,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "BYTES_PER_MB",
-          "line_start": 13,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "BYTES_PER_KB",
-          "line_start": 14,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "attr",
-          "name": "LOG_TIDS",
-          "line_start": 15,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 0
-        },
-        {
-          "kind": "function",
-          "name": "task_log",
-          "line_start": 18,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "task_barrier",
-          "line_start": 23,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "report_results",
-          "line_start": 29,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "get_block_size_and_count",
-          "line_start": 49,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "refine_integer_value",
-          "line_start": 62,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "create_filename",
-          "line_start": 71,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "create_file",
-          "line_start": 76,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        }
-      ],
-      "type_ignores": [],
-      "name": "deepspeed.nvme.test_ds_aio_utils",
-      "names": [
-        "BYTES_PER_GB",
-        "BYTES_PER_KB",
-        "BYTES_PER_MB",
-        "LOG_TIDS",
-        "create_file",
-        "create_filename",
-        "get_block_size_and_count",
-        "refine_integer_value",
-        "report_results",
-        "task_barrier",
-        "task_log"
-      ],
-      "n_typable": 23,
-      "n_typed": 0,
-      "n_any": 0,
-      "n_untyped": 23,
-      "n_functions": 7,
-      "n_function_params": 16,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
@@ -60408,33 +60241,13 @@
         },
         {
           "kind": "function",
-          "name": "get_module_flops",
-          "line_start": 1171,
+          "name": "wrapFunc",
+          "line_start": 866,
           "n_typed": 0,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "number_to_string",
-          "line_start": 1118,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "get_module_macs",
-          "line_start": 1179,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "function",
@@ -60448,28 +60261,8 @@
         },
         {
           "kind": "function",
-          "name": "get_module_duration",
-          "line_start": 1187,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
-          "name": "duration_to_string",
-          "line_start": 1165,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 4,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
-          "name": "params_to_string",
-          "line_start": 1160,
+          "name": "number_to_string",
+          "line_start": 1118,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 4,
@@ -60488,16 +60281,6 @@
         },
         {
           "kind": "function",
-          "name": "wrapFunc",
-          "line_start": 866,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "bytes_to_string",
           "line_start": 1156,
           "n_typed": 0,
@@ -60505,6 +60288,56 @@
           "n_untyped": 4,
           "n_typable": 4,
           "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "params_to_string",
+          "line_start": 1160,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "duration_to_string",
+          "line_start": 1165,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 4,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "get_module_flops",
+          "line_start": 1171,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_module_macs",
+          "line_start": 1179,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_module_duration",
+          "line_start": 1187,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "function",
@@ -60954,16 +60787,6 @@
         },
         {
           "kind": "function",
-          "name": "is_activation_to_checkpoint",
-          "line_start": 367,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "extract_tensors",
           "line_start": 305,
           "n_typed": 0,
@@ -60981,6 +60804,16 @@
           "n_untyped": 4,
           "n_typable": 4,
           "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "is_activation_to_checkpoint",
+          "line_start": 367,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "function",
@@ -63521,16 +63354,6 @@
         },
         {
           "kind": "function",
-          "name": "get_sparse_attention_mode",
-          "line_start": 446,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "get_sparse_dense_config",
           "line_start": 319,
           "n_typed": 0,
@@ -63573,6 +63396,16 @@
           "kind": "function",
           "name": "get_sparse_bslongformer_config",
           "line_start": 417,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_sparse_attention_mode",
+          "line_start": 446,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -66319,16 +66152,6 @@
         },
         {
           "kind": "function",
-          "name": "get_data_routing",
-          "line_start": 124,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "get_data_sampling_enabled",
           "line_start": 54,
           "n_typed": 0,
@@ -66401,6 +66224,16 @@
           "kind": "function",
           "name": "get_curriculum_params_legacy",
           "line_start": 115,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "get_data_routing",
+          "line_start": 124,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -68987,16 +68820,6 @@
         },
         {
           "kind": "function",
-          "name": "index_file_path",
-          "line_start": 123,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "make_builder",
           "line_start": 60,
           "n_typed": 0,
@@ -69049,6 +68872,16 @@
           "kind": "function",
           "name": "code",
           "line_start": 116,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "index_file_path",
+          "line_start": 123,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -88789,8 +88622,8 @@
               "name": "DeepSpeedZeroOptimizer_Stage3.inf_or_nan_tracker",
               "line_start": 263,
               "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 0,
+              "n_any": 0,
+              "n_untyped": 1,
               "n_typable": 1
             },
             {
@@ -89130,27 +88963,27 @@
               "kind": "attr",
               "name": "DeepSpeedZeroOptimizer_Stage3.is_gradient_accumulation_boundary",
               "line_start": 368,
-              "n_typed": 1,
+              "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 0,
+              "n_untyped": 1,
               "n_typable": 1
             },
             {
               "kind": "attr",
               "name": "DeepSpeedZeroOptimizer_Stage3.param_reduce_events",
               "line_start": 370,
-              "n_typed": 1,
+              "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 0,
+              "n_untyped": 1,
               "n_typable": 1
             },
             {
               "kind": "attr",
               "name": "DeepSpeedZeroOptimizer_Stage3.max_param_reduce_events",
               "line_start": 372,
-              "n_typed": 1,
+              "n_typed": 0,
               "n_any": 0,
-              "n_untyped": 0,
+              "n_untyped": 1,
               "n_typable": 1
             },
             {
@@ -89293,15 +89126,15 @@
               "name": "DeepSpeedZeroOptimizer_Stage3.offloaded_states",
               "line_start": 439,
               "n_typed": 0,
-              "n_any": 1,
-              "n_untyped": 0,
+              "n_any": 0,
+              "n_untyped": 1,
               "n_typable": 1
             }
           ],
           "n_typable": 304,
-          "n_typed": 13,
-          "n_any": 7,
-          "n_untyped": 284,
+          "n_typed": 10,
+          "n_any": 5,
+          "n_untyped": 289,
           "n_methods": 71,
           "n_method_params": 151,
           "n_attrs": 81,
@@ -89329,9 +89162,9 @@
         "unwrap_model_for_generation"
       ],
       "n_typable": 340,
-      "n_typed": 13,
-      "n_any": 7,
-      "n_untyped": 320,
+      "n_typed": 10,
+      "n_any": 5,
+      "n_untyped": 325,
       "n_functions": 9,
       "n_function_params": 27,
       "n_methods": 71,
@@ -95395,13 +95228,13 @@
     }
   ],
   "typecheckers": {},
-  "n_modules": 478,
-  "n_typable": 12177,
-  "n_typed": 1146,
-  "n_any": 496,
-  "n_untyped": 10535,
-  "n_functions": 806,
-  "n_function_params": 1795,
+  "n_modules": 476,
+  "n_typable": 12153,
+  "n_typed": 1145,
+  "n_any": 494,
+  "n_untyped": 10514,
+  "n_functions": 798,
+  "n_function_params": 1779,
   "n_methods": 3052,
   "n_method_params": 4250,
   "n_classes": 663,

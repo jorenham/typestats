@@ -584,16 +584,6 @@
         },
         {
           "kind": "function",
-          "name": "vmap",
-          "line_start": 956,
-          "n_typed": 6,
-          "n_any": 1,
-          "n_untyped": 0,
-          "n_typable": 7,
-          "n_params": 6
-        },
-        {
-          "kind": "function",
           "name": "jacrev",
           "line_start": 734,
           "n_typed": 6,
@@ -621,6 +611,16 @@
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "vmap",
+          "line_start": 956,
+          "n_typed": 6,
+          "n_any": 1,
+          "n_untyped": 0,
+          "n_typable": 7,
+          "n_params": 6
         },
         {
           "kind": "function",
@@ -804,16 +804,6 @@
         },
         {
           "kind": "function",
-          "name": "clear_caches",
-          "line_start": 3243,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 1,
-          "n_params": 0
-        },
-        {
-          "kind": "function",
           "name": "live_arrays",
           "line_start": 3236,
           "n_typed": 0,
@@ -821,6 +811,16 @@
           "n_untyped": 2,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "clear_caches",
+          "line_start": 3243,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 1,
+          "n_params": 0
         }
       ],
       "type_ignores": [
@@ -2126,8 +2126,8 @@
               "kind": "function",
               "name": "Array.__array__",
               "line_start": 228,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -2238,8 +2238,8 @@
               "kind": "property",
               "name": "Array.dtype",
               "line_start": 47,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1
             },
@@ -2427,8 +2427,8 @@
             }
           ],
           "n_typable": 302,
-          "n_typed": 283,
-          "n_any": 9,
+          "n_typed": 280,
+          "n_any": 12,
           "n_untyped": 10,
           "n_methods": 106,
           "n_method_params": 175,
@@ -2486,8 +2486,8 @@
         "ArrayLike"
       ],
       "n_typable": 302,
-      "n_typed": 283,
-      "n_any": 9,
+      "n_typed": 280,
+      "n_any": 12,
       "n_untyped": 10,
       "n_functions": 0,
       "n_function_params": 0,
@@ -3686,16 +3686,6 @@
         },
         {
           "kind": "function",
-          "name": "is_concrete",
-          "line_start": 1787,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "ensure_compile_time_eval",
           "line_start": 1506,
           "n_typed": 0,
@@ -3728,6 +3718,16 @@
           "kind": "function",
           "name": "shaped_abstractify",
           "line_start": 1736,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "is_concrete",
+          "line_start": 1787,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 2,
@@ -6343,8 +6343,8 @@
         {
           "kind": "type",
           "rules": [
-            "assignment",
-            "annotation-type-mismatch"
+            "annotation-type-mismatch",
+            "assignment"
           ]
         },
         {
@@ -7835,8 +7835,8 @@
           "kind": "attr",
           "name": "float0",
           "line_start": 285,
-          "n_typed": 1,
-          "n_any": 0,
+          "n_typed": 0,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 1
         },
@@ -7844,8 +7844,8 @@
           "kind": "function",
           "name": "canonicalize_dtype",
           "line_start": 349,
-          "n_typed": 2,
-          "n_any": 1,
+          "n_typed": 1,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -7972,8 +7972,8 @@
         "scalar_type_of"
       ],
       "n_typable": 17,
-      "n_typed": 12,
-      "n_any": 3,
+      "n_typed": 10,
+      "n_any": 5,
       "n_untyped": 2,
       "n_functions": 5,
       "n_function_params": 10,
@@ -8961,8 +8961,8 @@
         {
           "kind": "type",
           "rules": [
-            "invalid-annotation",
-            "unused-ignore"
+            "unused-ignore",
+            "invalid-annotation"
           ]
         },
         {
@@ -9175,15 +9175,15 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "bad-return-type"
+            "bad-return-type",
+            "unused-ignore"
           ]
         },
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "bad-return-type"
+            "bad-return-type",
+            "unused-ignore"
           ]
         },
         {
@@ -9193,8 +9193,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "attribute-error"
+            "attribute-error",
+            "unused-ignore"
           ]
         },
         {
@@ -9243,8 +9243,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "attribute-error"
+            "attribute-error",
+            "unused-ignore"
           ]
         },
         {
@@ -9274,8 +9274,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "bad-return-type"
+            "bad-return-type",
+            "unused-ignore"
           ]
         },
         {
@@ -9299,8 +9299,8 @@
         {
           "kind": "type",
           "rules": [
-            "unused-ignore",
-            "attribute-error"
+            "attribute-error",
+            "unused-ignore"
           ]
         },
         {
@@ -9310,8 +9310,8 @@
         {
           "kind": "type",
           "rules": [
-            "container-type-mismatch",
-            "unused-ignore"
+            "unused-ignore",
+            "container-type-mismatch"
           ]
         },
         {
@@ -9737,16 +9737,6 @@
         },
         {
           "kind": "function",
-          "name": "add_tangents",
-          "line_start": 1310,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 3,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "is_undefined_primal",
           "line_start": 471,
           "n_typed": 0,
@@ -9789,6 +9779,16 @@
           "kind": "function",
           "name": "defjvp2",
           "line_start": 1298,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 3,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "add_tangents",
+          "line_start": 1310,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 3,
@@ -10264,16 +10264,6 @@
         },
         {
           "kind": "function",
-          "name": "bdim_at_front",
-          "line_start": 1261,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 5,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
           "name": "defreducer",
           "line_start": 1119,
           "n_typed": 0,
@@ -10286,6 +10276,16 @@
           "kind": "function",
           "name": "broadcast",
           "line_start": 1200,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 5,
+          "n_typable": 5,
+          "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "bdim_at_front",
+          "line_start": 1261,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 5,
@@ -10500,8 +10500,8 @@
           "kind": "function",
           "name": "dtype_to_ir_type",
           "line_start": 175,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -10630,8 +10630,8 @@
           "kind": "function",
           "name": "lower_jaxpr_to_fun",
           "line_start": 1521,
-          "n_typed": 21,
-          "n_any": 0,
+          "n_typed": 20,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 21,
           "n_params": 20
@@ -11634,8 +11634,8 @@
         "unflatten_ir_values_like_types"
       ],
       "n_typable": 167,
-      "n_typed": 122,
-      "n_any": 25,
+      "n_typed": 120,
+      "n_any": 27,
       "n_untyped": 20,
       "n_functions": 24,
       "n_function_params": 87,
@@ -11836,8 +11836,8 @@
               "name": "DynamicJaxprTracer.aval",
               "line_start": 1734,
               "n_typed": 0,
-              "n_any": 0,
-              "n_untyped": 1,
+              "n_any": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
@@ -11870,8 +11870,8 @@
           ],
           "n_typable": 14,
           "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 9,
+          "n_any": 1,
+          "n_untyped": 8,
           "n_methods": 5,
           "n_method_params": 4,
           "n_attrs": 4,
@@ -12214,8 +12214,8 @@
       ],
       "n_typable": 62,
       "n_typed": 44,
-      "n_any": 1,
-      "n_untyped": 17,
+      "n_any": 2,
+      "n_untyped": 16,
       "n_functions": 6,
       "n_function_params": 18,
       "n_methods": 16,
@@ -12442,25 +12442,25 @@
               "kind": "attr",
               "name": "MeshComputation.const_args",
               "line_start": 2489,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
               "kind": "attr",
               "name": "MeshComputation.compile_args",
               "line_start": 2494,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             }
           ],
           "n_typable": 15,
-          "n_typed": 7,
+          "n_typed": 9,
           "n_any": 3,
-          "n_untyped": 5,
+          "n_untyped": 3,
           "n_methods": 4,
           "n_method_params": 9,
           "n_attrs": 2,
@@ -12806,9 +12806,9 @@
         "xla_pmap_p"
       ],
       "n_typable": 89,
-      "n_typed": 39,
+      "n_typed": 41,
       "n_any": 4,
-      "n_untyped": 46,
+      "n_untyped": 44,
       "n_functions": 5,
       "n_function_params": 23,
       "n_methods": 14,
@@ -13358,16 +13358,6 @@
         },
         {
           "kind": "function",
-          "name": "conv_general_permutations",
-          "line_start": 940,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "conv_transpose_shape_tuple",
           "line_start": 880,
           "n_typed": 0,
@@ -13375,6 +13365,16 @@
           "n_untyped": 6,
           "n_typable": 6,
           "n_params": 5
+        },
+        {
+          "kind": "function",
+          "name": "conv_general_permutations",
+          "line_start": 940,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "class",
@@ -14444,8 +14444,8 @@
           "kind": "function",
           "name": "transpose",
           "line_start": 2952,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -16432,8 +16432,8 @@
         "xor_p"
       ],
       "n_typable": 474,
-      "n_typed": 323,
-      "n_any": 3,
+      "n_typed": 322,
+      "n_any": 4,
       "n_untyped": 148,
       "n_functions": 112,
       "n_function_params": 250,
@@ -17030,16 +17030,6 @@
         },
         {
           "kind": "function",
-          "name": "axis_index",
-          "line_start": 719,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "pbroadcast",
           "line_start": 300,
           "n_typed": 0,
@@ -17120,6 +17110,16 @@
         },
         {
           "kind": "function",
+          "name": "axis_index",
+          "line_start": 719,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "axis_size",
           "line_start": 760,
           "n_typed": 2,
@@ -17140,16 +17140,6 @@
         },
         {
           "kind": "function",
-          "name": "psum_scatter",
-          "line_start": 2096,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 6,
-          "n_typable": 6,
-          "n_params": 5
-        },
-        {
-          "kind": "function",
           "name": "all_gather_invariant",
           "line_start": 1873,
           "n_typed": 2,
@@ -17157,6 +17147,16 @@
           "n_untyped": 3,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "psum_scatter",
+          "line_start": 2096,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 6,
+          "n_typable": 6,
+          "n_params": 5
         }
       ],
       "type_ignores": [
@@ -17317,8 +17317,8 @@
           "kind": "function",
           "name": "dynamic_slice",
           "line_start": 116,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -17327,8 +17327,8 @@
           "kind": "function",
           "name": "dynamic_update_slice",
           "line_start": 185,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -17427,8 +17427,8 @@
           "kind": "function",
           "name": "slice_in_dim",
           "line_start": 942,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17437,8 +17437,8 @@
           "kind": "function",
           "name": "index_in_dim",
           "line_start": 1017,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -17447,8 +17447,8 @@
           "kind": "function",
           "name": "dynamic_slice_in_dim",
           "line_start": 1077,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17457,8 +17457,8 @@
           "kind": "function",
           "name": "dynamic_index_in_dim",
           "line_start": 1142,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17467,8 +17467,8 @@
           "kind": "function",
           "name": "dynamic_update_slice_in_dim",
           "line_start": 1201,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17477,8 +17477,8 @@
           "kind": "function",
           "name": "dynamic_update_index_in_dim",
           "line_start": 1272,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 6,
           "n_params": 5
@@ -17729,8 +17729,8 @@
         "slice_p"
       ],
       "n_typable": 132,
-      "n_typed": 121,
-      "n_any": 0,
+      "n_typed": 112,
+      "n_any": 9,
       "n_untyped": 11,
       "n_functions": 18,
       "n_function_params": 102,
@@ -19029,18 +19029,18 @@
               "kind": "attr",
               "name": "AbstractMesh.axis_names",
               "line_start": 496,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
               "kind": "attr",
               "name": "AbstractMesh.axis_types",
               "line_start": 497,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             },
             {
@@ -19063,9 +19063,9 @@
             }
           ],
           "n_typable": 29,
-          "n_typed": 4,
+          "n_typed": 6,
           "n_any": 0,
-          "n_untyped": 25,
+          "n_untyped": 23,
           "n_methods": 8,
           "n_method_params": 7,
           "n_attrs": 5,
@@ -19135,8 +19135,8 @@
               "kind": "function",
               "name": "Mesh.__new__",
               "line_start": 255,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 4,
               "n_params": 3
@@ -19326,8 +19326,8 @@
           ],
           "attrs": [],
           "n_typable": 24,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 20,
           "n_methods": 10,
           "n_method_params": 4,
@@ -19409,9 +19409,9 @@
         "use_abstract_mesh"
       ],
       "n_typable": 59,
-      "n_typed": 10,
-      "n_any": 0,
-      "n_untyped": 49,
+      "n_typed": 11,
+      "n_any": 1,
+      "n_untyped": 47,
       "n_functions": 1,
       "n_function_params": 0,
       "n_methods": 23,
@@ -19437,8 +19437,8 @@
           "kind": "function",
           "name": "create_device_mesh",
           "line_start": 764,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -19447,8 +19447,8 @@
           "kind": "function",
           "name": "create_hybrid_device_mesh",
           "line_start": 836,
-          "n_typed": 7,
-          "n_any": 0,
+          "n_typed": 6,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 7,
           "n_params": 6
@@ -19467,8 +19467,8 @@
         "device_kind_handler_dict"
       ],
       "n_typable": 13,
-      "n_typed": 13,
-      "n_any": 0,
+      "n_typed": 11,
+      "n_any": 2,
       "n_untyped": 0,
       "n_functions": 2,
       "n_function_params": 10,
@@ -21361,8 +21361,8 @@
           "kind": "function",
           "name": "result_type",
           "line_start": 465,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -21611,8 +21611,8 @@
           "kind": "function",
           "name": "concatenate",
           "line_start": 4544,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -21769,16 +21769,6 @@
         },
         {
           "kind": "function",
-          "name": "nonzero",
-          "line_start": 3620,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
           "name": "select",
           "line_start": 2785,
           "n_typed": 4,
@@ -21791,8 +21781,8 @@
           "kind": "function",
           "name": "stack",
           "line_start": 4368,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -21929,6 +21919,16 @@
         },
         {
           "kind": "function",
+          "name": "nonzero",
+          "line_start": 3620,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
           "name": "arange",
           "line_start": 5865,
           "n_typed": 6,
@@ -22011,8 +22011,8 @@
           "kind": "function",
           "name": "vstack",
           "line_start": 4649,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -22021,8 +22021,8 @@
           "kind": "function",
           "name": "hstack",
           "line_start": 4710,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -22031,8 +22031,8 @@
           "kind": "function",
           "name": "dstack",
           "line_start": 4771,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -22041,8 +22041,8 @@
           "kind": "function",
           "name": "column_stack",
           "line_start": 4833,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -22051,8 +22051,8 @@
           "kind": "function",
           "name": "choose",
           "line_start": 4894,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -22429,16 +22429,6 @@
         },
         {
           "kind": "function",
-          "name": "argmin",
-          "line_start": 8271,
-          "n_typed": 5,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 5,
-          "n_params": 4
-        },
-        {
-          "kind": "function",
           "name": "append",
           "line_start": 7519,
           "n_typed": 4,
@@ -22516,6 +22506,16 @@
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "argmin",
+          "line_start": 8271,
+          "n_typed": 5,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 5,
+          "n_params": 4
         },
         {
           "kind": "function",
@@ -22882,8 +22882,8 @@
         "where"
       ],
       "n_typable": 559,
-      "n_typed": 523,
-      "n_any": 12,
+      "n_typed": 515,
+      "n_any": 20,
       "n_untyped": 24,
       "n_functions": 138,
       "n_function_params": 421,
@@ -22959,16 +22959,6 @@
         },
         {
           "kind": "function",
-          "name": "solve",
-          "line_start": 1307,
-          "n_typed": 3,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "det",
           "line_start": 693,
           "n_typed": 2,
@@ -23026,6 +23016,16 @@
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
+        },
+        {
+          "kind": "function",
+          "name": "solve",
+          "line_start": 1307,
+          "n_typed": 3,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "function",
@@ -24379,8 +24379,8 @@
           "kind": "function",
           "name": "lexsort",
           "line_start": 358,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -24397,8 +24397,8 @@
         "sort_complex"
       ],
       "n_typable": 27,
-      "n_typed": 27,
-      "n_any": 0,
+      "n_typed": 26,
+      "n_any": 1,
       "n_untyped": 0,
       "n_functions": 6,
       "n_function_params": 21,
@@ -25521,16 +25521,6 @@
         },
         {
           "kind": "function",
-          "name": "isnan",
-          "line_start": 3620,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "mod",
           "line_start": 3136,
           "n_typed": 3,
@@ -25658,6 +25648,16 @@
           "n_untyped": 3,
           "n_typable": 3,
           "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "isnan",
+          "line_start": 3620,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "function",
@@ -26687,8 +26687,8 @@
               "kind": "function",
               "name": "MemorySpace.__call__",
               "line_start": 259,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 3,
               "n_params": 2
@@ -26753,8 +26753,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 2,
@@ -26869,8 +26869,8 @@
         "squeezed"
       ],
       "n_typable": 40,
-      "n_typed": 22,
-      "n_any": 4,
+      "n_typed": 21,
+      "n_any": 5,
       "n_untyped": 14,
       "n_functions": 2,
       "n_function_params": 14,
@@ -27740,8 +27740,8 @@
               "kind": "function",
               "name": "MemorySpace.__call__",
               "line_start": 177,
-              "n_typed": 2,
-              "n_any": 0,
+              "n_typed": 1,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 3,
               "n_params": 2
@@ -27823,8 +27823,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 3,
           "n_methods": 3,
           "n_method_params": 2,
@@ -27862,16 +27862,16 @@
               "kind": "attr",
               "name": "PrefetchScalarGridSpec.scratch_shapes",
               "line_start": 228,
-              "n_typed": 0,
+              "n_typed": 1,
               "n_any": 0,
-              "n_untyped": 1,
+              "n_untyped": 0,
               "n_typable": 1
             }
           ],
           "n_typable": 6,
-          "n_typed": 3,
+          "n_typed": 4,
           "n_any": 2,
-          "n_untyped": 1,
+          "n_untyped": 0,
           "n_methods": 1,
           "n_method_params": 4,
           "n_attrs": 1,
@@ -27983,8 +27983,8 @@
       ],
       "n_typable": 32,
       "n_typed": 25,
-      "n_any": 2,
-      "n_untyped": 5,
+      "n_any": 3,
+      "n_untyped": 4,
       "n_functions": 1,
       "n_function_params": 3,
       "n_methods": 8,
@@ -30661,8 +30661,8 @@
               "kind": "function",
               "name": "MemorySpace.__call__",
               "line_start": 143,
-              "n_typed": 7,
-              "n_any": 0,
+              "n_typed": 6,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 7,
               "n_params": 6
@@ -30708,8 +30708,8 @@
             }
           ],
           "n_typable": 7,
-          "n_typed": 7,
-          "n_any": 0,
+          "n_typed": 6,
+          "n_any": 1,
           "n_untyped": 0,
           "n_methods": 2,
           "n_method_params": 5,
@@ -31468,8 +31468,8 @@
         "untile_ref"
       ],
       "n_typable": 109,
-      "n_typed": 76,
-      "n_any": 7,
+      "n_typed": 75,
+      "n_any": 8,
       "n_untyped": 26,
       "n_functions": 9,
       "n_function_params": 21,
@@ -34071,9 +34071,9 @@
           "line_start": 2046,
           "n_typed": 6,
           "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 8,
-          "n_params": 7
+          "n_untyped": 0,
+          "n_typable": 6,
+          "n_params": 5
         },
         {
           "kind": "function",
@@ -34288,12 +34288,12 @@
         "weibull_min",
         "wrap_key_data"
       ],
-      "n_typable": 234,
+      "n_typable": 232,
       "n_typed": 219,
       "n_any": 0,
-      "n_untyped": 15,
+      "n_untyped": 13,
       "n_functions": 46,
-      "n_function_params": 187,
+      "n_function_params": 185,
       "n_methods": 0,
       "n_method_params": 0,
       "n_classes": 0,
@@ -37757,8 +37757,8 @@
         },
         {
           "kind": "function",
-          "name": "logcdf",
-          "line_start": 222,
+          "name": "sf",
+          "line_start": 188,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -37767,8 +37767,8 @@
         },
         {
           "kind": "function",
-          "name": "sf",
-          "line_start": 188,
+          "name": "logcdf",
+          "line_start": 222,
           "n_typed": 0,
           "n_any": 0,
           "n_untyped": 6,
@@ -38410,8 +38410,8 @@
               "kind": "function",
               "name": "PmapSharding.__init__",
               "line_start": 199,
-              "n_typed": 1,
-              "n_any": 1,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -38569,8 +38569,8 @@
               "kind": "attr",
               "name": "PmapSharding.devices",
               "line_start": 195,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1
             },
@@ -38585,8 +38585,8 @@
             }
           ],
           "n_typable": 25,
-          "n_typed": 19,
-          "n_any": 2,
+          "n_typed": 17,
+          "n_any": 4,
           "n_untyped": 4,
           "n_methods": 11,
           "n_method_params": 7,
@@ -38982,8 +38982,8 @@
         "set_mesh"
       ],
       "n_typable": 72,
-      "n_typed": 48,
-      "n_any": 5,
+      "n_typed": 46,
+      "n_any": 7,
       "n_untyped": 19,
       "n_functions": 1,
       "n_function_params": 4,
@@ -42024,16 +42024,6 @@
         },
         {
           "kind": "function",
-          "name": "make_schedule",
-          "line_start": 553,
-          "n_typed": 2,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 2,
-          "n_params": 1
-        },
-        {
-          "kind": "function",
           "name": "momentum",
           "line_start": 239,
           "n_typed": 2,
@@ -42041,6 +42031,16 @@
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
+        },
+        {
+          "kind": "function",
+          "name": "make_schedule",
+          "line_start": 553,
+          "n_typed": 2,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 2,
+          "n_params": 1
         },
         {
           "kind": "function",
@@ -44384,6 +44384,16 @@
         },
         {
           "kind": "function",
+          "name": "fact",
+          "line_start": 172,
+          "n_typed": 0,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
           "name": "jet_fun",
           "line_start": 175,
           "n_typed": 0,
@@ -44401,16 +44411,6 @@
           "n_untyped": 6,
           "n_typable": 6,
           "n_params": 5
-        },
-        {
-          "kind": "function",
-          "name": "fact",
-          "line_start": 172,
-          "n_typed": 0,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 2,
-          "n_params": 1
         },
         {
           "kind": "function",
@@ -46867,13 +46867,13 @@
         },
         {
           "kind": "function",
-          "name": "mulf",
-          "line_start": 3234,
-          "n_typed": 0,
-          "n_any": 2,
-          "n_untyped": 1,
-          "n_typable": 3,
-          "n_params": 2
+          "name": "plan_tiled_transfer",
+          "line_start": 3080,
+          "n_typed": 10,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 10,
+          "n_params": 9
         },
         {
           "kind": "function",
@@ -46887,13 +46887,13 @@
         },
         {
           "kind": "function",
-          "name": "plan_tiled_transfer",
-          "line_start": 3080,
-          "n_typed": 10,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 10,
-          "n_params": 9
+          "name": "mulf",
+          "line_start": 3234,
+          "n_typed": 0,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 3,
+          "n_params": 2
         },
         {
           "kind": "function",
@@ -46934,8 +46934,8 @@
               "kind": "function",
               "name": "FragmentedArray.__init__",
               "line_start": 896,
-              "n_typed": 3,
-              "n_any": 0,
+              "n_typed": 2,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 3,
               "n_params": 2
@@ -47621,8 +47621,8 @@
             }
           ],
           "n_typable": 167,
-          "n_typed": 80,
-          "n_any": 10,
+          "n_typed": 79,
+          "n_any": 11,
           "n_untyped": 77,
           "n_methods": 64,
           "n_method_params": 101,
@@ -48417,8 +48417,8 @@
         "tmem_native_layout"
       ],
       "n_typable": 298,
-      "n_typed": 158,
-      "n_any": 37,
+      "n_typed": 157,
+      "n_any": 38,
       "n_untyped": 103,
       "n_functions": 9,
       "n_function_params": 28,
@@ -49078,8 +49078,8 @@
               "kind": "function",
               "name": "LaunchContext.cluster_idx",
               "line_start": 453,
-              "n_typed": 1,
-              "n_any": 1,
+              "n_typed": 0,
+              "n_any": 2,
               "n_untyped": 0,
               "n_typable": 2,
               "n_params": 1
@@ -49088,8 +49088,8 @@
               "kind": "function",
               "name": "LaunchContext.async_copy",
               "line_start": 884,
-              "n_typed": 8,
-              "n_any": 5,
+              "n_typed": 7,
+              "n_any": 6,
               "n_untyped": 1,
               "n_typable": 14,
               "n_params": 13
@@ -49098,8 +49098,8 @@
               "kind": "function",
               "name": "LaunchContext.async_prefetch",
               "line_start": 1342,
-              "n_typed": 4,
-              "n_any": 4,
+              "n_typed": 3,
+              "n_any": 5,
               "n_untyped": 1,
               "n_typable": 9,
               "n_params": 8
@@ -49213,8 +49213,8 @@
             }
           ],
           "n_typable": 40,
-          "n_typed": 17,
-          "n_any": 14,
+          "n_typed": 14,
+          "n_any": 17,
           "n_untyped": 9,
           "n_methods": 9,
           "n_method_params": 31,
@@ -49348,8 +49348,8 @@
               "kind": "function",
               "name": "Scratch.__init__",
               "line_start": 307,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 0,
               "n_typable": 1,
               "n_params": 0
@@ -49397,8 +49397,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 1,
+          "n_typed": 2,
+          "n_any": 2,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 0,
@@ -49630,8 +49630,8 @@
         "c"
       ],
       "n_typable": 85,
-      "n_typed": 51,
-      "n_any": 23,
+      "n_typed": 47,
+      "n_any": 27,
       "n_untyped": 11,
       "n_functions": 0,
       "n_function_params": 0,
@@ -50325,8 +50325,8 @@
           "kind": "function",
           "name": "to_transform_attr",
           "line_start": 365,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -50335,8 +50335,8 @@
           "kind": "function",
           "name": "from_transform_attr",
           "line_start": 378,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -50367,8 +50367,8 @@
         "to_transform_attr"
       ],
       "n_typable": 43,
-      "n_typed": 27,
-      "n_any": 16,
+      "n_typed": 25,
+      "n_any": 18,
       "n_untyped": 0,
       "n_functions": 20,
       "n_function_params": 23,
@@ -50455,8 +50455,8 @@
           "kind": "function",
           "name": "encode_descriptor",
           "line_start": 218,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 2,
           "n_typable": 6,
           "n_params": 5
@@ -50517,8 +50517,8 @@
         "tiled_memref_shape"
       ],
       "n_typable": 17,
-      "n_typed": 10,
-      "n_any": 2,
+      "n_typed": 9,
+      "n_any": 3,
       "n_untyped": 5,
       "n_functions": 4,
       "n_function_params": 13,
@@ -51341,8 +51341,8 @@
           "kind": "function",
           "name": "infer_wgmma_transforms",
           "line_start": 163,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -51351,8 +51351,8 @@
           "kind": "function",
           "name": "infer_tcgen05_mma_transforms",
           "line_start": 183,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -51378,8 +51378,8 @@
         "infer_wgmma_transforms"
       ],
       "n_typable": 6,
-      "n_typed": 4,
-      "n_any": 1,
+      "n_typed": 2,
+      "n_any": 3,
       "n_untyped": 1,
       "n_functions": 3,
       "n_function_params": 3,
@@ -51496,8 +51496,8 @@
           "kind": "function",
           "name": "gpu_address_space_to_nvptx",
           "line_start": 52,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -51524,16 +51524,6 @@
         },
         {
           "kind": "function",
-          "name": "c",
-          "line_start": 120,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 2,
-          "n_typable": 3,
-          "n_params": 2
-        },
-        {
-          "kind": "function",
           "name": "get_contiguous_strides",
           "line_start": 111,
           "n_typed": 0,
@@ -51544,6 +51534,16 @@
         },
         {
           "kind": "function",
+          "name": "c",
+          "line_start": 120,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 2,
+          "n_typable": 3,
+          "n_params": 2
+        },
+        {
+          "kind": "function",
           "name": "debug_print",
           "line_start": 147,
           "n_typed": 0,
@@ -51551,16 +51551,6 @@
           "n_untyped": 5,
           "n_typable": 5,
           "n_params": 4
-        },
-        {
-          "kind": "function",
-          "name": "single_thread",
-          "line_start": 423,
-          "n_typed": 1,
-          "n_any": 0,
-          "n_untyped": 1,
-          "n_typable": 2,
-          "n_params": 1
         },
         {
           "kind": "function",
@@ -51676,6 +51666,16 @@
           "kind": "function",
           "name": "single_thread_predicate",
           "line_start": 405,
+          "n_typed": 1,
+          "n_any": 0,
+          "n_untyped": 1,
+          "n_typable": 2,
+          "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "single_thread",
+          "line_start": 423,
           "n_typed": 1,
           "n_any": 0,
           "n_untyped": 1,
@@ -51846,8 +51846,8 @@
           "kind": "function",
           "name": "cluster_collective_mask",
           "line_start": 1545,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 3,
           "n_params": 2
@@ -52898,8 +52898,8 @@
         "when"
       ],
       "n_typable": 245,
-      "n_typed": 75,
-      "n_any": 63,
+      "n_typed": 73,
+      "n_any": 65,
       "n_untyped": 107,
       "n_functions": 54,
       "n_function_params": 84,
@@ -52945,8 +52945,8 @@
           "kind": "function",
           "name": "wgmma_m64",
           "line_start": 114,
-          "n_typed": 7,
-          "n_any": 2,
+          "n_typed": 6,
+          "n_any": 3,
           "n_untyped": 2,
           "n_typable": 11,
           "n_params": 10
@@ -53050,8 +53050,8 @@
         "wgmma_m64"
       ],
       "n_typable": 33,
-      "n_typed": 16,
-      "n_any": 4,
+      "n_typed": 15,
+      "n_any": 5,
       "n_untyped": 13,
       "n_functions": 3,
       "n_function_params": 15,
@@ -53092,16 +53092,6 @@
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
-        },
-        {
-          "kind": "function",
-          "name": "host_local_array_to_global_array",
-          "line_start": 290,
-          "n_typed": 1,
-          "n_any": 2,
-          "n_untyped": 1,
-          "n_typable": 4,
-          "n_params": 3
         },
         {
           "kind": "function",
@@ -53147,6 +53137,16 @@
           "kind": "function",
           "name": "host_local_array_to_global_array_impl",
           "line_start": 247,
+          "n_typed": 1,
+          "n_any": 2,
+          "n_untyped": 1,
+          "n_typable": 4,
+          "n_params": 3
+        },
+        {
+          "kind": "function",
+          "name": "host_local_array_to_global_array",
+          "line_start": 290,
           "n_typed": 1,
           "n_any": 2,
           "n_untyped": 1,
@@ -54455,8 +54455,8 @@
           "kind": "function",
           "name": "all_gather_lhs_matmul",
           "line_start": 34,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 6,
           "n_params": 5
@@ -54470,8 +54470,8 @@
         "all_gather_lhs_matmul"
       ],
       "n_typable": 6,
-      "n_typed": 5,
-      "n_any": 0,
+      "n_typed": 4,
+      "n_any": 1,
       "n_untyped": 1,
       "n_functions": 1,
       "n_function_params": 5,
@@ -54811,8 +54811,8 @@
           "kind": "function",
           "name": "mixed_matmul_kernel",
           "line_start": 57,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -54821,8 +54821,8 @@
           "kind": "function",
           "name": "reference",
           "line_start": 265,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -55020,8 +55020,8 @@
         "reference"
       ],
       "n_typable": 11,
-      "n_typed": 10,
-      "n_any": 0,
+      "n_typed": 8,
+      "n_any": 2,
       "n_untyped": 1,
       "n_functions": 3,
       "n_function_params": 8,
@@ -55965,8 +55965,8 @@
           "kind": "function",
           "name": "matmul",
           "line_start": 43,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 7,
           "n_params": 6
@@ -55979,8 +55979,8 @@
         "matmul_kernel"
       ],
       "n_typable": 12,
-      "n_typed": 6,
-      "n_any": 0,
+      "n_typed": 5,
+      "n_any": 1,
       "n_untyped": 6,
       "n_functions": 2,
       "n_function_params": 10,
@@ -56038,8 +56038,8 @@
           "kind": "function",
           "name": "assert_is_supported_dtype",
           "line_start": 47,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -56048,8 +56048,8 @@
           "kind": "function",
           "name": "select_input_dtype",
           "line_start": 52,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -56066,8 +56066,8 @@
         "tpu_kind"
       ],
       "n_typable": 9,
-      "n_typed": 9,
-      "n_any": 0,
+      "n_typed": 7,
+      "n_any": 2,
       "n_untyped": 0,
       "n_functions": 6,
       "n_function_params": 3,
@@ -56122,8 +56122,8 @@
           "kind": "function",
           "name": "gmm",
           "line_start": 305,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 9,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 10,
           "n_params": 9
@@ -56132,8 +56132,8 @@
           "kind": "function",
           "name": "tgmm",
           "line_start": 564,
-          "n_typed": 10,
-          "n_any": 0,
+          "n_typed": 9,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 10,
           "n_params": 9
@@ -56150,8 +56150,8 @@
         "tgmm"
       ],
       "n_typable": 27,
-      "n_typed": 26,
-      "n_any": 1,
+      "n_typed": 24,
+      "n_any": 3,
       "n_untyped": 0,
       "n_functions": 3,
       "n_function_params": 24,
@@ -56357,8 +56357,8 @@
           "kind": "function",
           "name": "from_int8",
           "line_start": 48,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -56387,8 +56387,8 @@
           "kind": "function",
           "name": "unquantize_from_int8",
           "line_start": 94,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -56442,8 +56442,8 @@
         "unquantize_from_int8"
       ],
       "n_typable": 14,
-      "n_typed": 14,
-      "n_any": 0,
+      "n_typed": 12,
+      "n_any": 2,
       "n_untyped": 0,
       "n_functions": 5,
       "n_function_params": 9,
@@ -57306,8 +57306,8 @@
           "kind": "function",
           "name": "make_attention_reference",
           "line_start": 364,
-          "n_typed": 4,
-          "n_any": 1,
+          "n_typed": 3,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -57693,8 +57693,8 @@
         "partial"
       ],
       "n_typable": 89,
-      "n_typed": 50,
-      "n_any": 1,
+      "n_typed": 49,
+      "n_any": 2,
       "n_untyped": 38,
       "n_functions": 6,
       "n_function_params": 58,
@@ -57712,8 +57712,8 @@
           "kind": "function",
           "name": "make_causal_mask",
           "line_start": 57,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -57722,8 +57722,8 @@
           "kind": "function",
           "name": "make_local_attention_mask",
           "line_start": 76,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -57732,8 +57732,8 @@
           "kind": "function",
           "name": "make_chunk_attention_mask",
           "line_start": 95,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -57742,8 +57742,8 @@
           "kind": "function",
           "name": "make_random_mask",
           "line_start": 124,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -57881,8 +57881,8 @@
               "kind": "function",
               "name": "FullMask.__getitem__",
               "line_start": 544,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -57921,8 +57921,8 @@
           ],
           "attrs": [],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 4,
           "n_method_params": 0,
@@ -58014,8 +58014,8 @@
               "kind": "function",
               "name": "LogicalAnd.__getitem__",
               "line_start": 169,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -58063,8 +58063,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 1,
@@ -58090,8 +58090,8 @@
               "kind": "function",
               "name": "LogicalOr.__getitem__",
               "line_start": 147,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -58139,8 +58139,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 3,
           "n_method_params": 1,
@@ -58156,8 +58156,8 @@
               "kind": "function",
               "name": "Mask.__getitem__",
               "line_start": 33,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -58206,8 +58206,8 @@
           ],
           "attrs": [],
           "n_typable": 7,
-          "n_typed": 6,
-          "n_any": 0,
+          "n_typed": 5,
+          "n_any": 1,
           "n_untyped": 1,
           "n_methods": 4,
           "n_method_params": 2,
@@ -58233,8 +58233,8 @@
               "kind": "function",
               "name": "MultiHeadMask.__getitem__",
               "line_start": 203,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -58283,8 +58283,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 4,
           "n_method_params": 0,
@@ -58310,8 +58310,8 @@
               "kind": "function",
               "name": "NumpyMask.__getitem__",
               "line_start": 506,
-              "n_typed": 1,
-              "n_any": 0,
+              "n_typed": 0,
+              "n_any": 1,
               "n_untyped": 1,
               "n_typable": 2,
               "n_params": 1
@@ -58360,8 +58360,8 @@
             }
           ],
           "n_typable": 5,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 2,
           "n_methods": 4,
           "n_method_params": 0,
@@ -58387,8 +58387,8 @@
         "make_random_mask"
       ],
       "n_typable": 66,
-      "n_typed": 54,
-      "n_any": 0,
+      "n_typed": 44,
+      "n_any": 10,
       "n_untyped": 12,
       "n_functions": 4,
       "n_function_params": 10,
@@ -61321,16 +61321,6 @@
         },
         {
           "kind": "function",
-          "name": "bcsr_extract",
-          "line_start": 388,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
           "name": "bcsr_todense",
           "line_start": 311,
           "n_typed": 2,
@@ -61338,6 +61328,16 @@
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "bcsr_extract",
+          "line_start": 388,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
         },
         {
           "kind": "function",
@@ -61954,16 +61954,6 @@
         },
         {
           "kind": "function",
-          "name": "csr_fromdense",
-          "line_start": 299,
-          "n_typed": 4,
-          "n_any": 0,
-          "n_untyped": 0,
-          "n_typable": 4,
-          "n_params": 3
-        },
-        {
-          "kind": "function",
           "name": "csr_todense",
           "line_start": 214,
           "n_typed": 2,
@@ -61971,6 +61961,16 @@
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
+        },
+        {
+          "kind": "function",
+          "name": "csr_fromdense",
+          "line_start": 299,
+          "n_typed": 4,
+          "n_any": 0,
+          "n_untyped": 0,
+          "n_typable": 4,
+          "n_params": 3
         },
         {
           "kind": "function",
@@ -62425,8 +62425,8 @@
           "kind": "function",
           "name": "rand_bcoo",
           "line_start": 183,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 6,
           "n_params": 5
@@ -62435,8 +62435,8 @@
           "kind": "function",
           "name": "rand_bcsr",
           "line_start": 191,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 1,
           "n_typable": 6,
           "n_params": 5
@@ -62631,8 +62631,8 @@
         "rand_sparse"
       ],
       "n_typable": 35,
-      "n_typed": 16,
-      "n_any": 0,
+      "n_typed": 14,
+      "n_any": 2,
       "n_untyped": 19,
       "n_functions": 7,
       "n_function_params": 20,
@@ -67018,8 +67018,8 @@
           "kind": "function",
           "name": "choose",
           "line_start": 267,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -67038,8 +67038,8 @@
           "kind": "function",
           "name": "column_stack",
           "line_start": 279,
-          "n_typed": 2,
-          "n_any": 0,
+          "n_typed": 1,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -67068,8 +67068,8 @@
           "kind": "function",
           "name": "concatenate",
           "line_start": 289,
-          "n_typed": 4,
-          "n_any": 0,
+          "n_typed": 3,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 4,
           "n_params": 3
@@ -67378,8 +67378,8 @@
           "kind": "function",
           "name": "dstack",
           "line_start": 365,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -67858,8 +67858,8 @@
           "kind": "function",
           "name": "hstack",
           "line_start": 546,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -67998,8 +67998,8 @@
           "kind": "function",
           "name": "isdtype",
           "line_start": 592,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -68188,8 +68188,8 @@
           "kind": "function",
           "name": "lexsort",
           "line_start": 613,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -68968,8 +68968,8 @@
           "kind": "function",
           "name": "result_type",
           "line_start": 829,
-          "n_typed": 1,
-          "n_any": 1,
+          "n_typed": 0,
+          "n_any": 2,
           "n_untyped": 0,
           "n_typable": 2,
           "n_params": 1
@@ -69228,8 +69228,8 @@
           "kind": "function",
           "name": "stack",
           "line_start": 890,
-          "n_typed": 5,
-          "n_any": 0,
+          "n_typed": 4,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 5,
           "n_params": 4
@@ -69628,8 +69628,8 @@
           "kind": "function",
           "name": "vstack",
           "line_start": 1024,
-          "n_typed": 3,
-          "n_any": 0,
+          "n_typed": 2,
+          "n_any": 1,
           "n_untyped": 0,
           "n_typable": 3,
           "n_params": 2
@@ -70333,8 +70333,8 @@
         "zeros_like"
       ],
       "n_typable": 1451,
-      "n_typed": 1353,
-      "n_any": 80,
+      "n_typed": 1343,
+      "n_any": 90,
       "n_untyped": 18,
       "n_functions": 323,
       "n_function_params": 989,
@@ -70481,12 +70481,12 @@
   ],
   "typecheckers": {},
   "n_modules": 301,
-  "n_typable": 12647,
-  "n_typed": 8566,
-  "n_any": 634,
-  "n_untyped": 3447,
+  "n_typable": 12645,
+  "n_typed": 8491,
+  "n_any": 715,
+  "n_untyped": 3439,
   "n_functions": 2206,
-  "n_function_params": 7015,
+  "n_function_params": 7013,
   "n_methods": 1145,
   "n_method_params": 1352,
   "n_classes": 339,
@@ -70716,8 +70716,8 @@
     {
       "kind": "type",
       "rules": [
-        "assignment",
-        "annotation-type-mismatch"
+        "annotation-type-mismatch",
+        "assignment"
       ]
     },
     {
@@ -71023,7 +71023,120 @@
     {
       "kind": "type",
       "rules": [
-        "invalid-annotation",
+        "unused-ignore",
+        "invalid-annotation"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "unused-ignore",
+        "attribute-error"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "arg-type"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": null
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "bad-return-type",
+        "unused-ignore"
+      ]
+    },
+    {
+      "kind": "type",
+      "rules": [
+        "bad-return-type",
         "unused-ignore"
       ]
     },
@@ -71034,121 +71147,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "attribute-error"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "arg-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "unused-ignore",
-        "bad-return-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "unused-ignore",
-        "bad-return-type"
-      ]
-    },
-    {
-      "kind": "type",
-      "rules": null
-    },
-    {
-      "kind": "type",
-      "rules": [
-        "unused-ignore",
-        "attribute-error"
+        "attribute-error",
+        "unused-ignore"
       ]
     },
     {
@@ -71197,8 +71197,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "attribute-error"
+        "attribute-error",
+        "unused-ignore"
       ]
     },
     {
@@ -71228,8 +71228,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "bad-return-type"
+        "bad-return-type",
+        "unused-ignore"
       ]
     },
     {
@@ -71253,8 +71253,8 @@
     {
       "kind": "type",
       "rules": [
-        "unused-ignore",
-        "attribute-error"
+        "attribute-error",
+        "unused-ignore"
       ]
     },
     {
@@ -71264,8 +71264,8 @@
     {
       "kind": "type",
       "rules": [
-        "container-type-mismatch",
-        "unused-ignore"
+        "unused-ignore",
+        "container-type-mismatch"
       ]
     },
     {
