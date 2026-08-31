@@ -43,6 +43,9 @@ no_deps = true
 
 [[projects]]
 name = "later"
+exclude = [
+  "later/**/test_*.py",
+]
 
 [[projects]]
 name = "pytest"
@@ -201,6 +204,9 @@ no_deps = true
 
 [[projects]]
 name = "megatron-core"
+exclude = [
+  "**/*_test.py",
+]
 no_deps = true
 
 [[projects]]
@@ -284,6 +290,9 @@ name = "langgraph"
 
 [[projects]]
 name = "sglang"
+exclude = [
+  "sglang/**/test/**",
+]
 no_deps = true
 
 [[projects]]
@@ -355,6 +364,9 @@ name = "attrs"
 
 [[projects]]
 name = "submitit"
+exclude = [
+  "submitit/**/test_*.py",
+]
 
 [[projects]]
 name = "nvidia-cutlass"
@@ -410,6 +422,10 @@ name = "beautifulsoup4"
 
 [[projects]]
 name = "bpy"
+exclude = [
+  "**/*_test.py",
+  "**/test_*.py",
+]
 
 [[projects]]
 name = "fastvideo"
@@ -508,6 +524,9 @@ name = "beartype"
 
 [[projects]]
 name = "flashinfer-python"
+exclude = [
+  "flashinfer/data/**/test/**",
+]
 no_deps = true
 
 # [[projects]]
@@ -729,6 +748,7 @@ name = "tiktoken"
 name = "onnx"
 exclude = [
   "onnx/backend/test/**",
+  "onnx/test/**",
 ]
 
 # [[projects]]
@@ -755,6 +775,9 @@ name = "simpy"
 
 [[projects]]
 name = "mujoco"
+exclude = [
+  "mujoco/**/*_test.py",
+]
 
 [[projects]]
 name = "jaxtyping"
@@ -804,6 +827,9 @@ name = "lightgbm"
 
 [[projects]]
 name = "onnxruntime"
+exclude = [
+  "onnxruntime/**/*_test.py",
+]
 
 # [[projects]]
 # name = "tensorrt"
@@ -902,6 +928,9 @@ exclude = [
 
 [[projects]]
 name = "litellm"
+exclude = [
+  "litellm/**/test_*.py",
+]
 
 [[projects]]
 name = "pynvml"
@@ -911,6 +940,9 @@ name = "ftfy"
 
 [[projects]]
 name = "mediapipe"
+exclude = [
+  "mediapipe/**/test/**",
+]
 
 [[projects]]
 name = "fasttext"
@@ -955,6 +987,9 @@ no_deps = true
 
 [[projects]]
 name = "simple-parsing"
+exclude = [
+  "simple_parsing/**/*_test.py",
+]
 
 [[projects]]
 name = "types-zstd"
@@ -1026,6 +1061,9 @@ name = "pyannote-core"
 
 [[projects]]
 name = "conan"
+exclude = [
+  "conan/test/**",
+]
 
 [[projects]]
 name = "nest-asyncio"
@@ -1045,6 +1083,9 @@ exclude = [
 
 [[projects]]
 name = "lm-eval"
+exclude = [
+  "lm_eval/**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1065,6 +1106,9 @@ name = "dill"
 
 [[projects]]
 name = "ego4d"
+exclude = [
+  "ego4d/**/*_test.py",
+]
 
 [[projects]]
 name = "python-box"
@@ -1144,6 +1188,9 @@ name = "ops"
 
 [[projects]]
 name = "aepsych"
+exclude = [
+  "tests_gpu/**",
+]
 no_deps = true
 
 [[projects]]
@@ -1154,12 +1201,18 @@ name = "plyfile"
 
 [[projects]]
 name = "openenv"
+exclude = [
+  "openenv/**/test_*.py",
+]
 
 [[projects]]
 name = "anyio"
 
 [[projects]]
 name = "deepspeed"
+exclude = [
+  "deepspeed/**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1264,6 +1317,11 @@ name = "redis"
 
 [[projects]]
 name = "coremltools"
+exclude = [
+  "coremltools/test/**",
+  "coremltools/**/test/**",
+  "coremltools/**/test_*.py",
+]
 
 [[projects]]
 name = "python-docx"
@@ -1308,6 +1366,7 @@ name = "types-pycurl"
 name = "pyfakefs"
 exclude = [
   "pyfakefs/tests/**",
+  "pyfakefs/pytest_tests/**",
 ]
 
 [[projects]]
@@ -1336,6 +1395,9 @@ name = "optuna"
 
 [[projects]]
 name = "PyVISA"
+exclude = [
+  "pyvisa/testsuite/**",
+]
 
 [[projects]]
 name = "aws-cdk-lib"
@@ -1628,6 +1690,10 @@ no_deps = true
 
 [[projects]]
 name = "executorch"
+exclude = [
+  "**/*_test.py",
+  "**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1640,6 +1706,11 @@ no_deps = true
 
 [[projects]]
 name = "torchao"
+exclude = [
+  "test/**",
+  "torchao/**/*_test.py",
+  "torchao/**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1664,6 +1735,9 @@ no_deps = true
 
 [[projects]]
 name = "torch-xla"
+exclude = [
+  "torch_xla/test/**",
+]
 no_deps = true
 
 # [[projects]]
