@@ -342,6 +342,42 @@ class TestDiscoverPackages:
         result = await discover_packages(tmp_path, dist_name=dist_name)
         assert result == (str(target.resolve()),)
 
+    async def test_namespace_package(self, tmp_path: Path) -> None:
+        """A PEP 420 namespace package (no `__init__`) is its own module root."""
+        pkg = tmp_path / "pyannote"
+        (pkg / "core").mkdir(parents=True)
+        (pkg / "core" / "__init__.py").write_text("")
+        info = tmp_path / "pyannote_core-6.0.0.dist-info"
+        info.mkdir()
+        (info / "RECORD").write_text("pyannote/core/__init__.py,,\n")
+
+        result = await discover_packages(tmp_path, dist_name="pyannote.core")
+        assert result == (str(pkg.resolve()),)
+
+    async def test_meta_package_uses_direct_deps(self, tmp_path: Path) -> None:
+        """A dist that ships no modules is represented by its direct deps."""
+        for name in ("cuda/bindings", "numpy"):  # numpy is transitive, so excluded
+            (tmp_path / name).mkdir(parents=True)
+            (tmp_path / name / "__init__.py").write_text("")
+
+        meta = tmp_path / "cuda_python-13.0.0.dist-info"
+        meta.mkdir()
+        (meta / "RECORD").write_text("cuda_python-13.0.0.dist-info/METADATA,,\n")
+        (meta / "METADATA").write_text(
+            "Name: cuda-python\n"
+            "Requires-Dist: cuda-bindings==13.*\n"
+            'Requires-Dist: pytest; extra == "test"\n',
+        )
+        for dist, record in (
+            ("cuda_bindings-13.0.0", "cuda/bindings/__init__.py"),
+            ("numpy-2.0.0", "numpy/__init__.py"),
+        ):
+            (tmp_path / f"{dist}.dist-info").mkdir()
+            (tmp_path / f"{dist}.dist-info" / "RECORD").write_text(f"{record},,\n")
+
+        result = await discover_packages(tmp_path, dist_name="cuda-python")
+        assert result == (str((tmp_path / "cuda").resolve()),)
+
     async def test_mixed_package_and_module(self, tmp_path: Path) -> None:
         pkg = tmp_path / "mypkg"
         pkg.mkdir()
