@@ -25,6 +25,7 @@ from typestats_site import PROJECTS_PATH
 __all__ = ("build_site",)
 
 type _PackageReports = list[PackageReport]
+type _VersionMap = dict[str, list[str]]
 
 _logger: Final = logging.getLogger(__name__)
 
@@ -47,14 +48,15 @@ def _get_env() -> Environment:
     )
 
 
-async def _load_all_version_reports(
+async def _load_reports(
     data_dir: StrPath,
     projects_path: StrPath,
     /,
-) -> dict[str, _PackageReports]:
+) -> tuple[_PackageReports, _VersionMap]:
     projects = load_projects(projects_path)
 
-    per_project: list[tuple[str, list[anyio.Path]]] = []
+    latest: list[tuple[str, anyio.Path]] = []
+    versions: _VersionMap = {}
     for project in projects:
         project_dir = anyio.Path(data_dir) / project.name
         if not await project_dir.is_dir():
@@ -69,35 +71,29 @@ async def _load_all_version_reports(
             key=operator.itemgetter(0),
         )
         if versioned:
-            per_project.append((project.name, [p for _, p in versioned]))
+            versions[project.name] = [str(v) for v, _ in versioned]
+            latest.append((project.name, versioned[-1][1]))
 
-    raws = await asyncio.gather(
-        *(p.read_bytes() for _, paths in per_project for p in paths)
-    )
+    raws = await asyncio.gather(*(path.read_bytes() for _, path in latest))
 
-    result: dict[str, _PackageReports] = {}
-    i = 0
-    for name, paths in per_project:
-        reports: _PackageReports = []
-        for j in range(i, i + len(paths)):
-            try:
-                reports.append(PackageReport.model_validate_json(raws[j]))
-            except ValidationError as e:
-                e.add_note(f"Error validating report for {name} from {paths[j - i]}")
-                for err in e.errors(include_input=True):
-                    e.add_note(err["msg"])
-                raise
-        result[name] = reports
-        i += len(paths)
-    return result
+    reports: _PackageReports = []
+    for (name, path), raw in zip(latest, raws, strict=True):
+        try:
+            reports.append(PackageReport.model_validate_json(raw))
+        except ValidationError as e:
+            e.add_note(f"Error validating report for {name} from {path}")
+            for err in e.errors(include_input=True):
+                e.add_note(err["msg"])
+            raise
+    return reports, versions
 
 
-def _build_manifest(all_reports: dict[str, _PackageReports], /) -> str:
+def _build_manifest(versions: _VersionMap, /) -> str:
     """Build a JSON manifest of all packages and their versions."""
-    manifest: dict[str, dict[str, object]] = {}
-    for name, reports in all_reports.items():
-        versions = [r.version for r in reports]
-        manifest[name] = {"versions": versions, "latest": versions[-1]}
+    manifest = {
+        name: {"versions": project_versions, "latest": project_versions[-1]}
+        for name, project_versions in versions.items()
+    }
     return json.dumps(manifest, indent=2)
 
 
@@ -204,17 +200,15 @@ async def build_site(
     /,
     *,
     reports: _PackageReports | None = None,
-    all_reports: dict[str, _PackageReports] | None = None,
-) -> tuple[_PackageReports, dict[str, _PackageReports]]:
+    versions: _VersionMap | None = None,
+) -> tuple[_PackageReports, _VersionMap]:
     """Build the dashboard index, report page, and manifest into *dir_site*.
 
     Raises:
         RuntimeError: If no reports could be loaded.
     """
-    if all_reports is None:
-        all_reports = await _load_all_version_reports(data_dir, projects_path)
-    if reports is None:
-        reports = [r[-1] for r in all_reports.values()]
+    if reports is None or versions is None:
+        reports, versions = await _load_reports(data_dir, projects_path)
 
     if not reports:
         msg = "No reports loaded; cannot build dashboard"
@@ -237,8 +231,8 @@ async def build_site(
             (dir_docs_tmp / "index.md", IndexPage(reports).render()),
             (dir_docs_tmp / "report.md", ReportPage().render()),
         ])
-        await (dir_docs_tmp / "manifest.json").write_text(_build_manifest(all_reports))
+        await (dir_docs_tmp / "manifest.json").write_text(_build_manifest(versions))
         await _copy_tree(dir_tmp, dir_site, clean_md=True)
 
     _logger.info("Wrote index + manifest (%d packages) to %s", len(reports), dir_site)
-    return reports, all_reports
+    return reports, versions
