@@ -39,10 +39,16 @@ name = "click"
 
 [[projects]]
 name = "vLLM"
+exclude = [
+  "vllm/**/third_party/**",
+]
 no_deps = true
 
 [[projects]]
 name = "later"
+exclude = [
+  "later/**/test_*.py",
+]
 
 [[projects]]
 name = "pytest"
@@ -79,6 +85,9 @@ name = "opencv-python"
 
 [[projects]]
 name = "matplotlib"
+exclude = [
+  "matplotlib/sphinxext/**",
+]
 
 [[projects]]
 name = "scipy-stubs"
@@ -142,10 +151,16 @@ no_deps = true
 
 [[projects]]
 name = "pytorch-lightning"
+exclude = [
+  "pytorch_lightning/demos/**",
+]
 no_deps = true
 
 [[projects]]
 name = "lightning"
+exclude = [
+  "lightning/pytorch/demos/**",
+]
 no_deps = true
 
 [[projects]]
@@ -201,6 +216,9 @@ no_deps = true
 
 [[projects]]
 name = "megatron-core"
+exclude = [
+  "**/*_test.py",
+]
 no_deps = true
 
 [[projects]]
@@ -211,6 +229,7 @@ name = "ipython"
 exclude = [
   "IPython/external/**",
   "IPython/testing/**",
+  "IPython/sphinxext/**",
 ]
 
 [[projects]]
@@ -247,6 +266,7 @@ name = "tensorboard"
 name = "jax"
 exclude = [
   "jax/tools/**",
+  "jax/_src/third_party/**",
 ]
 
 [[projects]]
@@ -284,6 +304,11 @@ name = "langgraph"
 
 [[projects]]
 name = "sglang"
+exclude = [
+  "sglang/**/test/**",
+  "sglang/**/third_party/**",
+  "sglang/benchmark/**",
+]
 no_deps = true
 
 [[projects]]
@@ -341,6 +366,9 @@ name = "trimesh"
 
 [[projects]]
 name = "tpu-inference"
+exclude = [
+  "tools/**",
+]
 no_deps = true
 
 [[projects]]
@@ -355,6 +383,9 @@ name = "attrs"
 
 [[projects]]
 name = "submitit"
+exclude = [
+  "submitit/**/test_*.py",
+]
 
 [[projects]]
 name = "nvidia-cutlass"
@@ -410,9 +441,16 @@ name = "beautifulsoup4"
 
 [[projects]]
 name = "bpy"
+exclude = [
+  "**/*_test.py",
+  "**/test_*.py",
+]
 
 [[projects]]
 name = "fastvideo"
+exclude = [
+  "fastvideo/third_party/**",
+]
 no_deps = true
 
 [[projects]]
@@ -498,6 +536,9 @@ name = "claude-agent-sdk"
 name = "ray"
 exclude = [
   "ray/tests/**",
+  "ray/**/generated/**",
+  "ray/**/_internal/**",
+  "ray/scripts/**",
 ]
 
 [[projects]]
@@ -508,6 +549,9 @@ name = "beartype"
 
 [[projects]]
 name = "flashinfer-python"
+exclude = [
+  "flashinfer/data/**",
+]
 no_deps = true
 
 # [[projects]]
@@ -623,6 +667,7 @@ name = "msgpack"
 name = "statsmodels"
 exclude = [
   "statsmodels/**/tests/**",
+  "statsmodels/sandbox/**",
 ]
 
 [[projects]]
@@ -668,6 +713,9 @@ name = "cuda-python"
 
 [[projects]]
 name = "verl"
+exclude = [
+  "scripts/**",
+]
 no_deps = true
 
 [[projects]]
@@ -700,9 +748,6 @@ name = "types-jsonschema"
 name = "cachetools"
 
 [[projects]]
-name = "types-cachetools"
-
-[[projects]]
 name = "gradio"
 exclude = [
   "gradio/test_data/**",
@@ -732,6 +777,7 @@ name = "tiktoken"
 name = "onnx"
 exclude = [
   "onnx/backend/test/**",
+  "onnx/test/**",
 ]
 
 # [[projects]]
@@ -749,6 +795,9 @@ name = "duckdb"
 
 [[projects]]
 name = "textual"
+exclude = [
+  "textual/demo/**",
+]
 
 [[projects]]
 name = "alembic"
@@ -758,6 +807,9 @@ name = "simpy"
 
 [[projects]]
 name = "mujoco"
+exclude = [
+  "mujoco/**/*_test.py",
+]
 
 [[projects]]
 name = "jaxtyping"
@@ -807,6 +859,10 @@ name = "lightgbm"
 
 [[projects]]
 name = "onnxruntime"
+exclude = [
+  "onnxruntime/**/*_test.py",
+  "onnxruntime/tools/**",
+]
 
 # [[projects]]
 # name = "tensorrt"
@@ -835,6 +891,9 @@ name = "browser-use"
 
 [[projects]]
 name = "trl"
+exclude = [
+  "trl/scripts/**",
+]
 no_deps = true
 
 [[projects]]
@@ -905,6 +964,9 @@ exclude = [
 
 [[projects]]
 name = "litellm"
+exclude = [
+  "litellm/**/test_*.py",
+]
 
 [[projects]]
 name = "pynvml"
@@ -914,6 +976,9 @@ name = "ftfy"
 
 [[projects]]
 name = "mediapipe"
+exclude = [
+  "mediapipe/**/test/**",
+]
 
 [[projects]]
 name = "fasttext"
@@ -958,6 +1023,9 @@ no_deps = true
 
 [[projects]]
 name = "simple-parsing"
+exclude = [
+  "simple_parsing/**/*_test.py",
+]
 
 [[projects]]
 name = "types-zstd"
@@ -1029,6 +1097,10 @@ name = "pyannote-core"
 
 [[projects]]
 name = "conan"
+exclude = [
+  "conan/test/**",
+  "conan/internal/**",
+]
 
 [[projects]]
 name = "nest-asyncio"
@@ -1048,6 +1120,9 @@ exclude = [
 
 [[projects]]
 name = "lm-eval"
+exclude = [
+  "lm_eval/**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1068,6 +1143,10 @@ name = "dill"
 
 [[projects]]
 name = "ego4d"
+exclude = [
+  "ego4d/**/*_test.py",
+  "ego4d/internal/**",
+]
 
 [[projects]]
 name = "python-box"
@@ -1147,6 +1226,9 @@ name = "ops"
 
 [[projects]]
 name = "aepsych"
+exclude = [
+  "tests_gpu/**",
+]
 no_deps = true
 
 [[projects]]
@@ -1157,12 +1239,18 @@ name = "plyfile"
 
 [[projects]]
 name = "openenv"
+exclude = [
+  "openenv/**/test_*.py",
+]
 
 [[projects]]
 name = "anyio"
 
 [[projects]]
 name = "deepspeed"
+exclude = [
+  "deepspeed/**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1228,6 +1316,9 @@ name = "oci"
 
 [[projects]]
 name = "pyparsing"
+exclude = [
+  "pyparsing/tools/**",
+]
 
 [[projects]]
 name = "defcon"
@@ -1249,6 +1340,9 @@ name = "jsonpath-ng"
 
 [[projects]]
 name = "scapy"
+exclude = [
+  "scapy/tools/**",
+]
 
 [[projects]]
 name = "types-croniter"
@@ -1267,6 +1361,11 @@ name = "redis"
 
 [[projects]]
 name = "coremltools"
+exclude = [
+  "coremltools/test/**",
+  "coremltools/**/test/**",
+  "coremltools/**/test_*.py",
+]
 
 [[projects]]
 name = "python-docx"
@@ -1311,6 +1410,7 @@ name = "types-pycurl"
 name = "pyfakefs"
 exclude = [
   "pyfakefs/tests/**",
+  "pyfakefs/pytest_tests/**",
 ]
 
 [[projects]]
@@ -1339,6 +1439,10 @@ name = "optuna"
 
 [[projects]]
 name = "PyVISA"
+exclude = [
+  "pyvisa/testsuite/**",
+  "pyvisa/thirdparty/**",
+]
 
 [[projects]]
 name = "aws-cdk-lib"
@@ -1363,6 +1467,9 @@ name = "types-decorator"
 
 [[projects]]
 name = "gguf"
+exclude = [
+  "gguf/scripts/**",
+]
 
 [[projects]]
 name = "nuscenes-devkit"
@@ -1631,6 +1738,10 @@ no_deps = true
 
 [[projects]]
 name = "executorch"
+exclude = [
+  "**/*_test.py",
+  "**/test_*.py",
+]
 no_deps = true
 
 [[projects]]
@@ -1643,10 +1754,19 @@ no_deps = true
 
 [[projects]]
 name = "torchao"
+exclude = [
+  "test/**",
+  "torchao/**/*_test.py",
+  "torchao/**/test_*.py",
+  "torchao/**/scripts/**",
+]
 no_deps = true
 
 [[projects]]
 name = "torchtune"
+exclude = [
+  "recipes/**",
+]
 no_deps = true
 
 [[projects]]
@@ -1667,6 +1787,9 @@ no_deps = true
 
 [[projects]]
 name = "torch-xla"
+exclude = [
+  "torch_xla/test/**",
+]
 no_deps = true
 
 # [[projects]]
