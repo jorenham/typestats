@@ -35,7 +35,7 @@ from ._pypi import (
     resolve_base_version,
     versions_since_from_detail,
 )
-from ._report import PypiInfo
+from ._report import PypiInfo, decode_report, encode_report
 from ._uv import clear_dist_locks, discover_packages, remove_dist
 
 __all__ = "clean_data", "collect_all"
@@ -53,10 +53,11 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
     if not await data_dir.is_dir():
         return removed
 
-    async for json_file in data_dir.rglob("*.json"):
-        await json_file.unlink()
-        removed += 1
-        _logger.debug("removed %s", json_file)
+    for pattern in ("*.json", "*.json.gz"):
+        async for json_file in data_dir.rglob(pattern):
+            await json_file.unlink()
+            removed += 1
+            _logger.debug("removed %s", json_file)
 
     async for child in data_dir.iterdir():
         if await child.is_dir():
@@ -76,8 +77,8 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
 
 def _is_current_schema(path: Path) -> bool:
     try:
-        data = json.loads(path.read_bytes())
-    except (json.JSONDecodeError, OSError):
+        data = json.loads(decode_report(path.read_bytes()))
+    except (json.JSONDecodeError, OSError, EOFError):
         return False
     else:
         raw = str(data.get("schema_version", "0.0"))
@@ -200,7 +201,7 @@ class _ProjectCollector:
                 ),
             )
 
-        json_bytes = report.model_dump_json(indent=2).encode()
+        json_bytes = encode_report(report)
         out.write_bytes(json_bytes)  # ruff: ignore[blocking-path-method-in-async-function]
         _logger.info("wrote %s", out)
 
@@ -247,13 +248,15 @@ async def collect_project(  # ruff: ignore[too-many-arguments]
     written: list[Path] = []
     for version in sorted(eligible):
         with log_context(f"{project.name} {version}"):
-            out = project_data_dir / f"{version}.json"
-            if out.is_file():
-                if _is_current_schema(out):
+            out = project_data_dir / f"{version}.json.gz"
+            legacy = project_data_dir / f"{version}.json"
+            existing = next((p for p in (out, legacy) if p.is_file()), None)
+            if existing is not None:
+                if _is_current_schema(existing):
                     _logger.debug("already collected, skipping")
                     continue
                 _logger.debug("outdated schema, re-collecting")
-                out.unlink()
+                existing.unlink()
 
             _logger.debug("analyzing")
 

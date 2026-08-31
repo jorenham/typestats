@@ -22,12 +22,27 @@ from typestats.schema import MIN_TYPESTATS_VERSION, SCHEMA_VERSION
 from typestats.stubs import stubs_base_name
 from typestats_site import PROJECTS_PATH
 
+from ._report import decode_report
+
 __all__ = ("build_site",)
 
 type _PackageReports = list[PackageReport]
 type _VersionMap = dict[str, list[str]]
 
 _logger: Final = logging.getLogger(__name__)
+
+
+def _report_version(path: anyio.Path, /) -> Version:
+    return Version(path.name.removesuffix(".gz").removesuffix(".json"))
+
+
+async def _find_reports(project_dir: anyio.Path, /) -> list[tuple[Version, anyio.Path]]:
+    """Report paths by version; a `.json.gz` shadows an uncompressed one."""
+    found: dict[Version, anyio.Path] = {}
+    for pattern in ("*.json", "*.json.gz"):
+        async for path in project_dir.glob(pattern):
+            found[_report_version(path)] = path
+    return sorted(found.items(), key=operator.itemgetter(0))
 
 
 def _release_date(r: PackageReport, /) -> str:
@@ -63,13 +78,7 @@ async def _load_reports(
             _logger.warning("No data directory for %s, skipping", project.name)
             continue
 
-        versioned = sorted(
-            [
-                (Version(json_file.stem), json_file)
-                async for json_file in project_dir.glob("*.json")
-            ],
-            key=operator.itemgetter(0),
-        )
+        versioned = await _find_reports(project_dir)
         if versioned:
             versions[project.name] = [str(v) for v, _ in versioned]
             latest.append((project.name, versioned[-1][1]))
@@ -79,7 +88,7 @@ async def _load_reports(
     reports: _PackageReports = []
     for (name, path), raw in zip(latest, raws, strict=True):
         try:
-            reports.append(PackageReport.model_validate_json(raw))
+            reports.append(PackageReport.model_validate_json(decode_report(raw)))
         except ValidationError as e:
             e.add_note(f"Error validating report for {name} from {path}")
             for err in e.errors(include_input=True):

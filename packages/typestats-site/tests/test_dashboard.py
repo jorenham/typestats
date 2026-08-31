@@ -1,3 +1,4 @@
+import gzip
 import json
 import re
 from pathlib import Path
@@ -120,12 +121,22 @@ async def site_dirs(tmp_path: Path) -> _SiteDirs:
     return _SiteDirs(base, data, site, docs, base / "projects.toml")
 
 
-def _write_report(data_dir: StrPath, report: PackageReport) -> Path:
-    """Serialize *report* to `{data_dir}/{package}/{version}.json`."""
+def _write_report(
+    data_dir: StrPath,
+    report: PackageReport,
+    *,
+    compress: bool = True,
+) -> Path:
+    """Serialize *report* to `{data_dir}/{package}/{version}.json[.gz]`."""
     pkg_dir = Path(data_dir) / report.package
     pkg_dir.mkdir(parents=True, exist_ok=True)
-    out = pkg_dir / f"{report.version}.json"
-    out.write_text(report.model_dump_json())
+    raw = report.model_dump_json().encode()
+    if not compress:
+        out = pkg_dir / f"{report.version}.json"
+        out.write_bytes(raw)
+        return out
+    out = pkg_dir / f"{report.version}.json.gz"
+    out.write_bytes(gzip.compress(raw, 9, mtime=0))
     return out
 
 
@@ -339,6 +350,27 @@ class TestBuildSite:
         assert len(reports) == 1
         content = await (site_dirs.site / "docs" / "dashboard" / "index.md").read_text()
         assert '<a href="report/#mypkg">mypkg</a>' in content
+
+    async def test_reads_uncompressed_reports(self, site_dirs: _SiteDirs) -> None:
+        """Reports from before the gzip switch are still picked up."""
+        await site_dirs.projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"), compress=False)
+
+        reports, versions = await site_dirs.build_site()
+
+        assert len(reports) == 1
+        assert versions["mypkg"] == ["1.0.0"]
+
+    async def test_prefers_compressed_report(self, site_dirs: _SiteDirs) -> None:
+        """A `.json.gz` report shadows an uncompressed one of the same version."""
+        await site_dirs.projects_toml.write_text('projects = [{ "name" = "mypkg" }]\n')
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"), compress=False)
+        _write_report(site_dirs.data, _minimal_report("mypkg", "1.0.0"))
+
+        reports, versions = await site_dirs.build_site()
+
+        assert len(reports) == 1
+        assert versions["mypkg"] == ["1.0.0"]
 
     async def test_creates_manifest(self, site_dirs: _SiteDirs) -> None:
         docs_dir = site_dirs.site / "docs"

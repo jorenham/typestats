@@ -256,13 +256,22 @@ async function fetchManifest() {
   return resp.json()
 }
 
+// Reports are stored gzipped, but uploads and older data are not: sniff the magic
+// bytes rather than trust the file name.
+async function decodeReportText(buf) {
+  const bytes = new Uint8Array(buf)
+  if (bytes[0] !== 0x1f || bytes[1] !== 0x8b) return new TextDecoder().decode(buf)
+  const gunzip = new DecompressionStream("gzip")
+  return new Response(new Blob([buf]).stream().pipeThrough(gunzip)).text()
+}
+
 async function fetchReport(pkg, version) {
-  const resp = await fetch(
-    `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}.json`,
-  )
+  const base = `${DATA_BASE_URL}/${encodeURIComponent(pkg)}/${encodeURIComponent(version)}`
+  let resp = await fetch(`${base}.json.gz`)
+  if (!resp.ok) resp = await fetch(`${base}.json`)
   if (!resp.ok)
     throw new Error(`Failed to fetch report for ${pkg}@${version}: ${resp.status}`)
-  return resp.json()
+  return JSON.parse(await decodeReportText(await resp.arrayBuffer()))
 }
 
 const TOP_PYPI_PACKAGES_URL =
