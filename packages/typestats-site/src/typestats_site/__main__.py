@@ -47,13 +47,13 @@ class Collect:
     """Collect type-coverage report data for curated projects."""
 
     data_dir: Path
-    """Directory to write `{package}/{version}.json` files into."""
+    """Directory to write `{package}/{version}.json.gz` files into."""
 
     projects: _ProjectsArg = Path(PROJECTS_PATH)
     """Path to projects TOML file."""
 
     clean: bool = False
-    """Remove all previously collected JSON files before collecting."""
+    """Remove all previously collected reports before collecting."""
 
     backfill_since: dt.date = dt.date(2025, 1, 1)
     """Collect versions uploaded on or after this date."""
@@ -71,7 +71,7 @@ class Dashboard:
     """Build the markdown dashboard pages from collected data."""
 
     data_dir: Path
-    """Directory containing collected `{package}/{version}.json` files."""
+    """Directory containing collected `{package}/{version}.json.gz` files."""
 
     site_dir: Path
     """Output directory for generated markdown pages."""

@@ -4,6 +4,7 @@ import contextlib
 import dataclasses
 import datetime as dt
 import functools
+import gzip
 import json
 import logging
 import os
@@ -35,7 +36,7 @@ from ._pypi import (
     resolve_base_version,
     versions_since_from_detail,
 )
-from ._report import PypiInfo, decode_report, encode_report
+from ._report import PypiInfo, encode_report
 from ._uv import clear_dist_locks, discover_packages, remove_dist
 
 __all__ = "clean_data", "collect_all"
@@ -53,11 +54,10 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
     if not await data_dir.is_dir():
         return removed
 
-    for pattern in ("*.json", "*.json.gz"):
-        async for json_file in data_dir.rglob(pattern):
-            await json_file.unlink()
-            removed += 1
-            _logger.debug("removed %s", json_file)
+    async for json_file in data_dir.rglob("*.json.gz"):
+        await json_file.unlink()
+        removed += 1
+        _logger.debug("removed %s", json_file)
 
     async for child in data_dir.iterdir():
         if await child.is_dir():
@@ -77,7 +77,7 @@ async def clean_data(data_dir: anyio.Path, /) -> int:
 
 def _is_current_schema(path: Path) -> bool:
     try:
-        data = json.loads(decode_report(path.read_bytes()))
+        data = json.loads(gzip.decompress(path.read_bytes()))
     except (json.JSONDecodeError, OSError, EOFError):
         return False
     else:
@@ -249,14 +249,12 @@ async def collect_project(  # ruff: ignore[too-many-arguments]
     for version in sorted(eligible):
         with log_context(f"{project.name} {version}"):
             out = project_data_dir / f"{version}.json.gz"
-            legacy = project_data_dir / f"{version}.json"
-            existing = next((p for p in (out, legacy) if p.is_file()), None)
-            if existing is not None:
-                if _is_current_schema(existing):
+            if out.is_file():
+                if _is_current_schema(out):
                     _logger.debug("already collected, skipping")
                     continue
                 _logger.debug("outdated schema, re-collecting")
-                existing.unlink()
+                out.unlink()
 
             _logger.debug("analyzing")
 
