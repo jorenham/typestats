@@ -278,9 +278,31 @@ name = "types-regex"
 
 [[projects]]
 name = "hypothesis"
+# Public API is "exactly the set of things documented with Sphinx", excepting errors
+# (https://github.com/HypothesisWorks/hypothesis/pull/4946#issuecomment-6449024048)
 exclude = [
-  "hypothesis/internal/**",
+  # Undocumented, or only documented through re-exports
+  "hypothesis/configuration.py",
+  "hypothesis/control.py",
+  # Mostly undocumented internals; only `HypothesisHandle.fuzz_one_input` is lost
+  "hypothesis/core.py",
+  "hypothesis/entry_points.py",
+  "hypothesis/extra/cli.py",
+  "hypothesis/extra/pandas/impl.py",
+  "hypothesis/reporting.py",
+  "hypothesis/statistics.py",
+  "hypothesis/utils/**",
   "hypothesis/vendor/**",
+  "hypothesis/version.py",
+  # All of `hypothesis/internal/` except the documented `intervalsets.py`,
+  # `observability.py`, `conjecture/providers.py`, and
+  # `conjecture/provider_conformance.py`.
+  "hypothesis/internal/[!cio]*",
+  "hypothesis/internal/c[!o]*",
+  "hypothesis/internal/co[!n]*",
+  "hypothesis/internal/constants_ast.py",
+  "hypothesis/internal/conjecture/[!p]*",
+  "hypothesis/internal/conjecture/pareto.py",
 ]
 
 [[projects]]
