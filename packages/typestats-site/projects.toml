@@ -52,6 +52,9 @@ exclude = [
 
 [[projects]]
 name = "pytest"
+exclude = [
+  "_pytest/legacypath.py",
+]
 
 [[projects]]
 name = "Pillow"
@@ -134,13 +137,14 @@ exclude = [
 [[projects]]
 name = "jinja2"
 exclude = [
-  "src/jinja2/tests.py",
+  "jinja2/tests.py",
 ]
 
 [[projects]]
 name = "hydra-core"
 exclude = [
   "hydra/test_utils/**",
+  "hydra/grammar/gen/**",
 ]
 
 [[projects]]
@@ -375,6 +379,9 @@ name = "polars"
 [[projects]]
 name = "captum"
 no_deps = true
+exclude = [
+  "captum/testing/**",
+]
 
 [[projects]]
 name = "huggingface-hub"
@@ -404,6 +411,9 @@ no_deps = true
 
 [[projects]]
 name = "attrs"
+exclude = [
+  "attr/_*.py",
+]
 
 [[projects]]
 name = "submitit"
@@ -903,30 +913,8 @@ exclude = [
 
   "numba/cpython/**",
 
-  "numba/cuda/*impl.py*",
-  "numba/cuda/codegen.py*",
-  "numba/cuda/cuda_paths.py*",
-  "numba/cuda/cudadecl.py*",
-  "numba/cuda/cudadrv/dummyarray.py*",
-  "numba/cuda/cudadrv/enums.py*",
-  "numba/cuda/cudadrv/libs.py*",
-  "numba/cuda/cudadrv/ndarray.py*",
-  "numba/cuda/cudadrv/nvrtc.py*",
-  "numba/cuda/cudadrv/rtapi.py*",
-  "numba/cuda/cudamath.py*",
-  "numba/cuda/descriptor.py*",
-  "numba/cuda/extending.py*",
-  "numba/cuda/kernels/transpose.py*",
-  "numba/cuda/libdevice?*.py*",
-  "numba/cuda/models.py*",
-  "numba/cuda/nvvmutils.py*",
-  "numba/cuda/simulator/cudadrv/dummyarray.py*",
-  "numba/cuda/simulator/cudadrv/libs.py*",
-  "numba/cuda/target.py*",
-  "numba/cuda/testing.py*",
-  "numba/cuda/types.py*",
-  "numba/cuda/ufuncs.py*",
-  "numba/cuda/vector_types.py*",
+  # deprecated in favor of https://github.com/NVIDIA/numba-cuda
+  "numba/cuda/**",
 
   "numba/experimental/function_type.py*",
 
@@ -974,6 +962,26 @@ exclude = [
   "numba/typed/*object.py*",
   "numba/typed/dictimpl.py*",
   "numba/typed/typedobjectutils.py*",
+
+  # compiler internals
+  "numba/np/arrayobj.py",
+  "numba/np/arraymath.py",
+  "numba/np/npyimpl.py",
+  "numba/core/interpreter.py",
+  "numba/core/byteflow.py",
+  "numba/core/controlflow.py",
+  "numba/core/typeinfer.py",
+  "numba/core/untyped_passes.py",
+  "numba/core/lowering.py",
+  "numba/core/pylowering.py",
+  "numba/core/callconv.py",
+  "numba/core/caching.py",
+  "numba/core/compiler_machinery.py",
+  "numba/core/funcdesc.py",
+  "numba/parfors/parfor.py",
+  "numba/parfors/parfor_lowering.py",
+  "numba/misc/llvm_pass_timings.py",
+  "numba/misc/help/**",
 ]
 
 [[projects]]
@@ -1531,6 +1539,9 @@ name = "west"
 
 [[projects]]
 name = "lmdb"
+exclude = [
+  "lmdb/tool.py",
+]
 
 [[projects]]
 name = "mteb"
@@ -1594,6 +1605,12 @@ name = "aiosqlite"
 
 [[projects]]
 name = "debugpy"
+exclude = [
+  "debugpy/adapter/**",
+  "debugpy/common/**",
+  "debugpy/launcher/**",
+  "debugpy/server/**",
+]
 
 [[projects]]
 name = "types-decorator"
@@ -1840,7 +1857,7 @@ name = "xlsxwriter"
 [[projects]]
 name = "semver"
 exclude = [
-  "src/semver/_deprecated.py",
+  "semver/_deprecated.py",
 ]
 
 # the pytorch family
