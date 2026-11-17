@@ -12,12 +12,14 @@ import httpx
 import pytest
 
 from typestats.projects import Project
+from typestats.report import PackageReport
 from typestats.schema import SCHEMA_VERSION
 from typestats_site.collect import clean_data, collect_all, collect_project
 
 if TYPE_CHECKING:
     from collections.abc import Callable
 
+    from typestats._type import StrPath
     from typestats_site._testing import PyPIMocker
 
 
@@ -170,6 +172,40 @@ class TestCollectProject:
 
         assert results == []
 
+    async def test_failing_version_does_not_abort_project(
+        self,
+        tmp_path: Path,
+        pypi: "PyPIMocker",
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        """An unexpected error in one version still collects the other versions."""
+        name = "mypkg"
+        pypi.project(
+            name,
+            pypi.wheel(name, "1.0.0", _FIXTURES / "stubs_base"),
+            pypi.wheel(name, "1.1.0", _FIXTURES / "stubs_base"),
+        )
+
+        from_path = PackageReport.from_path
+
+        async def _from_path(
+            package: str,
+            path: "StrPath",
+            version: str,
+            /,
+            *args: Any,
+            **kwargs: Any,
+        ) -> PackageReport:
+            if version == "1.0.0":
+                raise subprocess.CalledProcessError(1, ["pyrefly", "coverage"])
+            return await from_path(package, path, version, *args, **kwargs)
+
+        monkeypatch.setattr(PackageReport, "from_path", _from_path)
+
+        results = await _collect(Project(name=name), tmp_path)
+
+        assert results == [tmp_path / name / "1.1.0.json.gz"]
+
 
 class TestCollectAll:
     pytestmark = pytest.mark.anyio
@@ -251,6 +287,33 @@ class TestCollectAll:
         assert not unlisted.exists()
         # The listed project should still have its data
         assert (tmp_path / "data" / name).exists()
+
+    async def test_keeps_unlisted_projects_without_prune(
+        self,
+        tmp_path: Path,
+        pypi: "PyPIMocker",
+    ) -> None:
+        """With `prune=False`, a subset of projects can be recollected in place."""
+        name, version = "mypkg", "1.0.0"
+        pypi.project(name, pypi.wheel(name, version, _FIXTURES / "stubs_base"))
+
+        data_dir = anyio.Path(tmp_path / "data")
+        unlisted = tmp_path / "data" / "oldpkg"
+        _write_report(unlisted / "0.1.0.json.gz", {})
+
+        projects_toml = tmp_path / "projects.toml"
+        projects_toml.write_text(f'projects = [{{ name = "{name}" }}]\n')
+
+        written = await collect_all(
+            data_dir,
+            projects_toml,
+            backfill_since=_BACKFILL_SINCE,
+            backfill_limit=_BACKFILL_LIMIT,
+            prune=False,
+        )
+
+        assert (unlisted / "0.1.0.json.gz").exists()
+        assert len(written) == 1
 
 
 class TestBackfillCutoff:
