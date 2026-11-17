@@ -30,7 +30,7 @@ requires-python = ">=3.12"
 dependencies = [
   "anyio>=4.11,<5",
   "pydantic>=2.11,<3",
-  "pyrefly>=1.4,<2",
+  "pyrefly>=1.4.1,<2",
   "tyro>=1.0,<2",
 ]
 
@@ -40,15 +40,15 @@ typestats = "typestats:__main__.app"
 [dependency-groups]
 site = ["typestats-site"]
 test = [
-  "pytest>=9.1.1",
+  "pytest>=9.2.0",
   "pytest-httpx>=0.36.2",
 ]
 dev = [
   { include-group = "site" },
   { include-group = "test" },
-  "dprint-py==0.64.3.0",
-  "ruff==0.17.2",
-  "uvloop>=0.22.1,<1; sys_platform != 'win32'",
+  "dprint-py==0.65.0.0",
+  "ruff==0.17.5",
+  "uvloop>=0.23.0; sys_platform != 'win32'",
 ]
 
 [tool.uv.sources]

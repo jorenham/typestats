@@ -40,7 +40,7 @@ def _get_env() -> Environment:
     return Environment(
         loader=ChoiceLoader([
             PackageLoader("typestats_site", "templates"),
-            PackageLoader("zensical", "templates"),
+            PackageLoader("zensical_ui", "templates"),
         ]),
         keep_trailing_newline=True,
         lstrip_blocks=True,
