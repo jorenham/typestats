@@ -50,7 +50,8 @@ class Collect:
     """Directory to write `{package}/{version}.json.gz` files into."""
 
     projects: _ProjectsArg = Path(PROJECTS_PATH)
-    """Path to projects TOML file."""
+    """Path to projects TOML file.  Data of unlisted projects is only removed when this
+    is the default projects file, so a subset can be recollected in place."""
 
     clean: bool = False
     """Remove all previously collected reports before collecting."""
@@ -105,6 +106,7 @@ async def _run(cmd: Collect | Dashboard | Preview) -> None:
                 backfill_since=cmd.backfill_since,
                 backfill_limit=cmd.backfill_limit,
                 jobs=cmd.jobs,
+                prune=cmd.projects.resolve() == PROJECTS_PATH.resolve(),
             )
 
         case Dashboard():

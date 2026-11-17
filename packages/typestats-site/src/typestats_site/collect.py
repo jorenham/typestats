@@ -261,13 +261,16 @@ async def collect_project(  # ruff: ignore[too-many-arguments]
             try:
                 if await collector.collect_version(version, out):
                     written.append(out)
+            except Exception:
+                # one broken release shouldn't abort the project's other versions
+                _logger.exception("failed, skipping")
             finally:
                 await remove_dist(work_dir, project.name, str(version))
 
     return written
 
 
-async def collect_all(
+async def collect_all(  # ruff: ignore[too-many-arguments]
     data_dir: StrPath,
     projects_path: StrPath | None = None,
     /,
@@ -275,6 +278,7 @@ async def collect_all(
     backfill_since: dt.date,
     backfill_limit: int,
     jobs: int | None = None,
+    prune: bool = True,
 ) -> list[Path]:
     """Analyze every project in `projects_path` and write JSON reports.
 
@@ -282,7 +286,8 @@ async def collect_all(
     constrained to max `backfill_limit` versions per project, and at least the latest
     version.  At most `jobs` projects are collected concurrently, defaulting to the
     CPU count (capped at 8) to keep the concurrent pyrefly processes from exhausting
-    memory on small machines.
+    memory on small machines.  With `prune`, data of projects that aren't listed in
+    `projects_path` is removed from `data_dir`.
     """
 
     data_dir = anyio.Path(data_dir)
@@ -294,9 +299,8 @@ async def collect_all(
         "Collecting data for %d projects (%d at a time)...", len(projects), jobs
     )
 
-    # prune data for unlisted projects
     project_names = {p.name for p in projects}
-    if await data_dir.is_dir():
+    if prune and await data_dir.is_dir():
         async for child in data_dir.iterdir():
             if await child.is_dir() and child.name not in project_names:
                 _logger.info("Removing unlisted project data: %s", child.name)
