@@ -17,28 +17,23 @@ on: # zizmor: ignore[dangerous-triggers]
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read # checkout
+permissions: {}
 
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: deploy
+  build:
+    name: build
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
 
     permissions:
-      pages: write # deploy to GitHub Pages
-      id-token: write # verify the deployment originates from this workflow
+      contents: read # checkout
+      pages: read # configure-pages
 
     runs-on: ubuntu-latest
     timeout-minutes: 30
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: checkout main
@@ -77,5 +72,21 @@ jobs:
         with:
           path: packages/typestats-site/site
 
+  deploy:
+    name: deploy
+    needs: build
+
+    permissions:
+      pages: write # deploy to GitHub Pages
+      id-token: write # verify the deployment originates from this workflow
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
